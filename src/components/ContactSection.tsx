@@ -107,7 +107,7 @@ export default function ContactSection() {
                 className={inputClass + " resize-none"}
               />
               <button type="submit" className="btn-metallic w-full py-4 text-base">
-                Submit & Get Candidates
+                Submit Enquiry
               </button>
             </form>
           </motion.div>

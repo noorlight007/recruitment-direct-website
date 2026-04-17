@@ -28,10 +28,10 @@ function Hero() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
         <motion.h1 {...fadeUp} className="section-title text-4xl md:text-5xl lg:text-6xl mb-5">
-          Hire Staff Instantly with AI
+          Hire Staff Faster with AI & Consultant Support
         </motion.h1>
         <motion.p {...fadeUp} transition={{ delay: 0.1 }} className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto mb-8">
-          Get pricing, screen applicants and secure qualified staff faster than traditional recruitment.
+          Submit your requirements and receive screened, qualified staff quickly.
         </motion.p>
 
         <motion.ul {...fadeUp} transition={{ delay: 0.2 }} className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10 text-foreground/80">
@@ -43,7 +43,7 @@ function Hero() {
         </motion.ul>
 
         <motion.div {...fadeUp} transition={{ delay: 0.3 }}>
-          <a href="#ai-hire-cta" className="btn-metallic text-base px-10 py-4 inline-block">AI Hire Now</a>
+          <a href="#ai-hire-cta" className="btn-metallic text-base px-10 py-4 inline-block">Place Enquiry</a>
           <p className="text-sm text-foreground/50 mt-4">AI speed. Consultant verified. Fast submission.</p>
         </motion.div>
       </div>

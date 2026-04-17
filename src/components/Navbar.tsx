@@ -33,18 +33,39 @@ const aiProducts = [
 ];
 
 const clientSubmenu = [
-  { title: "AI Hire Now", link: "/ai-hire-now", icon: <Zap className="w-5 h-5 text-primary" /> },
-  { title: "Temporary Staffing", link: "#search-jobs", icon: <Users className="w-5 h-5 text-primary" /> },
-  { title: "Contract Recruitment", link: "#contact", icon: <Briefcase className="w-5 h-5 text-primary" /> },
-  { title: "Permanent Recruitment", link: "#contact", icon: <UserCheck className="w-5 h-5 text-primary" /> },
-  { title: "Sectors", link: "#sectors", icon: <Search className="w-5 h-5 text-primary" /> },
-  { title: "AI Recruitment", link: "#ai-products", icon: <ShieldCheck className="w-5 h-5 text-primary" /> },
-  { title: "Why Choose Us", link: "#about", icon: <ShieldCheck className="w-5 h-5 text-primary" /> },
+  {
+    title: "Temporary Staff",
+    description: "Flexible staffing solutions for short-term and seasonal demand",
+    link: "#search-jobs",
+    icon: "👥",
+    isImage: false,
+  },
+  {
+    title: "Contract Staff",
+    description: "Skilled contract professionals for project-based hiring needs",
+    link: "#contact",
+    icon: "📄",
+    isImage: false,
+  },
+  {
+    title: "Permanent Staff",
+    description: "Long-term recruitment support to build your core team",
+    link: "#contact",
+    icon: "✅",
+    isImage: false,
+  },
+  {
+    title: "Why Choose Us",
+    description: "See what makes our recruitment approach different",
+    link: "#about",
+    icon: "⭐",
+    isImage: false,
+  },
 ];
 
 const menuItems = [
   { label: "Home", href: "#home" },
-  { label: "Clients", href: "#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 2 },
+  { label: "Clients", href: "#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
   { label: "Job Search", href: "#job-search" },
   { label: "Sectors", href: "#sectors" },
   { label: "AI Recruitment", href: "#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
@@ -70,7 +91,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-6 lg:px-10">
         <div className="flex items-center justify-between h-28">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
