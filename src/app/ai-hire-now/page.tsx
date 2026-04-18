@@ -111,7 +111,7 @@ function FinalCTA() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2
           {...fadeUp}
-          className="text-[24px] md:text-[28px] font-semibold text-foreground mb-4"
+          className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6"
         >
           Start Using AI Hire Now
         </motion.h2>

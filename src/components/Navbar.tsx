@@ -13,7 +13,7 @@ const aiProducts = [
     title: "CallPilot",
     description: "AI applicant screening calls",
     icon: Phone,
-    link: "https://callpilot.pro",
+    link: "/callpilot",
     isImage: false,
   },
   {
@@ -36,25 +36,25 @@ const clientSubmenu = [
   {
     title: "Temporary Staff",
     description: "Flexible short-term staffing",
-    link: "#search-jobs",
+    link: "/temporary-staff",
     icon: Users,
   },
   {
     title: "Contract Staff",
     description: "Project-based professionals",
-    link: "#contact",
+    link: "/contract-staff",
     icon: FileText,
   },
   {
     title: "Permanent Staff",
     description: "Long-term hires",
-    link: "#contact",
+    link: "/parmanent-staff",
     icon: Briefcase,
   },
   {
     title: "Why Choose Us",
     description: "See what makes our recruitment approach different",
-    link: "#about",
+    link: "/why-choose-us",
     icon: ShieldCheck,
   },
 ];
