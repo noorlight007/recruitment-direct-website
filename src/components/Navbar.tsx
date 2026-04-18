@@ -182,7 +182,7 @@ export default function Navbar() {
               <Phone className="w-5 h-5 text-primary" />
               <span>01324 613198</span>
             </a>
-            <a href="#contact" className="btn-metallic text-sm px-6 py-3">AI Hire Now</a>
+            <a href="/ai-hire-now" className="btn-metallic text-sm px-6 py-3">AI Hire Now</a>
           </div>
 
           {/* Mobile/Tablet Menu Button */}
@@ -277,7 +277,7 @@ export default function Navbar() {
 
               {/* Mobile Actions */}
               <div className="grid grid-cols-1 gap-3 px-4 pt-2">
-                <a href="#contact" onClick={() => setMobileOpen(false)} className="btn-metallic text-sm py-4 text-center">AI Hire Now</a>
+                <a href="/ai-hire-now" onClick={() => setMobileOpen(false)} className="btn-metallic text-sm py-4 text-center">AI Hire Now</a>
               </div>
               <div className="px-4 pb-2 text-center text-xs text-foreground/60 font-medium">
                 Prefer to speak? Call us on <a href="tel:01324613298" className="hover:text-primary transition-colors">01324 613198</a>
