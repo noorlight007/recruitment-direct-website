@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone } from "lucide-react";
+import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText,   } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
@@ -11,22 +11,22 @@ import callpilotLogo from "@/assets/callpilot_logo.png";
 const aiProducts = [
   {
     title: "CallPilot",
-    description: "AI-powered phone calls that screen candidates and handle enquiries 24/7",
-    icon: callpilotLogo,
+    description: "AI applicant screening calls",
+    icon: Phone,
     link: "https://callpilot.pro",
-    isImage: true,
+    isImage: false,
   },
   {
     title: "AI Hire Now",
-    description: "Instant AI-driven hiring pipeline for rapid staff deployment",
-    icon: "⚡",
+    description: "Instant hiring pipeline",
+    icon: Zap,
     link: "/ai-hire-now",
     isImage: false,
   },
   {
     title: "Verify Suppliers",
-    description: "AI-powered supplier verification and compliance checking",
-    icon: "🔍",
+    description: "Compliance & verification",
+    icon: ShieldCheck,
     link: "#contact",
     isImage: false,
   },
@@ -35,36 +35,32 @@ const aiProducts = [
 const clientSubmenu = [
   {
     title: "Temporary Staff",
-    description: "Flexible staffing solutions for short-term and seasonal demand",
+    description: "Flexible short-term staffing",
     link: "#search-jobs",
-    icon: "👥",
-    isImage: false,
+    icon: Users,
   },
   {
     title: "Contract Staff",
-    description: "Skilled contract professionals for project-based hiring needs",
+    description: "Project-based professionals",
     link: "#contact",
-    icon: "📄",
-    isImage: false,
+    icon: FileText,
   },
   {
     title: "Permanent Staff",
-    description: "Long-term recruitment support to build your core team",
+    description: "Long-term hires",
     link: "#contact",
-    icon: "✅",
-    isImage: false,
+    icon: Briefcase,
   },
   {
     title: "Why Choose Us",
     description: "See what makes our recruitment approach different",
     link: "#about",
-    icon: "⭐",
-    isImage: false,
+    icon: ShieldCheck,
   },
 ];
 
 const menuItems = [
-  { label: "Home", href: "#home" },
+  { label: "Home", href: "/" },
   { label: "Clients", href: "#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
   { label: "Job Search", href: "#job-search" },
   { label: "Sectors", href: "#sectors" },
@@ -130,11 +126,11 @@ export default function Navbar() {
                                 onClick={() => setActiveDropdown(null)}
                                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#F5F7FB] transition-all duration-200 group"
                               >
-                                <div className="w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-colors">
+                                <div className="w-5 h-5 flex items-center justify-center flex-shrink-0">
                                   {subItem.isImage ? (
                                     <Image src={subItem.icon} alt={subItem.title} className="w-5 h-5 object-contain" unoptimized />
                                   ) : (
-                                    <div className="text-primary">{subItem.icon}</div>
+                                    <subItem.icon className="w-5 h-5 text-primary" />
                                   )}
                                 </div>
                                 <div className="flex flex-col">
@@ -237,7 +233,7 @@ export default function Navbar() {
                                     {subItem.isImage ? (
                                       <Image src={subItem.icon} alt={subItem.title} className="w-6 h-6 object-contain" unoptimized />
                                     ) : (
-                                      <div className="text-primary">{subItem.icon}</div>
+                                      <subItem.icon className="w-5 h-5 text-primary" />
                                     )}
                                   </div>
                                   <div className="flex flex-col">

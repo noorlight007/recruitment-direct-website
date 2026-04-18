@@ -23,8 +23,8 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "Vite React Shadcn Next.js Migration",
-    description: "Automated migration from Vite to Next.js 16",
+    title: "Recruitment Directory - AI-Powered Recruitment Solutions",
+    description: "RD, an AI-powered recruitment solution for efficient talent acquisition",
 };
 
 export default function RootLayout({
