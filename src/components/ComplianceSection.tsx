@@ -19,7 +19,7 @@ export default function ComplianceSection() {
     return (
         <section className="py-12 bg-[#F3F4F6]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading text-[#374151] mb-10" style={{ fontFamily: "serif" }}>
+                <h2 className="text-center font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6">
                     Compliance
                 </h2>
                 <div className="flex flex-nowrap justify-center lg:justify-center items-center gap-4 sm:gap-6 lg:gap-10 overflow-x-auto pb-4 no-scrollbar">
