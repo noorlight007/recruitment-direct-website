@@ -11,6 +11,7 @@ import GeneralSection from "@/components/GeneralSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
+import ComplianceSection from "@/components/ComplianceSection";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <AIProductsSection />
       <GeneralSection />
       <ContactSection />
+      <ComplianceSection />
       <Footer />
       <FloatingElements />
     </div>

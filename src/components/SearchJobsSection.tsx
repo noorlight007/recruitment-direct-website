@@ -52,7 +52,7 @@ export default function SearchJobsSection() {
               placeholder="Job title, keyword..."
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
-              className="w-full pl-12 pr-4 py-3.5 rounded-[10px] border-2 border-primary/20 focus:border-primary focus:outline-none font-body text-foreground bg-background transition-colors"
+              className="w-full pl-12 pr-4 py-4 rounded-[10px] border-2 border-primary/20 focus:border-primary focus:outline-none font-body text-foreground bg-background transition-colors"
             />
           </div>
           <div className="flex-1">
@@ -69,7 +69,7 @@ export default function SearchJobsSection() {
                   border: state.isFocused ? "2px solid hsl(217, 90%, 46%)" : "2px solid hsla(217, 90%, 46%, 0.2)",
                   boxShadow: "none",
                   padding: "4px 0",
-                  minHeight: "52px",
+                  minHeight: "60px",
                   backgroundColor: "hsl(0, 0%, 100%)",
                   "&:hover": { borderColor: "hsl(217, 90%, 46%)" },
                 }),
