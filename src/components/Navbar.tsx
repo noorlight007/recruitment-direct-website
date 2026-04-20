@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText,   } from "lucide-react";
+import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
@@ -61,10 +61,10 @@ const clientSubmenu = [
 
 const menuItems = [
   { label: "Home", href: "/" },
-  { label: "Clients", href: "#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
-  { label: "Job Search", href: "#job-search" },
-  { label: "Sectors", href: "#sectors" },
-  { label: "AI Recruitment", href: "#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
+  { label: "Clients", href: "/#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
+  { label: "Job Search", href: "/#job-search" },
+  { label: "Sectors", href: "/#sectors" },
+  { label: "AI Recruitment", href: "/#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
