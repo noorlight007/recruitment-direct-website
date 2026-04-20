@@ -65,8 +65,8 @@ const menuItems = [
   { label: "Job Search", href: "#job-search" },
   { label: "Sectors", href: "#sectors" },
   { label: "AI Recruitment", href: "#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
