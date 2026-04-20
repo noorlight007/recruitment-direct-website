@@ -20,7 +20,7 @@ export default function AIProductsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-title mb-[40px]"
+          className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-4"
         >
           AI Voice Calls for Any Business
         </motion.h2>
@@ -45,7 +45,7 @@ export default function AIProductsSection() {
             <Image src={callpilotLogo} alt="CallPilot" className="w-full h-full object-contain" unoptimized />
           </div>
           <div className="flex-1">
-            <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4">
+            <h3 className="font-sans text-[30px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-4">
               CallPilot – AI Call Automation
             </h3>
             <ul className="space-y-[20px] mb-[20px]">

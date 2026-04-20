@@ -12,16 +12,20 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import ComplianceSection from "@/components/ComplianceSection";
+import HowWeDeliverSection from "@/components/HowWeDeliverSection";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
+      <HowWeDeliverSection />
+      <HowItWorksSection />
+      <SectorsSection />
       {/* <TrustedBySection /> */}
       <SearchJobsSection />
-      <SectorsSection />
-      <HowItWorksSection />
+      
+      
       <AIProductsSection />
       <GeneralSection />
       <ContactSection />

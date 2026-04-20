@@ -23,7 +23,7 @@ export default function SearchJobsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-title mb-2"
+          className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-4"
         >
           Job Search
         </motion.h2>
