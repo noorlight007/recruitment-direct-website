@@ -45,7 +45,7 @@ export default function HeroSection() {
   {/* AI Hire Now */}
   <div className="flex flex-col items-center">
     <a
-      href="/ai-hire"
+      href="/ai-hire-now"
       className="btn-metallic text-base px-8 py-3.5"
     >
       AI Hire Now
