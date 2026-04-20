@@ -24,7 +24,7 @@ const aiProducts = [
     isImage: false,
   },
   {
-    title: "Verify Suppliers",
+    title: "AI Verify Supplier",
     description: "Compliance & verification",
     icon: ShieldCheck,
     link: "/verify-supplier",
