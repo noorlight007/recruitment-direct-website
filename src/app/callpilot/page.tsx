@@ -93,7 +93,7 @@ export default function CallPilotPage() {
           </motion.div>
 
           {/* OPTIONS */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-[25px] my-[60px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[25px] my-[60px] max-w-[800px] mx-auto">
             <motion.div
               {...fadeUp}
               transition={{ delay: 0.5, duration: 0.5 }}
@@ -122,19 +122,34 @@ export default function CallPilotPage() {
                 Hire Staff Faster
               </Link>
             </motion.div>
+          </div>
 
-            <motion.div
-              {...fadeUp}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="bg-white p-[30px] rounded-[20px] border border-[#e2e8f0] text-center transition-all hover:-translate-y-2 hover:shadow-xl shadow-sm flex flex-col"
-            >
-              <h3 className="text-[22px] font-bold text-[#0f172a] mb-2.5">Test an AI Call</h3>
-              <p className="text-[#64748b] mb-4 flex-grow">Experience the AI call process</p>
-              <Link href="/ai-recruitment/callpilot" className="block w-full p-[14px] rounded-[12px] bg-[#25D366] text-white font-bold transition-all hover:bg-[#1ebe5d]">
+          {/* NEW DISCOVER AI CALL AUTOMATION SECTION */}
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="text-center mt-[60px] p-10 border border-[#e2e8f0] rounded-[24px] bg-white shadow-sm"
+          >
+            <h2 className="text-[32px] md:text-[36px] font-bold text-[#0f172a] mb-4">
+              Discover AI Call Automation
+            </h2>
+            <p className="max-w-[750px] mx-auto text-lg text-[#64748b] mb-8 leading-relaxed">
+              See how CallPilot handles real conversations with applicants, captures responses,
+              and prepares data instantly for your team.
+            </p>
+
+            <div className="inline-block">
+              <Link
+                href="https://callpilot.pro/"
+                className="inline-block px-10 py-4 rounded-[12px] bg-[#25D366] text-white font-bold text-lg transition-all hover:bg-[#1ebe5d] hover:-translate-y-0.5 shadow-lg shadow-green-500/20"
+              >
                 Test AI Call
               </Link>
-            </motion.div>
-          </div>
+              <p className="text-[14px] text-[#64748b] mt-4 font-medium">
+                No signup required • Takes 30 seconds • Real AI voice
+              </p>
+            </div>
+          </motion.div>
 
           {/* RESULTS */}
           <motion.div

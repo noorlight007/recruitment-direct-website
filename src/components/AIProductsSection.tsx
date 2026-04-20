@@ -66,7 +66,7 @@ export default function AIProductsSection() {
         </motion.div>
 
         {/* OPTIONS GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[25px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[25px] max-w-[800px] mx-auto">
 
           <motion.div
             {...fadeUp}
@@ -103,35 +103,33 @@ export default function AIProductsSection() {
             </Link>
           </motion.div>
 
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="p-[30px] rounded-[16px] border border-[#e2e8f0] bg-white text-center transition-all hover:-translate-y-[5px] shadow-sm flex flex-col"
-          >
-            <h4 className="text-xl font-bold text-[#0f172a] mb-3">Test an AI Call</h4>
-            <p className="text-[#64748b] mb-6 flex-grow">
-              Experience the AI call process
-            </p>
-            <Link href="/ai-recruitment/callpilot" className="block w-full py-3 rounded-[10px] bg-[#25D366] text-white font-semibold transition-all hover:bg-[#1ebe5d]">
-              Test AI Call
-            </Link>
-            <span className="text-[12px] text-[#64748b] mt-3 block uppercase font-bold tracking-wider">
-              View all industry options
-            </span>
-          </motion.div>
-
         </div>
 
-        {/* CTA */}
+        {/* NEW DISCOVER AI CALL AUTOMATION SECTION */}
         <motion.div
           {...fadeUp}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="text-center mt-[50px] p-8 border border-[#f1f5f9] rounded-[20px] bg-[#f8fbff]/50"
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="text-center mt-[60px] p-10 border border-[#e2e8f0] rounded-[24px] bg-white shadow-sm"
         >
-          <p className="text-lg text-[#64748b] mb-4">Not sure which option fits your business?</p>
-          <Link href="/contact" className="inline-block px-10 py-3.5 rounded-[12px] bg-[#0f172a] text-white font-bold transition-all hover:bg-[#1e293b] hover:-translate-y-px">
-            Book a Call
-          </Link>
+          <h2 className="text-[32px] md:text-[36px] font-bold text-[#0f172a] mb-4">
+            Discover AI Call Automation
+          </h2>
+          <p className="max-w-[750px] mx-auto text-lg text-[#64748b] mb-8 leading-relaxed">
+            See how CallPilot handles real conversations with applicants, captures responses,
+            and prepares data instantly for your team.
+          </p>
+
+          <div className="inline-block">
+            <Link
+              href="https://callpilot.pro/"
+              className="inline-block px-10 py-4 rounded-[12px] bg-[#25D366] text-white font-bold text-lg transition-all hover:bg-[#1ebe5d] hover:-translate-y-0.5 shadow-lg shadow-green-500/20"
+            >
+              Test AI Call
+            </Link>
+            <p className="text-[14px] text-[#64748b] mt-4 font-medium">
+              No signup required • Takes 30 seconds • Real AI voice
+            </p>
+          </div>
         </motion.div>
 
       </div>
