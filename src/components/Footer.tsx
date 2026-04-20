@@ -1,79 +1,86 @@
-import { Linkedin, Facebook } from "lucide-react";
-import Image from "next/image";
-import logo from "@/assets/na.png";
-
-const policyLinks = [
-  "Privacy Policy", "Terms", "Cookies", "GDPR", "Modern Slavery", "Health & Safety"
-];
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="py-16" style={{ backgroundColor: "#050A14" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid md:grid-cols-3 gap-10 mb-10">
-          {/* Brand */}
-          <div>
-            <Image src={logo} alt="Recruitment Direct" className="h-24 w-auto mb-4 shadow-none" unoptimized />
-            <p className="text-[#9CA3AF] text-sm mb-4">
-              Faster Hiring with AI. Verified by Recruitment Experts.
+    <footer className="bg-[#0f172a] text-white py-16 px-5 border-t border-[#1e293b]">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10 text-left">
+
+          {/* BRAND */}
+          <div className="flex flex-col">
+            <h3 className="text-xl font-bold mb-4 tracking-tight">Recruitment Direct</h3>
+            <p className="text-[#cbd5f5] text-sm leading-relaxed">
+              Faster hiring. Verified by consultants.
             </p>
-            <div className="flex gap-3">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#0A66C2">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#1877F2">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-              </a>
+          </div>
+
+          {/* QUICK LINKS */}
+          <div className="flex flex-col text-left">
+            <h4 className="text-lg font-bold mb-4 tracking-tight">Quick Links</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/#job-search" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
+                  Search Jobs
+                </Link>
+              </li>
+              <li>
+                <Link href="/#sectors" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
+                  Sectors
+                </Link>
+              </li>
+              <li>
+                <Link href="/#ai-products" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
+                  AI Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* CONTACT */}
+          <div className="flex flex-col text-left">
+            <h4 className="text-lg font-bold mb-4 tracking-tight">Contact</h4>
+            <div className="space-y-2">
+              <p className="text-[#cbd5f5] text-sm">01324 613198</p>
+              <p className="text-[#cbd5f5] text-sm leading-relaxed">sales@rd1.co.uk</p>
+              <p className="text-[#cbd5f5] text-sm leading-relaxed">Linlithgow, Scotland</p>
             </div>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="font-heading font-semibold text-[#F9FAFB] mb-3">Contact</h4>
-            <div className="text-sm text-[#9CA3AF] leading-relaxed space-y-4">
-              <div>
-                <p>Recruitment Direct UK Ltd</p>
-                <p>Herkimer House</p>
-                <p>Mill Road Industrial Estate</p>
-                <p>Linlithgow EH49 7SF</p>
-              </div>
-              <div>
-                <p>01324 613198</p>
-                <p>07590 882626</p>
-                <p>sales@rd1.co.uk</p>
-              </div>
+          {/* COMPANY */}
+          <div className="flex flex-col text-left">
+            <h4 className="text-lg font-bold mb-4 tracking-tight">Company</h4>
+            <div className="space-y-2">
+              <p className="text-[#cbd5f5] text-sm">Company Reg: SC301107</p>
+              <p className="text-[#cbd5f5] text-sm">VAT Number: GB880406428</p>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-heading font-semibold text-[#F9FAFB] mb-3">Quick Links</h4>
-            <div className="space-y-2 text-sm text-[#9CA3AF]">
-              <a href="#search-jobs" className="block hover:text-[#F9FAFB] transition-colors">Search Jobs</a>
-              <a href="#sectors" className="block hover:text-[#F9FAFB] transition-colors">Sectors</a>
-              <a href="#ai-products" className="block hover:text-[#F9FAFB] transition-colors">AI Products</a>
-              <a href="#contact" className="block hover:text-[#F9FAFB] transition-colors">Contact</a>
-            </div>
-          </div>
         </div>
 
-        {/* Policy Links */}
-        <div className="border-t border-[#9CA3AF]/10 pt-6 flex flex-wrap justify-center gap-4 text-xs text-[#9CA3AF]/70">
-          {policyLinks.map((link, i) => (
-            <span key={link}>
-              <a href="#" className="hover:text-[#F9FAFB] transition-colors">{link}</a>
-              {i < policyLinks.length - 1 && <span className="ml-4">|</span>}
-            </span>
-          ))}
+        {/* BOTTOM BAR */}
+        <div className="border-t border-[#1e293b] pt-10 text-center">
+          <div className="text-[#cbd5f5] text-sm mb-4 flex flex-wrap justify-center gap-x-3 gap-y-2">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <span className="text-[#1e293b]">|</span>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <span className="text-[#1e293b]">|</span>
+            <Link href="/cookies" className="hover:text-white transition-colors">Cookies</Link>
+            <span className="text-[#1e293b]">|</span>
+            <Link href="/modern-slavery" className="hover:text-white transition-colors">Modern Slavery</Link>
+            <span className="text-[#1e293b]">|</span>
+            <Link href="/policies" className="hover:text-white transition-colors">Policies</Link>
+          </div>
+
+          <p className="text-[#cbd5f5] text-[13px]">
+            © {new Date().getFullYear()} Recruitment Direct UK Limited. All rights reserved.
+          </p>
         </div>
 
-        <p className="text-center text-xs text-[#9CA3AF]/50 mt-4">
-          © {new Date().getFullYear()} Recruitment Direct UK Limited. All rights reserved.
-        </p>
       </div>
     </footer>
   );
