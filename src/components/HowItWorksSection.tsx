@@ -1,147 +1,156 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  ClipboardList,
-  SearchCode,
-  Megaphone,
-  Bot,
-  ShieldCheck,
-  UserCheck,
-  Send,
-} from "lucide-react";
-
-const steps = [
-  {
-    icon: ClipboardList,
-    title: "Job Requirement Received",
-    desc: "We begin sourcing immediately.",
-  },
-  {
-    icon: SearchCode,
-    title: "AI Candidate Search",
-    desc: "Instantly identify suitable candidates from our database.",
-  },
-  {
-    icon: Megaphone,
-    title: "Job Advert Published",
-    desc: "Additional applicants sourced where required.",
-  },
-  {
-    icon: Bot,
-    title: "AI Screening",
-    desc: "Applicants contacted and screened automatically.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Compliance Checks",
-    desc: "Right-to-work and documents verified.",
-  },
-  {
-    icon: UserCheck,
-    title: "Consultant Verification",
-    desc: "Every applicant reviewed before submission.",
-  },
-  {
-    icon: Send,
-    title: "Fast CV Submission",
-    desc: "Qualified candidates delivered quickly.",
-  },
-];
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.5 },
+  transition: { duration: 0.6 },
 };
+
+const steps = [
+  {
+    number: "01",
+    title: "Job Requirement Received",
+    desc: "We begin sourcing immediately.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path d="M8 3H16M8 21H16M9 3V6M15 3V6M6 7H18C19.1046 7 20 7.89543 20 9V17C20 18.1046 19.1046 19 18 19H6C4.89543 19 4 18.1046 4 17V9C4 7.89543 4.89543 7 6 7Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
+  },
+  {
+    number: "02",
+    title: "AI Candidate Search",
+    desc: "Suitable applicants identified from database and network.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.7" />
+        <path d="M20 20L16.65 16.65" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+        <path d="M11 8V14M8 11H14" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      </svg>
+    )
+  },
+  {
+    number: "03",
+    title: "Job Advert Published",
+    desc: "Applications generated across job boards.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path d="M4 12L20 4L16 20L11 13L4 12Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      </svg>
+    )
+  },
+  {
+    number: "04",
+    title: "AI Call Screening",
+    desc: "Applicants contacted instantly and screened automatically.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path d="M7 4H17M7 20H17M8 4V7M16 4V7M6 8H18C19.1046 8 20 8.89543 20 10V16C20 17.1046 19.1046 18 18 18H6C4.89543 18 4 17.1046 4 16V10C4 8.89543 4.89543 8 6 8Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 12H15M9 15H13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      </svg>
+    )
+  },
+  {
+    number: "05",
+    title: "Traffic Light Results",
+    desc: "Applicants scored based on role-specific responses.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path d="M7 12L10 15L17 8" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" strokeWidth="1.7" />
+      </svg>
+    )
+  },
+  {
+    number: "06",
+    title: "WhatsApp/SMS Document Upload",
+    desc: "Qualified applicants receive a secure link to upload documents.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path d="M3 7L12 13L21 7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V7C3 5.89543 3.89543 5 5 5Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      </svg>
+    )
+  },
+  {
+    number: "07",
+    title: "CRM Sync & Consultant Review",
+    desc: "All responses and documents automatically stored and reviewed.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path d="M8 7H16M8 12H16M8 17H13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+        <path d="M6 3H14L18 7V19C18 20.1046 17.1046 21 16 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      </svg>
+    )
+  },
+  {
+    number: "08",
+    title: "Fast Candidate Submission",
+    desc: "Verified applicants submitted quickly to clients.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path d="M4 12L20 4L16 20L11 13L4 12Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      </svg>
+    )
+  },
+];
 
 export default function HowItWorksSection() {
   return (
-    <section className="relative py-20 bg-background overflow-hidden">
-      {/* ambient background */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.05]">
-        <div className="absolute top-10 left-[12%] w-72 h-72 rounded-full bg-primary/20 blur-3xl" />
-        <div className="absolute bottom-0 right-[10%] w-80 h-80 rounded-full bg-primary/10 blur-3xl" />
-      </div>
+    <section className="py-[90px] px-5 bg-white overflow-hidden">
+      <div className="max-w-[1240px] mx-auto">
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
-        <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-4">
-          Our Recruitment Process
-        </motion.h2>
-
-        <motion.p
+        {/* HEADER */}
+        <motion.div
           {...fadeUp}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="text-foreground/70 max-w-2xl mx-auto mb-14"
+          className="max-w-[900px] mx-auto mb-[50px] text-center"
         >
-          A structured recruitment process combining AI-driven screening with
-          consultant control to deliver qualified temporary, contract and
-          permanent staff fast.
-        </motion.p>
+          <span className="inline-block mb-4 px-[18px] py-2 border border-[#dbe7ff] rounded-full bg-[#eef4ff] text-[#1e40af] text-sm font-semibold tracking-wide leading-none">
+            Our Recruitment Process
+          </span>
+          <h2 className="m-0 mb-4 text-[34px] md:text-[56px] leading-[1.05] font-bold tracking-[-1px] text-[#0f172a]">
+            Our Recruitment Process
+          </h2>
+          <p className="max-w-[820px] mx-auto text-lg md:text-[20px] leading-[1.75] text-[#475569]">
+            A structured recruitment process combining AI-driven screening with consultant control
+            to deliver qualified temporary, contract and permanent staff fast.
+          </p>
+        </motion.div>
 
-        {/* Mobile: horizontal scroll / Large screens: max 4 per row */}
-        <div className="relative">
-          <div className="flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-thin lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.45 }}
-                whileHover={{ y: -6 }}
-                className="group relative snap-start min-w-[240px] lg:min-w-0 card-hover p-6 text-left border border-primary/10 rounded-2xl bg-background overflow-hidden flex flex-col"
-              >
-                {/* top accent line */}
-                <div
-                  className="absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
-                  style={{ background: "var(--gradient-metallic)" }}
-                />
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.number + step.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.5 }}
+              whileHover={{ y: -2 }}
+              className="relative min-h-[220px] p-[30px_24px_26px] border border-[#e5e7eb] rounded-[24px] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition-all hover:shadow-[0_16px_38px_rgba(15,23,42,0.08)]"
+            >
+              <div className="inline-flex items-center justify-center w-[52px] h-[52px] mb-6 rounded-full bg-[#2563eb] text-white text-[18px] font-bold leading-none">
+                {step.number}
+              </div>
 
-                {/* subtle hover glow */}
-                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+              <div className="absolute top-[26px] right-6 flex items-center justify-center w-[52px] h-[52px] rounded-[16px] bg-[#f8fbff] text-[#2563eb] shadow-[0_8px_20px_rgba(37,99,235,0.12)]">
+                {step.icon}
+              </div>
 
-                <div className="relative flex items-center justify-between mb-4">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-primary-foreground text-sm font-bold shadow-md"
-                    style={{ background: "var(--gradient-metallic)" }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
+              <h3 className="m-0 mb-2.5 text-[24px] md:text-[28px] leading-[1.2] font-bold text-[#0f172a]">
+                {step.title}
+              </h3>
 
-                  <div
-                    className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300"
-                    style={{
-                      boxShadow: "0 6px 20px hsl(var(--primary) / 0.08)",
-                      animation: "pulse-glow 4s ease-in-out infinite",
-                      animationDelay: `${i * 0.4}s`,
-                    }}
-                  >
-                    <step.icon className="w-5 h-5 text-primary" />
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <h3 className="font-heading font-semibold text-foreground text-[15px] mb-1.5 leading-snug group-hover:text-primary transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="text-[13px] text-foreground/65 leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-
-                {/* mobile connector */}
-                {i < steps.length - 1 && (
-                  <div
-                    aria-hidden
-                    className="lg:hidden absolute top-1/2 -right-3 -translate-y-1/2 w-3 h-px bg-primary/40"
-                  />
-                )}
-              </motion.div>
-            ))}
-          </div>
+              <p className="m-0 text-base md:text-[17px] leading-[1.7] text-[#475569]">
+                {step.desc}
+              </p>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </section>
   );
