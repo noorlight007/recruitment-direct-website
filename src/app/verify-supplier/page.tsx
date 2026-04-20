@@ -138,9 +138,9 @@ export default function VerifySupplierPage() {
             <a href="/chatbot" className="btn-metallic">
               Start Verification
             </a>
-            <a href="/#contact" className="btn-metallic">
+            {/* <a href="/#contact" className="btn-metallic">
               Contact Us
-            </a>
+            </a> */}
           </motion.div>
         </div>
       </section>
