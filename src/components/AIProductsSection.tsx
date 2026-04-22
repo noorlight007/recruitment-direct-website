@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -11,6 +12,8 @@ const fadeUp = {
 };
 
 export default function AIProductsSection() {
+  const [activeCard, setActiveCard] = useState<number | null>(1); // Default highlight the Recommended card
+
   return (
     <section id="ai-products" className="py-[100px] px-5 bg-gradient-to-b from-[#f8fafc] to-white overflow-hidden">
       <div className="max-w-[1200px] mx-auto">
@@ -71,7 +74,12 @@ export default function AIProductsSection() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="p-[30px] rounded-[16px] border border-[#e2e8f0] bg-white text-center transition-all hover:-translate-y-[5px] shadow-sm flex flex-col"
+            onClick={() => setActiveCard(0)}
+            className={`p-[30px] rounded-[16px] bg-white text-center transition-all hover:-translate-y-[5px] flex flex-col cursor-pointer ${
+              activeCard === 0 
+                ? "border-2 border-[#2563eb] shadow-lg" 
+                : "border border-[#e2e8f0] shadow-sm"
+            }`}
           >
             <h4 className="text-xl font-bold text-[#0f172a] mb-3">AI Call + Automation</h4>
             <p className="text-[#64748b] mb-6 flex-grow">
@@ -86,7 +94,12 @@ export default function AIProductsSection() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="p-[30px] rounded-[16px] border-2 border-[#2563eb] bg-white text-center transition-all hover:-translate-y-[5px] shadow-lg flex flex-col relative"
+            onClick={() => setActiveCard(1)}
+            className={`p-[30px] rounded-[16px] bg-white text-center transition-all hover:-translate-y-[5px] flex flex-col relative cursor-pointer ${
+              activeCard === 1 
+                ? "border-2 border-[#2563eb] shadow-lg" 
+                : "border border-[#e2e8f0] shadow-sm"
+            }`}
           >
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2563eb] text-white px-3 py-1 text-[12px] font-bold rounded-full uppercase tracking-wider">
               Recommended

@@ -12,73 +12,70 @@ const fadeUp = {
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-[100px] px-5 bg-gradient-to-b from-[#f8fafc] to-white">
+    <section className="saas-contact py-20 px-5 bg-[#f8fafc]">
       <div className="max-w-[1200px] mx-auto">
-
         <motion.div
           {...fadeUp}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-[50px] bg-white p-8 md:p-[50px] rounded-[20px] border border-[#e2e8f0] shadow-[0_20px_60px_rgba(0,0,0,0.05)]"
+          className="saas-contact-card bg-white rounded-[24px] p-[28px_22px_110px] md:p-[50px_40px_110px] shadow-[0_12px_40px_rgba(15,23,42,0.06)] border border-[#e7ecf3]"
         >
-
-          {/* LEFT */}
-          <div className="flex flex-col items-start text-left">
-            <span className="inline-block mb-3.5 px-3.5 py-1.5 bg-[#2563eb] text-white rounded-full text-[12px] font-bold uppercase tracking-wider">
-              Get in Touch
-            </span>
-
-            <h2 className="text-[32px] md:text-[42px] font-bold text-[#0f172a] leading-[1.2] mb-3">
-              Fast access to Recruitment Direct
+          <div className="saas-contact-header">
+            <h2 className="text-[36px] md:text-[38px] leading-[1.05] tracking-[-0.04em] font-[800] mb-[14px] text-[#0b1533]">
+              Speak to our team instantly
             </h2>
-
-            <p className="text-[#64748b] text-base md:text-lg leading-[1.7] mb-6">
-              Speak to our team, message us directly, or email us for a fast response
-              across Scotland and the UK.
+            <p className="text-[17px] leading-[1.6] text-[#667085] mb-[24px]">
+              Get a fast response by phone, WhatsApp or email.
             </p>
+          </div>
 
-            <Link
-              href="/contact"
-              className="inline-block px-[26px] py-[14px] bg-[#2563eb] text-white rounded-[10px] font-semibold transition-all hover:bg-[#1d4ed8] hover:scale-[1.02]"
+          <div className="saas-contact-actions flex flex-col md:flex-row gap-[14px] mb-[28px]">
+            <Link 
+              href="/contact" 
+              className="btn-primary w-full md:w-auto md:px-10 h-[56px] rounded-[14px] flex items-center justify-center text-[16px] font-[700] bg-gradient-to-br from-[#2a6cff] to-[#1958f2] text-white shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
             >
               Contact Us
             </Link>
+            <a 
+              href="https://wa.me/447590882626" 
+              className="btn-secondary w-full md:w-auto md:px-10 h-[56px] rounded-[14px] flex items-center justify-center text-[16px] font-[700] bg-[#22c55e] text-white shadow-[0_10px_24px_rgba(34,197,94,0.2)] transition-all hover:-translate-y-px active:scale-[0.98]"
+            >
+              Message us on WhatsApp
+            </a>
           </div>
 
-          {/* RIGHT */}
-          <div className="space-y-[25px]">
+          <div className="saas-divider h-[1px] bg-[#edf1f7] my-[24px]"></div>
 
-            <div className="flex flex-col">
-              <span className="text-[13px] font-bold uppercase tracking-wide text-[#64748b] mb-1.5">Call</span>
-              <strong className="text-[20px] text-[#0f172a]">01324 613198</strong>
-              <strong className="text-[20px] text-[#0f172a]">07590 882626</strong>
+          <div className="saas-contact-info flex flex-col md:flex-row md:flex-wrap gap-[22px] md:gap-[40px]">
+            <div className="info-block">
+              <span className="label block text-[12px] uppercase tracking-[0.08em] font-[700] text-[#98a2b3] mb-[6px]">
+                Call
+              </span>
+              <div className="value text-[14px] font-[600] text-[#101828] leading-[1.4] flex flex-col">
+                <a href="tel:01324613198" className="hover:text-[#2563eb] transition-colors">01324 613198</a>
+                {/* <a href="tel:07590882626" className="hover:text-[#2563eb] transition-colors">07590 882626</a> */}
+              </div>
             </div>
 
-            <div className="flex flex-col items-start pb-4 border-b border-[#f1f5f9]">
-              <span className="text-[13px] font-bold uppercase tracking-wide text-[#64748b] mb-1.5">WhatsApp</span>
-              <a
-                href="https://wa.me/447590882626"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-4 py-2.5 bg-[#25D366] text-white rounded-lg font-semibold transition-all hover:bg-[#1ebe5d] hover:scale-[1.02]"
-              >
-                Message us
-              </a>
+            <div className="info-block">
+              <span className="label block text-[12px] uppercase tracking-[0.08em] font-[700] text-[#98a2b3] mb-[6px]">
+                Email
+              </span>
+              <div className="value text-[14px] font-[600] text-[#101828] leading-[1.4]">
+                <a href="mailto:sales@rd1.co.uk" className="hover:text-[#2563eb] transition-colors">sales@rd1.co.uk</a>
+              </div>
             </div>
 
-            <div className="flex flex-col">
-              <span className="text-[13px] font-bold uppercase tracking-wide text-[#64748b] mb-1.5">Email</span>
-              <strong className="text-[20px] text-[#0f172a]">sales@rd1.co.uk</strong>
-            </div>
-
-            <div className="flex flex-col pb-2">
-              <span className="text-[13px] font-bold uppercase tracking-wide text-[#64748b] mb-1.5">Location</span>
-              <strong className="text-[20px] text-[#0f172a]">Linlithgow, Scotland</strong>
-            </div>
-
+            {/* <div className="info-block">
+              <span className="label block text-[12px] uppercase tracking-[0.08em] font-[700] text-[#98a2b3] mb-[6px]">
+                Location
+              </span>
+              <div className="value text-[18px] font-[600] text-[#101828] leading-[1.4]">
+                Linlithgow, Scotland
+              </div>
+            </div> */}
           </div>
-
         </motion.div>
-
       </div>
     </section>
   );
 }
+

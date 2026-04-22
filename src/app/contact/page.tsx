@@ -38,30 +38,25 @@ export default function ContactPage() {
               <motion.div
                 {...fadeUp}
                 transition={{ delay: 0.1, duration: 0.6 }}
-                className="bg-white border border-[#e2e8f0] rounded-[20px] p-[30px] shadow-sm"
+                className="bg-white border border-[#e7ecf3] rounded-[24px] p-[30px] shadow-[0_12px_40px_rgba(15,23,42,0.06)]"
               >
-                <h2 className="text-2xl font-bold text-[#0f172a] mb-6">Get in Touch</h2>
+                <h2 className="text-[28px] font-[800] text-[#0b1533] mb-6 tracking-tight">Get in Touch</h2>
 
-                <div className="space-y-[18px]">
+                <div className="space-y-[22px]">
                   <div className="flex flex-col">
-                    <strong className="text-sm uppercase tracking-wide text-[#64748b] mb-1">Call</strong>
-                    <a href="tel:01324613198" className="text-[#0f172a] font-semibold text-lg hover:text-[#2563eb] transition-colors">01324 613198</a>
-                    <a href="tel:07590882626" className="text-[#0f172a] font-semibold text-lg hover:text-[#2563eb] transition-colors">07590 882626</a>
+                    <strong className="text-[12px] uppercase tracking-[0.08em] font-[700] text-[#98a2b3] mb-1.5">Call</strong>
+                    <a href="tel:01324613198" className="text-[#101828] font-semibold text-[14px] hover:text-[#2563eb] transition-colors leading-tight">01324 613198</a>
+                    <a href="tel:07590882626" className="text-[#101828] font-semibold text-[14px] hover:text-[#2563eb] transition-colors leading-tight">07590 882626</a>
                   </div>
 
-                  <div className="flex flex-col">
-                    <strong className="text-sm uppercase tracking-wide text-[#64748b] mb-1">WhatsApp</strong>
-                    <a href="https://wa.me/447590882626" target="_blank" rel="noopener noreferrer" className="text-[#0f172a] font-semibold text-lg hover:text-[#25D366] transition-colors">Message us directly</a>
+                  <div className="flex flex-col border-t border-[#edf1f7] pt-4">
+                    <strong className="text-[12px] uppercase tracking-[0.08em] font-[700] text-[#98a2b3] mb-1.5">Email</strong>
+                    <a href="mailto:sales@rd1.co.uk" className="text-[#101828] font-semibold text-[14px] hover:text-[#2563eb] transition-colors leading-tight">sales@rd1.co.uk</a>
                   </div>
 
-                  <div className="flex flex-col">
-                    <strong className="text-sm uppercase tracking-wide text-[#64748b] mb-1">Email</strong>
-                    <a href="mailto:sales@rd1.co.uk" className="text-[#0f172a] font-semibold text-lg hover:text-[#2563eb] transition-colors">sales@rd1.co.uk</a>
-                  </div>
-
-                  <div className="flex flex-col border-b border-[#f1f5f9] pb-4">
-                    <strong className="text-sm uppercase tracking-wide text-[#64748b] mb-1">Location</strong>
-                    <span className="text-[#0f172a] font-semibold text-lg">Linlithgow, Scotland</span>
+                  <div className="flex flex-col border-t border-[#edf1f7] pt-4">
+                    <strong className="text-[12px] uppercase tracking-[0.08em] font-[700] text-[#98a2b3] mb-1.5">Location</strong>
+                    <span className="text-[#101828] font-semibold text-lg leading-tight">Linlithgow, Scotland</span>
                   </div>
                 </div>
 
@@ -69,7 +64,7 @@ export default function ContactPage() {
                 <div className="mt-[30px] space-y-3">
                   <a
                     href="tel:01324613198"
-                    className="flex items-center justify-center w-full p-[14px] rounded-[10px] bg-[#2563eb] text-white font-semibold text-base transition-all hover:bg-[#1d4ed8] hover:scale-[1.01]"
+                    className="flex items-center justify-center w-full h-[56px] rounded-[14px] bg-gradient-to-br from-[#2a6cff] to-[#1958f2] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
                   >
                     Call Now
                   </a>
@@ -77,7 +72,7 @@ export default function ContactPage() {
                     href="https://wa.me/447590882626"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full p-[14px] rounded-[10px] bg-[#25D366] text-white font-semibold text-base transition-all hover:bg-[#20bd5c] hover:scale-[1.01]"
+                    className="flex items-center justify-center w-full h-[56px] rounded-[14px] bg-[#22c55e] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(34,197,94,0.2)] transition-all hover:-translate-y-px active:scale-[0.98]"
                   >
                     WhatsApp
                   </a>
@@ -105,9 +100,9 @@ export default function ContactPage() {
             <motion.div
               {...fadeUp}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="bg-white border border-[#e2e8f0] rounded-[20px] p-[30px] shadow-sm h-fit"
+              className="bg-white border border-[#e7ecf3] rounded-[24px] p-[30px] shadow-[0_12px_40px_rgba(15,23,42,0.06)] h-fit"
             >
-              <h2 className="text-2xl font-bold text-[#0f172a] mb-6">Contact Us</h2>
+              <h2 className="text-[28px] font-[800] text-[#0b1533] mb-6 tracking-tight">Contact Us</h2>
               <form className="space-y-4">
                 <div>
                   <input
@@ -146,7 +141,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full p-[14px] rounded-[10px] bg-[#2563eb] text-white font-semibold text-base transition-all hover:bg-[#1d4ed8] hover:scale-[1.01]"
+                  className="w-full h-[56px] rounded-[14px] bg-gradient-to-br from-[#2a6cff] to-[#1958f2] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
                 >
                   Contact Us
                 </button>
