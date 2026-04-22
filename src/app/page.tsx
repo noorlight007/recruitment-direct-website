@@ -11,7 +11,6 @@ import GeneralSection from "@/components/GeneralSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
-import ComplianceSection from "@/components/ComplianceSection";
 import HowWeDeliverSection from "@/components/HowWeDeliverSection";
 
 const Index = () => {
@@ -27,7 +26,6 @@ const Index = () => {
       {/* <TrustedBySection /> */}
       <SearchJobsSection />
       <ContactSection />
-      <ComplianceSection />
       <Footer />
       <FloatingElements />
     </div>

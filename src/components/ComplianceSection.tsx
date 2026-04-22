@@ -1,42 +1,96 @@
 "use client";
 
-import Image from "next/image";
-import cyberEssentials from "@/assets/compliance/cyber-essentials.png";
-import recMember from "@/assets/compliance/rec-member.png";
-import constructionlineGold from "@/assets/compliance/constructionline-gold.png";
-import cqsIso9001 from "@/assets/compliance/cqs-iso9001.png";
-// import logo from "@/assets/logo.png";
-
-const complianceLogos = [
-    // { src: logo, alt: "Recruitment Direct", isCompany: true },
-    { src: cyberEssentials, alt: "Cyber Essentials" },
-    { src: recMember, alt: "REC Corporate Member" },
-    { src: constructionlineGold, alt: "Constructionline Gold Member" },
-    { src: cqsIso9001, alt: "CQS ISO 9001" },
-];
-
 export default function ComplianceSection() {
-    return (
-        <section className="py-12 bg-[#F3F4F6]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-center font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6">
-                    Compliance
-                </h2>
-                <div className="flex flex-nowrap justify-center lg:justify-center items-center gap-4 sm:gap-6 lg:gap-10 overflow-x-auto pb-4 no-scrollbar">
-                    {complianceLogos.map((logo: any, index) => (
-                        <div key={index} className="flex-shrink-0 transition-transform duration-300">
-                            <Image
-                                src={logo.src}
-                                alt={logo.alt}
-                                width={logo.isCompany ? 350 : logo.alt === "REC Corporate Member" ? 220 : 150}
-                                height={80}
-                                className={`${logo.isCompany ? "h-14 sm:h-24 md:h-32 lg:h-40" : "h-10 sm:h-16 md:h-24 lg:h-32"} w-auto object-contain`}
-                                unoptimized
-                            />
-                        </div>
-                    ))}
-                </div>
+  return (
+    <section className="rd-compliance-v2" id="compliance">
+      <div className="rd-shell">
+        <div className="rd-compliance-header">
+          <h2>Compliance.<span> Quality.</span><span> Security.</span></h2>
+          <p>Recognised standards that underpin trusted recruitment delivery.</p>
+        </div>
+
+        <div className="rd-compliance-grid">
+
+          {/* REC */}
+          <a className="rd-cert-card" href="/certificates/rec-corporate-membership.pdf" target="_blank" rel="noopener" aria-label="View REC certificate">
+            <div className="rd-cert-logo-wrap">
+              <img src="/assets/compliance/rec-member.png" alt="REC logo" className="rd-cert-logo" />
             </div>
-        </section>
-    );
+            <div className="rd-cert-copy">
+              <h3>REC Membership</h3>
+              <p className="rd-cert-ref">00207320</p>
+            </div>
+            <span className="rd-cert-btn">
+              View Certificate
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          {/* ISO */}
+          <a className="rd-cert-card" href="/certificates/iso-9001-2015-gb2006088.pdf" target="_blank" rel="noopener" aria-label="View ISO certificate">
+            <div className="rd-cert-logo-wrap">
+              <img src="/assets/compliance/cqs-iso9001.png" alt="ISO logo" className="rd-cert-logo" />
+            </div>
+            <div className="rd-cert-copy">
+              <h3>ISO 9001:2015</h3>
+              <p className="rd-cert-ref">GB2006088</p>
+            </div>
+            <span className="rd-cert-btn">
+              View Certificate
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          {/* Constructionline */}
+          <a className="rd-cert-card" href="/certificates/constructionline-gold-1324569.pdf" target="_blank" rel="noopener" aria-label="View Constructionline certificate">
+            <div className="rd-cert-logo-wrap">
+              <img src="/assets/compliance/constructionline-gold.png" alt="Constructionline logo" className="rd-cert-logo" />
+            </div>
+            <div className="rd-cert-copy">
+              <h3>Constructionline Gold</h3>
+              <p className="rd-cert-ref">1324569</p>
+            </div>
+            <span className="rd-cert-btn">
+              View Certificate
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+          {/* Cyber */}
+          <a className="rd-cert-card" href="/certificates/cyber-essentials-4686a995.pdf" target="_blank" rel="noopener" aria-label="View Cyber Essentials certificate">
+            <div className="rd-cert-logo-wrap">
+              <img src="/assets/compliance/cyber-essentials.png" alt="Cyber Essentials logo" className="rd-cert-logo" />
+            </div>
+            <div className="rd-cert-copy">
+              <h3>Cyber Essentials</h3>
+              <p className="rd-cert-ref">4686a995</p>
+            </div>
+            <span className="rd-cert-btn">
+              View Certificate
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17L17 7M17 7H9M17 7V15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+          </a>
+
+        </div>
+
+        <div className="rd-trust-line">
+          <span className="rd-trust-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3l7 3v5c0 5.25-3.25 8.75-7 10-3.75-1.25-7-4.75-7-10V6l7-3z" fill="none" stroke="currentColor" strokeWidth="1.8"/>
+              <path d="M9.2 12.3l1.9 1.9 3.9-4.2" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
+          <p>Verified credentials. Transparent proof. Trusted delivery.</p>
+        </div>
+      </div>
+    </section>
+  );
 }

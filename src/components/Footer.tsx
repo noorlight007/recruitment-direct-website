@@ -1,87 +1,91 @@
-import Link from "next/link";
+import ComplianceSection from "./ComplianceSection";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0f172a] text-white py-16 px-5 border-t border-[#1e293b]">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10 text-left">
+    <div className="rd-trust-footer-wrap">
+      <ComplianceSection />
+      <footer className="rd-footer-v2">
+        <div className="rd-shell">
+          <div className="rd-footer-top">
 
-          {/* BRAND */}
-          <div className="flex flex-col">
-            <h3 className="text-xl font-bold mb-4 tracking-tight">Recruitment Direct</h3>
-            <p className="text-[#cbd5f5] text-sm leading-relaxed">
-              Faster hiring. Verified by consultants.
-            </p>
-          </div>
+            <div className="rd-footer-brand">
+              <a href="/" className="rd-footer-logo-link" aria-label="Recruitment Direct home">
+                <img src="/assets/logo.png" alt="Recruitment Direct logo" className="rd-footer-logo" />
+              </a>
+              <div className="rd-footer-brand-copy">
+                <h3>Recruitment Direct</h3>
+                <p>Technology-led recruitment. Built for speed, quality and compliance.</p>
+              </div>
+            </div>
 
-          {/* QUICK LINKS */}
-          <div className="flex flex-col text-left">
-            <h4 className="text-lg font-bold mb-4 tracking-tight">Quick Links</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/#job-search" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
-                  Search Jobs
-                </Link>
-              </li>
-              <li>
-                <Link href="/#sectors" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
-                  Sectors
-                </Link>
-              </li>
-              <li>
-                <Link href="/#ai-products" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
-                  AI Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-[#cbd5f5] text-sm hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
+            <div className="rd-footer-nav">
 
-          {/* CONTACT */}
-          <div className="flex flex-col text-left">
-            <h4 className="text-lg font-bold mb-4 tracking-tight">Contact</h4>
-            <div className="space-y-2">
-              <p className="text-[#cbd5f5] text-sm">01324 613198</p>
-              <p className="text-[#cbd5f5] text-sm leading-relaxed">sales@rd1.co.uk</p>
-              <p className="text-[#cbd5f5] text-sm leading-relaxed">Linlithgow, Scotland</p>
+              <div className="rd-footer-col">
+                <h4>Company</h4>
+                <ul>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/#clients">Our Services</a></li>
+                  <li><a href="/#why-rd1">Why RD1</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                </ul>
+              </div>
+
+              <div className="rd-footer-col">
+                <h4>Clients</h4>
+                <ul>
+                  <li><a href="/#our-process">Our Process</a></li>
+                  <li><a href="/#ai-recruitment">AI Recruitment</a></li>
+                  <li><a href="/ai-hire-now">AI Hire Now</a></li>
+                  <li><a href="/callpilot">AI Call</a></li>
+                </ul>
+              </div>
+
+              <div className="rd-footer-col">
+                <h4>Resources</h4>
+                <ul>
+                  <li><a href="/#job-search">Job Search</a></li>
+                </ul>
+              </div>
+
+              <div className="rd-footer-col rd-footer-connect">
+                <h4>Connect</h4>
+                <ul>
+                  <li>
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+                      <span className="rd-social-icon">in</span>
+                      <span>LinkedIn</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener">
+                      <span className="rd-social-icon">f</span>
+                      <span>Facebook</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://wa.me/447590882626" target="_blank" rel="noopener">
+                      <span className="rd-social-icon">w</span>
+                      <span>WhatsApp</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
             </div>
           </div>
 
-          {/* COMPANY */}
-          <div className="flex flex-col text-left">
-            <h4 className="text-lg font-bold mb-4 tracking-tight">Company</h4>
-            <div className="space-y-2">
-              <p className="text-[#cbd5f5] text-sm">Company Reg: SC301107</p>
-              <p className="text-[#cbd5f5] text-sm">VAT Number: GB880406428</p>
-            </div>
+          <div className="rd-footer-bottom">
+            <p>© {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.</p>
+            <nav className="rd-legal-links" aria-label="Legal">
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms</a>
+              <a href="/cookies">Cookies</a>
+              <a href="/modern-slavery">Modern Slavery</a>
+              <a href="/policies">Policies</a>
+            </nav>
           </div>
-
         </div>
-
-        {/* BOTTOM BAR */}
-        <div className="border-t border-[#1e293b] pt-10 text-center">
-          <div className="text-[#cbd5f5] text-sm mb-4 flex flex-wrap justify-center gap-x-3 gap-y-2">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <span className="text-[#1e293b]">|</span>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <span className="text-[#1e293b]">|</span>
-            <Link href="/cookies" className="hover:text-white transition-colors">Cookies</Link>
-            <span className="text-[#1e293b]">|</span>
-            <Link href="/modern-slavery" className="hover:text-white transition-colors">Modern Slavery</Link>
-            <span className="text-[#1e293b]">|</span>
-            <Link href="/policies" className="hover:text-white transition-colors">Policies</Link>
-          </div>
-
-          <p className="text-[#cbd5f5] text-[13px]">
-            © {new Date().getFullYear()} Recruitment Direct UK Limited. All rights reserved.
-          </p>
-        </div>
-
-      </div>
-    </footer>
+      </footer>
+    </div>
   );
 }
