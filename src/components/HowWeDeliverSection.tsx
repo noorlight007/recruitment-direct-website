@@ -35,7 +35,7 @@ const fadeUp = {
 
 export default function HowWeDeliverSection() {
   return (
-    <section className="relative py-20 bg-background overflow-hidden">
+    <section className="relative bg-background overflow-hidden">
       {/* subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-primary/5 blur-3xl" />

@@ -15,7 +15,7 @@ export default function AIProductsSection() {
   const [activeCard, setActiveCard] = useState<number | null>(1); // Default highlight the Recommended card
 
   return (
-    <section id="ai-products" className="py-[100px] px-5 bg-gradient-to-b from-[#f8fafc] to-white overflow-hidden">
+    <section id="ai-products" className="px-5 bg-gradient-to-b from-[#f8fafc] to-white overflow-hidden">
       <div className="max-w-[1200px] mx-auto">
 
         {/* HERO */}
@@ -34,24 +34,7 @@ export default function AIProductsSection() {
           </p>
         </motion.div>
 
-        {/* VIDEO PLACEHOLDER */}
-        <motion.div
-          {...fadeUp}
-          transition={{ delay: 0.1, duration: 0.6 }}
-          className="my-10"
-        >
-          <div className="h-[240px] md:h-[400px] bg-black rounded-[16px] flex items-center justify-center text-white font-semibold text-lg shadow-2xl relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent pointer-events-none" />
-            <div className="relative z-10 flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20">
-                <svg className="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <span>AI screening call completed in seconds</span>
-            </div>
-          </div>
-        </motion.div>
+
 
         {/* IMPACT */}
         <motion.div
@@ -122,7 +105,7 @@ export default function AIProductsSection() {
         <motion.div
           {...fadeUp}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-center mt-[60px] p-10 border border-[#e2e8f0] rounded-[24px] bg-white shadow-sm"
+          className="section-tight text-center mt-[40px] p-10 border border-[#e2e8f0] rounded-[24px] bg-white shadow-sm"
         >
           <h2 className="text-[32px] md:text-[36px] font-bold text-[#0f172a] mb-4">
             Discover AI Call Automation

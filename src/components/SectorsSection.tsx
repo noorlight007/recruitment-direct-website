@@ -17,11 +17,11 @@ const sectors = [
   { name: "Construction", icon: HardHat, href: "/sectors/construction" },
   { name: "Engineering", icon: Wrench, href: "/sectors/engineering" },
   { name: "Renewables", icon: Zap, href: "/sectors/renewables" },
-  { name: "Logistics", icon: Truck },
-  { name: "Healthcare", icon: Heart },
+  { name: "Logistics", icon: Truck, href: "/sectors/logistics" },
+  { name: "Healthcare", icon: Heart, href: "/sectors/healthcare" },
   { name: "Education", icon: GraduationCap, href: "/sectors/education" },
-  { name: "IT & Tech", icon: Monitor },
-  { name: "Commercial", icon: Briefcase },
+  { name: "IT & Tech", icon: Monitor, href: "/sectors/it-tech" },
+  { name: "Commercial", icon: Briefcase, href: "/sectors/commercial" },
 ];
 
 const fadeUp = {
@@ -35,7 +35,7 @@ export default function SectorsSection() {
   return (
     <section
       id="sectors"
-      className="relative py-20 bg-background overflow-hidden"
+      className="section-tight relative bg-background overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-primary/5 blur-3xl" />

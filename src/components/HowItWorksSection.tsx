@@ -100,7 +100,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-[90px] px-5 bg-white overflow-hidden">
+    <section className="section-tight px-5 bg-white overflow-hidden">
       <div className="max-w-[1240px] mx-auto">
 
         {/* HEADER */}

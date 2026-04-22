@@ -17,7 +17,7 @@ export default function SearchJobsSection() {
   const [selectedCities, setSelectedCities] = useState<any[]>([]);
 
   return (
-    <section id="search-jobs" className="py-20 bg-background">
+    <section id="search-jobs" className="section-tight bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

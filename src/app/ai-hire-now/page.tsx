@@ -132,7 +132,7 @@ function FinalCTA() {
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <a
-            href="/"
+            href="/ai-hire-now-form"
             className="btn-metallic text-base px-8 py-3.5"
           >
             AI Hire Now

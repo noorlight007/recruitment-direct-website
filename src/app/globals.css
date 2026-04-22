@@ -288,6 +288,14 @@
     0 0 36px rgba(47, 125, 246, 0.18);
 }
 
+.rd-cert-card:active .rd-cert-btn {
+  box-shadow:
+    0 0 0 1px rgba(102, 168, 255, 0.28),
+    0 0 22px rgba(47, 125, 246, 0.40),
+    0 0 46px rgba(47, 125, 246, 0.24);
+  transform: scale(0.98);
+}
+
 .rd-cert-btn svg {
   width: 18px;
   height: 18px;
@@ -444,6 +452,14 @@
   box-shadow: 0 0 18px rgba(47, 125, 246, 0.22);
 }
 
+.rd-footer-connect a:active .rd-social-icon {
+  box-shadow:
+    0 0 0 1px rgba(102, 168, 255, 0.28),
+    0 0 22px rgba(47, 125, 246, 0.40),
+    0 0 46px rgba(47, 125, 246, 0.24);
+  transform: scale(0.95);
+}
+
 .rd-footer-bottom {
   display: flex;
   align-items: center;
@@ -575,4 +591,26 @@
   .rd-legal-links a:not(:last-child)::after {
     display: none;
   }
+}
+
+section { padding: 72px 0; }
+
+@media (max-width: 1024px) {
+  section { padding: 56px 0; }
+}
+
+@media (max-width: 640px) {
+  section { padding: 40px 0; }
+}
+
+.section-tight { padding: 56px 0; }
+
+@media (max-width: 640px) {
+  .section-tight { padding: 32px 0; }
+}
+
+.hero-section { padding-bottom: 40px; }
+
+@media (max-width: 640px) {
+  .hero-section { padding-bottom: 24px; }
 }

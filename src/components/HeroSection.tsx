@@ -1,183 +1,232 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import { 
+  User, 
+  Building2, 
+  Phone, 
+  Briefcase, 
+  ArrowRight, 
+  FileText, 
+  PhoneCall, 
+  Activity, 
+  Search, 
+  UserCheck,
+  ShieldCheck,
+  CheckCircle2,
+  Play,
+  Gauge,
+  Users,
+  Target,
+  Clock,
+  Lock,
+  CheckCircle
+} from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-background overflow-hidden px-5 md:px-0">
-      <style jsx>{`
-        @media (max-width: 767px) {
-          .cta-button {
-            width: 100%;
-            min-height: 58px;
-            height: 58px;
-            border-radius: 14px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -0.01em;
-            box-sizing: border-box;
-            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
-            -webkit-tap-highlight-color: transparent;
-          }
+    <section className="hero-section relative bg-[#020817] pt-32 pb-10 overflow-hidden text-white">
+      {/* Background Gradients */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 rounded-full blur-[120px]" />
+      </div>
 
-          .cta-button-primary, .cta-button-secondary {
-            color: #ffffff;
-            background: linear-gradient(135deg, #1f6bff 0%, #0047ff 100%);
-            border: 1px solid transparent;
-            box-shadow: 0 10px 24px rgba(0, 71, 255, 0.22);
-          }
-
-          .cta-button-outline {
-            color: #1550e5;
-            background: #ffffff;
-            border: 2px solid #6d8ff5;
-            box-shadow: none;
-          }
-
-          .cta-helper {
-            margin: 8px 0 0;
-            text-align: center;
-            font-size: 13px;
-            line-height: 1.35;
-            font-weight: 500;
-            color: #7b8190;
-            min-height: 18px;
-          }
-
-          .cta-button:hover {
-            transform: translateY(-1px);
-          }
-
-          .cta-button:active {
-            transform: scale(0.985);
-          }
-        }
-      `}</style>
-
-      {/* Subtle background glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04]"
-        style={{
-          background:
-            "radial-gradient(circle, hsl(217, 90%, 46%), transparent)",
-        }}
-      />
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-  className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6"
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+          {/* Left Column: Content and Action Cards */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col"
           >
-            UK Recruitment Agency Supplying Temporary, Contract and Permanent Staff
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="text-lg md:text-xl text-black/80 max-w-2xl mb-10"
-          >
-            Combining consultant expertise with AI speed to deliver results fast
-            across key sectors.
-          </motion.p>
-
-          {/* MOBILE ONLY CTA - Visible only on max-width 767px */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="md:hidden flex flex-col gap-5 w-full mb-24"
-          >
-            <div className="flex flex-col items-stretch w-full">
-              <a href="/ai-hire-now" className="cta-button cta-button-primary">
-                <span>AI Hire Now</span>
-              </a>
-              <p className="cta-helper">Existing Client</p>
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-4">
+              Recruitment That <br /> Moves Faster.
+            </h1>
+            <h2 className="text-2xl md:text-3xl font-bold text-blue-500 mb-6">
+              People Supplied. Positions Filled.
+            </h2>
+            <div className="space-y-1 text-gray-400 text-lg mb-10 max-w-lg">
+              <p>Temporary, contract and permanent staffing delivered</p>
+              <p>with speed, accuracy and full compliance.</p>
+              <p className="pt-2">Powered by AI, delivered by experienced consultants.</p>
             </div>
 
-            <div className="flex flex-col items-stretch w-full">
-              <a href="/place-enquiry" className="cta-button cta-button-secondary">
-                <span>Place Enquiry</span>
+            <div className="grid gap-4 max-w-md">
+              {/* Card 1: AI Hire Now */}
+              <a href="/ai-hire-now" className="flex items-center justify-between p-4 bg-blue-600 hover:bg-blue-700 rounded-xl transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-blue-500/20 rounded-lg">
+                    <User className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-bold text-lg leading-tight">AI Hire Now</div>
+                    <div className="text-sm text-blue-100/70">Existing Clients</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
-              <p className="cta-helper">New Client</p>
-            </div>
 
-            <div className="flex flex-col items-stretch w-full">
-              <a href="/test-ai-call" className="cta-button cta-button-outline">
-                <span>Test AI Call</span>
+              {/* Card 2: Place Enquiry */}
+              <a href="/place-enquiry" className="flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-gray-800 rounded-lg">
+                    <Building2 className="w-6 h-6 text-gray-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-bold text-lg leading-tight text-white">Place Enquiry</div>
+                    <div className="text-sm text-gray-500">New Clients</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
               </a>
-              <p className="cta-helper">AI Call Platform</p>
+
+              {/* Card 3: AI Call Enquiry */}
+              <a href="/callpilot" className="flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-gray-800 rounded-lg">
+                    <Phone className="w-6 h-6 text-gray-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-bold text-lg leading-tight text-white">AI Call Enquiry</div>
+                    <div className="text-sm text-gray-500">Ask AI to call you</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
+              </a>
+
+              {/* Card 4: Job Search */}
+              <a href="/#job-search" className="flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl transition-all group">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-gray-800 rounded-lg">
+                    <Briefcase className="w-6 h-6 text-gray-400" />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-bold text-lg leading-tight text-white">Job Search</div>
+                    <div className="text-sm text-gray-500">Live Jobs</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
+              </a>
             </div>
           </motion.div>
 
-          {/* DESKTOP ONLY CTA - Hidden on Mobile */}
+          {/* Right Column: AI Automation Dashboard */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="hidden md:flex flex-col sm:flex-row items-center justify-center gap-8 mb-12 w-full max-w-[850px]"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-[#0b1224] border border-gray-800 rounded-3xl p-8 shadow-2xl relative"
           >
-            {/* AI Hire Now */}
-            <div className="flex flex-col items-center w-full sm:w-auto">
-              <a
-                href="/ai-hire-now"
-                className="btn-metallic text-base px-8 py-3.5 w-full sm:min-w-[200px] text-center"
-              >
-                AI Hire Now
-              </a>
-              <span className="text-sm text-black/60 mt-2 font-medium">
-                Existing Client
-              </span>
+            <h3 className="text-xl font-semibold mb-8 text-gray-300">AI Call Screening & Automation</h3>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Timeline Section */}
+              <div className="relative space-y-8">
+                {/* Vertical Line */}
+                <div className="absolute left-6 top-4 bottom-4 w-0.5 border-l-2 border-dashed border-gray-700 z-0" />
+                
+                {[
+                  { icon: <FileText className="w-5 h-5" />, title: "Application Received", status: "completed", color: "text-green-500" },
+                  { icon: <PhoneCall className="w-5 h-5" />, title: "AI Call Initiated", status: "completed", color: "text-green-500" },
+                  { icon: <Activity className="w-5 h-5" />, title: "AI Screening", time: "01:00", status: "completed", color: "text-green-500" },
+                  { icon: <Search className="w-5 h-5" />, title: "Analysis", time: "01:05", status: "current", color: "text-yellow-500" },
+                  { icon: <UserCheck className="w-5 h-5" />, title: "Shortlisted", status: "pending", color: "text-green-500" },
+                ].map((step, idx) => (
+                  <div key={idx} className="flex items-center gap-6 relative z-10">
+                    <div className={`w-12 h-12 rounded-full border border-gray-800 bg-[#020817] flex items-center justify-center text-gray-400`}>
+                      {step.icon}
+                    </div>
+                    <div className="flex-1 flex items-center justify-between">
+                      <span className="text-gray-300 font-medium">{step.title}</span>
+                      <div className="flex items-center gap-3">
+                        {step.time && <span className="text-blue-400 text-sm">{step.time}</span>}
+                        <div className={`w-3 h-3 rounded-full ${step.status === 'completed' ? 'bg-green-500' : step.status === 'current' ? 'bg-yellow-500' : 'bg-gray-700'}`} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Score and Checklist Section */}
+              <div className="space-y-6">
+                {/* Match Score Circle */}
+                <div className="bg-[#020817] border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                  <div className="relative w-32 h-32 mb-4">
+                    <svg className="w-full h-full -rotate-90">
+                      <circle cx="64" cy="64" r="58" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-gray-800" />
+                      <circle cx="64" cy="64" r="58" stroke="currentColor" strokeWidth="8" fill="transparent" strokeDasharray={364.4} strokeDashoffset={364.4 * (1 - 0.92)} className="text-blue-500" strokeLinecap="round" />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-3xl font-bold">92<span className="text-sm">%</span></span>
+                    </div>
+                  </div>
+                  <div className="text-lg font-bold text-gray-200">Match Score</div>
+                  <div className="text-blue-400 font-medium">Strong Match</div>
+                </div>
+
+                {/* Checklist */}
+                <div className="bg-[#020817] border border-gray-800 rounded-2xl p-6 space-y-4">
+                  {[
+                    { label: "Screened", sub: "Skills verified" },
+                    { label: "Compliant", sub: "Right to work confirmed" },
+                    { label: "Ready to Submit", sub: "Qualified applicant" }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-500/10 rounded-lg">
+                          {idx === 0 ? <ShieldCheck className="w-5 h-5 text-blue-500" /> : idx === 1 ? <FileText className="w-5 h-5 text-blue-500" /> : <UserCheck className="w-5 h-5 text-blue-500" />}
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold text-gray-200">{item.label}</div>
+                          <div className="text-xs text-gray-500">{item.sub}</div>
+                        </div>
+                      </div>
+                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Place Enquiry */}
-            <div className="flex flex-col items-center w-full sm:w-auto">
-              <a
-                href="/place-enquiry"
-                className="btn-metallic text-base px-8 py-3.5 w-full sm:min-w-[200px] text-center"
-              >
-                Place Enquiry
-              </a>
-              <span className="text-sm text-black/60 mt-2 font-medium">
-                New Client
-              </span>
-            </div>
-
-            {/* Test AI Call */}
-            <div className="flex flex-col items-center w-full sm:w-auto">
-              <a
-                href="/test-call"
-                className="rounded-xl border-[1px] border-[rgba(30,64,175,0.8)] text-primary font-bold hover:bg-primary/5 transition-all text-base text-center w-full sm:min-w-[200px] px-[18px] py-3.5"
-              >
-                Test AI Call
-              </a>
-              <span className="text-sm text-black/60 mt-2 font-medium">
-                AI Call Platform
-              </span>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="text-sm md:text-base text-[#64748b] font-medium border-t border-slate-100 pt-8 w-full"
-          >
-            Framework-approved supplier | Public & private sector delivery |
-            Fast turnaround
+            {/* Watch AI Call Button */}
+            <a href="/callpilot" className="w-full mt-8 flex items-center justify-center gap-3 py-4 border border-blue-600/30 rounded-xl bg-blue-600/5 hover:bg-blue-600/10 text-blue-400 font-semibold transition-all">
+              <Play className="w-5 h-5 fill-current" />
+              Watch AI Call
+            </a>
           </motion.div>
         </div>
+
+
+        {/* Bottom Strip: Statistics */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-10 border-t border-gray-800"
+        >
+          {[
+            { icon: <Gauge className="w-6 h-6" />, val: "50%", label: "Faster Fill", sub: "Positions Filled Faster", sub2: "From brief to placement" },
+            { icon: <Users className="w-6 h-6" />, val: "10K+", label: "Placements Delivered", sub: "Across multiple", sub2: "sectors" },
+            { icon: <Target className="w-6 h-6" />, val: "87%", label: "Match Accuracy", sub: "Quality applicants, faster", sub2: "AI-driven shortlisting" },
+            { icon: <Clock className="w-6 h-6" />, val: "70%", label: "Time Saved", sub: "Reduced admin workload", sub2: "Through AI automation" },
+            { icon: <Lock className="w-6 h-6" />, val: "AI GDPR", label: "Compliant", sub: "Secure data handling", sub2: "Full audit trail built-in" },
+            { icon: <CheckCircle className="w-6 h-6" />, val: "100%", label: "Compliance", sub: "Right to work verified", sub2: "Every applicant checked" },
+          ].map((stat, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center">
+              <div className="mb-4 p-3 bg-blue-500/10 rounded-full text-blue-500">
+                {stat.icon}
+              </div>
+              <div className="text-3xl font-bold text-white mb-1">{stat.val}</div>
+              <div className="text-sm font-bold text-gray-200 mb-2">{stat.label}</div>
+              <div className="text-[11px] text-gray-500 leading-tight">
+                {stat.sub} <br /> {stat.sub2}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
-}
+}
