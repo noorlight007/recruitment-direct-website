@@ -614,3 +614,225 @@ section { padding: 72px 0; }
 @media (max-width: 640px) {
   .hero-section { padding-bottom: 24px; }
 }
+
+/* NEW SAAS SECTION STYLES */
+.saas-section {
+  padding: 80px 20px;
+  color: white;
+  text-align: center;
+  background: #0F172A;
+}
+
+.saas-section .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.saas-section .tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #7C3AED;
+  margin-bottom: 10px;
+}
+
+.saas-section h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: white !important;
+}
+
+.saas-section .subtext {
+  color: #94A3B8;
+  margin-bottom: 30px;
+}
+
+.saas-section .ai-test-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #2563EB, #7C3AED);
+  padding: 14px 28px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 50px;
+  transition: all 0.3s ease;
+}
+
+.saas-section .ai-test-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(124,58,237,0.6);
+}
+
+.saas-section .cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.saas-section .card {
+  background: #1E293B;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  transition: 0.3s;
+  position: relative;
+}
+
+.saas-section .card:hover {
+  transform: translateY(-5px);
+}
+
+.saas-section .featured {
+  border: 1px solid #2563EB;
+  box-shadow: 0 0 25px rgba(37,99,235,0.4);
+}
+
+.saas-section h3 {
+  margin-bottom: 5px;
+  color: white !important;
+}
+
+.saas-section .subtitle {
+  color: #94A3B8;
+  margin-bottom: 20px;
+}
+
+.saas-section ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.saas-section ul li {
+  margin-bottom: 10px;
+  color: #94A3B8;
+}
+
+.saas-section .price {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.saas-section .price.muted {
+  color: #94A3B8;
+}
+
+.saas-section .btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #334155;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+/* PRIMARY BUTTON */
+.saas-section .btn.primary {
+  background: linear-gradient(135deg, #2563EB, #7C3AED);
+}
+
+/* HOVER + GLOW */
+.saas-section .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(124,58,237,0.5);
+}
+
+/* PRESS EFFECT */
+.saas-section .btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 8px rgba(124,58,237,0.8);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .saas-section {
+    padding: 56px 16px;
+  }
+
+  .saas-section .tag {
+    font-size: 11px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+
+  .saas-section h2 {
+    font-size: 38px;
+    line-height: 1.08;
+    margin-bottom: 16px;
+  }
+
+  .saas-section .subtext {
+    font-size: 17px;
+    line-height: 1.45;
+    margin-bottom: 24px;
+  }
+
+  .saas-section .ai-test-btn {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+    margin-bottom: 34px;
+    padding: 16px 24px;
+    font-size: 18px;
+    border-radius: 14px;
+  }
+
+  .saas-section .cards {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .saas-section .card {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .saas-section .card h3 {
+    font-size: 26px;
+  }
+
+  .saas-section .subtitle {
+    font-size: 16px;
+  }
+
+  .saas-section .card ul {
+    margin: 22px 0;
+  }
+
+  .saas-section .card ul li {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .saas-section .price {
+    font-size: 22px;
+  }
+
+  .saas-section .btn {
+    width: 100%;
+    text-align: center;
+    padding: 15px 18px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .saas-section h2 {
+    font-size: 32px;
+  }
+
+  .saas-section .subtext {
+    font-size: 15px;
+  }
+
+  .saas-section .card {
+    padding: 20px;
+  }
+
+  .saas-section .card h3 {
+    font-size: 23px;
+  }
+}
+

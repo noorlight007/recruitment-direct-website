@@ -1,134 +1,74 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.6 },
-};
 
 export default function AIProductsSection() {
-  const [activeCard, setActiveCard] = useState<number | null>(1); // Default highlight the Recommended card
-
   return (
-    <section id="ai-products" className="px-5 bg-gradient-to-b from-[#f8fafc] to-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto">
+    <section id="ai-products" className="saas-section">
+      <div className="container">
 
-        {/* HERO */}
-        <motion.div
-          {...fadeUp}
-          className="text-center mb-[40px]"
-        >
-          <span className="text-[13px] text-[#2563eb] font-bold uppercase tracking-[0.05em] mb-2.5 block">
-            CallPilot
-          </span>
-          <h2 className="text-[32px] md:text-[48px] font-bold text-[#0f172a] leading-[1.1] mb-2.5">
-            AI calls your applicants 24/7. Fully automated.
-          </h2>
-          <p className="text-lg text-[#64748b]">
-            No delays. No missed calls. No manual screening.
-          </p>
-        </motion.div>
+        <div className="tag">AI-POWERED HIRING. REAL RESULTS.</div>
+        <h2>Three Powerful Ways to Hire Smarter</h2>
+        <p className="subtext">AI-powered screening, temporary staff, or permanent hires.</p>
 
+        <Link href="https://callpilot.pro/" className="ai-test-btn">AI Call Test</Link>
 
+        <div className="cards">
 
-        {/* IMPACT */}
-        <motion.div
-          {...fadeUp}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-center mb-[50px]"
-        >
-          <h3 className="text-[28px] md:text-[32px] font-bold text-[#0f172a] mb-4">
-            Every applicant contacted. Automatically.
-          </h3>
-          <p className="max-w-[800px] mx-auto text-base md:text-lg text-[#64748b] leading-relaxed">
-            CallPilot contacts applicants instantly, asks role-specific questions,
-            captures responses, and prepares them for submission — without delay.
-          </p>
-        </motion.div>
+          {/* CARD 1 */}
+          <div className="card featured">
+            <h3>CallPilot AI</h3>
+            <p className="subtitle">AI Applicant Screening Calls</p>
 
-        {/* OPTIONS GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[25px] max-w-[800px] mx-auto">
+            <ul>
+              <li>AI calls applicants</li>
+              <li>Role-based screening</li>
+              <li>Instant results</li>
+              <li>Document requests</li>
+            </ul>
 
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            onClick={() => setActiveCard(0)}
-            className={`p-[30px] rounded-[16px] bg-white text-center transition-all hover:-translate-y-[5px] flex flex-col cursor-pointer ${
-              activeCard === 0 
-                ? "border-2 border-[#2563eb] shadow-lg" 
-                : "border border-[#e2e8f0] shadow-sm"
-            }`}
-          >
-            <h4 className="text-xl font-bold text-[#0f172a] mb-3">AI Call + Automation</h4>
-            <p className="text-[#64748b] mb-6 flex-grow">
-              Automate applicant calls, screening, and follow-up instantly
-            </p>
-            <div className="text-[20px] font-bold text-[#2563eb] mb-6">From £1 per minute</div>
-            <Link href="/contact" className="block w-full py-3 rounded-[10px] bg-[#2563eb] text-white font-semibold transition-all hover:bg-[#1d4ed8]">
-              Start AI Calls
-            </Link>
-          </motion.div>
+            <div className="price">£1.00 / minute</div>
 
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            onClick={() => setActiveCard(1)}
-            className={`p-[30px] rounded-[16px] bg-white text-center transition-all hover:-translate-y-[5px] flex flex-col relative cursor-pointer ${
-              activeCard === 1 
-                ? "border-2 border-[#2563eb] shadow-lg" 
-                : "border border-[#e2e8f0] shadow-sm"
-            }`}
-          >
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2563eb] text-white px-3 py-1 text-[12px] font-bold rounded-full uppercase tracking-wider">
-              Recommended
-            </div>
-            <h4 className="text-xl font-bold text-[#0f172a] mt-2 mb-3">AI Call + Automation + Recruitment</h4>
-            <p className="text-[#64748b] mb-6 flex-grow">
-              AI automation combined with full recruitment delivery
-            </p>
-            <div className="text-[20px] font-bold text-[#2563eb] mb-6 tracking-tight">
-              From £1 per minute + recruitment fees
-            </div>
-            <Link href="/contact" className="block w-full py-3 rounded-[10px] bg-[#2563eb] text-white font-semibold transition-all hover:bg-[#1d4ed8]">
-              Hire Staff Faster
-            </Link>
-          </motion.div>
+            <Link href="/contact" className="btn primary">Start AI Call Journey →</Link>
+          </div>
+
+          {/* CARD 2 */}
+          <div className="card">
+            <h3>Temporary Staff</h3>
+            <p className="subtitle">Hourly Workforce Supply</p>
+
+            <ul>
+              <li>AI-powered screening included</li>
+              <li>Fast turnaround</li>
+              <li>Reliable workers</li>
+              <li>Competitive hourly rates</li>
+            </ul>
+
+            <div className="price muted">Pricing on request</div>
+
+            <Link href="/contact" className="btn">Get Temporary Staff →</Link>
+          </div>
+
+          {/* CARD 3 */}
+          <div className="card">
+            <h3>Permanent Recruitment</h3>
+            <p className="subtitle">Full Hiring Delivery</p>
+
+            <ul>
+              <li>Full hiring support</li>
+              <li>AI-powered screening included</li>
+              <li>CVs delivered fast</li>
+              <li>Transparent fees</li>
+            </ul>
+
+            <div className="price muted">Pricing on request</div>
+
+            <Link href="/contact" className="btn">Hire Permanent Staff →</Link>
+          </div>
 
         </div>
-
-        {/* NEW DISCOVER AI CALL AUTOMATION SECTION */}
-        <motion.div
-          {...fadeUp}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="section-tight text-center mt-[40px] p-10 border border-[#e2e8f0] rounded-[24px] bg-white shadow-sm"
-        >
-          <h2 className="text-[32px] md:text-[36px] font-bold text-[#0f172a] mb-4">
-            Discover AI Call Automation
-          </h2>
-          <p className="max-w-[750px] mx-auto text-lg text-[#64748b] mb-8 leading-relaxed">
-            See how CallPilot handles real conversations with applicants, captures responses,
-            and prepares data instantly for your team.
-          </p>
-
-          <div className="inline-block">
-            <Link
-              href="https://callpilot.pro/"
-              className="inline-block px-10 py-4 rounded-[12px] bg-[#25D366] text-white font-bold text-lg transition-all hover:bg-[#1ebe5d] hover:-translate-y-0.5 shadow-lg shadow-green-500/20"
-            >
-              Test AI Call
-            </Link>
-            <p className="text-[14px] text-[#64748b] mt-4 font-medium">
-              No signup required • Takes 30 seconds • Real AI voice
-            </p>
-          </div>
-        </motion.div>
-
       </div>
     </section>
   );
 }
+
