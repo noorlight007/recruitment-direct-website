@@ -355,21 +355,117 @@ export default function Footer() {
           border-radius: 50%;
           box-shadow: 0 0 12px #10b981;
         }
-        .rd-footer-ai-avatar {
-          width: 80px;
-          height: 80px;
-          background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        .ai-orb-box {
+          width: 140px;
+          height: 140px;
+          border-radius: 28px;
+          display: grid;
+          place-items: center;
+          background: #02040a;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 
+            inset 0 0 40px rgba(0, 0, 0, 0.9),
+            0 20px 40px rgba(0, 0, 0, 0.4);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .ai-orb {
+          position: relative;
+          width: 100px;
+          height: 100px;
           border-radius: 50%;
+          background: radial-gradient(
+            circle at 50% 50%,
+            #00f0ff 0%,
+            #0055ff 40%,
+            #000 100%
+          );
+          box-shadow: 
+            0 0 30px rgba(0, 85, 255, 0.4),
+            0 0 60px rgba(139, 92, 246, 0.3);
           display: flex;
           align-items: center;
           justify-content: center;
-          position: relative;
+          z-index: 2;
         }
-        .rd-footer-ai-avatar img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+
+        .ai-orb-reflection {
+          position: absolute;
+          top: 15%;
+          left: 15%;
+          width: 35%;
+          height: 35%;
+          background: radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 0.9) 0%,
+            transparent 70%
+          );
+          border-radius: 50%;
+          filter: blur(2px);
+          z-index: 3;
+          pointer-events: none;
+        }
+
+        .ai-orb-bottom-glow {
+          position: absolute;
+          bottom: -10%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 120%;
+          height: 60%;
+          background: radial-gradient(
+            ellipse at bottom,
+            rgba(177, 61, 255, 0.5) 0%,
+            rgba(177, 61, 255, 0.2) 40%,
+            transparent 70%
+          );
+          filter: blur(15px);
+          z-index: 1;
+          pointer-events: none;
+          animation: orbGlow 4s ease-in-out infinite;
+        }
+
+        .ai-plasma {
+          position: absolute;
+          inset: -2px;
+          border-radius: 50%;
+          border: 1px solid transparent;
+          border-top-color: rgba(150, 240, 255, 0.9);
+          filter: drop-shadow(0 0 5px rgba(150, 240, 255, 0.8));
+          animation: plasmaRotate 3s linear infinite;
+          opacity: 0.8;
+        }
+
+        .ai-plasma:nth-child(2) {
+          inset: 2px;
+          border-top-color: transparent;
+          border-right-color: rgba(177, 61, 255, 0.8);
+          animation-duration: 5s;
+          animation-direction: reverse;
+        }
+
+        .ai-plasma:nth-child(3) {
+          inset: 5px;
+          border-left-color: rgba(255, 255, 255, 0.6);
+          animation-duration: 4s;
+        }
+
+        .ai-plasma:nth-child(4) {
+          inset: 8px;
+          border-bottom-color: rgba(0, 240, 255, 0.4);
+          animation-duration: 6s;
+          animation-direction: reverse;
+        }
+
+        @keyframes orbGlow {
+          0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+          50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        @keyframes plasmaRotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
         .rd-footer-ai-text {
           font-size: 16px;
@@ -383,37 +479,86 @@ export default function Footer() {
           gap: 10px;
         }
         .rd-footer-ai-btn {
+          position: relative;
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 16px;
+          width: 100%;
           padding: 14px 20px;
           border-radius: 20px;
           text-decoration: none;
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
+          transition: all 0.25s ease;
           overflow: hidden;
+          z-index: 1;
         }
         .rd-footer-ai-btn.primary {
-          background: var(--btn-primary);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: linear-gradient(90deg, #166cff 0%, #2b6fff 30%, #6c42ff 70%, #b13dff 100%);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+            0 10px 35px rgba(40, 80, 255, 0.35), 0 0 40px rgba(120, 60, 255, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
-        .rd-footer-ai-btn.secondary {
-          background: var(--btn-secondary-bg);
-          border: 1px solid var(--btn-secondary-border);
+        .rd-footer-ai-btn.primary::before {
+          content: "";
+          position: absolute;
+          inset: -3px;
+          border-radius: 22px;
+          background: linear-gradient(90deg, #2b6fff, #b13dff);
+          opacity: 0.35;
+          filter: blur(14px);
+          z-index: -1;
         }
-        .rd-footer-ai-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: var(--btn-glow);
-          border-color: rgba(59, 130, 246, 0.5);
+        .rd-footer-ai-btn.primary::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -120%;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.35),
+            transparent
+          );
+          transform: skewX(-20deg);
+          transition: 0.6s;
         }
         .rd-footer-ai-btn.primary:hover {
-          background: var(--btn-primary-hover);
+          transform: translateY(-3px);
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15),
+            0 18px 55px rgba(60, 90, 255, 0.45), 0 0 70px rgba(150, 60, 255, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        .rd-footer-ai-btn.primary:hover::after {
+          left: 130%;
+        }
+        .rd-footer-ai-btn.secondary {
+          background: linear-gradient(
+            180deg,
+            rgba(8, 16, 34, 0.98),
+            rgba(5, 12, 26, 0.98)
+          );
+          border: 1px solid rgba(90, 130, 255, 0.35);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45),
+            0 0 20px rgba(80, 120, 255, 0.12);
+        }
+        .rd-footer-ai-btn.secondary::before {
+          content: "";
+          position: absolute;
+          inset: -2px;
+          border-radius: 20px;
+          background: linear-gradient(90deg, #2b6fff, transparent);
+          opacity: 0.2;
+          filter: blur(10px);
+          z-index: -1;
         }
         .rd-footer-ai-btn.secondary:hover {
-          background: rgba(255, 255, 255, 0.08);
-        }
-        .rd-footer-ai-btn:active {
-          transform: scale(0.97);
+          transform: translateY(-2px);
+          border-color: rgba(120, 160, 255, 0.7);
+          box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6),
+            0 0 30px rgba(80, 120, 255, 0.25);
         }
         .rd-footer-ai-btn-content {
           display: flex;
@@ -600,6 +745,18 @@ export default function Footer() {
           }
           .rd-footer-info-divider {
             display: none;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .ai-orb-box {
+            width: 98px;
+            height: 98px;
+            border-radius: 18px;
+          }
+          .ai-orb {
+            width: 58px;
+            height: 58px;
           }
         }
       `}</style>
@@ -837,8 +994,15 @@ export default function Footer() {
                         AI Online Now
                       </div>
                     </div>
-                    <div className="rd-footer-ai-avatar">
-                      <img src="/wp-content/uploads/2026/04/ai-steve-bot.png" alt="AI Steve" />
+                    <div className="ai-orb-box">
+                      <div className="ai-orb">
+                        <div className="ai-orb-reflection"></div>
+                        <div className="ai-plasma"></div>
+                        <div className="ai-plasma"></div>
+                        <div className="ai-plasma"></div>
+                        <div className="ai-plasma"></div>
+                      </div>
+                      <div className="ai-orb-bottom-glow"></div>
                     </div>
                   </div>
 
@@ -871,7 +1035,7 @@ export default function Footer() {
                       <div className="rd-footer-ai-btn-content">
                         <div className="rd-footer-ai-btn-icon">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22 16.92V19.92C22 20.47 21.53 20.94 20.97 20.91C19.01 20.81 17.15 20.26 15.5 19.33C13.68 18.3 12.07 16.92 10.74 15.11C9.8 13.45 9.25 11.58 9.14 9.61C9.11 9.05 9.58 8.58 10.13 8.58H13.13C13.61 8.58 14.02 8.93 14.09 9.4C14.23 10.35 14.49 11.26 14.86 12.11C15 12.44 14.92 12.83 14.66 13.09L13.39 14.36C14.32 16 15.68 17.36 17.32 18.29L18.59 17.02C18.85 16.76 19.24 16.68 19.57 16.82C20.42 17.19 21.33 17.45 22.28 17.59C22.75 17.66 23.1 18.07 23.1 18.55V21.55" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M22 16.92V19.92C22 20.47 21.53 20.94 20.97 20.91C19.01 20.81 17.15 20.26 15.5 19.33C13.68 18.3 12.07 16.92 10.74 15.11C9.8 13.45 9.25 11.58 9.14 9.61C9.11 9.05 9.58 8.58 10.13 8.58H13.13C13.61 8.58 14.02 8.93 14.09 9.4C14.23 10.35 14.49 11.26 14.86 12.11C15 12.44 14.92 12.83 14.66 13.09L13.39 14.36C14.32 16 15.68 17.36 17.32 18.29L18.59 17.02C18.85 16.76 19.24 16.68 19.57 16.82C20.42 17.19 21.33 17.45 22.28 17.59C22.75 17.66 23.1 18.07 23.1 18.55V21.55" stroke="#7B8CFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
                         <div className="rd-footer-ai-btn-details">
@@ -888,7 +1052,7 @@ export default function Footer() {
                       <div className="rd-footer-ai-btn-content">
                         <div className="rd-footer-ai-btn-icon">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 21H21M3 10H21M3 7L12 2L21 7V10H3V7ZM5 10V18H7V10H5ZM9 10V18H11V10H9ZM13 10V18H15V10H13ZM17 10V18H19V10H17ZM3 18H21V21H3V18Z" stroke="#8b5cf6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M3 21H21M3 10H21M3 7L12 2L21 7V10H3V7ZM5 10V18H7V10H5ZM9 10V18H11V10H9ZM13 10V18H15V10H13ZM17 10V18H19V10H17ZM3 18H21V21H3V18Z" stroke="#7B8CFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
                         <div className="rd-footer-ai-btn-details">
