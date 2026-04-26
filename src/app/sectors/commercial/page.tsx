@@ -257,7 +257,7 @@ export default function CommercialSectorPage() {
           justify-content: center;
           padding: 14px 24px;
           border-radius: 12px;
-          background: #2563eb;
+          background: var(--btn-primary);
           color: #ffffff;
           text-decoration: none;
           font-size: 16px;
@@ -266,8 +266,9 @@ export default function CommercialSectorPage() {
         }
 
         .rd-button:hover {
-          background: #1d4ed8;
-          transform: translateY(-1px);
+          background: var(--btn-primary-hover);
+          box-shadow: var(--btn-glow);
+          transform: translateY(-2px);
         }
 
         @media (max-width: 1100px) {

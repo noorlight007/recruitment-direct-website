@@ -132,11 +132,11 @@ export default function HowItWorksSection() {
               whileHover={{ y: -2 }}
               className="relative h-full flex flex-col p-[30px_24px_26px] border border-[#e5e7eb] rounded-[24px] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition-all hover:shadow-[0_16px_38px_rgba(15,23,42,0.08)]"
             >
-              <div className="inline-flex items-center justify-center w-[48px] h-[48px] mb-5 rounded-full bg-[#2563eb] text-white text-[17px] font-bold leading-none">
+              <div className="inline-flex items-center justify-center w-[48px] h-[48px] mb-5 rounded-full bg-[var(--btn-primary)] text-white text-[17px] font-bold leading-none">
                 {step.number}
               </div>
 
-              <div className="flex items-center justify-center w-[52px] h-[52px] mb-5 rounded-[16px] bg-[#f8fbff] text-[#2563eb] shadow-[0_8px_20px_rgba(37,99,235,0.12)]">
+              <div className="flex items-center justify-center w-[52px] h-[52px] mb-5 rounded-[16px] bg-[#f8fbff] text-[var(--btn-primary)] shadow-[0_8px_20px_rgba(37,99,235,0.12)]">
                 {step.icon}
               </div>
 

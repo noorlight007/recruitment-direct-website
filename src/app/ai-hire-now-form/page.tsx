@@ -253,7 +253,7 @@ export default function AIHireNowFormPage() {
           min-width: 360px;
           border: 0;
           border-radius: 16px;
-          background: #000000;
+          background: var(--btn-primary);
           color: #ffffff;
           font-family: inherit;
           font-size: 1.2rem;
@@ -261,14 +261,13 @@ export default function AIHireNowFormPage() {
           line-height: 1;
           padding: 22px 34px;
           cursor: pointer;
-          transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
-          box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+          transition: all 0.2s ease;
         }
 
         .ai-hire-now-button:hover {
-          transform: translateY(-1px);
-          opacity: 0.96;
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+          background: var(--btn-primary-hover);
+          transform: translateY(-2px);
+          box-shadow: var(--btn-glow);
         }
 
         .ai-hire-now-button:active {

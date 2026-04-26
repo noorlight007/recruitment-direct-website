@@ -102,7 +102,7 @@ export default function CallPilotPage() {
               <h3 className="text-[22px] font-bold text-[#0f172a] mb-2.5">AI Call + Automation</h3>
               <p className="text-[#64748b] mb-4 flex-grow">Automate applicant calls, screening, and follow-up</p>
               <div className="font-bold text-[#2563eb] text-xl mb-6">From £1 per minute</div>
-              <Link href="/contact" className="block w-full p-[14px] rounded-[12px] bg-[#2563eb] text-white font-bold transition-all hover:bg-[#1d4ed8]">
+              <Link href="/contact" className="btn-primary block w-full p-[14px] rounded-[12px] text-white font-bold">
                 Start AI Calls
               </Link>
             </motion.div>
@@ -118,7 +118,7 @@ export default function CallPilotPage() {
               <h3 className="text-[22px] font-bold text-[#0f172a] mt-2 mb-2.5">AI Call + Automation + Recruitment</h3>
               <p className="text-[#64748b] mb-4 flex-grow">AI automation with full recruitment delivery</p>
               <div className="font-bold text-[#2563eb] text-xl mb-6 tracking-tight">From £1 per minute + recruitment fees</div>
-              <Link href="/contact" className="block w-full p-[14px] rounded-[12px] bg-[#2563eb] text-white font-bold transition-all hover:bg-[#1d4ed8]">
+              <Link href="/contact" className="btn-primary block w-full p-[14px] rounded-[12px] text-white font-bold">
                 Hire Staff Faster
               </Link>
             </motion.div>
@@ -141,7 +141,7 @@ export default function CallPilotPage() {
             <div className="inline-block">
               <Link
                 href="https://callpilot.pro/"
-                className="inline-block px-10 py-4 rounded-[12px] bg-[#25D366] text-white font-bold text-lg transition-all hover:bg-[#1ebe5d] hover:-translate-y-0.5 shadow-lg shadow-green-500/20"
+                className="btn-primary inline-block px-10 py-4 rounded-[12px] text-white font-bold text-lg"
               >
                 Test AI Call
               </Link>
@@ -174,10 +174,10 @@ export default function CallPilotPage() {
           >
             <h2 className="text-[32px] font-bold text-[#0f172a] mb-6">Start using AI call automation today</h2>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact" className="block sm:inline-block px-10 py-4 rounded-[12px] bg-[#2563eb] text-white font-bold transition-all hover:bg-[#1d4ed8] hover:scale-[1.02]">
+              <Link href="/contact" className="btn-primary block sm:inline-block px-10 py-4 rounded-[12px] text-white font-bold">
                 AI Hire Now
               </Link>
-              <Link href="/contact" className="block sm:inline-block px-10 py-4 rounded-[12px] bg-[#0f172a] text-white font-bold transition-all hover:bg-[#1e293b] hover:scale-[1.02]">
+              <Link href="/contact" className="btn-secondary block sm:inline-block px-10 py-4 rounded-[12px] text-white font-bold">
                 Book a Call
               </Link>
             </div>

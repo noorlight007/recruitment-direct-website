@@ -175,16 +175,18 @@ export default function LogisticsSectorPage() {
           display: inline-block;
           margin-top: 20px;
           padding: 14px 24px;
-          background: #2563eb;
+          background: var(--btn-primary);
           color: #fff;
           text-decoration: none;
           border-radius: 10px;
           font-weight: 600;
-          transition: background 0.2s ease;
+          transition: all 0.2s ease;
         }
 
         .rd-button:hover {
-          background: #1d4ed8;
+          background: var(--btn-primary-hover);
+          box-shadow: var(--btn-glow);
+          transform: translateY(-2px);
         }
 
         @media (max-width: 900px) {

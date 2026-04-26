@@ -1,16 +1,53 @@
+/*
+Button Colours (System)
+
+→ Primary buttons (main actions)
+Use gradient:
+linear-gradient(135deg, #2F80ED, #8E2DE2)
+
+⸻
+
+→ Secondary buttons
+Dark background + subtle border
+
+* light blue/purple glow on hover
+
+⸻
+
+→ Tertiary buttons (e.g. Watch AI Call)
+Transparent / outlined
+
+* subtle glow on hover
+
+⸻
+
+→ Do NOT use:
+
+* Flat blue buttons
+* Full green buttons (WhatsApp)
+* Different styles on same page
+
+⸻
+
+Rule:
+Primary = gradient
+Secondary = dark
+Tertiary = outline
+*/
+
 "use client";
 
 import { motion } from "framer-motion";
-import { 
-  User, 
-  Building2, 
-  Phone, 
-  Briefcase, 
-  ArrowRight, 
-  FileText, 
-  PhoneCall, 
-  Activity, 
-  Search, 
+import {
+  User,
+  Building2,
+  Phone,
+  Briefcase,
+  ArrowRight,
+  FileText,
+  PhoneCall,
+  Activity,
+  Search,
   UserCheck,
   ShieldCheck,
   CheckCircle2,
@@ -32,19 +69,9 @@ export default function HeroSection() {
           position: relative;
           overflow: hidden;
         }
-        .rd-hero-btn:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 0 20px rgba(59, 130, 246, 0.35), 
-                      0 10px 25px -5px rgba(0, 0, 0, 0.3);
-          border-color: rgba(59, 130, 246, 0.5) !important;
-        }
         .rd-hero-btn:active {
           transform: translateY(1px) scale(0.98);
           box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5);
-        }
-        .rd-hero-btn-primary:hover {
-          background-color: #2563eb !important;
-          box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
         }
       `}</style>
 
@@ -57,7 +84,7 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-12">
           {/* Left Column: Content and Action Cards */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -66,7 +93,7 @@ export default function HeroSection() {
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3">
               Recruitment That <br /> Moves Faster.
             </h1>
-            
+
             <div className="space-y-1 text-gray-400 text-lg mb-6 max-w-lg">
               <p>Temporary, contract and permanent staffing delivered</p>
               <p>with speed, accuracy and full compliance.</p>
@@ -75,21 +102,21 @@ export default function HeroSection() {
 
             <div className="grid gap-3 max-w-md">
               {/* Card 1: AI Hire Now */}
-              <a href="/ai-hire-now" className="rd-hero-btn rd-hero-btn-primary flex items-center justify-between p-4 bg-blue-600 rounded-xl group">
+              <a href="/ai-hire-now" className="rd-hero-btn btn-primary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-blue-500/20 rounded-lg">
+                  <div className="p-3 bg-white/10 rounded-lg">
                     <User className="w-6 h-6 text-white" />
                   </div>
                   <div className="text-left">
                     <div className="font-bold text-lg leading-tight">AI Hire Now</div>
-                    <div className="text-sm text-blue-100/70">Existing Clients</div>
+                    <div className="text-sm text-white/70">Existing Clients</div>
                   </div>
                 </div>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </a>
 
               {/* Card 2: Place Enquiry */}
-              <a href="/place-enquiry" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
+              <a href="/place-enquiry" className="rd-hero-btn btn-secondary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gray-800 rounded-lg">
                     <Building2 className="w-6 h-6 text-gray-400" />
@@ -103,7 +130,7 @@ export default function HeroSection() {
               </a>
 
               {/* Card 3: AI Call Enquiry */}
-              <a href="https://callpilot.pro/" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
+              <a href="https://callpilot.pro/" className="rd-hero-btn btn-secondary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gray-800 rounded-lg">
                     <Phone className="w-6 h-6 text-gray-400" />
@@ -117,7 +144,7 @@ export default function HeroSection() {
               </a>
 
               {/* Card 4: Job Search */}
-              <a href="/#job-search" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
+              <a href="/#job-search" className="rd-hero-btn btn-secondary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gray-800 rounded-lg">
                     <Briefcase className="w-6 h-6 text-gray-400" />
@@ -141,18 +168,18 @@ export default function HeroSection() {
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
               <h3 className="text-xl font-semibold text-gray-300">AI Call Screening & Automation</h3>
-              <a href="/callpilot" className="rd-hero-btn flex items-center justify-center gap-2 px-5 py-2.5 border border-blue-600/30 rounded-xl bg-blue-600/5 text-blue-400 text-sm font-semibold">
+              <a href="/callpilot" className="rd-hero-btn btn-tertiary flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold">
                 <Play className="w-4 h-4 fill-current" />
                 Watch AI Call
               </a>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               {/* Timeline Section */}
               <div className="relative space-y-6">
                 {/* Vertical Line */}
                 <div className="absolute left-6 top-4 bottom-4 w-0.5 border-l-2 border-dashed border-gray-700 z-0" />
-                
+
                 {[
                   { icon: <FileText className="w-5 h-5" />, title: "Application Received", status: "completed", color: "text-green-500" },
                   { icon: <PhoneCall className="w-5 h-5" />, title: "AI Call Initiated", status: "completed", color: "text-green-500" },
@@ -220,7 +247,7 @@ export default function HeroSection() {
 
 
         {/* Bottom Strip: Statistics */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}

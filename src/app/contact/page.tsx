@@ -64,7 +64,7 @@ export default function ContactPage() {
                 <div className="mt-[30px] space-y-3">
                   <a
                     href="tel:01324613198"
-                    className="flex items-center justify-center w-full h-[56px] rounded-[14px] bg-gradient-to-br from-[#2a6cff] to-[#1958f2] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
+                    className="btn-primary flex items-center justify-center w-full h-[56px] rounded-[14px] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
                   >
                     Call Now
                   </a>
@@ -72,7 +72,7 @@ export default function ContactPage() {
                     href="https://wa.me/447590882626"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full h-[56px] rounded-[14px] bg-[#22c55e] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(34,197,94,0.2)] transition-all hover:-translate-y-px active:scale-[0.98]"
+                    className="btn-secondary flex items-center justify-center w-full h-[56px] rounded-[14px] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(34,197,94,0.2)] transition-all hover:-translate-y-px active:scale-[0.98]"
                   >
                     WhatsApp
                   </a>
@@ -141,7 +141,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full h-[56px] rounded-[14px] bg-gradient-to-br from-[#2a6cff] to-[#1958f2] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
+                  className="btn-primary w-full h-[56px] rounded-[14px] text-white font-[700] text-[16px] shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
                 >
                   Contact Us
                 </button>

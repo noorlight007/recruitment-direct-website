@@ -99,7 +99,7 @@ export default function RenewablesSectorPage() {
                             We supply renewable energy labour and engineering staff across the Highlands, Aberdeenshire, Moray, Angus, Fife, Perth & Kinross, Dumfries & Galloway, the Scottish Borders, Argyll & Bute, North East England, Yorkshire, East Anglia, the Midlands, the South West, North Wales, South Wales, and throughout the UK.
                         </p>
                         <div className="mt-7">
-                            <Link href="/contact" className="inline-flex items-center justify-center w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#2563eb] text-white no-underline text-base font-semibold transition-all duration-250 hover:bg-[#1d4ed8] hover:-translate-y-px">
+                            <Link href="/contact" className="rd-hero-btn btn-primary inline-flex items-center justify-center w-full md:w-auto px-6 py-3.5 rounded-xl text-white no-underline text-base font-semibold transition-all duration-250">
                                 Get in touch with Recruitment Direct today
                             </Link>
                         </div>

@@ -28,15 +28,15 @@ export default function ContactSection() {
           </div>
 
           <div className="saas-contact-actions flex flex-col md:flex-row gap-[16px] justify-center mb-[40px]">
-            <Link 
-              href="/contact" 
-              className="btn-primary w-full md:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] bg-gradient-to-r from-[#0066ff] to-[#9900ff] text-white shadow-[0_8px_20px_rgba(0,102,255,0.2)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(153,0,255,0.4)] active:scale-[0.97]"
+            <Link
+              href="/contact"
+              className="btn-primary w-full md:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] text-white transition-all duration-200"
             >
               Contact Us
             </Link>
-            <a 
-              href="https://wa.me/447590882626" 
-              className="btn-whatsapp w-full md:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] bg-[#22c55e] text-white shadow-[0_8px_20px_rgba(34,197,94,0.2)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(34,197,94,0.3)] active:scale-[0.97]"
+            <a
+              href="https://wa.me/447590882626"
+              className="btn-secondary w-full md:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] text-white transition-all duration-200"
             >
               Message us on WhatsApp
             </a>
