@@ -12,7 +12,7 @@ const fadeUp = {
 const steps = [
   {
     number: "01",
-    title: "Job Requirement Received",
+    title: "Job Received",
     desc: "We begin sourcing immediately.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -22,7 +22,7 @@ const steps = [
   },
   {
     number: "02",
-    title: "AI Candidate Search",
+    title: "AI Search",
     desc: "Suitable applicants identified from database and network.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -34,7 +34,7 @@ const steps = [
   },
   {
     number: "03",
-    title: "Job Advert Published",
+    title: "Job Advert",
     desc: "Applications generated across job boards.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -44,7 +44,7 @@ const steps = [
   },
   {
     number: "04",
-    title: "AI Call Screening",
+    title: "AI Screening",
     desc: "Applicants contacted instantly and screened automatically.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -55,7 +55,7 @@ const steps = [
   },
   {
     number: "05",
-    title: "Traffic Light Results",
+    title: "Traffic Light",
     desc: "Applicants scored based on role-specific responses.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -66,7 +66,7 @@ const steps = [
   },
   {
     number: "06",
-    title: "WhatsApp/SMS Document Upload",
+    title: "WhatsApp/SMS",
     desc: "Qualified applicants receive a secure link to upload documents.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -77,7 +77,7 @@ const steps = [
   },
   {
     number: "07",
-    title: "CRM Sync & Consultant Review",
+    title: "CRM Sync",
     desc: "All responses and documents automatically stored and reviewed.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -88,7 +88,7 @@ const steps = [
   },
   {
     number: "08",
-    title: "Fast Candidate Submission",
+    title: "Fast Submission",
     desc: "Verified applicants submitted quickly to clients.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
@@ -111,7 +111,7 @@ export default function HowItWorksSection() {
           <span className="inline-block mb-4 px-[18px] py-2 border border-[#dbe7ff] rounded-full bg-[#eef4ff] text-[#1e40af] text-sm font-semibold tracking-wide leading-none">
             Our Recruitment Process
           </span>
-          <h2 className="m-0 mb-4 text-[34px] md:text-[56px] leading-[1.05] font-bold tracking-[-1px] text-[#0f172a]">
+          <h2 className="m-0 mb-4 text-[30px] md:text-[48px] leading-[1.05] font-bold tracking-[-1px] text-[#0f172a]">
             Our Recruitment Process
           </h2>
           <p className="max-w-[820px] mx-auto text-lg md:text-[20px] leading-[1.75] text-[#475569]">
@@ -130,21 +130,21 @@ export default function HowItWorksSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.05, duration: 0.5 }}
               whileHover={{ y: -2 }}
-              className="relative min-h-[220px] p-[30px_24px_26px] border border-[#e5e7eb] rounded-[24px] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition-all hover:shadow-[0_16px_38px_rgba(15,23,42,0.08)]"
+              className="relative h-full flex flex-col p-[30px_24px_26px] border border-[#e5e7eb] rounded-[24px] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition-all hover:shadow-[0_16px_38px_rgba(15,23,42,0.08)]"
             >
-              <div className="inline-flex items-center justify-center w-[52px] h-[52px] mb-6 rounded-full bg-[#2563eb] text-white text-[18px] font-bold leading-none">
+              <div className="inline-flex items-center justify-center w-[48px] h-[48px] mb-5 rounded-full bg-[#2563eb] text-white text-[17px] font-bold leading-none">
                 {step.number}
               </div>
 
-              <div className="absolute top-[26px] right-6 flex items-center justify-center w-[52px] h-[52px] rounded-[16px] bg-[#f8fbff] text-[#2563eb] shadow-[0_8px_20px_rgba(37,99,235,0.12)]">
+              <div className="flex items-center justify-center w-[52px] h-[52px] mb-5 rounded-[16px] bg-[#f8fbff] text-[#2563eb] shadow-[0_8px_20px_rgba(37,99,235,0.12)]">
                 {step.icon}
               </div>
 
-              <h3 className="m-0 mb-2.5 text-[24px] md:text-[28px] leading-[1.2] font-bold text-[#0f172a]">
+              <h3 className="m-0 mb-3 text-[19px] md:text-[22px] leading-[1.3] font-bold text-[#0f172a] line-clamp-2">
                 {step.title}
               </h3>
 
-              <p className="m-0 text-base md:text-[17px] leading-[1.7] text-[#475569]">
+              <p className="m-0 text-sm md:text-[15px] leading-[1.6] text-[#475569]">
                 {step.desc}
               </p>
             </motion.div>
@@ -154,4 +154,4 @@ export default function HowItWorksSection() {
       </div>
     </section>
   );
-}
+}

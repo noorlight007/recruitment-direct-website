@@ -26,6 +26,28 @@ import {
 export default function HeroSection() {
   return (
     <section className="hero-section relative bg-[#020817] pt-32 pb-10 overflow-hidden text-white">
+      <style jsx global>{`
+        .rd-hero-btn {
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+        }
+        .rd-hero-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 0 20px rgba(59, 130, 246, 0.35), 
+                      0 10px 25px -5px rgba(0, 0, 0, 0.3);
+          border-color: rgba(59, 130, 246, 0.5) !important;
+        }
+        .rd-hero-btn:active {
+          transform: translateY(1px) scale(0.98);
+          box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+        .rd-hero-btn-primary:hover {
+          background-color: #2563eb !important;
+          box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+        }
+      `}</style>
+
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]" />
@@ -33,7 +55,7 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-12">
           {/* Left Column: Content and Action Cards */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -41,21 +63,19 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="flex flex-col"
           >
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3">
               Recruitment That <br /> Moves Faster.
             </h1>
-            <h2 className="text-2xl md:text-3xl font-bold text-blue-500 mb-6">
-              People Supplied. Positions Filled.
-            </h2>
-            <div className="space-y-1 text-gray-400 text-lg mb-10 max-w-lg">
+            
+            <div className="space-y-1 text-gray-400 text-lg mb-6 max-w-lg">
               <p>Temporary, contract and permanent staffing delivered</p>
               <p>with speed, accuracy and full compliance.</p>
-              <p className="pt-2">Powered by AI, delivered by experienced consultants.</p>
+              <p className="pt-2 font-medium text-gray-300">Powered by AI, delivered by experienced consultants.</p>
             </div>
 
-            <div className="grid gap-4 max-w-md">
+            <div className="grid gap-3 max-w-md">
               {/* Card 1: AI Hire Now */}
-              <a href="/ai-hire-now" className="flex items-center justify-between p-4 bg-blue-600 hover:bg-blue-700 rounded-xl transition-all group">
+              <a href="/ai-hire-now" className="rd-hero-btn rd-hero-btn-primary flex items-center justify-between p-4 bg-blue-600 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-blue-500/20 rounded-lg">
                     <User className="w-6 h-6 text-white" />
@@ -69,7 +89,7 @@ export default function HeroSection() {
               </a>
 
               {/* Card 2: Place Enquiry */}
-              <a href="/place-enquiry" className="flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl transition-all group">
+              <a href="/place-enquiry" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gray-800 rounded-lg">
                     <Building2 className="w-6 h-6 text-gray-400" />
@@ -83,7 +103,7 @@ export default function HeroSection() {
               </a>
 
               {/* Card 3: AI Call Enquiry */}
-              <a href="/callpilot" className="flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl transition-all group">
+              <a href="/callpilot" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gray-800 rounded-lg">
                     <Phone className="w-6 h-6 text-gray-400" />
@@ -97,7 +117,7 @@ export default function HeroSection() {
               </a>
 
               {/* Card 4: Job Search */}
-              <a href="/#job-search" className="flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl transition-all group">
+              <a href="/#job-search" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gray-800 rounded-lg">
                     <Briefcase className="w-6 h-6 text-gray-400" />
@@ -119,11 +139,17 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-[#0b1224] border border-gray-800 rounded-3xl p-8 shadow-2xl relative"
           >
-            <h3 className="text-xl font-semibold mb-8 text-gray-300">AI Call Screening & Automation</h3>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+              <h3 className="text-xl font-semibold text-gray-300">AI Call Screening & Automation</h3>
+              <a href="/callpilot" className="rd-hero-btn flex items-center justify-center gap-2 px-5 py-2.5 border border-blue-600/30 rounded-xl bg-blue-600/5 text-blue-400 text-sm font-semibold">
+                <Play className="w-4 h-4 fill-current" />
+                Watch AI Call
+              </a>
+            </div>
             
             <div className="grid md:grid-cols-2 gap-8">
               {/* Timeline Section */}
-              <div className="relative space-y-8">
+              <div className="relative space-y-6">
                 {/* Vertical Line */}
                 <div className="absolute left-6 top-4 bottom-4 w-0.5 border-l-2 border-dashed border-gray-700 z-0" />
                 
@@ -139,9 +165,9 @@ export default function HeroSection() {
                       {step.icon}
                     </div>
                     <div className="flex-1 flex items-center justify-between">
-                      <span className="text-gray-300 font-medium">{step.title}</span>
+                      <span className="text-gray-300 text-sm font-medium">{step.title}</span>
                       <div className="flex items-center gap-3">
-                        {step.time && <span className="text-blue-400 text-sm">{step.time}</span>}
+                        {step.time && <span className="text-blue-400 text-xs">{step.time}</span>}
                         <div className={`w-3 h-3 rounded-full ${step.status === 'completed' ? 'bg-green-500' : step.status === 'current' ? 'bg-yellow-500' : 'bg-gray-700'}`} />
                       </div>
                     </div>
@@ -153,17 +179,17 @@ export default function HeroSection() {
               <div className="space-y-6">
                 {/* Match Score Circle */}
                 <div className="bg-[#020817] border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                  <div className="relative w-32 h-32 mb-4">
+                  <div className="relative w-28 h-28 mb-4">
                     <svg className="w-full h-full -rotate-90">
-                      <circle cx="64" cy="64" r="58" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-gray-800" />
-                      <circle cx="64" cy="64" r="58" stroke="currentColor" strokeWidth="8" fill="transparent" strokeDasharray={364.4} strokeDashoffset={364.4 * (1 - 0.92)} className="text-blue-500" strokeLinecap="round" />
+                      <circle cx="56" cy="56" r="50" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-gray-800" />
+                      <circle cx="56" cy="56" r="50" stroke="currentColor" strokeWidth="8" fill="transparent" strokeDasharray={314} strokeDashoffset={314 * (1 - 0.92)} className="text-blue-500" strokeLinecap="round" />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-3xl font-bold">92<span className="text-sm">%</span></span>
+                      <span className="text-2xl font-bold">92<span className="text-xs">%</span></span>
                     </div>
                   </div>
-                  <div className="text-lg font-bold text-gray-200">Match Score</div>
-                  <div className="text-blue-400 font-medium">Strong Match</div>
+                  <div className="text-base font-bold text-gray-200">Match Score</div>
+                  <div className="text-blue-400 text-sm font-medium">Strong Match</div>
                 </div>
 
                 {/* Checklist */}
@@ -179,22 +205,16 @@ export default function HeroSection() {
                           {idx === 0 ? <ShieldCheck className="w-5 h-5 text-blue-500" /> : idx === 1 ? <FileText className="w-5 h-5 text-blue-500" /> : <UserCheck className="w-5 h-5 text-blue-500" />}
                         </div>
                         <div>
-                          <div className="text-sm font-bold text-gray-200">{item.label}</div>
-                          <div className="text-xs text-gray-500">{item.sub}</div>
+                          <div className="text-xs font-bold text-gray-200">{item.label}</div>
+                          <div className="text-[10px] text-gray-500">{item.sub}</div>
                         </div>
                       </div>
-                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      <CheckCircle2 className="w-4 h-4 text-green-500" />
                     </div>
                   ))}
                 </div>
               </div>
             </div>
-
-            {/* Watch AI Call Button */}
-            <a href="/callpilot" className="w-full mt-8 flex items-center justify-center gap-3 py-4 border border-blue-600/30 rounded-xl bg-blue-600/5 hover:bg-blue-600/10 text-blue-400 font-semibold transition-all">
-              <Play className="w-5 h-5 fill-current" />
-              Watch AI Call
-            </a>
           </motion.div>
         </div>
 
@@ -204,14 +224,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-10 border-t border-gray-800"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pt-10 border-t border-gray-800"
         >
           {[
             { icon: <Gauge className="w-6 h-6" />, val: "50%", label: "Faster Fill", sub: "Positions Filled Faster", sub2: "From brief to placement" },
             { icon: <Users className="w-6 h-6" />, val: "10K+", label: "Placements Delivered", sub: "Across multiple", sub2: "sectors" },
             { icon: <Target className="w-6 h-6" />, val: "87%", label: "Match Accuracy", sub: "Quality applicants, faster", sub2: "AI-driven shortlisting" },
             { icon: <Clock className="w-6 h-6" />, val: "70%", label: "Time Saved", sub: "Reduced admin workload", sub2: "Through AI automation" },
-            { icon: <Lock className="w-6 h-6" />, val: "AI GDPR", label: "Compliant", sub: "Secure data handling", sub2: "Full audit trail built-in" },
             { icon: <CheckCircle className="w-6 h-6" />, val: "100%", label: "Compliance", sub: "Right to work verified", sub2: "Every applicant checked" },
           ].map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center text-center">
