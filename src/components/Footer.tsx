@@ -170,549 +170,428 @@ export default function Footer() {
         }
         .rd-footer {
           border-top: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 38px 0 28px;
-        }
-        .rd-footer-grid {
-          display: grid;
-          grid-template-columns: 2.2fr 1fr 1.2fr 2.4fr;
-          gap: clamp(30px, 4vw, 60px) !important;
-          align-items: start;
-          margin-bottom: 26px;
-          width: 100%;
-        }
-        .rd-footer-grid > * {
-          text-align: left;
-        }
-        .rd-footer-logo {
-          max-width: 250px;
-          width: 100%;
-          height: auto;
-          display: block;
-          margin-bottom: 18px;
-        }
-        .rd-footer-brand {
-          min-width: 260px;
-        }
-        .rd-footer-brand p {
-          margin: 0;
-          color: rgba(255, 255, 255, 0.9);
-          font-size: 15px;
-          line-height: 1.8;
-          max-width: 100%;
-        }
-        .rd-footer h4 {
-          margin: 0 0 16px;
+          padding: 80px 0 30px;
           color: #fff;
-          font-size: 16px;
-          font-weight: 700;
-          letter-spacing: -0.01em;
-          text-align: left;
         }
-        .rd-footer-links {
+        .rd-footer-main {
+          display: grid;
+          grid-template-columns: 1.2fr 0.7fr 0.8fr 0.8fr 1.6fr;
+          gap: 32px;
+          margin-bottom: 30px;
+        }
+        .rd-footer-brand-col {
           display: flex;
           flex-direction: column;
-          gap: 12px;
-          text-align: left;
+          gap: 24px;
         }
-        .rd-footer a,
-        .rd-footer p {
-          color: rgba(255, 255, 255, 0.85);
-          text-decoration: none;
-          font-size: 15px;
-          line-height: 1.8;
-          position: relative;
-          transition: all 0.2s ease;
-          text-align: left;
+        .rd-footer-logo-wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
         }
-        .rd-footer a:hover {
+        .rd-footer-logo-img {
+          height: 100px;
+          width: auto;
+          display: block;
+          object-fit: contain;
+          margin-left: -10px;
+        }
+        .rd-footer-tagline {
+          font-size: 17px;
+          font-weight: 700;
+          line-height: 1.4;
+          margin: 12px 0 0;
           color: #fff;
+          letter-spacing: -0.01em;
         }
-        .rd-footer a::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -2px;
-          width: 0%;
-          height: 1px;
-          background: #5ea8ff;
-          transition: width 0.25s ease;
+        .rd-footer-desc {
+          font-size: 15px;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.6;
+          margin: 0;
+          max-width: 260px;
         }
-        .rd-footer a:hover::after {
-          width: 100%;
-        }
-        .rd-footer a:active {
-          opacity: 0.7;
-          transform: translateY(1px);
-        }
-        .rd-whatsapp {
-          color: #39e58c !important;
-          font-weight: 600;
-        }
-        .rd-footer-bottom {
+        .rd-footer-mini-badges {
           display: flex;
           justify-content: space-between;
-          align-items: center;
-          gap: 20px;
-          padding-top: 18px;
-          border-top: 1px solid rgba(255, 255, 255, 0.06);
-          flex-wrap: wrap;
-        }
-        .rd-footer-bottom div {
-          color: rgba(255, 255, 255, 0.55);
-          font-size: 13px;
-        }
-
-        /* ============================= */
-        /*  BUTTON SYSTEM */
-        /* ============================= */
-        :root {
-          --bg:#050816;
-          --panel:#081224;
-          --panel-2:#0a1328;
-          --line:rgba(125,157,255,.16);
-          --line-strong:rgba(171,110,255,.28);
-          --text:#f5f7ff;
-          --muted:#b9c3da;
-          --soft:#8b97b4;
-          --blue:#1f7bff;
-          --blue-2:#3d8cff;
-          --purple:#b23cff;
-          --purple-2:#7a3cff;
-          --green:#39e58c;
-          --green-2:#1ecf73;
-          --shadow:0 20px 60px rgba(0,0,0,.45);
-          --glow-blue:0 0 0 1px rgba(52,124,255,.28), 0 0 28px rgba(52,124,255,.14);
-          --glow-purple:0 0 0 1px rgba(178,60,255,.30), 0 0 36px rgba(178,60,255,.16);
-          --radius-xl:28px;
-          --radius-lg:20px;
-          --radius-md:16px;
-          --radius-sm:14px;
-        }
-
-        .ask-ai-steve-wrap,
-        .ask-ai-steve-wrap * {
-          box-sizing: border-box;
-          font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
-
-        .ask-ai-steve-wrap {
+          gap: 12px;
+          margin-top: 10px;
+          background: rgba(255, 255, 255, 0.02);
+          padding: 16px;
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.06);
           width: 100%;
-          max-width: 560px;
-          margin: 0;
+          max-width: 440px;
         }
+        .rd-footer-mini-badge {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          text-align: center;
+        }
+        .rd-footer-mini-badge img {
+          height: 24px;
+          width: auto;
+          filter: brightness(0) invert(1);
+          opacity: 0.9;
+        }
+        .rd-footer-mini-badge span {
+          font-size: 9px;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.5);
+          letter-spacing: 0.03em;
+          font-weight: 500;
+          line-height: 1.2;
+        }
+        
+        .rd-footer-nav-col h4 {
+          font-size: 13px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin: 0 0 20px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          position: relative;
+          color: #fff;
+        }
+        .rd-footer-nav-col h4::before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: block;
+        }
+        .rd-footer-nav-col.company h4::before { background: #3b82f6; box-shadow: 0 0 8px rgba(59, 130, 246, 0.5); }
+        .rd-footer-nav-col.platform h4::before { background: #3b82f6; box-shadow: 0 0 8px rgba(59, 130, 246, 0.5); }
+        .rd-footer-nav-col.resources h4::before { background: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.5); }
+        
+        .rd-footer-nav-col h4::after {
+          content: "";
+          position: absolute;
+          bottom: -10px;
+          left: 0;
+          width: 24px;
+          height: 2px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 2px;
+        }
+        .rd-footer-nav-col.company h4::after { background: rgba(59, 130, 246, 0.3); }
+        .rd-footer-nav-col.platform h4::after { background: rgba(59, 130, 246, 0.3); }
+        .rd-footer-nav-col.resources h4::after { background: rgba(139, 92, 246, 0.3); }
 
-        .ask-ai-steve-card {
+        .rd-footer-nav-col ul {
+          list-style: none;
+          padding: 0;
+          margin: 25px 0 0;
+          display: flex;
+          flex-direction: column;
+          gap: 50px;
+        }
+        .rd-footer-nav-col ul li a {
+          color: rgba(255, 255, 255, 0.6);
+          text-decoration: none;
+          font-size: 15px;
+          transition: all 0.2s;
+          display: inline-block;
+        }
+        .rd-footer-nav-col ul li a:hover {
+          color: #fff;
+          transform: translateX(4px);
+        }
+        
+        .rd-footer-ai-card-col {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .rd-footer-ai-card {
+          background: linear-gradient(135deg, rgba(10, 18, 36, 0.8) 0%, rgba(5, 10, 20, 0.9) 100%);
+          border-radius: 32px;
+          padding: 24px;
+          width: 100%;
+          max-width: 440px;
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
           position: relative;
           overflow: hidden;
-          background:
-            radial-gradient(circle at 85% 10%, rgba(178,60,255,.18), transparent 28%),
-            radial-gradient(circle at 8% 0%, rgba(31,123,255,.16), transparent 24%),
-            linear-gradient(180deg, rgba(10,19,40,.96) 0%, rgba(6,12,28,.98) 100%);
-          border: 1px solid rgba(129,152,255,.18);
-          border-radius: var(--radius-xl);
-          box-shadow: var(--shadow), var(--glow-purple);
-          padding: 30px 28px 22px;
         }
-
-        .ask-ai-steve-card::before {
+        .rd-footer-ai-card::before {
           content: "";
           position: absolute;
           inset: 0;
-          border-radius: inherit;
-          padding: 1px;
-          background: linear-gradient(135deg, rgba(38,132,255,.95), rgba(177,60,255,.9));
-          -webkit-mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
+          border-radius: 32px;
+          padding: 1.5px;
+          background: linear-gradient(135deg, #3b82f6 0%, transparent 40%, transparent 60%, #8b5cf6 100%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
           pointer-events: none;
-          opacity: .55;
         }
-
-        .ask-ai-steve-top {
+        .rd-footer-ai-header {
           display: flex;
+          justify-content: space-between;
           align-items: flex-start;
-          justify-content: space-between;
-          gap: 18px;
-          margin-bottom: 18px;
+          margin-bottom: 16px;
         }
-
-        .ask-ai-steve-copy {
-          min-width: 0;
-          flex: 1 1 auto;
-        }
-
-        .ask-ai-steve-kicker {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 8px;
-        }
-
-        .ask-ai-steve-star {
-          width: 18px;
-          height: 18px;
-          flex: 0 0 18px;
-          color: #59a6ff;
-          filter: drop-shadow(0 0 10px rgba(89,166,255,.35));
-        }
-
-        .ask-ai-steve-title {
-          margin: 0;
-          font-size: clamp(34px, 4vw, 52px);
-          line-height: 1.02;
-          letter-spacing: -0.035em;
+        .rd-footer-ai-info h2 {
+          font-size: 32px;
           font-weight: 800;
-          color: var(--text);
-        }
-
-        .ask-ai-steve-status {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          margin-top: 14px;
-          font-size: 15px;
-          line-height: 1;
-          font-weight: 600;
-          color: var(--green);
-        }
-
-        .ask-ai-steve-status-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: linear-gradient(180deg, #54f3a1 0%, #15c765 100%);
-          box-shadow: 0 0 0 4px rgba(57,229,140,.10), 0 0 18px rgba(57,229,140,.38);
-          flex: 0 0 10px;
-        }
-
-        .ask-ai-steve-avatar {
-          flex: 0 0 132px;
-          width: 132px;
-          height: 132px;
-          border-radius: 24px;
-          display: grid;
-          place-items: center;
-          background:
-            radial-gradient(circle at 50% 38%, rgba(90,182,255,.34), transparent 22%),
-            radial-gradient(circle at 50% 20%, rgba(182,61,255,.24), transparent 40%),
-            linear-gradient(180deg, rgba(16,27,52,.82), rgba(10,16,34,.92));
-          border: 1px solid rgba(161,120,255,.24);
-          box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 0 28px rgba(178,60,255,.18);
-        }
-
-        .ask-ai-steve-avatar img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          display: block;
-          border-radius: 24px;
-        }
-
-        .ask-ai-steve-divider {
-          height: 1px;
-          width: 100%;
-          background: linear-gradient(90deg, rgba(76,114,255,.28), rgba(178,60,255,.18), rgba(255,255,255,0));
-          margin: 6px 0 18px;
-        }
-
-        .ask-ai-steve-sub {
-          margin: 0 0 20px;
-          max-width: 330px;
-          color: var(--muted);
-          font-size: 18px;
-          line-height: 1.55;
-          font-weight: 500;
-          letter-spacing: -0.015em;
-        }
-
-        .ask-ai-steve-actions {
-          display: grid;
-          gap: 14px;
-        }
-
-        .ask-ai-btn {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-          width: 100%;
-          text-decoration: none;
-          border-radius: 20px;
-          padding: 18px 20px;
-          transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
-          will-change: transform;
-          overflow: hidden;
-        }
-
-        .ask-ai-btn:hover {
-          transform: translateY(-2px);
-        }
-
-        .ask-ai-btn-primary {
-          background: linear-gradient(90deg, #166cff 0%, #2b6fff 28%, #6c42ff 68%, #b13dff 100%);
-          border: 1px solid rgba(255,255,255,.14);
-          box-shadow: 0 12px 30px rgba(41,91,255,.28), 0 0 0 1px rgba(255,255,255,.06);
-        }
-
-        .ask-ai-btn-primary::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -120%;
-          width: 60%;
-          height: 100%;
-          background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
-          transform: skewX(-20deg);
-          transition: 0.6s;
-        }
-
-        .ask-ai-btn-primary:hover {
-          box-shadow: 0 18px 42px rgba(84,73,255,.34), 0 0 24px rgba(177,61,255,.20);
-        }
-
-        .ask-ai-btn-primary:hover::after {
-          left: 130%;
-        }
-
-        .ask-ai-btn-secondary {
-          background: linear-gradient(180deg, rgba(8,16,34,.98), rgba(5,12,26,.98));
-          border: 1px solid rgba(71,126,255,.38);
-          box-shadow: 0 10px 24px rgba(0,0,0,.24);
-        }
-
-        .ask-ai-btn-secondary:hover {
-          border-color: rgba(114,149,255,.62);
-          box-shadow: 0 14px 32px rgba(25,72,255,.16), 0 0 20px rgba(52,124,255,.10);
-        }
-
-        .ask-ai-btn-left {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          min-width: 0;
-        }
-
-        .ask-ai-btn-icon {
-          width: 54px;
-          height: 54px;
-          border-radius: 16px;
-          display: grid;
-          place-items: center;
-          flex: 0 0 54px;
-        }
-
-        .ask-ai-btn-primary .ask-ai-btn-icon {
-          background: rgba(255,255,255,.10);
-          border: 1px solid rgba(255,255,255,.14);
-        }
-
-        .ask-ai-btn-secondary .ask-ai-btn-icon {
-          background: rgba(20,34,72,.72);
-          border: 1px solid rgba(88,132,255,.22);
-        }
-
-        .ask-ai-btn-text {
-          min-width: 0;
-        }
-
-        .ask-ai-btn-title {
-          margin: 0;
-          color: #fff;
-          font-size: 18px;
-          line-height: 1.1;
-          font-weight: 700;
-          letter-spacing: -0.02em;
-        }
-
-        .ask-ai-btn-sub {
-          margin: 6px 0 0 !important;
-          color: rgba(245,247,255,.84);
-          font-size: 15px !important;
-          line-height: 1.2 !important;
-          font-weight: 500 !important;
-        }
-
-        .ask-ai-btn-arrow {
-          width: 28px;
-          height: 28px;
-          flex: 0 0 28px;
-          color: #fff;
-          opacity: .95;
-        }
-
-        .ask-ai-steve-trust {
+          margin: 0 0 10px;
           display: flex;
           align-items: center;
           gap: 12px;
-          margin-top: 20px;
-          padding-top: 18px;
-          border-top: 1px solid rgba(255,255,255,.08);
-          color: #d8def0;
-          font-size: 15px;
-          line-height: 1.35;
-          font-weight: 500;
+          color: #fff;
+          letter-spacing: -0.02em;
         }
-
-        .ask-ai-steve-trust-icon {
-          width: 22px;
-          height: 22px;
-          color: #b64bff;
-          flex: 0 0 22px;
-          filter: drop-shadow(0 0 10px rgba(182,75,255,.24));
+        .rd-footer-ai-spark {
+          color: #3b82f6;
+          filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
         }
-
-        .footer-social-right {
+        .rd-footer-ai-status {
           display: flex;
-          justify-content: flex-end;
           align-items: center;
-          gap: 14px;
-          margin-top: 18px;
+          gap: 10px;
+          font-size: 15px;
+          font-weight: 600;
+          color: #10b981;
         }
-
-        .footer-social-link {
-          width: 58px;
-          height: 58px;
+        .rd-footer-ai-status-dot {
+          width: 10px;
+          height: 10px;
+          background: #10b981;
           border-radius: 50%;
-          display: grid;
-          place-items: center;
+          box-shadow: 0 0 12px #10b981;
+        }
+        .rd-footer-ai-avatar {
+          width: 80px;
+          height: 80px;
+          background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+        }
+        .rd-footer-ai-avatar img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+        }
+        .rd-footer-ai-text {
+          font-size: 16px;
+          color: rgba(255, 255, 255, 0.7);
+          margin-bottom: 20px;
+          line-height: 1.6;
+        }
+        .rd-footer-ai-btns {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .rd-footer-ai-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 14px 20px;
+          border-radius: 20px;
           text-decoration: none;
-          background: linear-gradient(180deg, rgba(8,16,34,.96), rgba(5,12,26,.96));
-          border: 1px solid rgba(100,125,255,.22);
-          box-shadow: 0 8px 20px rgba(0,0,0,.22);
-          transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+        }
+        .rd-footer-ai-btn.primary {
+          background: linear-gradient(90deg, #0066ff 0%, #9900ff 100%);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 8px 20px rgba(0, 102, 255, 0.2);
+        }
+        .rd-footer-ai-btn.secondary {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .rd-footer-ai-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+          border-color: rgba(59, 130, 246, 0.5);
+          background: rgba(59, 130, 246, 0.08);
+        }
+        .rd-footer-ai-btn.primary:hover {
+          box-shadow: 0 12px 35px rgba(153, 0, 255, 0.4);
+          background: linear-gradient(90deg, #1a75ff 0%, #a61aff 100%);
+        }
+        .rd-footer-ai-btn:active {
+          transform: scale(0.97);
+        }
+        .rd-footer-ai-btn-content {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+        }
+        .rd-footer-ai-btn-icon {
+          width: 44px;
+          height: 44px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .rd-footer-ai-btn-details {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .rd-footer-ai-btn-title {
+          font-size: 18px;
+          font-weight: 700;
+          color: #fff;
+          margin: 0;
+        }
+        .rd-footer-ai-btn-sub {
+          font-size: 13px;
+          color: rgba(255, 255, 255, 0.5);
+          margin: 0;
+        }
+        .rd-footer-ai-trust {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 16px;
+          padding-top: 12px;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.5);
+        }
+        .rd-footer-ai-trust svg {
+          color: #8b5cf6;
+          opacity: 0.8;
+        }
+        
+        .rd-footer-bottom-bar {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 24px;
+          padding: 20px 32px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 30px;
+          backdrop-filter: blur(10px);
+        }
+        .rd-footer-company-info {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 15px;
+        }
+        .rd-footer-shield-box {
+          width: 44px;
+          height: 44px;
+          border: 1px solid rgba(59, 130, 246, 0.3);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #3b82f6;
+          background: rgba(59, 130, 246, 0.05);
+          box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+        }
+        .rd-footer-info-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .rd-footer-info-divider {
+          width: 1px;
+          height: 20px;
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .rd-footer-socials {
+          display: flex;
+          gap: 16px;
+        }
+        .rd-footer-social-link {
+          width: 44px;
+          height: 44px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          text-decoration: none;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .rd-footer-social-link:hover {
+          border-color: #3b82f6;
+          background: rgba(59, 130, 246, 0.1);
+          transform: translateY(-4px) rotate(8deg);
+          color: #3b82f6;
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+        
+        .rd-footer-copyright {
+          text-align: center;
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.4);
+          letter-spacing: 0.01em;
         }
 
-        .footer-social-link:hover {
-          transform: translateY(-2px);
-          border-color: rgba(137,157,255,.52);
-          box-shadow: 0 12px 26px rgba(0,0,0,.3), 0 0 18px rgba(82,114,255,.12);
-        }
-
-        .footer-social-link svg {
-          width: 24px;
-          height: 24px;
-          display: block;
-        }
-
-        .footer-social-link.linkedin svg { color: #ffffff; }
-        .footer-social-link.facebook svg { color: #ffffff; }
-        .footer-social-link.whatsapp {
-          border-color: rgba(57,229,140,.34);
-          box-shadow: 0 8px 20px rgba(0,0,0,.22), 0 0 18px rgba(57,229,140,.08);
-        }
-        .footer-social-link.whatsapp:hover {
-          border-color: rgba(57,229,140,.6);
-          box-shadow: 0 12px 30px rgba(0,0,0,.3), 0 0 22px rgba(57,229,140,.18);
-        }
-        .footer-social-link.whatsapp svg { color: #39e58c; }
-
-        @media (max-width: 1300px) {
-          .rd-footer-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+        @media (max-width: 1280px) {
+          .rd-footer-main {
+            grid-template-columns: 1fr 0.8fr 0.8fr 1fr;
           }
-          .ask-ai-steve-wrap {
+          .rd-footer-brand-col {
+            grid-column: span 1;
+          }
+          .rd-footer-ai-card-col {
+            grid-column: span 4;
+            justify-content: center;
+            margin-top: 40px;
+          }
+          .rd-footer-ai-card {
             max-width: 100%;
           }
         }
-
-        @media (max-width: 768px) {
-          .rd-footer-grid {
-            grid-template-columns: 1fr;
-            gap: 32px;
+        @media (max-width: 1024px) {
+          .rd-footer-main {
+            grid-template-columns: 1fr 1fr;
           }
-          .rd-footer h4 {
-            white-space: normal;
+          .rd-footer-ai-card-col {
+            grid-column: span 2;
           }
         }
-
-        @media (max-width: 640px) {
-          .rd-premium-wrap {
-            padding: 72px 18px 0;
+        @media (max-width: 768px) {
+          .rd-footer {
+            padding: 60px 0 30px;
           }
-          .rd-premium-head {
-            margin-bottom: 38px;
-          }
-          .rd-premium-head p {
-            font-size: 17px;
-          }
-          .rd-card {
-            padding: 24px 20px 20px;
-            border-radius: 22px;
-          }
-          .rd-card-logo {
-            height: 140px;
-            border-radius: 16px;
-            margin-bottom: 22px;
-          }
-          .rd-card h3 {
-            font-size: 21px;
-          }
-          .rd-card .rd-sub {
-            font-size: 15px;
-          }
-          .rd-card .rd-num {
-            font-size: 18px;
-          }
-          .rd-card .rd-btn {
-            min-height: 58px;
-            font-size: 17px;
-          }
-          .rd-trust {
-            font-size: 16px;
-            padding-bottom: 42px;
-            flex-direction: column;
-          }
-          .rd-footer-grid {
+          .rd-footer-main {
             grid-template-columns: 1fr;
-            gap: 26px;
+            gap: 48px;
           }
-          .rd-footer-bottom {
+          .rd-footer-brand-col, 
+          .rd-footer-ai-card-col {
+            grid-column: span 1;
+          }
+          .rd-footer-ai-card-col {
+            justify-content: flex-start;
+          }
+          .rd-footer-bottom-bar {
             flex-direction: column;
-            align-items: flex-start;
+            gap: 32px;
+            padding: 32px 24px;
+            text-align: center;
           }
-          .ask-ai-steve-card {
-            padding: 24px 20px 20px;
-            border-radius: 22px;
+          .rd-footer-company-info {
+            flex-direction: column;
+            gap: 20px;
           }
-          .ask-ai-steve-top {
-            gap: 14px;
-          }
-          .ask-ai-steve-title {
-            font-size: 36px;
-          }
-          .ask-ai-steve-avatar {
-            width: 98px;
-            height: 98px;
-            flex-basis: 98px;
-            border-radius: 18px;
-          }
-          .ask-ai-steve-sub {
-            font-size: 16px;
-            max-width: none;
-          }
-          .ask-ai-btn {
-            padding: 16px 16px;
-            border-radius: 18px;
-          }
-          .ask-ai-btn-icon {
-            width: 48px;
-            height: 48px;
-            flex-basis: 48px;
-            border-radius: 14px;
-          }
-          .ask-ai-btn-title {
-            font-size: 17px;
-          }
-          .ask-ai-btn-sub {
-            font-size: 14px;
-          }
-          .footer-social-link {
-            width: 52px;
-            height: 52px;
+          .rd-footer-info-divider {
+            display: none;
           }
         }
       `}</style>
@@ -825,155 +704,207 @@ export default function Footer() {
           </div>
 
           <footer className="rd-footer">
-            <div className="rd-footer-grid">
-              <div className="rd-footer-brand">
-                <img
-                  className="rd-footer-logo"
-                  src="/assets/logo.png"
-                  alt="Recruitment Direct UK Ltd"
-                />
-                <p>
-                  Recruitment Direct UK Ltd supplies temporary, contract and
-                  permanent staff across construction, logistics, industrial and
-                  specialist sectors throughout Scotland.
+            <div className="rd-footer-main">
+              {/* Brand Column */}
+              <div className="rd-footer-brand-col">
+                <div className="rd-footer-logo-wrap">
+                  <img
+                    className="rd-footer-logo-img"
+                    src="/assets/logo.png"
+                    alt="Recruitment Direct"
+                  />
+                </div>
+                <h3 className="rd-footer-tagline">
+                  AI-powered hiring.<br />
+                  Fast. Accurate. Compliant.
+                </h3>
+                <p className="rd-footer-desc">
+                  The intelligent way to hire top talent, every time.
                 </p>
-              </div>
 
-              <div>
-                <h4>Quick Links</h4>
-                <div className="rd-footer-links">
-                  <a href="/">Home</a>
-                  <a href="/#job-search">Job Search</a>
-                  <a href="/#clients">Clients</a>
-                  <a href="/contact">Contact</a>
+                <div className="rd-footer-mini-badges">
+                  <div className="rd-footer-mini-badge">
+                    <img src="/assets/compliance/rec-member.png" alt="REC" />
+                    <span>Corporate Member</span>
+                  </div>
+                  <div className="rd-footer-mini-badge">
+                    <img src="/assets/compliance/constructionline-gold.png" alt="CL" />
+                    <span>Gold Member</span>
+                  </div>
+                  <div className="rd-footer-mini-badge">
+                    <img src="/assets/compliance/cqs-iso9001.png" alt="ISO" />
+                    <span>9001 Certified</span>
+                  </div>
+                  <div className="rd-footer-mini-badge">
+                    <img src="/assets/compliance/cyber-essentials.png" alt="CE" />
+                    <span>Cyber Certified</span>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <h4>Contact</h4>
-                <p>
-                  Recruitment Direct UK Limited
-                  <br />
-                  Herkimer House
-                  <br />
-                  Mill Road Industrial Estate
-                  <br />
-                  Linlithgow
-                  <br />
-                  EH49 7SF
-                </p>
+              {/* Navigation Columns */}
+              <div className="rd-footer-nav-col company">
+                <h4>Company</h4>
+                <ul>
+                  <li><a href="/about">About Us</a></li>
+                  <li><a href="/services">Services</a></li>
+                  <li><a href="/why-choose-us">Why RDUK</a></li>
+                  <li><a href="/our-process">Our Process</a></li>
+                  <li><a href="/contact">Contact Us</a></li>
+                </ul>
               </div>
 
-              <div className="ask-ai-steve-wrap">
-                <section className="ask-ai-steve-card">
-                  <div className="ask-ai-steve-top">
-                    <div className="ask-ai-steve-copy">
-                      <div className="ask-ai-steve-kicker">
-                        <svg className="ask-ai-steve-star" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <path d="M12 2l1.9 5.1L19 9l-5.1 1.9L12 16l-1.9-5.1L5 9l5.1-1.9L12 2Z" fill="currentColor" />
-                          <path d="M18.5 3.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z" fill="#C15CFF" />
+              <div className="rd-footer-nav-col platform">
+                <h4>Platform</h4>
+                <ul>
+                  <li><a href="/#ai-recruitment">AI Platform</a></li>
+                  <li><a href="/callpilot">CallPilot (AI Voice)</a></li>
+                  <li><a href="/ai-hire-now">AI Hire Now</a></li>
+                  <li><a href="/integrations">Integrations</a></li>
+                  <li><a href="/security">Security</a></li>
+                </ul>
+              </div>
+
+              <div className="rd-footer-nav-col resources">
+                <h4>Resources</h4>
+                <ul>
+                  <li><a href="/#clients">Clients</a></li>
+                  <li><a href="/#job-search">Job Search</a></li>
+                  <li><a href="/policies">Policies</a></li>
+                  <li><a href="/accreditations">Accreditations</a></li>
+                  <li><a href="/news">News & Insights</a></li>
+                </ul>
+              </div>
+
+              {/* AI Card Column */}
+              <div className="rd-footer-ai-card-col">
+                <div className="rd-footer-ai-card">
+                  <div className="rd-footer-ai-header">
+                    <div className="rd-footer-ai-info">
+                      <h2>
+                        <svg className="rd-footer-ai-spark" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="currentColor" />
+                          <path d="M19 4L19.8 6.2L22 7L19.8 7.8L19 10L18.2 7.8L16 7L18.2 6.2L19 4Z" fill="#C15CFF" />
                         </svg>
-                      </div>
-
-                      <h2 className="ask-ai-steve-title">Ask AI Steve</h2>
-
-                      <div className="ask-ai-steve-status">
-                        <span className="ask-ai-steve-status-dot"></span>
-                        <span>AI Online Now</span>
+                        Ask AI Steve
+                      </h2>
+                      <div className="rd-footer-ai-status">
+                        <span className="rd-footer-ai-status-dot"></span>
+                        AI Online Now
                       </div>
                     </div>
-
-                    <div className="ask-ai-steve-avatar">
-                      <img src="/wp-content/uploads/2026/04/ai-steve-bot.png" alt="Ask AI Steve" />
+                    <div className="rd-footer-ai-avatar">
+                      <img src="/wp-content/uploads/2026/04/ai-steve-bot.png" alt="AI Steve" />
                     </div>
                   </div>
 
-                  <div className="ask-ai-steve-divider"></div>
-
-                  <p className="ask-ai-steve-sub">
-                    Get instant answers or continue your application.
+                  <p className="rd-footer-ai-text">
+                    Instant answers and AI-powered calls
                   </p>
 
-                  <div className="ask-ai-steve-actions">
-                    <a href="/callpilot" className="ask-ai-btn ask-ai-btn-primary">
-                      <div className="ask-ai-btn-left">
-                        <div className="ask-ai-btn-icon">
-                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M7 17 3.8 20v-4.2A5.8 5.8 0 0 1 2 11.5C2 7.9 5 5 8.8 5h6.4C19 5 22 7.9 22 11.5S19 18 15.2 18H7Z" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                            <circle cx="9" cy="11.5" r="1.1" fill="white" />
-                            <circle cx="12" cy="11.5" r="1.1" fill="white" />
-                            <circle cx="15" cy="11.5" r="1.1" fill="white" />
+                  <div className="rd-footer-ai-btns">
+                    <a href="/callpilot" className="rd-footer-ai-btn primary">
+                      <div className="rd-footer-ai-btn-content">
+                        <div className="rd-footer-ai-btn-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 17L3 21V15C1.5 13.5 1 11.5 1 9.5C1 5.5 4.5 2 9 2H15C19.5 2 23 5.5 23 9.5S19.5 17 15 17H7Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <circle cx="8" cy="9.5" r="1" fill="white" />
+                            <circle cx="12" cy="9.5" r="1" fill="white" />
+                            <circle cx="16" cy="9.5" r="1" fill="white" />
                           </svg>
                         </div>
-
-                        <div className="ask-ai-btn-text">
-                          <p className="ask-ai-btn-title">Start AI Chat</p>
-                          <p className="ask-ai-btn-sub">Instant answers</p>
+                        <div className="rd-footer-ai-btn-details">
+                          <p className="rd-footer-ai-btn-title">Start AI Chat</p>
+                          <p className="rd-footer-ai-btn-sub">Instant answers</p>
                         </div>
                       </div>
-
-                      <svg className="ask-ai-btn-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M5 12h13M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </a>
 
-                    <a href="/callpilot" className="ask-ai-btn ask-ai-btn-secondary">
-                      <div className="ask-ai-btn-left">
-                        <div className="ask-ai-btn-icon">
-                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M21 16.9v2.3a1.8 1.8 0 0 1-2 1.8 17.8 17.8 0 0 1-7.8-2.8 17.4 17.4 0 0 1-5.4-5.4A17.8 17.8 0 0 1 3 5a1.8 1.8 0 0 1 1.8-2H7a1.8 1.8 0 0 1 1.8 1.5c.1.9.4 1.8.8 2.6a1.8 1.8 0 0 1-.4 2L8 10.3a14.5 14.5 0 0 0 5.7 5.7l1.2-1.2a1.8 1.8 0 0 1 2-.4c.8.4 1.7.7 2.6.8A1.8 1.8 0 0 1 21 16.9Z" stroke="#7B8CFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                    <a href="https://callpilot.pro/" className="rd-footer-ai-btn secondary">
+                      <div className="rd-footer-ai-btn-content">
+                        <div className="rd-footer-ai-btn-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92V19.92C22 20.47 21.53 20.94 20.97 20.91C19.01 20.81 17.15 20.26 15.5 19.33C13.68 18.3 12.07 16.92 10.74 15.11C9.8 13.45 9.25 11.58 9.14 9.61C9.11 9.05 9.58 8.58 10.13 8.58H13.13C13.61 8.58 14.02 8.93 14.09 9.4C14.23 10.35 14.49 11.26 14.86 12.11C15 12.44 14.92 12.83 14.66 13.09L13.39 14.36C14.32 16 15.68 17.36 17.32 18.29L18.59 17.02C18.85 16.76 19.24 16.68 19.57 16.82C20.42 17.19 21.33 17.45 22.28 17.59C22.75 17.66 23.1 18.07 23.1 18.55V21.55" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
-
-                        <div className="ask-ai-btn-text">
-                          <p className="ask-ai-btn-title">Talk to AI</p>
-                          <p className="ask-ai-btn-sub">Voice call with CallPilot</p>
+                        <div className="rd-footer-ai-btn-details">
+                          <p className="rd-footer-ai-btn-title">Try AI Call</p>
+                          <p className="rd-footer-ai-btn-sub">AI will call you</p>
                         </div>
                       </div>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
 
-                      <svg className="ask-ai-btn-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M5 12h13M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+                    <a href="https://callpilot.pro/get-started" className="rd-footer-ai-btn secondary">
+                      <div className="rd-footer-ai-btn-content">
+                        <div className="rd-footer-ai-btn-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 21H21M3 10H21M3 7L12 2L21 7V10H3V7ZM5 10V18H7V10H5ZM9 10V18H11V10H9ZM13 10V18H15V10H13ZM17 10V18H19V10H17ZM3 18H21V21H3V18Z" stroke="#8b5cf6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                        <div className="rd-footer-ai-btn-details">
+                          <p className="rd-footer-ai-btn-title">AI Calls for Your Business</p>
+                          <p className="rd-footer-ai-btn-sub">Automate calls. Save time. Hire faster.</p>
+                        </div>
+                      </div>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </a>
                   </div>
 
-                  <div className="ask-ai-steve-trust">
-                    <svg className="ask-ai-steve-trust-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M12 3l7 3v5c0 4.6-2.9 8.8-7 10-4.1-1.2-7-5.4-7-10V6l7-3Z" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M9.5 12.2 11.3 14l3.7-3.8" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                  <div className="rd-footer-ai-trust">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span>Your data is secure and confidential.</span>
+                    Your data is secure and confidential.
                   </div>
-                </section>
-
-                <div className="footer-social-right">
-                  <a className="footer-social-link linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.02 2.02 0 1 0 5.3 7.04 2.02 2.02 0 0 0 5.25 3ZM20.44 12.92c0-3.48-1.85-5.1-4.32-5.1-1.99 0-2.88 1.1-3.38 1.86V8.5H9.36c.04.79 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.38 1.95-1.38 1.37 0 1.92 1.04 1.92 2.57V20h3.38v-7.08Z" />
-                    </svg>
-                  </a>
-
-                  <a className="footer-social-link facebook" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M13.5 21v-7.4h2.5l.38-2.9H13.5V8.86c0-.84.23-1.42 1.43-1.42h1.53V4.84c-.27-.04-1.18-.12-2.24-.12-2.22 0-3.74 1.35-3.74 3.83v2.15H8v2.9h2.48V21h3.02Z" />
-                    </svg>
-                  </a>
-
-                  <a className="footer-social-link whatsapp" href="https://wa.me/447590882626" target="_blank" rel="noopener" aria-label="WhatsApp">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.54 0 .23 5.3.23 11.83c0 2.08.54 4.1 1.57 5.88L0 24l6.48-1.7a11.8 11.8 0 0 0 5.58 1.42h.01c6.52 0 11.83-5.3 11.83-11.83 0-3.16-1.23-6.13-3.38-8.41ZM12.07 21.7h-.01a9.84 9.84 0 0 1-5.01-1.37l-.36-.21-3.84 1 1.03-3.74-.24-.39a9.8 9.8 0 0 1-1.51-5.16c0-5.42 4.41-9.83 9.84-9.83 2.63 0 5.09 1.02 6.95 2.88a9.77 9.77 0 0 1 2.88 6.95c0 5.43-4.41 9.84-9.83 9.84Zm5.39-7.35c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.16-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.4-1.48a8.98 8.98 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.08-.79.38-.27.3-1.04 1.01-1.04 2.46s1.07 2.86 1.22 3.06c.15.2 2.1 3.2 5.1 4.48.71.31 1.27.5 1.7.64.72.23 1.38.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.35Z" />
-                    </svg>
-                  </a>
                 </div>
               </div>
             </div>
 
-            <div className="rd-footer-bottom">
-              <div>
-                © {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights
-                reserved.
+            <div className="rd-footer-bottom-bar">
+              <div className="rd-footer-company-info">
+                <div className="rd-footer-shield-box">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <div className="rd-footer-info-item">Recruitment Direct UK Ltd</div>
+                <div className="rd-footer-info-divider"></div>
+                <div className="rd-footer-info-item">Company No: SC301107</div>
+                <div className="rd-footer-info-divider"></div>
+                <div className="rd-footer-info-item">VAT No: GB880406428</div>
               </div>
-              <div>Premium recruitment delivery backed by verified standards.</div>
+
+              <div className="rd-footer-socials">
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" className="rd-footer-social-link" aria-label="LinkedIn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener" className="rd-footer-social-link" aria-label="Facebook">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                </a>
+                <a href="https://x.com/" target="_blank" rel="noopener" className="rd-footer-social-link" aria-label="X (Twitter)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="rd-footer-copyright">
+              © {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.
             </div>
           </footer>
         </div>
@@ -981,4 +912,3 @@ export default function Footer() {
     </>
   );
 }
-
