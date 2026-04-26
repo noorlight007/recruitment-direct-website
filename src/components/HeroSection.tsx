@@ -103,13 +103,13 @@ export default function HeroSection() {
               </a>
 
               {/* Card 3: AI Call Enquiry */}
-              <a href="/callpilot" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
+              <a href="https://callpilot.pro/" className="rd-hero-btn flex items-center justify-between p-4 bg-transparent border border-gray-800 hover:border-gray-700 rounded-xl group">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-gray-800 rounded-lg">
                     <Phone className="w-6 h-6 text-gray-400" />
                   </div>
                   <div className="text-left">
-                    <div className="font-bold text-lg leading-tight text-white">AI Call Enquiry</div>
+                    <div className="font-bold text-lg leading-tight text-white">AI Call Test</div>
                     <div className="text-sm text-gray-500">Ask AI to call you</div>
                   </div>
                 </div>
@@ -248,4 +248,4 @@ export default function HeroSection() {
       </div>
     </section>
   );
-}
+}
