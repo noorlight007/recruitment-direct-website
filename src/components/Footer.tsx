@@ -122,32 +122,23 @@ export default function Footer() {
           width: 100%;
           min-height: 54px;
           border-radius: 16px;
-          border: 1px solid rgba(94, 168, 255, 0.85);
+          border: 1px solid var(--btn-secondary-border);
           color: #fff;
           text-decoration: none;
           font-size: 15px;
           font-weight: 500;
           letter-spacing: -0.01em;
-          background: linear-gradient(
-            180deg,
-            rgba(94, 168, 255, 0.08),
-            rgba(94, 168, 255, 0.02)
-          );
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
-            0 0 18px rgba(54, 124, 255, 0.1);
+          background: var(--btn-secondary-bg);
           transition: all 0.18s ease;
         }
         .rd-card .rd-btn:hover {
-          border-color: #5ea8ff;
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
-            0 0 26px rgba(54, 124, 255, 0.3), 0 8px 30px rgba(0, 0, 0, 0.2);
+          border-color: rgba(47, 128, 237, 0.5);
+          box-shadow: var(--btn-glow);
           transform: translateY(-3px);
         }
         .rd-card .rd-btn:active {
           transform: translateY(1px) scale(0.97);
-          box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.45),
-            0 0 12px rgba(54, 124, 255, 0.25);
-          border-color: #3b82f6;
+          box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.45);
         }
         .rd-btn-arrow {
           font-size: 22px;
@@ -403,23 +394,23 @@ export default function Footer() {
           overflow: hidden;
         }
         .rd-footer-ai-btn.primary {
-          background: linear-gradient(90deg, #0066ff 0%, #9900ff 100%);
+          background: var(--btn-primary);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 8px 20px rgba(0, 102, 255, 0.2);
         }
         .rd-footer-ai-btn.secondary {
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: var(--btn-secondary-bg);
+          border: 1px solid var(--btn-secondary-border);
         }
         .rd-footer-ai-btn:hover {
           transform: translateY(-3px);
-          box-shadow: 0 12px 30px rgba(59, 130, 246, 0.3);
+          box-shadow: var(--btn-glow);
           border-color: rgba(59, 130, 246, 0.5);
-          background: rgba(59, 130, 246, 0.08);
         }
         .rd-footer-ai-btn.primary:hover {
-          box-shadow: 0 12px 35px rgba(153, 0, 255, 0.4);
-          background: linear-gradient(90deg, #1a75ff 0%, #a61aff 100%);
+          background: var(--btn-primary-hover);
+        }
+        .rd-footer-ai-btn.secondary:hover {
+          background: rgba(255, 255, 255, 0.08);
         }
         .rd-footer-ai-btn:active {
           transform: scale(0.97);
@@ -795,6 +786,42 @@ export default function Footer() {
 
               {/* AI Card Column */}
               <div className="rd-footer-ai-card-col">
+                {/*
+                Button Colours (System)
+
+                → Primary buttons (main actions)
+                Use gradient:
+                linear-gradient(135deg, #2F80ED, #8E2DE2)
+
+                ⸻
+
+                → Secondary buttons
+                Dark background + subtle border
+
+                * light blue/purple glow on hover
+
+                ⸻
+
+                → Tertiary buttons (e.g. Watch AI Call)
+                Transparent / outlined
+
+                * subtle glow on hover
+
+                ⸻
+
+                → Do NOT use:
+
+                * Flat blue buttons
+                * Full green buttons (WhatsApp)
+                * Different styles on same page
+
+                ⸻
+
+                Rule:
+                Primary = gradient
+                Secondary = dark
+                Tertiary = outline
+                */}
                 <div className="rd-footer-ai-card">
                   <div className="rd-footer-ai-header">
                     <div className="rd-footer-ai-info">
