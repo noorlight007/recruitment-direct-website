@@ -174,7 +174,7 @@ export default function Footer() {
         }
         .rd-footer-grid {
           display: grid;
-          grid-template-columns: 2.2fr 1fr 1.2fr 2.4fr;
+          grid-template-columns: 1.5fr 0.8fr 1.2fr;
           gap: clamp(30px, 4vw, 60px) !important;
           align-items: start;
           margin-bottom: 26px;
@@ -862,91 +862,7 @@ export default function Footer() {
                   <br />
                   EH49 7SF
                 </p>
-              </div>
-
-              <div className="ask-ai-steve-wrap">
-                <section className="ask-ai-steve-card">
-                  <div className="ask-ai-steve-top">
-                    <div className="ask-ai-steve-copy">
-                      <div className="ask-ai-steve-kicker">
-                        <svg className="ask-ai-steve-star" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                          <path d="M12 2l1.9 5.1L19 9l-5.1 1.9L12 16l-1.9-5.1L5 9l5.1-1.9L12 2Z" fill="currentColor" />
-                          <path d="M18.5 3.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z" fill="#C15CFF" />
-                        </svg>
-                      </div>
-
-                      <h2 className="ask-ai-steve-title">Ask AI Steve</h2>
-
-                      <div className="ask-ai-steve-status">
-                        <span className="ask-ai-steve-status-dot"></span>
-                        <span>AI Online Now</span>
-                      </div>
-                    </div>
-
-                    <div className="ask-ai-steve-avatar">
-                      <img src="/wp-content/uploads/2026/04/ai-steve-bot.png" alt="Ask AI Steve" />
-                    </div>
-                  </div>
-
-                  <div className="ask-ai-steve-divider"></div>
-
-                  <p className="ask-ai-steve-sub">
-                    Get instant answers or continue your application.
-                  </p>
-
-                  <div className="ask-ai-steve-actions">
-                    <a href="/callpilot" className="ask-ai-btn ask-ai-btn-primary">
-                      <div className="ask-ai-btn-left">
-                        <div className="ask-ai-btn-icon">
-                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M7 17 3.8 20v-4.2A5.8 5.8 0 0 1 2 11.5C2 7.9 5 5 8.8 5h6.4C19 5 22 7.9 22 11.5S19 18 15.2 18H7Z" stroke="white" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                            <circle cx="9" cy="11.5" r="1.1" fill="white" />
-                            <circle cx="12" cy="11.5" r="1.1" fill="white" />
-                            <circle cx="15" cy="11.5" r="1.1" fill="white" />
-                          </svg>
-                        </div>
-
-                        <div className="ask-ai-btn-text">
-                          <p className="ask-ai-btn-title">Start AI Chat</p>
-                          <p className="ask-ai-btn-sub">Instant answers</p>
-                        </div>
-                      </div>
-
-                      <svg className="ask-ai-btn-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M5 12h13M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
-
-                    <a href="/callpilot" className="ask-ai-btn ask-ai-btn-secondary">
-                      <div className="ask-ai-btn-left">
-                        <div className="ask-ai-btn-icon">
-                          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M21 16.9v2.3a1.8 1.8 0 0 1-2 1.8 17.8 17.8 0 0 1-7.8-2.8 17.4 17.4 0 0 1-5.4-5.4A17.8 17.8 0 0 1 3 5a1.8 1.8 0 0 1 1.8-2H7a1.8 1.8 0 0 1 1.8 1.5c.1.9.4 1.8.8 2.6a1.8 1.8 0 0 1-.4 2L8 10.3a14.5 14.5 0 0 0 5.7 5.7l1.2-1.2a1.8 1.8 0 0 1 2-.4c.8.4 1.7.7 2.6.8A1.8 1.8 0 0 1 21 16.9Z" stroke="#7B8CFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-
-                        <div className="ask-ai-btn-text">
-                          <p className="ask-ai-btn-title">Talk to AI</p>
-                          <p className="ask-ai-btn-sub">Voice call with CallPilot</p>
-                        </div>
-                      </div>
-
-                      <svg className="ask-ai-btn-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M5 12h13M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
-                  </div>
-
-                  <div className="ask-ai-steve-trust">
-                    <svg className="ask-ai-steve-trust-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M12 3l7 3v5c0 4.6-2.9 8.8-7 10-4.1-1.2-7-5.4-7-10V6l7-3Z" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M9.5 12.2 11.3 14l3.7-3.8" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>Your data is secure and confidential.</span>
-                  </div>
-                </section>
-
-                <div className="footer-social-right">
+                <div className="footer-social-right" style={{ justifyContent: "flex-start", marginTop: "24px" }}>
                   <a className="footer-social-link linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.02 2.02 0 1 0 5.3 7.04 2.02 2.02 0 0 0 5.25 3ZM20.44 12.92c0-3.48-1.85-5.1-4.32-5.1-1.99 0-2.88 1.1-3.38 1.86V8.5H9.36c.04.79 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.38 1.95-1.38 1.37 0 1.92 1.04 1.92 2.57V20h3.38v-7.08Z" />
