@@ -16,27 +16,27 @@ export default function ContactSection() {
       <div className="max-w-[1200px] mx-auto">
         <motion.div
           {...fadeUp}
-          className="saas-contact-card bg-white rounded-[24px] p-[28px_22px_110px] md:p-[50px_40px_110px] shadow-[0_12px_40px_rgba(15,23,42,0.06)] border border-[#e7ecf3]"
+          className="saas-contact-card bg-white rounded-[32px] p-[64px_32px] md:p-[80px_64px] shadow-[0_25px_60px_rgba(15,23,42,0.04)] border border-[#eef2f6] max-w-[600px] mx-auto text-center"
         >
           <div className="saas-contact-header">
-            <h2 className="text-[36px] md:text-[38px] leading-[1.05] tracking-[-0.04em] font-[800] mb-[14px] text-[#0b1533]">
+            <h2 className="text-[36px] md:text-[42px] leading-[1.05] tracking-[-0.04em] font-[800] mb-[18px] text-[#0b1533]">
               Speak to our team instantly
             </h2>
-            <p className="text-[17px] leading-[1.6] text-[#667085] mb-[24px]">
+            <p className="text-[18px] leading-[1.6] text-[#667085] mb-[40px]">
               Get a fast response by phone, WhatsApp or email.
             </p>
           </div>
 
-          <div className="saas-contact-actions flex flex-col md:flex-row gap-[14px] mb-[28px]">
+          <div className="saas-contact-actions flex flex-col md:flex-row gap-[16px] justify-center mb-[40px]">
             <Link 
               href="/contact" 
-              className="btn-primary w-full md:w-auto md:px-10 h-[56px] rounded-[14px] flex items-center justify-center text-[16px] font-[700] bg-gradient-to-br from-[#2a6cff] to-[#1958f2] text-white shadow-[0_10px_24px_rgba(37,99,235,0.25)] transition-all hover:-translate-y-px active:scale-[0.98]"
+              className="btn-primary w-full md:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] bg-gradient-to-r from-[#0066ff] to-[#9900ff] text-white shadow-[0_8px_20px_rgba(0,102,255,0.2)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(153,0,255,0.4)] active:scale-[0.97]"
             >
               Contact Us
             </Link>
             <a 
               href="https://wa.me/447590882626" 
-              className="btn-secondary w-full md:w-auto md:px-10 h-[56px] rounded-[14px] flex items-center justify-center text-[16px] font-[700] bg-[#22c55e] text-white shadow-[0_10px_24px_rgba(34,197,94,0.2)] transition-all hover:-translate-y-px active:scale-[0.98]"
+              className="btn-whatsapp w-full md:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] bg-[#22c55e] text-white shadow-[0_8px_20px_rgba(34,197,94,0.2)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(34,197,94,0.3)] active:scale-[0.97]"
             >
               Message us on WhatsApp
             </a>
