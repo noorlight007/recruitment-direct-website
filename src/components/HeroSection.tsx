@@ -73,6 +73,49 @@ export default function HeroSection() {
           transform: translateY(1px) scale(0.98);
           box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5);
         }
+        .btn-primary {
+          background: linear-gradient(90deg, #2260ccff 0%, #1e53c7ff 30%, #390ed4ff 70%, #840dd3ff 100%) !important;
+          border: 1px solid rgba(255, 255, 255, 0.15) !important;
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+            0 10px 35px rgba(40, 80, 255, 0.35), 0 0 40px rgba(120, 60, 255, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+          color: #fff !important;
+        }
+        .btn-primary::before {
+          content: "";
+          position: absolute;
+          inset: -3px;
+          border-radius: 14px;
+          background: linear-gradient(90deg, #2b6fff, #b13dff);
+          opacity: 0.35;
+          filter: blur(14px);
+          z-index: -1;
+        }
+        .btn-primary::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -120%;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.35),
+            transparent
+          );
+          transform: skewX(-20deg);
+          transition: 0.6s;
+        }
+        .btn-primary:hover {
+          transform: translateY(-3px) !important;
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15),
+            0 18px 55px rgba(60, 90, 255, 0.45), 0 0 70px rgba(150, 60, 255, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+        }
+        .btn-primary:hover::after {
+          left: 130%;
+        }
       `}</style>
 
       {/* Background Gradients */}
@@ -168,9 +211,9 @@ export default function HeroSection() {
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
               <h3 className="text-xl font-semibold text-gray-300">AI Call Screening & Automation</h3>
-              <a href="/callpilot" className="rd-hero-btn btn-tertiary flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold">
-                <Play className="w-4 h-4 fill-current" />
-                Watch AI Call
+              <a href="/callpilot" className="rd-hero-btn btn-primary flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold">
+                <Play className="w-4 h-4 fill-current text-white" />
+                <span className="text-white">Watch AI Call</span>
               </a>
             </div>
 

@@ -493,7 +493,7 @@ export default function Footer() {
           z-index: 1;
         }
         .rd-footer-ai-btn.primary {
-          background: linear-gradient(90deg, #166cff 0%, #2b6fff 30%, #6c42ff 70%, #b13dff 100%);
+          background: linear-gradient(90deg, #2260ccff 0%, #1e53c7ff 30%, #390ed4ff 70%, #840dd3ff 100%);
           border: 1px solid rgba(255, 255, 255, 0.15);
           box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
             0 10px 35px rgba(40, 80, 255, 0.35), 0 0 40px rgba(120, 60, 255, 0.25),
