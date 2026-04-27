@@ -159,604 +159,455 @@ export default function Footer() {
           font-size: 20px;
           line-height: 1;
         }
-        .rd-footer {
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 80px 0 30px;
-          color: #fff;
-        }
-        .rd-footer-main {
-          display: grid;
-          grid-template-columns: 1.2fr 0.7fr 0.8fr 0.8fr 1.6fr;
-          gap: 32px;
-          margin-bottom: 30px;
-        }
-        .rd-footer-brand-col {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-        }
-        .rd-footer-logo-wrap {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-        .rd-footer-logo-img {
-          height: 100px;
-          width: auto;
-          display: block;
-          object-fit: contain;
-          margin-left: -10px;
-        }
-        .rd-footer-tagline {
-          font-size: 17px;
-          font-weight: 700;
-          line-height: 1.4;
-          margin: 12px 0 0;
-          color: #fff;
-          letter-spacing: -0.01em;
-        }
-        .rd-footer-desc {
-          font-size: 15px;
-          color: rgba(255, 255, 255, 0.6);
-          line-height: 1.6;
-          margin: 0;
-          max-width: 260px;
-        }
-        .rd-footer-mini-badges {
-          display: flex;
-          justify-content: space-between;
-          gap: 12px;
-          margin-top: 10px;
-          background: rgba(255, 255, 255, 0.02);
-          padding: 16px;
-          border-radius: 16px;
-          border: 1px solid rgba(255, 255, 255, 0.06);
-          width: 100%;
-          max-width: 440px;
-        }
-        .rd-footer-mini-badge {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 6px;
-          text-align: center;
-        }
-        .rd-footer-mini-badge img {
-          height: 24px;
-          width: auto;
-          filter: brightness(0) invert(1);
-          opacity: 0.9;
-        }
-        .rd-footer-mini-badge span {
-          font-size: 9px;
-          text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.5);
-          letter-spacing: 0.03em;
-          font-weight: 500;
-          line-height: 1.2;
-        }
-        
-        .rd-footer-nav-col h4 {
-          font-size: 13px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin: 0 0 20px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          position: relative;
-          color: #fff;
-        }
-        .rd-footer-nav-col h4::before {
-          content: "";
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          display: block;
-        }
-        .rd-footer-nav-col.company h4::before { background: #3b82f6; box-shadow: 0 0 8px rgba(59, 130, 246, 0.5); }
-        .rd-footer-nav-col.platform h4::before { background: #3b82f6; box-shadow: 0 0 8px rgba(59, 130, 246, 0.5); }
-        .rd-footer-nav-col.resources h4::before { background: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.5); }
-        
-        .rd-footer-nav-col h4::after {
-          content: "";
-          position: absolute;
-          bottom: -10px;
-          left: 0;
-          width: 24px;
-          height: 2px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 2px;
-        }
-        .rd-footer-nav-col.company h4::after { background: rgba(59, 130, 246, 0.3); }
-        .rd-footer-nav-col.platform h4::after { background: rgba(59, 130, 246, 0.3); }
-        .rd-footer-nav-col.resources h4::after { background: rgba(139, 92, 246, 0.3); }
-
-        .rd-footer-nav-col ul {
-          list-style: none;
-          padding: 0;
-          margin: 25px 0 0;
-          display: flex;
-          flex-direction: column;
-          gap: 50px;
-        }
-        .rd-footer-nav-col ul li a {
-          color: rgba(255, 255, 255, 0.6);
-          text-decoration: none;
-          font-size: 15px;
-          transition: all 0.2s;
-          display: inline-block;
-        }
-        .rd-footer-nav-col ul li a:hover {
-          color: #fff;
-          transform: translateX(4px);
-        }
-        
-        .rd-footer-ai-card-col {
-          display: flex;
-          justify-content: flex-end;
-        }
-        .rd-footer-ai-card {
-          background: linear-gradient(135deg, rgba(10, 18, 36, 0.8) 0%, rgba(5, 10, 20, 0.9) 100%);
-          border-radius: 32px;
-          padding: 24px;
-          width: 100%;
-          max-width: 440px;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        .rd-premium-footer {
           position: relative;
           overflow: hidden;
+          background: radial-gradient(circle at top right, rgba(32, 120, 255, 0.18), transparent 34%),
+                      radial-gradient(circle at bottom left, rgba(145, 35, 255, 0.14), transparent 32%),
+                      linear-gradient(135deg, #020617 0%, #050b18 45%, #02030a 100%);
+          color: #fff;
+          padding: 54px 24px 30px;
+          font-family: Inter, Arial, sans-serif;
+          border-top: 1px solid rgba(74, 163, 255, 0.22);
         }
-        .rd-footer-ai-card::before {
+
+        .rd-footer-bg {
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(0, 174, 255, 0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 174, 255, 0.05) 1px, transparent 1px);
+          background-size: 42px 42px;
+          opacity: 0.32;
+          pointer-events: none;
+        }
+
+        .rd-footer-inner {
+          position: relative;
+          max-width: 1380px;
+          margin: 0 auto;
+          border: 1px solid rgba(92, 167, 255, 0.18);
+          border-radius: 24px;
+          padding: 42px 44px 28px;
+          background: rgba(3, 10, 24, 0.72);
+          box-shadow: 0 0 55px rgba(0, 153, 255, 0.14);
+          backdrop-filter: blur(16px);
+        }
+
+        .rd-footer-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1.45fr;
+          gap: 42px;
+          align-items: start;
+        }
+
+        .rd-footer-col {
+          border-right: 1px solid rgba(255, 255, 255, 0.09);
+          min-height: 260px;
+        }
+
+        .rd-footer-col h4,
+        .rd-connect h4 {
+          margin: 0 0 28px;
+          font-size: 15px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #fff;
+        }
+
+        .rd-footer-col h4::after {
+          content: "";
+          display: block;
+          width: 42px;
+          height: 2px;
+          margin-top: 12px;
+          background: linear-gradient(90deg, #00d5ff, #6b4dff);
+          box-shadow: 0 0 14px rgba(0, 213, 255, 0.7);
+        }
+
+        .rd-footer-col a {
+          display: block;
+          margin: 0 0 20px;
+          color: rgba(236, 244, 255, 0.78);
+          text-decoration: none;
+          font-size: 15px;
+          transition: all 0.2s ease;
+        }
+
+        .rd-footer-col a:hover {
+          color: #fff;
+          transform: translateX(5px);
+          text-shadow: 0 0 14px rgba(0, 213, 255, 0.8);
+        }
+
+        /* AI STEVE CARD */
+        .rd-ai-steve-card {
+          padding: 28px;
+          border-radius: 22px;
+          border: 1px solid rgba(98, 178, 255, 0.45);
+          background: linear-gradient(135deg, rgba(10, 18, 36, 0.8) 0%, rgba(5, 10, 20, 0.9) 100%);
+          box-shadow:
+            0 0 30px rgba(0, 153, 255, 0.18),
+            inset 0 0 30px rgba(144, 55, 255, 0.08);
+        }
+
+        .rd-ai-top {
+          display: flex;
+          gap: 24px;
+          align-items: center;
+          margin-bottom: 24px;
+        }
+
+        .rd-ai-steve-card h3 {
+          margin: 0 0 10px;
+          font-size: 26px;
+          letter-spacing: 0.5px;
+          color: #fff;
+        }
+
+        .rd-live {
+          margin: 0 0 12px;
+          color: #57ff93;
+          font-weight: 700;
+          font-size: 15px;
+        }
+
+        .rd-live span {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background: #30ff86;
+          border-radius: 50%;
+          margin-right: 8px;
+          box-shadow: 0 0 14px rgba(48, 255, 134, 0.9);
+        }
+
+        .rd-ai-text {
+          margin: 0;
+          color: rgba(236, 244, 255, 0.78);
+          line-height: 1.5;
+          font-size: 15px;
+        }
+
+        /* MOVING ORB */
+        .rd-ai-orb {
+          width: 104px;
+          height: 104px;
+          border-radius: 50%;
+          position: relative;
+          display: grid;
+          place-items: center;
+          background:
+            radial-gradient(circle at 35% 30%, #63e7ff, transparent 18%),
+            radial-gradient(circle at 65% 70%, #b52dff, transparent 26%),
+            radial-gradient(circle, #0d7dff 0%, #061a52 48%, #050817 72%);
+          box-shadow:
+            0 0 24px rgba(0, 213, 255, 0.75),
+            0 0 42px rgba(132, 52, 255, 0.65);
+          animation: rdOrbPulse 3s ease-in-out infinite;
+        }
+
+        .rd-ai-orb::before {
+          content: "";
+          position: absolute;
+          inset: -7px;
+          border-radius: 50%;
+          border: 2px solid transparent;
+          border-top-color: #00e5ff;
+          border-right-color: #9b4dff;
+          animation: rdOrbSpin 4.5s linear infinite;
+        }
+
+        .rd-ai-orb span {
+          position: absolute;
+          inset: 11px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.26);
+          animation: rdOrbSpinReverse 6s linear infinite;
+        }
+
+        .rd-orb-core {
+          font-size: 36px;
+          font-weight: 900;
+          letter-spacing: 1px;
+          color: #bff6ff;
+          text-shadow: 0 0 15px rgba(0, 213, 255, 0.95);
+        }
+
+        @keyframes rdOrbSpin {
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes rdOrbSpinReverse {
+          to { transform: rotate(-360deg); }
+        }
+
+        @keyframes rdOrbPulse {
+          0%, 100% { transform: scale(1); filter: brightness(1); }
+          50% { transform: scale(1.04); filter: brightness(1.25); }
+        }
+
+        /* BUTTONS */
+        .rd-ai-btn {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          min-height: 54px;
+          margin-top: 12px;
+          padding: 0 22px;
+          border-radius: 12px;
+          color: #fff;
+          text-decoration: none;
+          font-weight: 800;
+          letter-spacing: 0.2px;
+          overflow: hidden;
+          border: 1px solid rgba(92, 183, 255, 0.4);
+          box-shadow: 0 0 18px rgba(0, 153, 255, 0.12);
+          transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
+        }
+
+        .rd-ai-btn.primary {
+          background: linear-gradient(90deg, #2260ccff 0%, #1e53c7ff 30%, #390ed4ff 70%, #840dd3ff 100%);
+        }
+
+        .rd-ai-btn.secondary {
+          background: linear-gradient(180deg, rgba(8, 16, 34, 0.98), rgba(5, 12, 26, 0.98));
+          border-color: rgba(90, 130, 255, 0.35);
+        }
+
+        .rd-ai-btn.premium {
+          background: linear-gradient(135deg, #2520a8, #7b22d8, #b21cff);
+        }
+
+        .rd-ai-btn:hover {
+          transform: translateY(-2px);
+          border-color: rgba(140, 225, 255, 0.9);
+          box-shadow:
+            0 0 18px rgba(0, 213, 255, 0.48),
+            0 0 32px rgba(151, 55, 255, 0.36);
+          filter: brightness(1.08);
+        }
+
+        .rd-ai-btn:active {
+          transform: translateY(1px) scale(0.985);
+          box-shadow:
+            inset 0 0 22px rgba(255, 255, 255, 0.18),
+            0 0 24px rgba(0, 213, 255, 0.72);
+          border-color: #bdf4ff;
+        }
+
+        .rd-ai-btn::before {
           content: "";
           position: absolute;
           inset: 0;
-          border-radius: 32px;
-          padding: 1.5px;
-          background: linear-gradient(135deg, #3b82f6 0%, transparent 40%, transparent 60%, #8b5cf6 100%);
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          pointer-events: none;
-        }
-        .rd-footer-ai-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          margin-bottom: 16px;
-        }
-        .rd-footer-ai-info h2 {
-          font-size: 32px;
-          font-weight: 800;
-          margin: 0 0 10px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          color: #fff;
-          letter-spacing: -0.02em;
-        }
-        .rd-footer-ai-spark {
-          color: #3b82f6;
-          filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
-        }
-        .rd-footer-ai-status {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 15px;
-          font-weight: 600;
-          color: #10b981;
-        }
-        .rd-footer-ai-status-dot {
-          width: 10px;
-          height: 10px;
-          background: #10b981;
-          border-radius: 50%;
-          box-shadow: 0 0 12px #10b981;
-        }
-        .ai-orb-box {
-          width: 140px;
-          height: 140px;
-          border-radius: 28px;
-          display: grid;
-          place-items: center;
-          background: #02040a;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 
-            inset 0 0 40px rgba(0, 0, 0, 0.9),
-            0 20px 40px rgba(0, 0, 0, 0.4);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .ai-orb {
-          position: relative;
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          background: radial-gradient(
-            circle at 50% 50%,
-            #00f0ff 0%,
-            #0055ff 40%,
-            #000 100%
-          );
-          box-shadow: 
-            0 0 30px rgba(0, 85, 255, 0.4),
-            0 0 60px rgba(139, 92, 246, 0.3);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 2;
-        }
-
-        .ai-orb-reflection {
-          position: absolute;
-          top: 15%;
-          left: 15%;
-          width: 35%;
-          height: 35%;
-          background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.9) 0%,
-            transparent 70%
-          );
-          border-radius: 50%;
-          filter: blur(2px);
-          z-index: 3;
-          pointer-events: none;
-        }
-
-        .ai-orb-bottom-glow {
-          position: absolute;
-          bottom: -10%;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 120%;
-          height: 60%;
-          background: radial-gradient(
-            ellipse at bottom,
-            rgba(177, 61, 255, 0.5) 0%,
-            rgba(177, 61, 255, 0.2) 40%,
-            transparent 70%
-          );
-          filter: blur(15px);
-          z-index: 1;
-          pointer-events: none;
-          animation: orbGlow 4s ease-in-out infinite;
-        }
-
-        .ai-plasma {
-          position: absolute;
-          inset: -2px;
-          border-radius: 50%;
-          border: 1px solid transparent;
-          border-top-color: rgba(150, 240, 255, 0.9);
-          filter: drop-shadow(0 0 5px rgba(150, 240, 255, 0.8));
-          animation: plasmaRotate 3s linear infinite;
-          opacity: 0.8;
-        }
-
-        .ai-plasma:nth-child(2) {
-          inset: 2px;
-          border-top-color: transparent;
-          border-right-color: rgba(177, 61, 255, 0.8);
-          animation-duration: 5s;
-          animation-direction: reverse;
-        }
-
-        .ai-plasma:nth-child(3) {
-          inset: 5px;
-          border-left-color: rgba(255, 255, 255, 0.6);
-          animation-duration: 4s;
-        }
-
-        .ai-plasma:nth-child(4) {
-          inset: 8px;
-          border-bottom-color: rgba(0, 240, 255, 0.4);
-          animation-duration: 6s;
-          animation-direction: reverse;
-        }
-
-        @keyframes orbGlow {
-          0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-          50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-        }
-
-        @keyframes plasmaRotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .rd-footer-ai-text {
-          font-size: 16px;
-          color: rgba(255, 255, 255, 0.7);
-          margin-bottom: 20px;
-          line-height: 1.6;
-        }
-        .rd-footer-ai-btns {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        .rd-footer-ai-btn {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-          width: 100%;
-          padding: 14px 20px;
-          border-radius: 20px;
-          text-decoration: none;
-          transition: all 0.25s ease;
-          overflow: hidden;
-          z-index: 1;
-        }
-        .rd-footer-ai-btn.primary {
-          background: linear-gradient(90deg, #2260ccff 0%, #1e53c7ff 30%, #390ed4ff 70%, #840dd3ff 100%);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
-            0 10px 35px rgba(40, 80, 255, 0.35), 0 0 40px rgba(120, 60, 255, 0.25),
-            inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        }
-        .rd-footer-ai-btn.primary::before {
-          content: "";
-          position: absolute;
-          inset: -3px;
-          border-radius: 22px;
-          background: linear-gradient(90deg, #2b6fff, #b13dff);
-          opacity: 0.35;
-          filter: blur(14px);
-          z-index: -1;
-        }
-        .rd-footer-ai-btn.primary::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -120%;
-          width: 60%;
-          height: 100%;
+          border-radius: inherit;
           background: linear-gradient(
             120deg,
-            transparent,
-            rgba(255, 255, 255, 0.35),
-            transparent
+            transparent 30%,
+            rgba(255, 255, 255, 0.3),
+            transparent 70%
           );
-          transform: skewX(-20deg);
-          transition: 0.6s;
-        }
-        .rd-footer-ai-btn.primary:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15),
-            0 18px 55px rgba(60, 90, 255, 0.45), 0 0 70px rgba(150, 60, 255, 0.4),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-        .rd-footer-ai-btn.primary:hover::after {
-          left: 130%;
-        }
-        .rd-footer-ai-btn.secondary {
-          background: linear-gradient(
-            180deg,
-            rgba(8, 16, 34, 0.98),
-            rgba(5, 12, 26, 0.98)
-          );
-          border: 1px solid rgba(90, 130, 255, 0.35);
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45),
-            0 0 20px rgba(80, 120, 255, 0.12);
-        }
-        .rd-footer-ai-btn.secondary::before {
-          content: "";
-          position: absolute;
-          inset: -2px;
-          border-radius: 20px;
-          background: linear-gradient(90deg, #2b6fff, transparent);
-          opacity: 0.2;
-          filter: blur(10px);
-          z-index: -1;
-        }
-        .rd-footer-ai-btn.secondary:hover {
-          transform: translateY(-2px);
-          border-color: rgba(120, 160, 255, 0.7);
-          box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6),
-            0 0 30px rgba(80, 120, 255, 0.25);
-        }
-        .rd-footer-ai-btn-content {
-          display: flex;
-          align-items: center;
-          gap: 18px;
-        }
-        .rd-footer-ai-btn-icon {
-          width: 44px;
-          height: 44px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .rd-footer-ai-btn-details {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
-        .rd-footer-ai-btn-title {
-          font-size: 18px;
-          font-weight: 700;
-          color: #fff;
-          margin: 0;
-        }
-        .rd-footer-ai-btn-sub {
-          font-size: 13px;
-          color: rgba(255, 255, 255, 0.5);
-          margin: 0;
-        }
-        .rd-footer-ai-trust {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-top: 16px;
-          padding-top: 12px;
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.5);
-        }
-        .rd-footer-ai-trust svg {
-          color: #8b5cf6;
-          opacity: 0.8;
-        }
-        
-        .rd-footer-bottom-bar {
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.05);
-          border-radius: 24px;
-          padding: 20px 32px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 30px;
-          backdrop-filter: blur(10px);
-        }
-        .rd-footer-company-info {
-          display: flex;
-          align-items: center;
-          gap: 24px;
-          color: rgba(255, 255, 255, 0.6);
-          font-size: 15px;
-        }
-        .rd-footer-shield-box {
-          width: 44px;
-          height: 44px;
-          border: 1px solid rgba(59, 130, 246, 0.3);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #3b82f6;
-          background: rgba(59, 130, 246, 0.05);
-          box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
-        }
-        .rd-footer-info-item {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        .rd-footer-info-divider {
-          width: 1px;
-          height: 20px;
-          background: rgba(255, 255, 255, 0.1);
-        }
-        .rd-footer-socials {
-          display: flex;
-          gap: 16px;
-        }
-        .rd-footer-social-link {
-          width: 44px;
-          height: 44px;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: rgba(255, 255, 255, 0.5);
-          text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .rd-footer-social-link:hover {
-          transform: translateY(-4px) rotate(8deg);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        }
-        
-        .rd-footer-social-link.linkedin { color: #0077b5; }
-        .rd-footer-social-link.facebook { color: #1877f2; }
-        .rd-footer-social-link.whatsapp { color: #25d366; }
-        
-        .rd-footer-social-link.linkedin:hover {
-          background: rgba(0, 119, 181, 0.15);
-          border-color: rgba(0, 119, 181, 0.4);
-          box-shadow: 0 8px 25px rgba(0, 119, 181, 0.25);
-        }
-        .rd-footer-social-link.facebook:hover {
-          background: rgba(24, 119, 242, 0.15);
-          border-color: rgba(24, 119, 242, 0.4);
-          box-shadow: 0 8px 25px rgba(24, 119, 242, 0.25);
-        }
-        .rd-footer-social-link.whatsapp:hover {
-          background: rgba(37, 211, 102, 0.15);
-          border-color: rgba(37, 211, 102, 0.4);
-          box-shadow: 0 8px 25px rgba(37, 211, 102, 0.25);
-        }
-        
-        .rd-footer-copyright {
-          text-align: center;
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.4);
-          letter-spacing: 0.01em;
+          opacity: 0;
+          transform: translateX(-100%);
+          pointer-events: none;
         }
 
-        @media (max-width: 1280px) {
-          .rd-footer-main {
-            grid-template-columns: 1fr 0.8fr 0.8fr 1fr;
+        .rd-ai-btn:hover::before {
+          opacity: 1;
+          animation: rdButtonShimmer 1.2s linear;
+        }
+
+        @keyframes rdButtonShimmer {
+          from {
+            transform: translateX(-100%);
           }
-          .rd-footer-brand-col {
-            grid-column: span 1;
-          }
-          .rd-footer-ai-card-col {
-            grid-column: span 4;
-            justify-content: center;
-            margin-top: 40px;
-          }
-          .rd-footer-ai-card {
-            max-width: 100%;
+
+          to {
+            transform: translateX(100%);
           }
         }
+
+        .rd-ai-btn:focus-visible {
+          outline: 2px solid #8eeaff;
+          outline-offset: 4px;
+        }
+
+        .rd-ai-btn b {
+          font-size: 26px;
+          font-weight: 400;
+        }
+
+        /* CONNECT */
+        .rd-connect {
+          text-align: center;
+          margin: 36px 0 26px;
+        }
+
+        .rd-connect-line {
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(144, 184, 255, 0.28), transparent);
+          margin-bottom: 18px;
+        }
+
+        .rd-connect h4 {
+          margin-bottom: 18px;
+        }
+
+        .rd-socials {
+          display: flex;
+          justify-content: center;
+          gap: 42px;
+        }
+
+        .rd-socials a {
+          width: 54px;
+          height: 54px;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          color: #70c9ff;
+          text-decoration: none;
+          font-size: 26px;
+          font-weight: 900;
+          border: 1px solid rgba(91, 178, 255, 0.52);
+          background: rgba(5, 15, 35, 0.9);
+          transition: all 0.2s ease;
+        }
+
+        .rd-socials a:hover,
+        .rd-socials a:active {
+          transform: translateY(-2px) scale(1.04);
+          color: #fff;
+          box-shadow: 0 0 24px rgba(0, 213, 255, 0.65);
+          border-color: #9feeff;
+        }
+
+        .rd-social-labels {
+          display: flex;
+          justify-content: center;
+          gap: 35px;
+          margin-top: 8px;
+          color: rgba(236, 244, 255, 0.74);
+          font-size: 13px;
+        }
+
+        /* BOTTOM */
+        .rd-footer-bottom {
+          border-top: 1px solid rgba(255,255,255,0.1);
+          padding-top: 24px;
+          display: grid;
+          grid-template-columns: 1fr 1.3fr 1fr;
+          gap: 24px;
+          align-items: center;
+        }
+
+        .rd-policies a {
+          color: rgba(236, 244, 255, 0.78);
+          text-decoration: none;
+          margin-right: 18px;
+          font-size: 14px;
+        }
+
+        .rd-policies a:hover {
+          color: #fff;
+        }
+
+        .rd-company-details {
+          text-align: center;
+          color: rgba(236, 244, 255, 0.78);
+          font-size: 14px;
+          line-height: 1.8;
+        }
+
+        .rd-company-details strong {
+          display: block;
+          color: #fff;
+          font-weight: 700;
+        }
+
+        .rd-company-details span {
+          margin: 0 8px;
+        }
+
+        .rd-footer-logos {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 22px;
+        }
+
+        .rd-footer-logos img {
+          max-height: 44px;
+          max-width: 150px;
+          object-fit: contain;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
-          .rd-footer-main {
+          .rd-footer-grid {
             grid-template-columns: 1fr 1fr;
           }
-          .rd-footer-ai-card-col {
-            grid-column: span 2;
+
+          .rd-footer-col {
+            min-height: auto;
+            border-right: none;
           }
-        }
-        @media (max-width: 768px) {
-          .rd-footer {
-            padding: 60px 0 30px;
-          }
-          .rd-footer-main {
+
+          .rd-footer-bottom {
             grid-template-columns: 1fr;
-            gap: 48px;
-          }
-          .rd-footer-brand-col, 
-          .rd-footer-ai-card-col {
-            grid-column: span 1;
-          }
-          .rd-footer-ai-card-col {
-            justify-content: flex-start;
-          }
-          .rd-footer-bottom-bar {
-            flex-direction: column;
-            gap: 32px;
-            padding: 32px 24px;
             text-align: center;
           }
-          .rd-footer-company-info {
-            flex-direction: column;
-            gap: 20px;
-          }
-          .rd-footer-info-divider {
-            display: none;
+
+          .rd-footer-logos {
+            justify-content: center;
           }
         }
 
         @media (max-width: 640px) {
-          .ai-orb-box {
-            width: 98px;
-            height: 98px;
+          .rd-premium-footer {
+            padding: 34px 14px 24px;
+          }
+
+          .rd-footer-inner {
+            padding: 28px 20px 22px;
             border-radius: 18px;
           }
-          .ai-orb {
-            width: 58px;
-            height: 58px;
+
+          .rd-footer-grid {
+            grid-template-columns: 1fr;
+            gap: 26px;
+          }
+
+          .rd-footer-col a {
+            margin-bottom: 14px;
+          }
+
+          .rd-ai-top {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .rd-ai-orb {
+            width: 86px;
+            height: 86px;
+          }
+
+          .rd-ai-steve-card h3 {
+            font-size: 22px;
+          }
+
+          .rd-socials {
+            gap: 22px;
+          }
+
+          .rd-social-labels {
+            gap: 18px;
+            font-size: 12px;
+          }
+
+          .rd-footer-logos {
+            flex-direction: column;
           }
         }
       `}</style>
@@ -868,250 +719,123 @@ export default function Footer() {
             <span>Verified credentials. Transparent proof. Trusted delivery.</span>
           </div>
 
-          <footer className="rd-footer">
-            <div className="rd-footer-main">
-              {/* Brand Column */}
-              <div className="rd-footer-brand-col">
-                <div className="rd-footer-logo-wrap">
-                  <img
-                    className="rd-footer-logo-img"
-                    src="/lo.png"
-                    alt="Recruitment Direct"
-                  />
+          <footer className="rd-premium-footer">
+            <div className="rd-footer-bg"></div>
+
+            <div className="rd-footer-inner">
+              <div className="rd-footer-grid">
+                {/* COMPANY */}
+                <div className="rd-footer-col">
+                  <h4>Company</h4>
+                  <a href="/about">About Us</a>
+                  <a href="/services">Services</a>
+                  <a href="/why-choose-us">Why RDUK</a>
+                  <a href="/our-process">Our Process</a>
+                  <a href="/contact">Contact Us</a>
                 </div>
-                <h3 className="rd-footer-tagline">
-                  AI-powered hiring.<br />
-                  Fast. Accurate. Compliant.
-                </h3>
-                <p className="rd-footer-desc">
-                  The intelligent way to hire top talent, every time.
-                </p>
 
-                <div className="rd-footer-mini-badges">
-                  <div className="rd-footer-mini-badge">
-                    <img src="/assets/compliance/rec-member.png" alt="REC" />
-                    <span>Corporate Member</span>
-                  </div>
-                  <div className="rd-footer-mini-badge">
-                    <img src="/assets/compliance/constructionline-gold.png" alt="CL" />
-                    <span>Gold Member</span>
-                  </div>
-                  <div className="rd-footer-mini-badge">
-                    <img src="/assets/compliance/cqs-iso9001.png" alt="ISO" />
-                    <span>9001 Certified</span>
-                  </div>
-                  <div className="rd-footer-mini-badge">
-                    <img src="/assets/compliance/cyber-essentials.png" alt="CE" />
-                    <span>Cyber Certified</span>
-                  </div>
+                {/* AI PLATFORM */}
+                <div className="rd-footer-col">
+                  <h4>AI Platform</h4>
+                  <a href="/ai-hire-now">AI Hire Now</a>
+                  <a href="/#ai-recruitment">AI Platform</a>
+                  <a href="/callpilot">CallPilot (AI Voice)</a>
+                  <a href="/integrations">Integrations</a>
+                  <a href="/security">Security</a>
                 </div>
-              </div>
 
-              {/* Navigation Columns */}
-              <div className="rd-footer-nav-col company">
-                <h4>Company</h4>
-                <ul>
-                  <li><a href="/about">About Us</a></li>
-                  <li><a href="/services">Services</a></li>
-                  <li><a href="/why-choose-us">Why RDUK</a></li>
-                  <li><a href="/our-process">Our Process</a></li>
-                  <li><a href="/contact">Contact Us</a></li>
-                </ul>
-              </div>
+                {/* RESOURCES */}
+                <div className="rd-footer-col">
+                  <h4>Resources</h4>
+                  <a href="/#clients">Clients</a>
+                  <a href="/#job-search">Job Search</a>
+                  <a href="/policies">Policies</a>
+                  <a href="/accreditations">Accreditations</a>
+                  <a href="/news">News & Insights</a>
+                </div>
 
-              <div className="rd-footer-nav-col platform">
-                <h4>Platform</h4>
-                <ul>
-                  <li><a href="/#ai-recruitment">AI Platform</a></li>
-                  <li><a href="/callpilot">CallPilot (AI Voice)</a></li>
-                  <li><a href="/ai-hire-now">AI Hire Now</a></li>
-                  <li><a href="/integrations">Integrations</a></li>
-                  <li><a href="/security">Security</a></li>
-                </ul>
-              </div>
-
-              <div className="rd-footer-nav-col resources">
-                <h4>Resources</h4>
-                <ul>
-                  <li><a href="/#clients">Clients</a></li>
-                  <li><a href="/#job-search">Job Search</a></li>
-                  <li><a href="/policies">Policies</a></li>
-                  <li><a href="/accreditations">Accreditations</a></li>
-                  <li><a href="/news">News & Insights</a></li>
-                </ul>
-              </div>
-
-              {/* AI Card Column */}
-              <div className="rd-footer-ai-card-col">
-                {/*
-                Button Colours (System)
-
-                → Primary buttons (main actions)
-                Use gradient:
-                linear-gradient(135deg, #2F80ED, #8E2DE2)
-
-                ⸻
-
-                → Secondary buttons
-                Dark background + subtle border
-
-                * light blue/purple glow on hover
-
-                ⸻
-
-                → Tertiary buttons (e.g. Watch AI Call)
-                Transparent / outlined
-
-                * subtle glow on hover
-
-                ⸻
-
-                → Do NOT use:
-
-                * Flat blue buttons
-                * Full green buttons (WhatsApp)
-                * Different styles on same page
-
-                ⸻
-
-                Rule:
-                Primary = gradient
-                Secondary = dark
-                Tertiary = outline
-                */}
-                <div className="rd-footer-ai-card">
-                  <div className="rd-footer-ai-header">
-                    <div className="rd-footer-ai-info">
-                      <h2>
-                        <svg className="rd-footer-ai-spark" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="currentColor" />
-                          <path d="M19 4L19.8 6.2L22 7L19.8 7.8L19 10L18.2 7.8L16 7L18.2 6.2L19 4Z" fill="#C15CFF" />
-                        </svg>
-                        Ask AI Steve
-                      </h2>
-                      <div className="rd-footer-ai-status">
-                        <span className="rd-footer-ai-status-dot"></span>
-                        AI Online Now
-                      </div>
+                {/* ASK AI STEVE */}
+                <div className="rd-ai-steve-card">
+                  <div className="rd-ai-top">
+                    <div className="rd-ai-orb">
+                      <div className="rd-orb-core">AI</div>
+                      <span></span>
                     </div>
-                    <div className="ai-orb-box">
-                      <div className="ai-orb">
-                        <div className="ai-orb-reflection"></div>
-                        <div className="ai-plasma"></div>
-                        <div className="ai-plasma"></div>
-                        <div className="ai-plasma"></div>
-                        <div className="ai-plasma"></div>
-                      </div>
-                      <div className="ai-orb-bottom-glow"></div>
+
+                    <div>
+                      <h3>Ask AI Steve</h3>
+                      <p className="rd-live"><span></span> Live Now</p>
+                      <p className="rd-ai-text">Instant answers.<br />Smart AI calls.</p>
                     </div>
                   </div>
 
-                  <p className="rd-footer-ai-text">
-                    Instant answers and AI-powered calls
-                  </p>
+                  <a href="/callpilot" className="rd-ai-btn primary">
+                    <span>Start AI Chat</span>
+                    <b>→</b>
+                  </a>
 
-                  <div className="rd-footer-ai-btns">
-                    <a href="/callpilot" className="rd-footer-ai-btn primary">
-                      <div className="rd-footer-ai-btn-content">
-                        <div className="rd-footer-ai-btn-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 17L3 21V15C1.5 13.5 1 11.5 1 9.5C1 5.5 4.5 2 9 2H15C19.5 2 23 5.5 23 9.5S19.5 17 15 17H7Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <circle cx="8" cy="9.5" r="1" fill="white" />
-                            <circle cx="12" cy="9.5" r="1" fill="white" />
-                            <circle cx="16" cy="9.5" r="1" fill="white" />
-                          </svg>
-                        </div>
-                        <div className="rd-footer-ai-btn-details">
-                          <p className="rd-footer-ai-btn-title">Start AI Chat</p>
-                          <p className="rd-footer-ai-btn-sub">Instant answers</p>
-                        </div>
-                      </div>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
+                  <a href="https://callpilot.pro/" className="rd-ai-btn secondary">
+                    <span>Try AI Call</span>
+                    <b>→</b>
+                  </a>
 
-                    <a href="https://callpilot.pro/" className="rd-footer-ai-btn secondary">
-                      <div className="rd-footer-ai-btn-content">
-                        <div className="rd-footer-ai-btn-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22 16.92V19.92C22 20.47 21.53 20.94 20.97 20.91C19.01 20.81 17.15 20.26 15.5 19.33C13.68 18.3 12.07 16.92 10.74 15.11C9.8 13.45 9.25 11.58 9.14 9.61C9.11 9.05 9.58 8.58 10.13 8.58H13.13C13.61 8.58 14.02 8.93 14.09 9.4C14.23 10.35 14.49 11.26 14.86 12.11C15 12.44 14.92 12.83 14.66 13.09L13.39 14.36C14.32 16 15.68 17.36 17.32 18.29L18.59 17.02C18.85 16.76 19.24 16.68 19.57 16.82C20.42 17.19 21.33 17.45 22.28 17.59C22.75 17.66 23.1 18.07 23.1 18.55V21.55" stroke="#7B8CFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-                        <div className="rd-footer-ai-btn-details">
-                          <p className="rd-footer-ai-btn-title">Try AI Call</p>
-                          <p className="rd-footer-ai-btn-sub">AI will call you</p>
-                        </div>
-                      </div>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
+                  <a href="https://callpilot.pro/get-started" className="rd-ai-btn premium">
+                    <span>AI Calls for Business</span>
+                    <b>→</b>
+                  </a>
+                </div>
+              </div>
 
-                    <a href="https://callpilot.pro/get-started" className="rd-footer-ai-btn secondary">
-                      <div className="rd-footer-ai-btn-content">
-                        <div className="rd-footer-ai-btn-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 21H21M3 10H21M3 7L12 2L21 7V10H3V7ZM5 10V18H7V10H5ZM9 10V18H11V10H9ZM13 10V18H15V10H13ZM17 10V18H19V10H17ZM3 18H21V21H3V18Z" stroke="#7B8CFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </div>
-                        <div className="rd-footer-ai-btn-details">
-                          <p className="rd-footer-ai-btn-title">AI Calls for Your Business</p>
-                          <p className="rd-footer-ai-btn-sub">Automate calls. Save time. Hire faster.</p>
-                        </div>
-                      </div>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
-                  </div>
-
-                  <div className="rd-footer-ai-trust">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              {/* CONNECT */}
+              <div className="rd-connect">
+                <div className="rd-connect-line"></div>
+                <h4>Connect</h4>
+                <div className="rd-socials">
+                  <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#0A66C2">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
-                    Your data is secure and confidential.
-                  </div>
+                  </a>
+                  <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#1877F2">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                  </a>
+                  <a href="https://wa.me/447590882626" target="_blank" rel="noopener" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#25D366]">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                  </a>
+                </div>
+                <div className="rd-social-labels">
+                  <span>LinkedIn</span>
+                  <span>Facebook</span>
+                  <span>WhatsApp</span>
+                </div>
+              </div>
+
+              {/* BOTTOM */}
+              <div className="rd-footer-bottom">
+                <div className="rd-policies">
+                  <a href="/policies">Privacy Policy</a>
+                  <a href="/policies#terms">Terms of Use</a>
+                  <a href="/policies#cookies">Cookies</a>
+                </div>
+
+                <div className="rd-company-details">
+                  <strong>Recruitment Direct UK Limited</strong>
+                  <span>Company No: SC301107</span>
+                  <span>VAT: GB880406428</span>
+                </div>
+
+                <div className="rd-footer-logos">
+                  <img src="/assets/compliance/rec-member.png" alt="REC Corporate Member" />
+                  <img src="/assets/callpilot_logo.png" alt="CallPilot AI Phone Calls" />
                 </div>
               </div>
             </div>
 
-            <div className="rd-footer-bottom-bar">
-              <div className="rd-footer-company-info">
-                <div className="rd-footer-shield-box">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <div className="rd-footer-info-item">Recruitment Direct UK Ltd</div>
-                <div className="rd-footer-info-divider"></div>
-                <div className="rd-footer-info-item">Company No: SC301107</div>
-                <div className="rd-footer-info-divider"></div>
-                <div className="rd-footer-info-item">VAT No: GB880406428</div>
-              </div>
-
-              <div className="rd-footer-socials">
-                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" className="rd-footer-social-link linkedin" aria-label="LinkedIn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                  </svg>
-                </a>
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener" className="rd-footer-social-link facebook" aria-label="Facebook">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                  </svg>
-                </a>
-                <a href="https://wa.me/447590882626" target="_blank" rel="noopener" className="rd-footer-social-link whatsapp" aria-label="WhatsApp">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div className="rd-footer-copyright">
+            <div className="rd-footer-copyright" style={{ textAlign: "center", marginTop: "30px", fontSize: "14px", color: "rgba(255,255,255,0.4)" }}>
               © {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.
             </div>
           </footer>
