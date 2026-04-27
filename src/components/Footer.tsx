@@ -626,7 +626,7 @@ export default function Footer() {
             {/* REC Membership */}
             <div className="rd-card">
               <div className="rd-card-logo">
-                <img src="/assets/compliance/rec-member.png" alt="REC Membership" />
+                <img src="/rec_logo_new.png" alt="REC Membership" />
               </div>
               <h3>REC Membership</h3>
               <p className="rd-sub">Corporate Member</p>
@@ -829,7 +829,7 @@ export default function Footer() {
                 </div>
 
                 <div className="rd-footer-logos">
-                  <img src="/assets/compliance/rec-member.png" alt="REC Corporate Member" />
+                  <img src="/rec_logo_new.png" alt="REC Corporate Member" />
                   <img src="/assets/callpilot_logo.png" alt="CallPilot AI Phone Calls" />
                 </div>
               </div>
