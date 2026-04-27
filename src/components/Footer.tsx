@@ -875,7 +875,7 @@ export default function Footer() {
                 <div className="rd-footer-logo-wrap">
                   <img
                     className="rd-footer-logo-img"
-                    src="/assets/lo.png"
+                    src="/lo.png"
                     alt="Recruitment Direct"
                   />
                 </div>
