@@ -159,88 +159,108 @@ export default function Footer() {
           font-size: 20px;
           line-height: 1;
         }
-        .rd-premium-footer {
+        .rd-footer {
+          background: #050b18;
+          padding: 34px 0 24px;
+          color: #ffffff;
           position: relative;
           overflow: hidden;
-          background: radial-gradient(circle at top right, rgba(32, 120, 255, 0.18), transparent 34%),
-                      radial-gradient(circle at bottom left, rgba(145, 35, 255, 0.14), transparent 32%),
-                      linear-gradient(135deg, #020617 0%, #050b18 45%, #02030a 100%);
-          color: #fff;
-          padding: 54px 24px 30px;
-          font-family: Inter, Arial, sans-serif;
-          border-top: 1px solid rgba(74, 163, 255, 0.22);
-        }
-
-        .rd-footer-bg {
-          position: absolute;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(0, 174, 255, 0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 174, 255, 0.05) 1px, transparent 1px);
-          background-size: 42px 42px;
-          opacity: 0.32;
-          pointer-events: none;
         }
 
         .rd-footer-inner {
-          position: relative;
-          max-width: 1380px;
+          max-width: 1280px;
           margin: 0 auto;
-          border: 1px solid rgba(92, 167, 255, 0.18);
-          border-radius: 24px;
-          padding: 42px 44px 28px;
-          background: rgba(3, 10, 24, 0.72);
-          box-shadow: 0 0 55px rgba(0, 153, 255, 0.14);
-          backdrop-filter: blur(16px);
+          padding: 0 28px;
+          position: relative;
+          z-index: 2;
         }
 
-        .rd-footer-grid {
+        /* Top-left RD logo */
+        .rd-footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 34px;
+        }
+
+        .rd-footer-logo img {
+          width: 76px;
+          height: auto;
+        }
+
+        .rd-footer-logo span {
+          font-size: 26px;
+          font-weight: 800;
+          line-height: 1.05;
+          letter-spacing: 0.5px;
+        }
+
+        /* Main grid */
+        .rd-footer-main {
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1.45fr;
-          gap: 42px;
+          grid-template-columns: minmax(0, 1fr) 390px;
+          gap: 52px;
           align-items: start;
+          border-top: 1px solid rgba(255,255,255,0.14);
+          padding-top: 34px;
         }
 
-        .rd-footer-col {
-          border-right: 1px solid rgba(255, 255, 255, 0.09);
-          min-height: 260px;
+        /* 4 left columns */
+        .rd-footer-columns {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 34px;
         }
 
-        .rd-footer-col h4,
-        .rd-connect h4 {
-          margin: 0 0 28px;
-          font-size: 15px;
+        .footer-col {
+          padding-right: 26px;
+          border-right: 1px solid rgba(0, 170, 255, 0.28);
+        }
+
+        .footer-col:last-child {
+          border-right: none;
+        }
+
+        .footer-col h4 {
+          margin: 0 0 24px;
+          font-size: 19px;
           text-transform: uppercase;
           letter-spacing: 2px;
-          color: #fff;
+          font-weight: 800;
         }
 
-        .rd-footer-col h4::after {
+        .footer-col h4::after {
           content: "";
           display: block;
-          width: 42px;
-          height: 2px;
+          width: 48px;
+          height: 3px;
           margin-top: 12px;
-          background: linear-gradient(90deg, #00d5ff, #6b4dff);
-          box-shadow: 0 0 14px rgba(0, 213, 255, 0.7);
+          border-radius: 20px;
+          background: linear-gradient(90deg, #00aeff, #8b00ff);
         }
 
-        .rd-footer-col a {
+        .footer-col a {
           display: block;
-          margin: 0 0 20px;
-          color: rgba(236, 244, 255, 0.78);
+          color: #ffffff;
           text-decoration: none;
-          font-size: 15px;
-          transition: all 0.2s ease;
+          font-size: 17px;
+          margin-bottom: 22px;
+          transition: 0.25s ease;
         }
 
-        .rd-footer-col a:hover {
-          color: #fff;
-          transform: translateX(5px);
-          text-shadow: 0 0 14px rgba(0, 213, 255, 0.8);
+        .footer-col a:hover {
+          color: #28a8ff;
+          text-shadow: 0 0 12px rgba(40,168,255,0.7);
         }
 
-        /* AI STEVE CARD */
+        /* Right column */
+        .rd-footer-right {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        /* AI STEVE CARD (Preserved) */
         .rd-ai-steve-card {
           padding: 28px;
           border-radius: 22px;
@@ -249,6 +269,7 @@ export default function Footer() {
           box-shadow:
             0 0 30px rgba(0, 153, 255, 0.18),
             inset 0 0 30px rgba(144, 55, 255, 0.08);
+          margin-top: 0;
         }
 
         .rd-ai-top {
@@ -438,176 +459,106 @@ export default function Footer() {
           font-weight: 400;
         }
 
-        /* CONNECT */
-        .rd-connect {
+        /* Connect directly under AI Steve */
+        .footer-connect {
+          margin-top: 24px;
           text-align: center;
-          margin: 36px 0 26px;
         }
 
-        .rd-connect-line {
+        .connect-title {
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: center;
+          gap: 18px;
+          margin-bottom: 18px;
+        }
+
+        .connect-title span {
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(144, 184, 255, 0.28), transparent);
-          margin-bottom: 18px;
+          background: rgba(255,255,255,0.22);
         }
 
-        .rd-connect h4 {
-          margin-bottom: 18px;
+        .connect-title strong {
+          font-size: 18px;
+          letter-spacing: 5px;
         }
 
-        .rd-socials {
+        .connect-icons {
           display: flex;
           justify-content: center;
-          gap: 42px;
+          gap: 34px;
         }
 
-        .rd-socials a {
-          width: 54px;
-          height: 54px;
-          border-radius: 50%;
-          display: grid;
-          place-items: center;
-          color: #70c9ff;
+        .connect-icons a {
+          color: #ffffff;
           text-decoration: none;
-          font-size: 26px;
-          font-weight: 900;
-          border: 1px solid rgba(91, 178, 255, 0.52);
-          background: rgba(5, 15, 35, 0.9);
-          transition: all 0.2s ease;
+          font-size: 15px;
+          transition: 0.25s ease;
         }
 
-        .rd-socials a:hover,
-        .rd-socials a:active {
-          transform: translateY(-2px) scale(1.04);
-          color: #fff;
-          box-shadow: 0 0 24px rgba(0, 213, 255, 0.65);
-          border-color: #9feeff;
+        .connect-icons a:hover {
+          color: #28a8ff;
+          text-shadow: 0 0 14px rgba(40,168,255,0.75);
         }
 
-        .rd-social-labels {
-          display: flex;
-          justify-content: center;
-          gap: 35px;
-          margin-top: 8px;
-          color: rgba(236, 244, 255, 0.74);
-          font-size: 13px;
-        }
-
-        /* BOTTOM */
+        /* Bottom legal */
         .rd-footer-bottom {
-          border-top: 1px solid rgba(255,255,255,0.1);
+          margin-top: 34px;
           padding-top: 24px;
-          display: grid;
-          grid-template-columns: 1fr 1.3fr 1fr;
-          gap: 24px;
-          align-items: center;
-        }
-
-        .rd-policies a {
-          color: rgba(236, 244, 255, 0.78);
-          text-decoration: none;
-          margin-right: 18px;
-          font-size: 14px;
-        }
-
-        .rd-policies a:hover {
-          color: #fff;
-        }
-
-        .rd-company-details {
+          border-top: 1px solid rgba(255,255,255,0.14);
           text-align: center;
-          color: rgba(236, 244, 255, 0.78);
-          font-size: 14px;
-          line-height: 1.8;
         }
 
-        .rd-company-details strong {
-          display: block;
-          color: #fff;
-          font-weight: 700;
+        .rd-footer-bottom div {
+          font-size: 16px;
+          color: rgba(255,255,255,0.88);
         }
 
-        .rd-company-details span {
-          margin: 0 8px;
+        .rd-footer-bottom span {
+          margin: 0 24px;
+          color: rgba(255,255,255,0.35);
         }
 
-        .rd-footer-logos {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          gap: 22px;
+        .rd-footer-bottom p {
+          margin: 18px 0 0;
+          font-size: 15px;
+          color: rgba(255,255,255,0.72);
         }
 
-        .rd-footer-logos img {
-          max-height: 44px;
-          max-width: 150px;
-          object-fit: contain;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-          .rd-footer-grid {
-            grid-template-columns: 1fr 1fr;
+        /* Mobile */
+        @media (max-width: 1000px) {
+          .rd-footer-main {
+            grid-template-columns: 1fr;
           }
 
-          .rd-footer-col {
-            min-height: auto;
+          .rd-footer-columns {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .rd-footer-right {
+            max-width: 430px;
+            margin: 0 auto;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .rd-footer-columns {
+            grid-template-columns: 1fr;
+          }
+
+          .footer-col {
             border-right: none;
+            border-bottom: 1px solid rgba(0, 170, 255, 0.18);
+            padding-bottom: 20px;
           }
 
-          .rd-footer-bottom {
-            grid-template-columns: 1fr;
-            text-align: center;
+          .rd-footer-bottom span {
+            display: none;
           }
 
-          .rd-footer-logos {
-            justify-content: center;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .rd-premium-footer {
-            padding: 34px 14px 24px;
-          }
-
-          .rd-footer-inner {
-            padding: 28px 20px 22px;
-            border-radius: 18px;
-          }
-
-          .rd-footer-grid {
-            grid-template-columns: 1fr;
-            gap: 26px;
-          }
-
-          .rd-footer-col a {
-            margin-bottom: 14px;
-          }
-
-          .rd-ai-top {
-            flex-direction: column;
-            text-align: center;
-          }
-
-          .rd-ai-orb {
-            width: 86px;
-            height: 86px;
-          }
-
-          .rd-ai-steve-card h3 {
-            font-size: 22px;
-          }
-
-          .rd-socials {
-            gap: 22px;
-          }
-
-          .rd-social-labels {
-            gap: 18px;
-            font-size: 12px;
-          }
-
-          .rd-footer-logos {
-            flex-direction: column;
+          .rd-footer-bottom div {
+            display: grid;
+            gap: 8px;
           }
         }
       `}</style>
@@ -719,124 +670,134 @@ export default function Footer() {
             <span>Verified credentials. Transparent proof. Trusted delivery.</span>
           </div>
 
-          <footer className="rd-premium-footer">
-            <div className="rd-footer-bg"></div>
-
+          <footer className="rd-footer">
             <div className="rd-footer-inner">
-              <div className="rd-footer-grid">
-                {/* COMPANY */}
-                <div className="rd-footer-col">
-                  <h4>Company</h4>
-                  <a href="/about">About Us</a>
-                  <a href="/services">Services</a>
-                  <a href="/why-choose-us">Why RDUK</a>
-                  <a href="/our-process">Our Process</a>
-                  <a href="/contact">Contact Us</a>
+
+              {/* TOP LOGO */}
+              <div className="rd-footer-logo">
+                <img src="/lo.png" alt="Recruitment Direct" />
+                {/* <span>RECRUITMENT<br />DIRECT</span> */}
+              </div>
+
+              <div className="rd-footer-main">
+
+                {/* LEFT COLUMNS */}
+                <div className="rd-footer-columns">
+
+                  <div className="footer-col">
+                    <h4>Company</h4>
+                    <a href="/about">About Us</a>
+                    <a href="/services">Services</a>
+                    <a href="/why-choose-us">Why RDUK</a>
+                    <a href="/our-process">Our Process</a>
+                    <a href="/contact">Contact Us</a>
+                  </div>
+
+                  <div className="footer-col">
+                    <h4>AI Platform</h4>
+                    <a href="/ai-hire-now">AI Hire Now</a>
+                    <a href="/#ai-recruitment">AI Recruitment</a>
+                    <a href="/callpilot">CallPilot (AI Voice)</a>
+                    <a href="/integrations">Integrations</a>
+                    <a href="/security">Security</a>
+                  </div>
+
+                  <div className="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/#clients">Clients</a>
+                    <a href="/#job-search">Job Search</a>
+                    <a href="/policies">Policies</a>
+                    <a href="/accreditations">Accreditations</a>
+                    <a href="/news">News & Insights</a>
+                  </div>
+
+                  <div className="footer-col">
+                    <h4>Policies</h4>
+                    <a href="/policies">Privacy Policy</a>
+                    <a href="/policies#terms">Terms of Use</a>
+                    <a href="/policies#cookies">Cookies</a>
+                    <a href="/policies">Modern Slavery Policy</a>
+                    <a href="/policies">Carbon Reduction Plan</a>
+                  </div>
+
                 </div>
 
-                {/* AI PLATFORM */}
-                <div className="rd-footer-col">
-                  <h4>AI Platform</h4>
-                  <a href="/ai-hire-now">AI Hire Now</a>
-                  <a href="/#ai-recruitment">AI Platform</a>
-                  <a href="/callpilot">CallPilot (AI Voice)</a>
-                  <a href="/integrations">Integrations</a>
-                  <a href="/security">Security</a>
-                </div>
+                {/* RIGHT SIDE: KEEP EXISTING AI STEVE DESIGN */}
+                <div className="rd-footer-right">
 
-                {/* RESOURCES */}
-                <div className="rd-footer-col">
-                  <h4>Resources</h4>
-                  <a href="/#clients">Clients</a>
-                  <a href="/#job-search">Job Search</a>
-                  <a href="/policies">Policies</a>
-                  <a href="/accreditations">Accreditations</a>
-                  <a href="/news">News & Insights</a>
-                </div>
+                  {/* ASK AI STEVE PANEL */}
+                  <div className="rd-ai-steve-card">
+                    <div className="rd-ai-top">
+                      <div className="rd-ai-orb">
+                        <div className="rd-orb-core">AI</div>
+                        <span></span>
+                      </div>
 
-                {/* ASK AI STEVE */}
-                <div className="rd-ai-steve-card">
-                  <div className="rd-ai-top">
-                    <div className="rd-ai-orb">
-                      <div className="rd-orb-core">AI</div>
+                      <div>
+                        <h3>Ask AI Steve</h3>
+                        <p className="rd-live"><span></span> Live Now</p>
+                        <p className="rd-ai-text">Instant answers.<br />Smart AI calls.</p>
+                      </div>
+                    </div>
+
+                    <a href="/callpilot" className="rd-ai-btn primary">
+                      <span>Start AI Chat</span>
+                      <b>→</b>
+                    </a>
+
+                    <a href="https://callpilot.pro/" className="rd-ai-btn secondary">
+                      <span>Try AI Call</span>
+                      <b>→</b>
+                    </a>
+
+                    <a href="https://callpilot.pro/get-started" className="rd-ai-btn premium">
+                      <span>AI Calls for Business</span>
+                      <b>→</b>
+                    </a>
+                  </div>
+
+                  <div className="footer-connect">
+                    <div className="connect-title">
+                      <span></span>
+                      <strong>CONNECT</strong>
                       <span></span>
                     </div>
 
-                    <div>
-                      <h3>Ask AI Steve</h3>
-                      <p className="rd-live"><span></span> Live Now</p>
-                      <p className="rd-ai-text">Instant answers.<br />Smart AI calls.</p>
+                    <div className="connect-icons">
+                      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#0A66C2">
+                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                      </a>
+                      <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#1877F2">
+                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                      </a>
+                      <a href="https://wa.me/447590882626" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#25D366]">
+                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                      </a>
                     </div>
                   </div>
 
-                  <a href="/callpilot" className="rd-ai-btn primary">
-                    <span>Start AI Chat</span>
-                    <b>→</b>
-                  </a>
-
-                  <a href="https://callpilot.pro/" className="rd-ai-btn secondary">
-                    <span>Try AI Call</span>
-                    <b>→</b>
-                  </a>
-
-                  <a href="https://callpilot.pro/get-started" className="rd-ai-btn premium">
-                    <span>AI Calls for Business</span>
-                    <b>→</b>
-                  </a>
                 </div>
+
               </div>
 
-              {/* CONNECT */}
-              <div className="rd-connect">
-                <div className="rd-connect-line"></div>
-                <h4>Connect</h4>
-                <div className="rd-socials">
-                  <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#0A66C2">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    </svg>
-                  </a>
-                  <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="#1877F2">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                  </a>
-                  <a href="https://wa.me/447590882626" target="_blank" rel="noopener" aria-label="WhatsApp">
-                    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-[#25D366]">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                  </a>
-                </div>
-                <div className="rd-social-labels">
-                  <span>LinkedIn</span>
-                  <span>Facebook</span>
-                  <span>WhatsApp</span>
-                </div>
-              </div>
-
-              {/* BOTTOM */}
               <div className="rd-footer-bottom">
-                <div className="rd-policies">
-                  <a href="/policies">Privacy Policy</a>
-                  <a href="/policies#terms">Terms of Use</a>
-                  <a href="/policies#cookies">Cookies</a>
+                <div>
+                  Recruitment Direct UK Ltd
+                  <span>|</span>
+                  Company No: SC301107
+                  <span>|</span>
+                  VAT No: GB880406428
                 </div>
 
-                <div className="rd-company-details">
-                  <strong>Recruitment Direct UK Limited</strong>
-                  <span>Company No: SC301107</span>
-                  <span>VAT: GB880406428</span>
-                </div>
-
-                <div className="rd-footer-logos">
-                  <img src="/rec_logo_new.png" alt="REC Corporate Member" />
-                  <img src="/assets/callpilot_logo.png" alt="CallPilot AI Phone Calls" />
-                </div>
+                <p>© {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.</p>
               </div>
-            </div>
 
-            <div className="rd-footer-copyright" style={{ textAlign: "center", marginTop: "30px", fontSize: "14px", color: "rgba(255,255,255,0.4)" }}>
-              © {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.
             </div>
           </footer>
         </div>
