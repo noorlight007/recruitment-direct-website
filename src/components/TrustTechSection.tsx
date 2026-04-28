@@ -114,7 +114,7 @@ export default function TrustTechSection() {
           <div className="trust-tech-block">
             <p className="label">Framework Client</p>
             <img src="/images/cirrus-logo.png" alt="Cirrus" className="client-logo" />
-            <p className="small-text">Client of Recruitment Direct</p>
+            {/* <p className="small-text">Client of Recruitment Direct</p> */}
           </div>
 
           <div className="divider"></div>
@@ -122,7 +122,7 @@ export default function TrustTechSection() {
           <div className="trust-tech-block">
             <p className="label">Powered By</p>
             <img src="/images/callpilot-logo.png" alt="CallPilot AI" className="callpilot-logo" />
-            <p className="small-text">AI phone call platform</p>
+            {/* <p className="small-text">AI phone call platform</p> */}
           </div>
         </div>
       </div>
