@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 
 export default function AIProductsSection() {
+  const [activeCard, setActiveCard] = useState(0);
+
   return (
     <section id="ai-products" className="saas-section">
       <div className="container">
@@ -16,7 +19,10 @@ export default function AIProductsSection() {
         <div className="cards">
 
           {/* CARD 1 */}
-          <div className="card featured">
+          <div 
+            className={`card cursor-pointer transition-all duration-300 ${activeCard === 0 ? 'featured' : ''}`}
+            onClick={() => setActiveCard(0)}
+          >
             <h3>CallPilot AI</h3>
             <p className="subtitle">AI Applicant Screening Calls</p>
 
@@ -33,7 +39,10 @@ export default function AIProductsSection() {
           </div>
 
           {/* CARD 2 */}
-          <div className="card">
+          <div 
+            className={`card cursor-pointer transition-all duration-300 ${activeCard === 1 ? 'featured' : ''}`}
+            onClick={() => setActiveCard(1)}
+          >
             <h3>Temporary Staff</h3>
             <p className="subtitle">Hourly Workforce Supply</p>
 
@@ -50,8 +59,11 @@ export default function AIProductsSection() {
           </div>
 
           {/* CARD 3 */}
-          <div className="card">
-            <h3>Permanent Recruitment</h3>
+          <div 
+            className={`card cursor-pointer transition-all duration-300 ${activeCard === 2 ? 'featured' : ''}`}
+            onClick={() => setActiveCard(2)}
+          >
+            <h3>Permanent Staff</h3>
             <p className="subtitle">Full Hiring Delivery</p>
 
             <ul>
@@ -71,4 +83,5 @@ export default function AIProductsSection() {
     </section>
   );
 }
+
 

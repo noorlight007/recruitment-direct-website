@@ -88,6 +88,7 @@
     background: var(--btn-primary);
     @apply text-white font-semibold rounded-[10px] px-6 py-3 transition-all duration-300;
   }
+
   .btn-primary:hover {
     background: var(--btn-primary-hover);
     box-shadow: var(--btn-glow);
@@ -99,6 +100,7 @@
     border: 1px solid var(--btn-secondary-border);
     @apply text-white font-semibold rounded-[10px] px-6 py-3 transition-all duration-300;
   }
+
   .btn-secondary:hover {
     box-shadow: var(--btn-glow);
     border-color: rgba(47, 128, 237, 0.5);
@@ -110,6 +112,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     @apply text-white font-semibold rounded-[10px] px-6 py-3 transition-all duration-300;
   }
+
   .btn-tertiary:hover {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.05);

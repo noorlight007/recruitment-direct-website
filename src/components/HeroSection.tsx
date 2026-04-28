@@ -297,7 +297,7 @@ export default function HeroSection() {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pt-10 border-t border-gray-800"
         >
           {[
-            { icon: <Gauge className="w-6 h-6" />, val: "50%", label: "Faster Fill", sub: "Positions Filled Faster", sub2: "From brief to placement" },
+            { icon: <Gauge className="w-6 h-6" />, val: "50%", label: "Filled Faster", sub: "Positions Filled Faster", sub2: "From brief to placement" },
             { icon: <Users className="w-6 h-6" />, val: "10K+", label: "Placements Delivered", sub: "Across multiple", sub2: "sectors" },
             { icon: <Target className="w-6 h-6" />, val: "87%", label: "Match Accuracy", sub: "Quality applicants, faster", sub2: "AI-driven shortlisting" },
             { icon: <Clock className="w-6 h-6" />, val: "70%", label: "Time Saved", sub: "Reduced admin workload", sub2: "Through AI automation" },
