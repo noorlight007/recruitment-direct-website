@@ -147,8 +147,8 @@ export default function HeroSection() {
               {/* Card 1: AI Hire Now */}
               <a href="/ai-hire-now" className="rd-hero-btn btn-primary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-white/10 rounded-lg">
-                    <User className="w-6 h-6 text-white" />
+                  <div className="icon-box">
+                    <User />
                   </div>
                   <div className="text-left">
                     <div className="font-bold text-lg leading-tight">AI Hire Now</div>
@@ -161,8 +161,8 @@ export default function HeroSection() {
               {/* Card 2: Place Enquiry */}
               <a href="/place-enquiry" className="rd-hero-btn btn-secondary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gray-800 rounded-lg">
-                    <Building2 className="w-6 h-6 text-gray-400" />
+                  <div className="icon-box">
+                    <Building2 />
                   </div>
                   <div className="text-left">
                     <div className="font-bold text-lg leading-tight text-white">Place Enquiry</div>
@@ -175,8 +175,8 @@ export default function HeroSection() {
               {/* Card 3: AI Call Enquiry */}
               <a href="https://callpilot.pro/" className="rd-hero-btn btn-secondary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gray-800 rounded-lg">
-                    <Phone className="w-6 h-6 text-gray-400" />
+                  <div className="icon-box">
+                    <Phone />
                   </div>
                   <div className="text-left">
                     <div className="font-bold text-lg leading-tight text-white">AI Call Test</div>
@@ -189,8 +189,8 @@ export default function HeroSection() {
               {/* Card 4: Job Search */}
               <a href="/#job-search" className="rd-hero-btn btn-secondary flex items-center justify-between p-4 rounded-xl group">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gray-800 rounded-lg">
-                    <Briefcase className="w-6 h-6 text-gray-400" />
+                  <div className="icon-box">
+                    <Briefcase />
                   </div>
                   <div className="text-left">
                     <div className="font-bold text-lg leading-tight text-white">Job Search</div>
@@ -304,7 +304,7 @@ export default function HeroSection() {
             { icon: <CheckCircle className="w-6 h-6" />, val: "100%", label: "Compliance", sub: "Right to work verified", sub2: "Every applicant checked" },
           ].map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center text-center">
-              <div className="mb-4 p-3 bg-blue-500/10 rounded-full text-blue-500">
+              <div className="icon-box mb-4">
                 {stat.icon}
               </div>
               <div className="text-3xl font-bold text-white mb-1">{stat.val}</div>

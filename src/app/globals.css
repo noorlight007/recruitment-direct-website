@@ -901,8 +901,65 @@ section {
   .saas-section .card {
     padding: 20px;
   }
-
+  
   .saas-section .card h3 {
     font-size: 23px;
   }
 }
+
+/* Premium SaaS icon system */
+
+.icon-box,
+.card-icon,
+.dropdown-icon,
+.footer-icon,
+.social-icon {
+ width: 54px;
+ height: 54px;
+ border-radius: 16px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background: linear-gradient(145deg, rgba(20, 45, 85, 0.72), rgba(255,255,255,0.08));
+ border: 1px solid rgba(70, 150, 255, 0.28);
+ box-shadow:
+   0 0 0 1px rgba(255,255,255,0.04) inset,
+   0 10px 28px rgba(0, 80, 180, 0.12);
+ transition: all 0.25s ease;
+}
+
+.icon-box svg,
+.card-icon svg,
+.dropdown-icon svg,
+.footer-icon svg,
+.social-icon svg {
+ width: 26px;
+ height: 26px;
+ stroke: #4164d9;
+ stroke-width: 1.8;
+ filter: drop-shadow(0 0 8px rgba(65, 100, 217, 0.35));
+}
+
+.icon-box:hover,
+.card-icon:hover,
+.dropdown-icon:hover,
+.footer-icon:hover,
+.social-icon:hover {
+ transform: translateY(-3px);
+ border-color: rgba(0, 180, 255, 0.75);
+ box-shadow:
+   0 0 20px rgba(0, 170, 255, 0.32),
+   0 0 38px rgba(130, 40, 255, 0.18),
+   0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
+.icon-box:active,
+.card-icon:active,
+.dropdown-icon:active,
+.footer-icon:active,
+.social-icon:active {
+ transform: scale(0.96);
+ box-shadow:
+   inset 0 0 18px rgba(0, 170, 255, 0.32),
+   0 0 26px rgba(140, 40, 255, 0.35);
+}

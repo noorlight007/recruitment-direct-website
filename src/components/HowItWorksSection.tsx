@@ -15,8 +15,8 @@ const steps = [
     title: "Job Received",
     desc: "We begin sourcing immediately.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M8 3H16M8 21H16M9 3V6M15 3V6M6 7H18C19.1046 7 20 7.89543 20 9V17C20 18.1046 19.1046 19 18 19H6C4.89543 19 4 18.1046 4 17V9C4 7.89543 4.89543 7 6 7Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M8 3H16M8 21H16M9 3V6M15 3V6M6 7H18C19.1046 7 20 7.89543 20 9V17C20 18.1046 19.1046 19 18 19H6C4.89543 19 4 18.1046 4 17V9C4 7.89543 4.89543 7 6 7Z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     )
   },
@@ -25,10 +25,10 @@ const steps = [
     title: "AI Search",
     desc: "Suitable applicants identified from database and network.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.7" />
-        <path d="M20 20L16.65 16.65" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-        <path d="M11 8V14M8 11H14" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="6" />
+        <path d="M20 20L16.65 16.65" strokeLinecap="round" />
+        <path d="M11 8V14M8 11H14" strokeLinecap="round" />
       </svg>
     )
   },
@@ -37,8 +37,8 @@ const steps = [
     title: "Job Advert",
     desc: "Applications generated across job boards.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M4 12L20 4L16 20L11 13L4 12Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 12L20 4L16 20L11 13L4 12Z" strokeLinejoin="round" />
       </svg>
     )
   },
@@ -47,9 +47,9 @@ const steps = [
     title: "AI Screening",
     desc: "Applicants contacted instantly and screened automatically.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M7 4H17M7 20H17M8 4V7M16 4V7M6 8H18C19.1046 8 20 8.89543 20 10V16C20 17.1046 19.1046 18 18 18H6C4.89543 18 4 17.1046 4 16V10C4 8.89543 4.89543 8 6 8Z" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M9 12H15M9 15H13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M7 4H17M7 20H17M8 4V7M16 4V7M6 8H18C19.1046 8 20 8.89543 20 10V16C20 17.1046 19.1046 18 18 18H6C4.89543 18 4 17.1046 4 16V10C4 8.89543 4.89543 8 6 8Z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9 12H15M9 15H13" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     )
   },
@@ -58,9 +58,9 @@ const steps = [
     title: "Traffic Light",
     desc: "Applicants scored based on role-specific responses.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M7 12L10 15L17 8" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="currentColor" strokeWidth="1.7" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M7 12L10 15L17 8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" />
       </svg>
     )
   },
@@ -69,9 +69,9 @@ const steps = [
     title: "WhatsApp/SMS",
     desc: "Qualified applicants receive a secure link to upload documents.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M3 7L12 13L21 7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V7C3 5.89543 3.89543 5 5 5Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M3 7L12 13L21 7" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M5 5H19C20.1046 5 21 5.89543 21 7V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V7C3 5.89543 3.89543 5 5 5Z" strokeLinejoin="round" />
       </svg>
     )
   },
@@ -80,9 +80,9 @@ const steps = [
     title: "CRM Sync",
     desc: "All responses and documents automatically stored and reviewed.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M8 7H16M8 12H16M8 17H13" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-        <path d="M6 3H14L18 7V19C18 20.1046 17.1046 21 16 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M8 7H16M8 12H16M8 17H13" strokeLinecap="round" />
+        <path d="M6 3H14L18 7V19C18 20.1046 17.1046 21 16 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3Z" strokeLinejoin="round" />
       </svg>
     )
   },
@@ -91,8 +91,8 @@ const steps = [
     title: "Fast Submission",
     desc: "Verified applicants submitted quickly to clients.",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-        <path d="M4 12L20 4L16 20L11 13L4 12Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 12L20 4L16 20L11 13L4 12Z" strokeLinejoin="round" />
       </svg>
     )
   },
@@ -136,7 +136,7 @@ export default function HowItWorksSection() {
                 {step.number}
               </div>
 
-              <div className="flex items-center justify-center w-[52px] h-[52px] mb-5 rounded-[16px] bg-[#f8fbff] text-[var(--btn-primary)] shadow-[0_8px_20px_rgba(37,99,235,0.12)]">
+              <div className="card-icon mb-5">
                 {step.icon}
               </div>
 

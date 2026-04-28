@@ -73,15 +73,8 @@ export default function HowWeDeliverSection() {
               />
 
               {/* icon */}
-              <div
-                className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-all duration-300"
-                style={{
-                  boxShadow: "0 6px 20px hsl(var(--primary) / 0.08)",
-                  animation: "pulse-glow 4s ease-in-out infinite",
-                  animationDelay: `${i * 0.4}s`,
-                }}
-              >
-                <card.icon className="w-6 h-6 text-primary" />
+              <div className="card-icon mb-5">
+                <card.icon />
               </div>
 
               {/* content */}

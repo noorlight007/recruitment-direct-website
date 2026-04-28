@@ -70,13 +70,8 @@ export default function SectorsSection() {
                 whileHover={{ y: -6 }}
                 className="card-hover p-8 flex flex-col items-center gap-4 cursor-pointer group rounded-2xl border border-primary/10 bg-background h-full"
               >
-                <div
-                  className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300"
-                  style={{
-                    boxShadow: "0 6px 20px hsl(var(--primary) / 0.08)",
-                  }}
-                >
-                  <sector.icon className="w-8 h-8 text-primary" />
+                <div className="card-icon">
+                  <sector.icon />
                 </div>
 
                 <h3 className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors text-center">
