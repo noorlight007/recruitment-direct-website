@@ -4,125 +4,117 @@ import React from "react";
 
 export default function TrustTechSection() {
   return (
-    <section className="trust-tech-section">
+    <section className="trusted-section">
       <style jsx>{`
-        .trust-tech-section {
-          padding: 22px 18px;
-          background: #050b18;
+        .trusted-section {
+          background: linear-gradient(180deg, #05070d 0%, #070b14 100%);
+          padding: 80px 24px;
+          text-align: center;
         }
 
-        .trust-tech-card {
-          border: 1px solid rgba(0, 150, 255, 0.45);
-          border-radius: 24px;
-          padding: 24px 18px;
-          background: linear-gradient(135deg, rgba(0, 120, 255, 0.08), rgba(155, 40, 255, 0.08));
-          box-shadow: 0 0 25px rgba(0, 140, 255, 0.15);
-          text-align: center;
+        .container {
           max-width: 1200px;
           margin: 0 auto;
         }
 
-        .trust-tech-card h2 {
-          color: #28a8ff;
-          font-size: 15px;
+        .section-title {
+          color: #f4f4f2;
+          font-size: 20px;
           letter-spacing: 4px;
           text-transform: uppercase;
-          margin-bottom: 24px;
+          margin-bottom: 50px;
           font-weight: 700;
         }
 
-        .trust-tech-row {
+        .trusted-grid {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 18px;
+          justify-content: center;
+          gap: 40px;
+          max-width: 1000px;
+          margin: 0 auto;
         }
 
-        .trust-tech-block {
-          width: 48%;
+        .trusted-card {
+          flex: 1;
+          padding: 40px;
+          border-radius: 24px;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
+          min-height: 180px;
         }
 
-        .label {
-          color: #aeb8cc;
-          font-size: 14px;
-          margin-bottom: 10px;
+        .trusted-card:hover {
+          border-color: rgba(255, 255, 255, 0.3);
+          box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+          transform: translateY(-5px);
         }
 
-        .client-logo {
-          max-width: 145px;
+        .trusted-card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 24px;
+          background: linear-gradient(120deg, transparent, rgba(255,255,255,0.05), transparent);
+          opacity: 0;
+          transition: 0.3s;
+        }
+
+        .trusted-card:hover::before {
+          opacity: 1;
+        }
+
+        .trusted-card img {
+          max-width: 180px;
           width: 100%;
           height: auto;
+          object-fit: contain;
         }
 
-        .callpilot-logo {
-          max-width: 155px;
-          width: 100%;
-          height: auto;
-        }
-
-        .small-text {
-          color: #d7dbea;
+        .subtle-text {
           font-size: 13px;
-          margin-top: 12px;
+          color: #cfcfcb;
+          margin-top: 15px;
+          font-weight: 500;
         }
 
-        .divider {
-          width: 1px;
-          height: 115px;
-          background: rgba(255, 255, 255, 0.25);
-        }
-
-        @media (max-width: 600px) {
-          .trust-tech-section {
-            padding: 18px 14px;
+        @media (max-width: 768px) {
+          .trusted-grid {
+            flex-direction: column;
+            gap: 20px;
+          }
+          
+          .trusted-section {
+            padding: 60px 20px;
           }
 
-          .trust-tech-card {
-            padding: 22px 14px;
-          }
-
-          .trust-tech-card h2 {
-            font-size: 13px;
-            letter-spacing: 3px;
-          }
-
-          .trust-tech-row {
-            gap: 12px;
-          }
-
-          .client-logo {
-            max-width: 130px;
-          }
-
-          .callpilot-logo {
-            max-width: 140px;
-          }
-
-          .small-text {
-            font-size: 12px;
+          .trusted-card {
+            padding: 30px;
           }
         }
       `}</style>
 
-      <div className="trust-tech-card">
-        <h2>Trusted Client & Technology</h2>
+      <div className="container">
+        <h2 className="section-title">Trusted Clients & Technology</h2>
 
-        <div className="trust-tech-row">
-          <div className="trust-tech-block">
-            <p className="label">Framework Client</p>
-            <img src="/images/cirrus-logo.png" alt="Cirrus" className="client-logo" />
-            {/* <p className="small-text">Client of Recruitment Direct</p> */}
+        <div className="trusted-grid">
+          {/* Cirrus */}
+          <div className="trusted-card">
+            <img src="/images/cirrus-logo.png" alt="Cirrus Consortium" />
           </div>
 
-          <div className="divider"></div>
-
-          <div className="trust-tech-block">
-            <p className="label">Powered By</p>
-            <img src="/images/callpilot-logo.png" alt="CallPilot AI" className="callpilot-logo" />
-            {/* <p className="small-text">AI phone call platform</p> */}
+          {/* CallPilot */}
+          <div className="trusted-card">
+            <img src="/images/callpilot-logo.png" alt="CallPilot" />
+            {/* <p className="subtle-text">AI Call Technology</p> */}
           </div>
         </div>
       </div>
