@@ -38,7 +38,7 @@ export default function ContactSection() {
               href="https://wa.me/447590882626"
               className="btn-secondary w-full sm:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] text-white transition-all duration-200 whitespace-nowrap"
             >
-              Message us on WhatsApp
+              WhatsApp
             </a>
           </div>
 
