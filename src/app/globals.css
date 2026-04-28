@@ -931,13 +931,19 @@ section {
 .icon-box svg,
 .card-icon svg,
 .dropdown-icon svg,
-.footer-icon svg,
-.social-icon svg {
+.footer-icon svg {
  width: 26px;
  height: 26px;
  stroke: #4164d9;
  stroke-width: 1.8;
  filter: drop-shadow(0 0 8px rgba(65, 100, 217, 0.35));
+}
+
+.social-icon svg {
+ width: 26px;
+ height: 26px;
+ stroke: none;
+ filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
 }
 
 .icon-box:hover,

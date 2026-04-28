@@ -138,8 +138,8 @@ export default function HeroSection() {
             </h1>
 
             <div className="space-y-1 text-gray-400 text-lg mb-6 max-w-lg">
-              <p>Temporary, contract and permanent staffing delivered</p>
-              <p>with speed, accuracy and full compliance.</p>
+              <p>Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance.</p>
+              {/* <p>with speed, accuracy and full compliance.</p> */}
               <p className="pt-2 font-medium text-gray-300">Powered by AI, delivered by experienced consultants.</p>
             </div>
 
