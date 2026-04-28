@@ -175,46 +175,30 @@ export default function Footer() {
           z-index: 2;
         }
 
-        /* Top-left RD logo */
-        .rd-footer-logo {
-          display: flex;
-          align-items: center;
-          gap: 14px;
-          margin-bottom: 34px;
-        }
-
-        .rd-footer-logo img {
-          width: 76px;
-          height: auto;
-        }
-
-        .rd-footer-logo span {
-          font-size: 26px;
-          font-weight: 800;
-          line-height: 1.05;
-          letter-spacing: 0.5px;
-        }
-
         /* Main grid */
         .rd-footer-main {
           display: grid;
-          grid-template-columns: minmax(0, 1fr) 390px;
-          gap: 52px;
-          align-items: start;
-          border-top: 1px solid rgba(255,255,255,0.14);
-          padding-top: 34px;
+          grid-template-columns: 1fr auto;
+          gap: 64px;
+          align-items: flex-start;
+          border-top: 1px solid rgba(255,255,255,0.18);
+          padding-top: 48px;
+          max-width: 1200px;
+          margin: 0 auto;
         }
 
         /* 4 left columns */
         .rd-footer-columns {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 34px;
+          gap: 40px;
+          flex: 1;
         }
 
         .footer-col {
-          padding-right: 26px;
-          border-right: 1px solid rgba(0, 170, 255, 0.28);
+          padding-right: 20px;
+          border-right: 1px solid rgba(255, 255, 255, 0.12);
+          min-height: 240px;
         }
 
         .footer-col:last-child {
@@ -222,35 +206,36 @@ export default function Footer() {
         }
 
         .footer-col h4 {
-          margin: 0 0 24px;
-          font-size: 19px;
+          margin: 0 0 20px;
+          font-size: 15px;
           text-transform: uppercase;
           letter-spacing: 2px;
-          font-weight: 800;
+          font-weight: 700;
+          color: #F4F4F2;
         }
 
         .footer-col h4::after {
           content: "";
           display: block;
-          width: 48px;
-          height: 3px;
-          margin-top: 12px;
+          width: 32px;
+          height: 2px;
+          margin-top: 10px;
           border-radius: 20px;
-          background: linear-gradient(90deg, #00aeff, #8b00ff);
+          background: rgba(255, 255, 255, 0.35);
         }
 
         .footer-col a {
           display: block;
-          color: #ffffff;
+          color: #CFCFCB;
           text-decoration: none;
-          font-size: 17px;
-          margin-bottom: 22px;
-          transition: 0.25s ease;
+          font-size: 14px;
+          margin-bottom: 16px;
+          transition: 0.2s ease;
         }
 
         .footer-col a:hover {
-          color: #28a8ff;
-          text-shadow: 0 0 12px rgba(40,168,255,0.7);
+          color: #ffffff;
+          text-shadow: 0 0 8px rgba(255,255,255,0.45);
         }
 
         /* Right column */
@@ -378,14 +363,14 @@ export default function Footer() {
           margin-top: 12px;
           padding: 0 22px;
           border-radius: 12px;
-          color: #fff;
           text-decoration: none;
           font-weight: 800;
           letter-spacing: 0.2px;
           overflow: hidden;
-          border: 1px solid rgba(92, 183, 255, 0.4);
-          box-shadow: 0 0 18px rgba(0, 153, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          box-shadow: 0 0 18px rgba(255, 255, 255, 0.05);
           transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
+          color: #F4F4F2;
         }
 
         .rd-ai-btn.primary {
@@ -403,19 +388,19 @@ export default function Footer() {
 
         .rd-ai-btn:hover {
           transform: translateY(-2px);
-          border-color: rgba(140, 225, 255, 0.9);
+          border-color: rgba(255, 255, 255, 0.45);
           box-shadow:
-            0 0 18px rgba(0, 213, 255, 0.48),
-            0 0 32px rgba(151, 55, 255, 0.36);
-          filter: brightness(1.08);
+            0 0 20px rgba(255, 255, 255, 0.2),
+            0 0 35px rgba(255, 255, 255, 0.1);
+          filter: brightness(1.1);
         }
 
         .rd-ai-btn:active {
           transform: translateY(1px) scale(0.985);
           box-shadow:
-            inset 0 0 22px rgba(255, 255, 255, 0.18),
-            0 0 24px rgba(0, 213, 255, 0.72);
-          border-color: #bdf4ff;
+            inset 0 0 22px rgba(255, 255, 255, 0.1),
+            0 0 24px rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.75);
         }
 
         .rd-ai-btn::before {
@@ -450,7 +435,7 @@ export default function Footer() {
         }
 
         .rd-ai-btn:focus-visible {
-          outline: 2px solid #8eeaff;
+          outline: 2px solid #ffffff;
           outline-offset: 4px;
         }
 
@@ -465,28 +450,22 @@ export default function Footer() {
           text-align: center;
         }
 
-        .connect-title {
-          display: grid;
-          grid-template-columns: 1fr auto 1fr;
-          align-items: center;
-          gap: 18px;
-          margin-bottom: 18px;
-        }
-
         .connect-title span {
           height: 1px;
-          background: rgba(255,255,255,0.22);
+          background: rgba(255,255,255,0.18);
         }
 
         .connect-title strong {
-          font-size: 18px;
-          letter-spacing: 5px;
+          font-size: 14px;
+          letter-spacing: 4px;
+          color: #CFCFCB;
         }
 
         .connect-icons {
           display: flex;
           justify-content: center;
           gap: 34px;
+          margin-top: 15px;
         }
 
         .connect-icons a {
@@ -497,30 +476,34 @@ export default function Footer() {
         }
 
         .connect-icons a:hover {
-          color: #28a8ff;
-          text-shadow: 0 0 14px rgba(40,168,255,0.75);
+          color: #ffffff;
+          filter: drop-shadow(0 0 8px rgba(255,255,255,0.45));
+          transform: translateY(-2px);
         }
 
         /* Bottom legal */
         .rd-footer-bottom {
-          margin-top: 34px;
+          margin-top: 48px;
           padding-top: 24px;
-          border-top: 1px solid rgba(255,255,255,0.14);
+          border-top: 1px solid rgba(255,255,255,0.18);
           text-align: center;
+          max-width: 1200px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .rd-footer-bottom .rd-footer-info {
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
           gap: 12px 24px;
-          font-size: 16px;
-          color: rgba(255,255,255,0.88);
+          font-size: 13px;
+          color: #CFCFCB;
         }
 
         .rd-footer-bottom .rd-footer-info .rd-sep {
-          color: rgba(255,255,255,0.35);
+          color: rgba(255,255,255,0.18);
         }
 
         .rd-footer-info.mobile-only {
@@ -533,9 +516,9 @@ export default function Footer() {
         }
 
         .rd-footer-bottom p {
-          margin: 18px 0 0;
-          font-size: 15px;
-          color: rgba(255,255,255,0.72);
+          margin: 16px 0 0;
+          font-size: 13px;
+          color: rgba(255,255,255,0.35);
         }
 
         /* Mobile */
@@ -698,11 +681,6 @@ export default function Footer() {
           <footer className="rd-footer">
             <div className="rd-footer-inner">
 
-              {/* TOP LOGO */}
-              <div className="rd-footer-logo">
-                <img src="/lo.png" alt="Recruitment Direct" />
-                {/* <span>RECRUITMENT<br />DIRECT</span> */}
-              </div>
 
               <div className="rd-footer-main">
 
@@ -741,8 +719,8 @@ export default function Footer() {
                     <a href="/policies">Privacy Policy</a>
                     <a href="/policies#terms">Terms of Use</a>
                     <a href="/policies#cookies">Cookies</a>
-                    <a href="/policies">Modern Slavery Policy</a>
-                    <a href="/policies">Carbon Reduction Plan</a>
+                    <a href="/policies">Modern Slavery</a>
+                    <a href="/policies">Carbon Reduction</a>
                   </div>
 
                 </div>
