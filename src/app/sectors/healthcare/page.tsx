@@ -67,7 +67,7 @@ export default function HealthcareSectorPage() {
               </p>
 
               <div className="rd-button-wrap">
-                <a href="/contact" className="rd-button">Deliver reliable, fully verified healthcare staff</a>
+                <a href="/contact" className="btn btn-primary">Deliver reliable, fully verified healthcare staff</a>
               </div>
             </div>
           </div>
@@ -183,25 +183,6 @@ export default function HealthcareSectorPage() {
           margin-top: 28px;
         }
 
-        .rd-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 14px 24px;
-          border-radius: 12px;
-          background: var(--btn-primary);
-          color: #ffffff;
-          text-decoration: none;
-          font-size: 16px;
-          font-weight: 600;
-          transition: all 0.25s ease;
-        }
-
-        .rd-button:hover {
-          background: var(--btn-primary-hover);
-          box-shadow: var(--btn-glow);
-          transform: translateY(-2px);
-        }
 
         @media (max-width: 1100px) {
           .rd-title {
@@ -251,9 +232,6 @@ export default function HealthcareSectorPage() {
             columns: 1;
           }
 
-          .rd-button {
-            width: 100%;
-          }
         }
       `}</style>
     </div>

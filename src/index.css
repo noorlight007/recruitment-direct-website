@@ -41,11 +41,15 @@
     --electric-blue: 217 90% 46%;
     --text-dark: 222 47% 11%;
 
-    --gradient-metallic: linear-gradient(135deg, hsl(217, 90%, 52%), hsl(217, 90%, 40%), hsl(217, 90%, 48%));
-    --gradient-metallic-hover: linear-gradient(135deg, hsl(217, 90%, 56%), hsl(217, 90%, 44%), hsl(217, 90%, 52%));
-    --gradient-metallic-active: linear-gradient(135deg, hsl(217, 90%, 36%), hsl(217, 90%, 30%), hsl(217, 90%, 38%));
-    --glow-blue: 0 0 20px hsla(217, 90%, 46%, 0.4);
-    --glow-blue-strong: 0 0 30px hsla(217, 90%, 46%, 0.6);
+    --ai-blue: #0A7CFF;
+    --ai-blue-deep: #2563EB;
+    --ai-purple: #6D5BFF;
+    --ai-purple-glow: #A855F7;
+    --button-radius: 999px;
+
+    --gradient-metallic: linear-gradient(135deg, #0A7CFF 0%, #2563EB 60%, #6D5BFF 85%, #A855F7 100%);
+    --gradient-metallic-hover: linear-gradient(135deg, #2563EB 0%, #0A7CFF 60%, #A855F7 85%, #6D5BFF 100%);
+    --glow-blue: 0 8px 22px rgba(10, 124, 255, 0.35);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -78,23 +82,157 @@
 }
 
 @layer components {
-  .btn-metallic {
-    background: var(--gradient-metallic);
-    @apply text-primary-foreground font-semibold rounded-[10px] px-6 py-3 transition-all duration-200;
-    box-shadow: var(--glow-blue);
-  }
+/* =========================
+   RDUK Premium Button System
+   ========================= */
 
-  .btn-metallic:hover {
-    background: var(--gradient-metallic-hover);
-    box-shadow: var(--glow-blue-strong);
-    transform: translateY(-1px);
-  }
+.btn,
+button,
+a.button,
+.wp-block-button__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--button-radius);
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  font-family: inherit;
+  border: none;
+}
 
-  .btn-metallic:active {
-    background: var(--gradient-metallic-active);
-    box-shadow: none;
-    transform: translateY(1px) scale(0.98);
+/* 1. PRIMARY */
+.btn-primary,
+a.btn-primary,
+.wp-block-button.is-style-primary .wp-block-button__link {
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    #0A7CFF 0%,
+    #2563EB 60%,
+    #6D5BFF 85%,
+    #A855F7 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset,
+    0 8px 22px rgba(10, 124, 255, 0.35),
+    0 0 18px rgba(109, 91, 255, 0.25);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+.btn-primary:hover,
+a.btn-primary:hover,
+.wp-block-button.is-style-primary .wp-block-button__link:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.32) inset,
+    0 14px 36px rgba(10, 124, 255, 0.52),
+    0 0 32px rgba(168, 85, 247, 0.42);
+}
+
+.btn-primary:active,
+a.btn-primary:active,
+.wp-block-button.is-style-primary .wp-block-button__link:active {
+  transform: scale(0.97);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.38) inset,
+    0 0 14px rgba(10, 124, 255, 0.65),
+    0 0 28px rgba(168, 85, 247, 0.65);
+}
+
+/* 2. SECONDARY */
+.btn-secondary,
+a.btn-secondary,
+.wp-block-button.is-style-secondary .wp-block-button__link {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 8px 20px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover,
+a.btn-secondary:hover,
+.wp-block-button.is-style-secondary .wp-block-button__link:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(10, 124, 255, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(10, 124, 255, 0.25) inset,
+    0 10px 26px rgba(10, 124, 255, 0.22);
+}
+
+/* 3. OUTLINE */
+.btn-outline,
+a.btn-outline,
+.wp-block-button.is-style-outline .wp-block-button__link {
+  color: #ffffff !important;
+  background: transparent;
+  border: 1px solid rgba(10, 124, 255, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.btn-outline:hover,
+a.btn-outline:hover,
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.75);
+  background: rgba(10, 124, 255, 0.08);
+  box-shadow:
+    0 0 18px rgba(10, 124, 255, 0.22),
+    0 0 24px rgba(168, 85, 247, 0.18);
+}
+
+/* 4. GHOST */
+.btn-ghost,
+a.btn-ghost {
+  color: rgba(255, 255, 255, 0.88) !important;
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+.btn-ghost:hover,
+a.btn-ghost:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Disabled */
+.btn:disabled,
+.btn-disabled,
+a.btn-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(20%);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .btn,
+  button,
+  a.button,
+  .wp-block-button__link {
+    width: 100% !important;
+    padding: 15px 22px;
+    font-size: 15px;
   }
+}
+
+.btn-metallic {
+  @extend .btn-primary;
+}
 
   .card-hover {
     @apply bg-background rounded-xl transition-all duration-300;
@@ -187,29 +325,6 @@
   margin-bottom: 30px;
 }
 
-.saas-section .ai-test-btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #0066ff 0%, #9900ff 100%);
-  padding: 14px 28px;
-  border-radius: 20px;
-  color: white;
-  text-decoration: none;
-  margin-bottom: 50px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.2);
-}
-
-.saas-section .ai-test-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(153, 0, 255, 0.4);
-  background: linear-gradient(90deg, #1a75ff 0%, #a61aff 100%);
-  color: white;
-}
-
-.saas-section .ai-test-btn:active {
-  transform: scale(0.97);
-}
 
 .saas-section .cards {
   display: grid;
@@ -266,35 +381,7 @@
   color: #94A3B8;
 }
 
-.saas-section .btn {
-  display: inline-block;
-  padding: 14px 24px;
-  background: linear-gradient(90deg, #0066ff 0%, #9900ff 100%);
-  color: white;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.2);
-}
 
-/* PRIMARY BUTTON */
-.saas-section .btn.primary {
-  /* Same as base .btn now per user request */
-}
-
-/* HOVER + GLOW */
-.saas-section .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(153, 0, 255, 0.4);
-  background: linear-gradient(90deg, #1a75ff 0%, #a61aff 100%);
-  color: white;
-}
-
-/* PRESS EFFECT */
-.saas-section .btn:active {
-  transform: scale(0.97);
-}
 
 /* Mobile responsive */
 @media (max-width: 768px) {
@@ -321,15 +408,6 @@
     margin-bottom: 24px;
   }
 
-  .saas-section .ai-test-btn {
-    width: 100%;
-    max-width: 360px;
-    text-align: center;
-    margin-bottom: 34px;
-    padding: 16px 24px;
-    font-size: 18px;
-    border-radius: 20px;
-  }
 
   .saas-section .cards {
     grid-template-columns: 1fr;
@@ -362,12 +440,6 @@
     font-size: 22px;
   }
 
-  .saas-section .btn {
-    width: 100%;
-    text-align: center;
-    padding: 15px 18px;
-    font-size: 16px;
-  }
 }
 
 @media (max-width: 420px) {
@@ -387,3 +459,40 @@
     font-size: 23px;
   }
 }
+
+/* =========================
+   Header Social Icons
+   ========================= */
+.header-social-icons {
+  display: flex;
+  align-items: center;
+}
+
+.header-social-icons a {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-left: 10px;
+  text-decoration: none !important;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s ease;
+}
+
+.header-social-icons a svg,
+.header-social-icons a i {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.header-social-icons a:hover {
+  background: rgba(10, 124, 255, 0.12);
+  border-color: rgba(10, 124, 255, 0.4);
+  color: #0A7CFF;
+  transform: translateY(-1px);
+}

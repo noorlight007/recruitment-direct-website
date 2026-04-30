@@ -96,7 +96,7 @@ export default function SearchJobsSection() {
               }}
             />
           </div>
-          <button className="btn-metallic px-8 py-3.5 flex items-center justify-center gap-2">
+          <button className="btn btn-primary">
             <Search className="w-5 h-5" />
             Search
           </button>

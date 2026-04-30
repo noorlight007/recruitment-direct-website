@@ -48,14 +48,14 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="/ai-hire-now-form"
-              className="btn-metallic text-base px-8 py-3.5 inline-flex items-center justify-center"
+              className="btn btn-primary"
             >
               AI Hire Now
             </a>
 
             <a
               href="/contact"
-              className="inline-flex items-center justify-center rounded-xl border border-primary/30 px-8 py-3.5 text-sm font-medium text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+              className="btn btn-outline"
             >
               Request Access
             </a>
@@ -133,13 +133,13 @@ function FinalCTA() {
         >
           <a
             href="/ai-hire-now-form"
-            className="btn-metallic text-base px-8 py-3.5"
+            className="btn btn-primary"
           >
             AI Hire Now
           </a>
           <a
             href="/contact"
-            className="inline-flex items-center justify-center rounded-xl border border-primary/30 px-8 py-3.5 text-sm font-medium text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+            className="btn btn-outline"
           >
             Request Access
           </a>

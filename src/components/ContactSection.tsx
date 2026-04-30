@@ -30,13 +30,13 @@ export default function ContactSection() {
           <div className="saas-contact-actions flex flex-col sm:flex-row gap-[16px] justify-center mb-[40px]">
             <Link
               href="/contact"
-              className="btn-primary w-full sm:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] text-white transition-all duration-200 whitespace-nowrap"
+              className="btn btn-primary whitespace-nowrap"
             >
               Contact Us
             </Link>
             <a
               href="https://wa.me/447590882626"
-              className="btn-secondary w-full sm:w-auto px-10 h-[60px] rounded-[20px] flex items-center justify-center text-[17px] font-[700] text-white transition-all duration-200 whitespace-nowrap"
+              className="btn btn-secondary whitespace-nowrap"
             >
               WhatsApp
             </a>

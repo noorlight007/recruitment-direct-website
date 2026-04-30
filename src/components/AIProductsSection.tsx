@@ -14,7 +14,7 @@ export default function AIProductsSection() {
         <h2>Three Powerful Ways to Hire Smarter</h2>
         <p className="subtext">AI-powered screening, temporary staff, or permanent hires.</p>
 
-        <Link href="https://callpilot.pro/" className="ai-test-btn">AI Call Test</Link>
+        <Link href="https://callpilot.pro/" className="btn btn-primary mb-12">AI Call Test</Link>
 
         <div className="cards">
 
@@ -35,7 +35,7 @@ export default function AIProductsSection() {
 
             <div className="price">£1.00 / minute</div>
 
-            <Link href="/contact" className="btn primary">Start AI Call Journey →</Link>
+            <Link href="/contact" className="btn btn-primary mt-6">Start AI Call Journey →</Link>
           </div>
 
           {/* CARD 2 */}
@@ -55,7 +55,7 @@ export default function AIProductsSection() {
 
             <div className="price muted">Pricing on request</div>
 
-            <Link href="/contact" className="btn">Get Temporary Staff →</Link>
+            <Link href="/contact" className="btn btn-secondary mt-6">Get Temporary Staff →</Link>
           </div>
 
           {/* CARD 3 */}
@@ -75,7 +75,7 @@ export default function AIProductsSection() {
 
             <div className="price muted">Pricing on request</div>
 
-            <Link href="/contact" className="btn">Hire Permanent Staff →</Link>
+            <Link href="/contact" className="btn btn-secondary mt-6">Hire Permanent Staff →</Link>
           </div>
 
         </div>

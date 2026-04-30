@@ -114,32 +114,6 @@ export default function Footer() {
           padding-top: 16px;
           border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .rd-card .rd-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          width: 100%;
-          min-height: 54px;
-          border-radius: 16px;
-          border: 1px solid var(--btn-secondary-border);
-          color: #fff;
-          text-decoration: none;
-          font-size: 15px;
-          font-weight: 500;
-          letter-spacing: -0.01em;
-          background: var(--btn-secondary-bg);
-          transition: all 0.18s ease;
-        }
-        .rd-card .rd-btn:hover {
-          border-color: rgba(47, 128, 237, 0.5);
-          box-shadow: var(--btn-glow);
-          transform: translateY(-3px);
-        }
-        .rd-card .rd-btn:active {
-          transform: translateY(1px) scale(0.97);
-          box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.45);
-        }
         .rd-btn-arrow {
           font-size: 22px;
           line-height: 1;
@@ -353,93 +327,11 @@ export default function Footer() {
           50% { transform: scale(1.04); filter: brightness(1.25); }
         }
 
-        /* BUTTONS */
-        .rd-ai-btn {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          min-height: 54px;
-          margin-top: 12px;
-          padding: 0 22px;
-          border-radius: 12px;
-          text-decoration: none;
+        .rd-ai-btn-text {
           font-weight: 800;
           letter-spacing: 0.2px;
-          overflow: hidden;
-          border: 1px solid rgba(255, 255, 255, 0.22);
-          box-shadow: 0 0 18px rgba(255, 255, 255, 0.05);
-          transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
-          color: #F4F4F2;
         }
-
-        .rd-ai-btn.primary {
-          background: linear-gradient(90deg, #2260ccff 0%, #1e53c7ff 30%, #390ed4ff 70%, #840dd3ff 100%);
-        }
-
-        .rd-ai-btn.secondary {
-          background: linear-gradient(180deg, rgba(8, 16, 34, 0.98), rgba(5, 12, 26, 0.98));
-          border-color: rgba(90, 130, 255, 0.35);
-        }
-
-        .rd-ai-btn.premium {
-          background: linear-gradient(135deg, #2520a8, #7b22d8, #b21cff);
-        }
-
-        .rd-ai-btn:hover {
-          transform: translateY(-2px);
-          border-color: rgba(255, 255, 255, 0.45);
-          box-shadow:
-            0 0 20px rgba(255, 255, 255, 0.2),
-            0 0 35px rgba(255, 255, 255, 0.1);
-          filter: brightness(1.1);
-        }
-
-        .rd-ai-btn:active {
-          transform: translateY(1px) scale(0.985);
-          box-shadow:
-            inset 0 0 22px rgba(255, 255, 255, 0.1),
-            0 0 24px rgba(255, 255, 255, 0.15);
-          border-color: rgba(255, 255, 255, 0.75);
-        }
-
-        .rd-ai-btn::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          background: linear-gradient(
-            120deg,
-            transparent 30%,
-            rgba(255, 255, 255, 0.3),
-            transparent 70%
-          );
-          opacity: 0;
-          transform: translateX(-100%);
-          pointer-events: none;
-        }
-
-        .rd-ai-btn:hover::before {
-          opacity: 1;
-          animation: rdButtonShimmer 1.2s linear;
-        }
-
-        @keyframes rdButtonShimmer {
-          from {
-            transform: translateX(-100%);
-          }
-
-          to {
-            transform: translateX(100%);
-          }
-        }
-
-        .rd-ai-btn:focus-visible {
-          outline: 2px solid #ffffff;
-          outline-offset: 4px;
-        }
-
-        .rd-ai-btn b {
+        .rd-ai-btn-arrow {
           font-size: 26px;
           font-weight: 400;
         }
@@ -601,7 +493,7 @@ export default function Footer() {
               <p className="rd-num">00207320</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="rd-btn"
+                  className="btn btn-secondary"
                   href="/certificates/rec-corporate-membership.pdf"
                   target="_blank"
                   rel="noopener"
@@ -622,7 +514,7 @@ export default function Footer() {
               <p className="rd-num">GB2006088</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="rd-btn"
+                  className="btn btn-secondary"
                   href="/certificates/iso-9001-2015-gb2006088.pdf"
                   target="_blank"
                   rel="noopener"
@@ -646,7 +538,7 @@ export default function Footer() {
               <p className="rd-num">1324569</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="rd-btn"
+                  className="btn btn-secondary"
                   href="/certificates/constructionline-gold-1324569.pdf"
                   target="_blank"
                   rel="noopener"
@@ -670,7 +562,7 @@ export default function Footer() {
               <p className="rd-num">Valid until 21/01/2027</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="rd-btn"
+                  className="btn btn-secondary"
                   href="/certificates/cyber-essentials-4686a995.pdf"
                   target="_blank"
                   rel="noopener"
@@ -753,19 +645,19 @@ export default function Footer() {
                       </div>
                     </div>
 
-                    <a href="/callpilot" className="rd-ai-btn primary">
-                      <span>Start AI Chat</span>
-                      <b>→</b>
+                    <a href="/callpilot" className="btn btn-primary w-full mt-4 !justify-between">
+                      <span className="rd-ai-btn-text">Start AI Chat</span>
+                      <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a href="https://callpilot.pro/" className="rd-ai-btn secondary">
-                      <span>Try AI Call</span>
-                      <b>→</b>
+                    <a href="https://callpilot.pro/" className="btn btn-secondary w-full mt-3 !justify-between">
+                      <span className="rd-ai-btn-text">Try AI Call</span>
+                      <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a href="https://callpilot.pro/get-started" className="rd-ai-btn premium">
-                      <span>AI Calls for Business</span>
-                      <b>→</b>
+                    <a href="https://callpilot.pro/get-started" className="btn btn-primary w-full mt-3 !justify-between">
+                      <span className="rd-ai-btn-text">AI Calls for Business</span>
+                      <b className="rd-ai-btn-arrow">→</b>
                     </a>
                   </div>
 

@@ -66,7 +66,7 @@ export default function ITTechSectorPage() {
               We supply IT and technology professionals across London, Manchester, Birmingham, Leeds, Bristol, Edinburgh, Glasgow, Cambridge, Reading, Dublin, and throughout the UK and Ireland.
             </p>
 
-            <a href="/contact" className="rd-button">
+            <a href="/contact" className="btn btn-primary">
               Get in touch with Recruitment Direct today
             </a>
           </div>
@@ -174,23 +174,6 @@ export default function ITTechSectorPage() {
           font-size: 16px;
         }
 
-        .rd-button {
-          display: inline-block;
-          margin-top: 20px;
-          padding: 14px 24px;
-          background: var(--btn-primary);
-          color: #fff;
-          text-decoration: none;
-          border-radius: 10px;
-          font-weight: 600;
-          transition: all 0.2s ease;
-        }
-
-        .rd-button:hover {
-          background: var(--btn-primary-hover);
-          box-shadow: var(--btn-glow);
-          transform: translateY(-2px);
-        }
 
         @media (max-width: 900px) {
           .rd-grid {

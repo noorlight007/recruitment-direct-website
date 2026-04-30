@@ -121,7 +121,7 @@ export default function CommercialSectorPage() {
               </p>
 
               <div className="rd-button-wrap">
-                <a href="/contact" className="rd-button">
+                <a href="/contact" className="btn btn-primary">
                   Reduce recruitment costs with AI Call Automation and activate recruitment support only when required
                 </a>
               </div>
@@ -251,25 +251,6 @@ export default function CommercialSectorPage() {
           margin-top: 28px;
         }
 
-        .rd-button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 14px 24px;
-          border-radius: 12px;
-          background: var(--btn-primary);
-          color: #ffffff;
-          text-decoration: none;
-          font-size: 16px;
-          font-weight: 600;
-          transition: all 0.25s ease;
-        }
-
-        .rd-button:hover {
-          background: var(--btn-primary-hover);
-          box-shadow: var(--btn-glow);
-          transform: translateY(-2px);
-        }
 
         @media (max-width: 1100px) {
           .rd-title {
@@ -319,9 +300,6 @@ export default function CommercialSectorPage() {
             columns: 1;
           }
 
-          .rd-button {
-            width: 100%;
-          }
         }
       `}</style>
     </div>

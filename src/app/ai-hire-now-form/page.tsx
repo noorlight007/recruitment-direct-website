@@ -106,7 +106,7 @@ export default function AIHireNowFormPage() {
               </div>
 
               <div className="ai-hire-now-actions">
-                <button type="submit" className="ai-hire-now-button" disabled={isSubmitting}>
+                <button type="submit" className="btn btn-primary w-full" disabled={isSubmitting}>
                   {isSubmitting ? "Sending..." : "AI Hire Now"}
                 </button>
                 <p className="ai-hire-now-trust">24/7 ordering • Fast response • Existing client service</p>
@@ -249,35 +249,6 @@ export default function AIHireNowFormPage() {
           padding-top: 10px;
         }
 
-        .ai-hire-now-button {
-          min-width: 360px;
-          border: 0;
-          border-radius: 16px;
-          background: var(--btn-primary);
-          color: #ffffff;
-          font-family: inherit;
-          font-size: 1.2rem;
-          font-weight: 700;
-          line-height: 1;
-          padding: 22px 34px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .ai-hire-now-button:hover {
-          background: var(--btn-primary-hover);
-          transform: translateY(-2px);
-          box-shadow: var(--btn-glow);
-        }
-
-        .ai-hire-now-button:active {
-          transform: translateY(0);
-        }
-
-        .ai-hire-now-button:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
 
         .ai-hire-now-trust {
           margin: 22px 0 0;
@@ -308,10 +279,6 @@ export default function AIHireNowFormPage() {
             grid-template-columns: 1fr;
           }
 
-          .ai-hire-now-button {
-            min-width: 100%;
-            width: 100%;
-          }
         }
 
         @media (max-width: 640px) {
@@ -338,11 +305,6 @@ export default function AIHireNowFormPage() {
             font-size: 16px;
           }
 
-          .ai-hire-now-button {
-            padding: 20px 24px;
-            font-size: 1.08rem;
-            border-radius: 14px;
-          }
 
           .ai-hire-now-trust {
             font-size: 0.95rem;

@@ -63,7 +63,7 @@ export default function LogisticsSectorPage() {
               We supply construction drivers across Glasgow, Edinburgh, Falkirk, Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, and throughout Scotland and the UK.
             </p>
 
-            <a href="/contact" className="rd-button">
+            <a href="/contact" className="btn btn-primary">
               Get in touch with Recruitment Direct today
             </a>
           </div>
@@ -171,23 +171,6 @@ export default function LogisticsSectorPage() {
           font-size: 16px;
         }
 
-        .rd-button {
-          display: inline-block;
-          margin-top: 20px;
-          padding: 14px 24px;
-          background: var(--btn-primary);
-          color: #fff;
-          text-decoration: none;
-          border-radius: 10px;
-          font-weight: 600;
-          transition: all 0.2s ease;
-        }
-
-        .rd-button:hover {
-          background: var(--btn-primary-hover);
-          box-shadow: var(--btn-glow);
-          transform: translateY(-2px);
-        }
 
         @media (max-width: 900px) {
           .rd-grid {

@@ -23,38 +23,6 @@ export default function ContactPage() {
           border-radius: 16px;
           padding: 30px;
         }
-        .btn-primary {
-          background: linear-gradient(135deg, #2F80ED, #8E2DE2);
-          color: #fff;
-          border-radius: 12px;
-          transition: all 0.15s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          font-weight: 700;
-        }
-        .btn-secondary {
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          color: #fff;
-          border-radius: 12px;
-          transition: all 0.15s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          font-weight: 700;
-        }
-        .btn-primary:hover,
-        .btn-secondary:hover {
-          box-shadow: 0 0 12px rgba(142, 45, 226, 0.3);
-          transform: translateY(-1px);
-        }
-        .btn-primary:active,
-        .btn-secondary:active {
-          transform: scale(0.97);
-        }
         .form-input {
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
@@ -143,14 +111,14 @@ export default function ContactPage() {
 
                 {/* ACTION BUTTONS */}
                 <div className="mt-[30px] space-y-3">
-                  <a href="tel:01324613198" className="btn-primary w-full h-[56px]">
+                  <a href="tel:01324613198" className="btn btn-primary w-full">
                     Call Now
                   </a>
                   <a
                     href="https://wa.me/447590882626"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-secondary w-full h-[56px] gap-2"
+                    className="btn btn-secondary w-full"
                   >
                     <svg
                       className="w-5 h-5 text-[#25D366]"
@@ -228,7 +196,7 @@ export default function ContactPage() {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn-primary w-full h-[56px]">
+                <button type="submit" className="btn btn-primary w-full">
                   Contact Our Team
                 </button>
               </form>
