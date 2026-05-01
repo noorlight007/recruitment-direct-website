@@ -55,7 +55,7 @@ export default function AIProductsSection() {
 
             <div className="price muted">Pricing on request</div>
 
-            <Link href="/contact" className="btn btn-secondary mt-6">Get Temporary Staff →</Link>
+            <Link href="/contact" className="btn btn-primary mt-6">Get Temporary Staff →</Link>
           </div>
 
           {/* CARD 3 */}
@@ -75,7 +75,7 @@ export default function AIProductsSection() {
 
             <div className="price muted">Pricing on request</div>
 
-            <Link href="/contact" className="btn btn-secondary mt-6">Hire Permanent Staff →</Link>
+            <Link href="/contact" className="btn btn-primary mt-6">Hire Permanent Staff →</Link>
           </div>
 
         </div>
