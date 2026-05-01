@@ -167,6 +167,7 @@ export default function Footer() {
           grid-template-columns: repeat(4, 1fr);
           gap: 40px;
           flex: 1;
+          margin-top: 40px;
         }
 
         .footer-col {
