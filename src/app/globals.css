@@ -192,9 +192,10 @@
     a.btn,
     .cta-button,
     .wp-block-button__link {
-      width: 100% !important;
-      padding: 15px 22px;
-      font-size: 15px;
+      width: auto !important;
+      padding: 10px 22px;
+      font-size: 14px;
+      min-width: 140px;
     }
   }
 
