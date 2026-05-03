@@ -89,7 +89,7 @@ export default function CallPilotPage() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="my-[60px] text-center font-bold text-[#0f172a] text-sm md:text-base tracking-wide uppercase px-4 py-3 bg-[#eef4ff] rounded-[12px] border border-[#dbe7ff]"
           >
-            Apply <span className="text-[#2563eb] mx-2">→</span> AI Call <span className="text-[#2563eb] mx-2">→</span> Questions <span className="text-[#2563eb] mx-2">→</span> Responses <span className="text-[#2563eb] mx-2">→</span> Documents <span className="text-[#2563eb] mx-2">→</span> CRM <span className="text-[#2563eb] mx-2">→</span> Review <span className="text-[#2563eb] mx-2">→</span> Submit
+            Apply <span className="text-[#2563eb] mx-2">→</span> AI Call Demo <span className="text-[#2563eb] mx-2">→</span> Questions <span className="text-[#2563eb] mx-2">→</span> Responses <span className="text-[#2563eb] mx-2">→</span> Documents <span className="text-[#2563eb] mx-2">→</span> CRM <span className="text-[#2563eb] mx-2">→</span> Review <span className="text-[#2563eb] mx-2">→</span> Submit
           </motion.div>
 
           {/* OPTIONS */}
@@ -99,11 +99,11 @@ export default function CallPilotPage() {
               transition={{ delay: 0.5, duration: 0.5 }}
               className="bg-white p-[30px] rounded-[20px] border border-[#e2e8f0] text-center transition-all hover:-translate-y-2 hover:shadow-xl shadow-sm flex flex-col"
             >
-              <h3 className="text-[22px] font-bold text-[#0f172a] mb-2.5">AI Call + Automation</h3>
+              <h3 className="text-[22px] font-bold text-[#0f172a] mb-2.5">AI Call Demo + Automation</h3>
               <p className="text-[#64748b] mb-4 flex-grow">Automate applicant calls, screening, and follow-up</p>
               <div className="font-bold text-[#2563eb] text-xl mb-6">From £1 per minute</div>
               <Link href="/contact" className="btn btn-primary w-full">
-                Start AI Calls
+                Start AI Call Demo
               </Link>
             </motion.div>
 
@@ -115,7 +115,7 @@ export default function CallPilotPage() {
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2563eb] text-white px-3 py-1 text-[12px] font-bold rounded-full uppercase tracking-wider">
                 Recommended
               </div>
-              <h3 className="text-[22px] font-bold text-[#0f172a] mt-2 mb-2.5">AI Call + Automation + Recruitment</h3>
+              <h3 className="text-[22px] font-bold text-[#0f172a] mt-2 mb-2.5">AI Call Demo + Automation + Recruitment</h3>
               <p className="text-[#64748b] mb-4 flex-grow">AI automation with full recruitment delivery</p>
               <div className="font-bold text-[#2563eb] text-xl mb-6 tracking-tight">From £1 per minute + recruitment fees</div>
               <Link href="/contact" className="btn btn-primary w-full">
@@ -131,7 +131,7 @@ export default function CallPilotPage() {
             className="text-center mt-[60px] p-10 border border-[#e2e8f0] rounded-[24px] bg-white shadow-sm"
           >
             <h2 className="text-[32px] md:text-[36px] font-bold text-[#0f172a] mb-4">
-              Discover AI Call Automation
+              Discover AI Call Demo Automation
             </h2>
             <p className="max-w-[750px] mx-auto text-lg text-[#64748b] mb-8 leading-relaxed">
               See how CallPilot handles real conversations with applicants, captures responses,
@@ -143,7 +143,7 @@ export default function CallPilotPage() {
                 href="https://callpilot.pro/"
                 className="btn btn-primary"
               >
-                Test AI Call
+                AI Call Demo
               </Link>
               <p className="text-[14px] text-[#64748b] mt-4 font-medium">
                 No signup required • Takes 30 seconds • Real AI voice

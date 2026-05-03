@@ -37,7 +37,15 @@ Tertiary = outline
 
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
 import {
   User,
   Building2,
@@ -61,6 +69,8 @@ import {
 } from "lucide-react";
 
 export default function HeroSection() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   return (
     <section className="hero-section relative bg-[#020817] pt-32 pb-10 overflow-hidden text-white">
       {/* Background Gradients */}
@@ -72,25 +82,23 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-12">
           {/* Left Column: Content and Action Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3">
-              Recruitment That <br /> Moves Faster.
-            </h1>
-
-            <div className="space-y-1 text-gray-400 text-lg mb-6 max-w-lg">
-              <p>Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance.</p>
-              {/* <p>with speed, accuracy and full compliance.</p> */}
-              <p className="pt-2 font-medium text-gray-300">Powered by AI, delivered by experienced consultants.</p>
+          <div className="flex flex-col">
+            <div className="hero-title">
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3">
+                Recruitment That <br /> <span>Moves Faster.</span>
+              </h1>
             </div>
 
-            <div className="grid gap-3 max-w-md">
+            <div className="hero-sub">
+              <div className="space-y-1 text-gray-400 text-lg mb-6 max-w-lg">
+                <p>Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance.</p>
+                <p className="pt-2 font-medium text-gray-300">Powered by AI, delivered by experienced consultants.</p>
+              </div>
+            </div>
+
+            <div className="hero-buttons grid gap-3 max-w-md">
               {/* Card 1: AI Hire Now */}
-              <a href="/ai-hire-now" className="btn btn-primary flex items-center justify-between group">
+              <a href="/ai-hire-now" className="btn btn-primary btn-saas flex items-center justify-between group">
                 <div className="flex items-center gap-4">
                   <div className="icon-box">
                     <User />
@@ -104,7 +112,7 @@ export default function HeroSection() {
               </a>
 
               {/* Card 2: Place Enquiry */}
-              <a href="/place-enquiry" className="btn btn-secondary flex items-center justify-between group">
+              <a href="/place-enquiry" className="btn btn-secondary btn-saas flex items-center justify-between group">
                 <div className="flex items-center gap-4">
                   <div className="icon-box">
                     <Building2 />
@@ -117,14 +125,14 @@ export default function HeroSection() {
                 <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
               </a>
 
-              {/* Card 3: AI Call Enquiry */}
-              <a href="https://callpilot.pro/" className="btn btn-secondary flex items-center justify-between group">
+              {/* Card 3: AI Call Demo */}
+              <a href="https://callpilot.pro/" className="btn btn-secondary btn-saas flex items-center justify-between group">
                 <div className="flex items-center gap-4">
                   <div className="icon-box">
                     <Phone />
                   </div>
                   <div className="text-left">
-                    <div className="font-bold text-lg leading-tight text-white">AI Call Test</div>
+                    <div className="font-bold text-lg leading-tight text-white">AI Call Demo</div>
                     <div className="text-sm text-gray-500">Ask AI to call you</div>
                   </div>
                 </div>
@@ -132,7 +140,7 @@ export default function HeroSection() {
               </a>
 
               {/* Card 4: Job Search */}
-              <a href="/#job-search" className="btn btn-secondary flex items-center justify-between group">
+              <a href="/#job-search" className="btn btn-secondary btn-saas flex items-center justify-between group">
                 <div className="flex items-center gap-4">
                   <div className="icon-box">
                     <Briefcase />
@@ -145,28 +153,31 @@ export default function HeroSection() {
                 <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: AI Automation Dashboard */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-[#0b1224] border border-gray-800 rounded-3xl p-8 shadow-2xl relative"
+            className="ai-call-panel bg-[#0b1224] border border-gray-800 rounded-3xl p-8 shadow-2xl relative"
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
               <h3 className="text-xl font-semibold text-gray-300">AI Call Screening & Automation</h3>
-              <a href="/callpilot" className="btn btn-primary flex items-center justify-center gap-2 text-sm font-semibold">
+              <button
+                onClick={() => setIsVideoOpen(true)}
+                className="btn btn-primary watch-btn flex items-center justify-center gap-2 text-sm font-semibold cursor-pointer"
+              >
                 <Play className="w-4 h-4 fill-current text-white" />
-                <span className="text-white">Watch AI Call</span>
-              </a>
+                <span className="text-white">AI Call Demo</span>
+              </button>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Timeline Section */}
               <div className="relative space-y-6">
                 {/* Vertical Line */}
-                <div className="absolute left-6 top-4 bottom-4 w-0.5 border-l-2 border-dashed border-gray-700 z-0" />
+                <div className="timeline-line absolute left-6 top-4 bottom-4 w-0.5 border-l-2 border-dashed border-gray-700 z-0" />
 
                 {[
                   { icon: <FileText className="w-5 h-5" />, title: "Application Received", status: "completed", color: "text-green-500" },
@@ -176,14 +187,14 @@ export default function HeroSection() {
                   { icon: <UserCheck className="w-5 h-5" />, title: "Shortlisted", status: "pending", color: "text-green-500" },
                 ].map((step, idx) => (
                   <div key={idx} className="flex items-center gap-6 relative z-10">
-                    <div className={`w-12 h-12 rounded-full border border-gray-800 bg-[#020817] flex items-center justify-center text-gray-400`}>
+                    <div className={`timeline-icon w-12 h-12 rounded-full border border-gray-800 bg-[#020817] flex items-center justify-center text-gray-400`}>
                       {step.icon}
                     </div>
                     <div className="flex-1 flex items-center justify-between">
-                      <span className="text-gray-300 text-sm font-medium">{step.title}</span>
+                      <span className="timeline-title text-gray-300 text-sm font-medium">{step.title}</span>
                       <div className="flex items-center gap-3">
-                        {step.time && <span className="text-blue-400 text-xs">{step.time}</span>}
-                        <div className={`w-3 h-3 rounded-full ${step.status === 'completed' ? 'bg-green-500' : step.status === 'current' ? 'bg-yellow-500' : 'bg-gray-700'}`} />
+                        {step.time && <span className="timeline-time text-blue-400 text-xs">{step.time}</span>}
+                        <div className={`w-3 h-3 rounded-full ${step.status === 'completed' ? 'status-green' : step.status === 'current' ? 'status-yellow' : 'status-grey'}`} />
                       </div>
                     </div>
                   </div>
@@ -193,22 +204,22 @@ export default function HeroSection() {
               {/* Score and Checklist Section */}
               <div className="space-y-6">
                 {/* Match Score Circle */}
-                <div className="bg-[#020817] border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
+                <div className="match-score-card bg-[#020817] border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center">
                   <div className="relative w-28 h-28 mb-4">
                     <svg className="w-full h-full -rotate-90">
                       <circle cx="56" cy="56" r="50" stroke="currentColor" strokeWidth="8" fill="transparent" className="text-gray-800" />
-                      <circle cx="56" cy="56" r="50" stroke="currentColor" strokeWidth="8" fill="transparent" strokeDasharray={314} strokeDashoffset={314 * (1 - 0.92)} className="text-blue-500" strokeLinecap="round" />
+                      <circle cx="56" cy="56" r="50" stroke="currentColor" strokeWidth="8" fill="transparent" strokeDasharray={314} strokeDashoffset={314 * (1 - 0.92)} className="score-ring text-blue-500" strokeLinecap="round" />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl font-bold">92<span className="text-xs">%</span></span>
+                      <span className="score text-2xl font-bold">92<span className="text-xs">%</span></span>
                     </div>
                   </div>
                   <div className="text-base font-bold text-gray-200">Match Score</div>
-                  <div className="text-blue-400 text-sm font-medium">Strong Match</div>
+                  <div className="score-sub text-blue-400 text-sm font-medium">Strong Match</div>
                 </div>
 
                 {/* Checklist */}
-                <div className="bg-[#020817] border border-gray-800 rounded-2xl p-6 space-y-4">
+                <div className="checklist-card bg-[#020817] border border-gray-800 rounded-2xl p-6 space-y-4">
                   {[
                     { label: "Screened", sub: "Skills verified" },
                     { label: "Compliant", sub: "Right to work confirmed" },
@@ -224,7 +235,7 @@ export default function HeroSection() {
                           <div className="text-[10px] text-gray-500">{item.sub}</div>
                         </div>
                       </div>
-                      <CheckCircle2 className="w-4 h-4 text-green-500" />
+                      <CheckCircle2 className="check-icon w-4 h-4 text-green-500" />
                     </div>
                   ))}
                 </div>
@@ -261,6 +272,22 @@ export default function HeroSection() {
           ))}
         </motion.div>
       </div>
+
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
+          <DialogHeader className="sr-only">
+            <DialogTitle>AI Call Demo Video</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video w-full">
+            <video
+              src="/Video.mov"
+              controls
+              autoPlay
+              className="w-full h-full"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

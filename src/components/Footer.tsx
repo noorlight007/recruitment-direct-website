@@ -1,22 +1,88 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { FileText, Shield, Scale, Lock, Users, Info } from "lucide-react";
 
 export default function Footer() {
+  const [isPoliciesOpen, setIsPoliciesOpen] = useState(false);
+
+  const policyCategories = [
+    {
+      title: "FRAMEWORK & COMPLIANCE",
+      icon: <Scale className="w-5 h-5 text-blue-400" />,
+      items: [
+        "Modern Slavery Policy",
+        "Equality Policy",
+        "Health & Safety Policy",
+        "Carbon Reduction / Environmental Policy"
+      ]
+    },
+    {
+      title: "DATA & PRIVACY",
+      icon: <Lock className="w-5 h-5 text-blue-400" />,
+      items: [
+        "Privacy Policy",
+        "Cookie Policy",
+        "Candidate Privacy Notice",
+        "Client Privacy Notice",
+        "Data Retention Policy"
+      ]
+    },
+    {
+      title: "AI & TECHNOLOGY",
+      icon: <Shield className="w-5 h-5 text-blue-400" />,
+      items: [
+        "AI Transparency Statement",
+        "Human Review Statement",
+        "Bias / Fairness Statement"
+      ]
+    },
+    {
+      title: "SECURITY",
+      icon: <Shield className="w-5 h-5 text-blue-400" />,
+      items: [
+        "Information Security Policy",
+        "Data Breach Policy",
+        "Cyber Security / IT Policy"
+      ]
+    },
+    {
+      title: "RECRUITMENT COMPLIANCE",
+      icon: <Users className="w-5 h-5 text-blue-400" />,
+      items: [
+        "AWR Policy",
+        "Right to Work Policy",
+        "Complaints Policy",
+        "Safeguarding Policy"
+      ]
+    },
+    {
+      title: "WEBSITE LEGAL",
+      icon: <Info className="w-5 h-5 text-blue-400" />,
+      items: [
+        "Terms of Use"
+      ]
+    }
+  ];
+
   return (
     <>
       <style jsx global>{`
         .rd-premium-wrap {
-          background: radial-gradient(
-              circle at top,
-              rgba(38, 112, 255, 0.1) 0%,
-              rgba(38, 112, 255, 0) 34%
-            ),
-            linear-gradient(180deg, #040b18 0%, #020814 100%);
+          background:
+            radial-gradient(circle at 15% 25%, rgba(30,92,255,0.18), transparent 40%),
+            radial-gradient(circle at 85% 75%, rgba(30,92,255,0.12), transparent 45%),
+            linear-gradient(135deg, #01030A 0%, #020617 50%, #050C1F 100%) !important;
           padding: 64px 24px 0;
           border-top: 1px solid rgba(255, 255, 255, 0.06);
-          font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-            BlinkMacSystemFont, "Segoe UI", sans-serif;
+          position: relative;
+          overflow: hidden;
         }
         .rd-premium-container {
           max-width: 1320px;
@@ -37,7 +103,7 @@ export default function Footer() {
         .rd-premium-head p {
           max-width: 860px;
           margin: 0 auto;
-          color: rgba(255, 255, 255, 0.72);
+          color: #CBD5E1;
           font-size: 17px;
           line-height: 1.7;
           font-weight: 400;
@@ -99,13 +165,13 @@ export default function Footer() {
         }
         .rd-card .rd-sub {
           margin: 0 0 4px;
-          color: rgba(255, 255, 255, 0.72);
+          color: #CBD5E1;
           font-size: 14px;
           line-height: 1.5;
         }
         .rd-card .rd-num {
           margin: 0 0 16px;
-          color: #5ea8ff;
+          color: #60A5FA;
           font-size: 17px;
           font-weight: 500;
           line-height: 1.3;
@@ -134,7 +200,7 @@ export default function Footer() {
           line-height: 1;
         }
         .rd-footer {
-          background: #050b18;
+          background: transparent !important;
           padding: 34px 0 24px;
           color: #ffffff;
           position: relative;
@@ -488,7 +554,7 @@ export default function Footer() {
               <p className="rd-num">00207320</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="btn btn-secondary"
+                  className="btn btn-secondary btn-saas"
                   href="/certificates/rec-corporate-membership.pdf"
                   target="_blank"
                   rel="noopener"
@@ -509,7 +575,7 @@ export default function Footer() {
               <p className="rd-num">GB2006088</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="btn btn-secondary"
+                  className="btn btn-secondary btn-saas"
                   href="/certificates/iso-9001-2015-gb2006088.pdf"
                   target="_blank"
                   rel="noopener"
@@ -533,7 +599,7 @@ export default function Footer() {
               <p className="rd-num">1324569</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="btn btn-secondary"
+                  className="btn btn-secondary btn-saas"
                   href="/certificates/constructionline-gold-1324569.pdf"
                   target="_blank"
                   rel="noopener"
@@ -557,7 +623,7 @@ export default function Footer() {
               <p className="rd-num">Valid until 21/01/2027</p>
               <div className="rd-btn-wrap">
                 <a
-                  className="btn btn-secondary"
+                  className="btn btn-secondary btn-saas"
                   href="/certificates/cyber-essentials-4686a995.pdf"
                   target="_blank"
                   rel="noopener"
@@ -605,18 +671,48 @@ export default function Footer() {
                     <h4>Resources</h4>
                     <a href="/#clients">Clients</a>
                     <a href="/#job-search">Job Search</a>
-                    <a href="/policies">Policies</a>
+                    <button 
+                       onClick={() => setIsPoliciesOpen(true)}
+                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                     >
+                       Policies
+                     </button>
                     <a href="/accreditations">Accreditations</a>
                     <a href="/news">News & Insights</a>
                   </div>
 
                   <div className="footer-col">
                     <h4>Policies</h4>
-                    <a href="/policies">Privacy Policy</a>
-                    <a href="/policies#terms">Terms of Use</a>
-                    <a href="/policies#cookies">Cookies</a>
-                    <a href="/policies">Modern Slavery</a>
-                    <a href="/policies">Carbon Reduction</a>
+                     <button 
+                       onClick={() => setIsPoliciesOpen(true)}
+                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                     >
+                       Privacy Policy
+                     </button>
+                     <button 
+                       onClick={() => setIsPoliciesOpen(true)}
+                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                     >
+                       Cookie Policy
+                     </button>
+                     <button 
+                       onClick={() => setIsPoliciesOpen(true)}
+                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                     >
+                       Terms of Use
+                     </button>
+                     <button 
+                       onClick={() => setIsPoliciesOpen(true)}
+                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                     >
+                       Modern Slavery Policy
+                     </button>
+                     <button 
+                       onClick={() => setIsPoliciesOpen(true)}
+                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                     >
+                       Equality Policy
+                     </button>
                   </div>
 
                 </div>
@@ -640,18 +736,18 @@ export default function Footer() {
                       </div>
                     </div>
 
-                    <a href="/callpilot" className="btn btn-primary w-full mt-4 !justify-between">
+                    <a href="/callpilot" className="btn btn-primary btn-saas w-full mt-4 !justify-between">
                       <span className="rd-ai-btn-text">Start AI Chat</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a href="https://callpilot.pro/" className="btn btn-secondary w-full mt-3 !justify-between">
-                      <span className="rd-ai-btn-text">Try AI Call</span>
+                    <a href="https://callpilot.pro/" className="btn btn-secondary btn-saas w-full mt-3 !justify-between">
+                      <span className="rd-ai-btn-text">Try AI Call Demo</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a href="https://callpilot.pro/get-started" className="btn btn-primary w-full mt-3 !justify-between">
-                      <span className="rd-ai-btn-text">AI Calls for Business</span>
+                    <a href="https://callpilot.pro/get-started" className="btn btn-primary btn-saas w-full mt-3 !justify-between">
+                      <span className="rd-ai-btn-text">AI Call Demo for Business</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
                   </div>
@@ -712,6 +808,54 @@ export default function Footer() {
           </footer>
         </div>
       </section>
+      <Dialog open={isPoliciesOpen} onOpenChange={setIsPoliciesOpen}>
+        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-[#020817] border-white/10 text-white">
+          <DialogHeader className="mb-6">
+            <DialogTitle className="text-3xl font-bold flex items-center gap-3">
+              <FileText className="text-blue-500" />
+              Compliance & Policies
+            </DialogTitle>
+            <p className="text-gray-400 mt-2">
+              Our commitment to transparency, security, and ethical recruitment practices.
+            </p>
+          </DialogHeader>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {policyCategories.map((category, idx) => (
+              <div key={idx} className="space-y-4">
+                <div className="flex items-center gap-3 pb-2 border-b border-white/10">
+                  {category.icon}
+                  <h4 className="font-bold text-sm tracking-widest text-gray-200 uppercase">
+                    {category.title}
+                  </h4>
+                </div>
+                <ul className="space-y-2">
+                  {category.items.map((item, i) => (
+                    <li key={i}>
+                      <button className="text-gray-400 hover:text-blue-400 transition-colors text-sm flex items-center gap-2 group">
+                        <div className="w-1 h-1 bg-blue-500/50 rounded-full group-hover:bg-blue-400" />
+                        {item}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-xs text-gray-500">
+              Last updated: {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+            </div>
+            <button 
+              onClick={() => setIsPoliciesOpen(false)}
+              className="btn btn-secondary py-2 px-6 text-sm"
+            >
+              Close
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
