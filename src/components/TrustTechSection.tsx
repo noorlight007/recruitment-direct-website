@@ -175,7 +175,7 @@ export default function TrustTechSection() {
         <img src="/images/cirrus-logo.png" alt="Cirrus Consortium Agency Framework Supplier" />
       </div>
 
-      <a href="https://callpilot.pro" target="_blank" rel="noopener noreferrer" className="trusted-link">
+      <a href="/callpilot" className="trusted-link">
         <div className="trusted-card trusted-card-callpilot">
           <img src="/images/callpilot-logo.png" alt="CallPilot AI Phone Calls" />
         </div>

@@ -93,14 +93,16 @@
   a.button,
   a.btn,
   .wp-block-button__link {
-    all: unset; /* remove all existing styles */
+    all: unset;
+    /* remove all existing styles */
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
     padding: 14px 34px;
-    border-radius: 999px; /* PILL SHAPE FROM IMAGE */
+    border-radius: 999px;
+    /* PILL SHAPE FROM IMAGE */
 
     color: #FFFFFF !important;
     font-size: 17px;
@@ -112,13 +114,13 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* IMAGE MATCH: SOLID DARK NAVY WITH NEON BLUE GLOW BORDER */
-    background: 
+    background:
       linear-gradient(135deg, #0e1d50, #000411) padding-box,
       linear-gradient(135deg, #0066FF, #0044FF) border-box !important;
 
     border: 1.5px solid transparent !important;
 
-    box-shadow: 
+    box-shadow:
       inset 0 0 12px rgba(0, 102, 255, 0.15),
       0 0 25px rgba(0, 102, 255, 0.45) !important;
 
@@ -130,7 +132,7 @@
   /* PRIMARY HIGHLIGHT (LIKE AI HIRE NOW IN IMAGE) */
   .btn-primary,
   .featured .btn {
-    box-shadow: 
+    box-shadow:
       0 0 35px rgba(0, 102, 255, 0.8),
       0 0 70px rgba(0, 102, 255, 0.4) !important;
     border-width: 2px !important;
@@ -144,7 +146,7 @@
   a.btn:hover,
   .wp-block-button__link:hover {
     transform: translateY(-3px);
-    box-shadow: 
+    box-shadow:
       0 0 45px rgba(0, 102, 255, 0.95),
       0 0 80px rgba(0, 102, 255, 0.5) !important;
     filter: brightness(1.2);
@@ -169,7 +171,7 @@
   a.btn:active,
   .wp-block-button__link:active {
     transform: scale(0.96);
-    box-shadow: 
+    box-shadow:
       inset 0 4px 12px rgba(0, 0, 0, 0.8),
       0 0 25px rgba(0, 102, 255, 0.6) !important;
   }
@@ -220,7 +222,7 @@
       font-size: 13px !important;
       min-width: 0 !important;
     }
-    
+
     .hero-buttons .icon-box {
       width: 40px !important;
       height: 40px !important;
@@ -254,7 +256,7 @@
 
     .footer-col button:hover {
       color: #ffffff !important;
-      text-shadow: 0 0 8px rgba(255,255,255,0.45) !important;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.45) !important;
       transform: none !important;
     }
 

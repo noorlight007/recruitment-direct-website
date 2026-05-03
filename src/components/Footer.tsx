@@ -671,48 +671,48 @@ export default function Footer() {
                     <h4>Resources</h4>
                     <a href="/#clients">Clients</a>
                     <a href="/#job-search">Job Search</a>
-                    <button 
-                       onClick={() => setIsPoliciesOpen(true)}
-                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
-                     >
-                       Policies
-                     </button>
+                    <button
+                      onClick={() => setIsPoliciesOpen(true)}
+                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                    >
+                      Policies
+                    </button>
                     <a href="/accreditations">Accreditations</a>
                     <a href="/news">News & Insights</a>
                   </div>
 
                   <div className="footer-col">
                     <h4>Policies</h4>
-                     <button 
-                       onClick={() => setIsPoliciesOpen(true)}
-                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
-                     >
-                       Privacy Policy
-                     </button>
-                     <button 
-                       onClick={() => setIsPoliciesOpen(true)}
-                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
-                     >
-                       Cookie Policy
-                     </button>
-                     <button 
-                       onClick={() => setIsPoliciesOpen(true)}
-                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
-                     >
-                       Terms of Use
-                     </button>
-                     <button 
-                       onClick={() => setIsPoliciesOpen(true)}
-                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
-                     >
-                       Modern Slavery Policy
-                     </button>
-                     <button 
-                       onClick={() => setIsPoliciesOpen(true)}
-                       className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
-                     >
-                       Equality Policy
-                     </button>
+                    <button
+                      onClick={() => setIsPoliciesOpen(true)}
+                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                    >
+                      Privacy Policy
+                    </button>
+                    <button
+                      onClick={() => setIsPoliciesOpen(true)}
+                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                    >
+                      Cookie Policy
+                    </button>
+                    <button
+                      onClick={() => setIsPoliciesOpen(true)}
+                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                    >
+                      Terms of Use
+                    </button>
+                    <button
+                      onClick={() => setIsPoliciesOpen(true)}
+                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                    >
+                      Modern Slavery Policy
+                    </button>
+                    <button
+                      onClick={() => setIsPoliciesOpen(true)}
+                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
+                    >
+                      Equality Policy
+                    </button>
                   </div>
 
                 </div>
@@ -847,7 +847,7 @@ export default function Footer() {
             <div className="text-xs text-gray-500">
               Last updated: {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
             </div>
-            <button 
+            <button
               onClick={() => setIsPoliciesOpen(false)}
               className="btn btn-secondary py-2 px-6 text-sm"
             >
