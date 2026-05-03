@@ -197,6 +197,74 @@
       font-size: 14px;
       min-width: 140px;
     }
+
+    /* EXEMPT CIRCULAR AND ICON BUTTONS FROM MIN-WIDTH */
+    button.rounded-full,
+    .btn-icon,
+    .rd-floating-trigger,
+    .fixed button {
+      min-width: 0 !important;
+      /* width: auto !important; */
+    }
+
+    /* SPECIFIC FIX FOR FLOATING CIRCLE TRIGGER */
+    .rd-floating-trigger {
+      width: 56px !important;
+      height: 56px !important;
+      padding: 0 !important;
+    }
+
+    /* COMPACT HERO BUTTONS ON MOBILE */
+    .hero-buttons .btn {
+      padding: 8px 16px !important;
+      font-size: 13px !important;
+      min-width: 0 !important;
+    }
+    
+    .hero-buttons .icon-box {
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    .hero-buttons .icon-box svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+
+    /* RESET FOOTER POLICY BUTTONS (REMOVE CIRCLES/PILLS) */
+    .footer-col button {
+      all: unset !important;
+      display: block !important;
+      width: auto !important;
+      min-width: 0 !important;
+      padding: 0 !important;
+      margin-bottom: 16px !important;
+      color: #CFCFCB !important;
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      letter-spacing: normal !important;
+      cursor: pointer !important;
+      background: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transition: color 0.2s ease !important;
+      text-align: left !important;
+    }
+
+    .footer-col button:hover {
+      color: #ffffff !important;
+      text-shadow: 0 0 8px rgba(255,255,255,0.45) !important;
+      transform: none !important;
+    }
+
+    /* ENSURE FOOTER AI CARD BUTTONS ARE SYMMETRICAL AND COMPACT */
+    .rd-ai-steve-card .btn,
+    .rd-ai-steve-card a.btn {
+      width: 80% !important;
+      display: flex !important;
+      margin: 12px auto 0 !important;
+    }
   }
 
   .btn-metallic {
@@ -740,6 +808,30 @@ section {
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   z-index: 1;
+}
+
+/* =========================
+   HERO GRADIENT & GLOW
+========================= */
+.hero-gradient-text {
+  background: linear-gradient(135deg, #0B1F3A 0%, #1E4DFF 45%, #00C2FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  filter: drop-shadow(0 0 15px rgba(30, 92, 255, 0.3));
+}
+
+.hero-glow-subtle {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(30, 92, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* =========================

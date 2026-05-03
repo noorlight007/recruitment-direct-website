@@ -81,7 +81,7 @@ export default function ContactPage() {
                     </a>
                     <a
                       href="tel:07590882626"
-                      className="text-white font-semibold text-[14px] hover:text-[#2F80ED] transition-colors leading-tight"
+                      className="text-white font-semibold text-[14px] hover:text-[#2F80ED] transition-colors leading-tight mt-2"
                     >
                       07590 882626
                     </a>

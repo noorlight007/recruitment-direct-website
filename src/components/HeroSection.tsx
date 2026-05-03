@@ -77,6 +77,7 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-900/10 rounded-full blur-[120px]" />
+        <div className="hero-glow-subtle" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -84,8 +85,9 @@ export default function HeroSection() {
           {/* Left Column: Content and Action Cards */}
           <div className="flex flex-col">
             <div className="hero-title">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3">
-                Recruitment That <br /> <span>Moves Faster.</span>
+              <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-6 tracking-tight">
+                Recruitment That Moves <br />
+                <span className="hero-gradient-text">Faster.</span>
               </h1>
             </div>
 

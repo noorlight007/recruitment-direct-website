@@ -45,7 +45,7 @@ export default function FloatingElements() {
                   placeholder="Type your enquiry..."
                   className="flex-1 px-3 py-2 text-sm rounded-lg border-2 border-primary/20 focus:border-primary focus:outline-none bg-background text-foreground"
                 />
-                <button className="btn-metallic p-2 rounded-lg">
+                <button className="btn-metallic p-2 rounded-lg btn-icon">
                   <Send className="w-4 h-4" />
                 </button>
               </div>
@@ -55,7 +55,7 @@ export default function FloatingElements() {
 
         <button
           onClick={() => setChatOpen(!chatOpen)}
-          className="w-14 h-14 rounded-full bg-navy flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+          className="w-14 h-14 rounded-full bg-navy flex items-center justify-center shadow-lg hover:scale-110 transition-transform rd-floating-trigger"
           style={{ animation: "pulse-glow 3s ease-in-out infinite" }}
         >
           {chatOpen ? (
