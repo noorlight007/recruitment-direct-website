@@ -6,59 +6,33 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --bg-primary: #020307;
+    --bg-secondary: #081120;
+    --bg-tertiary: #132344;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --text-primary: #f3f7ff;
+    --text-secondary: #9aa8c7;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --light-bg: #f5f7fb;
+    --light-text: #0f172a;
+    --light-secondary: #475569;
 
-    --primary: 217 90% 46%;
-    --primary-foreground: 0 0% 100%;
+    --primary-blue: #2563eb;
+    --electric-blue: #3b82f6;
 
-    --secondary: 217 90% 46%;
-    --secondary-foreground: 0 0% 100%;
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --premium-border: rgba(90, 140, 255, 0.25);
 
-    --muted: 217 30% 95%;
-    --muted-foreground: 222 47% 11%;
+    --premium-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    --premium-glow: 0 0 35px rgba(59, 130, 246, 0.35);
 
-    --accent: 217 90% 46%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 217 90% 46%;
-    --input: 217 30% 90%;
-    --ring: 217 90% 46%;
-
+    --transition: all 0.35s ease;
+    
+    /* Keep some legacy variables for compatibility if needed, but prioritize new ones */
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
     --radius: 0.5rem;
-
-    --navy: 216 80% 15%;
-    --navy-foreground: 0 0% 100%;
-    --electric-blue: 217 90% 46%;
-    --text-dark: 222 47% 11%;
-
-    --ai-blue: #0A7CFF;
-    --ai-blue-deep: #2563EB;
-    --ai-purple: #6D5BFF;
-    --ai-purple-glow: #A855F7;
     --button-radius: 999px;
-
-    --gradient-metallic: linear-gradient(135deg, #0A7CFF 0%, #2563EB 60%, #6D5BFF 85%, #A855F7 100%);
-    --gradient-metallic-hover: linear-gradient(135deg, #2563EB 0%, #0A7CFF 60%, #A855F7 85%, #6D5BFF 100%);
-    --glow-blue: 0 8px 22px rgba(10, 124, 255, 0.35);
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -68,7 +42,16 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    background: radial-gradient(circle at top,
+        #132344 0%,
+        #081120 35%,
+        #020307 75%,
+        #000000 100%);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', sans-serif;
   }
 
   h1,
@@ -86,7 +69,7 @@
    RDUK Premium Button System
    ========================= */
 
-  /* ALL CTA BUTTONS MATCH HERO */
+  /* ALL CTA BUTTONS MATCH HERO - COMPACT & PREMIUM */
   button,
   .btn,
   .cta-button,
@@ -94,18 +77,15 @@
   a.btn,
   .wp-block-button__link {
     all: unset;
-    /* remove all existing styles */
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 14px 34px;
+    padding: 11px 26px; /* COMPACT SIZE */
     border-radius: 999px;
-    /* PILL SHAPE FROM IMAGE */
 
     color: #FFFFFF !important;
-    font-size: 17px;
+    font-size: 15px; /* REFINED SIZE */
     font-weight: 600;
     letter-spacing: 0.3px;
     cursor: pointer;
@@ -113,7 +93,6 @@
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* IMAGE MATCH: SOLID DARK NAVY WITH NEON BLUE GLOW BORDER */
     background:
       linear-gradient(135deg, #0e1d50, #000411) padding-box,
       linear-gradient(135deg, #0066FF, #0044FF) border-box !important;
@@ -124,7 +103,7 @@
       inset 0 0 12px rgba(0, 102, 255, 0.15),
       0 0 25px rgba(0, 102, 255, 0.45) !important;
 
-    gap: 12px;
+    gap: 10px;
     white-space: nowrap;
     text-decoration: none !important;
   }
@@ -195,9 +174,9 @@
     .cta-button,
     .wp-block-button__link {
       width: auto !important;
-      padding: 10px 22px;
-      font-size: 14px;
-      min-width: 140px;
+      padding: 8px 18px;
+      font-size: 13px;
+      min-width: 120px;
     }
 
     /* EXEMPT CIRCULAR AND ICON BUTTONS FROM MIN-WIDTH */
@@ -218,8 +197,8 @@
 
     /* COMPACT HERO BUTTONS ON MOBILE */
     .hero-buttons .btn {
-      padding: 8px 16px !important;
-      font-size: 13px !important;
+      padding: 7px 16px !important;
+      font-size: 12px !important;
       min-width: 0 !important;
     }
 
@@ -289,6 +268,134 @@
 
   .glow-text {
     text-shadow: 0 0 20px hsla(217, 90%, 46%, 0.3);
+  }
+
+  /* =========================================================
+     CINEMATIC AI ENTERPRISE EFFECT - LOGO & SECTIONS
+  ========================================================= */
+
+  .logo-premium {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    animation: logoFloat 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.18)) drop-shadow(0 0 60px rgba(59, 130, 246, 0.08));
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .logo-premium img {
+    width: 70px;
+    height: auto;
+    position: relative;
+    z-index: 2;
+    animation: logoPulse 6s ease-in-out infinite;
+  }
+
+  .logo-premium::before {
+    content: '';
+    position: absolute;
+    inset: -80px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(37, 99, 235, 0.10) 25%, transparent 70%);
+    z-index: 0;
+    animation: logoGlow 6s ease-in-out infinite;
+    filter: blur(40px);
+  }
+
+  .logo-premium::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -120%;
+    width: 60%;
+    height: 140%;
+    background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.04) 35%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.04) 65%, transparent 100%);
+    transform: skewX(-18deg);
+    z-index: 3;
+    animation: lightSweep 8s linear infinite;
+  }
+
+  .logo-premium:hover {
+    transform: translateY(-4px) scale(1.02);
+    filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.28)) drop-shadow(0 0 80px rgba(59, 130, 246, 0.18));
+  }
+
+  .hero-logo {
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .navbar-logo {
+    height: 50px;
+    width: auto;
+  }
+
+  /* SECTION UTILITIES */
+  .light-section {
+    background: var(--light-bg) !important;
+    color: var(--light-text) !important;
+  }
+
+  .light-section h1,
+  .light-section h2,
+  .light-section h3,
+  .light-section p,
+  .light-section li {
+    color: inherit !important;
+  }
+
+  .dark-section {
+    background: linear-gradient(180deg, #0b1220 0%, #050816 40%, #020307 100%) !important;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .dark-section::before {
+    content: '';
+    position: absolute;
+    top: -250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @keyframes logoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+  }
+
+  @keyframes logoGlow {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50% { opacity: 0.75; transform: scale(1.05); }
+  }
+
+  @keyframes lightSweep {
+    0% { left: -140%; opacity: 0; }
+    10% { opacity: 1; }
+    45% { opacity: 1; }
+    60% { opacity: 0; }
+    100% { left: 180%; opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-logo { max-width: 320px; }
+    .logo-premium::before { inset: -50px; }
+    .navbar-logo { height: 38px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-premium, .logo-premium img, .logo-premium::before, .logo-premium::after {
+      animation: none;
+    }
   }
 }
 

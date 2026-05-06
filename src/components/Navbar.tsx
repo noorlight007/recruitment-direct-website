@@ -88,10 +88,10 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/10">
       <div className="w-full px-6 lg:px-6">
-        <div className="flex items-center justify-between h-28">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <Image src={logo} alt="Recruitment Direct" className="h-24 w-auto" unoptimized />
+          <Link href="/" className="flex-shrink-0 logo-premium">
+            <Image src={logo} alt="Recruitment Direct" className="navbar-logo" unoptimized />
           </Link>
 
           {/* Center Menu - Desktop */}
