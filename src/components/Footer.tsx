@@ -279,6 +279,39 @@ export default function Footer() {
           text-shadow: 0 0 8px rgba(255,255,255,0.45);
         }
 
+        /* Standardize footer buttons to match text links on desktop */
+        .footer-col button {
+          all: unset !important;
+          display: block !important;
+          width: auto !important;
+          min-width: 0 !important;
+          padding: 0 !important;
+          margin-bottom: 16px !important;
+          color: #CFCFCB !important;
+          font-size: 14px !important;
+          font-weight: 400 !important;
+          letter-spacing: normal !important;
+          cursor: pointer !important;
+          background: none !important;
+          border: none !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          transition: color 0.2s ease !important;
+          text-align: left !important;
+        }
+
+        .footer-col button:hover,
+        .footer-col a:hover {
+          color: #ffffff !important;
+          text-shadow: 0 0 8px rgba(255,255,255,0.45) !important;
+          transform: none !important;
+        }
+
+        .footer-col button:active,
+        .footer-col a:active {
+          color: #ffffff !important;
+        }
+
         /* Right column */
         .rd-footer-right {
           display: flex;
@@ -544,48 +577,6 @@ export default function Footer() {
           </div>
 
           <div className="rd-cards">
-            {/* REC Membership */}
-            <div className="rd-card">
-              <div className="rd-card-logo">
-                <img src="/rec_logo_new.png" alt="REC Membership" />
-              </div>
-              <h3>REC Membership</h3>
-              <p className="rd-sub">Corporate Member</p>
-              <p className="rd-num">00207320</p>
-              <div className="rd-btn-wrap">
-                <a
-                  className="btn btn-secondary btn-saas"
-                  href="/certificates/rec-corporate-membership.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <span>View Certificate</span>
-                  <span className="rd-btn-arrow">→</span>
-                </a>
-              </div>
-            </div>
-
-            {/* ISO 9001:2015 */}
-            <div className="rd-card">
-              <div className="rd-card-logo">
-                <img src="/assets/compliance/cqs-iso9001.png" alt="ISO 9001:2015" />
-              </div>
-              <h3>ISO 9001:2015</h3>
-              <p className="rd-sub">Quality Management</p>
-              <p className="rd-num">GB2006088</p>
-              <div className="rd-btn-wrap">
-                <a
-                  className="btn btn-secondary btn-saas"
-                  href="/certificates/iso-9001-2015-gb2006088.pdf"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <span>View Certificate</span>
-                  <span className="rd-btn-arrow">→</span>
-                </a>
-              </div>
-            </div>
-
             {/* Constructionline Gold */}
             <div className="rd-card">
               <div className="rd-card-logo">
@@ -625,6 +616,48 @@ export default function Footer() {
                 <a
                   className="btn btn-secondary btn-saas"
                   href="/certificates/cyber-essentials-4686a995.pdf"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span>View Certificate</span>
+                  <span className="rd-btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+
+            {/* ISO 9001:2015 */}
+            <div className="rd-card">
+              <div className="rd-card-logo">
+                <img src="/assets/compliance/cqs-iso9001.png" alt="ISO 9001:2015" />
+              </div>
+              <h3>ISO 9001:2015</h3>
+              <p className="rd-sub">Quality Management</p>
+              <p className="rd-num">GB2006088</p>
+              <div className="rd-btn-wrap">
+                <a
+                  className="btn btn-secondary btn-saas"
+                  href="/certificates/iso-9001-2015-gb2006088.pdf"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span>View Certificate</span>
+                  <span className="rd-btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+
+            {/* REC Membership */}
+            <div className="rd-card">
+              <div className="rd-card-logo">
+                <img src="/rec_logo_new.png" alt="REC Membership" />
+              </div>
+              <h3>REC Membership</h3>
+              <p className="rd-sub">Corporate Member</p>
+              <p className="rd-num">00207320</p>
+              <div className="rd-btn-wrap">
+                <a
+                  className="btn btn-secondary btn-saas"
+                  href="/certificates/rec-corporate-membership.pdf"
                   target="_blank"
                   rel="noopener"
                 >
@@ -673,7 +706,6 @@ export default function Footer() {
                     <a href="/#job-search">Job Search</a>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
-                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
                     >
                       Policies
                     </button>
@@ -685,31 +717,26 @@ export default function Footer() {
                     <h4>Policies</h4>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
-                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
                     >
                       Privacy Policy
                     </button>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
-                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
                     >
                       Cookie Policy
                     </button>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
-                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
                     >
                       Terms of Use
                     </button>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
-                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
                     >
-                      Modern Slavery Policy
+                      Modern Slavery
                     </button>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
-                      className="block text-[#CFCFCB] hover:text-white transition-colors text-sm mb-4 text-left"
                     >
                       Equality Policy
                     </button>
