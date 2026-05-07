@@ -42,7 +42,7 @@ export default function HowWeDeliverSection() {
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-4">
+        <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-4">
           How We Deliver to Clients
         </motion.h2>
 

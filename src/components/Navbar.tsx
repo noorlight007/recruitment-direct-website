@@ -88,9 +88,12 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/10">
       <div className="w-full px-6 lg:px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 lg:h-28">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 logo-premium">
+          <Link 
+            href="/" 
+            className={`flex-shrink-0 logo-premium transition-opacity duration-750 ${mobileOpen ? "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto" : "opacity-100"}`}
+          >
             <Image src={logo} alt="Recruitment Direct" className="navbar-logo" unoptimized />
           </Link>
 

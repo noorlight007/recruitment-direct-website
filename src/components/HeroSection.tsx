@@ -72,7 +72,7 @@ export default function HeroSection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <section className="hero-section relative bg-[#020817] pt-32 pb-10 overflow-hidden text-white">
+    <section className="hero-section relative bg-[#020817] pt-16 lg:pt-32 pb-10 overflow-hidden text-white">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]" />
@@ -85,14 +85,14 @@ export default function HeroSection() {
           {/* Left Column: Content and Action Cards */}
           <div className="flex flex-col">
             <div className="hero-title">
-              <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-6 tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-4 lg:mb-6 tracking-tight">
                 Recruitment That Moves <br />
                 <span className="hero-gradient-text">Faster.</span>
               </h1>
             </div>
 
             <div className="hero-sub">
-              <div className="space-y-1 text-gray-400 text-lg mb-6 max-w-lg">
+              <div className="space-y-1 text-gray-400 text-lg mb-4 lg:mb-8 max-w-lg">
                 <p>Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance.</p>
                 <p className="pt-2 font-medium text-gray-300">Powered by AI, delivered by experienced consultants.</p>
               </div>
@@ -100,59 +100,51 @@ export default function HeroSection() {
 
             <div className="hero-buttons grid gap-3 max-w-md">
               {/* Card 1: AI Hire Now */}
-              <a href="/ai-hire-now" className="btn btn-primary btn-saas flex items-center justify-between group">
-                <div className="flex items-center gap-4">
-                  <div className="icon-box">
-                    <User />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-bold text-lg leading-tight">AI Hire Now</div>
-                    <div className="text-sm text-white/70">Existing Clients</div>
-                  </div>
+              <a href="/ai-hire-now" className="ai-button group">
+                <div className="ai-button-icon">
+                  <User />
                 </div>
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                <div className="flex flex-col">
+                  <div className="ai-button-title">AI Hire Now</div>
+                  <div className="ai-button-subtitle">Existing Clients</div>
+                </div>
+                <ArrowRight className="ai-button-arrow" />
               </a>
 
               {/* Card 2: Place Enquiry */}
-              <a href="/place-enquiry" className="btn btn-secondary btn-saas flex items-center justify-between group">
-                <div className="flex items-center gap-4">
-                  <div className="icon-box">
-                    <Building2 />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-bold text-lg leading-tight text-white">Place Enquiry</div>
-                    <div className="text-sm text-gray-500">New Clients</div>
-                  </div>
+              <a href="/place-enquiry" className="ai-button group">
+                <div className="ai-button-icon">
+                  <Building2 />
                 </div>
-                <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
+                <div className="flex flex-col">
+                  <div className="ai-button-title">Place Enquiry</div>
+                  <div className="ai-button-subtitle">New Clients</div>
+                </div>
+                <ArrowRight className="ai-button-arrow" />
               </a>
 
               {/* Card 3: AI Call Demo */}
-              <a href="https://callpilot.pro/" className="btn btn-secondary btn-saas flex items-center justify-between group">
-                <div className="flex items-center gap-4">
-                  <div className="icon-box">
-                    <Phone />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-bold text-lg leading-tight text-white">AI Call Demo</div>
-                    <div className="text-sm text-gray-500">Ask AI to call you</div>
-                  </div>
+              <a href="https://callpilot.pro/" className="ai-button group">
+                <div className="ai-button-icon">
+                  <Phone />
                 </div>
-                <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
+                <div className="flex flex-col">
+                  <div className="ai-button-title">AI Call Demo</div>
+                  <div className="ai-button-subtitle">Ask AI to call you</div>
+                </div>
+                <ArrowRight className="ai-button-arrow" />
               </a>
 
               {/* Card 4: Job Search */}
-              <a href="/#job-search" className="btn btn-secondary btn-saas flex items-center justify-between group">
-                <div className="flex items-center gap-4">
-                  <div className="icon-box">
-                    <Briefcase />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-bold text-lg leading-tight text-white">Job Search</div>
-                    <div className="text-sm text-gray-500">Live Jobs</div>
-                  </div>
+              <a href="/#job-search" className="ai-button group">
+                <div className="ai-button-icon">
+                  <Briefcase />
                 </div>
-                <ArrowRight className="w-6 h-6 text-gray-500 group-hover:translate-x-1 transition-transform" />
+                <div className="flex flex-col">
+                  <div className="ai-button-title">Job Search</div>
+                  <div className="ai-button-subtitle">Live Jobs</div>
+                </div>
+                <ArrowRight className="ai-button-arrow" />
               </a>
             </div>
           </div>
@@ -276,7 +268,7 @@ export default function HeroSection() {
       </div>
 
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800 lg:left-auto lg:right-10 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:max-w-[45%] lg:h-auto">
           <DialogHeader className="sr-only">
             <DialogTitle>AI Call Demo Video</DialogTitle>
           </DialogHeader>
