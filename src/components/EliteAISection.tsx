@@ -17,10 +17,14 @@ export default function EliteAISection() {
         <div className="elite-wrap">
           <p className="elite-kicker">AI-POWERED HIRING. REAL RESULTS.</p>
 
-          <h1>
+          {/* <h1>
             AI-Powered Hiring.
             <span> Real Results.</span>
-          </h1>
+          </h1> */}
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-[1.1] mb-4 lg:mb-5 tracking-tight">
+                AI-Powered Hiring. <br />
+                <span className="hero-gradient-text">Real Results.</span>
+              </h1>
 
           <p className="elite-sub">
             From application to fast submission — automated by AI, verified by consultants.
@@ -71,7 +75,7 @@ export default function EliteAISection() {
             {/* Temporary & Contract Staff */}
             <div className="elite-card">
               <div className="card-icon">👥</div>
-              <h2>Temporary &<br />Contract Staff</h2>
+              <h2>Temporary Staff</h2>
 
               <ul>
                 <li>Rapid Workforce Supply</li>
