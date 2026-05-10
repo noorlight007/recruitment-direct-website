@@ -4,7 +4,7 @@ import React from "react";
 
 export default function TrustTechSection() {
   return (
-    <section className="trusted-section light-section py-24">
+    <section className="trusted-section light-section py-14">
       <style jsx>{`
         .trusted-section {
           position: relative;

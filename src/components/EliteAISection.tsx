@@ -61,8 +61,8 @@ export default function EliteAISection() {
               </div>
 
               <a 
-                onClick={() => setIsVideoOpen(true)}
-                className="elite-btn primary cursor-pointer"
+                href="/ai-volume-hiring"
+                className="elite-btn primary"
               >
                 Start AI Call Journey →
               </a>

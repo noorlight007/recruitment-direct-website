@@ -58,7 +58,7 @@ export default function AIVolumeHiringPage() {
         </div>
 
         {/* Feature Strip */}
-        <div className="rd-flow-strip mt-20">
+        <div className="rd-flow-strip mt-10">
           <span>Job Adder Sync</span>
           <b>→</b>
           <span>Automated Call</span>

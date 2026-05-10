@@ -23,8 +23,8 @@ const Index = () => {
       <HeroSection />
       <TrustTechSection />
       <HowWeDeliverSection />
-      <AIFlowSection />
-      <AIProductsSection />
+      {/* <AIFlowSection /> */}
+      {/* <AIProductsSection /> */}
       <EliteAISection />
       <HowItWorksSection />
       <GeneralSection />

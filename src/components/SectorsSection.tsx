@@ -35,7 +35,7 @@ export default function SectorsSection() {
   return (
     <section
       id="sectors"
-      className="section-tight relative white-section overflow-hidden py-24"
+      className="section-tight relative white-section overflow-hidden py-14"
     >
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] leading-[1.2] mb-4">

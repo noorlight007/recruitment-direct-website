@@ -6,7 +6,7 @@ import generalImg from "@/assets/general2.jpeg";
 
 export default function GeneralSection() {
   return (
-    <section id="about" className="white-section py-24">
+    <section id="about" className="white-section py-14">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

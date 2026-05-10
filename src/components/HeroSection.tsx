@@ -72,7 +72,7 @@ export default function HeroSection() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
-    <section className="hero-section relative bg-[#020817] pt-16 lg:pt-32 pb-10 overflow-hidden text-white">
+    <section className="hero-section relative bg-[#020817] pt-12 lg:pt-20 pb-8 overflow-hidden text-white">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]" />
@@ -81,24 +81,24 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-12">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-10">
           {/* Left Column: Content and Action Cards */}
           <div className="flex flex-col">
             <div className="hero-title">
-              <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1] mb-4 lg:mb-6 tracking-tight">
+              <h1 className="text-3xl md:text-5xl font-extrabold leading-[1.1] mb-4 lg:mb-5 tracking-tight">
                 Recruitment That Moves <br />
                 <span className="hero-gradient-text">Faster.</span>
               </h1>
             </div>
 
             <div className="hero-sub">
-              <div className="space-y-1 text-gray-400 text-lg mb-4 lg:mb-8 max-w-lg">
+              <div className="space-y-1 text-gray-400 text-base mb-4 lg:mb-6 max-w-lg">
                 <p>Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance.</p>
                 <p className="pt-2 font-medium text-gray-300">Powered by AI, delivered by experienced consultants.</p>
               </div>
             </div>
 
-            <div className="hero-buttons grid gap-3 max-w-[360px]">
+            <div className="hero-buttons grid gap-3 max-w-[340px]">
               {/* Card 1: AI Hire Now */}
               <a href="/ai-hire-now" className="ai-button group">
                 <div className="ai-button-icon">
@@ -154,20 +154,20 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="ai-call-panel bg-[#0b1224] border border-gray-800 rounded-3xl p-8 shadow-2xl relative"
+            className="ai-call-panel bg-[#0b1224] border border-gray-800 rounded-3xl p-6 shadow-2xl relative"
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-              <h3 className="text-xl font-semibold text-gray-300">AI Call Screening & Automation</h3>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
+              <h3 className="text-lg font-semibold text-gray-300">AI Call Screening & Automation</h3>
               <button
                 onClick={() => setIsVideoOpen(true)}
-                className="btn btn-primary watch-btn flex items-center justify-center gap-2 text-sm font-semibold cursor-pointer"
+                className="btn btn-primary watch-btn flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer py-2"
               >
-                <Play className="w-4 h-4 fill-current text-white" />
+                <Play className="w-3.5 h-3.5 fill-current text-white" />
                 <span className="text-white">Watch AI Call</span>
               </button>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
               {/* Timeline Section */}
               <div className="relative space-y-6">
                 {/* Vertical Line */}
@@ -244,7 +244,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pt-10 border-t border-gray-800"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 pt-8 border-t border-gray-800"
         >
           {[
             { icon: <Gauge className="w-6 h-6" />, val: "50%", label: "Filled Faster", sub: "Positions Filled Faster", sub2: "From brief to placement" },

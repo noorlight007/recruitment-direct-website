@@ -86,9 +86,9 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
       <div className="w-full px-6 lg:px-6">
-        <div className="flex items-center justify-between h-28 lg:h-40">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
           <Link 
             href="/" 
@@ -157,7 +157,7 @@ export default function Navbar() {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5 nav-btn"
+                    className="px-4 py-2 text-sm font-medium text-gray-900 hover:text-white transition-colors rounded-lg hover:bg-[#020307] nav-btn"
                   >
                     {item.label}
                   </a>
@@ -202,7 +202,7 @@ export default function Navbar() {
                 </svg>
               </a>
             </div>
-            <a href="tel:01324613198" className="flex items-center gap-3 text-foreground font-medium hover:text-primary transition-colors group">
+            <a href="tel:01324613198" className="flex items-center gap-3 text-gray-900 font-medium hover:text-primary transition-colors group">
               <div className="header-phone-icon">
                 <Phone />
               </div>
@@ -212,7 +212,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile/Tablet Menu Button */}
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-foreground menu-btn">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-gray-900 menu-btn">
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>

@@ -35,7 +35,7 @@ const fadeUp = {
 
 export default function HowWeDeliverSection() {
   return (
-    <section className="relative white-section overflow-hidden py-24">
+    <section className="relative white-section overflow-hidden py-14">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] leading-[1.2] mb-4">
           How We Deliver to Clients

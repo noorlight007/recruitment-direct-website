@@ -1569,7 +1569,7 @@ a:hover .header-phone-icon {
 .ai-flow-section {
   background: radial-gradient(circle at top, #071a33 0%, #020711 55%, #000 100%);
   color: #fff;
-  padding: 80px 24px;
+  padding: 48px 24px;
   font-family: var(--font-inter), sans-serif;
 }
 
@@ -1584,12 +1584,13 @@ a:hover .header-phone-icon {
   color: #fff;
   border: 1px solid #1de7ff;
   border-radius: 999px;
-  padding: 12px 34px;
+  padding: 9px 26px;
   font-weight: 700;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
   box-shadow: 0 0 18px rgba(29, 231, 255, 0.35);
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 14px;
 }
 
 .demo-pill:hover {
@@ -1599,7 +1600,7 @@ a:hover .header-phone-icon {
 }
 
 .ai-flow-section h2 {
-  font-size: clamp(34px, 5vw, 58px);
+  font-size: clamp(26px, 3.5vw, 44px);
   text-transform: uppercase;
   margin: 0;
   letter-spacing: 1px;
@@ -1608,9 +1609,9 @@ a:hover .header-phone-icon {
 }
 
 .ai-flow-section .subtitle {
-  font-size: 20px;
+  font-size: 17px;
   color: #c9d4e5;
-  margin: 18px 0 50px;
+  margin: 14px 0 36px;
 }
 
 .flow-grid {
@@ -1624,9 +1625,9 @@ a:hover .header-phone-icon {
   position: relative;
   background: rgba(8, 24, 49, 0.85);
   border: 1px solid #1d8cff;
-  border-radius: 18px;
-  padding: 52px 38px 38px;
-  min-height: 430px;
+  border-radius: 16px;
+  padding: 38px 28px 28px;
+  min-height: 320px;
   text-align: left;
   box-shadow: 0 0 28px rgba(29, 140, 255, 0.22);
   transition: transform 0.3s ease, border-color 0.3s ease;
@@ -1639,11 +1640,11 @@ a:hover .header-phone-icon {
 
 .step-badge {
   position: absolute;
-  top: -30px;
+  top: -22px;
   left: 50%;
   transform: translateX(-50%);
-  width: 58px;
-  height: 58px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #061324;
   border: 1px solid #1d8cff;
@@ -1651,60 +1652,60 @@ a:hover .header-phone-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 800;
 }
 
 .ai-flow-section .icon {
-  font-size: 64px;
+  font-size: 48px;
   text-align: center;
   color: #32d9ff;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   display: block;
 }
 
 .flow-card h3 {
   text-align: center;
   text-transform: uppercase;
-  font-size: 24px;
-  margin: 0 0 26px;
-  padding-bottom: 16px;
+  font-size: 19px;
+  margin: 0 0 18px;
+  padding-bottom: 12px;
   border-bottom: 1px solid rgba(29, 140, 255, 0.7);
   font-weight: 700;
 }
 
 .flow-item {
-  margin: 22px 0;
+  margin: 16px 0;
 }
 
 .flow-item strong {
   display: block;
-  font-size: 18px;
-  margin-bottom: 6px;
+  font-size: 15px;
+  margin-bottom: 4px;
   color: #fff;
 }
 
 .flow-item span {
   display: block;
   color: #c6d0dd;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.45;
 }
 
 .flow-arrow {
-  font-size: 56px;
+  font-size: 42px;
   color: #16bfff;
   text-shadow: 0 0 18px rgba(22, 191, 255, 0.9);
   user-select: none;
 }
 
 .bottom-cta {
-  max-width: 900px;
-  margin: 48px auto 0;
-  padding: 26px 34px;
+  max-width: 800px;
+  margin: 36px auto 0;
+  padding: 20px 28px;
   background: rgba(8, 24, 49, 0.85);
   border: 1px solid rgba(29, 140, 255, 0.45);
-  border-radius: 18px;
+  border-radius: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1714,13 +1715,14 @@ a:hover .header-phone-icon {
 
 .bottom-cta strong {
   display: block;
-  font-size: 22px;
-  margin-bottom: 8px;
+  font-size: 18px;
+  margin-bottom: 6px;
   color: #fff;
 }
 
 .bottom-cta span {
   color: #c6d0dd;
+  font-size: 14px;
 }
 
 .cta-button {
@@ -1729,8 +1731,9 @@ a:hover .header-phone-icon {
   text-decoration: none;
   border: 1px solid #1de7ff;
   border-radius: 999px;
-  padding: 14px 28px;
+  padding: 10px 22px;
   font-weight: 700;
+  font-size: 14px;
   box-shadow: 0 0 18px rgba(29, 231, 255, 0.25);
   transition: all 0.3s ease;
 }
@@ -1771,7 +1774,7 @@ a:hover .header-phone-icon {
     radial-gradient(circle at 50% 0%, rgba(0,140,255,.22), transparent 35%),
     linear-gradient(180deg, #020814 0%, #030712 55%, #01040a 100%);
   color: #fff;
-  padding: 90px 24px;
+  padding: 54px 24px;
   font-family: var(--font-inter), sans-serif;
   overflow: hidden;
 }
@@ -1791,11 +1794,11 @@ a:hover .header-phone-icon {
 }
 
 .elite-ai-section h1 {
-  font-size: clamp(42px, 6vw, 78px);
-  line-height: 1;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.1;
   margin: 0;
   font-weight: 900;
-  letter-spacing: -2px;
+  letter-spacing: -1.5px;
   text-transform: uppercase;
 }
 
@@ -1806,18 +1809,18 @@ a:hover .header-phone-icon {
 
 .elite-sub {
   color: #c8d4e8;
-  font-size: clamp(18px, 2vw, 24px);
-  margin: 22px 0 34px;
+  font-size: clamp(16px, 1.5vw, 20px);
+  margin: 16px 0 28px;
 }
 
 .elite-flow {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin: 0 auto 52px;
-  padding: 18px;
+  margin: 0 auto 40px;
+  padding: 14px;
   border: 1px solid rgba(46,203,255,.25);
   border-radius: 18px;
   background: rgba(5, 17, 35, .82);
@@ -1825,17 +1828,18 @@ a:hover .header-phone-icon {
 }
 
 .elite-flow div {
-  padding: 13px 18px;
+  padding: 10px 14px;
   border: 1px solid rgba(46,203,255,.35);
-  border-radius: 14px;
+  border-radius: 12px;
   background: rgba(8, 25, 50, .85);
   font-weight: 800;
   color: #fff;
+  font-size: 14px;
 }
 
 .elite-flow span {
   color: #2ecbff;
-  font-size: 28px;
+  font-size: 20px;
   text-shadow: 0 0 16px rgba(46,203,255,.9);
 }
 
@@ -1849,8 +1853,8 @@ a:hover .header-phone-icon {
 .elite-card {
   position: relative;
   text-align: left;
-  padding: 44px 42px 36px;
-  border-radius: 22px;
+  padding: 32px 30px 28px;
+  border-radius: 20px;
   background:
     linear-gradient(180deg, rgba(8,25,50,.95), rgba(3,10,22,.95));
   border: 1px solid rgba(46,203,255,.28);
@@ -1893,23 +1897,23 @@ a:hover .header-phone-icon {
 }
 
 .elite-ai-section .card-icon {
-  width: 74px;
-  height: 74px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 1px solid #129cff;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #129cff;
-  font-size: 34px;
-  margin-bottom: 24px;
+  font-size: 28px;
+  margin-bottom: 20px;
   box-shadow: 0 0 24px rgba(18,156,255,.35);
 }
 
 .elite-card h2 {
-  font-size: 30px;
+  font-size: 24px;
   line-height: 1.15;
-  margin: 0 0 28px;
+  margin: 0 0 20px;
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -1917,24 +1921,24 @@ a:hover .header-phone-icon {
 .elite-card h2::after {
   content: "";
   display: block;
-  width: 52px;
+  width: 44px;
   height: 2px;
   background: #129cff;
-  margin-top: 16px;
+  margin-top: 12px;
   box-shadow: 0 0 12px rgba(18,156,255,.8);
 }
 
 .elite-card ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 30px;
+  margin: 0 0 22px;
 }
 
 .elite-card li {
   position: relative;
-  padding: 14px 0 14px 42px;
+  padding: 10px 0 10px 34px;
   border-bottom: 1px solid rgba(255,255,255,.07);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -1942,23 +1946,23 @@ a:hover .header-phone-icon {
   content: "✓";
   position: absolute;
   left: 0;
-  top: 11px;
-  width: 26px;
-  height: 26px;
+  top: 8px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   border: 1px solid #129cff;
   color: #129cff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 12px;
   box-shadow: 0 0 14px rgba(18,156,255,.35);
 }
 
 .elite-ai-section .price {
   border-top: 1px solid rgba(255,255,255,.15);
-  padding-top: 22px;
-  margin-bottom: 24px;
+  padding-top: 16px;
+  margin-bottom: 18px;
 }
 
 .elite-ai-section .price small {
@@ -1970,7 +1974,7 @@ a:hover .header-phone-icon {
 }
 
 .elite-ai-section .price strong {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
 }
 
@@ -1979,13 +1983,13 @@ a:hover .header-phone-icon {
   overflow: hidden;
   display: block;
   text-align: center;
-  padding: 18px 24px;
+  padding: 13px 20px;
   border-radius: 999px;
   border: 1px solid rgba(46,203,255,.55);
   color: #fff;
   text-decoration: none;
   font-weight: 800;
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: .3px;
   background:
     linear-gradient(180deg,
@@ -2059,7 +2063,7 @@ a:hover .header-phone-icon {
 }
 
 .elite-benefits {
-  margin-top: 34px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid rgba(46,203,255,.22);
@@ -2069,7 +2073,7 @@ a:hover .header-phone-icon {
 }
 
 .elite-benefits div {
-  padding: 26px 24px;
+  padding: 18px 20px;
   text-align: left;
   border-right: 1px solid rgba(255,255,255,.08);
 }
@@ -2082,12 +2086,13 @@ a:hover .header-phone-icon {
   display: block;
   color: #129cff;
   text-transform: uppercase;
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 14px;
+  margin-bottom: 6px;
 }
 
 .elite-benefits span {
   color: #c8d4e8;
+  font-size: 13px;
 }
 
 @media (max-width: 1050px) {
@@ -2235,7 +2240,7 @@ a:hover .header-phone-icon {
   background: radial-gradient(circle at top, rgba(0,140,255,.16), transparent 35%),
               linear-gradient(180deg, #020814 0%, #030712 60%, #01040a 100%);
   color: #fff;
-  padding: 80px 24px;
+  padding: 36px 24px;
   font-family: var(--font-inter), sans-serif;
   min-height: 100vh;
 }
@@ -2245,7 +2250,7 @@ a:hover .header-phone-icon {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
-  gap: 56px;
+  gap: 22px;
   align-items: center;
 }
 
@@ -2257,31 +2262,31 @@ a:hover .header-phone-icon {
 }
 
 .rd-ai-copy h1 {
-  font-size: clamp(44px, 6vw, 78px);
-  line-height: 1;
-  margin: 12px 0 24px;
+  font-size: clamp(28px, 3.5vw, 46px);
+  line-height: 1.1;
+  margin: 8px 0 14px;
   text-transform: uppercase;
   font-weight: 900;
 }
 
 .rd-ai-copy p {
   color: #c8d4e8;
-  font-size: 21px;
+  font-size: 15px;
   line-height: 1.5;
   max-width: 620px;
 }
 
 .rd-actions {
   display: flex;
-  gap: 16px;
-  margin: 32px 0;
+  gap: 12px;
+  margin: 14px 0;
   flex-wrap: wrap;
 }
 
 .rd-btn {
   position: relative;
   overflow: hidden;
-  padding: 16px 28px;
+  padding: 10px 20px;
   border-radius: 8px;
   border: 1px solid #129cff;
   color: #fff;
@@ -2309,18 +2314,18 @@ a:hover .header-phone-icon {
 .rd-mini-benefits {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 34px;
+  gap: 10px;
+  margin-top: 16px;
 }
 
 .rd-mini-benefits span {
-  padding: 16px;
+  padding: 8px;
   border: 1px solid rgba(46,203,255,.25);
-  border-radius: 14px;
+  border-radius: 12px;
   background: rgba(5,17,35,.75);
   font-weight: 700;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .rd-ai-panel,
@@ -2338,26 +2343,30 @@ a:hover .header-phone-icon {
 }
 
 .rd-ai-panel {
-  padding: 34px;
+  padding: 18px;
 }
 
 .rd-ai-panel h3 {
-  margin: 0 0 26px;
+  margin: 0 0 14px;
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 800;
 }
 
 .rd-workflow {
   display: grid;
-  gap: 12px;
+  gap: 10px;
+  grid-template-rows: repeat(4, 1fr);
 }
 
 .rd-workflow div {
-  padding: 15px 18px;
-  border-radius: 14px;
+  padding: 8px 12px;
+  border-radius: 12px;
   border: 1px solid rgba(46,203,255,.22);
   background: rgba(8,25,50,.92);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .rd-workflow div.active {
@@ -2367,7 +2376,7 @@ a:hover .header-phone-icon {
 
 .rd-workflow b {
   display: block;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .rd-workflow small {
@@ -2376,8 +2385,8 @@ a:hover .header-phone-icon {
 
 .rd-flow-strip {
   max-width: 1320px;
-  margin: 46px auto 26px;
-  padding: 22px;
+  margin: 18px auto 12px;
+  padding: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2395,7 +2404,7 @@ a:hover .header-phone-icon {
 
 .rd-flow-strip b {
   color: #2ecbff;
-  font-size: 26px;
+  font-size: 16px;
   text-shadow: 0 0 16px rgba(46,203,255,.9);
 }
 
@@ -2404,11 +2413,11 @@ a:hover .header-phone-icon {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  gap: 14px;
 }
 
 .rd-card {
-  padding: 28px;
+  padding: 16px;
   transition: .35s ease;
 }
 
@@ -2422,24 +2431,28 @@ a:hover .header-phone-icon {
   color: #2ecbff;
   text-transform: uppercase;
   margin-top: 0;
+  margin-bottom: 10px;
   font-weight: 800;
+  font-size: 18px;
 }
 
 .rd-card p,
 .rd-card li {
   color: #c8d4e8;
-  line-height: 1.5;
+  line-height: 1.4;
+  font-size: 14px;
 }
 
 .rd-phone-mock,
 .rd-chat-mock {
-  margin-top: 20px;
-  padding: 22px;
-  border-radius: 16px;
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 12px;
   border: 1px solid rgba(46,203,255,.3);
   background: rgba(8,25,50,.92);
   color: #fff;
   font-weight: 800;
+  font-size: 13px;
 }
 
 .rd-phone-mock span {
@@ -2448,19 +2461,20 @@ a:hover .header-phone-icon {
 
 .rd-small-btn {
   display: inline-block;
-  margin-top: 18px;
-  padding: 13px 20px;
+  margin-top: 14px;
+  padding: 10px 16px;
   border-radius: 8px;
   background: linear-gradient(135deg, #006eff, #12d8ff);
   color: #fff;
   text-decoration: none;
   font-weight: 800;
+  font-size: 13px;
 }
 
 .rd-package-grid {
   max-width: 1320px;
-  margin: 24px auto 0;
-  padding: 32px;
+  margin: 14px auto 0;
+  padding: 18px;
 }
 
 .rd-package-grid h2 {
