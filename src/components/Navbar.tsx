@@ -10,10 +10,10 @@ import callpilotLogo from "@/assets/callpilot_logo.png";
 
 const aiProducts = [
   {
-    title: "CallPilot",
+    title: "AI Volume Hiring",
     description: "AI applicant screening calls",
     icon: Phone,
-    link: "/callpilot",
+    link: "/ai-volume-hiring",
     isImage: false,
   },
   {
@@ -88,7 +88,7 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-primary/10">
       <div className="w-full px-6 lg:px-6">
-        <div className="flex items-center justify-between h-20 lg:h-28">
+        <div className="flex items-center justify-between h-28 lg:h-40">
           {/* Logo */}
           <Link 
             href="/" 
@@ -117,7 +117,7 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -5 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className={`absolute top-full ${item.columns === 2 ? "left-1/2 -translate-x-1/2" : "left-0"} mt-2 bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden p-3 min-w-[280px] ${item.columns === 2 ? "w-[600px]" : "w-[320px]"}`}
+                          className={`absolute top-full ${item.columns === 2 ? "left-1/2 -translate-x-1/2" : "left-0"} mt-2 dropdown-menu rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] overflow-hidden p-3 min-w-[280px] ${item.columns === 2 ? "w-[600px]" : "w-[320px]"}`}
                         >
                           <div className={`grid ${item.columns === 2 ? "grid-cols-2 gap-x-6" : "grid-cols-1"} gap-y-1`}>
                             {item.dropdownItems?.map((subItem: any) => (
@@ -127,7 +127,7 @@ export default function Navbar() {
                                 target={subItem.link?.startsWith("http") ? "_blank" : undefined}
                                 rel={subItem.link?.startsWith("http") ? "noopener noreferrer" : undefined}
                                 onClick={() => setActiveDropdown(null)}
-                                className="flex items-center gap-3 p-3 rounded-lg hover:bg-[#F5F7FB] transition-all duration-200 group"
+                                className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 group nav-btn dropdown-item"
                               >
                                 <div className="dropdown-icon">
                                   {subItem.isImage ? (
@@ -137,11 +137,11 @@ export default function Navbar() {
                                   )}
                                 </div>
                                 <div className="flex flex-col">
-                                  <span className="text-[14px] font-semibold text-[#111827] leading-tight group-hover:text-primary transition-colors">
+                                  <span className="text-[14px] font-semibold text-white leading-tight group-hover:text-primary transition-colors">
                                     {subItem.title}
                                   </span>
                                   {subItem.description && (
-                                    <span className="text-[13px] text-[#6B7280] mt-0.5 leading-tight">
+                                    <span className="text-[13px] text-gray-400 mt-0.5 leading-tight">
                                       {subItem.description}
                                     </span>
                                   )}
@@ -157,7 +157,7 @@ export default function Navbar() {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5 nav-btn"
                   >
                     {item.label}
                   </a>
@@ -208,11 +208,11 @@ export default function Navbar() {
               </div>
               <span>01324613198</span>
             </a>
-            <a href="/ai-hire-now" className="btn btn-primary">AI Hire Now</a>
+            <a href="/ai-hire-now" className="btn btn-primary header-btn ai-hire-btn">AI Hire Now</a>
           </div>
 
           {/* Mobile/Tablet Menu Button */}
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-foreground">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-foreground menu-btn">
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>

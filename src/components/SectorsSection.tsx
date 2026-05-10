@@ -35,21 +35,17 @@ export default function SectorsSection() {
   return (
     <section
       id="sectors"
-      className="section-tight relative bg-background overflow-hidden"
+      className="section-tight relative white-section overflow-hidden py-24"
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-primary/5 blur-3xl" />
-      </div>
-
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-4">
+        <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] leading-[1.2] mb-4">
           Industries We Support
         </motion.h2>
 
         <motion.p
           {...fadeUp}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="text-foreground/70 max-w-2xl mx-auto mb-14"
+          className="max-w-2xl mx-auto mb-14"
         >
           Supporting workforce requirements across key industries with
           specialist recruitment delivery.

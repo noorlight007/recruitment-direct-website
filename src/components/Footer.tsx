@@ -11,6 +11,7 @@ import { FileText, Shield, Scale, Lock, Users, Info } from "lucide-react";
 
 export default function Footer() {
   const [isPoliciesOpen, setIsPoliciesOpen] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const policyCategories = [
     {
@@ -715,31 +716,11 @@ export default function Footer() {
 
                   <div className="footer-col">
                     <h4>Policies</h4>
-                    <button
-                      onClick={() => setIsPoliciesOpen(true)}
-                    >
-                      Privacy Policy
-                    </button>
-                    <button
-                      onClick={() => setIsPoliciesOpen(true)}
-                    >
-                      Cookie Policy
-                    </button>
-                    <button
-                      onClick={() => setIsPoliciesOpen(true)}
-                    >
-                      Terms of Use
-                    </button>
-                    <button
-                      onClick={() => setIsPoliciesOpen(true)}
-                    >
-                      Modern Slavery
-                    </button>
-                    <button
-                      onClick={() => setIsPoliciesOpen(true)}
-                    >
-                      Equality Policy
-                    </button>
+                    <a href="https://rduk.group/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    <a href="https://rduk.group/cookiepolicy" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+                    <a href="https://rduk.group/termsofuse" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+                    <a href="https://rduk.group/modernslaverypolucy" target="_blank" rel="noopener noreferrer">Modern Slavery</a>
+                    <a href="https://rduk.group/equalitydiversity" target="_blank" rel="noopener noreferrer">Equality Policy</a>
                   </div>
 
                 </div>
@@ -763,18 +744,24 @@ export default function Footer() {
                       </div>
                     </div>
 
-                    <a href="/callpilot" className="btn btn-primary btn-saas w-full mt-4 !justify-between">
-                      <span className="rd-ai-btn-text">Start AI Chat</span>
+                    <a 
+                      onClick={() => window.dispatchEvent(new CustomEvent('open-ai-steve'))}
+                      className="btn btn-primary btn-saas w-full mt-4 !justify-between cursor-pointer"
+                    >
+                      <span className="rd-ai-btn-text">Ask AI Steve</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a href="https://callpilot.pro/" className="btn btn-secondary btn-saas w-full mt-3 !justify-between">
-                      <span className="rd-ai-btn-text">Try AI Call Demo</span>
+                    <a 
+                      onClick={() => setIsVideoOpen(true)}
+                      className="btn btn-secondary btn-saas w-full mt-3 !justify-between cursor-pointer"
+                    >
+                      <span className="rd-ai-btn-text">Ai Call Demo</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a href="https://callpilot.pro/get-started" className="btn btn-primary btn-saas w-full mt-3 !justify-between">
-                      <span className="rd-ai-btn-text">AI Call Demo for Business</span>
+                    <a href="/#ai-recruitment" className="btn btn-primary btn-saas w-full mt-3 !justify-between">
+                      <span className="rd-ai-btn-text">AI Platform</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
                   </div>
@@ -830,11 +817,27 @@ export default function Footer() {
 
                 <p>© {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.</p>
               </div>
-
             </div>
           </footer>
         </div>
       </section>
+
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800 lg:left-auto lg:right-10 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:max-w-[45%] lg:h-auto">
+          <DialogHeader className="sr-only">
+            <DialogTitle>AI Call Demo Video</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video w-full">
+            <video
+              src="/Video.mov"
+              controls
+              autoPlay
+              className="w-full h-full"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={isPoliciesOpen} onOpenChange={setIsPoliciesOpen}>
         <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-[#020817] border-white/10 text-white">
           <DialogHeader className="mb-6">

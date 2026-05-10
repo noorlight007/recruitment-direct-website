@@ -1,12 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send } from "lucide-react";
 
 export default function FloatingElements() {
   const [chatOpen, setChatOpen] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const handleOpenChat = () => setChatOpen(true);
+    window.addEventListener('open-ai-steve', handleOpenChat);
+    return () => window.removeEventListener('open-ai-steve', handleOpenChat);
+  }, []);
 
   return (
     <>
@@ -55,13 +61,13 @@ export default function FloatingElements() {
 
         <button
           onClick={() => setChatOpen(!chatOpen)}
-          className="w-14 h-14 rounded-full bg-navy flex items-center justify-center shadow-lg hover:scale-110 transition-transform rd-floating-trigger"
+          className="w-6 h-6 rounded-full bg-navy flex items-center justify-center shadow-lg hover:scale-110 transition-transform rd-floating-trigger"
           style={{ animation: "pulse-glow 3s ease-in-out infinite" }}
         >
           {chatOpen ? (
-            <X className="w-6 h-6 text-navy-foreground" />
+            <X className="w-5 h-5 text-navy-foreground" />
           ) : (
-            <MessageCircle className="w-6 h-6 text-navy-foreground" />
+            <MessageCircle className="w-5 h-5 text-navy-foreground" />
           )}
         </button>
       </div>

@@ -12,7 +12,7 @@ const fadeUp = {
 
 export default function ContactSection() {
   return (
-    <section className="saas-contact py-20 px-5 bg-[#f8fafc]">
+    <section className="saas-contact py-20 px-5 bg-[#f8fafc] light-section">
       <div className="max-w-[1200px] mx-auto">
         <motion.div
           {...fadeUp}
@@ -30,15 +30,21 @@ export default function ContactSection() {
           <div className="saas-contact-actions flex flex-col sm:flex-row gap-[16px] justify-center mb-[40px]">
             <Link
               href="/contact"
-              className="btn btn-primary whitespace-nowrap"
+              className="page-btn whitespace-nowrap"
             >
               Contact Us
             </Link>
             <a
               href="https://wa.me/447590882626"
-              className="btn btn-secondary whitespace-nowrap"
+              className="page-btn whitespace-nowrap"
             >
               WhatsApp
+            </a>
+            <a
+              href="mailto:sales@rd1.co.uk"
+              className="page-btn whitespace-nowrap"
+            >
+              Email
             </a>
           </div>
 
@@ -78,4 +84,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

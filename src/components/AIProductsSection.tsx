@@ -2,9 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function AIProductsSection() {
   const [activeCard, setActiveCard] = useState(0);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <section id="ai-products" className="saas-section">
@@ -12,9 +19,14 @@ export default function AIProductsSection() {
 
         <div className="tag">AI-POWERED HIRING. REAL RESULTS.</div>
         <h2>Three Powerful Ways to Hire Smarter</h2>
-        <p className="subtext">AI-powered screening, temporary staff, or permanent hires.</p>
+        <p className="subtext">Faster Submissions, Human Verified.</p>
 
-        <Link href="https://callpilot.pro/" className="btn btn-primary btn-saas mb-12">AI Call Demo</Link>
+        <a 
+          onClick={() => setIsVideoOpen(true)}
+          className="btn btn-primary btn-saas mb-12 cursor-pointer"
+        >
+          AI Call Demo
+        </a>
 
         <div className="cards mt-10">
 
@@ -80,8 +92,22 @@ export default function AIProductsSection() {
 
         </div>
       </div>
+
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800 lg:left-auto lg:right-10 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:max-w-[45%] lg:h-auto">
+          <DialogHeader className="sr-only">
+            <DialogTitle>AI Call Demo Video</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video w-full">
+            <video
+              src="/Video.mov"
+              controls
+              autoPlay
+              className="w-full h-full"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
-
-

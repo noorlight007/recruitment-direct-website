@@ -98,53 +98,53 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="hero-buttons grid gap-3 max-w-md">
+            <div className="hero-buttons grid gap-3 max-w-[360px]">
               {/* Card 1: AI Hire Now */}
               <a href="/ai-hire-now" className="ai-button group">
                 <div className="ai-button-icon">
-                  <User />
+                  <User className="icon" />
                 </div>
                 <div className="flex flex-col">
                   <div className="ai-button-title">AI Hire Now</div>
                   <div className="ai-button-subtitle">Existing Clients</div>
                 </div>
-                <ArrowRight className="ai-button-arrow" />
+                <ArrowRight className="ai-button-arrow arrow" />
               </a>
 
               {/* Card 2: Place Enquiry */}
               <a href="/place-enquiry" className="ai-button group">
                 <div className="ai-button-icon">
-                  <Building2 />
+                  <Building2 className="icon" />
                 </div>
                 <div className="flex flex-col">
                   <div className="ai-button-title">Place Enquiry</div>
                   <div className="ai-button-subtitle">New Clients</div>
                 </div>
-                <ArrowRight className="ai-button-arrow" />
+                <ArrowRight className="ai-button-arrow arrow" />
               </a>
 
               {/* Card 3: AI Call Demo */}
               <a href="https://callpilot.pro/" className="ai-button group">
                 <div className="ai-button-icon">
-                  <Phone />
+                  <Phone className="icon" />
                 </div>
                 <div className="flex flex-col">
-                  <div className="ai-button-title">AI Call Demo</div>
+                  <div className="ai-button-title">AI Volume Hiring 24/7 Screening</div>
                   <div className="ai-button-subtitle">Ask AI to call you</div>
                 </div>
-                <ArrowRight className="ai-button-arrow" />
+                <ArrowRight className="ai-button-arrow arrow" />
               </a>
 
               {/* Card 4: Job Search */}
               <a href="/#job-search" className="ai-button group">
                 <div className="ai-button-icon">
-                  <Briefcase />
+                  <Briefcase className="icon" />
                 </div>
                 <div className="flex flex-col">
                   <div className="ai-button-title">Job Search</div>
                   <div className="ai-button-subtitle">Live Jobs</div>
                 </div>
-                <ArrowRight className="ai-button-arrow" />
+                <ArrowRight className="ai-button-arrow arrow" />
               </a>
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function HeroSection() {
                 className="btn btn-primary watch-btn flex items-center justify-center gap-2 text-sm font-semibold cursor-pointer"
               >
                 <Play className="w-4 h-4 fill-current text-white" />
-                <span className="text-white">AI Call Demo</span>
+                <span className="text-white">Watch AI Call</span>
               </button>
             </div>
 
