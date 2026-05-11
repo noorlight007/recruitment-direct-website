@@ -129,7 +129,7 @@ export default function HeroSection() {
                   <Phone className="icon" />
                 </div>
                 <div className="flex flex-col">
-                  <div className="ai-button-title">AI Volume Hiring 24/7 Screening</div>
+                  <div className="ai-button-title">AI Volume Hiring</div>
                   <div className="ai-button-subtitle">Ask AI to call you</div>
                 </div>
                 <ArrowRight className="ai-button-arrow arrow" />
