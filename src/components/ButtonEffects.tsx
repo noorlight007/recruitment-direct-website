@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 export default function ButtonEffects() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+
       const btn = target.closest('.btn-saas') as HTMLElement;
       
       if (btn) {
@@ -19,7 +21,9 @@ export default function ButtonEffects() {
     };
 
     const handleMouseLeave = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+
       const btn = target.closest('.btn-saas') as HTMLElement;
       
       if (btn) {
