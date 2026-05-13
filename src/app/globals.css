@@ -336,59 +336,119 @@
   }
 
   /* SECTION UTILITIES */
-  .light-section {
-    background: linear-gradient(
-      180deg,
-      #f7f7f7 0%,
-      #ececec 100%
-    ) !important;
-    color: #0f172a !important;
+  .light-section,
+  .white-bg,
+  .bg-white,
+  .light-bg {
+    background: linear-gradient(180deg,
+        #f7f7f7 0%,
+        #ececec 100%) !important;
+    color: #1A1A1A !important;
   }
 
   .light-section h1,
   .light-section h2,
   .light-section h3,
-  .light-section p,
-  .light-section li {
-    color: inherit !important;
+  .light-section h4,
+  .light-section h5,
+  .light-section h6,
+  .white-bg h1,
+  .white-bg h2,
+  .white-bg h3,
+  .white-bg h4,
+  .white-bg h5,
+  .white-bg h6,
+  .bg-white h1,
+  .bg-white h2,
+  .bg-white h3,
+  .bg-white h4,
+  .bg-white h5,
+  .bg-white h6,
+  .light-bg h1,
+  .light-bg h2,
+  .light-bg h3,
+  .light-bg h4,
+  .light-bg h5,
+  .light-bg h6 {
+    color: #050505 !important;
   }
 
-  .dark-section {
-    background: linear-gradient(
-      180deg,
-      rgba(8,8,8,0.96) 0%,
-      rgba(12,12,12,0.98) 55%,
-      rgba(16,20,28,0.98) 100%
-    ) !important;
-    color: #ffffff !important;
+  .light-section p,
+  .white-bg p,
+  .bg-white p,
+  .light-bg p {
+    color: #1A1A1A !important;
+  }
+
+  .dark-section,
+  .dark-bg,
+  .bg-dark,
+  .black-bg {
+    background: linear-gradient(180deg,
+        rgba(8, 8, 8, 0.96) 0%,
+        rgba(12, 12, 12, 0.98) 55%,
+        rgba(16, 20, 28, 0.98) 100%) !important;
+    color: #D6DCE3 !important;
     overflow: hidden;
     position: relative;
   }
 
+  .dark-section h1,
   .dark-section h2,
-  .dark-section h3 {
-    color: #ffffff !important;
+  .dark-section h3,
+  .dark-section h4,
+  .dark-section h5,
+  .dark-section h6,
+  .dark-bg h1,
+  .dark-bg h2,
+  .dark-bg h3,
+  .dark-bg h4,
+  .dark-bg h5,
+  .dark-bg h6,
+  .bg-dark h1,
+  .bg-dark h2,
+  .bg-dark h3,
+  .bg-dark h4,
+  .bg-dark h5,
+  .bg-dark h6,
+  .black-bg h1,
+  .black-bg h2,
+  .black-bg h3,
+  .black-bg h4,
+  .black-bg h5,
+  .black-bg h6 {
+    color: #FFFFFF !important;
   }
 
-  .dark-section p {
-    color: rgba(255, 255, 255, 0.78) !important;
+  .dark-section p,
+  .dark-bg p,
+  .bg-dark p,
+  .black-bg p {
+    color: #D6DCE3 !important;
   }
 
-  .dark-section .card {
+  .dark-section .card,
+  .dark-bg .card,
+  .bg-dark .card,
+  .black-bg .card {
     background: rgba(255, 255, 255, 0.04) !important;
     border: 1px solid rgba(0, 140, 255, 0.18) !important;
     border-radius: 18px !important;
     box-shadow:
-      0 0 0 1px rgba(255,255,255,0.02) inset,
-      0 10px 30px rgba(0,0,0,0.55),
-      0 0 18px rgba(0,102,255,0.08) !important;
+      0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+      0 10px 30px rgba(0, 0, 0, 0.55),
+      0 0 18px rgba(0, 102, 255, 0.08) !important;
     backdrop-filter: blur(8px) !important;
   }
 
   .dark-section .accent,
-  .dark-section strong {
+  .dark-section strong,
+  .dark-bg strong,
+  .bg-dark strong,
+  .black-bg strong {
     color: #22c7ff !important;
   }
+
 
 
 
@@ -1558,12 +1618,17 @@ a:hover .header-phone-icon {
   color: #0F172A !important;
 }
 
-.white-section h1, .white-section h2, .white-section h3,
-.light-section h1, .light-section h2, .light-section h3 {
+.white-section h1,
+.white-section h2,
+.white-section h3,
+.light-section h1,
+.light-section h2,
+.light-section h3 {
   color: #0F172A !important;
 }
 
-.white-section p, .light-section p {
+.white-section p,
+.light-section p {
   color: #475569 !important;
 }
 
@@ -1592,12 +1657,10 @@ a:hover .header-phone-icon {
    ========================================================= */
 
 .ai-flow-section {
-  background: linear-gradient(
-    180deg,
-    rgba(8,8,8,0.96) 0%,
-    rgba(12,12,12,0.98) 55%,
-    rgba(16,20,28,0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(8, 8, 8, 0.96) 0%,
+      rgba(12, 12, 12, 0.98) 55%,
+      rgba(16, 20, 28, 0.98) 100%) !important;
   color: #fff;
   padding: 48px 24px;
   font-family: var(--font-inter), sans-serif;
@@ -1661,9 +1724,9 @@ a:hover .header-phone-icon {
   min-height: 320px;
   text-align: left;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02) inset,
-    0 10px 30px rgba(0,0,0,0.55),
-    0 0 18px rgba(0,102,255,0.08) !important;
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(0, 102, 255, 0.08) !important;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -1747,9 +1810,9 @@ a:hover .header-phone-icon {
   gap: 24px;
   text-align: left;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02) inset,
-    0 10px 30px rgba(0,0,0,0.55),
-    0 0 18px rgba(0,102,255,0.08) !important;
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(0, 102, 255, 0.08) !important;
 }
 
 .bottom-cta strong {
@@ -1809,12 +1872,10 @@ a:hover .header-phone-icon {
    ========================================================= */
 
 .elite-ai-section {
-  background: linear-gradient(
-    180deg,
-    rgba(8,8,8,0.96) 0%,
-    rgba(12,12,12,0.98) 55%,
-    rgba(16,20,28,0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(8, 8, 8, 0.96) 0%,
+      rgba(12, 12, 12, 0.98) 55%,
+      rgba(16, 20, 28, 0.98) 100%) !important;
   color: #fff;
   padding: 54px 24px;
   font-family: var(--font-inter), sans-serif;
@@ -1846,7 +1907,7 @@ a:hover .header-phone-icon {
 
 .elite-ai-section h1 span {
   color: #129cff;
-  text-shadow: 0 0 28px rgba(18,156,255,.65);
+  text-shadow: 0 0 28px rgba(18, 156, 255, .65);
 }
 
 .elite-sub {
@@ -1863,15 +1924,15 @@ a:hover .header-phone-icon {
   flex-wrap: wrap;
   margin: 0 auto 40px;
   padding: 14px;
-  border: 1px solid rgba(46,203,255,.25);
+  border: 1px solid rgba(46, 203, 255, .25);
   border-radius: 18px;
   background: rgba(5, 17, 35, .82);
-  box-shadow: inset 0 0 30px rgba(46,203,255,.05);
+  box-shadow: inset 0 0 30px rgba(46, 203, 255, .05);
 }
 
 .elite-flow div {
   padding: 10px 14px;
-  border: 1px solid rgba(46,203,255,.35);
+  border: 1px solid rgba(46, 203, 255, .35);
   border-radius: 12px;
   background: rgba(8, 25, 50, .85);
   font-weight: 800;
@@ -1882,7 +1943,7 @@ a:hover .header-phone-icon {
 .elite-flow span {
   color: #2ecbff;
   font-size: 20px;
-  text-shadow: 0 0 16px rgba(46,203,255,.9);
+  text-shadow: 0 0 16px rgba(46, 203, 255, .9);
 }
 
 .elite-cards {
@@ -1901,9 +1962,9 @@ a:hover .header-phone-icon {
   border: 1px solid rgba(0, 140, 255, 0.18) !important;
   backdrop-filter: blur(8px) !important;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02) inset,
-    0 10px 30px rgba(0,0,0,0.55),
-    0 0 18px rgba(0,102,255,0.08) !important;
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(0, 102, 255, 0.08) !important;
   transition:
     transform .35s ease,
     box-shadow .35s ease,
@@ -1912,19 +1973,19 @@ a:hover .header-phone-icon {
 
 .elite-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(46,203,255,.55);
+  border-color: rgba(46, 203, 255, .55);
   box-shadow:
-    0 0 0 1px rgba(46,203,255,.15),
-    0 0 45px rgba(18,156,255,.18),
-    0 25px 60px rgba(0,0,0,.55);
+    0 0 0 1px rgba(46, 203, 255, .15),
+    0 0 45px rgba(18, 156, 255, .18),
+    0 25px 60px rgba(0, 0, 0, .55);
 }
 
 .elite-card.featured {
   border: 1px solid #249dff;
   box-shadow:
-    0 0 0 1px rgba(36,157,255,.35),
-    0 0 38px rgba(36,157,255,.65),
-    inset 0 0 35px rgba(36,157,255,.10);
+    0 0 0 1px rgba(36, 157, 255, .35),
+    0 0 38px rgba(36, 157, 255, .65),
+    inset 0 0 35px rgba(36, 157, 255, .10);
 }
 
 .elite-ai-section .badge {
@@ -1952,7 +2013,7 @@ a:hover .header-phone-icon {
   color: #129cff;
   font-size: 28px;
   margin-bottom: 20px;
-  box-shadow: 0 0 24px rgba(18,156,255,.35);
+  box-shadow: 0 0 24px rgba(18, 156, 255, .35);
 }
 
 .elite-card h2 {
@@ -1970,7 +2031,7 @@ a:hover .header-phone-icon {
   height: 2px;
   background: #129cff;
   margin-top: 12px;
-  box-shadow: 0 0 12px rgba(18,156,255,.8);
+  box-shadow: 0 0 12px rgba(18, 156, 255, .8);
 }
 
 .elite-card ul {
@@ -1982,7 +2043,7 @@ a:hover .header-phone-icon {
 .elite-card li {
   position: relative;
   padding: 10px 0 10px 34px;
-  border-bottom: 1px solid rgba(255,255,255,.07);
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
   font-size: 15px;
   font-weight: 600;
 }
@@ -2001,11 +2062,11 @@ a:hover .header-phone-icon {
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  box-shadow: 0 0 14px rgba(18,156,255,.35);
+  box-shadow: 0 0 14px rgba(18, 156, 255, .35);
 }
 
 .elite-ai-section .price {
-  border-top: 1px solid rgba(255,255,255,.15);
+  border-top: 1px solid rgba(255, 255, 255, .15);
   padding-top: 16px;
   margin-bottom: 18px;
 }
@@ -2030,7 +2091,7 @@ a:hover .header-phone-icon {
   text-align: center;
   padding: 13px 20px;
   border-radius: 999px;
-  border: 1px solid rgba(46,203,255,.55);
+  border: 1px solid rgba(46, 203, 255, .55);
   color: #fff;
   text-decoration: none;
   font-weight: 800;
@@ -2038,12 +2099,12 @@ a:hover .header-phone-icon {
   letter-spacing: .3px;
   background:
     linear-gradient(180deg,
-    rgba(12,35,68,.95),
-    rgba(3,12,24,.98));
+      rgba(12, 35, 68, .95),
+      rgba(3, 12, 24, .98));
   box-shadow:
-    0 0 0 1px rgba(46,203,255,.12),
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 8px 30px rgba(0,0,0,.45);
+    0 0 0 1px rgba(46, 203, 255, .12),
+    inset 0 1px 0 rgba(255, 255, 255, .08),
+    0 8px 30px rgba(0, 0, 0, .45);
   transition:
     transform .25s ease,
     box-shadow .25s ease,
@@ -2059,12 +2120,10 @@ a:hover .header-phone-icon {
   width: 140%;
   height: 300%;
   background:
-    linear-gradient(
-      115deg,
+    linear-gradient(115deg,
       transparent 20%,
-      rgba(255,255,255,.16) 48%,
-      transparent 75%
-    );
+      rgba(255, 255, 255, .16) 48%,
+      transparent 75%);
   transform: rotate(8deg);
   transition: transform .7s ease;
 }
@@ -2077,9 +2136,9 @@ a:hover .header-phone-icon {
   transform: translateY(-3px) scale(1.015);
   border-color: #3ad7ff;
   box-shadow:
-    0 0 0 1px rgba(58,215,255,.25),
-    0 0 35px rgba(18,156,255,.55),
-    0 12px 40px rgba(0,0,0,.55);
+    0 0 0 1px rgba(58, 215, 255, .25),
+    0 0 35px rgba(18, 156, 255, .55),
+    0 12px 40px rgba(0, 0, 0, .55);
   color: #fff;
 }
 
@@ -2090,21 +2149,21 @@ a:hover .header-phone-icon {
 .elite-btn.primary {
   background:
     linear-gradient(135deg,
-    #006eff 0%,
-    #0ea5ff 45%,
-    #12d8ff 100%);
-  border: 1px solid rgba(255,255,255,.18);
+      #006eff 0%,
+      #0ea5ff 45%,
+      #12d8ff 100%);
+  border: 1px solid rgba(255, 255, 255, .18);
   box-shadow:
-    0 0 0 1px rgba(18,216,255,.2),
-    0 0 45px rgba(18,156,255,.55),
-    0 10px 35px rgba(0,80,255,.35);
+    0 0 0 1px rgba(18, 216, 255, .2),
+    0 0 45px rgba(18, 156, 255, .55),
+    0 10px 35px rgba(0, 80, 255, .35);
 }
 
 .elite-btn.primary:hover {
   box-shadow:
-    0 0 0 1px rgba(18,216,255,.3),
-    0 0 55px rgba(18,216,255,.75),
-    0 14px 48px rgba(0,80,255,.45);
+    0 0 0 1px rgba(18, 216, 255, .3),
+    0 0 55px rgba(18, 216, 255, .75),
+    0 14px 48px rgba(0, 80, 255, .45);
 }
 
 .elite-benefits {
@@ -2117,15 +2176,15 @@ a:hover .header-phone-icon {
   backdrop-filter: blur(8px) !important;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02) inset,
-    0 10px 30px rgba(0,0,0,0.55),
-    0 0 18px rgba(0,102,255,0.08) !important;
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(0, 102, 255, 0.08) !important;
 }
 
 .elite-benefits div {
   padding: 18px 20px;
   text-align: left;
-  border-right: 1px solid rgba(255,255,255,.08);
+  border-right: 1px solid rgba(255, 255, 255, .08);
 }
 
 .elite-benefits div:last-child {
@@ -2200,9 +2259,9 @@ a:hover .header-phone-icon {
   transform: translateY(-2px);
   border-color: #31d7ff;
   box-shadow:
-    0 0 0 1px rgba(49,215,255,.15),
-    0 0 22px rgba(49,215,255,.35),
-    0 10px 30px rgba(0,0,0,.45);
+    0 0 0 1px rgba(49, 215, 255, .15),
+    0 0 22px rgba(49, 215, 255, .35),
+    0 10px 30px rgba(0, 0, 0, .45);
 }
 
 /* Premium animated light sweep */
@@ -2216,12 +2275,10 @@ a:hover .header-phone-icon {
   width: 140%;
   height: 300%;
   background:
-    linear-gradient(
-      115deg,
+    linear-gradient(115deg,
       transparent 20%,
-      rgba(255,255,255,.14) 48%,
-      transparent 75%
-    );
+      rgba(255, 255, 255, .14) 48%,
+      transparent 75%);
   transform: rotate(8deg);
   transition: transform .7s ease;
 }
@@ -2238,13 +2295,13 @@ a:hover .header-phone-icon {
 .menu-btn:active {
   transform: scale(.96);
   box-shadow:
-    0 0 12px rgba(49,215,255,.25),
-    inset 0 2px 10px rgba(0,0,0,.35);
+    0 0 12px rgba(49, 215, 255, .25),
+    inset 0 2px 10px rgba(0, 0, 0, .35);
 }
 
 .ai-hire-btn:hover {
   box-shadow:
-    0 0 0 1px rgba(49,215,255,.25),
+    0 0 0 1px rgba(49, 215, 255, .25),
 }
 
 /* =========================================================
@@ -2263,14 +2320,12 @@ a:hover .header-phone-icon {
 .dropdown-item:hover {
   color: #fff !important;
   background:
-    linear-gradient(
-      90deg,
-      rgba(0,140,255,.18),
-      rgba(18,216,255,.08)
-    ) !important;
+    linear-gradient(90deg,
+      rgba(0, 140, 255, .18),
+      rgba(18, 216, 255, .08)) !important;
 
   box-shadow:
-    inset 0 0 18px rgba(18,156,255,.15);
+    inset 0 0 18px rgba(18, 156, 255, .15);
 
   border-radius: 10px;
 }
@@ -2279,7 +2334,7 @@ a:hover .header-phone-icon {
 .dropdown-menu,
 .dropdown-content {
   background: #07111f !important;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* =========================================================
@@ -2287,12 +2342,10 @@ a:hover .header-phone-icon {
    ========================================================= */
 
 .rd-ai-volume-page {
-  background: linear-gradient(
-    180deg,
-    rgba(8,8,8,0.96) 0%,
-    rgba(12,12,12,0.98) 55%,
-    rgba(16,20,28,0.98) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      rgba(8, 8, 8, 0.96) 0%,
+      rgba(12, 12, 12, 0.98) 55%,
+      rgba(16, 20, 28, 0.98) 100%) !important;
   color: #fff;
   padding: 36px 24px;
   font-family: var(--font-inter), sans-serif;
@@ -2346,14 +2399,14 @@ a:hover .header-phone-icon {
   color: #fff;
   text-decoration: none;
   font-weight: 800;
-  box-shadow: 0 0 24px rgba(18,156,255,.25);
+  box-shadow: 0 0 24px rgba(18, 156, 255, .25);
   transition: .3s ease;
   cursor: pointer;
 }
 
 .rd-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 0 42px rgba(18,216,255,.55);
+  box-shadow: 0 0 42px rgba(18, 216, 255, .55);
   color: #fff;
 }
 
@@ -2374,9 +2427,9 @@ a:hover .header-phone-icon {
 
 .rd-mini-benefits span {
   padding: 8px;
-  border: 1px solid rgba(46,203,255,.25);
+  border: 1px solid rgba(46, 203, 255, .25);
   border-radius: 12px;
-  background: rgba(5,17,35,.75);
+  background: rgba(5, 17, 35, .75);
   font-weight: 700;
   text-align: center;
   font-size: 12px;
@@ -2391,9 +2444,9 @@ a:hover .header-phone-icon {
   border-radius: 22px;
   backdrop-filter: blur(8px) !important;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02) inset,
-    0 10px 30px rgba(0,0,0,0.55),
-    0 0 18px rgba(0,102,255,0.08) !important;
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(0, 102, 255, 0.08) !important;
 }
 
 .rd-ai-panel {
@@ -2416,8 +2469,8 @@ a:hover .header-phone-icon {
 .rd-workflow div {
   padding: 8px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(46,203,255,.22);
-  background: rgba(8,25,50,.92);
+  border: 1px solid rgba(46, 203, 255, .22);
+  background: rgba(8, 25, 50, .92);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2425,7 +2478,7 @@ a:hover .header-phone-icon {
 
 .rd-workflow div.active {
   border-color: #12d8ff;
-  box-shadow: 0 0 28px rgba(18,216,255,.45);
+  box-shadow: 0 0 28px rgba(18, 216, 255, .45);
 }
 
 .rd-workflow b {
@@ -2451,15 +2504,15 @@ a:hover .header-phone-icon {
 .rd-flow-strip span {
   padding: 12px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(46,203,255,.35);
-  background: rgba(8,25,50,.95);
+  border: 1px solid rgba(46, 203, 255, .35);
+  background: rgba(8, 25, 50, .95);
   font-weight: 800;
 }
 
 .rd-flow-strip b {
   color: #2ecbff;
   font-size: 16px;
-  text-shadow: 0 0 16px rgba(46,203,255,.9);
+  text-shadow: 0 0 16px rgba(46, 203, 255, .9);
 }
 
 .rd-feature-grid {
@@ -2477,8 +2530,8 @@ a:hover .header-phone-icon {
 
 .rd-card:hover {
   transform: translateY(-8px);
-  border-color: rgba(46,203,255,.55);
-  box-shadow: 0 0 50px rgba(18,156,255,.24);
+  border-color: rgba(46, 203, 255, .55);
+  box-shadow: 0 0 50px rgba(18, 156, 255, .24);
 }
 
 .rd-card h3 {
@@ -2502,8 +2555,8 @@ a:hover .header-phone-icon {
   margin-top: 12px;
   padding: 16px;
   border-radius: 12px;
-  border: 1px solid rgba(46,203,255,.3);
-  background: rgba(8,25,50,.92);
+  border: 1px solid rgba(46, 203, 255, .3);
+  background: rgba(8, 25, 50, .92);
   color: #fff;
   font-weight: 800;
   font-size: 13px;
@@ -2547,8 +2600,8 @@ a:hover .header-phone-icon {
 .rd-package-cards div {
   padding: 22px;
   border-radius: 16px;
-  background: rgba(8,25,50,.92);
-  border: 1px solid rgba(46,203,255,.22);
+  background: rgba(8, 25, 50, .92);
+  border: 1px solid rgba(46, 203, 255, .22);
 }
 
 .rd-package-cards h4 {
@@ -2562,6 +2615,7 @@ a:hover .header-phone-icon {
 }
 
 @media (max-width: 1100px) {
+
   .rd-ai-hero,
   .rd-feature-grid,
   .rd-package-cards {
@@ -2620,17 +2674,15 @@ a:hover .header-phone-icon {
   border: 1px solid rgba(47, 211, 255, 0.75);
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       rgba(0, 110, 255, 0.22),
-      rgba(18, 216, 255, 0.08)
-    ),
+      rgba(18, 216, 255, 0.08)),
     rgba(3, 10, 22, 0.96);
 
   box-shadow:
     0 0 0 1px rgba(47, 211, 255, 0.12),
     0 0 18px rgba(0, 140, 255, 0.22),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
   backdrop-filter: blur(12px);
 
@@ -2659,17 +2711,15 @@ a:hover .header-phone-icon {
   border: 1px solid rgba(0, 110, 255, 0.28);
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       rgba(0, 110, 255, 0.08),
-      rgba(18, 216, 255, 0.03)
-    ),
-    rgba(255,255,255,0.92);
+      rgba(18, 216, 255, 0.03)),
+    rgba(255, 255, 255, 0.92);
 
   box-shadow:
-    0 0 0 1px rgba(0,110,255,.06),
-    0 8px 24px rgba(0,0,0,.06),
-    inset 0 1px 0 rgba(255,255,255,.8);
+    0 0 0 1px rgba(0, 110, 255, .06),
+    0 8px 24px rgba(0, 0, 0, .06),
+    inset 0 1px 0 rgba(255, 255, 255, .8);
 }
 
 
@@ -2689,12 +2739,10 @@ a:hover .header-phone-icon {
   height: 320%;
 
   background:
-    linear-gradient(
-      115deg,
+    linear-gradient(115deg,
       transparent 20%,
-      rgba(255,255,255,0.18) 48%,
-      transparent 75%
-    );
+      rgba(255, 255, 255, 0.18) 48%,
+      transparent 75%);
 
   transform: rotate(8deg);
   transition: transform .75s ease;
@@ -2712,20 +2760,18 @@ a:hover .header-phone-icon {
   border-color: #8cecff;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       rgba(0, 110, 255, 0.34),
-      rgba(18, 216, 255, 0.16)
-    ),
+      rgba(18, 216, 255, 0.16)),
     rgba(5, 17, 35, 1);
 
   transform: translateY(-3px);
 
   box-shadow:
-    0 0 0 1px rgba(140,236,255,.18),
-    0 0 26px rgba(18,216,255,.42),
-    0 0 55px rgba(0,140,255,.22),
-    0 12px 35px rgba(0,0,0,.45);
+    0 0 0 1px rgba(140, 236, 255, .18),
+    0 0 26px rgba(18, 216, 255, .42),
+    0 0 55px rgba(0, 140, 255, .22),
+    0 12px 35px rgba(0, 0, 0, .45);
 }
 
 
@@ -2745,17 +2791,15 @@ a:hover .header-phone-icon {
   border-color: #12d8ff;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       rgba(0, 110, 255, 0.12),
-      rgba(18, 216, 255, 0.06)
-    ),
-    rgba(255,255,255,1);
+      rgba(18, 216, 255, 0.06)),
+    rgba(255, 255, 255, 1);
 
   box-shadow:
-    0 0 0 1px rgba(18,216,255,.14),
-    0 0 24px rgba(18,216,255,.16),
-    0 10px 28px rgba(0,0,0,.08);
+    0 0 0 1px rgba(18, 216, 255, .14),
+    0 0 24px rgba(18, 216, 255, .16),
+    0 10px 28px rgba(0, 0, 0, .08);
 }
 
 
@@ -2800,7 +2844,7 @@ a:hover .header-phone-icon {
   min-width: 52px;
   border-radius: 14px;
   padding: 12px;
-  box-shadow: 0 0 12px rgba(0,140,255,.10);
+  box-shadow: 0 0 12px rgba(0, 140, 255, .10);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2835,15 +2879,13 @@ RECRUITMENT THAT MOVES FASTER
 ================================================== */
 
 .hero-section {
-    background: linear-gradient(
-        180deg,
-        rgba(8,8,8,0.96) 0%,
-        rgba(12,12,12,0.98) 55%,
-        rgba(16,20,28,0.98) 100%
-    ) !important;
-    padding: 120px 0 !important;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(180deg,
+      rgba(8, 8, 8, 0.96) 0%,
+      rgba(12, 12, 12, 0.98) 55%,
+      rgba(16, 20, 28, 0.98) 100%) !important;
+  padding: 120px 0 !important;
+  position: relative;
+  overflow: hidden;
 }
 
 /* ==================================================
@@ -2851,13 +2893,13 @@ HERO HEADING
 ================================================== */
 
 .hero-section h1 {
-    color: #ffffff !important;
-    font-size: 64px !important;
-    font-weight: 700 !important;
-    line-height: 1.1 !important;
-    letter-spacing: -1px !important;
-    margin-bottom: 24px !important;
-    max-width: 900px !important;
+  color: #ffffff !important;
+  font-size: 64px !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -1px !important;
+  margin-bottom: 24px !important;
+  max-width: 900px !important;
 }
 
 /* ==================================================
@@ -2865,11 +2907,11 @@ HERO SUBTEXT
 ================================================== */
 
 .hero-section p {
-    color: #94a3b8 !important;
-    font-size: 20px !important;
-    line-height: 1.7 !important;
-    max-width: 720px !important;
-    margin-bottom: 40px !important;
+  color: #94a3b8 !important;
+  font-size: 20px !important;
+  line-height: 1.7 !important;
+  max-width: 720px !important;
+  margin-bottom: 40px !important;
 }
 
 /* ==================================================
@@ -2877,34 +2919,32 @@ PRIMARY BUTTON – MAIN CTA
 ================================================== */
 
 .hero-section .btn-primary {
-    height: 52px !important;
-    padding: 0 28px !important;
-    border-radius: 14px !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    border: 1px solid transparent !important;
-    background:
+  height: 52px !important;
+  padding: 0 28px !important;
+  border-radius: 14px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+  background:
     linear-gradient(#000000, #020617) padding-box,
-    linear-gradient(
-        135deg,
-        #3b82f6,
-        #06b6d4,
-        #2563eb
-    ) border-box !important;
-    box-shadow:
-    0 0 20px rgba(59,130,246,0.18) !important;
-    transition: all 0.25s ease !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    linear-gradient(135deg,
+      #3b82f6,
+      #06b6d4,
+      #2563eb) border-box !important;
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.18) !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .hero-section .btn-primary:hover {
-    transform: translateY(-2px) !important;
-    box-shadow:
-    0 0 35px rgba(59,130,246,0.32) !important;
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 0 35px rgba(59, 130, 246, 0.32) !important;
 }
 
 /* ==================================================
@@ -2912,30 +2952,30 @@ SECONDARY BUTTON
 ================================================== */
 
 .hero-section .btn-secondary {
-    height: 52px !important;
-    padding: 0 28px !important;
-    border-radius: 14px !important;
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255,255,255,0.10) !important;
-    background: rgba(255,255,255,0.03) !important;
-    backdrop-filter: blur(10px) !important;
-    box-shadow:
-    0 0 18px rgba(15,23,42,0.18) !important;
-    transition: all 0.25s ease !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  height: 52px !important;
+  padding: 0 28px !important;
+  border-radius: 14px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow:
+    0 0 18px rgba(15, 23, 42, 0.18) !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .hero-section .btn-secondary:hover {
-    transform: translateY(-2px) !important;
-    border: 1px solid rgba(59,130,246,0.22) !important;
-    box-shadow:
-    0 0 28px rgba(59,130,246,0.18) !important;
-    background: rgba(255,255,255,0.05) !important;
+  transform: translateY(-2px) !important;
+  border: 1px solid rgba(59, 130, 246, 0.22) !important;
+  box-shadow:
+    0 0 28px rgba(59, 130, 246, 0.18) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 
 /* ==================================================
@@ -2944,30 +2984,30 @@ HERO CARDS / STATS BOXES
 
 .hero-section .card,
 .hero-section .hero-box {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid rgba(0, 140, 255, 0.18) !important;
-    border-radius: 18px !important;
-    backdrop-filter: blur(8px) !important;
-    padding: 32px !important;
-    color: #ffffff !important;
-    box-shadow:
-        0 0 0 1px rgba(255,255,255,0.02) inset,
-        0 10px 30px rgba(0,0,0,0.55),
-        0 0 18px rgba(0,102,255,0.08) !important;
-    transition: all 0.3s ease !important;
-    height: 100% !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(0, 140, 255, 0.18) !important;
+  border-radius: 18px !important;
+  backdrop-filter: blur(8px) !important;
+  padding: 32px !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 10px 30px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(0, 102, 255, 0.08) !important;
+  transition: all 0.3s ease !important;
+  height: 100% !important;
 }
 
 .hero-section .accent,
 .hero-section strong {
-    color: #22c7ff !important;
+  color: #22c7ff !important;
 }
 
 .hero-section .card:hover,
 .hero-section .hero-box:hover {
-    transform: translateY(-4px) !important;
-    box-shadow:
-    0 0 40px rgba(59,130,246,0.20) !important;
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 0 40px rgba(59, 130, 246, 0.20) !important;
 }
 
 /* ==================================================
@@ -2976,17 +3016,17 @@ HERO CARD TEXT
 
 .hero-section .card h3,
 .hero-section .hero-box h3 {
-    color: #ffffff !important;
-    font-size: 22px !important;
-    margin-bottom: 14px !important;
+  color: #ffffff !important;
+  font-size: 22px !important;
+  margin-bottom: 14px !important;
 }
 
 .hero-section .card p,
 .hero-section .hero-box p {
-    color: #94a3b8 !important;
-    font-size: 16px !important;
-    line-height: 1.7 !important;
-    margin-bottom: 0 !important;
+  color: #94a3b8 !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+  margin-bottom: 0 !important;
 }
 
 /* ==================================================
@@ -2994,9 +3034,9 @@ CONSISTENT BUTTON SPACING
 ================================================== */
 
 .hero-section .button-group {
-    display: flex !important;
-    gap: 16px !important;
-    flex-wrap: wrap !important;
+  display: flex !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
 }
 
 /* ==================================================
@@ -3004,20 +3044,20 @@ MOBILE RESPONSIVE
 ================================================== */
 
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 80px 0 !important;
-    }
+  .hero-section {
+    padding: 80px 0 !important;
+  }
 
-    .hero-section h1 {
-        font-size: 42px !important;
-    }
+  .hero-section h1 {
+    font-size: 42px !important;
+  }
 
-    .hero-section p {
-        font-size: 18px !important;
-    }
+  .hero-section p {
+    font-size: 18px !important;
+  }
 
-    .hero-section .btn-primary,
-    .hero-section .btn-secondary {
-        width: 100% !important;
-    }
+  .hero-section .btn-primary,
+  .hero-section .btn-secondary {
+    width: 100% !important;
+  }
 }

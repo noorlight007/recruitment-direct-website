@@ -84,7 +84,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="hero-subtext">
-              Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance. 
+              Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance.
               Powered by AI, delivered by experienced consultants.
             </p>
 
@@ -95,40 +95,26 @@ export default function HeroSection() {
               </button>
             </div>
 
-            <div className="mb-10">
-              <a href="/ai-hire-now" className="btn-primary flex flex-col !h-auto !py-2.5 !px-12 text-center items-center group w-full sm:w-fit">
-                <span className="text-lg font-bold">Request Staff</span>
-                <span className="text-[11px] opacity-80 font-semibold uppercase tracking-widest mt-0.5">Existing Clients</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+              {/* Button 1: Request Staff */}
+              <a href="/ai-hire-now" className="btn-primary flex flex-col !h-auto !py-3 !px-4 text-center items-center group w-full">
+                <span className="text-base font-bold">Request Staff</span>
+                <span className="text-[10px] opacity-80 font-semibold uppercase tracking-widest mt-0.5">Existing Clients</span>
+              </a>
+
+              {/* Button 2: Place Enquiry */}
+              <a href="/place-enquiry" className="btn-primary flex flex-col !h-auto !py-3 !px-4 text-center items-center group w-full">
+                <span className="text-base font-bold">Place Enquiry</span>
+                <span className="text-[10px] opacity-80 font-semibold uppercase tracking-widest mt-0.5">New Clients</span>
+              </a>
+
+              {/* Button 3: Job Search */}
+              <a href="/#job-search" className="btn-primary flex flex-col !h-auto !py-3 !px-4 text-center items-center group w-full">
+                <span className="text-base font-bold">Job Search</span>
+                <span className="text-[10px] opacity-80 font-semibold uppercase tracking-widest mt-0.5">Live Jobs</span>
               </a>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-              {/* Card 1: Place Enquiry */}
-              <a href="/place-enquiry" className="card group">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
-                    <Building2 className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-0">Place Enquiry</h3>
-                    <p className="text-sm text-gray-400">New Clients</p>
-                  </div>
-                </div>
-              </a>
-
-              {/* Card 2: Job Search */}
-              <a href="/#job-search" className="card group">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
-                    <Briefcase className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-0 leading-tight">Job<br/>Search</h3>
-                    <p className="text-sm text-gray-400">Live Jobs</p>
-                  </div>
-                </div>
-              </a>
-            </div>
           </div>
 
           {/* Right Column: AI Automation Dashboard */}
@@ -154,11 +140,10 @@ export default function HeroSection() {
                 { icon: <UserCheck className="w-5 h-5" />, title: "Automated Shortlisting", status: "pending" },
               ].map((step, idx) => (
                 <div key={idx} className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border ${
-                    step.status === 'completed' ? 'border-blue-500 bg-blue-500/10 text-blue-400' : 
-                    step.status === 'current' ? 'border-yellow-500 bg-yellow-500/10 text-yellow-400' : 
-                    'border-gray-800 bg-gray-900 text-gray-600'
-                  }`}>
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border ${step.status === 'completed' ? 'border-blue-500 bg-blue-500/10 text-blue-400' :
+                      step.status === 'current' ? 'border-yellow-500 bg-yellow-500/10 text-yellow-400' :
+                        'border-gray-800 bg-gray-900 text-gray-600'
+                    }`}>
                     {step.icon}
                   </div>
                   <div className="flex-1">
@@ -187,7 +172,7 @@ export default function HeroSection() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-20">
           {[
             { val: "50%", label: "Filled Faster" },
-            { val: "10K+", label: "Placements" },
+            // { val: "10K+", label: "Placements" },
             { val: "87%", label: "Accuracy" },
             { val: "70%", label: "Time Saved" },
             { val: "100%", label: "Compliance" },

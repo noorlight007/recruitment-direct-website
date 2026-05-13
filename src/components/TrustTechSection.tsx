@@ -2,92 +2,134 @@
 
 import React from "react";
 
+const logos = [
+  { src: "/images/cirrus-logo.png", alt: "Cirrus Consortium" },
+  { src: "/assets/compliance/rec-member.png", alt: "REC Corporate Member" },
+  { src: "/assets/compliance/cqs-iso9001.png", alt: "ISO 9001" },
+  { src: "/assets/compliance/constructionline-gold.png", alt: "Constructionline Gold" },
+  { src: "/images/callpilot-logo.png", alt: "CallPilot" },
+];
+
 export default function TrustTechSection() {
   return (
-    <section className="trusted-section light-section py-14">
+    <section className="trusted-tech-section">
       <style jsx>{`
-        .trusted-section {
-          position: relative;
+        .trusted-tech-section {
+          background: linear-gradient(180deg, #020202 0%, #05070A 60%, #0B1622 100%);
+          padding: 70px 20px;
           overflow: hidden;
-          background: #f8fafc !important;
-        }
-
-        .trusted-section h2 {
-          color: #0f172a;
           text-align: center;
-          letter-spacing: 6px;
+        }
+
+        .trusted-tech-inner {
+          max-width: 1280px;
+          margin: 0 auto;
+        }
+
+        .trusted-tech-title {
+          margin: 0;
+          color: #FFFFFF !important;
+          font-size: clamp(30px, 5vw, 58px);
+          line-height: 1.08;
           font-weight: 800;
-          margin-bottom: 55px;
+          letter-spacing: 1px;
         }
 
-        .trusted-link {
-          display: block;
-          text-decoration: none;
-          color: inherit;
+        .trusted-tech-title span {
+          color: #008CFF !important;
         }
 
-        .trusted-card {
-          max-width: 640px;
-          min-height: 260px;
-          margin: 0 auto 42px;
-          padding: 40px;
-          position: relative;
+        .trusted-tech-subtitle {
+          max-width: 760px;
+          margin: 20px auto 45px;
+          color: #D2DAE3 !important;
+          font-size: clamp(16px, 2vw, 22px);
+          line-height: 1.5;
+        }
+
+        .logo-slider {
+          width: 100%;
           overflow: hidden;
-          border-radius: 28px;
-          border: 1px solid #e2e8f0;
+          position: relative;
+          padding: 28px 0;
+          border-top: 1px solid rgba(0, 140, 255, 0.18);
+          border-bottom: 1px solid rgba(0, 140, 255, 0.18);
+        }
+
+        .logo-track {
           display: flex;
           align-items: center;
-          justify-content: center;
-          background: #ffffff;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          gap: 70px;
+          width: max-content;
+          animation: moveLogosLeftToRight 30s linear infinite;
         }
 
-        .trusted-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-          border-color: #3b82f6;
-        }
-
-        .trusted-card img {
-          position: relative;
-          z-index: 2;
-          display: block;
-          max-width: 78%;
-          height: auto;
-          margin: auto;
-          filter: grayscale(1) opacity(0.7);
+        .logo-track img {
+          max-height: 48px;
+          width: auto;
+          object-fit: contain;
+          opacity: 0.94;
           transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-        .trusted-card:hover img {
-          transform: scale(1.04);
-          filter: grayscale(0) opacity(1);
+        .logo-track img:hover {
+          transform: scale(1.1);
+          filter: brightness(1.2);
+        }
+
+        @keyframes moveLogosLeftToRight {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
 
         @media (max-width: 768px) {
-          .trusted-section h2 {
-            font-size: 24px;
-            letter-spacing: 5px;
+          .trusted-tech-section {
+            padding: 60px 18px;
           }
-          .trusted-card {
-            min-height: 210px;
-            padding: 30px;
+
+          .trusted-tech-title {
+            font-size: 34px;
+          }
+
+          .trusted-tech-subtitle {
+            font-size: 17px;
+            margin-bottom: 38px;
+          }
+
+          .logo-track {
+            gap: 42px;
+          }
+
+          .logo-track img {
+            max-height: 38px;
           }
         }
       `}</style>
 
-      <h2>TRUSTED CLIENTS & TECHNOLOGY</h2>
+      <div className="trusted-tech-inner">
+        <h2 className="trusted-tech-title">
+          TRUSTED CLIENTS &<br />
+          <span>TECHNOLOGY</span>
+        </h2>
 
-      <div className="trusted-card">
-        <img src="/images/cirrus-logo.png" alt="Cirrus Consortium Agency Framework Supplier" />
-      </div>
+        <p className="trusted-tech-subtitle">
+          Delivering compliant, scalable and intelligent recruitment solutions.
+        </p>
 
-      <a href="https://callpilot.pro/" className="trusted-link">
-        <div className="trusted-card">
-          <img src="/images/callpilot-logo.png" alt="CallPilot AI Phone Calls" />
+        <div className="logo-slider">
+          <div className="logo-track">
+            {/* Double the logos for infinite scroll effect */}
+            {[...logos, ...logos].map((logo, idx) => (
+              <img key={idx} src={logo.src} alt={logo.alt} />
+            ))}
+          </div>
         </div>
-      </a>
+      </div>
     </section>
   );
 }
+

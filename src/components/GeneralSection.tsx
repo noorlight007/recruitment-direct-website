@@ -24,7 +24,7 @@ export default function GeneralSection() {
           transition={{ delay: 0.1 }}
           className="text-lg mb-12 max-w-3xl mx-auto"
         >
-          Our AI contacts and screens applicants instantly, while our consultants verify and approve every worker before submission.
+          Our consultants verify and approve every worker before submission.
         </motion.p>
 
         <motion.div
