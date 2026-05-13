@@ -12,7 +12,7 @@ export default function GeneralSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="section-title mb-12 max-w-4xl mx-auto"
+          className="section-title mb-6 max-w-4xl mx-auto"
         >
           AI Speed. Human Verification. Faster Hiring.
         </motion.h2>

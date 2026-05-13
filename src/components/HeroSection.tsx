@@ -156,11 +156,11 @@ export default function HeroSection() {
             </div>
 
             <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+              <div className="p-2 rounded-xl bg-white/5 border border-white/10 items-center justify-center flex flex-col">
                 <div className="text-2xl font-bold">92%</div>
                 <div className="text-[10px] text-gray-500 uppercase tracking-widest">Match Accuracy</div>
               </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/10 items-center justify-center flex flex-col">
                 <div className="text-2xl font-bold">58s</div>
                 <div className="text-[10px] text-gray-500 uppercase tracking-widest">Screening Time</div>
               </div>

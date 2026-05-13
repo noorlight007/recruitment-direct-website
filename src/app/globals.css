@@ -2878,11 +2878,16 @@ HERO SECTION – PREMIUM ENTERPRISE AI SAAS
 RECRUITMENT THAT MOVES FASTER
 ================================================== */
 
-.hero-section {
-  background: linear-gradient(180deg,
-      rgba(8, 8, 8, 0.96) 0%,
-      rgba(12, 12, 12, 0.98) 55%,
-      rgba(16, 20, 28, 0.98) 100%) !important;
+.page-header,
+.hero-section,
+.elementor-top-section:first-child,
+.elementor-section:first-child {
+  background: linear-gradient(
+    180deg,
+    #020202 0%,
+    #05070A 60%,
+    #0B1622 100%
+  ) !important;
   padding: 120px 0 !important;
   position: relative;
   overflow: hidden;
@@ -2892,26 +2897,45 @@ RECRUITMENT THAT MOVES FASTER
 HERO HEADING
 ================================================== */
 
-.hero-section h1 {
-  color: #ffffff !important;
-  font-size: 64px !important;
-  font-weight: 700 !important;
-  line-height: 1.1 !important;
+.page-header h1,
+.elementor-heading-title,
+.hero-section h1,
+.hero-title,
+.entry-title {
+  color: #FFFFFF !important;
+  font-size: clamp(34px, 6vw, 68px) !important;
+  line-height: 1.08 !important;
+  font-weight: 800 !important;
   letter-spacing: -1px !important;
+  text-align: center;
   margin-bottom: 24px !important;
   max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.page-header h1 span,
+.elementor-heading-title span,
+.hero-title span,
+.hero-section h1 span,
+.entry-title span {
+  color: #008CFF !important;
 }
 
 /* ==================================================
 HERO SUBTEXT
 ================================================== */
 
-.hero-section p {
-  color: #94a3b8 !important;
-  font-size: 20px !important;
-  line-height: 1.7 !important;
-  max-width: 720px !important;
-  margin-bottom: 40px !important;
+.page-header p,
+.hero-section p,
+.hero-subtitle,
+.elementor-widget-text-editor p {
+  color: #D2DAE3 !important;
+  font-size: clamp(18px, 2vw, 28px) !important;
+  line-height: 1.6 !important;
+  text-align: center;
+  max-width: 900px !important;
+  margin: 0 auto 36px auto !important;
 }
 
 /* ==================================================
@@ -3048,16 +3072,38 @@ MOBILE RESPONSIVE
     padding: 80px 0 !important;
   }
 
-  .hero-section h1 {
-    font-size: 42px !important;
+  .page-header h1,
+  .elementor-heading-title,
+  .hero-section h1,
+  .hero-title,
+  .entry-title {
+    font-size: 52px !important;
   }
 
-  .hero-section p {
-    font-size: 18px !important;
+  .page-header p,
+  .hero-section p,
+  .hero-subtitle,
+  .elementor-widget-text-editor p {
+    font-size: 17px !important;
+    line-height: 1.55 !important;
   }
 
   .hero-section .btn-primary,
-  .hero-section .btn-secondary {
+  .hero-section .btn-secondary,
+  .main-action-btn,
+  .elementor-button,
+  .button,
+  .wp-element-button {
     width: 100% !important;
+    min-height: 58px !important;
+    padding: 16px 22px !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
   }
 }

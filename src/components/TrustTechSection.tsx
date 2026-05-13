@@ -51,24 +51,26 @@ export default function TrustTechSection() {
           width: 100%;
           overflow: hidden;
           position: relative;
-          padding: 28px 0;
-          border-top: 1px solid rgba(0, 140, 255, 0.18);
-          border-bottom: 1px solid rgba(0, 140, 255, 0.18);
+          padding: 26px 0;
+          border-top: 1px solid rgba(0, 140, 255, 0.16);
+          border-bottom: 1px solid rgba(0, 140, 255, 0.16);
         }
 
         .logo-track {
           display: flex;
           align-items: center;
-          gap: 70px;
+          gap: 42px;
           width: max-content;
-          animation: moveLogosLeftToRight 30s linear infinite;
+          animation: moveLogos 22s linear infinite;
         }
 
         .logo-track img {
-          max-height: 48px;
+          height: 34px;
           width: auto;
+          max-width: 140px;
           object-fit: contain;
-          opacity: 0.94;
+          flex-shrink: 0;
+          opacity: 0.95;
           transition: transform 0.3s ease, filter 0.3s ease;
         }
 
@@ -77,12 +79,12 @@ export default function TrustTechSection() {
           filter: brightness(1.2);
         }
 
-        @keyframes moveLogosLeftToRight {
+        @keyframes moveLogos {
           0% {
-            transform: translateX(-50%);
+            transform: translateX(0);
           }
           100% {
-            transform: translateX(0);
+            transform: translateX(-50%);
           }
         }
 
@@ -101,13 +103,16 @@ export default function TrustTechSection() {
           }
 
           .logo-track {
-            gap: 42px;
+            gap: 34px;
+            animation-duration: 18s;
           }
 
           .logo-track img {
-            max-height: 38px;
+            height: 28px;
+            max-width: 110px;
           }
         }
+
       `}</style>
 
       <div className="trusted-tech-inner">
