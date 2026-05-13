@@ -350,22 +350,35 @@
   }
 
   .dark-section {
-    background: linear-gradient(180deg, #0b1220 0%, #050816 40%, #020307 100%) !important;
+    background:
+      radial-gradient(circle at top left, rgba(0, 191, 255, 0.18), transparent 32%),
+      linear-gradient(135deg, #07111f 0%, #0b1f36 45%, #123f66 100%) !important;
+    color: #ffffff !important;
     overflow: hidden;
     position: relative;
   }
 
-  .dark-section::before {
-    content: '';
-    position: absolute;
-    top: -250px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 900px;
-    height: 900px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
-    pointer-events: none;
+  .dark-section h2,
+  .dark-section h3 {
+    color: #ffffff !important;
   }
+
+  .dark-section p {
+    color: rgba(255, 255, 255, 0.78) !important;
+  }
+
+  .dark-section .card {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 18px !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  .dark-section .accent,
+  .dark-section strong {
+    color: #22c7ff !important;
+  }
+
 
   @keyframes logoFloat {
 
@@ -1567,7 +1580,9 @@ a:hover .header-phone-icon {
    ========================================================= */
 
 .ai-flow-section {
-  background: radial-gradient(circle at top, #071a33 0%, #020711 55%, #000 100%);
+  background:
+    radial-gradient(circle at top left, rgba(0, 191, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, #07111f 0%, #0b1f36 45%, #123f66 100%) !important;
   color: #fff;
   padding: 48px 24px;
   font-family: var(--font-inter), sans-serif;
@@ -1623,13 +1638,14 @@ a:hover .header-phone-icon {
 
 .flow-card {
   position: relative;
-  background: rgba(8, 24, 49, 0.85);
-  border: 1px solid #1d8cff;
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 18px !important;
+  backdrop-filter: blur(10px) !important;
   padding: 38px 28px 28px;
   min-height: 320px;
   text-align: left;
-  box-shadow: 0 0 28px rgba(29, 140, 255, 0.22);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
@@ -1703,14 +1719,16 @@ a:hover .header-phone-icon {
   max-width: 800px;
   margin: 36px auto 0;
   padding: 20px 28px;
-  background: rgba(8, 24, 49, 0.85);
-  border: 1px solid rgba(29, 140, 255, 0.45);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 18px !important;
+  backdrop-filter: blur(10px) !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
   text-align: left;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
 }
 
 .bottom-cta strong {
@@ -1771,8 +1789,8 @@ a:hover .header-phone-icon {
 
 .elite-ai-section {
   background:
-    radial-gradient(circle at 50% 0%, rgba(0,140,255,.22), transparent 35%),
-    linear-gradient(180deg, #020814 0%, #030712 55%, #01040a 100%);
+    radial-gradient(circle at top left, rgba(0, 191, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, #07111f 0%, #0b1f36 45%, #123f66 100%) !important;
   color: #fff;
   padding: 54px 24px;
   font-family: var(--font-inter), sans-serif;
@@ -1855,10 +1873,10 @@ a:hover .header-phone-icon {
   text-align: left;
   padding: 32px 30px 28px;
   border-radius: 20px;
-  background:
-    linear-gradient(180deg, rgba(8,25,50,.95), rgba(3,10,22,.95));
-  border: 1px solid rgba(46,203,255,.28);
-  box-shadow: 0 0 35px rgba(0,0,0,.45);
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
   transition:
     transform .35s ease,
     box-shadow .35s ease,
@@ -2066,9 +2084,10 @@ a:hover .header-phone-icon {
   margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border: 1px solid rgba(46,203,255,.22);
-  border-radius: 18px;
-  background: rgba(5, 17, 35, .82);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(10px) !important;
   overflow: hidden;
 }
 
@@ -2237,8 +2256,9 @@ a:hover .header-phone-icon {
    ========================================================= */
 
 .rd-ai-volume-page {
-  background: radial-gradient(circle at top, rgba(0,140,255,.16), transparent 35%),
-              linear-gradient(180deg, #020814 0%, #030712 60%, #01040a 100%);
+  background:
+    radial-gradient(circle at top left, rgba(0, 191, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, #07111f 0%, #0b1f36 45%, #123f66 100%) !important;
   color: #fff;
   padding: 36px 24px;
   font-family: var(--font-inter), sans-serif;
@@ -2332,14 +2352,11 @@ a:hover .header-phone-icon {
 .rd-card,
 .rd-package-grid,
 .rd-flow-strip {
-  background: rgba(5,17,35,.86);
-  border: 1px solid rgba(46,203,255,.28);
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 22px;
-  box-shadow:
-    0 0 0 1px rgba(46,203,255,.08),
-    0 0 42px rgba(18,156,255,.16),
-    inset 0 0 40px rgba(18,156,255,.05);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
 }
 
 .rd-ai-panel {
@@ -2781,12 +2798,9 @@ RECRUITMENT THAT MOVES FASTER
 ================================================== */
 
 .hero-section {
-    background: linear-gradient(
-        135deg,
-        #000000 0%,
-        #020617 80%,
-        #0f172a 100%
-    ) !important;
+    background:
+        radial-gradient(circle at top left, rgba(0, 191, 255, 0.18), transparent 32%),
+        linear-gradient(135deg, #07111f 0%, #0b1f36 45%, #123f66 100%) !important;
     padding: 120px 0 !important;
     position: relative;
     overflow: hidden;
@@ -2890,15 +2904,20 @@ HERO CARDS / STATS BOXES
 
 .hero-section .card,
 .hero-section .hero-box {
-    background: #000000 !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 18px !important;
+    backdrop-filter: blur(10px) !important;
     padding: 32px !important;
     color: #ffffff !important;
-    box-shadow:
-    0 0 30px rgba(15,23,42,0.35) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
     transition: all 0.3s ease !important;
     height: 100% !important;
+}
+
+.hero-section .accent,
+.hero-section strong {
+    color: #22c7ff !important;
 }
 
 .hero-section .card:hover,

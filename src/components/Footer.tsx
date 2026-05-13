@@ -77,9 +77,8 @@ export default function Footer() {
       <style jsx global>{`
         .rd-premium-wrap {
           background:
-            radial-gradient(circle at 15% 25%, rgba(30,92,255,0.18), transparent 40%),
-            radial-gradient(circle at 85% 75%, rgba(30,92,255,0.12), transparent 45%),
-            linear-gradient(135deg, #01030A 0%, #020617 50%, #050C1F 100%) !important;
+            radial-gradient(circle at top left, rgba(0, 191, 255, 0.18), transparent 32%),
+            linear-gradient(135deg, #07111f 0%, #0b1f36 45%, #123f66 100%) !important;
           padding: 64px 24px 0;
           border-top: 1px solid rgba(255, 255, 255, 0.06);
           position: relative;
@@ -116,15 +115,11 @@ export default function Footer() {
           margin-bottom: 32px;
         }
         .rd-card {
-          background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.04) 0%,
-            rgba(255, 255, 255, 0.02) 100%
-          );
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.06) !important;
+          border: 1px solid rgba(255, 255, 255, 0.12) !important;
           border-radius: 28px;
           padding: 22px 20px 18px;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.28),
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.04);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
@@ -324,11 +319,10 @@ export default function Footer() {
         .rd-ai-steve-card {
           padding: 18px;
           border-radius: 18px;
-          border: 1px solid rgba(98, 178, 255, 0.45);
-          background: linear-gradient(135deg, rgba(10, 18, 36, 0.8) 0%, rgba(5, 10, 20, 0.9) 100%);
-          box-shadow:
-            0 0 30px rgba(0, 153, 255, 0.18),
-            inset 0 0 30px rgba(144, 55, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.12) !important;
+          background: rgba(255, 255, 255, 0.06) !important;
+          backdrop-filter: blur(10px) !important;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
           margin-top: 0;
           max-width: 320px;
           margin-left: auto;
@@ -694,7 +688,7 @@ export default function Footer() {
 
                   <div className="footer-col">
                     <h4>AI Platform</h4>
-                    <a href="/ai-hire-now">AI Hire Now</a>
+                    <a href="/ai-hire-now">Request Staff</a>
                     <a href="/#ai-recruitment">AI Recruitment</a>
                     <a href="/callpilot">CallPilot (AI Voice)</a>
                     <a href="/integrations">Integrations</a>

@@ -88,15 +88,18 @@ export default function HeroSection() {
               Powered by AI, delivered by experienced consultants.
             </p>
 
-            <div className="button-group mb-12">
-              <a href="/ai-hire-now" className="btn-primary">
-                AI Hire Now
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
+            <div className="button-group mb-8">
               <button onClick={() => setIsVideoOpen(true)} className="btn-secondary">
                 <Play className="mr-2 w-4 h-4 fill-current" />
                 Watch AI Call
               </button>
+            </div>
+
+            <div className="mb-10">
+              <a href="/ai-hire-now" className="btn-primary flex flex-col !h-auto !py-2.5 !px-12 text-center items-center group w-full sm:w-fit">
+                <span className="text-lg font-bold">Request Staff</span>
+                <span className="text-[11px] opacity-80 font-semibold uppercase tracking-widest mt-0.5">Existing Clients</span>
+              </a>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
@@ -120,7 +123,7 @@ export default function HeroSection() {
                     <Briefcase className="w-6 h-6 text-blue-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-0">Job Search</h3>
+                    <h3 className="text-lg font-bold mb-0 leading-tight">Job<br/>Search</h3>
                     <p className="text-sm text-gray-400">Live Jobs</p>
                   </div>
                 </div>
@@ -173,7 +176,7 @@ export default function HeroSection() {
                 <div className="text-[10px] text-gray-500 uppercase tracking-widest">Match Accuracy</div>
               </div>
               <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-2xl font-bold">14s</div>
+                <div className="text-2xl font-bold">58s</div>
                 <div className="text-[10px] text-gray-500 uppercase tracking-widest">Screening Time</div>
               </div>
             </div>

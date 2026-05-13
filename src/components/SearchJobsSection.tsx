@@ -17,7 +17,7 @@ export default function SearchJobsSection() {
   const [selectedCities, setSelectedCities] = useState<any[]>([]);
 
   return (
-    <section id="search-jobs" className="section-tight bg-background">
+    <section id="search-jobs" className="section-tight dark-section">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ export default function SearchJobsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-lg text-muted-foreground mb-10"
+          className="text-lg opacity-80 mb-10"
         >
           Search from our live jobs
         </motion.p>
@@ -52,7 +52,7 @@ export default function SearchJobsSection() {
               placeholder="Job title, keyword..."
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-[10px] border-2 border-primary/20 focus:border-primary focus:outline-none font-body text-foreground bg-background transition-colors"
+              className="w-full pl-12 pr-4 py-4 rounded-[10px] border border-white/10 focus:border-primary focus:outline-none font-body text-white bg-white/5 backdrop-blur-sm transition-colors placeholder:text-white/40"
             />
           </div>
           <div className="flex-1">
@@ -62,36 +62,58 @@ export default function SearchJobsSection() {
               value={selectedCities}
               onChange={(val) => setSelectedCities(val as any[])}
               placeholder="Select cities..."
+              menuPortalTarget={typeof document !== "undefined" ? document.body : null}
+              menuPosition="fixed"
               styles={{
+                menuPortal: (base) => ({ ...base, zIndex: 9999 }),
                 control: (base, state) => ({
                   ...base,
                   borderRadius: "10px",
-                  border: state.isFocused ? "2px solid hsl(217, 90%, 46%)" : "2px solid hsla(217, 90%, 46%, 0.2)",
+                  border: state.isFocused ? "1px solid #22c7ff" : "1px solid rgba(255, 255, 255, 0.1)",
                   boxShadow: "none",
                   padding: "4px 0",
                   minHeight: "60px",
-                  backgroundColor: "hsl(0, 0%, 100%)",
-                  "&:hover": { borderColor: "hsl(217, 90%, 46%)" },
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
+                  backdropFilter: "blur(10px)",
+                  "&:hover": { borderColor: "rgba(255, 255, 255, 0.2)" },
+                }),
+                singleValue: (base) => ({
+                  ...base,
+                  color: "white",
+                }),
+                placeholder: (base) => ({
+                  ...base,
+                  color: "rgba(255, 255, 255, 0.4)",
+                }),
+                input: (base) => ({
+                  ...base,
+                  color: "white",
+                }),
+                menu: (base) => ({
+                  ...base,
+                  backgroundColor: "#0b1f36",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
                 }),
                 option: (base, state) => ({
                   ...base,
-                  backgroundColor: state.isSelected ? "hsl(217, 90%, 46%)" : state.isFocused ? "hsla(217, 90%, 46%, 0.08)" : "white",
-                  color: state.isSelected ? "white" : "hsl(222, 47%, 11%)",
+                  backgroundColor: state.isSelected ? "#22c7ff" : state.isFocused ? "rgba(255, 255, 255, 0.1)" : "transparent",
+                  color: "white",
+                  "&:active": { backgroundColor: "#22c7ff" },
                 }),
                 multiValue: (base) => ({
                   ...base,
-                  backgroundColor: "hsla(217, 90%, 46%, 0.1)",
+                  backgroundColor: "rgba(34, 199, 255, 0.2)",
                   borderRadius: "6px",
                 }),
                 multiValueLabel: (base) => ({
                   ...base,
-                  color: "hsl(217, 90%, 46%)",
+                  color: "#22c7ff",
                   fontWeight: 500,
                 }),
                 multiValueRemove: (base) => ({
                   ...base,
-                  color: "hsl(217, 90%, 46%)",
-                  "&:hover": { backgroundColor: "hsla(217, 90%, 46%, 0.2)", color: "hsl(217, 90%, 40%)" },
+                  color: "#22c7ff",
+                  "&:hover": { backgroundColor: "rgba(34, 199, 255, 0.3)", color: "white" },
                 }),
               }}
             />

@@ -10,7 +10,7 @@ import callpilotLogo from "@/assets/callpilot_logo.png";
 
 const aiProducts = [
   {
-    title: "AI Hire Now",
+    title: "Request Staff",
     description: "Instant hiring pipeline",
     icon: Zap,
     link: "/ai-hire-now",
@@ -201,7 +201,7 @@ export default function Navbar() {
               </div>
               <span>01324613198</span>
             </a>
-            <a href="/ai-hire-now" className="btn btn-primary header-btn ai-hire-btn">AI Hire Now</a>
+            <a href="/ai-hire-now" className="btn btn-primary header-btn ai-hire-btn">Request Staff</a>
           </div>
 
           {/* Mobile/Tablet Menu Button */}
@@ -301,7 +301,7 @@ export default function Navbar() {
 
               {/* Mobile Actions */}
               <div className="grid grid-cols-1 gap-3 px-4 pt-2">
-                <a href="/ai-hire-now" onClick={() => setMobileOpen(false)} className="btn btn-primary py-4 text-center">AI Hire Now</a>
+                <a href="/ai-hire-now" onClick={() => setMobileOpen(false)} className="btn btn-primary py-4 text-center">Request Staff</a>
               </div>
               <div className="px-4 pb-2 text-center text-xs text-foreground/60 font-medium">
                 Prefer to speak? Call us on <a href="tel:01324613298" className="hover:text-primary transition-colors">01324 613198</a>
