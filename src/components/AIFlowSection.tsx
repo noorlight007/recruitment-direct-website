@@ -15,7 +15,7 @@ export default function AIFlowSection() {
     <>
       <section className="ai-flow-section">
         <div className="ai-flow-inner">
-          <button 
+          <button
             className="demo-pill"
             onClick={() => setIsVideoOpen(true)}
           >
@@ -91,7 +91,7 @@ export default function AIFlowSection() {
               <strong>AI does the heavy lifting. You make the placement.</strong>
               <span>Reduce manual admin. Screen more applicants. Submit faster.</span>
             </div>
-            <a 
+            <a
               onClick={() => setIsVideoOpen(true)}
               className="cta-button cursor-pointer"
             >

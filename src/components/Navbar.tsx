@@ -10,13 +10,6 @@ import callpilotLogo from "@/assets/callpilot_logo.png";
 
 const aiProducts = [
   {
-    title: "AI Volume Hiring",
-    description: "AI applicant screening calls",
-    icon: Phone,
-    link: "/ai-volume-hiring",
-    isImage: false,
-  },
-  {
     title: "AI Hire Now",
     description: "Instant hiring pipeline",
     icon: Zap,
