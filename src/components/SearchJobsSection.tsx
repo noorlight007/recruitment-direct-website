@@ -91,12 +91,13 @@ export default function SearchJobsSection() {
                 }),
                 menu: (base) => ({
                   ...base,
-                  backgroundColor: "#0b1f36",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                  backgroundColor: "#0c0c0c",
+                  border: "1px solid rgba(0, 140, 255, 0.18)",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.55)",
                 }),
                 option: (base, state) => ({
                   ...base,
-                  backgroundColor: state.isSelected ? "#22c7ff" : state.isFocused ? "rgba(255, 255, 255, 0.1)" : "transparent",
+                  backgroundColor: state.isSelected ? "#22c7ff" : state.isFocused ? "rgba(255, 255, 255, 0.05)" : "transparent",
                   color: "white",
                   "&:active": { backgroundColor: "#22c7ff" },
                 }),

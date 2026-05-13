@@ -76,9 +76,12 @@ export default function Footer() {
     <>
       <style jsx global>{`
         .rd-premium-wrap {
-          background:
-            radial-gradient(circle at top left, rgba(0, 191, 255, 0.18), transparent 32%),
-            linear-gradient(135deg, #07111f 0%, #0b1f36 45%, #123f66 100%) !important;
+          background: linear-gradient(
+            180deg,
+            rgba(8,8,8,0.96) 0%,
+            rgba(12,12,12,0.98) 55%,
+            rgba(16,20,28,0.98) 100%
+          ) !important;
           padding: 64px 24px 0;
           border-top: 1px solid rgba(255, 255, 255, 0.06);
           position: relative;
@@ -115,14 +118,16 @@ export default function Footer() {
           margin-bottom: 32px;
         }
         .rd-card {
-          background: rgba(255, 255, 255, 0.06) !important;
-          border: 1px solid rgba(255, 255, 255, 0.12) !important;
+          background: rgba(255, 255, 255, 0.04) !important;
+          border: 1px solid rgba(0, 140, 255, 0.18) !important;
           border-radius: 28px;
           padding: 22px 20px 18px;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.04);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
+          box-shadow:
+            0 0 0 1px rgba(255,255,255,0.02) inset,
+            0 10px 30px rgba(0,0,0,0.55),
+            0 0 18px rgba(0,102,255,0.08) !important;
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           text-align: center;
           transition: transform 0.25s ease, box-shadow 0.25s ease,
             border-color 0.25s ease;
@@ -319,10 +324,13 @@ export default function Footer() {
         .rd-ai-steve-card {
           padding: 18px;
           border-radius: 18px;
-          border: 1px solid rgba(255, 255, 255, 0.12) !important;
-          background: rgba(255, 255, 255, 0.06) !important;
-          backdrop-filter: blur(10px) !important;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+          border: 1px solid rgba(0, 140, 255, 0.18) !important;
+          background: rgba(255, 255, 255, 0.04) !important;
+          backdrop-filter: blur(8px) !important;
+          box-shadow:
+            0 0 0 1px rgba(255,255,255,0.02) inset,
+            0 10px 30px rgba(0,0,0,0.55),
+            0 0 18px rgba(0,102,255,0.08) !important;
           margin-top: 0;
           max-width: 320px;
           margin-left: auto;
