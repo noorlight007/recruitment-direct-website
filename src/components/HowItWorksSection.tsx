@@ -111,7 +111,7 @@ export default function HowItWorksSection() {
           <span className="inline-block mb-4 px-[18px] py-2 border border-[#dbe7ff] rounded-full bg-[#eef4ff] text-[#1e40af] text-sm font-semibold tracking-wide leading-none">
             Our Recruitment Process
           </span>
-          <h2 className="m-0 mb-4 text-[30px] md:text-[48px] leading-[1.05] font-bold tracking-[-1px] text-[#0f172a]">
+          <h2 className="m-0 mb-4 font-bold tracking-[-1px] text-[#0f172a]">
             Our Recruitment Process
           </h2>
           <p className="max-w-[820px] mx-auto text-lg md:text-[20px] leading-[1.75] text-[#475569]">
@@ -140,7 +140,7 @@ export default function HowItWorksSection() {
                 {step.icon}
               </div>
 
-              <h3 className="m-0 mb-3 text-[19px] md:text-[22px] leading-[1.3] font-bold text-[#0f172a] line-clamp-2">
+              <h3 className="m-0 mb-3 font-bold text-[#0f172a] line-clamp-2">
                 {step.title}
               </h3>
 

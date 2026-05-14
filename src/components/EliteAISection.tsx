@@ -21,7 +21,7 @@ export default function EliteAISection() {
             AI-Powered Hiring.
             <span> Real Results.</span>
           </h1> */}
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-[1.1] mb-4 lg:mb-5 tracking-tight">
+          <h1 className="font-extrabold leading-[1.1] mb-4 lg:mb-5 tracking-tight">
             AI-Powered Hiring. <br />
             <span className="hero-gradient-text">Real Results.</span>
           </h1>
@@ -49,7 +49,7 @@ export default function EliteAISection() {
             <div className="elite-card featured">
               <div className="badge">Most Popular</div>
               <div className="card-icon">☎</div>
-              <h2>AI Volume Hiring</h2>
+              <h3>AI Volume Hiring</h3>
 
               <ul>
                 <li>AI Applicant Calls</li>
@@ -75,7 +75,7 @@ export default function EliteAISection() {
             {/* Temporary & Contract Staff */}
             <div className="elite-card">
               <div className="card-icon">👥</div>
-              <h2>Temporary Staff</h2>
+              <h3>Temporary Staff</h3>
 
               <ul>
                 <li>Rapid Workforce Supply</li>
@@ -98,7 +98,7 @@ export default function EliteAISection() {
             {/* Permanent Staff */}
             <div className="elite-card">
               <div className="card-icon">◎</div>
-              <h2>Permanent Staff</h2>
+              <h3>Permanent Staff</h3>
 
               <ul>
                 <li>Qualified Hiring</li>

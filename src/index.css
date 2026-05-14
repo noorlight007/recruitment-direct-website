@@ -214,7 +214,7 @@
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground tracking-tight;
+    @apply font-heading font-bold text-foreground tracking-tight;
   }
 
   .glow-text {

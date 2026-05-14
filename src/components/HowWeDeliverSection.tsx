@@ -37,7 +37,7 @@ export default function HowWeDeliverSection() {
   return (
     <section className="relative white-section overflow-hidden py-14">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        <motion.h2 {...fadeUp} className="font-sans text-[40px] font-semibold tracking-[-0.3px] leading-[1.2] mb-4">
+        <motion.h2 {...fadeUp} className="font-sans font-semibold tracking-[-0.3px] mb-4">
           How We Deliver to Clients
         </motion.h2>
 
@@ -73,7 +73,7 @@ export default function HowWeDeliverSection() {
               </div>
 
               {/* content */}
-              <h3 className="font-heading font-semibold text-foreground text-lg mb-2 group-hover:text-primary transition-colors">
+              <h3 className="font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                 {card.title}
               </h3>
 
