@@ -48,14 +48,47 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="/ai-hire-now-form"
-              className="btn btn-primary"
+              className="w-full sm:w-auto"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "16px 26px",
+                borderRadius: "999px",
+                color: "#FFFFFF",
+                fontSize: "15px",
+                fontWeight: "600",
+                letterSpacing: "0.3px",
+                cursor: "pointer",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                background:
+                  "linear-gradient(180deg, #0b1220 0%, #050816 100%) padding-box, linear-gradient(135deg, #00D5FF 0%, #009DFF 35%, #006BFF 70%, #003CFF 100%) border-box",
+                border: "1px solid transparent",
+                // boxShadow:
+                //   "0 0 35px rgba(0, 149, 255, 0.8), 0 0 70px rgba(0, 149, 255, 0.4)",
+                gap: "10px",
+                whiteSpace: "nowrap",
+                textDecoration: "none",
+                minWidth: "180px",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.filter = "brightness(1.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.filter = "brightness(1)";
+              }}
             >
               AI Hire Now
             </a>
 
             <a
               href="/contact"
-              className="btn btn-outline"
+              className="btn btn-outline w-full sm:w-auto"
+              style={{ padding: "16px 26px" }}
             >
               Request Access
             </a>
@@ -133,13 +166,46 @@ function FinalCTA() {
         >
           <a
             href="/ai-hire-now-form"
-            className="btn btn-primary"
+            className="w-full sm:w-auto"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "16px 26px",
+              borderRadius: "999px",
+              color: "#FFFFFF",
+              fontSize: "15px",
+              fontWeight: "600",
+              letterSpacing: "0.3px",
+              cursor: "pointer",
+              position: "relative",
+              overflow: "hidden",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              background:
+                "linear-gradient(180deg, #0b1220 0%, #050816 100%) padding-box, linear-gradient(135deg, #00D5FF 0%, #009DFF 35%, #006BFF 70%, #003CFF 100%) border-box",
+              border: "1px solid transparent",
+              // boxShadow:
+              //   "0 0 35px rgba(0, 149, 255, 0.8), 0 0 70px rgba(0, 149, 255, 0.4)",
+              gap: "10px",
+              whiteSpace: "nowrap",
+              textDecoration: "none",
+              minWidth: "180px",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-3px)";
+              e.currentTarget.style.filter = "brightness(1.15)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.filter = "brightness(1)";
+            }}
           >
             AI Hire Now
           </a>
           <a
             href="/contact"
-            className="btn btn-outline"
+            className="btn btn-outline w-full sm:w-auto"
+            style={{ padding: "16px 26px", minWidth: "180px" }}
           >
             Request Access
           </a>

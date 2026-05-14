@@ -243,14 +243,16 @@
       transform: none !important;
     }
 
-    /* ENSURE FOOTER AI CARD BUTTONS ARE SYMMETRICAL AND COMPACT */
-    .rd-ai-steve-card .btn,
-    .rd-ai-steve-card a.btn {
-      width: 80% !important;
-      display: flex !important;
-      margin: 12px auto 0 !important;
-    }
   }
+
+  /* ENSURE FOOTER AI CARD BUTTONS ARE SYMMETRICAL AND COMPACT */
+  .rd-ai-steve-card .btn,
+  .rd-ai-steve-card a.btn {
+    width: 80% !important;
+    display: flex !important;
+    margin: 12px auto 0 !important;
+  }
+
 
   .btn-metallic {
     @extend .btn-primary;

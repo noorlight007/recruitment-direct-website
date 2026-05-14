@@ -332,7 +332,7 @@ export default function Footer() {
             0 10px 30px rgba(0,0,0,0.55),
             0 0 18px rgba(0,102,255,0.08) !important;
           margin-top: 0;
-          max-width: 320px;
+          max-width: 430px;
           margin-left: auto;
         }
 
@@ -435,6 +435,9 @@ export default function Footer() {
         .rd-ai-steve-card .btn {
           padding: 10px 20px;
           font-size: 14px;
+          width: 80% !important;
+          display: flex !important;
+          margin: 12px auto 0 !important;
         }
 
         .rd-ai-btn-text {
