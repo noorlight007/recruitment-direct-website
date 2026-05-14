@@ -42,11 +42,12 @@
   }
 
   body {
-    background: radial-gradient(circle at top,
+    background: ;
+    /* background: radial-gradient(circle at top,
         #132344 0%,
         #081120 35%,
         #020307 75%,
-        #000000 100%);
+        #000000 100%); */
     color: var(--text-primary);
     overflow-x: hidden;
     line-height: 1.6;
@@ -1133,12 +1134,12 @@
 }
 
 section {
-  padding: 72px 0;
+  padding: 50px 0;
 }
 
 @media (max-width: 1024px) {
   section {
-    padding: 56px 0;
+    padding: 30px 0;
   }
 }
 
@@ -2884,12 +2885,10 @@ RECRUITMENT THAT MOVES FASTER
 .hero-section,
 .elementor-top-section:first-child,
 .elementor-section:first-child {
-  background: linear-gradient(
-    180deg,
-    #020202 0%,
-    #05070A 60%,
-    #0B1622 100%
-  ) !important;
+  background: linear-gradient(180deg,
+      #020202 0%,
+      #05070A 60%,
+      #0B1622 100%) !important;
   padding: 120px 0 !important;
   position: relative;
   overflow: hidden;
