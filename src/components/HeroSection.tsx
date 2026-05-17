@@ -79,8 +79,7 @@ export default function HeroSection() {
           {/* Left Column: Content and Primary Actions */}
           <div className="flex flex-col">
             <h1 className="hero-heading">
-              Recruitment That Moves <br />
-              Faster.
+              Recruitment That Moves Faster.
             </h1>
 
             <p className="hero-subtext">

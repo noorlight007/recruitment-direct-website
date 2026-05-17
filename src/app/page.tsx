@@ -26,7 +26,7 @@ const Index = () => {
       {/* <AIFlowSection /> */}
       {/* <AIProductsSection /> */}
       <EliteAISection />
-      <HowItWorksSection />
+      {/* <HowItWorksSection /> */}
       <GeneralSection />
       <SectorsSection />
       {/* <TrustedBySection /> */}
