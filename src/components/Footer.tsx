@@ -617,7 +617,7 @@ export default function Footer() {
               </div>
               <h3>Cyber Essentials</h3>
               <p className="rd-sub">Certified</p>
-              <p className="rd-num">Valid until 21/01/2027</p>
+              <p className="rd-num">4686a995</p>
               <div className="rd-btn-wrap">
                 <a
                   className="btn btn-secondary btn-saas"
