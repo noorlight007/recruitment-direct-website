@@ -7,20 +7,33 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import callpilotLogo from "@/assets/callpilot_logo.png";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const aiProducts = [
   {
-    title: "Request Staff",
+    title: "AI Hire Now",
     description: "Instant hiring pipeline",
     icon: Zap,
     link: "/ai-hire-now",
     isImage: false,
   },
   {
+    title: "AI Applicant Screening Call",
+    description: "Watch screening in action",
+    icon: Phone,
+    link: "#play-video",
+    isImage: false,
+  },
+  {
     title: "AI Verify Supplier",
-    description: "Compliance & verification",
+    description: "Start supplier verification form",
     icon: ShieldCheck,
-    link: "/verify-supplier",
+    link: "/verify-supplier-form",
     isImage: false,
   },
 ];
@@ -72,6 +85,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -125,7 +139,13 @@ export default function Navbar() {
                                 href={subItem.link}
                                 target={subItem.link?.startsWith("http") ? "_blank" : undefined}
                                 rel={subItem.link?.startsWith("http") ? "noopener noreferrer" : undefined}
-                                onClick={() => setActiveDropdown(null)}
+                                onClick={(e) => {
+                                  if (subItem.link === "#play-video") {
+                                    e.preventDefault();
+                                    setIsVideoOpen(true);
+                                  }
+                                  setActiveDropdown(null);
+                                }}
                                 className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 group nav-btn dropdown-item"
                               >
                                 <div className="dropdown-icon">
@@ -251,7 +271,13 @@ export default function Navbar() {
                                 <Link
                                   key={subItem.title}
                                   href={subItem.link}
-                                  onClick={() => setMobileOpen(false)}
+                                  onClick={(e) => {
+                                    if (subItem.link === "#play-video") {
+                                      e.preventDefault();
+                                      setIsVideoOpen(true);
+                                    }
+                                    setMobileOpen(false);
+                                  }}
                                   className="flex items-center gap-3 px-4 py-3 text-sm text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
                                 >
                                   <div className="dropdown-icon">
@@ -316,6 +342,21 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
+          <DialogHeader className="sr-only">
+            <DialogTitle>AI Call Demo Video</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video w-full">
+            <video
+              src="/Video.mov"
+              controls
+              autoPlay
+              className="w-full h-full"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </nav>
   );
 }

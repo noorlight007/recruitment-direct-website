@@ -383,7 +383,7 @@ export default function VerifySupplierPage() {
                 verification checks in real time.
               </p>
               <a
-                href="/chatbot"
+                href="/verify-supplier-form"
                 className="btn-ai-cta"
               >
                 Start Verification <ArrowRight className="w-4 h-4" />

@@ -3,6 +3,7 @@ import { Inter, Poppins, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import ButtonEffects from "@/components/ButtonEffects";
+import CookieBanner from "@/components/CookieBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <ButtonEffects />
+          <CookieBanner />
         </Providers>
       </body>
     </html>
