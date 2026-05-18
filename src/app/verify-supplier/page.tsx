@@ -112,7 +112,7 @@ export default function VerifySupplierPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6 mt-4"
+            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6 mt-4"
             
           >
             Supplier <span className="text-primary glow-text">Verification</span>
@@ -135,7 +135,7 @@ export default function VerifySupplierPage() {
             transition={{ delay: 0.3 }}
             className="flex flex-wrap gap-4 justify-center"
           >
-            <a href="/chatbot" className="btn-metallic">
+            <a href="/chatbot" className="btn-ai-cta">
               Start Verification
             </a>
             {/* <a href="/#contact" className="btn-metallic">
@@ -179,7 +179,7 @@ export default function VerifySupplierPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2]  text-center mb-12"
+            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2]  text-center mb-12"
           >
             Purpose
           </motion.h2>
@@ -213,7 +213,7 @@ export default function VerifySupplierPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-4">Verification Checks</h2>
+            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-4">Verification Checks</h2>
             <p className="text-foreground/70 max-w-2xl mx-auto">
               Multi-layered checks across company, VAT, directors and trading
               data.
@@ -265,7 +265,7 @@ export default function VerifySupplierPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-4">Scoring & Outcomes</h2>
+            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-4">Scoring & Outcomes</h2>
             <p className="text-foreground/70 max-w-2xl mx-auto">
               A structured scoring model ensures consistent and explainable
               outcomes.
@@ -306,7 +306,7 @@ export default function VerifySupplierPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6">System & Data Handling</h2>
+              <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6">System & Data Handling</h2>
               <p className="text-foreground/70 text-lg leading-relaxed mb-4">
                 Supplier data is verified and structured automatically through
                 our AI system.
@@ -346,7 +346,7 @@ export default function VerifySupplierPage() {
             className="card-hover p-10"
           >
             <RefreshCw className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-3">
+            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-3">
               Ongoing Checks
             </h2>
             <p className="text-foreground/70 text-lg">
@@ -374,7 +374,7 @@ export default function VerifySupplierPage() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
             <div className="relative">
               
-              <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6 text-white">
+              <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6">
                 Start Supplier Verification
               </h2>
               <p className="text-white/90 text-lg max-w-2xl mx-auto mb-8">
@@ -384,17 +384,7 @@ export default function VerifySupplierPage() {
               </p>
               <a
                 href="/chatbot"
-                className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 rounded-md hover:bg-white/95 transition-all"
-                style={{
-                  height: "44px",
-                  padding: "12px 24px",
-                  minWidth: "160px",
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  borderRadius: "6px",
-                  borderBottom: "3px solid #05182B",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
-                }}
+                className="btn-ai-cta"
               >
                 Start Verification <ArrowRight className="w-4 h-4" />
               </a>

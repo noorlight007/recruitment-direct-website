@@ -151,13 +151,13 @@ function CTA() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_50%)]" />
           <div className="relative">
-            <h2 className="font-sans text-[40px] font-heading font-semibold text-primary-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-3">
+            <h2 className="font-sans text-[40px] font-heading font-semibold text-white tracking-[-0.3px] leading-[1.2] mb-3">
               Need staff quickly?
             </h2>
             <p className="text-primary-foreground/90 text-lg max-w-2xl mx-auto mb-8">
               Speak to Recruitment Direct to secure reliable staff without delay.
             </p>
-            <a href="/contact" className="btn-metallic">
+            <a href="/contact" className="btn-ai-cta">
               Contact Us
             </a>
           </div>
@@ -192,7 +192,7 @@ export default function AboutPage() {
           <motion.h1
             {...fadeUp}
             transition={{ delay: 0.05 }}
-            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6"
+            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6"
           >
             20+ Years Delivering Staff Across the UK
           </motion.h1>

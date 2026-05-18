@@ -48,7 +48,7 @@ const Section = ({
     transition={{ duration: 0.5, delay }}
     className="mb-12"
   >
-    <h2 className="font-sans text-[30px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6">
+    <h2 className="font-sans text-[30px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
       {title}
     </h2>
     <div className="space-y-4 text-foreground/80 leading-relaxed">
@@ -68,7 +68,7 @@ export default function TemporaryStaffPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6"
+            className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
           >
             Temporary Staff Recruitment Scotland
           </motion.h1>
@@ -87,7 +87,7 @@ export default function TemporaryStaffPage() {
             transition={{ delay: 0.2 }}
             className="mt-8"
           >
-            <a href="/#contact" className="btn-metallic">
+            <a href="/#contact" className="btn-ai-cta">
               Request Temporary Staff
             </a>
           </motion.div>
@@ -238,7 +238,7 @@ export default function TemporaryStaffPage() {
               border: "1px solid hsl(var(--primary) / 0.2)",
             }}
           >
-            <h2 className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6">
+            <h2 className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
               Need Temporary Staff?
             </h2>
             <p className="text-foreground/70 mb-8 max-w-2xl mx-auto">
@@ -246,7 +246,7 @@ export default function TemporaryStaffPage() {
               team to discuss your requirements. We respond quickly and supply
               workers without unnecessary delays.
             </p>
-            <a href="/#contact" className="btn-metallic">
+            <a href="/#contact" className="btn-ai-cta">
               Request Temporary Staff
             </a>
           </motion.div>

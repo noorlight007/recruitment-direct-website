@@ -3149,3 +3149,49 @@ MOBILE RESPONSIVE
     text-align: center !important;
   }
 }
+
+/* ==================================================
+   AI CTA BUTTON (CUSTOM)
+   ================================================== */
+.btn-ai-cta {
+  height: 52px !important;
+  padding: 0 28px !important;
+  border-radius: 14px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(#000000, #020617) padding-box,
+    linear-gradient(135deg,
+      #3b82f6,
+      #06b6d4,
+      #2563eb) border-box !important;
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.18) !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+}
+
+.btn-ai-cta:hover {
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 0 35px rgba(59, 130, 246, 0.32) !important;
+}
+
+@media (max-width: 768px) {
+  .btn-ai-cta {
+    width: 100% !important;
+    min-height: 58px !important;
+    padding: 16px 22px !important;
+    border-radius: 18px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+}

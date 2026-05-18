@@ -82,7 +82,7 @@ export default function WhyChooseUsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
-            className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6"
+            className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
           >
             Why Choose Our Recruitment Services
           </motion.h1>
@@ -101,12 +101,12 @@ export default function WhyChooseUsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-3"
+            className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto"
           >
-            <a href="/#contact" className="btn-metallic">
+            <a href="/#contact" className="btn-ai-cta">
               Request Staff
             </a>
-            <Link href="/ai-hire-now" className="btn-metallic">
+            <Link href="/ai-hire-now" className="btn-ai-cta">
               Try AI Hire Now
             </Link>
           </motion.div>
@@ -143,7 +143,7 @@ export default function WhyChooseUsPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-sans text-[30px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6">
+            <h2 className="font-sans text-[30px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
               Built for speed, scale & reliability
             </h2>
             <p className="text-foreground/70 max-w-2xl mx-auto">
@@ -176,7 +176,7 @@ export default function WhyChooseUsPage() {
                   }}
                 >
                   {reason.highlight && (
-                    <div className="absolute -top-3 left-7 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-base flex items-center gap-1">
+                    <div className="absolute -top-3 left-7 px-3 py-1 rounded-full bg-white text-primary-foreground text-xs font-base flex items-center gap-1">
                       <Sparkles className="w-3 h-3" /> AI Edge
                     </div>
                   )}
@@ -219,18 +219,18 @@ export default function WhyChooseUsPage() {
           >
             <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
             <div className="relative">
-              <h2 className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6">
+              <h2 className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
                 Ready to hire smarter, faster?
               </h2>
               <p className="text-foreground/70 mb-7 max-w-2xl mx-auto">
                 Speak to our team about your staffing requirements — temporary,
                 contract or permanent — across Scotland and the UK.
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <a href="/#contact" className="btn-metallic">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
+                <a href="/#contact" className="btn-ai-cta">
                   Request Staff
                 </a>
-                <a href="/#contact" className="btn-metallic">
+                <a href="/#contact" className="btn-ai-cta">
                   Book a Call
                 </a>
               </div>

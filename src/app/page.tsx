@@ -25,7 +25,7 @@ const Index = () => {
       <HowWeDeliverSection />
       {/* <AIFlowSection /> */}
       {/* <AIProductsSection /> */}
-      <EliteAISection />
+      {/* <EliteAISection /> */}
       {/* <HowItWorksSection /> */}
       <GeneralSection />
       <SectorsSection />
