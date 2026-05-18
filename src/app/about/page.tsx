@@ -39,7 +39,7 @@ const sectors = [
   "Healthcare",
   "Education",
   "IT & Tech",
-  "Office Recruitment & AI Call Demo Automation",
+  "Commercial",
 ];
 
 const processSteps = [
