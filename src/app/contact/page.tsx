@@ -110,15 +110,15 @@ export default function ContactPage() {
                 </div>
 
                 {/* ACTION BUTTONS */}
-                <div className="mt-[30px] space-y-3">
-                  <a href="tel:01324613198" className="btn btn-primary w-full">
+                <div className="mt-[30px] grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a href="tel:01324613198" className="btn-ai-cta">
                     Call Now
                   </a>
                   <a
                     href="https://wa.me/447590882626"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-secondary w-full"
+                    className="btn-ai-cta gap-2"
                   >
                     <svg
                       className="w-5 h-5 text-[#25D366]"
@@ -196,7 +196,7 @@ export default function ContactPage() {
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary w-full">
+                <button type="submit" className="btn-ai-cta w-full max-w-full">
                   Contact Our Team
                 </button>
               </form>

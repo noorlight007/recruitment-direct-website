@@ -3154,6 +3154,7 @@ MOBILE RESPONSIVE
    AI CTA BUTTON (CUSTOM)
    ================================================== */
 .btn-ai-cta {
+  box-sizing: border-box !important;
   height: 52px !important;
   padding: 0 28px !important;
   border-radius: 14px !important;
