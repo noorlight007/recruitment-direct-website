@@ -50,6 +50,12 @@ const clientSubmenu = [
     link: "/why-choose-us",
     icon: ShieldCheck,
   },
+  {
+    title: "Open Credit Account",
+    description: "Apply for a credit account",
+    link: "/open-credit-account",
+    icon: FileText,
+  },
 ];
 
 const menuItems = [
@@ -79,7 +85,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-white border-b-4">
       <div className="w-full px-6 lg:px-6">
         <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
