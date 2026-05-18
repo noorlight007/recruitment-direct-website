@@ -53,7 +53,7 @@ function Hero() {
         <motion.h1
           {...fadeUp}
           transition={{ delay: 0.05 }}
-          className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-gray-900 leading-[1.2] mb-6 mt-4"
+            className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6 mt-4"
         >
           Place Enquiry
         </motion.h1>
@@ -61,7 +61,7 @@ function Hero() {
         <motion.p
           {...fadeUp}
           transition={{ delay: 0.1 }}
-          className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto"
+          className="subtitle text-foreground/70 max-w-2xl mx-auto"
         >
           Choose how you want to contact us
         </motion.p>

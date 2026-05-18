@@ -68,7 +68,7 @@ export default function TemporaryStaffPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
+            className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
           >
             Temporary Staff Recruitment Scotland
           </motion.h1>
@@ -76,7 +76,7 @@ export default function TemporaryStaffPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto"
+            className="subtitle text-foreground/70 max-w-3xl mx-auto"
           >
             Reliable workers for short-term cover, ongoing support and
             project-based staffing — across Scotland and the wider UK.
@@ -238,7 +238,7 @@ export default function TemporaryStaffPage() {
               border: "1px solid hsl(var(--primary) / 0.2)",
             }}
           >
-            <h2 className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
+            <h2 className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
               Need Temporary Staff?
             </h2>
             <p className="text-foreground/70 mb-8 max-w-2xl mx-auto">

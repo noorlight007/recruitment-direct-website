@@ -112,7 +112,7 @@ export default function VerifySupplierPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6 mt-4"
+            className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6 mt-4"
             
           >
             Supplier <span className="text-primary glow-text">Verification</span>
@@ -122,7 +122,7 @@ export default function VerifySupplierPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto mb-8 leading-relaxed"
+            className="subtitle text-foreground/70 max-w-3xl mx-auto mb-8 leading-relaxed"
           >
             An AI-driven, 24/7 verification process ensuring every subcontractor
             and supplier meets compliance — VAT, Companies House, directors and
@@ -152,7 +152,7 @@ export default function VerifySupplierPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="card-hover p-8 md:p-10 space-y-4 text-foreground/80 text-lg leading-relaxed"
+            className="card-hover p-8 md:p-10 space-y-4 text-foreground/80 leading-relaxed"
           >
             <p>
               Recruitment Direct UK Ltd verifies key data including VAT
@@ -179,7 +179,7 @@ export default function VerifySupplierPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2]  text-center mb-12"
+            className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2]  text-center mb-12"
           >
             Purpose
           </motion.h2>
@@ -213,7 +213,7 @@ export default function VerifySupplierPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-4">Verification Checks</h2>
+            <h2 className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-4">Verification Checks</h2>
             <p className="text-foreground/70 max-w-2xl mx-auto">
               Multi-layered checks across company, VAT, directors and trading
               data.
@@ -234,7 +234,7 @@ export default function VerifySupplierPage() {
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                     <c.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-heading font-semibold text-foreground">
+                  <h3 className="font-heading font-semibold text-foreground">
                     {c.title}
                   </h3>
                 </div>
@@ -265,8 +265,8 @@ export default function VerifySupplierPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-4">Scoring & Outcomes</h2>
-            <p className="text-foreground/70 max-w-2xl mx-auto">
+            <h2 className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-4">Scoring & Outcomes</h2>
+            <p className="subtitle text-foreground/70 max-w-2xl mx-auto">
               A structured scoring model ensures consistent and explainable
               outcomes.
             </p>
@@ -287,7 +287,7 @@ export default function VerifySupplierPage() {
                 >
                   <s.icon className={`w-7 h-7 ${s.color}`} />
                 </div>
-                <h3 className="text-xl font-heading font-semibold text-foreground mb-2">
+                <h3 className="font-heading font-semibold text-foreground mb-2">
                   {s.label}
                 </h3>
                 <p className="text-foreground/70 leading-relaxed">{s.desc}</p>
@@ -306,12 +306,12 @@ export default function VerifySupplierPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6">System & Data Handling</h2>
-              <p className="text-foreground/70 text-lg leading-relaxed mb-4">
+              <h2 className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6">System & Data Handling</h2>
+              <p className="subtitle text-foreground/70 leading-relaxed mb-4">
                 Supplier data is verified and structured automatically through
                 our AI system.
               </p>
-              <p className="text-foreground/70 text-lg leading-relaxed">
+              <p className="text-foreground/70 leading-relaxed">
                 Approved supplier details are automatically integrated into our
                 accounts system, reducing manual input and improving accuracy.
               </p>
@@ -346,10 +346,10 @@ export default function VerifySupplierPage() {
             className="card-hover p-10"
           >
             <RefreshCw className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-3">
+            <h2 className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-3">
               Ongoing Checks
             </h2>
-            <p className="text-foreground/70 text-lg">
+            <p className="text-foreground/70 leading-relaxed">
               Supplier details are reviewed periodically to ensure accuracy and
               ongoing compliance. Approved suppliers may be engaged for work
               subject to successful verification and continued review.
@@ -374,10 +374,10 @@ export default function VerifySupplierPage() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_50%)]" />
             <div className="relative">
               
-              <h2 className="font-sans text-[40px] font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6">
+              <h2 className="font-sans font-heading font-semibold text-foreground tracking-[-0.3px] text-white leading-[1.2] mb-6">
                 Start Supplier Verification
               </h2>
-              <p className="text-white/90 text-lg max-w-2xl mx-auto mb-8">
+              <p className="subtitle text-white/90 max-w-2xl mx-auto mb-8">
                 Use our AI verification assistant — it guides you through the
                 process, collects required information, and carries out
                 verification checks in real time.

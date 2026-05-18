@@ -16,7 +16,7 @@ export default function TrustTechSection() {
       <style jsx>{`
         .trusted-tech-section {
           background: linear-gradient(180deg, #020202 0%, #05070A 60%, #0B1622 100%);
-          padding: 70px 20px;
+          padding: 120px 20px;
           overflow: hidden;
           text-align: center;
         }
@@ -29,10 +29,10 @@ export default function TrustTechSection() {
         .trusted-tech-title {
           margin: 0;
           color: #FFFFFF !important;
-          font-size: clamp(30px, 5vw, 58px);
-          line-height: 1.08;
-          font-weight: 800;
-          letter-spacing: 1px;
+          font-size: clamp(32px, 3vw, 48px);
+          line-height: 1.1;
+          font-weight: 650;
+          letter-spacing: -0.03em;
         }
 
         .trusted-tech-title span {
@@ -40,11 +40,12 @@ export default function TrustTechSection() {
         }
 
         .trusted-tech-subtitle {
-          max-width: 760px;
+          max-width: 650px;
           margin: 20px auto 45px;
           color: #D2DAE3 !important;
-          font-size: clamp(16px, 2vw, 22px);
+          font-size: 20px;
           line-height: 1.5;
+          opacity: 0.85;
         }
 
         .logo-slider {

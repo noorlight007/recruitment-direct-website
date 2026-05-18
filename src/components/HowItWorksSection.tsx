@@ -100,7 +100,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="section-tight px-5 bg-white overflow-hidden">
+    <section className="bg-white overflow-hidden">
       <div className="max-w-[1240px] mx-auto">
 
         {/* HEADER */}
@@ -114,7 +114,7 @@ export default function HowItWorksSection() {
           <h2 className="m-0 mb-4 font-bold tracking-[-1px] text-[#0f172a]">
             Our Recruitment Process
           </h2>
-          <p className="max-w-[820px] mx-auto text-lg md:text-[20px] leading-[1.75] text-[#475569]">
+          <p className="subtitle max-w-[820px] mx-auto text-[#475569]">
             A structured recruitment process combining AI-driven screening with consultant control
             to deliver qualified temporary, contract and permanent staff fast.
           </p>

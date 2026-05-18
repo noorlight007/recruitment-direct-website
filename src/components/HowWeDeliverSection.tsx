@@ -35,7 +35,7 @@ const fadeUp = {
 
 export default function HowWeDeliverSection() {
   return (
-    <section className="relative white-section overflow-hidden py-14">
+    <section className="relative white-section overflow-hidden">
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2 {...fadeUp} className="font-sans font-semibold tracking-[-0.3px] mb-4">
           How We Deliver to Clients
@@ -44,7 +44,7 @@ export default function HowWeDeliverSection() {
         <motion.p
           {...fadeUp}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="max-w-2xl mx-auto mb-14"
+          className="subtitle max-w-2xl mx-auto mb-14"
         >
           Built to support high-demand environments, delivering consistent staffing solutions across public sector
           frameworks, private clients and growing businesses across the UK.

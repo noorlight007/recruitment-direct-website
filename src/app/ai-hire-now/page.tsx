@@ -26,7 +26,7 @@ function Hero() {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
         <motion.div {...fadeUp} className="max-w-4xl mx-auto">
-          <h1 className="font-sans text-[36px] md:text-[40px] font-semibold tracking-[-0.3px] text-foreground leading-[1.2] mb-3">
+          <h1 className="font-sans font-semibold tracking-[-0.3px] text-foreground leading-[1.2] mb-3">
             AI Hire Now – Submit Staffing Requirements 24/7
           </h1>
 
@@ -111,7 +111,7 @@ function FinalCTA() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2
           {...fadeUp}
-          className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
+          className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
         >
           Start Using AI Hire Now
         </motion.h2>

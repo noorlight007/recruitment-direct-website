@@ -16,7 +16,7 @@ const companies = [
 
 export default function TrustedBySection() {
   return (
-    <section className="py-16 bg-background">
+    <section className="bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <motion.p
           initial={{ opacity: 0 }}

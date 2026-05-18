@@ -82,7 +82,7 @@ export default function WhyChooseUsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
-            className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
+            className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
           >
             Why Choose Our Recruitment Services
           </motion.h1>
@@ -91,7 +91,7 @@ export default function WhyChooseUsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto"
+            className="subtitle text-foreground/70 max-w-3xl mx-auto"
           >
             Faster hiring with AI. Verified by recruitment experts. Trusted
             across Scotland and the UK.
@@ -143,10 +143,10 @@ export default function WhyChooseUsPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="font-sans text-[30px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
+            <h2 className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
               Built for speed, scale & reliability
             </h2>
-            <p className="text-foreground/70 max-w-2xl mx-auto">
+            <p className="subtitle text-foreground/70 max-w-2xl mx-auto">
               Six reasons clients choose Recruitment Direct over traditional
               agencies.
             </p>
@@ -191,7 +191,7 @@ export default function WhyChooseUsPage() {
                     <Icon className="w-7 h-7 text-primary-foreground" />
                   </div>
 
-                  <h3 className="font-sans text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-sans font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {reason.title}
                   </h3>
 
@@ -219,7 +219,7 @@ export default function WhyChooseUsPage() {
           >
             <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
             <div className="relative">
-              <h2 className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
+              <h2 className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
                 Ready to hire smarter, faster?
               </h2>
               <p className="text-foreground/70 mb-7 max-w-2xl mx-auto">

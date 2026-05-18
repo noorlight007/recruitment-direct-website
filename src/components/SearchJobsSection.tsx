@@ -23,7 +23,7 @@ export default function SearchJobsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-4"
+          className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-4"
         >
           Job Search
         </motion.h2>
@@ -33,7 +33,7 @@ export default function SearchJobsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-lg opacity-80 mb-10"
+          className="subtitle opacity-80 mb-10"
         >
           Search from our live jobs
         </motion.p>

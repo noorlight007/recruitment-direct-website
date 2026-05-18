@@ -27,7 +27,7 @@ export default function PremiumSplitSection({
   const rightItems = items.slice(2, 4);
 
   return (
-    <section className="relative py-20 md:py-24 bg-background overflow-hidden">
+    <section className="relative bg-background overflow-hidden">
       {/* soft ambient background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-primary/5 blur-3xl" />
@@ -37,11 +37,11 @@ export default function PremiumSplitSection({
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-4">
+          <h2 className="font-semibold tracking-tight text-foreground mb-4">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-[15px] md:text-base leading-7 text-foreground/70">
+            <p className="subtitle text-foreground/70">
               {subtitle}
             </p>
           )}
@@ -62,7 +62,7 @@ export default function PremiumSplitSection({
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
                     {i + 1}
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">
+                  <h3 className="font-semibold text-foreground">
                     {item.title}
                   </h3>
                 </div>
@@ -106,7 +106,7 @@ export default function PremiumSplitSection({
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="relative">
                     <div className="mb-4 flex items-center justify-end gap-3">
-                      <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                      <h3 className="font-semibold tracking-tight text-foreground">
                         {item.title}
                       </h3>
                       <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary font-semibold shadow-inner">
@@ -151,11 +151,11 @@ export default function PremiumSplitSection({
                       <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary font-semibold shadow-inner">
                         {i + 3}
                       </div>
-                      <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                      <h3 className="font-semibold tracking-tight text-foreground">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-[15px] leading-7 text-foreground/70">
+                    <p className="leading-7 text-foreground/70">
                       {item.description}
                     </p>
                   </div>

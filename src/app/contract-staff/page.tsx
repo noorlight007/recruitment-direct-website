@@ -60,7 +60,7 @@ export default function ContractStaffPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
+            className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6"
           >
             Contract Staff Recruitment Scotland
           </motion.h1>
@@ -69,7 +69,7 @@ export default function ContractStaffPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto"
+            className="subtitle text-foreground/70 max-w-3xl mx-auto"
           >
             Skilled professionals for fixed-term projects, specialist roles and
             longer-term assignments — across Scotland and the wider UK.
@@ -211,7 +211,7 @@ export default function ContractStaffPage() {
               border: "1px solid hsl(var(--primary) / 0.2)",
             }}
           >
-            <h2 className="font-sans text-[40px] font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
+            <h2 className="font-sans font-semibold tracking-[-0.3px] text-white leading-[1.2] mb-6">
               Looking for Contract Staff?
             </h2>
             <p className="text-foreground/70 mb-8 max-w-2xl mx-auto">

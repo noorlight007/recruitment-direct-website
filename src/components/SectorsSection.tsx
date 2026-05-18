@@ -35,7 +35,7 @@ export default function SectorsSection() {
   return (
     <section
       id="sectors"
-      className="section-tight relative white-section overflow-hidden py-14"
+      className="section-tight relative white-section overflow-hidden"
     >
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <motion.h2 {...fadeUp} className="font-sans font-semibold tracking-[-0.3px] mb-4">
@@ -45,7 +45,7 @@ export default function SectorsSection() {
         <motion.p
           {...fadeUp}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="max-w-2xl mx-auto mb-14"
+          className="subtitle max-w-2xl mx-auto mb-14"
         >
           Supporting workforce requirements across key industries with
           specialist recruitment delivery.
