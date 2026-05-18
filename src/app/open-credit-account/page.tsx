@@ -105,7 +105,7 @@ export default function OpenCreditAccountPage() {
               <div className="form-card">
                 <h2>Step 4 — Additional Information</h2>
                 <select name="staff_type">
-                  <option value="">Temporary or Permanent Staff</option>
+                  <option value="">Temporary and Permanent Staff</option>
                   <option value="Temporary Staff">Temporary Staff</option>
                   <option value="Contract Staff">Contract Staff</option>
                   <option value="Permanent Staff">Permanent Staff</option>

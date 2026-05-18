@@ -42,10 +42,10 @@ export default function AIHireNowFormPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#ffffff]">
       <Navbar />
       
-      <main className="pt-20">
+      <main className="pt-[140px] pb-20">
         <section className="ai-hire-now-section">
           <div className="ai-hire-now-container">
             <div className="ai-hire-now-header">
@@ -106,7 +106,7 @@ export default function AIHireNowFormPage() {
               </div>
 
               <div className="ai-hire-now-actions">
-                <button type="submit" className="btn btn-primary w-full" disabled={isSubmitting}>
+                <button type="submit" className="btn-ai-cta" disabled={isSubmitting}>
                   {isSubmitting ? "Sending..." : "AI Hire Now"}
                 </button>
                 <p className="ai-hire-now-trust">24/7 ordering • Fast response • Existing client service</p>
