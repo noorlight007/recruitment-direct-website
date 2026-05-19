@@ -7,17 +7,41 @@ export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Always show the cookie banner when the page is reloaded or rendered
+    const consentStr = localStorage.getItem("rd1CookieConsent");
+    if (consentStr) {
+      try {
+        const consent = JSON.parse(consentStr);
+        if (consent && typeof consent === "object" && consent.timestamp) {
+          const twelveMonthsInMs = 365 * 24 * 60 * 60 * 1000;
+          const elapsed = Date.now() - Number(consent.timestamp);
+          if (elapsed < twelveMonthsInMs) {
+            setIsVisible(false);
+            return;
+          }
+        } else {
+          throw new Error("Invalid structure");
+        }
+      } catch (e) {
+        if (consentStr === "accepted" || consentStr === "rejected") {
+          const consentData = { status: consentStr, timestamp: Date.now() };
+          localStorage.setItem("rd1CookieConsent", JSON.stringify(consentData));
+          setIsVisible(false);
+          return;
+        }
+      }
+    }
     setIsVisible(true);
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("rd1CookieConsent", "accepted");
+    const consentData = { status: "accepted", timestamp: Date.now() };
+    localStorage.setItem("rd1CookieConsent", JSON.stringify(consentData));
     setIsVisible(false);
   };
 
   const handleReject = () => {
-    localStorage.setItem("rd1CookieConsent", "rejected");
+    const consentData = { status: "rejected", timestamp: Date.now() };
+    localStorage.setItem("rd1CookieConsent", JSON.stringify(consentData));
     setIsVisible(false);
   };
 
