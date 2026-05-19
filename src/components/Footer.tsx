@@ -61,56 +61,56 @@ export default function Footer() {
       title: "FRAMEWORK & COMPLIANCE",
       icon: <Scale className="w-5 h-5 text-blue-400" />,
       items: [
-        "Modern Slavery Policy",
-        "Equality Policy",
-        "Health & Safety Policy",
-        "Carbon Policy / Environmental Policy"
+        { name: "Modern Slavery Policy", link: "https://rduk.group/modernslaverypolucy" },
+        { name: "Equality Policy", link: "https://rduk.group/equalitydiversity" },
+        { name: "Health & Safety Policy", link: "https://rduk.group/healthsafetypolicy" },
+        { name: "Carbon Policy / Environmental Policy", link: "https://rduk.group/carbonreduction" }
       ]
     },
     {
       title: "DATA & PRIVACY",
       icon: <Lock className="w-5 h-5 text-blue-400" />,
       items: [
-        "Privacy Policy",
-        "Cookie Policy",
-        "Candidate Privacy Notice",
-        "Client Privacy Notice",
-        "Data Retention Policy"
+        { name: "Privacy Policy", link: "https://rduk.group/privacy" },
+        { name: "Cookie Policy", link: "https://rduk.group/cookiepolicy" },
+        { name: "Candidate Privacy Notice", link: "https://rduk.group/candidateprivacynotice" },
+        { name: "Client Privacy Notice", link: "https://rduk.group/clientprivacy" },
+        { name: "Data Retention Policy", link: "https://rduk.group/data" }
       ]
     },
     {
       title: "AI & TECHNOLOGY",
       icon: <Shield className="w-5 h-5 text-blue-400" />,
       items: [
-        "AI Transparency Statement",
-        "Human Review Statement",
-        "Bias / Fairness Statement"
+        { name: "AI Transparency Statement" },
+        { name: "Human Review Statement" },
+        { name: "Bias / Fairness Statement" }
       ]
     },
     {
       title: "SECURITY",
       icon: <Shield className="w-5 h-5 text-blue-400" />,
       items: [
-        "Information Security Policy",
-        "Data Breach Policy",
-        "Cyber Security / IT Policy"
+        { name: "Information Security Policy", link: "https://rduk.group/informationsecurity" },
+        { name: "Data Breach Policy", link: "https://rduk.group/databreach" },
+        { name: "Cyber Security / IT Policy", link: "https://rduk.group/securityitpolicy" }
       ]
     },
     {
       title: "RECRUITMENT COMPLIANCE",
       icon: <Users className="w-5 h-5 text-blue-400" />,
       items: [
-        "AWR Policy",
-        "Right to Work Policy",
-        "Complaints Policy",
-        "Safeguarding Policy"
+        { name: "AWR Policy" },
+        { name: "Right to Work Policy" },
+        { name: "Complaints Policy" },
+        { name: "Safeguarding Policy" }
       ]
     },
     {
       title: "WEBSITE LEGAL",
       icon: <Info className="w-5 h-5 text-blue-400" />,
       items: [
-        "Terms of Use"
+        { name: "Terms of Use" }
       ]
     }
   ];
@@ -622,6 +622,27 @@ export default function Footer() {
           align-items: center !important;
           justify-content: start !important;
           box-sizing: border-box !important;
+
+          /* Copy the premium button styling from globals.css to align <a> with <button> */
+          background:
+            linear-gradient(180deg, #0b1220 0%, #050816 100%) padding-box,
+            linear-gradient(135deg, #00D5FF 0%, #009DFF 35%, #006BFF 70%, #003CFF 100%) border-box !important;
+          border: 1.5px solid transparent !important;
+          border-radius: 8px !important;
+          box-shadow:
+            0 0 12px rgba(0, 149, 255, 0.18),
+            0 6px 24px rgba(0, 0, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .policy-btn:hover {
+          transform: translateY(-2px) !important;
+          box-shadow:
+            0 0 18px rgba(0, 170, 255, 0.28),
+            0 12px 32px rgba(0, 0, 0, 0.65),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+          filter: brightness(1.15) !important;
         }
       `}</style>
 
@@ -918,17 +939,38 @@ export default function Footer() {
                   </h4>
                 </div>
                 <ul className="space-y-3">
-                  {category.items.map((item, i) => (
-                    <li key={i}>
-                      <button
-                        style={maxPolicyBtnHeight ? { height: `${maxPolicyBtnHeight}px` } : undefined}
-                        className="policy-btn w-full text-left bg-white/[0.03] border border-white/5 hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300 rounded-lg text-gray-300 hover:text-white px-4 py-3 text-sm flex items-center gap-3 group"
-                      >
+                  {category.items.map((item, i) => {
+                    const buttonProps = {
+                      style: maxPolicyBtnHeight ? { height: `${maxPolicyBtnHeight}px` } : undefined,
+                      className: "policy-btn w-full text-left bg-white/[0.03] border border-white/5 hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300 rounded-lg text-gray-300 hover:text-white px-4 py-3 text-sm flex items-center gap-3 group"
+                    };
+
+                    const content = (
+                      <>
                         <div className="w-1.5 h-1.5 bg-blue-500/80 rounded-full group-hover:bg-blue-400 group-hover:scale-125 transition-all duration-300 flex-shrink-0" />
-                        <span className="leading-snug">{item}</span>
-                      </button>
-                    </li>
-                  ))}
+                        <span className="leading-snug">{item.name}</span>
+                      </>
+                    );
+
+                    return (
+                      <li key={i}>
+                        {item.link ? (
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            {...buttonProps}
+                          >
+                            {content}
+                          </a>
+                        ) : (
+                          <button {...buttonProps}>
+                            {content}
+                          </button>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
