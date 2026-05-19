@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -12,6 +12,49 @@ import { FileText, Shield, Scale, Lock, Users, Info } from "lucide-react";
 export default function Footer() {
   const [isPoliciesOpen, setIsPoliciesOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [maxPolicyBtnHeight, setMaxPolicyBtnHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (!isPoliciesOpen) {
+      setMaxPolicyBtnHeight(undefined);
+      return;
+    }
+
+    const calculateHeights = () => {
+      const buttons = document.querySelectorAll(".policy-btn");
+      if (buttons.length === 0) return;
+
+      // Reset inline heights to auto so the browser can calculate the true natural heights for the current viewport width
+      buttons.forEach((btn) => {
+        (btn as HTMLElement).style.height = "auto";
+      });
+
+      // Find the tallest button height
+      let maxH = 0;
+      buttons.forEach((btn) => {
+        const h = (btn as HTMLElement).offsetHeight;
+        if (h > maxH) {
+          maxH = h;
+        }
+      });
+
+      // Set standard height for all buttons
+      if (maxH > 0) {
+        setMaxPolicyBtnHeight(maxH);
+      }
+    };
+
+    // Calculate height after transition has settled
+    const initialTimer = setTimeout(calculateHeights, 150);
+
+    // Calculate height dynamically on any screen resize or mobile orientation change
+    window.addEventListener("resize", calculateHeights);
+
+    return () => {
+      clearTimeout(initialTimer);
+      window.removeEventListener("resize", calculateHeights);
+    };
+  }, [isPoliciesOpen]);
 
   const policyCategories = [
     {
@@ -21,7 +64,7 @@ export default function Footer() {
         "Modern Slavery Policy",
         "Equality Policy",
         "Health & Safety Policy",
-        "Carbon Reduction / Environmental Policy"
+        "Carbon Policy / Environmental Policy"
       ]
     },
     {
@@ -570,6 +613,16 @@ export default function Footer() {
             margin-top: 18px;
           }
         }
+
+        .policy-btn {
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: start !important;
+          box-sizing: border-box !important;
+        }
       `}</style>
 
       <section className="rd-premium-wrap" id="compliance">
@@ -749,7 +802,7 @@ export default function Footer() {
                       </div>
                     </div>
 
-                    <a 
+                    <a
                       onClick={() => window.dispatchEvent(new CustomEvent('open-ai-steve'))}
                       className="btn btn-primary btn-saas w-full mt-4 !justify-between cursor-pointer"
                     >
@@ -757,7 +810,7 @@ export default function Footer() {
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a 
+                    <a
                       onClick={() => setIsVideoOpen(true)}
                       className="btn btn-secondary btn-saas w-full mt-3 !justify-between cursor-pointer"
                     >
@@ -844,7 +897,7 @@ export default function Footer() {
       </Dialog>
 
       <Dialog open={isPoliciesOpen} onOpenChange={setIsPoliciesOpen}>
-        <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto bg-[#020817] border-white/10 text-white">
+        <DialogContent className="max-w-6xl max-h-[85vh] overflow-y-auto bg-[#020817] border-white/10 text-white">
           <DialogHeader className="mb-6">
             <DialogTitle className="text-3xl font-bold flex items-center gap-3">
               <FileText className="text-blue-500" />
@@ -855,7 +908,7 @@ export default function Footer() {
             </p>
           </DialogHeader>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {policyCategories.map((category, idx) => (
               <div key={idx} className="space-y-4">
                 <div className="flex items-center gap-3 pb-2 border-b border-white/10">
@@ -864,12 +917,15 @@ export default function Footer() {
                     {category.title}
                   </h4>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {category.items.map((item, i) => (
                     <li key={i}>
-                      <button className="text-gray-400 hover:text-blue-400 transition-colors text-sm flex items-center gap-2 group">
-                        <div className="w-1 h-1 bg-blue-500/50 rounded-full group-hover:bg-blue-400" />
-                        {item}
+                      <button
+                        style={maxPolicyBtnHeight ? { height: `${maxPolicyBtnHeight}px` } : undefined}
+                        className="policy-btn w-full text-left bg-white/[0.03] border border-white/5 hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300 rounded-lg text-gray-300 hover:text-white px-4 py-3 text-sm flex items-center gap-3 group"
+                      >
+                        <div className="w-1.5 h-1.5 bg-blue-500/80 rounded-full group-hover:bg-blue-400 group-hover:scale-125 transition-all duration-300 flex-shrink-0" />
+                        <span className="leading-snug">{item}</span>
                       </button>
                     </li>
                   ))}
