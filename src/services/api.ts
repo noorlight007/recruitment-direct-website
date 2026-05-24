@@ -45,4 +45,33 @@ export const api = {
       throw error;
     }
   },
+
+  /**
+   * Performs an HTTP POST request to the specified endpoint with a JSON body.
+   * @param endpoint - The endpoint path (e.g. "/core/live/ai-hire-now")
+   * @param body - The JSON payload to send
+   * @returns Promise containing the JSON response.
+   */
+  post: async <T = any>(endpoint: string, body: any): Promise<T> => {
+    const baseUrl = getBaseUrl();
+    const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+    const url = `${baseUrl}${cleanEndpoint}`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      const data = await response.json();
+      return data as T;
+    } catch (error) {
+      console.error(`[API Client Error] Failed posting to ${url}:`, error);
+      throw error;
+    }
+  },
 };
