@@ -74,7 +74,7 @@ const clientSubmenu = [
 const menuItems = [
   { label: "Home", href: "/" },
   { label: "Clients", href: "/#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
-  { label: "Job Search", href: "/#job-search" },
+  { label: "Job Search", href: "/job-search" },
   { label: "Sectors", href: "/#sectors" },
   { label: "AI Recruitment", href: "/#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
   { label: "About", href: "/about" },
