@@ -73,31 +73,31 @@ export default function GeneralSection() {
               <div className="flow-grid">
 
                   <div className="flow-card">
-                      <span>01</span>
+                      {/* <span>01</span> */}
                       <h3>APPLICATION RECEIVED</h3>
                       <p>Job requirement or applicant received.</p>
                   </div>
 
                   <div className="flow-card">
-                      <span>02</span>
+                      {/* <span>02</span> */}
                       <h3>AI CALLS</h3>
                       <p>Applicants contacted instantly.</p>
                   </div>
 
                   <div className="flow-card">
-                      <span>03</span>
+                      {/* <span>03</span> */}
                       <h3>SCREENING</h3>
                       <p>Experience and suitability checked.</p>
                   </div>
 
                   <div className="flow-card">
-                      <span>04</span>
+                      {/* <span>04</span> */}
                       <h3>TRAFFIC LIGHT SCORE</h3>
                       <p>Applicants ranked and prioritised.</p>
                   </div>
 
                   <div className="flow-card">
-                      <span>05</span>
+                      {/* <span>05</span> */}
                       <h3>SUBMIT FAST</h3>
                       <p>Verified applicants submitted quickly.</p>
                   </div>
@@ -128,7 +128,7 @@ export default function GeneralSection() {
 
               <div className="consultant-card">
 
-                  <img src="/images/nicola.jpg" alt="Nicola" />
+                  <img src="/images/nicola.jpg" alt="Nicola" style={{ objectFit: "fixed" as any }} />
 
                   <div className="consultant-info">
 
@@ -149,7 +149,7 @@ export default function GeneralSection() {
 
               <div className="consultant-card">
 
-                  <img src="/images/olia.jpg" alt="Olia" />
+                  <img src="/images/olia.jpg" alt="Olia" style={{ objectFit: "cover" }} />
 
                   <div className="consultant-info">
 
@@ -454,7 +454,7 @@ export default function GeneralSection() {
       .consultant-card img{
           width:100%;
           height:420px;
-          object-fit:cover;
+          object-fit:fixed;
       }
 
       .consultant-info{

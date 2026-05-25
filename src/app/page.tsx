@@ -28,9 +28,9 @@ const Index = () => {
       {/* <EliteAISection /> */}
       {/* <HowItWorksSection /> */}
       <GeneralSection />
-      <SectorsSection />
+      {/* <SectorsSection /> */}
       {/* <TrustedBySection /> */}
-      <SearchJobsSection />
+      {/* <SearchJobsSection /> */}
       <ContactSection />
       <Footer />
       <FloatingElements />
