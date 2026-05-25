@@ -74,8 +74,8 @@ export default function GeneralSection() {
 
                   <div className="flow-card">
                       {/* <span>01</span> */}
-                      <h3>APPLICATION RECEIVED</h3>
-                      <p>Job requirement or applicant received.</p>
+                      <h3>Application Underneath</h3>
+                      <p>Job Applicant Received</p>
                   </div>
 
                   <div className="flow-card">

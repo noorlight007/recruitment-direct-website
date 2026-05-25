@@ -36,6 +36,13 @@ const aiProducts = [
     link: "/verify-supplier-form",
     isImage: false,
   },
+  {
+    title: "AI Verify CIS",
+    description: "Start CIS verification form",
+    icon: ShieldCheck,
+    link: "/ai-verify-cis",
+    isImage: false,
+  },
 ];
 
 const clientSubmenu = [
