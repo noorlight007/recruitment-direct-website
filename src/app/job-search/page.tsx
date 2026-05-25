@@ -24,36 +24,28 @@ import FloatingElements from "@/components/FloatingElements";
 import { api } from "@/services/api";
 
 interface Job {
-  jobId: number;
-  jobTitle: string;
-  location?: {
-    locationId: number;
-    name: string;
-  };
-  company?: {
-    companyId: number;
-    name: string;
-    links?: {
-      self: string;
-      logo?: string;
-    };
-  };
-  contact?: {
-    contactId: number;
+  adId: number;
+  state: string;
+  title: string;
+  reference: string;
+  summary: string;
+  bulletPoints: string[];
+  owner?: {
+    userId: number;
     firstName: string;
     lastName: string;
-    email?: string;
-    phone?: string;
-    mobile?: string;
+    position: string;
+    jobTitle: string;
+    email: string;
+    phone: string;
+    mobile: string;
   };
-  status?: {
-    statusId: number;
-    name: string;
-    active: boolean;
+  postAt: string;
+  expireAt: string;
+  links?: {
+    self: string;
+    applications: string;
   };
-  createdAt: string;
-  bulletPoints?: string[] | string;
-  bulletpoints?: string[] | string;
 }
 
 export default function JobSearchPage() {
@@ -66,13 +58,13 @@ export default function JobSearchPage() {
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [selectedCompany, setSelectedCompany] = useState("all");
 
-  // Fetch Jobs from api.get("/core/live/jobs")
+  // Fetch Job Ads from api.get("/core/live/jobads")
   useEffect(() => {
     async function fetchJobs() {
       try {
         setLoading(true);
         setError(null);
-        const data = await api.get("/core/live/jobs");
+        const data = await api.get("/core/live/jobads");
         if (data && data.items) {
           setJobs(data.items);
         } else {
@@ -107,37 +99,24 @@ export default function JobSearchPage() {
 
   // Helper to extract bulletpoints on new lines or fall back to high-quality metadata as bullets
   const getBulletPoints = (job: Job): string[] => {
-    // If explicit bullet points are provided in either casing format
-    const bps = job.bulletPoints || job.bulletpoints;
-    if (bps) {
-      if (Array.isArray(bps)) {
-        return bps.map(bp => bp.trim()).filter(Boolean);
-      }
-      if (typeof bps === "string") {
-        return bps.split("\n").map(bp => bp.trim()).filter(Boolean);
-      }
+    if (job.bulletPoints && job.bulletPoints.length > 0) {
+      return job.bulletPoints.map(bp => bp.trim()).filter(Boolean);
     }
 
     // Dynamic, professional, rich-content fallback bullets extracted directly from actual API item data
     const list: string[] = [];
-    if (job.location?.name) {
-      list.push(`📍 Base Location: ${job.location.name}`);
+    if (job.reference) {
+      list.push(`📌 Reference: ${job.reference}`);
     }
-    if (job.company?.name) {
-      list.push(`🏢 Employer: ${job.company.name}`);
-    }
-    if (job.contact) {
+    if (job.owner) {
       const contactInfo = [
-        job.contact.firstName && job.contact.lastName ? `${job.contact.firstName} ${job.contact.lastName}` : null,
-        job.contact.mobile || job.contact.phone ? `(${job.contact.mobile || job.contact.phone})` : null
+        job.owner.firstName && job.owner.lastName ? `${job.owner.firstName} ${job.owner.lastName}` : null,
+        job.owner.position ? `(${job.owner.position})` : null
       ].filter(Boolean).join(" ");
 
       if (contactInfo) {
         list.push(`📞 Consultant Contact: ${contactInfo}`);
       }
-    }
-    if (job.status?.name) {
-      list.push(`💼 Employment Status: ${job.status.name} / Fully compliant agency check`);
     }
 
     // Add default RDUK benefits if fewer than 2 bullets are resolved
@@ -149,31 +128,56 @@ export default function JobSearchPage() {
     return list;
   };
 
-  // Dynamic filter lists harvested from fetched jobs
-  const locationsList = Array.from(
-    new Set(jobs.map(job => job.location?.name).filter(Boolean))
-  ) as string[];
+  // Helper to dynamically extract location from title, bullet points, or reference
+  const getJobAdLocation = (job: Job): string => {
+    if (job.title && job.title.includes("|")) {
+      const parts = job.title.split("|").map(p => p.trim());
+      if (parts.length >= 3) {
+        return parts[2];
+      }
+      if (parts.length === 2 && !parts[1].includes("hour") && !parts[1].includes("£")) {
+        return parts[1];
+      }
+    }
 
-  const companiesList = Array.from(
-    new Set(jobs.map(job => job.company?.name).filter(Boolean))
-  ) as string[];
+    if (job.bulletPoints && job.bulletPoints.length > 0) {
+      for (const bp of job.bulletPoints) {
+        if (
+          bp.includes(",") ||
+          bp.toLowerCase().includes("scotland") ||
+          bp.toLowerCase().includes("edinburgh") ||
+          bp.toLowerCase().includes("glasgow") ||
+          bp.toLowerCase().includes("lanark") ||
+          bp.toLowerCase().includes("stirling") ||
+          bp.toLowerCase().includes("ayrshire") ||
+          bp.toLowerCase().includes("kilmarnock") ||
+          bp.toLowerCase().includes("greenock")
+        ) {
+          return bp;
+        }
+      }
+    }
+
+    if (job.reference && isNaN(Number(job.reference))) {
+      return job.reference;
+    }
+
+    return "Scotland";
+  };
+
+  // Dynamic filter lists harvested from fetched jobs
+  // Dynamic filter lists harvested from fetched jobs (unused dropdowns, set to empty)
+  const locationsList: string[] = [];
+  const companiesList: string[] = [];
 
   // Filter Logic
   const filteredJobs = jobs.filter((job) => {
     const matchesSearch =
-      job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (job.location?.name && job.location.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (job.company?.name && job.company.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (job.summary && job.summary.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (job.reference && job.reference.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    const matchesLocation =
-      selectedLocation === "all" ||
-      (job.location?.name && job.location.name === selectedLocation);
-
-    const matchesCompany =
-      selectedCompany === "all" ||
-      (job.company?.name && job.company.name === selectedCompany);
-
-    return matchesSearch && matchesLocation && matchesCompany;
+    return matchesSearch;
   });
 
   return (
@@ -378,7 +382,7 @@ export default function JobSearchPage() {
 
                   return (
                     <motion.article
-                      key={job.jobId}
+                      key={job.adId}
                       layout
                       initial={{ opacity: 0, y: 24 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -397,23 +401,23 @@ export default function JobSearchPage() {
                         {/* Header details: ID & Location badge */}
                         <div className="flex items-center justify-between mb-4">
                           <span className="text-[10px] font-bold text-gray-500 tracking-wider">
-                            ID: #{job.jobId}
+                            ID: #{job.adId}
                           </span>
                           <span className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 rounded-full">
                             <MapPin className="w-3 h-3" />
-                            {job.location?.name?.split("-")[1] || job.location?.name || "Scotland"}
+                            {getJobAdLocation(job)}
                           </span>
                         </div>
 
                         {/* Job ad Title */}
                         <h2 className="text-xl font-heading font-bold text-white group-hover:text-[#60A5FA] transition-colors leading-snug mb-3">
-                          {job.jobTitle}
+                          {job.title}
                         </h2>
 
                         {/* Created At */}
                         <div className="flex items-center gap-1.5 text-xs text-gray-400 mb-5 font-body">
                           <Clock className="w-3.5 h-3.5 text-gray-500" />
-                          <span>Posted on {formatDate(job.createdAt)}</span>
+                          <span>Posted on {formatDate(job.postAt)}</span>
                         </div>
 
                         {/* Bulletpoints rendered on new lines */}
@@ -431,7 +435,7 @@ export default function JobSearchPage() {
 
                       {/* Interactive Button */}
                       <Link
-                        href={`/job-search/${job.jobId}`}
+                        href={`/job-search/${job.adId}`}
                         className="btn btn-primary w-full py-3 rounded-xl flex items-center justify-center font-bold text-sm bg-gradient-to-r from-blue-600 to-indigo-600 group-hover:shadow-[0_0_20px_rgba(30,92,255,0.4)] transition-all cursor-pointer"
                       >
                         View

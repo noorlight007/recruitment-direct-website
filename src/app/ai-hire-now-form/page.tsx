@@ -347,7 +347,7 @@ export default function AIHireNowFormPage() {
               <div className="w-16 h-16 bg-emerald-500/10 text-emerald-600 rounded-full flex items-center justify-center mb-6">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Order Confirmed!</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Request Confirmed!</h3>
               <div className="text-gray-600 text-sm mb-6 leading-relaxed">
                 Your request has been successfully processed.
                 {successInfo?.jobId && (
