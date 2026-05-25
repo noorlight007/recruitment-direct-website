@@ -107,7 +107,8 @@ export default function Navbar() {
             href="/" 
             className={`flex-shrink-0 logo-premium transition-opacity duration-750 ${mobileOpen ? "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto" : "opacity-100"}`}
           >
-            <Image src={logo} alt="Recruitment Direct" className="navbar-logo" unoptimized />
+            {/* <Image src={logo} alt="Recruitment Direct" className="navbar-logo" unoptimized /> */}
+            <img src="./assets/logo.png" alt="Recruitment Direct" className="navbar-logo" />
           </Link>
 
           {/* Center Menu - Desktop */}
