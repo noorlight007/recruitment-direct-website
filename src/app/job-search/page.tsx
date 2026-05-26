@@ -80,6 +80,17 @@ export default function JobSearchPage() {
     fetchJobs();
   }, []);
 
+  // Sync with search parameter from landing page (if any)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      if (query) {
+        setSearchQuery(query);
+      }
+    }
+  }, []);
+
   // Format Relative Time (e.g. "May 14, 2026" or "10 days ago")
   const formatDate = (dateStr: string) => {
     try {

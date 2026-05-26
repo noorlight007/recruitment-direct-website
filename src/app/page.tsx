@@ -30,7 +30,7 @@ const Index = () => {
       <GeneralSection />
       {/* <SectorsSection /> */}
       {/* <TrustedBySection /> */}
-      {/* <SearchJobsSection /> */}
+      <SearchJobsSection />
       <ContactSection />
       <Footer />
       <FloatingElements />
