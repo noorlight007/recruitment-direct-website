@@ -79,12 +79,15 @@ export default function HeroSection() {
           {/* Left Column: Content and Primary Actions */}
           <div className="flex flex-col">
             <h1 className="hero-heading">
-              Recruitment That Moves Faster.
+              Recruitment Across the UK
             </h1>
 
+            <h2 className="text-xl md:text-2xl font-bold text-[#60A5FA] mt-3 mb-2 tracking-tight glow-text mx-auto">
+              Fast, reliable staffing solutions since 2006.
+            </h2>
+
             <p className="hero-subtext">
-              Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance.
-              Powered by AI, delivered by experienced consultants.
+              Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance, delivered by experienced consultants.
             </p>
 
             <div className="button-group mb-8">
