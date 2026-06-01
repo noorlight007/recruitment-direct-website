@@ -60,14 +60,14 @@ const Index = () => {
             <h2>Recruitment Expertise Across Multiple Sectors</h2>
 
             <div className="rd-sector-grid">
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/construction.jpg')" }}><span>Construction</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/renewables.jpg')" }}><span>Renewables</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/engineering.jpg')" }}><span>Engineering</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/logistics.jpg')" }}><span>Logistics</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/healthcare.jpg')" }}><span>Healthcare</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/education.jpg')" }}><span>Education</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/hospitality.jpg')" }}><span>Hospitality</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/assets/business-support-it.jpg')" }}><span>Business Support &amp; IT</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Construction.png')" }}><span>Construction</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Renewables.png')" }}><span>Renewables</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineering.png')" }}><span>Engineering</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logistics.png')" }}><span>Logistics</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/healthcare.jpg')" }}><span>Healthcare</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/education.jpg')" }}><span>Education</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/hospitality.jpg')" }}><span>Hospitality</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/business-support-it.jpg')" }}><span>Business Support &amp; IT</span></div>
             </div>
           </div>
         </section>
