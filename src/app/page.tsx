@@ -75,21 +75,21 @@ const Index = () => {
 
             <div className="rd-team-grid">
               <div className="rd-team-card rd-team-card-featured">
-                <img src="/images/steven-peddie.jpg" alt="Steven - Director" />
+                <img src="/images/steven-peddie.jpg" alt="Steven - Director" width={180} height={180} style={{ objectFit: 'cover' }} />
                 <h3>Steven</h3>
                 <strong>Director</strong>
                 <p>Leading Recruitment Direct and supporting clients across multiple sectors throughout the UK.</p>
               </div>
 
               <div className="rd-team-card">
-                <img src="/images/nicola.jpg" alt="Nicola - Manager" style={{ objectFit: 'fill' }} />
+                <img src="/images/nicola.jpg" alt="Nicola - Manager" width={180} height={180} style={{ objectFit: 'fill' }} />
                 <h3>Nicola</h3>
                 <strong>Manager</strong>
                 <p>Overseeing operations, compliance, workforce quality and client service delivery.</p>
               </div>
 
               <div className="rd-team-card">
-                <img src="/images/olia.jpg" alt="Olia - Consultant" />
+                <img src="/images/olia.jpg" alt="Olia - Consultant" width={180} height={180} style={{ objectFit: 'cover' }} />
                 <h3>Olia</h3>
                 <strong>Consultant</strong>
                 <p>Supporting clients and applicants through responsive, professional recruitment solutions.</p>
