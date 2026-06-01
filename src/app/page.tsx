@@ -18,6 +18,14 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="rd-landing">
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 768px) {
+            .rd-team-card img {
+              width: 240px !important;
+              height: 240px !important;
+            }
+          }
+        ` }} />
 
         {/* HERO */}
         <section className="rd-hero">
