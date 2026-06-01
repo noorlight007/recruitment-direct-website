@@ -3242,9 +3242,20 @@ MOBILE RESPONSIVE
 .rd-hero-content {
   position: relative;
   z-index: 2;
-  min-width: 600px;
+  width: 100%;
+  max-width: 800px;
   text-align: center;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .rd-hero-content {
+    min-width: 600px;
+    max-width: 1100px;
+  }
+  .rd-hero h1 {
+    white-space: nowrap !important;
+  }
 }
 
 .rd-hero h1 {
@@ -3636,6 +3647,8 @@ MOBILE RESPONSIVE
   .rd-button-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+    max-width: 300px;
+    margin: 0 auto;
   }
 }
 

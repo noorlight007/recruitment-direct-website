@@ -22,7 +22,7 @@ const Index = () => {
         {/* HERO */}
         <section className="rd-hero">
           <div className="rd-overlay"></div>
-          <div className="rd-container rd-hero-content" style={{ margin: "0 auto", textAlign: "center", minWidth: "600px" }}>
+          <div className="rd-container rd-hero-content">
             <h1>Recruitment Across the UK</h1>
             <h2>Trusted Supplier Since 2006</h2>
             <p>Connecting employers with quality temporary, contract and permanent staff across the UK.</p>
