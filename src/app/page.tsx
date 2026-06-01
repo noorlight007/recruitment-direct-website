@@ -22,12 +22,12 @@ const Index = () => {
         {/* HERO */}
         <section className="rd-hero">
           <div className="rd-overlay"></div>
-          <div className="rd-container rd-hero-content">
+          <div className="rd-container rd-hero-content" style={{ margin: "0 auto", textAlign: "center", minWidth: "600px" }}>
             <h1>Recruitment Across the UK</h1>
-            <h2>Trusted Recruitment Supplier Since 2006</h2>
-            <p>Connecting employers with quality temporary, contract and permanent staff across multiple sectors throughout the UK.</p>
+            <h2>Trusted Supplier Since 2006</h2>
+            <p>Connecting employers with quality temporary, contract and permanent staff across the UK.</p>
 
-            <div className="rd-button-grid">
+            <div className="rd-button-grid" style={{ justifyContent: "center" }}>
               <a href="/ai-hire-now" className="rd-btn rd-btn-gold">AI HIRE NOW</a>
               <a href="/place-enquiry" className="rd-btn rd-btn-gold">PLACE ENQUIRY</a>
               <a href="/job-search" className="rd-btn rd-btn-outline">JOB SEARCH</a>

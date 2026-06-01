@@ -3242,8 +3242,9 @@ MOBILE RESPONSIVE
 .rd-hero-content {
   position: relative;
   z-index: 2;
-  max-width: 660px;
-  text-align: left;
+  min-width: 600px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .rd-hero h1 {
@@ -3274,6 +3275,7 @@ MOBILE RESPONSIVE
   display: grid;
   grid-template-columns: repeat(2, minmax(170px, 240px));
   gap: 16px;
+  justify-content: center;
 }
 
 .rd-btn {
