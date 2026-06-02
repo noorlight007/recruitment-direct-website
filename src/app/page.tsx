@@ -19,6 +19,9 @@ const Index = () => {
       <Navbar />
       <main className="rd-landing">
         <style dangerouslySetInnerHTML={{ __html: `
+          .rd-hero h1 {
+            font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
+          }
           @media (max-width: 768px) {
             .rd-team-card img {
               width: 240px !important;
