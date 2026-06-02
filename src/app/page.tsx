@@ -92,7 +92,7 @@ const Index = () => {
             <h2>Recruitment Expertise Across Multiple Sectors</h2>
 
             <div className="rd-sector-grid">
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/constructions.png')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/constructionsss.png')" }}>
               {/* <span>Construction</span> */}
               </div>
               <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
@@ -116,7 +116,7 @@ const Index = () => {
               <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Facilitiess.png')" }}>
               {/* <span>Facilities Management</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Businesss.png')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }}>
               {/* <span>Business Support &amp; IT</span> */}
               </div>
             </div>
