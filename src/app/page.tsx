@@ -88,7 +88,7 @@ const Index = () => {
         </section>
 
         {/* SECTORS */}
-        <section className="rd-sectors">
+        <section className="rd-sectors" id="sectors">
           <div className="rd-container">
             <h2>Sectors We Support</h2>
 
