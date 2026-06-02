@@ -45,9 +45,9 @@ const Index = () => {
             background-position: center !important;
           }
           @media (max-width: 768px) {
-            .rd-sectors h2 {
-              margin-bottom: 16px !important;
-            }
+            // .rd-sectors h2 {
+            //   margin-bottom: 16px !important;
+            // }
             .rd-sector-grid {
               grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
               gap: 16px !important;
@@ -92,31 +92,31 @@ const Index = () => {
             <h2>Recruitment Expertise Across Multiple Sectors</h2>
 
             <div className="rd-sector-grid">
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/construction.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/construction.png')" }}>
               {/* <span>Construction</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/renewables.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/renewables.png')" }}>
               {/* <span>Renewables</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineering.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineering.png')" }}>
               {/* <span>Engineering</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logistics.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logistics.png')" }}>
               {/* <span>Logistics</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Healthcare.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Healthcare.png')" }}>
               {/* <span>Healthcare</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Education.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Education.png')" }}>
               {/* <span>Education</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Hospitality.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Hospitality.png')" }}>
               {/* <span>Hospitality</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Facilities.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Facilities.png')" }}>
               {/* <span>Facilities Management</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Business.PNG')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Business.png')" }}>
               {/* <span>Business Support &amp; IT</span> */}
               </div>
             </div>
