@@ -45,6 +45,9 @@ const Index = () => {
             background-position: center !important;
           }
           @media (max-width: 768px) {
+            .rd-sectors h2 {
+              margin-bottom: 16px !important;
+            }
             .rd-sector-grid {
               grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
               gap: 16px !important;
