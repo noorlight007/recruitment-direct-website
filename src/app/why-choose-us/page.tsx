@@ -58,7 +58,7 @@ const reasons = [
 
 const stats = [
   { value: "24/7", label: "AI-Powered Response" },
-  { value: "6+", label: "Sectors Covered" },
+  { value: "9+", label: "Sectors Covered" },
   { value: "UK", label: "Wide Coverage" },
   { value: "100%", label: "Pre-Qualified" },
 ];
@@ -103,7 +103,7 @@ export default function WhyChooseUsPage() {
             transition={{ delay: 0.15 }}
             className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto"
           >
-            <a href="/#contact" className="btn-ai-cta">
+            <a href="/contact" className="btn-ai-cta">
               Request Staff
             </a>
             <Link href="/ai-hire-now" className="btn-ai-cta">

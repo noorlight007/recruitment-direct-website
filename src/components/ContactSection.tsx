@@ -17,20 +17,20 @@ export default function ContactSection() {
             <div className="rd-contact-card">
               <h3>AI HIRE NOW</h3>
               <p>
-                Combine AI-powered recruitment technology with experienced recruitment consultants.
+                Order Staff 24/7. Powered by AI.
               </p>
               <a href="/ai-hire-now" className="rd-btn">
-                AI HIRE NOW →
+                Hire Now →
               </a>
             </div>
 
             <div className="rd-contact-card">
               <h3>LOOKING FOR STAFF?</h3>
               <p>
-                Temporary, contract and permanent recruitment solutions across the UK.
+                Temporary, Contract & Permanent.
               </p>
               <a href="/request-staff" className="rd-btn">
-                REQUEST STAFF →
+                Request Quote →
               </a>
             </div>
           </div>
@@ -189,6 +189,7 @@ export default function ContactSection() {
 
             .rd-contact-card {
                 padding: 35px;
+                text-align: center;
             }
 
             .rd-contact-links {
