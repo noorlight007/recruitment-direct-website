@@ -89,7 +89,7 @@ const Index = () => {
         {/* SECTORS */}
         <section className="rd-sectors">
           <div className="rd-container">
-            <h2>Recruitment Expertise Across Multiple Sectors</h2>
+            <h2>Sectors We Support</h2>
 
             <div className="rd-sector-grid">
               <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
