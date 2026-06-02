@@ -229,7 +229,7 @@ const Index = () => {
       {/* <SectorsSection /> */}
       {/* <TrustedBySection /> */}
       {/* <SearchJobsSection /> */}
-      <ContactSection />
+      {/* <ContactSection /> */}
 
       <Footer />
       <FloatingElements />
