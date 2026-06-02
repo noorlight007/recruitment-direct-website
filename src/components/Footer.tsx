@@ -750,7 +750,7 @@ export default function Footer() {
 
           <div className="rd-trust">
             <span className="rd-trust-icon">🛡</span>
-            <span>Verified credentials. Transparent proof. Trusted delivery.</span>
+            <span className="text-[#000]">Verified credentials. Transparent proof. Trusted delivery.</span>
           </div>
 
           <footer className="rd-footer">
