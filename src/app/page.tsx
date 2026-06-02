@@ -195,7 +195,7 @@ const Index = () => {
         </section>
 
         {/* CONTACT */}
-        <section className="rd-contact">
+        {/* <section className="rd-contact">
           <div className="rd-container rd-contact-box">
             <div>
               <h2>Contact Us</h2>
@@ -214,7 +214,7 @@ const Index = () => {
               <a href="/place-enquiry" className="rd-btn rd-btn-gold">PLACE ENQUIRY</a>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
 
       {/* Previous all sections from components folder */}
