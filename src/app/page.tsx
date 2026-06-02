@@ -95,7 +95,7 @@ const Index = () => {
               <div className="rd-sector-card" style={{ backgroundImage: "url('/images/construction.png')" }}>
               {/* <span>Construction</span> */}
               </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/renewables.png')" }}>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Renewable.png')" }}>
               {/* <span>Renewables</span> */}
               </div>
               <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineering.png')" }}>
