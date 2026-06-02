@@ -11,18 +11,44 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
+// Previous sections from component folder
+import HeroSection from "@/components/HeroSection";
+import TrustTechSection from "@/components/TrustTechSection";
+import HowWeDeliverSection from "@/components/HowWeDeliverSection";
+import AIFlowSection from "@/components/AIFlowSection";
+import AIProductsSection from "@/components/AIProductsSection";
+import EliteAISection from "@/components/EliteAISection";
+import HowItWorksSection from "@/components/HowItWorksSection";
+import GeneralSection from "@/components/GeneralSection";
+import SectorsSection from "@/components/SectorsSection";
+import TrustedBySection from "@/components/TrustedBySection";
+import SearchJobsSection from "@/components/SearchJobsSection";
+import ContactSection from "@/components/ContactSection";
+
 const Index = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      
+      {/* Brand New Inline Landing Section */}
       <main className="rd-landing">
         <style dangerouslySetInnerHTML={{ __html: `
           .rd-hero h1 {
             font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
           }
+          .rd-sector-card {
+            aspect-ratio: 3 / 2 !important;
+            min-height: auto !important;
+            background-size: cover !important;
+            background-position: center !important;
+          }
           @media (max-width: 768px) {
+            .rd-sector-grid {
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+              gap: 16px !important;
+            }
             .rd-team-card img {
               width: 240px !important;
               height: 240px !important;
@@ -63,14 +89,33 @@ const Index = () => {
             <h2>Recruitment Expertise Across Multiple Sectors</h2>
 
             <div className="rd-sector-grid">
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Construction.png')" }}><span>Construction</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Renewables.png')" }}><span>Renewables</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineering.png')" }}><span>Engineering</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logistics.png')" }}><span>Logistics</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/healthcare.jpg')" }}><span>Healthcare</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/education.jpg')" }}><span>Education</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/hospitality.jpg')" }}><span>Hospitality</span></div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/business-support-it.jpg')" }}><span>Business Support &amp; IT</span></div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/construction.PNG')" }}>
+              {/* <span>Construction</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/renewables.PNG')" }}>
+              {/* <span>Renewables</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineering.PNG')" }}>
+              {/* <span>Engineering</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logistics.PNG')" }}>
+              {/* <span>Logistics</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Healthcare.PNG')" }}>
+              {/* <span>Healthcare</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Education.PNG')" }}>
+              {/* <span>Education</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Hospitality.PNG')" }}>
+              {/* <span>Hospitality</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Facilities.PNG')" }}>
+              {/* <span>Facilities Management</span> */}
+              </div>
+              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Business.PNG')" }}>
+              {/* <span>Business Support &amp; IT</span> */}
+              </div>
             </div>
           </div>
         </section>
@@ -85,25 +130,37 @@ const Index = () => {
             </div>
 
             <div className="rd-team-grid">
-              <div className="rd-team-card rd-team-card-featured">
-                <img src="/images/steven-peddie.jpg" alt="Steven - Director" width={180} height={180} style={{ objectFit: 'cover' }} />
-                <h3>Steven</h3>
-                <strong>Director</strong>
-                <p>Leading Recruitment Direct and supporting clients across multiple sectors throughout the UK.</p>
+              <div className="hero-image">
+                <img src="/images/steven-peddie.jpg" alt="Steven Peddie" />
+                <div className="hero-overlay">
+                  <h3>Steven Peddie</h3>
+                  <span>Director</span>
+                  <p style={{ marginTop: '12px', fontSize: '15px', color: '#cbd5e1', lineHeight: '1.5' }}>
+                    Leading Recruitment Direct and supporting clients across multiple sectors throughout the UK.
+                  </p>
+                </div>
               </div>
 
-              <div className="rd-team-card">
-                <img src="/images/nicola.jpg" alt="Nicola - Manager" width={180} height={180} style={{ objectFit: 'fill' }} />
-                <h3>Nicola</h3>
-                <strong>Manager</strong>
-                <p>Overseeing operations, compliance, workforce quality and client service delivery.</p>
+              <div className="hero-image">
+                <img src="/images/nicola.jpg" alt="Nicola" />
+                <div className="hero-overlay">
+                  <h3>Nicola</h3>
+                  <span>Manager</span>
+                  <p style={{ marginTop: '12px', fontSize: '15px', color: '#cbd5e1', lineHeight: '1.5' }}>
+                    Overseeing operations, compliance, workforce quality and client service delivery.
+                  </p>
+                </div>
               </div>
 
-              <div className="rd-team-card">
-                <img src="/images/olia.jpg" alt="Olia - Consultant" width={180} height={180} style={{ objectFit: 'cover' }} />
-                <h3>Olia</h3>
-                <strong>Consultant</strong>
-                <p>Supporting clients and applicants through responsive, professional recruitment solutions.</p>
+              <div className="hero-image">
+                <img src="/images/olia.jpg" alt="Olia" />
+                <div className="hero-overlay">
+                  <h3>Olia</h3>
+                  <span>Consultant</span>
+                  <p style={{ marginTop: '12px', fontSize: '15px', color: '#cbd5e1', lineHeight: '1.5' }}>
+                    Supporting clients and applicants through responsive, professional recruitment solutions.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -155,6 +212,21 @@ const Index = () => {
           </div>
         </section>
       </main>
+
+      {/* Previous all sections from components folder */}
+      {/* <HeroSection /> */}
+      {/* <TrustTechSection /> */}
+      {/* <HowWeDeliverSection /> */}
+      {/* <AIFlowSection /> */}
+      {/* <AIProductsSection /> */}
+      {/* <EliteAISection /> */}
+      {/* <HowItWorksSection /> */}
+      {/* <GeneralSection /> */}
+      {/* <SectorsSection /> */}
+      {/* <TrustedBySection /> */}
+      {/* <SearchJobsSection /> */}
+      {/* <ContactSection /> */}
+
       <Footer />
       <FloatingElements />
 

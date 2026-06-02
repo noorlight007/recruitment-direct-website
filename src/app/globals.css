@@ -3378,13 +3378,13 @@ MOBILE RESPONSIVE
 
 .rd-sector-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 24px;
 }
 
 .rd-sector-card {
   position: relative;
-  min-height: 280px;
+  min-height: 400px;
   border-radius: 16px;
   background-size: cover;
   background-position: center;
@@ -3398,14 +3398,14 @@ MOBILE RESPONSIVE
   text-decoration: none;
 }
 
-.rd-sector-card::before {
+/* .rd-sector-card::before {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(3,8,18,0) 40%, rgba(3,8,18,0.85) 100%);
   z-index: 1;
   transition: opacity .3s ease;
-}
+} */
 
 .rd-sector-card:hover {
   transform: translateY(-5px);
