@@ -30,12 +30,13 @@ const Index = () => {
 
   return (
     <>
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      
-      {/* Brand New Inline Landing Section */}
-      <main className="rd-landing">
-        <style dangerouslySetInnerHTML={{ __html: `
+      <div className="min-h-screen bg-background">
+        <Navbar />
+
+        {/* Brand New Inline Landing Section */}
+        <main className="rd-landing">
+          <style dangerouslySetInnerHTML={{
+            __html: `
           .rd-hero h1 {
             font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
           }
@@ -60,161 +61,162 @@ const Index = () => {
           }
         ` }} />
 
-        {/* HERO */}
-        <section className="rd-hero">
-          <div className="rd-overlay"></div>
-          <div className="rd-container rd-hero-content">
-            <h1>Recruitment Across the UK</h1>
-            <h2>Trusted Supplier Since 2006</h2>
-            <p>Connecting employers with quality temporary, contract and permanent staff across the UK.</p>
+          {/* HERO */}
+          <section className="rd-hero">
+            <div className="rd-overlay"></div>
+            <div className="rd-container rd-hero-content">
+              <h1>Recruitment Across the UK</h1>
+              <h2>Trusted Supplier Since 2006</h2>
+              <p>Connecting employers with quality temporary, contract and permanent staff across the UK.</p>
 
-            <div className="rd-button-grid" style={{ justifyContent: "center" }}>
-              <a href="/ai-hire-now" className="rd-btn rd-btn-gold">AI HIRE NOW</a>
-              <a href="/contact" className="rd-btn rd-btn-gold">PLACE ENQUIRY</a>
-              <a href="/job-search" className="rd-btn rd-btn-outline">JOB SEARCH</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="rd-btn rd-btn-outline">WATCH AI CALL</a>
-            </div>
-          </div>
-        </section>
-
-        {/* TRUST BAR */}
-        <section className="rd-trust">
-          <div className="rd-container rd-trust-grid">
-            <div>Framework Approved</div>
-            <div>UK Wide Coverage</div>
-            <div>100% Compliance</div>
-            <div>Multi-Sector Expertise</div>
-          </div>
-        </section>
-
-        {/* SECTORS */}
-        <section className="rd-sectors" id="sectors">
-          <div className="rd-container">
-            <h2>Sectors We Support</h2>
-
-            <div className="rd-sector-grid">
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
-              {/* <span>Construction</span> */}
-              </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
-              {/* <span>Renewables</span> */}
-              </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineerings.png')" }}>
-              {/* <span>Engineering</span> */}
-              </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logisticss.png')" }}>
-              {/* <span>Logistics</span> */}
-              </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Healthcares.png')" }}>
-              {/* <span>Healthcare</span> */}
-              </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Educations.png')" }}>
-              {/* <span>Education</span> */}
-              </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Hospitalitys.png')" }}>
-              {/* <span>Hospitality</span> */}
-              </div>
-              <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }}>
-              {/* <span>Business Support &amp; IT</span> */}
+              <div className="rd-button-grid" style={{ justifyContent: "center" }}>
+                <a href="/ai-hire-now" className="rd-btn rd-btn-gold">AI HIRE NOW</a>
+                <a href="/contact" className="rd-btn rd-btn-gold">PLACE ENQUIRY</a>
+                <a href="/job-search" className="rd-btn rd-btn-outline">JOB SEARCH</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="rd-btn rd-btn-outline">WATCH AI CALL</a>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* PREMIUM SECTION */}
-        <section className="rd-premium-section">
+          {/* TRUST BAR */}
+          <section className="rd-trust">
+            <div className="rd-container rd-trust-grid">
+              <div>Framework Approved</div>
+              <div>UK Wide Coverage</div>
+              <div>100% Compliance</div>
+              <div>Multi-Sector Expertise</div>
+            </div>
+          </section>
 
-          <div className="rd-hero">
-            <div className="rd-hero-content">
-              <h1>
-                Recruitment Solutions That
-                <span>Deliver Results</span>
-              </h1>
+          {/* SECTORS */}
+          <section className="rd-sectors" id="sectors">
+            <div className="rd-container">
+              <h2>Sectors We Support</h2>
 
-              <p>Temporary, contract and permanent recruitment solutions across the UK.</p>
-
-              <div className="rd-hero-actions">
-                <div>
-                  <a href="/ai-hire-now" className="rd-btn rd-btn-gold">AI HIRE NOW</a>
-                  <small>Fast-track your staff request.</small>
+              <div className="rd-sector-grid">
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
+                  {/* <span>Construction</span> */}
                 </div>
-
-                <div>
-                  <a href="/request-staff" className="rd-btn rd-btn-outline">REQUEST STAFF</a>
-                  <small>Speak directly with our team.</small>
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
+                  {/* <span>Renewables</span> */}
+                </div>
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineerings.png')" }}>
+                  {/* <span>Engineering</span> */}
+                </div>
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logisticss.png')" }}>
+                  {/* <span>Logistics</span> */}
+                </div>
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Healthcares.png')" }}>
+                  {/* <span>Healthcare</span> */}
+                </div>
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Educations.png')" }}>
+                  {/* <span>Education</span> */}
+                </div>
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Hospitalitys.png')" }}>
+                  {/* <span>Hospitality</span> */}
+                </div>
+                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }}>
+                  {/* <span>Business Support &amp; IT</span> */}
                 </div>
               </div>
             </div>
+          </section>
 
-            <div className="rd-hero-image">
-              <img src="/images/steven-peddie.jpg" alt="Steven, Director" />
-              <div className="rd-steven-label">
-                <strong>Steven</strong>
-                <span>Director</span>
+          {/* PREMIUM SECTION */}
+          <section className="rd-premium-section">
+
+            <div className="rd-hero">
+              <div className="rd-hero-content">
+                <h1>
+                  Recruitment Solutions That
+                  <span>Deliver Results</span>
+                </h1>
+
+                <p>Temporary, contract and permanent recruitment solutions across the UK.</p>
+
+                <div className="rd-hero-actions">
+                  <div>
+                    <a href="/ai-hire-now" className="rd-btn rd-btn-gold">AI HIRE NOW</a>
+                    <small>Fast-track your staff request.</small>
+                  </div>
+
+                  <div>
+                    <a href="/request-staff" className="rd-btn rd-btn-outline">REQUEST STAFF</a>
+                    <small>Speak directly with our team.</small>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div className="rd-process">
-            <h2>Our Recruitment Process</h2>
-
-            <div className="rd-process-flow">
-              <span>Applicant Applies</span>
-              <b>→</b>
-              <span>AI Screening</span>
-              <b>→</b>
-              <span>Consultant Review</span>
-              <b>→</b>
-              <span>Compliance Checks</span>
-              <b>→</b>
-              <span>Submitted to Client</span>
-            </div>
-          </div>
-
-          <div className="rd-team">
-            <div className="rd-team-heading">
-              <h2>Your Recruitment Team</h2>
-            </div>
-
-            <div className="consultant-card">
-              <img src="/images/nicola.jpg" alt="Nicola" />
-              <div className="rd-team-info">
-                <h3>Nicola</h3>
-                <span>Manager</span>
-                <p>Overseeing recruitment delivery, compliance and client service.</p>
+              <div className="rd-hero-image">
+                <img src="/images/steven-peddie.jpg" alt="Steven, Director" />
+                <div className="rd-steven-label">
+                  <strong>Steven</strong>
+                  <span>Director</span>
+                </div>
               </div>
             </div>
 
-            <div className="consultant-card">
-              <img src="/images/olia.jpg" alt="Olia" style={{ objectFit: 'cover' }} />
-              <div className="rd-team-info">
-                <h3>Olia</h3>
-                <span>Consultant</span>
-                <p>Supporting applicants throughout the recruitment process.</p>
+            <div className="rd-process">
+              <h2>Our Recruitment Process</h2>
+
+              <div className="rd-process-flow">
+                <span>Applicant Applies</span>
+                <b>→</b>
+                <span>AI Screening</span>
+                <b>→</b>
+                <span>Consultant Review</span>
+                <b>→</b>
+                <span>Compliance Checks</span>
+                <b>→</b>
+                <span>Submitted to Client</span>
               </div>
             </div>
-          </div>
 
-          <div className="rd-contact">
-            <div>
-              <span>CALL US</span>
-              <a href="tel:01324623198">01324 623198</a>
+            <div className="rd-team">
+              <div className="rd-team-heading">
+                <h2>Your Recruitment Team</h2>
+              </div>
+
+              <div className="consultant-card">
+                <img src="/images/nicola.jpg" alt="Nicola" />
+                <div className="rd-team-info">
+                  <h3>Nicola</h3>
+                  <span>Manager</span>
+                  <p>Overseeing recruitment delivery, compliance and client service.</p>
+                </div>
+              </div>
+
+              <div className="consultant-card">
+                <img src="/images/olia.jpg" alt="Olia" style={{ objectFit: 'cover' }} />
+                <div className="rd-team-info">
+                  <h3>Olia</h3>
+                  <span>Consultant</span>
+                  <p>Supporting applicants throughout the recruitment process.</p>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <span>WHATSAPP</span>
-              <a href="https://wa.me/447590882626">Start Conversation</a>
+            <div className="rd-contact">
+              <div>
+                <span>CALL US</span>
+                <a href="tel:01324623198">01324 623198</a>
+              </div>
+
+              <div>
+                <span>WHATSAPP</span>
+                <a href="https://wa.me/447590882626">Start Conversation</a>
+              </div>
+
+              <div>
+                <span>EMAIL US</span>
+                <a href="mailto:sales@rd1.co.uk">sales@rd1.co.uk</a>
+              </div>
             </div>
 
-            <div>
-              <span>EMAIL US</span>
-              <a href="mailto:sales@rd1.co.uk">sales@rd1.co.uk</a>
-            </div>
-          </div>
+          </section>
 
-        </section>
-
-        <style dangerouslySetInnerHTML={{ __html: `
+          <style dangerouslySetInnerHTML={{
+            __html: `
         :root {
           --rd-black: #111111;
           --rd-grey: #5f6368;
@@ -248,7 +250,7 @@ const Index = () => {
 
         .rd-premium-section .rd-hero-content h1 {
           margin: 0 0 28px !important;
-          font-size: clamp(42px, 5.5vw, 76px) !important;
+          font-size: clamp(33.6px, 4.4vw, 60.8px) !important;
           line-height: 1.05 !important;
           font-weight: 800 !important;
           text-transform: uppercase !important;
@@ -287,35 +289,48 @@ const Index = () => {
           align-items: center;
           justify-content: center;
           min-width: 210px;
-          padding: 17px 30px;
-          border-radius: 6px;
+          min-height: 58px;
+          padding: 15px 22px;
+          border-radius: 14px;
           font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: .4px;
           text-decoration: none;
-          letter-spacing: 0.03em;
           transition: all 0.25s ease;
-          border: 1.5px solid transparent !important;
-          background: none !important;
-          box-shadow: none !important;
-          gap: 0 !important;
-          height: auto !important;
         }
 
         .rd-premium-section .rd-btn-gold {
-          background: var(--rd-brass) !important;
-          color: var(--rd-black) !important;
-          border: 1px solid var(--rd-brass) !important;
+          color: #071424 !important;
+          background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
+          border: 2px solid #f7d98a !important;
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.7),
+            inset 0 -2px 0 rgba(70,45,5,.35),
+            0 10px 24px rgba(184,134,11,.32) !important;
         }
 
         .rd-premium-section .rd-btn-outline {
-          background: transparent !important;
-          color: var(--rd-black) !important;
-          border: 1px solid var(--rd-brass) !important;
+          color: #fff !important;
+          border: 2px solid #d8ad48 !important;
+          background: rgba(3,8,18,.48) !important;
         }
 
         .rd-premium-section .rd-btn:hover {
-          background: var(--rd-black) !important;
-          color: var(--rd-white) !important;
-          border-color: var(--rd-black) !important;
+          transform: translateY(-2px);
+        }
+
+        .rd-premium-section .rd-btn-gold:hover {
+          filter: brightness(1.1) !important;
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.8),
+            inset 0 -2px 0 rgba(70,45,5,.4),
+            0 12px 28px rgba(184,134,11,.45) !important;
+        }
+
+        .rd-premium-section .rd-btn-outline:hover {
+          background: rgba(216, 173, 72, 0.15) !important;
+          border-color: #f6d77d !important;
+          color: #f2d17a !important;
         }
 
         .rd-premium-section .rd-hero-actions small {
@@ -550,7 +565,7 @@ const Index = () => {
           }
 
           .rd-premium-section .rd-hero-content h1 {
-            font-size: clamp(32px, 7vw, 48px) !important;
+            font-size: clamp(25.6px, 5.6vw, 38.4px) !important;
             margin-bottom: 18px !important;
           }
 
@@ -583,7 +598,8 @@ const Index = () => {
 
           .rd-premium-section .rd-btn {
             min-width: 100% !important;
-            padding: 14px 24px !important;
+            padding: 15px 22px !important;
+            min-height: 58px !important;
           }
 
           .rd-premium-section .rd-process {
@@ -640,45 +656,46 @@ const Index = () => {
         }
         ` }} />
 
-        {/* TESTIMONIALS */}
-        <section className="rd-testimonials-section">
-          <div className="rd-testimonials-container">
-            <h2>What Our Clients Say</h2>
-            <div className="rd-heading-line"></div>
-            <p className="rd-testimonials-intro">
-              Trusted by businesses across the UK.
-            </p>
-
-            <div className="rd-testimonial-card">
-              <div className="rd-quote-mark">“</div>
-              <p>
-                “Professional, responsive and reliable. Recruitment Direct consistently delivers quality personnel when we need them.”
+          {/* TESTIMONIALS */}
+          <section className="rd-testimonials-section">
+            <div className="rd-testimonials-container">
+              <h2>What Our Clients Say</h2>
+              <div className="rd-heading-line"></div>
+              <p className="rd-testimonials-intro">
+                Trusted by businesses across the UK.
               </p>
-              <div className="rd-card-line"></div>
-              <h3>Civil Engineering Contractor</h3>
-            </div>
 
-            <div className="rd-testimonial-card">
-              <div className="rd-quote-mark">“</div>
-              <p>
-                “A trusted recruitment partner that understands our industry and always provides an excellent service.”
-              </p>
-              <div className="rd-card-line"></div>
-              <h3>Manufacturing Business</h3>
-            </div>
+              <div className="rd-testimonial-card">
+                <div className="rd-quote-mark">“</div>
+                <p>
+                  “Professional, responsive and reliable. Recruitment Direct consistently delivers quality personnel when we need them.”
+                </p>
+                <div className="rd-card-line"></div>
+                <h3>Civil Engineering Contractor</h3>
+              </div>
 
-            <div className="rd-testimonial-card">
-              <div className="rd-quote-mark">“</div>
-              <p>
-                “Easy to work with, highly responsive and committed to delivering results.”
-              </p>
-              <div className="rd-card-line"></div>
-              <h3>Logistics Provider</h3>
-            </div>
-          </div>
-        </section>
+              <div className="rd-testimonial-card">
+                <div className="rd-quote-mark">“</div>
+                <p>
+                  “A trusted recruitment partner that understands our industry and always provides an excellent service.”
+                </p>
+                <div className="rd-card-line"></div>
+                <h3>Manufacturing Business</h3>
+              </div>
 
-        <style dangerouslySetInnerHTML={{ __html: `
+              <div className="rd-testimonial-card">
+                <div className="rd-quote-mark">“</div>
+                <p>
+                  “Easy to work with, highly responsive and committed to delivering results.”
+                </p>
+                <div className="rd-card-line"></div>
+                <h3>Logistics Provider</h3>
+              </div>
+            </div>
+          </section>
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
         :root {
           --rd-black: #111111;
           --rd-grey: #5f6368;
@@ -789,8 +806,8 @@ const Index = () => {
         }
         ` }} />
 
-        {/* CONTACT */}
-        {/* <section className="rd-contact">
+          {/* CONTACT */}
+          {/* <section className="rd-contact">
           <div className="rd-container rd-contact-box">
             <div>
               <h2>Contact Us</h2>
@@ -810,42 +827,43 @@ const Index = () => {
             </div>
           </div>
         </section> */}
-      </main>
+        </main>
 
-      {/* Previous all sections from components folder */}
-      {/* <HeroSection /> */}
-      {/* <TrustTechSection /> */}
-      {/* <HowWeDeliverSection /> */}
-      {/* <AIFlowSection /> */}
-      {/* <AIProductsSection /> */}
-      {/* <EliteAISection /> */}
-      {/* <HowItWorksSection /> */}
-      {/* <GeneralSection /> */}
-      {/* <SectorsSection /> */}
-      {/* <TrustedBySection /> */}
-      {/* <SearchJobsSection /> */}
-      <ContactSection />
+        {/* Previous all sections from components folder */}
+        {/* <HeroSection /> */}
+        {/* <TrustTechSection /> */}
+        {/* <HowWeDeliverSection /> */}
+        {/* <AIFlowSection /> */}
+        {/* <AIProductsSection /> */}
+        {/* <EliteAISection /> */}
+        {/* <HowItWorksSection /> */}
+        {/* <GeneralSection /> */}
+        {/* <SectorsSection /> */}
+        {/* <TrustedBySection /> */}
+        {/* <SearchJobsSection /> */}
+        <ContactSection />
 
-      <Footer />
-      <FloatingElements />
+        <Footer />
+        <FloatingElements />
 
-      <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
-          <DialogHeader className="sr-only">
-            <DialogTitle>AI Call Demo Video</DialogTitle>
-          </DialogHeader>
-          <div className="aspect-video w-full">
-            <video
-              src="/Video.mov"
-              controls
-              autoPlay
-              className="w-full h-full"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
-    <style dangerouslySetInnerHTML={{ __html: `
+        <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
+          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
+            <DialogHeader className="sr-only">
+              <DialogTitle>AI Call Demo Video</DialogTitle>
+            </DialogHeader>
+            <div className="aspect-video w-full">
+              <video
+                src="/Video.mov"
+                controls
+                autoPlay
+                className="w-full h-full"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+      <style dangerouslySetInnerHTML={{
+        __html: `
 
       .ai-speed-section{
           background:#ffffff;
@@ -1200,7 +1218,7 @@ const Index = () => {
 
       ` }} />
     </>
-    
+
   );
 };
 
