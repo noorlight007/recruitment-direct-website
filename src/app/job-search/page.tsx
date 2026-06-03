@@ -34,10 +34,12 @@ interface Job {
 
 export default function JobSearchPage() {
   const [keyword, setKeyword] = useState("");
+  const [activeSearchTerm, setActiveSearchTerm] = useState("");
   const [jobListings, setJobListings] = useState<Job[]>([]);
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [categories, setCategories] = useState<Record<number, string>>({});
 
   // Dynamic extractors & helpers to map real API data to UI structure
   const getJobAdLocation = (job: Job): string => {
@@ -90,13 +92,16 @@ export default function JobSearchPage() {
   };
 
   const getJobCategory = (job: Job): string => {
-    const title = job.title.toLowerCase();
-    if (title.includes("driver") || title.includes("hgv") || title.includes("lgv")) return "Logistics & Transport";
-    if (title.includes("admin") || title.includes("office") || title.includes("clerical")) return "Administration";
-    if (title.includes("operator") || title.includes("machine") || title.includes("factory")) return "Industrial & Manufacturing";
-    if (title.includes("cleaner") || title.includes("cleaning")) return "Facilities & Cleaning";
-    if (title.includes("joiner") || title.includes("bricklayer") || title.includes("construction") || title.includes("scaffolder")) return "Construction & Trades";
-    return "General Recruitment";
+    if (categories[job.adId]) {
+      return categories[job.adId];
+    }
+    // const title = job.title.toLowerCase();
+    // if (title.includes("driver") || title.includes("hgv") || title.includes("lgv")) return "Logistics & Transport";
+    // if (title.includes("admin") || title.includes("office") || title.includes("clerical")) return "Administration";
+    // if (title.includes("operator") || title.includes("machine") || title.includes("factory")) return "Industrial & Manufacturing";
+    // if (title.includes("cleaner") || title.includes("cleaning")) return "Facilities & Cleaning";
+    // if (title.includes("joiner") || title.includes("bricklayer") || title.includes("construction") || title.includes("scaffolder")) return "Construction & Trades";
+    // return "General Recruitment";
   };
 
   const getJobIndustry = (job: Job): string => {
@@ -121,6 +126,7 @@ export default function JobSearchPage() {
     }
   };
 
+  // Initial load: fetches ads, fetches categories, then ends loading
   useEffect(() => {
     async function loadJobs() {
       try {
@@ -128,37 +134,44 @@ export default function JobSearchPage() {
         setError(null);
         const data = await api.get("/core/live/jobads");
         if (data && data.items) {
-          setJobListings(data.items);
+          const items = data.items;
+          const loadedCategories: Record<number, string> = {};
+
+          // Fetch category for each item concurrently
+          await Promise.all(
+            items.map(async (job: Job) => {
+              try {
+                const adDetail = await api.get(`/core/live/jobads/${job.adId}`);
+                const jobId = adDetail?.job?.jobId;
+                if (jobId) {
+                  const jobDetail = await api.get(`/core/live/jobs/${jobId}`);
+                  if (jobDetail?.category?.name) {
+                    loadedCategories[job.adId] = jobDetail.category.name;
+                  }
+                }
+              } catch (err) {
+                console.error(`Failed to fetch details/category for job ${job.adId}`, err);
+              }
+            })
+          );
+
+          setCategories(loadedCategories);
+          setJobListings(items);
 
           // Check URL query parameters
           const params = new URLSearchParams(window.location.search);
           const query = params.get("q");
           if (query) {
             setKeyword(query);
-            const searchTerm = query.toLowerCase().trim();
-            const results = data.items.filter((job: Job) => {
-              const payRate = getJobAdPayRate(job);
-              const location = getJobAdLocation(job);
-              const jobType = getJobType(job);
-              const category = getJobCategory(job);
-              const industry = getJobIndustry(job);
-              return `${getJobAdCleanTitle(job)} ${payRate} ${location} ${jobType} ${category} ${industry}`
-                .toLowerCase()
-                .includes(searchTerm);
-            });
-            setFilteredJobs(results);
-          } else {
-            setFilteredJobs(data.items);
+            setActiveSearchTerm(query);
           }
         } else {
           setJobListings([]);
-          setFilteredJobs([]);
         }
       } catch (err: any) {
         console.error("Job feed failed to load", err);
         setError("Unable to load live jobs. Please check your connection or try again later.");
         setJobListings([]);
-        setFilteredJobs([]);
       } finally {
         setLoading(false);
       }
@@ -167,8 +180,9 @@ export default function JobSearchPage() {
     loadJobs();
   }, []);
 
-  function handleSearch() {
-    const searchTerm = keyword.toLowerCase().trim();
+  // Reactive filter effect
+  useEffect(() => {
+    const searchTerm = activeSearchTerm.toLowerCase().trim();
 
     if (!searchTerm) {
       setFilteredJobs(jobListings);
@@ -187,6 +201,10 @@ export default function JobSearchPage() {
     });
 
     setFilteredJobs(results);
+  }, [activeSearchTerm, jobListings, categories]);
+
+  function handleSearch() {
+    setActiveSearchTerm(keyword);
   }
 
   return (

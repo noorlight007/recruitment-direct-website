@@ -29,7 +29,7 @@ export default function ContactSection() {
               <p>
                 Temporary, Contract & Permanent.
               </p>
-              <a href="/request-staff" className="rd-btn">
+              <a href="/contact" className="rd-btn">
                 Request Quote →
               </a>
             </div>

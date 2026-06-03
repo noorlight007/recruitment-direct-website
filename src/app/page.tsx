@@ -37,6 +37,11 @@ const Index = () => {
         <main className="rd-landing">
           <style dangerouslySetInnerHTML={{
             __html: `
+          .rd-hero {
+            align-items: flex-start !important;
+            padding-top: 100px !important;
+            min-height: 600px !important;
+          }
           .rd-hero h1 {
             font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
           }
@@ -47,6 +52,10 @@ const Index = () => {
             background-position: center !important;
           }
           @media (max-width: 768px) {
+            .rd-hero {
+              padding-top: 110px !important;
+              min-height: 480px !important;
+            }
             // .rd-sectors h2 {
             //   margin-bottom: 16px !important;
             // }
@@ -141,7 +150,7 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <a href="/request-staff" className="rd-btn rd-btn-outline">REQUEST STAFF</a>
+                    <a href="/contact" className="rd-btn rd-btn-outline">REQUEST STAFF</a>
                     <small>Speak directly with our team.</small>
                   </div>
                 </div>
@@ -706,13 +715,13 @@ const Index = () => {
 
         .rd-testimonials-section {
           background: var(--rd-white);
-          padding: 90px 24px;
+          padding: 67.5px 18px;
           color: var(--rd-black);
           font-family: inherit;
         }
 
         .rd-testimonials-section .rd-testimonials-container {
-          max-width: 960px;
+          max-width: 720px;
           margin: 0 auto;
           text-align: center;
         }
@@ -720,7 +729,7 @@ const Index = () => {
         .rd-testimonials-section .rd-testimonials-container h2 {
           margin: 0 !important;
           color: var(--rd-black) !important;
-          font-size: clamp(38px, 6vw, 64px) !important;
+          font-size: clamp(28.5px, 4.5vw, 48px) !important;
           line-height: 1.05 !important;
           font-weight: 900 !important;
           text-transform: uppercase !important;
@@ -728,57 +737,57 @@ const Index = () => {
         }
 
         .rd-testimonials-section .rd-heading-line {
-          width: 130px;
+          width: 97.5px;
           height: 2px;
           background: var(--rd-brass);
-          margin: 28px auto 26px;
+          margin: 21px auto 19.5px;
         }
 
         .rd-testimonials-section .rd-testimonials-intro {
-          margin: 0 0 48px !important;
+          margin: 0 0 36px !important;
           color: var(--rd-black) !important;
-          font-size: 24px !important;
+          font-size: 18px !important;
           line-height: 1.5 !important;
         }
 
         .rd-testimonials-section .rd-testimonial-card {
           background: var(--rd-white) !important;
           border: 1px solid var(--rd-border) !important;
-          border-radius: 16px !important;
+          border-radius: 12px !important;
           box-shadow: 0 10px 30px rgba(0,0,0,0.04) !important;
-          padding: 46px 54px !important;
-          margin-bottom: 34px !important;
+          padding: 34.5px 40.5px !important;
+          margin-bottom: 25.5px !important;
           text-align: left !important;
           transform: none !important;
         }
 
         .rd-testimonials-section .rd-quote-mark {
           color: var(--rd-brass) !important;
-          font-size: 90px !important;
+          font-size: 67.5px !important;
           line-height: 0.7 !important;
           font-weight: 900 !important;
-          margin-bottom: 10px !important;
+          margin-bottom: 7.5px !important;
         }
 
         .rd-testimonials-section .rd-testimonial-card p {
           margin: 0 !important;
           color: var(--rd-black) !important;
-          font-size: clamp(24px, 4vw, 38px) !important;
+          font-size: clamp(18px, 3vw, 28.5px) !important;
           line-height: 1.45 !important;
           font-weight: 400 !important;
         }
 
         .rd-testimonials-section .rd-card-line {
-          width: 80px;
+          width: 60px;
           height: 2px;
           background: var(--rd-brass);
-          margin: 34px 0 22px;
+          margin: 25.5px 0 16.5px;
         }
 
         .rd-testimonials-section .rd-testimonial-card h3 {
           margin: 0 !important;
           color: var(--rd-brass) !important;
-          font-size: clamp(20px, 3vw, 30px) !important;
+          font-size: clamp(15px, 2.25vw, 22.5px) !important;
           line-height: 1.2 !important;
           font-weight: 900 !important;
           letter-spacing: 0.06em !important;
@@ -787,21 +796,21 @@ const Index = () => {
 
         @media (max-width: 768px) {
           .rd-testimonials-section {
-            padding: 70px 22px;
+            padding: 52.5px 16.5px;
           }
 
           .rd-testimonials-section .rd-testimonial-card {
-            padding: 34px 28px !important;
-            margin-bottom: 28px !important;
+            padding: 25.5px 21px !important;
+            margin-bottom: 21px !important;
           }
 
           .rd-testimonials-section .rd-testimonials-intro {
-            font-size: 20px !important;
-            margin-bottom: 36px !important;
+            font-size: 15px !important;
+            margin-bottom: 27px !important;
           }
 
           .rd-testimonials-section .rd-quote-mark {
-            font-size: 72px !important;
+            font-size: 54px !important;
           }
         }
         ` }} />
