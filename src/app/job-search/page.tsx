@@ -275,13 +275,13 @@ export default function JobSearchPage() {
                   <div className="my-6 border-t border-gray-200" />
 
                   <div className="space-y-4 text-xl text-gray-700">
-                    <p className="font-semibold text-black">Temporary, Permanent or Contract</p>
+                    {/* <p className="font-semibold text-black">Temporary, Permanent or Contract</p> */}
                     <p><span className="font-bold text-black">Job Type:</span> {getJobType(job)}</p>
                     <p><span className="font-bold text-black">Category:</span> {getJobCategory(job)}</p>
-                    <p><span className="font-bold text-black">Industry:</span> {getJobIndustry(job)}</p>
+                    {/* <p><span className="font-bold text-black">Industry:</span> {getJobIndustry(job)}</p> */}
                   </div>
 
-                  <div className="mt-10 border-t border-gray-200 pt-8">
+                  <div className="mt-5 border-t border-gray-200 pt-8">
                     <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                       <div>
                         <p className="text-lg text-gray-500">Posted</p>
