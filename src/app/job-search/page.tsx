@@ -40,6 +40,7 @@ export default function JobSearchPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [categories, setCategories] = useState<Record<number, string>>({});
+  const [jobTypes, setJobTypes] = useState<Record<number, string>>({});
 
   // Dynamic extractors & helpers to map real API data to UI structure
   const getJobAdLocation = (job: Job): string => {
@@ -84,11 +85,14 @@ export default function JobSearchPage() {
   };
 
   const getJobType = (job: Job): string => {
-    const text = `${job.title} ${job.summary} ${job.bulletPoints?.join(" ") || ""}`.toLowerCase();
-    if (text.includes("temporary") || text.includes("temp")) return "Temporary";
-    if (text.includes("contract")) return "Contract";
-    if (text.includes("permanent") || text.includes("perm")) return "Permanent";
-    return "Temporary / Contract";
+    if (jobTypes[job.adId]) {
+      return jobTypes[job.adId];
+    }
+    // const text = `${job.title} ${job.summary} ${job.bulletPoints?.join(" ") || ""}`.toLowerCase();
+    // if (text.includes("temporary") || text.includes("temp")) return "Temporary";
+    // if (text.includes("contract")) return "Contract";
+    // if (text.includes("permanent") || text.includes("perm")) return "Permanent";
+    //return "Temporary / Contract";
   };
 
   const getJobCategory = (job: Job): string => {
@@ -126,7 +130,7 @@ export default function JobSearchPage() {
     }
   };
 
-  // Initial load: fetches ads, fetches categories, then ends loading
+  // Initial load: fetches ads, fetches categories and jobTypes, then ends loading
   useEffect(() => {
     async function loadJobs() {
       try {
@@ -136,8 +140,9 @@ export default function JobSearchPage() {
         if (data && data.items) {
           const items = data.items;
           const loadedCategories: Record<number, string> = {};
+          const loadedJobTypes: Record<number, string> = {};
 
-          // Fetch category for each item concurrently
+          // Fetch category and jobType for each item concurrently
           await Promise.all(
             items.map(async (job: Job) => {
               try {
@@ -148,14 +153,18 @@ export default function JobSearchPage() {
                   if (jobDetail?.category?.name) {
                     loadedCategories[job.adId] = jobDetail.category.name;
                   }
+                  if (jobDetail?.jobType) {
+                    loadedJobTypes[job.adId] = jobDetail.jobType;
+                  }
                 }
               } catch (err) {
-                console.error(`Failed to fetch details/category for job ${job.adId}`, err);
+                console.error(`Failed to fetch details/category/jobType for job ${job.adId}`, err);
               }
             })
           );
 
           setCategories(loadedCategories);
+          setJobTypes(loadedJobTypes);
           setJobListings(items);
 
           // Check URL query parameters
@@ -201,7 +210,7 @@ export default function JobSearchPage() {
     });
 
     setFilteredJobs(results);
-  }, [activeSearchTerm, jobListings, categories]);
+  }, [activeSearchTerm, jobListings, categories, jobTypes]);
 
   function handleSearch() {
     setActiveSearchTerm(keyword);
