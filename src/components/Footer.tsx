@@ -783,7 +783,7 @@ export default function Footer() {
                   <div className="footer-col">
                     <h4>Resources</h4>
                     <a href="/#clients">Clients</a>
-                    <a href="/#job-search">Job Search</a>
+                    <a href="/job-search">Job Search</a>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
                     >

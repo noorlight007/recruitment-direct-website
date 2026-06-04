@@ -30,6 +30,9 @@ interface Job {
     self: string;
     applications: string;
   };
+  industry?: string | null;
+  category?: string | null;
+  job_type?: string | null;
 }
 
 export default function JobSearchPage() {
@@ -39,8 +42,6 @@ export default function JobSearchPage() {
   const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [categories, setCategories] = useState<Record<number, string>>({});
-  const [jobTypes, setJobTypes] = useState<Record<number, string>>({});
 
   // Dynamic extractors & helpers to map real API data to UI structure
   const getJobAdLocation = (job: Job): string => {
@@ -85,35 +86,19 @@ export default function JobSearchPage() {
   };
 
   const getJobType = (job: Job): string => {
-    if (jobTypes[job.adId]) {
-      return jobTypes[job.adId];
-    }
-    // const text = `${job.title} ${job.summary} ${job.bulletPoints?.join(" ") || ""}`.toLowerCase();
-    // if (text.includes("temporary") || text.includes("temp")) return "Temporary";
-    // if (text.includes("contract")) return "Contract";
-    // if (text.includes("permanent") || text.includes("perm")) return "Permanent";
-    //return "Temporary / Contract";
+    const jt = job.job_type;
+    // if (!jt) return "Temporary / Contract";
+    // if (jt.toLowerCase() === "temp") return "Temporary";
+    // if (jt.toLowerCase() === "perm") return "Permanent";
+    return jt;
   };
 
   const getJobCategory = (job: Job): string => {
-    if (categories[job.adId]) {
-      return categories[job.adId];
-    }
-    // const title = job.title.toLowerCase();
-    // if (title.includes("driver") || title.includes("hgv") || title.includes("lgv")) return "Logistics & Transport";
-    // if (title.includes("admin") || title.includes("office") || title.includes("clerical")) return "Administration";
-    // if (title.includes("operator") || title.includes("machine") || title.includes("factory")) return "Industrial & Manufacturing";
-    // if (title.includes("cleaner") || title.includes("cleaning")) return "Facilities & Cleaning";
-    // if (title.includes("joiner") || title.includes("bricklayer") || title.includes("construction") || title.includes("scaffolder")) return "Construction & Trades";
-    // return "General Recruitment";
+    return job.category || "";
   };
 
   const getJobIndustry = (job: Job): string => {
-    const title = job.title.toLowerCase();
-    if (title.includes("driver") || title.includes("hgv") || title.includes("lgv")) return "Logistics / Transport";
-    if (title.includes("joiner") || title.includes("bricklayer") || title.includes("construction") || title.includes("scaffolder")) return "Construction";
-    if (title.includes("nurse") || title.includes("care") || title.includes("support")) return "Healthcare";
-    return "Staffing & Recruiting";
+    return job.industry || "";
   };
 
   const formatDate = (dateStr: string) => {
@@ -130,7 +115,7 @@ export default function JobSearchPage() {
     }
   };
 
-  // Initial load: fetches ads, fetches categories and jobTypes, then ends loading
+  // Initial load: fetches ads then ends loading
   useEffect(() => {
     async function loadJobs() {
       try {
@@ -138,34 +123,7 @@ export default function JobSearchPage() {
         setError(null);
         const data = await api.get("/core/live/jobads");
         if (data && data.items) {
-          const items = data.items;
-          const loadedCategories: Record<number, string> = {};
-          const loadedJobTypes: Record<number, string> = {};
-
-          // Fetch category and jobType for each item concurrently
-          await Promise.all(
-            items.map(async (job: Job) => {
-              try {
-                const adDetail = await api.get(`/core/live/jobads/${job.adId}`);
-                const jobId = adDetail?.job?.jobId;
-                if (jobId) {
-                  const jobDetail = await api.get(`/core/live/jobs/${jobId}`);
-                  if (jobDetail?.category?.name) {
-                    loadedCategories[job.adId] = jobDetail.category.name;
-                  }
-                  if (jobDetail?.jobType) {
-                    loadedJobTypes[job.adId] = jobDetail.jobType;
-                  }
-                }
-              } catch (err) {
-                console.error(`Failed to fetch details/category/jobType for job ${job.adId}`, err);
-              }
-            })
-          );
-
-          setCategories(loadedCategories);
-          setJobTypes(loadedJobTypes);
-          setJobListings(items);
+          setJobListings(data.items);
 
           // Check URL query parameters
           const params = new URLSearchParams(window.location.search);
@@ -210,7 +168,7 @@ export default function JobSearchPage() {
     });
 
     setFilteredJobs(results);
-  }, [activeSearchTerm, jobListings, categories, jobTypes]);
+  }, [activeSearchTerm, jobListings]);
 
   function handleSearch() {
     setActiveSearchTerm(keyword);
@@ -221,38 +179,36 @@ export default function JobSearchPage() {
       <FloatingElements />
       <Navbar />
 
-      <main className="min-h-screen bg-white text-black pt-28 md:pt-36 flex-grow">
-        <section className="mx-auto max-w-6xl px-5 py-12 md:py-16">
-          <h1 className="text-5xl font-black tracking-tight md:text-7xl">
-            Job Search
-          </h1>
+      <main className="min-h-screen bg-white text-black pt-16 md:pt-10 flex-grow">
+        <section className="mx-auto max-w-6xl px-5 py-6">
+          {/* Step 1: Add breadcrumb at the top-left "Home -> Job Search" */}
+          <nav className="text-sm text-gray-500 mb-6">
+            <a href="/" className="hover:text-yellow-600 transition">Home</a>
+            <span className="mx-2 text-gray-400">/</span>
+            <span className="text-gray-900 font-semibold">Job Search</span>
+          </nav>
 
-          <p className="mt-5 max-w-3xl text-xl leading-9 text-gray-600">
-            Search live temporary, contract and permanent opportunities across
-            Scotland and the UK. Updated in real-time by Recruitment Direct.
-          </p>
-
-          <div className="mt-10 rounded-3xl border border-gray-200 bg-white p-6 shadow-lg md:p-8">
-            <label className="mb-4 block text-xl font-black">Keyword</label>
-
-            <div className="grid gap-4 md:grid-cols-[1fr_auto]">
+          {/* Step 2: No title, just the search bar, same search bar, but lower in size. */}
+          <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-md max-w-3xl">
+            <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
               <input
                 type="text"
                 name="keyword"
+                placeholder="Search jobs by keyword..."
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleSearch();
                 }}
-                className="h-16 rounded-xl border border-gray-300 px-6 text-xl outline-none transition focus:border-yellow-600"
+                className="h-12 w-full rounded-xl border border-gray-300 px-4 text-base outline-none transition focus:border-yellow-600"
               />
 
               <button
                 type="button"
                 onClick={handleSearch}
-                className="h-10 rounded-xl border border-yellow-700 bg-gradient-to-b from-yellow-300 to-yellow-600 px-10 text-xl font-black uppercase text-black shadow-md transition hover:opacity-90 cursor-pointer"
+                className="h-6 rounded-xl border border-yellow-700 bg-gradient-to-b from-yellow-300 to-yellow-600 px-8 text-base font-black uppercase text-black shadow-sm transition hover:opacity-90 cursor-pointer flex items-center justify-center"
               >
-                Search Jobs
+                Search
               </button>
             </div>
           </div>
@@ -271,49 +227,61 @@ export default function JobSearchPage() {
           </section>
         ) : (
           <section className="mx-auto max-w-6xl px-5 pb-16">
-            <div className="space-y-8">
+            {/* Step 3: Each row will show two Job Ad, reduce size of texts in each card */}
+            <div className="grid gap-6 md:grid-cols-2">
               {filteredJobs.map((job) => (
                 <article
                   key={job.adId}
-                  className="rounded-3xl border border-gray-200 bg-white p-6 shadow-lg md:p-8"
+                  className="rounded-2xl border border-gray-200 bg-white p-5 shadow-md flex flex-col justify-between"
                 >
-                  <h2 className="text-3xl font-black leading-tight md:text-4xl text-black">
-                    {getJobAdCleanTitle(job)} / {getJobAdPayRate(job)} / {getJobAdLocation(job)}
-                  </h2>
+                  <div>
+                    <h2 className="text-xl font-bold leading-snug text-black">
+                      {getJobAdCleanTitle(job)}
+                    </h2>
+                    
+                    <p className="text-sm font-semibold text-gray-600 mt-1">
+                      {getJobAdPayRate(job)} &bull; {getJobAdLocation(job)}
+                    </p>
 
-                  <div className="my-6 border-t border-gray-200" />
+                    <div className="my-3 border-t border-gray-200" />
 
-                  <div className="space-y-4 text-xl text-gray-700">
-                    {/* <p className="font-semibold text-black">Temporary, Permanent or Contract</p> */}
-                    <p><span className="font-bold text-black">Job Type:</span> {getJobType(job)}</p>
-                    <p><span className="font-bold text-black">Category:</span> {getJobCategory(job)}</p>
-                    {/* <p><span className="font-bold text-black">Industry:</span> {getJobIndustry(job)}</p> */}
+                    <div className="space-y-1 text-sm text-gray-600">
+                      {getJobType(job) && (
+                        <p><span className="font-bold text-gray-850">Job Type:</span> {getJobType(job)}</p>
+                      )}
+                      {getJobCategory(job) && (
+                        <p><span className="font-bold text-gray-850">Category:</span> {getJobCategory(job)}</p>
+                      )}
+                      {getJobIndustry(job) && (
+                        <p><span className="font-bold text-gray-850">Industry:</span> {getJobIndustry(job)}</p>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="mt-5 border-t border-gray-200 pt-8">
-                    <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                  <div className="mt-4 border-t border-gray-200 pt-4">
+                    <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-lg text-gray-500">Posted</p>
-                        <p className="text-2xl font-black text-black">{formatDate(job.postAt)}</p>
+                        <p className="text-xs text-gray-500">Posted</p>
+                        <p className="text-sm font-bold text-black">{formatDate(job.postAt)}</p>
                       </div>
 
                       <a
                         href={`/job-search/${job.adId}`}
-                        className="inline-flex h-16 items-center justify-center rounded-xl border border-yellow-700 bg-gradient-to-b from-yellow-300 to-yellow-600 px-10 text-xl font-black uppercase text-black shadow-md transition hover:opacity-90"
+                        className="inline-flex h-10 items-center justify-center rounded-lg border border-yellow-700 bg-gradient-to-b from-yellow-300 to-yellow-600 px-6 text-sm font-black uppercase text-black shadow-sm transition hover:opacity-90"
                       >
-                        View
+                        Apply Now
                       </a>
                     </div>
                   </div>
                 </article>
               ))}
-
-              {filteredJobs.length === 0 && (
-                <div className="rounded-3xl border border-gray-200 bg-white p-8 text-xl font-bold shadow-lg text-black">
-                  No jobs found.
-                </div>
-              )}
             </div>
+
+            {filteredJobs.length === 0 && (
+              <div className="rounded-2xl border border-gray-200 bg-white p-6 text-lg font-bold shadow-md text-black mt-4">
+                No jobs found.
+              </div>
+            )}
           </section>
         )}
       </main>

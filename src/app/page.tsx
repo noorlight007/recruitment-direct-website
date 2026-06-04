@@ -37,6 +37,9 @@ const Index = () => {
         <main className="rd-landing">
           <style dangerouslySetInnerHTML={{
             __html: `
+          .rd-sectors {
+            margin-bottom: 0 !important;
+          }
           .rd-hero {
             align-items: flex-start !important;
             padding-top: 100px !important;
@@ -131,536 +134,627 @@ const Index = () => {
             </div>
           </section>
 
-          {/* PREMIUM SECTION */}
-          <section className="rd-premium-section">
+          {/* TEAM PAGE */}
+          <section className="rd-team-page">
+            <div className="hero">
+              <div className="hero-content">
+                <h1>RECRUITMENT<br />SOLUTIONS THAT<br /><span>DELIVER RESULTS</span></h1>
+                <p>Temporary, Contract and Permanent Recruitment Solutions Across the UK.</p>
 
-            <div className="rd-hero">
-              <div className="rd-hero-content">
-                <h1>
-                  Recruitment Solutions That
-                  <span>Deliver Results</span>
-                </h1>
-
-                <p>Temporary, contract and permanent recruitment solutions across the UK.</p>
-
-                <div className="rd-hero-actions">
+                <div className="hero-buttons">
                   <div>
-                    <a href="/ai-hire-now" className="rd-btn rd-btn-gold">AI HIRE NOW</a>
-                    <small>Fast-track your staff request.</small>
+                    <a href="/ai-hire-now" className="btn gold">AI HIRE NOW</a>
+                    <small>Order Staff 24/7.</small>
                   </div>
-
                   <div>
-                    <a href="/contact" className="rd-btn rd-btn-outline">REQUEST STAFF</a>
-                    <small>Speak directly with our team.</small>
+                    <a href="/contact" className="btn outline">REQUEST QUOTE</a>
+                    <small>Consultant Call Back.</small>
                   </div>
                 </div>
               </div>
 
-              <div className="rd-hero-image">
-                <img src="/images/steven-peddie.jpg" alt="Steven, Director" />
-                <div className="rd-steven-label">
-                  <strong>Steven</strong>
-                  <span>Director</span>
+              <div className="hero-image">
+                <img src="/images/steven-peddie.jpg" alt="Steven" />
+              </div>
+            </div>
+
+            <section className="process">
+              <h2>OUR RECRUITMENT PROCESS</h2>
+
+              <div className="process-flow">
+                <div>Vacancy<br />Received</div>
+                <span>→</span>
+                <div>AI Candidate<br />Skill Search</div>
+                <span>→</span>
+                <div>AI Applicant<br />Call</div>
+                <span>→</span>
+                <div>Consultant<br />Review</div>
+                <span>→</span>
+                <div>Compliance<br />Checks</div>
+                <span>→</span>
+                <div>Submitted to<br />Client</div>
+              </div>
+
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="btn gold process-btn">WATCH AI SCREENING CALL</a>
+            </section>
+
+            <section className="benefits">
+              <h2>WHY CLIENTS CHOOSE RECRUITMENT DIRECT</h2>
+
+              <div className="benefit-grid">
+                <div className="benefit-card">
+                  <h3>24/7<br />Recruitment</h3>
+                  <p>Applicants contacted day and night.</p>
+                </div>
+
+                <div className="benefit-card">
+                  <h3>Consultant Checked<br />CV Submission</h3>
+                  <p>Qualified applicants submitted faster.</p>
+                </div>
+
+                <div className="benefit-card">
+                  <h3>Digital Timesheets</h3>
+                  <p>Remote approvals with reduced paperwork.</p>
+                </div>
+
+                <div className="benefit-card">
+                  <h3>Reduce Administration<br />Costs</h3>
+                  <p>Reduce timesheet chasing and move towards 100% invoice accuracy.</p>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div className="rd-process">
-              <h2>Our Recruitment Process</h2>
-
-              <div className="rd-process-flow">
-                <span>Applicant Applies</span>
-                <b>→</b>
-                <span>AI Screening</span>
-                <b>→</b>
-                <span>Consultant Review</span>
-                <b>→</b>
-                <span>Compliance Checks</span>
-                <b>→</b>
-                <span>Submitted to Client</span>
-              </div>
-            </div>
-
-            <div className="rd-team">
-              <div className="rd-team-heading">
-                <h2>Your Recruitment Team</h2>
+            <section className="team">
+              <div className="team-intro">
+                <h2>YOUR RECRUITMENT TEAM</h2>
+                <p>Meet the people supporting clients and applicants every day.</p>
               </div>
 
-              <div className="consultant-card">
+              <div className="team-card">
                 <img src="/images/nicola.jpg" alt="Nicola" />
-                <div className="rd-team-info">
+                <div>
                   <h3>Nicola</h3>
                   <span>Manager</span>
-                  <p>Overseeing recruitment delivery, compliance and client service.</p>
+                  <p>Recruitment delivery, compliance and client service.</p>
                 </div>
               </div>
 
-              <div className="consultant-card">
-                <img src="/images/olia.jpg" alt="Olia" style={{ objectFit: 'cover' }} />
-                <div className="rd-team-info">
+              <div className="team-card">
+                <img src="/images/olia.png" alt="Olia" />
+                <div>
                   <h3>Olia</h3>
                   <span>Consultant</span>
-                  <p>Supporting applicants throughout the recruitment process.</p>
+                  <p>Applicant support and vacancy fulfilment.</p>
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div className="rd-contact">
+            <section className="contact-strip">
               <div>
                 <span>CALL US</span>
-                <a href="tel:01324623198">01324 623198</a>
+                <a href="tel:01324623198" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <strong>01324 623198</strong>
+                </a>
               </div>
-
               <div>
                 <span>WHATSAPP</span>
-                <a href="https://wa.me/447590882626">Start Conversation</a>
+                <a href="https://wa.me/447590882626" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <strong>Start Conversation</strong>
+                </a>
               </div>
-
               <div>
                 <span>EMAIL US</span>
-                <a href="mailto:sales@rd1.co.uk">sales@rd1.co.uk</a>
+                <a href="mailto:sales@rd1.co.uk" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <strong>sales@rd1.co.uk</strong>
+                </a>
               </div>
-            </div>
-
+            </section>
           </section>
 
           <style dangerouslySetInnerHTML={{
             __html: `
         :root {
-          --rd-black: #111111;
-          --rd-grey: #5f6368;
-          --rd-brass: #c8a24a;
-          --rd-border: #e8e8e8;
+          --rd-black: #070707;
+          --rd-dark: #111111;
           --rd-white: #ffffff;
+          --rd-offwhite: #f8f6f1;
+          --rd-gold: #c47a09;
+          --rd-gold-light: #f0b23a;
+          --rd-gold-dark: #8a5205;
+          --rd-border: #e4c486;
+          --rd-text: #171717;
+          --rd-muted: #555555;
         }
 
-        .rd-premium-section {
+        .rd-team-page {
+          font-family: "Inter", "Arial", sans-serif;
+          color: var(--rd-text);
           background: var(--rd-white);
-          color: var(--rd-black);
-          font-family: inherit;
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+          overflow-x: hidden !important;
+          width: 100% !important;
         }
 
-        .rd-premium-section .rd-hero {
+        .rd-team-page * {
+          box-sizing: border-box !important;
+        }
+
+        .rd-team-page p {
+          color: var(--rd-text) !important;
+        }
+
+        .rd-team-page .hero {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+          min-height: 620px;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          min-height: 640px;
-          border-bottom: 1px solid var(--rd-border);
+          grid-template-columns: 48% 52%;
+          align-items: center;
+          background:
+            linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.70) 42%, rgba(0,0,0,0.15) 100%),
+            linear-gradient(135deg, #2b1608 0%, #4a2a13 45%, #120907 100%) !important;
+          color: var(--rd-white);
           overflow: hidden;
-          background: none !important;
         }
 
-        .rd-premium-section .rd-hero-content {
-          padding: 90px 6vw;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+        .rd-team-page .hero-content {
+          padding: 70px 60px;
           z-index: 2;
         }
 
-        .rd-premium-section .rd-hero-content h1 {
+        .rd-team-page .hero h1 {
+          font-size: clamp(46px, 5vw, 78px) !important;
+          line-height: 1.02 !important;
+          letter-spacing: -2px !important;
           margin: 0 0 28px !important;
-          font-size: clamp(33.6px, 4.4vw, 60.8px) !important;
-          line-height: 1.05 !important;
-          font-weight: 800 !important;
-          text-transform: uppercase !important;
-          color: var(--rd-black) !important;
-          white-space: normal !important;
-          letter-spacing: normal !important;
+          font-weight: 900 !important;
         }
 
-        .rd-premium-section .rd-hero-content h1 span {
+        .rd-team-page .hero h1 span {
+          background: linear-gradient(90deg, var(--rd-gold-dark), var(--rd-gold-light), var(--rd-gold));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .rd-team-page .hero p {
+          max-width: 560px !important;
+          font-size: 22px !important;
+          line-height: 1.45 !important;
+          margin: 0 0 40px !important;
+          color: var(--rd-white) !important;
+        }
+
+        .rd-team-page .hero-buttons {
+          display: flex;
+          gap: 24px;
+          align-items: flex-start;
+        }
+
+        .rd-team-page .hero-buttons div {
+          text-align: center;
+        }
+
+        .rd-team-page .hero-buttons small {
           display: block;
-          color: var(--rd-brass) !important;
+          margin-top: 14px;
+          font-size: 16px;
+          color: #ffffff;
         }
 
-        .rd-premium-section .rd-hero-content p {
-          margin: 0 !important;
-          max-width: 560px;
-          font-size: 21px !important;
-          line-height: 1.5 !important;
+        .rd-team-page .btn {
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          min-width: 210px !important;
+          height: 64px !important;
+          padding: 0 30px !important;
+          border-radius: 7px !important;
+          font-weight: 800 !important;
+          font-size: 18px !important;
+          text-decoration: none !important;
+          letter-spacing: 0.2px !important;
+          cursor: pointer !important;
+        }
+
+        .rd-team-page .btn.gold {
+          color: #ffffff !important;
+          background: linear-gradient(135deg, var(--rd-gold-light) 0%, var(--rd-gold) 45%, var(--rd-gold-dark) 100%) !important;
+          box-shadow: 0 8px 18px rgba(138, 82, 5, 0.35) !important;
+          border: none !important;
+        }
+
+        .rd-team-page .btn.outline {
+          background: #ffffff !important;
           color: var(--rd-black) !important;
+          border: 2px solid var(--rd-gold) !important;
+          box-shadow: none !important;
         }
 
-        .rd-premium-section .rd-hero-actions {
-          display: flex;
-          gap: 30px;
-          margin-top: 42px;
+        .rd-team-page .hero-image {
+          height: calc(100% - 60px) !important;
+          margin-top: 30px !important;
+          margin-bottom: 30px !important;
+          margin-right: 30px !important;
+          overflow: hidden !important;
+          border-radius: 12px !important;
         }
 
-        .rd-premium-section .rd-hero-actions div {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .rd-premium-section .rd-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-width: 210px;
-          min-height: 58px;
-          padding: 15px 22px;
-          border-radius: 14px;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: .4px;
-          text-decoration: none;
-          transition: all 0.25s ease;
-        }
-
-        .rd-premium-section .rd-btn-gold {
-          color: #071424 !important;
-          background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
-          border: 2px solid #f7d98a !important;
-          box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.7),
-            inset 0 -2px 0 rgba(70,45,5,.35),
-            0 10px 24px rgba(184,134,11,.32) !important;
-        }
-
-        .rd-premium-section .rd-btn-outline {
-          color: #fff !important;
-          border: 2px solid #d8ad48 !important;
-          background: rgba(3,8,18,.48) !important;
-        }
-
-        .rd-premium-section .rd-btn:hover {
-          transform: translateY(-2px);
-        }
-
-        .rd-premium-section .rd-btn-gold:hover {
-          filter: brightness(1.1) !important;
-          box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.8),
-            inset 0 -2px 0 rgba(70,45,5,.4),
-            0 12px 28px rgba(184,134,11,.45) !important;
-        }
-
-        .rd-premium-section .rd-btn-outline:hover {
-          background: rgba(216, 173, 72, 0.15) !important;
-          border-color: #f6d77d !important;
-          color: #f2d17a !important;
-        }
-
-        .rd-premium-section .rd-hero-actions small {
-          font-size: 15px;
-          color: var(--rd-black);
-        }
-
-        .rd-premium-section .rd-hero-image {
-          position: relative;
-          min-height: 640px;
-        }
-
-        .rd-premium-section .rd-hero-image img {
+        .rd-team-page .hero-image img {
           width: 100% !important;
           height: 100% !important;
           object-fit: cover !important;
-          object-position: center !important;
-          border-radius: 0 !important;
-          border: none !important;
+          object-position: center right !important;
         }
 
-        .rd-premium-section .rd-hero-image::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            90deg,
-            #ffffff 0%,
-            rgba(255,255,255,0.85) 14%,
-            rgba(255,255,255,0.15) 38%,
-            rgba(255,255,255,0) 55%
-          );
-          z-index: 1;
+        .rd-team-page .process,
+        .rd-team-page .benefits {
+          padding: 55px 50px;
+          text-align: center;
+          border-bottom: 1px solid #eadfcf;
         }
 
-        .rd-premium-section .rd-steven-label {
-          position: absolute;
-          top: 70px;
-          left: 70px;
-          color: var(--rd-black);
-          z-index: 2;
-        }
-
-        .rd-premium-section .rd-steven-label strong {
-          display: block;
-          font-size: 24px;
-          font-weight: 800;
-        }
-
-        .rd-premium-section .rd-steven-label span {
-          display: block;
-          color: var(--rd-brass);
-          font-size: 16px;
-          margin-top: 6px;
-        }
-
-        .rd-premium-section .rd-steven-label::after {
-          content: "";
-          display: block;
-          width: 130px;
-          height: 2px;
-          background: var(--rd-brass);
-          margin-top: 10px;
-        }
-
-        .rd-premium-section .rd-process {
-          padding: 70px 6vw;
-          border-bottom: 1px solid var(--rd-border);
-        }
-
-        .rd-premium-section .rd-process h2 {
-          margin: 0 0 34px !important;
-          text-transform: uppercase;
-          font-size: 30px !important;
-          font-weight: 800 !important;
+        .rd-team-page .process h2,
+        .rd-team-page .benefits h2 {
+          font-size: 34px !important;
+          margin: 0 0 35px !important;
+          font-weight: 900 !important;
           color: var(--rd-black) !important;
         }
 
-        .rd-premium-section .rd-process-flow {
+        .rd-team-page .process-flow {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 18px;
+          align-items: center;
+          max-width: 1180px;
+          margin: 0 auto 32px;
+          position: relative;
+        }
+
+        .rd-team-page .process-flow div {
+          min-height: 86px;
+          padding: 18px 12px;
+          border: 1px solid var(--rd-border);
+          border-radius: 10px;
+          background: #ffffff;
+          font-weight: 800;
           display: flex;
           align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .rd-team-page .process-flow span {
+          display: none;
+        }
+
+        .rd-team-page .process-flow div:not(:last-child)::after {
+          content: "→";
+          position: absolute;
+          transform: translateX(75px);
+          font-size: 42px;
+          color: var(--rd-gold);
+          font-weight: 900;
+        }
+
+        .rd-team-page .process-btn {
+          min-width: 360px !important;
+        }
+
+        .rd-team-page .benefits {
+          background: linear-gradient(180deg, #ffffff 0%, var(--rd-offwhite) 100%) !important;
+        }
+
+        .rd-team-page .benefit-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
           gap: 26px;
-          flex-wrap: wrap;
-          font-size: 18px;
-          font-weight: 600;
-          color: var(--rd-black) !important;
+          max-width: 1180px;
+          margin: 0 auto;
         }
 
-        .rd-premium-section .rd-process-flow b {
-          color: var(--rd-brass);
-          font-size: 34px;
-          font-weight: 400;
+        .rd-team-page .benefit-card {
+          background: #ffffff;
+          border: 1px solid var(--rd-border);
+          border-radius: 10px;
+          padding: 32px 24px;
+          min-height: 190px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.05);
         }
 
-        .rd-premium-section .rd-team {
+        .rd-team-page .benefit-card h3 {
+          margin: 0 0 20px !important;
+          font-size: 24px !important;
+          line-height: 1.2 !important;
+          color: var(--rd-gold) !important;
+          font-weight: 900 !important;
+        }
+
+        .rd-team-page .benefit-card p {
+          margin: 0 !important;
+          font-size: 17px !important;
+          line-height: 1.5 !important;
+        }
+
+        .rd-team-page .team {
+          padding: 65px 50px;
           display: grid;
           grid-template-columns: 1.1fr 1fr 1fr;
-          gap: 34px;
-          padding: 80px 6vw;
+          gap: 36px;
           align-items: center;
-          border-bottom: 1px solid var(--rd-border);
-          background: none !important;
         }
 
-        .rd-premium-section .rd-team-heading h2 {
-          margin: 0 !important;
-          text-transform: uppercase;
-          color: var(--rd-black) !important;
+        .rd-team-page .team-intro h2 {
           font-size: 32px !important;
-          font-weight: 800 !important;
+          font-weight: 900 !important;
+          margin: 0 0 24px !important;
         }
 
-        .rd-premium-section .rd-team-card,
-        .rd-premium-section .consultant-card {
-          background: #ffffff !important;
-          border: 1px solid var(--rd-border) !important;
-          border-radius: 10px !important;
-          overflow: hidden !important;
-          box-shadow: 0 16px 38px rgba(0,0,0,0.06) !important;
-          padding: 0 !important;
-          text-align: left !important;
-          transform: none !important;
-        }
-
-        .rd-premium-section .rd-team-card img {
-          width: 100% !important;
-          height: 620px !important;
-          object-fit: cover !important;
-          object-position: center !important;
-          display: block !important;
-          border-radius: 0 !important;
-          border: none !important;
-          margin: 0 !important;
-        }
-
-        .rd-premium-section .rd-team-info {
-          padding: 26px !important;
-        }
-
-        .rd-premium-section .rd-team-info h3 {
-          margin: 0 0 6px !important;
-          font-size: 30px !important;
-          font-weight: 800 !important;
-          color: var(--rd-black) !important;
-        }
-
-        .rd-premium-section .rd-team-info span {
-          color: var(--rd-brass) !important;
-          font-size: 18px !important;
-          font-weight: 700 !important;
-        }
-
-        .rd-premium-section .rd-team-info span::after {
+        .rd-team-page .team-intro h2::after {
           content: "";
           display: block;
-          width: 42px;
-          height: 2px;
-          background: var(--rd-brass);
-          margin: 12px 0 16px;
+          width: 90px;
+          height: 4px;
+          background: linear-gradient(90deg, var(--rd-gold-light), var(--rd-gold-dark));
+          margin-top: 18px;
         }
 
-        .rd-premium-section .rd-team-info p {
+        .rd-team-page .team-intro p {
+          font-size: 20px !important;
+          line-height: 1.5 !important;
+          max-width: 360px;
+        }
+
+        .rd-team-page .team-card {
+          display: grid;
+          grid-template-columns: 48% 52%;
+          background: #ffffff;
+          border: 1px solid #eadfcf;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+        }
+
+        .rd-team-page .team-card img {
+          width: 100% !important;
+          height: 300px !important;
+          object-fit: cover !important;
+        }
+
+        .rd-team-page .team-card div {
+          padding: 28px 24px;
+        }
+
+        .rd-team-page .team-card h3 {
+          margin: 0 0 8px !important;
+          font-size: 30px !important;
+          font-weight: 900 !important;
+        }
+
+        .rd-team-page .team-card span {
+          display: block;
+          color: var(--rd-gold);
+          font-size: 18px;
+          font-weight: 800;
+          margin-bottom: 22px;
+        }
+
+        .rd-team-page .team-card span::after {
+          content: "";
+          display: block;
+          width: 55px;
+          height: 3px;
+          background: var(--rd-gold);
+          margin-top: 14px;
+        }
+
+        .rd-team-page .team-card p {
           margin: 0 !important;
           font-size: 16px !important;
-          line-height: 1.6 !important;
-          color: var(--rd-black) !important;
+          line-height: 1.45 !important;
         }
 
-        .rd-premium-section .rd-contact {
+        .rd-team-page .contact-strip {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          padding: 55px 6vw;
-          gap: 30px;
-          background: none !important;
-          color: var(--rd-black) !important;
-          border: none !important;
-          border-radius: 0 !important;
-          box-shadow: none !important;
-          overflow: visible !important;
-          position: static !important;
-          backdrop-filter: none !important;
+          background: linear-gradient(135deg, #050b12 0%, #101820 100%) !important;
+          color: #ffffff !important;
+          text-align: center;
+          padding: 38px 40px;
         }
 
-        .rd-premium-section .rd-contact div {
-          border-right: 1px solid var(--rd-border) !important;
-          padding-right: 30px !important;
-          background: none !important;
-          box-shadow: none !important;
-          border-left: none !important;
-          border-top: none !important;
-          border-bottom: none !important;
-          border-radius: 0 !important;
-          padding: 0 !important;
+        .rd-team-page .contact-strip div {
+          border-right: 1px solid var(--rd-gold) !important;
         }
 
-        .rd-premium-section .rd-contact div:last-child {
+        .rd-team-page .contact-strip div:last-child {
           border-right: none !important;
         }
 
-        .rd-premium-section .rd-contact span {
+        .rd-team-page .contact-strip span {
           display: block;
+          color: var(--rd-gold-light) !important;
+          font-size: 18px !important;
+          font-weight: 900 !important;
           margin-bottom: 12px !important;
-          color: var(--rd-brass) !important;
-          font-size: 16px !important;
-          font-weight: 800 !important;
-          letter-spacing: 0.08em !important;
-          position: static !important;
         }
 
-        .rd-premium-section .rd-contact a {
-          color: var(--rd-black) !important;
+        .rd-team-page .contact-strip strong {
           font-size: 28px !important;
-          font-weight: 700 !important;
+          font-weight: 900 !important;
+          color: #ffffff !important;
+        }
+
+        .rd-team-page .contact-strip a {
+          color: inherit !important;
           text-decoration: none !important;
-          background: none !important;
-          padding: 0 !important;
-          border-radius: 0 !important;
-          border: none !important;
         }
 
-        .rd-premium-section .rd-contact a:hover {
-          color: var(--rd-brass) !important;
-        }
-
-        @media (max-width: 900px) {
-          .rd-premium-section .rd-hero {
-            grid-template-columns: 1fr;
+        @media (max-width: 1100px) {
+          .rd-team-page .hero {
+            grid-template-columns: 1fr !important;
+            min-height: auto !important;
           }
 
-          .rd-premium-section .rd-hero-content {
-            padding: 50px 24px !important;
+          .rd-team-page .hero-content {
+            padding: 50px 24px 30px !important;
+            text-align: center !important;
           }
 
-          .rd-premium-section .rd-hero-content h1 {
-            font-size: clamp(25.6px, 5.6vw, 38.4px) !important;
-            margin-bottom: 18px !important;
+          .rd-team-page .hero h1 {
+            font-size: clamp(32px, 7vw, 48px) !important;
+            line-height: 1.1 !important;
+            margin-bottom: 20px !important;
           }
 
-          .rd-premium-section .rd-hero-content p {
+          .rd-team-page .hero p {
             font-size: 18px !important;
+            line-height: 1.4 !important;
+            margin: 0 auto 30px !important;
           }
 
-          .rd-premium-section .rd-hero-image {
-            min-height: 460px;
+          .rd-team-page .hero-buttons {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 16px !important;
+            width: 100% !important;
+            max-width: 400px;
+            margin: 0 auto !important;
           }
 
-          .rd-premium-section .rd-steven-label {
-            top: 30px !important;
-            left: 30px !important;
+          .rd-team-page .hero-buttons div {
+            text-align: center !important;
+            width: 100% !important;
           }
 
-          .rd-premium-section .rd-steven-label strong {
+          .rd-team-page .btn {
+            width: 100% !important;
+            min-width: 0 !important;
+            height: 56px !important;
+          }
+
+          .rd-team-page .hero-image {
+            display: block !important;
+            height: auto !important;
+            width: auto !important;
+            margin: 0 24px 40px !important;
+            overflow: hidden !important;
+            border-radius: 12px !important;
+          }
+
+          .rd-team-page .hero-image img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: fixed !important;
+          }
+
+          .rd-team-page .process,
+          .rd-team-page .benefits,
+          .rd-team-page .team {
+            padding: 40px 24px !important;
+          }
+
+          .rd-team-page .process h2,
+          .rd-team-page .benefits h2,
+          .rd-team-page .team-intro h2 {
+            font-size: 26px !important;
+            margin-bottom: 24px !important;
+          }
+
+          .rd-team-page .process-flow,
+          .rd-team-page .benefit-grid,
+          .rd-team-page .team,
+          .rd-team-page .contact-strip {
+            grid-template-columns: 1fr !important;
+          }
+
+          .rd-team-page .process-flow div:not(:last-child)::after {
+            display: none !important;
+          }
+
+          .rd-team-page .process-flow span {
+            display: block !important;
+            font-size: 28px !important;
+            color: var(--rd-gold) !important;
+            margin: 6px 0 !important;
+            text-align: center !important;
+          }
+
+          .rd-team-page .process-btn {
+            min-width: 100% !important;
+            max-width: 400px;
+            margin: 0 auto !important;
+          }
+
+          .rd-team-page .benefit-grid {
+            gap: 16px !important;
+          }
+
+          .rd-team-page .benefit-card {
+            padding: 24px !important;
+            min-height: auto !important;
+          }
+
+          .rd-team-page .benefit-card h3 {
+            margin-bottom: 12px !important;
             font-size: 20px !important;
           }
 
-          .rd-premium-section .rd-steven-label span {
-            font-size: 14px !important;
-          }
-
-          .rd-premium-section .rd-hero-actions {
-            flex-direction: column;
-            gap: 20px !important;
-            margin-top: 30px !important;
-          }
-
-          .rd-premium-section .rd-btn {
-            min-width: 100% !important;
-            padding: 15px 22px !important;
-            min-height: 58px !important;
-          }
-
-          .rd-premium-section .rd-process {
-            padding: 60px 24px;
-          }
-
-          .rd-premium-section .rd-process-flow {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 14px;
-            font-size: 16px !important;
-          }
-
-          .rd-premium-section .rd-process-flow b {
-            transform: rotate(90deg);
-            font-size: 28px;
-            margin: 0 0 0 10px !important;
-            display: inline-block !important;
-          }
-
-          .rd-premium-section .rd-team {
-            grid-template-columns: 1fr;
-            padding: 60px 24px !important;
+          .rd-team-page .team {
             gap: 24px !important;
           }
 
-          .rd-premium-section .consultant-card img,
-          .rd-premium-section .rd-team-card img {
-            height: 380px !important;
+          .rd-team-page .team-intro {
+            text-align: center !important;
+            margin-bottom: 16px !important;
           }
 
-          .rd-premium-section .rd-team-info h3 {
-            font-size: 26px !important;
+          .rd-team-page .team-intro h2::after {
+            margin: 12px auto 0 !important;
           }
 
-          .rd-premium-section .rd-contact {
-            grid-template-columns: 1fr;
-            padding: 45px 24px;
+          .rd-team-page .team-intro p {
+            margin: 12px auto 0 !important;
+            font-size: 17px !important;
           }
 
-          .rd-premium-section .rd-contact div {
+          .rd-team-page .team-card {
+            grid-template-columns: 1fr !important;
+          }
+
+          .rd-team-page .team-card img {
+            height: 530px !important;
+          }
+
+          .rd-team-page .team-card div {
+            padding: 24px !important;
+          }
+
+          .rd-team-page .team-card h3 {
+            font-size: 24px !important;
+          }
+
+          .rd-team-page .team-card span {
+            margin-bottom: 16px !important;
+          }
+
+          .rd-team-page .team-card span::after {
+            margin-top: 10px !important;
+          }
+
+          .rd-team-page .contact-strip div {
             border-right: none !important;
-            border-bottom: 1px solid var(--rd-border) !important;
-            padding-bottom: 24px !important;
+            border-bottom: 1px solid var(--rd-gold) !important;
+            padding: 20px 0 !important;
           }
 
-          .rd-premium-section .rd-contact div:last-child {
+          .rd-team-page .contact-strip div:last-child {
             border-bottom: none !important;
           }
 
-          .rd-premium-section .rd-contact a {
-            font-size: 24px !important;
+          .rd-team-page .contact-strip strong {
+            font-size: 22px !important;
           }
         }
         ` }} />
@@ -796,7 +890,11 @@ const Index = () => {
 
         @media (max-width: 768px) {
           .rd-testimonials-section {
-            padding: 52.5px 16.5px;
+            padding: 52.5px 16.5px 15px !important;
+          }
+
+          .rd-contact-section {
+            padding-top: 40px !important;
           }
 
           .rd-testimonials-section .rd-testimonial-card {

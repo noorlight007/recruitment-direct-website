@@ -65,7 +65,7 @@ export default function ContactSection() {
 
         .rd-contact-section {
             background: #ffffff;
-            padding: 60px 30px;
+            padding: 10px 10px;
         }
 
         .rd-contact-container {
