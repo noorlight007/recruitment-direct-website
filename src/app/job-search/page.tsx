@@ -115,6 +115,24 @@ export default function JobSearchPage() {
     }
   };
 
+  const getPostedTimeAgo = (dateStr: string): string => {
+    try {
+      const postDate = new Date(dateStr);
+      if (isNaN(postDate.getTime())) return dateStr;
+      
+      const now = new Date();
+      const d1 = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+      const d2 = Date.UTC(postDate.getFullYear(), postDate.getMonth(), postDate.getDate());
+      const diffDays = Math.floor((d1 - d2) / (1000 * 60 * 60 * 24));
+      
+      if (diffDays <= 0) return "Posted today";
+      if (diffDays === 1) return "Posted 1 day ago";
+      return `Posted ${diffDays} days ago`;
+    } catch {
+      return dateStr;
+    }
+  };
+
   // Initial load: fetches ads then ends loading
   useEffect(() => {
     async function loadJobs() {
@@ -173,117 +191,263 @@ export default function JobSearchPage() {
   function handleSearch() {
     setActiveSearchTerm(keyword);
   }
-
   return (
     <div className="min-h-screen bg-white relative flex flex-col justify-between overflow-x-hidden">
       <FloatingElements />
       <Navbar />
 
-      <main className="min-h-screen bg-white text-black pt-16 md:pt-10 flex-grow">
-        <section className="mx-auto max-w-6xl px-5 py-6">
-          {/* Step 1: Add breadcrumb at the top-left "Home -> Job Search" */}
-          <nav className="text-sm text-gray-500 mb-6">
-            <a href="/" className="hover:text-yellow-600 transition">Home</a>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-900 font-semibold">Job Search</span>
-          </nav>
+      <main className="min-h-screen bg-[#f7f8fb] text-[#06142f] pt-2 md:pt-2 flex-grow">
+        <section className="rduk-latest-jobs">
+          <div className="jobs-container">
+            <div className="jobs-header">
+              <h1>Latest Jobs</h1>
 
-          {/* Step 2: No title, just the search bar, same search bar, but lower in size. */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-md max-w-3xl">
-            <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-              <input
-                type="text"
-                name="keyword"
-                placeholder="Search jobs by keyword..."
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") handleSearch();
+              <form 
+                className="jobs-search" 
+                id="jobsSearch"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSearch();
                 }}
-                className="h-12 w-full rounded-xl border border-gray-300 px-4 text-base outline-none transition focus:border-yellow-600"
-              />
-
-              <button
-                type="button"
-                onClick={handleSearch}
-                className="h-6 rounded-xl border border-yellow-700 bg-gradient-to-b from-yellow-300 to-yellow-600 px-8 text-base font-black uppercase text-black shadow-sm transition hover:opacity-90 cursor-pointer flex items-center justify-center"
               >
-                Search
-              </button>
+                <input
+                  type="text"
+                  id="jobKeyword"
+                  placeholder="Search our live jobs"
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                />
+                <button type="submit">Search</button>
+              </form>
             </div>
+
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="w-12 h-12 text-[#06142f] animate-spin mr-3" />
+                <span className="text-xl font-bold text-gray-600">Syncing with live jobs feed...</span>
+              </div>
+            ) : error ? (
+              <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-xl font-bold text-red-700 shadow-md">
+                {error}
+              </div>
+            ) : (
+              <div className="jobs-list" id="jobsList">
+                {filteredJobs.map((job) => (
+                  <article 
+                    key={job.adId}
+                    className="job-card" 
+                    data-search={`${getJobAdCleanTitle(job)} ${getJobAdLocation(job)} ${getJobType(job)} ${getJobCategory(job)} ${getJobIndustry(job)}`.toLowerCase()}
+                  >
+                    <div className="job-main">
+                      <h2>{getJobAdCleanTitle(job)}</h2>
+                      <p>{getJobAdLocation(job)}</p>
+                      <span>{getPostedTimeAgo(job.postAt)}</span>
+                    </div>
+                    <div className="job-side">
+                      <strong>{getJobAdPayRate(job)}</strong>
+                      <a href={`/job-search/${job.adId}`} className="view-job">View Job</a>
+                    </div>
+                  </article>
+                ))}
+
+                {filteredJobs.length === 0 && (
+                  <div className="rounded-xl border border-gray-200 bg-white p-8 text-xl font-bold shadow-md text-[#06142f]">
+                    No jobs found.
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </section>
 
-        {loading ? (
-          <section className="mx-auto max-w-6xl px-5 pb-16 flex items-center justify-center py-12">
-            <Loader2 className="w-12 h-12 text-yellow-600 animate-spin mr-3" />
-            <span className="text-xl font-bold text-gray-600">Syncing with live jobs feed...</span>
-          </section>
-        ) : error ? (
-          <section className="mx-auto max-w-6xl px-5 pb-16 text-center">
-            <div className="rounded-3xl border border-red-200 bg-red-50 p-8 text-xl font-bold text-red-700 shadow-lg">
-              {error}
-            </div>
-          </section>
-        ) : (
-          <section className="mx-auto max-w-6xl px-5 pb-16">
-            {/* Step 3: Each row will show two Job Ad, reduce size of texts in each card */}
-            <div className="grid gap-6 md:grid-cols-2">
-              {filteredJobs.map((job) => (
-                <article
-                  key={job.adId}
-                  className="rounded-2xl border border-gray-200 bg-white p-5 shadow-md flex flex-col justify-between"
-                >
-                  <div>
-                    <h2 className="text-xl font-bold leading-snug text-black">
-                      {getJobAdCleanTitle(job)}
-                    </h2>
-                    
-                    <p className="text-sm font-semibold text-gray-600 mt-1">
-                      {getJobAdPayRate(job)} &bull; {getJobAdLocation(job)}
-                    </p>
+        <style dangerouslySetInnerHTML={{
+          __html: `
+        .rduk-latest-jobs {
+          background: #f7f8fb !important;
+          padding: 60px 20px !important;
+          font-family: Inter, Arial, sans-serif !important;
+          color: #06142f !important;
+        }
 
-                    <div className="my-3 border-t border-gray-200" />
+        .rduk-latest-jobs .jobs-container {
+          max-width: 1180px !important;
+          margin: 0 auto !important;
+        }
 
-                    <div className="space-y-1 text-sm text-gray-600">
-                      {getJobType(job) && (
-                        <p><span className="font-bold text-gray-850">Job Type:</span> {getJobType(job)}</p>
-                      )}
-                      {getJobCategory(job) && (
-                        <p><span className="font-bold text-gray-850">Category:</span> {getJobCategory(job)}</p>
-                      )}
-                      {getJobIndustry(job) && (
-                        <p><span className="font-bold text-gray-850">Industry:</span> {getJobIndustry(job)}</p>
-                      )}
-                    </div>
-                  </div>
+        .rduk-latest-jobs .jobs-header {
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          gap: 28px !important;
+          margin-bottom: 30px !important;
+        }
 
-                  <div className="mt-4 border-t border-gray-200 pt-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-xs text-gray-500">Posted</p>
-                        <p className="text-sm font-bold text-black">{formatDate(job.postAt)}</p>
-                      </div>
+        .rduk-latest-jobs .jobs-header h1 {
+          margin: 0 !important;
+          font-size: 48px !important;
+          font-weight: 800 !important;
+          letter-spacing: -1px !important;
+          color: #06142f !important;
+          text-transform: none !important;
+        }
 
-                      <a
-                        href={`/job-search/${job.adId}`}
-                        className="inline-flex h-10 items-center justify-center rounded-lg border border-yellow-700 bg-gradient-to-b from-yellow-300 to-yellow-600 px-6 text-sm font-black uppercase text-black shadow-sm transition hover:opacity-90"
-                      >
-                        Apply Now
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+        .rduk-latest-jobs .jobs-search {
+          display: flex !important;
+          width: 500px !important;
+          background: #ffffff !important;
+          border: 1px solid #d8dce5 !important;
+          border-radius: 8px !important;
+          overflow: hidden !important;
+        }
 
-            {filteredJobs.length === 0 && (
-              <div className="rounded-2xl border border-gray-200 bg-white p-6 text-lg font-bold shadow-md text-black mt-4">
-                No jobs found.
-              </div>
-            )}
-          </section>
-        )}
+        .rduk-latest-jobs .jobs-search input {
+          flex: 1 !important;
+          border: 0 !important;
+          padding: 17px 20px !important;
+          font-size: 16px !important;
+          outline: none !important;
+          background: #ffffff !important;
+          color: #06142f !important;
+        }
+
+        .rduk-latest-jobs .jobs-search button {
+          border: 0 !important;
+          background: #06142f !important;
+          color: #ffffff !important;
+          padding: 0 30px !important;
+          font-size: 16px !important;
+          font-weight: 700 !important;
+          cursor: pointer !important;
+          height: auto !important;
+          width: auto !important;
+          border-radius: 0 !important;
+        }
+
+        .rduk-latest-jobs .jobs-list {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 12px !important;
+        }
+
+        .rduk-latest-jobs .job-card {
+          background: #ffffff !important;
+          border: 1px solid #e0e3ea !important;
+          border-radius: 10px !important;
+          padding: 20px 26px !important;
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          gap: 28px !important;
+          box-shadow: 0 8px 22px rgba(6, 20, 47, 0.045) !important;
+          transform: none !important;
+        }
+
+        .rduk-latest-jobs .job-main h2 {
+          margin: 0 0 7px !important;
+          font-size: 23px !important;
+          font-weight: 800 !important;
+          color: #06142f !important;
+          text-transform: none !important;
+        }
+
+        .rduk-latest-jobs .job-main p {
+          margin: 0 0 7px !important;
+          font-size: 16px !important;
+          font-weight: 600 !important;
+          color: #06142f !important;
+        }
+
+        .rduk-latest-jobs .job-main span {
+          font-size: 14px !important;
+          color: #536078 !important;
+          display: inline-block !important;
+        }
+
+        .rduk-latest-jobs .job-side {
+          display: flex !important;
+          align-items: center !important;
+          gap: 28px !important;
+          min-width: 250px !important;
+          justify-content: flex-end !important;
+        }
+
+        .rduk-latest-jobs .job-side strong {
+          font-size: 23px !important;
+          font-weight: 800 !important;
+          white-space: nowrap !important;
+          color: #06142f !important;
+        }
+
+        .rduk-latest-jobs .view-job {
+          background: linear-gradient(180deg, #ffe384 0%, #e4a914 100%) !important;
+          color: #06142f !important;
+          text-decoration: none !important;
+          font-weight: 800 !important;
+          border-radius: 7px !important;
+          padding: 13px 28px !important;
+          border: 1px solid #d79a00 !important;
+          white-space: nowrap !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .rduk-latest-jobs .view-job:hover {
+          filter: brightness(1.05) !important;
+        }
+
+        @media (max-width: 768px) {
+          .rduk-latest-jobs {
+            padding: 35px 16px !important;
+          }
+
+          .rduk-latest-jobs .jobs-header {
+            display: block !important;
+            margin-bottom: 22px !important;
+          }
+
+          .rduk-latest-jobs .jobs-header h1 {
+            font-size: 36px !important;
+            margin-bottom: 16px !important;
+          }
+
+          .rduk-latest-jobs .jobs-search {
+            width: 100% !important;
+          }
+
+          .rduk-latest-jobs .jobs-search input {
+            padding: 15px !important;
+          }
+
+          .rduk-latest-jobs .jobs-search button {
+            padding: 0 18px !important;
+          }
+
+          .rduk-latest-jobs .job-card {
+            display: block !important;
+            padding: 18px !important;
+          }
+
+          .rduk-latest-jobs .job-main h2 {
+            font-size: 21px !important;
+          }
+
+          .rduk-latest-jobs .job-side {
+            margin-top: 16px !important;
+            min-width: 0 !important;
+            justify-content: space-between !important;
+            gap: 14px !important;
+          }
+
+          .rduk-latest-jobs .job-side strong {
+            font-size: 21px !important;
+          }
+
+          .rduk-latest-jobs .view-job {
+            padding: 12px 20px !important;
+          }
+        }
+        ` }} />
       </main>
 
       <Footer />

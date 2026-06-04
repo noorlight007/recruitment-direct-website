@@ -1,29 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowLeft,
-  MapPin,
-  Clock,
-  Building2,
-  User,
-  Briefcase,
-  Phone,
-  Mail,
-  CheckCircle2,
-  AlertCircle,
-  Calendar,
-  DollarSign,
-  Compass,
-  X,
-  Send,
-  Loader2,
-  CalendarDays,
-  UserCheck,
-  Check
-} from "lucide-react";
+import { useParams } from "next/navigation";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -168,22 +147,11 @@ interface JobDetails {
 }
 
 export default function JobDetailsPage() {
-  const router = useRouter();
   const { adId } = useParams();
 
   const [job, setJob] = useState<JobDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  // Apply Form State
-  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [notes, setNotes] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [submissionStage, setSubmissionStage] = useState<"idle" | "submitting" | "verifying" | "checking">("idle");
-  const [success, setSuccess] = useState(false);
 
   // Helper to dynamically extract location from title, bullet points, or reference
   const getJobAdLocation = (item: JobDetails): string => {
@@ -269,6 +237,14 @@ export default function JobDetailsPage() {
     return "Ongoing Temporary";
   };
 
+  // Helper to dynamically clean job title
+  const getJobAdCleanTitle = (item: JobDetails): string => {
+    if (item.title && item.title.includes("|")) {
+      return item.title.split("|")[0].trim();
+    }
+    return item.title;
+  };
+
   // Fetch job details by ID
   useEffect(() => {
     if (!adId) return;
@@ -277,7 +253,6 @@ export default function JobDetailsPage() {
       try {
         setLoading(true);
         setError(null);
-        // Call the core live job ads API dynamically by specific ID (adId contains dynamic adId parameter)
         const data = await api.get(`/core/live/jobads/${adId}`);
         if (data) {
           setJob(data);
@@ -295,781 +270,360 @@ export default function JobDetailsPage() {
     fetchJobDetails();
   }, [adId]);
 
-  // Handle Application Submit
-  const handleApplySubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-
-    // Smooth multi-stage submission feedback sequence
-    setSubmissionStage("submitting");
-    await new Promise((resolve) => setTimeout(resolve, 800));
-
-    setSubmissionStage("verifying");
-    await new Promise((resolve) => setTimeout(resolve, 800));
-
-    setSubmissionStage("checking");
-    await new Promise((resolve) => setTimeout(resolve, 600));
-
-    setSubmitting(false);
-    setSubmissionStage("idle");
-    setSuccess(true);
-
-    // Clear Form inputs
-    setFullName("");
-    setEmail("");
-    setPhone("");
-    setNotes("");
-  };
-
-  // Safe formatting helpers
-  const formatTime = (timeStr?: string) => {
-    if (!timeStr) return "";
-    try {
-      // e.g. "07:00:00" -> "07:00"
-      const parts = timeStr.split(":");
-      if (parts.length >= 2) return `${parts[0]}:${parts[1]}`;
-      return timeStr;
-    } catch {
-      return timeStr;
-    }
-  };
-
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return "";
-    try {
-      const date = new Date(dateStr);
-      if (isNaN(date.getTime())) return dateStr;
-      return date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    } catch {
-      return dateStr;
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background relative flex flex-col justify-between overflow-x-hidden">
+    <div className="min-h-screen bg-white relative flex flex-col justify-between overflow-x-hidden">
       <FloatingElements />
       <Navbar />
 
-      {/* Hero Header Area with dynamic moving ambient lights */}
-      <header className="hero-section text-white pt-[140px] pb-12 relative overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 bg-radial-glow opacity-30 pointer-events-none" />
-
-        {/* Animated ambient light spheres */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            animate={{
-              x: [0, 50, 0],
-              y: [0, -30, 0],
-              opacity: [0.15, 0.25, 0.15]
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[10%] left-[15%] w-[350px] h-[350px] bg-blue-600/20 rounded-full blur-[110px]"
-          />
-          <motion.div
-            animate={{
-              x: [0, -40, 0],
-              y: [0, 40, 0],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-indigo-600/15 rounded-full blur-[130px]"
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <Link
-            href="/job-search"
-            className="inline-flex items-center gap-2 text-xs font-bold text-blue-400 border border-blue-500/25 bg-blue-500/5 px-4 py-2 rounded-full mb-6 hover:bg-blue-500/10 hover:border-blue-400/40 transition-all duration-300 transform hover:-translate-x-1 uppercase tracking-widest"
-          >
-            <ArrowLeft className="w-4 h-4 text-blue-400" /> Back to live search
-          </Link>
-
-          {loading ? (
-            <div className="animate-pulse space-y-4">
-              <div className="h-6 bg-slate-800 rounded-md w-1/4" />
-              <div className="h-14 bg-slate-800 rounded-md w-3/5" />
-              <div className="h-8 bg-slate-800 rounded-md w-2/5" />
-            </div>
-          ) : error ? (
-            <div className="text-left py-4">
-              <h1 className="text-3xl font-extrabold text-white tracking-tight">Job File Interrupted</h1>
-            </div>
-          ) : job ? (
-            <div className="space-y-6">
-              {/* Category and State tags */}
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <div className="inline-flex items-center gap-2 text-xs text-blue-400 font-bold bg-blue-500/10 border border-blue-500/20 px-3.5 py-1.5 rounded-full uppercase tracking-widest shadow-sm shadow-blue-500/5">
-                  <Briefcase className="w-3.5 h-3.5 text-blue-400" />
-                  <span>{"Live Vacancy"}</span>
-                </div>
-
-                {job.state && (
-                  <span className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full border ${
-                    job.state.toLowerCase() === 'expired'
-                      ? 'text-red-400 bg-red-500/10 border-red-500/20'
-                      : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
-                  }`}>
-                    {job.state}
-                  </span>
-                )}
-
-                {job.reference && (
-                  <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 border border-white/10 px-3.5 py-1.5 rounded-full tracking-wider font-mono">
-                    REF: {job.reference}
-                  </span>
-                )}
-              </div>
-
-              {/* Title Redesigned with Styled Gradient Word Splitting */}
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-black tracking-tight leading-tight max-w-4xl text-white text-center mx-auto">
-                {job.title}
-              </h2>
-
-              {/* Quick Fact Cards Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-4">
-                {/* Location Fact Card */}
-                <motion.div
-                  whileHover={{ y: -4, borderColor: "rgba(59, 130, 246, 0.4)" }}
-                  className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-300 flex items-start gap-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0 shadow-sm shadow-blue-500/10">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Base Location</div>
-                    <div className="text-sm font-bold text-white leading-tight">{getJobAdLocation(job)}</div>
-                  </div>
-                </motion.div>
-
-                {/* Salary Fact Card */}
-                <motion.div
-                  whileHover={{ y: -4, borderColor: "rgba(59, 130, 246, 0.4)" }}
-                  className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-300 flex items-start gap-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0 shadow-sm shadow-blue-500/10">
-                    <DollarSign className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Offered Salary</div>
-                    <div className="text-sm font-bold text-white leading-tight">
-                      {getJobAdSalary(job)}
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Employment Type Fact Card */}
-                <motion.div
-                  whileHover={{ y: -4, borderColor: "rgba(59, 130, 246, 0.4)" }}
-                  className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-300 flex items-start gap-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0 shadow-sm shadow-blue-500/10">
-                    <Clock className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Employment Type</div>
-                    <div className="text-sm font-bold text-white leading-tight">
-                      {getJobAdWorkType(job)}
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Start Date Fact Card */}
-                <motion.div
-                  whileHover={{ y: -4, borderColor: "rgba(59, 130, 246, 0.4)" }}
-                  className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-300 flex items-start gap-4"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0 shadow-sm shadow-blue-500/10">
-                    <Calendar className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Start Date</div>
-                    <div className="text-sm font-bold text-white leading-tight">
-                      Immediate Start
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-            </div>
-          ) : null}
-        </div>
-      </header>
-
-      {/* Main Details Body (Grid Layout) */}
-      <main className="flex-grow dark-section py-12 relative">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-
-          {loading ? (
-            /* Spectacular Skeleton Dashboard Loader */
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start animate-pulse w-full">
-              {/* Left Column Skeleton */}
-              <div className="lg:col-span-2 space-y-8">
-                {/* Shift Schedule Skeleton */}
-                <div className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/5 h-[220px] flex flex-col justify-between">
-                  <div className="h-6 bg-slate-800 rounded w-1/3 mb-4" />
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-                    <div className="md:col-span-4 h-[120px] bg-slate-900/60 rounded-xl" />
-                    <div className="md:col-span-8 h-[120px] bg-slate-900/60 rounded-xl" />
-                  </div>
-                </div>
-
-                {/* Location Map Skeleton */}
-                <div className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/5 h-[300px] flex flex-col justify-between">
-                  <div className="h-6 bg-slate-800 rounded w-1/4 mb-4" />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                    <div className="space-y-4">
-                      <div className="h-[50px] bg-slate-900/60 rounded-xl" />
-                      <div className="h-[50px] bg-slate-900/60 rounded-xl" />
-                      <div className="h-[50px] bg-slate-900/60 rounded-xl" />
-                    </div>
-                    <div className="h-[180px] bg-slate-950/80 rounded-xl" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column Skeleton */}
-              <div className="space-y-8">
-                {/* Apply Box Card Skeleton */}
-                <div className="p-6 md:p-8 rounded-2xl bg-slate-900 border border-white/5 h-[230px] flex flex-col justify-between">
-                  <div className="space-y-3">
-                    <div className="h-4 bg-slate-800 rounded w-1/4" />
-                    <div className="h-7 bg-slate-800 rounded w-2/3" />
-                    <div className="h-3 bg-slate-800 rounded w-5/6" />
-                  </div>
-                  <div className="h-12 bg-slate-800 rounded-xl w-full" />
-                </div>
-
-                {/* Coordinator Recruiter Card Skeleton */}
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/5 h-[220px] flex flex-col justify-between">
-                  <div className="h-4 bg-slate-800 rounded w-1/3 mb-4" />
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 bg-slate-800 rounded-full" />
-                    <div className="space-y-2 flex-1">
-                      <div className="h-4 bg-slate-800 rounded w-1/2" />
-                      <div className="h-3 bg-slate-800 rounded w-1/4" />
-                    </div>
-                  </div>
-                  <div className="space-y-2 mt-4">
-                    <div className="h-10 bg-slate-900/60 rounded-xl w-full" />
-                    <div className="h-10 bg-slate-900/60 rounded-xl w-full" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : error ? (
-            /* Spectacular Error State Panel */
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="p-8 rounded-2xl bg-red-950/20 border border-red-500/20 text-center max-w-2xl mx-auto my-12 backdrop-blur-md shadow-2xl"
-            >
-              <div className="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center mx-auto mb-6 text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
-                <AlertCircle className="w-8 h-8 animate-bounce" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 tracking-wide">Connection Interrupted</h3>
-              <p className="text-gray-300 mb-8 text-sm leading-relaxed max-w-md mx-auto">{error}</p>
-              <Link href="/job-search" className="btn btn-primary inline-flex items-center gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                Return to Live Search
+      {loading ? (
+        <main className="flex-grow flex items-center justify-center bg-[#f7f8fb] py-24">
+          <div className="flex items-center gap-3">
+            <Loader2 className="w-12 h-12 text-[#06142f] animate-spin" />
+            <span className="text-xl font-bold text-gray-600">Retrieving job details...</span>
+          </div>
+        </main>
+      ) : error ? (
+        <main className="flex-grow flex items-center justify-center bg-[#f7f8fb] py-24">
+          <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-xl font-bold text-red-700 shadow-md max-w-2xl text-center">
+            {error}
+            <div className="mt-4">
+              <Link href="/job-search" className="text-[#006fff] hover:underline font-bold">
+                ← Return to Live Search
               </Link>
-            </motion.div>
-          ) : job ? (
-            <>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            </div>
+          </div>
+        </main>
+      ) : job ? (
+        <main className="flex-grow bg-[#f7f8fb]">
+          <section className="rduk-job-detail-page">
+            <div className="job-detail-container">
 
-               {/* Left Column: Job Description and Shift/Address Details */}
-              <div className="lg:col-span-2 space-y-8">
+              <Link href="/job-search" className="back-link">
+                ← Back to Live Search
+              </Link>
 
-                {/* Description & Summary Overview Card */}
-                <section className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group hover:border-blue-500/20 transition-all duration-300">
-                  {/* <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/5 to-transparent rounded-tr-2xl pointer-events-none" /> */}
-                  <h2 className="text-xl font-heading font-bold text-white mb-6 flex items-center gap-3 pb-3 border-b border-white/5">
-                    <Briefcase className="w-5 h-5 text-blue-400" />
-                    Job Description & Overview
-                  </h2>
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400 mb-6 bg-white/5 border border-white/5 px-4 py-2 rounded-xl">
-                    <span className="font-bold text-blue-400 uppercase tracking-wider text-[10px]">Posted Date:</span>
-                    <span>{formatDate(job.createdAt)}</span>
-                    <span className="text-gray-600">|</span>
-                    <span className="font-bold text-blue-400 uppercase tracking-wider text-[10px]">Time:</span>
-                    <span className="font-mono">{job.createdAt ? new Date(job.createdAt).toLocaleTimeString() : "N/A"}</span>
-                  </div>
-                  <div 
-                    className="text-gray-300 leading-relaxed font-body text-sm space-y-4 html-description"
-                    dangerouslySetInnerHTML={{ __html: job.description || job.summary || "No description provided." }}
-                  />
-
-                  {job.bulletPoints && job.bulletPoints.length > 0 && (
-                    <div className="mt-8 pt-6 border-t border-white/5">
-                      <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">
-                        Key Requirements & Bullet Points
-                      </h3>
-                      <ul className="space-y-3">
-                        {job.bulletPoints.map((bp: string, idx: number) => (
-                          <li key={idx} className="flex items-start gap-2.5 text-xs text-gray-300 font-body">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                            <span className="flex-1 leading-relaxed">{bp}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </section>
-
-
-
-                {/* Shift Details Widget */}
-                {job.workShift && (
-                  <section className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group hover:border-blue-500/20 transition-all duration-300">
-                    {/* <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-indigo-500/5 to-transparent rounded-tr-2xl pointer-events-none" /> */}
-                    <h2 className="text-xl font-heading font-bold text-white mb-6 flex items-center gap-3 pb-3 border-b border-white/5">
-                      <Clock className="w-5 h-5 text-blue-400" />
-                      Shift & Work Schedule
-                    </h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
-                      {/* Shift Time Card */}
-                      <div className="md:col-span-4 p-5 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-between relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-16 h-16 bg-blue-500/5 rounded-full blur-xl pointer-events-none" />
-                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-3">Daily Hours</span>
-                        <div>
-                          <div className="text-2xl font-black text-white flex items-baseline gap-1">
-                            {formatTime(job.workShift.startTime)}
-                            <span className="text-gray-500 text-sm font-normal mx-1">to</span>
-                            {formatTime(job.workShift.endTime)}
-                          </div>
-                          <p className="text-[11px] text-gray-400 mt-2 font-medium">Standard daily shift timing</p>
-                        </div>
-                      </div>
-
-                      {/* Weekly Schedule Days Grid */}
-                      <div className="md:col-span-8 p-5 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-between">
-                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-4 block">Scheduled Work Days</span>
-                        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
-                          {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day) => {
-                            const isActive = job.workShift?.workDays.some(
-                              d => d.toLowerCase() === day.toLowerCase()
-                            );
-                            return (
-                              <motion.div
-                                key={day}
-                                whileHover={isActive ? { scale: 1.05 } : {}}
-                                className={`text-center py-3 rounded-xl border transition-all duration-300 flex flex-col justify-center items-center ${isActive
-                                  ? "bg-gradient-to-br from-blue-500/20 to-indigo-500/10 border-blue-500/40 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.1)] font-semibold"
-                                  : "bg-white/5 border-transparent text-gray-600"
-                                  }`}
-                              >
-                                <div className="text-xs uppercase tracking-wider font-semibold">{day.substring(0, 3)}</div>
-                                <div className="text-[8px] mt-1 tracking-widest opacity-80">
-                                  {isActive ? "ON" : "OFF"}
-                                </div>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                )}
-
-                {/* Workplace Address Details */}
-                {job.workplaceAddress && (
-                  <section className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl overflow-hidden relative group hover:border-blue-500/20 transition-all duration-300">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-radial-glow opacity-20 pointer-events-none" />
-
-                    <h2 className="text-xl font-heading font-bold text-white mb-6 flex items-center gap-3 pb-3 border-b border-white/5">
-                      <MapPin className="w-5 h-5 text-blue-400" />
-                      Workplace Location
-                    </h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                      <div className="space-y-4 flex flex-col justify-center">
-                        <div className="p-4 rounded-xl bg-slate-900/40 border border-white/5">
-                          <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Site/Address Name</div>
-                          <div className="text-base font-bold text-white">{job.workplaceAddress.name}</div>
-                        </div>
-
-                        {job.workplaceAddress.street && job.workplaceAddress.street.length > 0 && (
-                          <div className="p-4 rounded-xl bg-slate-900/40 border border-white/5">
-                            <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Street</div>
-                            <div className="text-sm text-gray-300">{job.workplaceAddress.street.join(", ")}</div>
-                          </div>
-                        )}
-
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="p-4 rounded-xl bg-slate-900/40 border border-white/5">
-                            <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">City / Region</div>
-                            <div className="text-sm text-gray-300">{job.workplaceAddress.city}</div>
-                          </div>
-                          <div className="p-4 rounded-xl bg-slate-900/40 border border-white/5">
-                            <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Postal Code</div>
-                            <div className="text-sm font-bold text-blue-400 font-mono">{job.workplaceAddress.postalCode || job.workplaceAddress.postcode}</div>
-                          </div>
-                        </div>
-
-                        <div className="p-4 rounded-xl bg-slate-900/40 border border-white/5">
-                          <div className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-1">Country</div>
-                          <div className="text-sm text-gray-300">{job.workplaceAddress.country}</div>
-                        </div>
-                      </div>
-
-                      {/* Interactive Sci-Fi Radar Grid map visualizer */}
-                      <div className="h-[250px] md:h-auto min-h-[250px] rounded-xl bg-slate-950/80 border border-white/10 relative flex flex-col items-center justify-center p-6 text-center overflow-hidden">
-                        {/* Radar Sweep Effect */}
-                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:15px_15px] pointer-events-none" />
-                        <div className="absolute w-[200%] h-[200%] top-[-50%] left-[-50%] bg-[conic-gradient(from_0deg,transparent_60%,rgba(59,130,246,0.12))] animate-[spin_6s_linear_infinite] pointer-events-none rounded-full" />
-
-                        {/* Radar Concentric Circles */}
-                        <div className="absolute w-24 h-24 border border-blue-500/10 rounded-full pointer-events-none" />
-                        <div className="absolute w-44 h-44 border border-blue-500/5 rounded-full pointer-events-none" />
-
-                        {/* Glow Pulsing Coordinates */}
-                        <div className="relative z-10">
-                          <div className="w-14 h-14 rounded-full bg-blue-500/10 border border-blue-500/40 flex items-center justify-center text-blue-400 mb-4 mx-auto relative shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                            <motion.div
-                              animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
-                              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-                              className="absolute inset-0 rounded-full border-2 border-blue-400 pointer-events-none"
-                            />
-                            <MapPin className="w-6 h-6 animate-bounce" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-white mb-0.5">{job.workplaceAddress.name}</div>
-                            <div className="text-[9px] text-gray-500 uppercase tracking-widest font-mono">
-                              GPS COORDINATES VERIFIED
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                )}
-
+              <div className="job-title-area">
+                <span className="status-badge">Live Vacancy</span>
+                <h1>{getJobAdCleanTitle(job)}</h1>
+                <p className="job-location">{getJobAdLocation(job)}</p>
+                <p className="job-summary">
+                  <strong>{getJobAdSalary(job)}</strong>
+                  <span>|</span>
+                  {getJobAdWorkType(job)}
+                </p>
               </div>
 
-              {/* Right Column: CTA Apply Panel & Owner Contacts */}
-              <div className="space-y-8">
+              <div className="job-info-bar">
+                <div>
+                  <span>Base Location</span>
+                  <strong>{getJobAdLocation(job)}</strong>
+                </div>
+                <div>
+                  <span>Offered Salary</span>
+                  <strong>{getJobAdSalary(job)}</strong>
+                </div>
+                <div>
+                  <span>Employment Type</span>
+                  <strong>{getJobAdWorkType(job)}</strong>
+                </div>
+                <div>
+                  <span>Start Date</span>
+                  <strong>Immediate Start</strong>
+                </div>
+              </div>
 
-                {/* Apply Box */}
-                <div className="p-6 md:p-8 rounded-2xl bg-slate-900 border border-blue-500/20 backdrop-blur-md shadow-2xl relative overflow-hidden group hover:border-blue-500/35 transition-all duration-300">
-                  <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="job-section">
+                <h2>Job Overview</h2>
+                <div dangerouslySetInnerHTML={{ __html: job.description || job.summary || "No description provided." }} />
+              </div>
 
-                  <div className="flex items-center gap-2.5 mb-4">
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 absolute" />
-                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Actively Recruiting</span>
-                  </div>
+              {job.bulletPoints && job.bulletPoints.length > 0 && (
+                <div className="job-section">
+                  <h2>Job Requirements</h2>
+                  <ul>
+                    {job.bulletPoints.map((bp, idx) => (
+                      <li key={idx}>{bp}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Immediate Vacancy</h3>
-                  <p className="text-xs text-gray-400 mb-6 leading-relaxed">
-                    This opening requires a dynamic screening process. Click Apply Now to submit your credentials and initialize a callback session.
-                  </p>
+              <div className="job-section">
+                <h2>Eligibility</h2>
+                <ul>
+                  <li>Applicants must have the legal right to work in the UK.</li>
+                  <li>Must have your own transport and be able to commute.</li>
+                </ul>
+              </div>
 
-                  <button
-                    onClick={() => window.open(`https://apply.jobadder.com/eu3/1108/${job.adId}/l4ctmmabsdnuvmmrlk3jpydtma`, "_blank")}
-                    className="apply-now-btn w-full relative overflow-hidden group py-4 px-6 rounded-xl font-extrabold text-center flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-[length:200%_auto] hover:bg-right transition-all duration-500 hover:shadow-[0_0_35px_rgba(59,130,246,0.4)] cursor-pointer text-white border border-blue-400/20"
-                  >
-                    {/* Continuous Lightsweep shimmer */}
-                    <div className="absolute inset-y-0 -left-full w-1/2 bg-gradient-to-r from-transparent via-white/15 to-transparent skew-x-[30deg] group-hover:animate-[shimmer_1.6s_ease-out_infinite]" />
-                    Apply Now
-                    <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
-                  </button>
-
-                  <div className="text-center mt-4">
-                    <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest block font-mono">Job Clearance ID: RD-{job.adId || job.jobId}</span>
-                  </div>
+              <div className="apply-panel">
+                <div className="actively-recruiting">
+                  <span></span>
+                  <strong>Actively Recruiting</strong>
                 </div>
 
+                <a 
+                  href={`https://apply.jobadder.com/eu3/1108/${job.adId}/l4ctmmabsdnuvmmrlk3jpydtma`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="apply-btn"
+                >
+                  Apply Now
+                </a>
               </div>
 
             </div>
-
-            {/* Developer Console & API System Links */}
-            {/* {job.links && (
-              <section className="mt-8 p-6 md:p-8 rounded-2xl bg-slate-950/60 border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden group hover:border-blue-500/20 transition-all duration-300">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/5 to-transparent rounded-tr-2xl pointer-events-none" />
-                <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-4 flex items-center gap-3 pb-3 border-b border-white/5">
-                  <Compass className="w-4.5 h-4.5 text-blue-400" />
-                  Developer Console & API System Links
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-between">
-                    <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold block mb-1">Self GET Endpoint</span>
-                    <a href={job.links.self} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:text-blue-300 font-mono truncate hover:underline block cursor-pointer">
-                      {job.links.self}
-                    </a>
-                  </div>
-                  <div className="p-4 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-between">
-                    <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold block mb-1">Applications POST/GET Endpoint</span>
-                    <a href={job.links.applications} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-400 hover:text-blue-300 font-mono truncate hover:underline block cursor-pointer">
-                      {job.links.applications}
-                    </a>
-                  </div>
-                </div>
-              </section>
-            )} */}
-            </>
-          ) : null}
-
-        </div>
-      </main>
+          </section>
+        </main>
+      ) : null}
 
       <Footer />
 
-      {/* Slide-over Apply Now Modal Drawer */}
-      <AnimatePresence>
-        {isApplyModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-end">
-
-            {/* Dark glass backdrop overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => {
-                if (!submitting) {
-                  setIsApplyModalOpen(false);
-                  setSuccess(false);
-                }
-              }}
-              className="absolute inset-0 bg-black/70 backdrop-blur-sm cursor-pointer"
-            />
-
-            {/* Form Drawer panel */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 26, stiffness: 220 }}
-              className="relative w-full max-w-md h-full bg-slate-950 border-l border-white/10 shadow-[0_0_65px_rgba(0,0,0,0.85)] flex flex-col justify-between overflow-hidden z-10"
-            >
-              {/* Animated Glowing Ambient Light inside drawer */}
-              <div className="absolute top-[-20%] right-[-20%] w-[250px] h-[250px] bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
-
-              {/* Header */}
-              <div className="p-6 border-b border-white/10 flex items-center justify-between relative z-10">
-                <div>
-                  <h3 className="text-lg font-bold text-white tracking-tight">Apply for Vacancy</h3>
-                  {job && <p className="text-xs text-gray-400 mt-1 truncate">Job Ref: #{job.adId || job.jobId} - {job.title || job.jobTitle}</p>}
-                </div>
-                <button
-                  onClick={() => {
-                    if (!submitting) {
-                      setIsApplyModalOpen(false);
-                      setSuccess(false);
-                    }
-                  }}
-                  className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors cursor-pointer"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Drawer Body Scroll Content */}
-              <div className="flex-1 overflow-y-auto p-6 relative z-10 flex flex-col justify-center">
-                {success ? (
-                  /* Success Feedback Page with Confetti Explosion */
-                  <div className="relative w-full py-8 text-center flex flex-col items-center justify-center">
-
-                    {/* Bursting Confetti Particles */}
-                    <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
-                      {Array.from({ length: 20 }).map((_, i) => {
-                        const angle = (i * 360) / 20;
-                        const distance = Math.random() * 110 + 70;
-                        const x = Math.cos((angle * Math.PI) / 180) * distance;
-                        const y = Math.sin((angle * Math.PI) / 180) * distance;
-                        const colors = ["#3b82f6", "#6366f1", "#10b981", "#f59e0b", "#ec4899"];
-                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-                        return (
-                          <motion.div
-                            key={i}
-                            initial={{ x: 0, y: 0, scale: 0, opacity: 1 }}
-                            animate={{
-                              x: x,
-                              y: y,
-                              scale: [0, 1.3, 0.8, 0],
-                              opacity: [1, 1, 0.5, 0],
-                              rotate: Math.random() * 360
-                            }}
-                            transition={{ duration: 1.6, ease: "easeOut" }}
-                            className="absolute w-2.5 h-2.5 rounded-full"
-                            style={{ backgroundColor: randomColor }}
-                          />
-                        );
-                      })}
-                    </div>
-
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                      className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500 flex items-center justify-center text-emerald-400 mb-6 shadow-[0_0_20px_rgba(16,185,129,0.35)]"
-                    >
-                      <CheckCircle2 className="w-9 h-9" />
-                    </motion.div>
-
-                    <h4 className="text-2xl font-black text-white mb-2 tracking-tight">Clearance Initiated!</h4>
-                    <p className="text-sm text-gray-400 leading-relaxed mb-8 max-w-sm">
-                      Your vacancy file screening sequence has been triggered successfully. An RDUK compliance coordinator will review your profile credentials.
-                    </p>
-                    <button
-                      onClick={() => {
-                        setIsApplyModalOpen(false);
-                        setSuccess(false);
-                      }}
-                      className="btn btn-primary py-3.5 px-8"
-                    >
-                      Dismiss Window
-                    </button>
-                  </div>
-                ) : submitting ? (
-                  /* Premium Progressive Loading Sequence */
-                  <div className="flex flex-col items-center justify-center text-center py-8">
-                    <div className="relative mb-6">
-                      <div className="w-16 h-16 rounded-full border-4 border-slate-800 border-t-blue-500 animate-spin" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <Loader2 className="w-6 h-6 text-blue-400 animate-pulse" />
-                      </div>
-                    </div>
-
-                    <h4 className="text-lg font-bold text-white mb-2">
-                      {submissionStage === "submitting" && "Submitting vacancy credentials..."}
-                      {submissionStage === "verifying" && "Verifying registration file..."}
-                      {submissionStage === "checking" && "Configuring compliance flags..."}
-                    </h4>
-                    <p className="text-xs text-gray-500 max-w-xs leading-relaxed uppercase tracking-wider font-semibold">
-                      {submissionStage === "submitting" && "Uploading contacts and secure files"}
-                      {submissionStage === "verifying" && "Cross-referencing parameters with job requirements"}
-                      {submissionStage === "checking" && "Aligning compliance profiles"}
-                    </p>
-                  </div>
-                ) : (
-                  /* Application Form fields */
-                  <form onSubmit={handleApplySubmit} className="space-y-5">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 font-heading">
-                        Full Name *
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          required
-                          value={fullName}
-                          onChange={(e) => setFullName(e.target.value)}
-                          placeholder="e.g. Liam Smith"
-                          className="w-full px-4 py-3.5 rounded-xl border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none font-body text-white bg-white/5 transition-all placeholder:text-gray-600 text-sm"
-                        />
-                        {fullName.trim().length > 3 && (
-                          <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-emerald-400">
-                            <Check className="w-4 h-4" />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 font-heading">
-                        Email Address *
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="email"
-                          required
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          placeholder="e.g. liam.smith@email.com"
-                          className="w-full px-4 py-3.5 rounded-xl border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none font-body text-white bg-white/5 transition-all placeholder:text-gray-600 text-sm"
-                        />
-                        {email.includes("@") && email.includes(".") && (
-                          <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-emerald-400">
-                            <Check className="w-4 h-4" />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 font-heading">
-                        Phone Number *
-                      </label>
-                      <div className="relative">
-                        <input
-                          type="tel"
-                          required
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          placeholder="e.g. 07700 900077"
-                          className="w-full px-4 py-3.5 rounded-xl border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none font-body text-white bg-white/5 transition-all placeholder:text-gray-600 text-sm"
-                        />
-                        {phone.trim().length > 8 && (
-                          <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-emerald-400">
-                            <Check className="w-4 h-4" />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 font-heading">
-                        Clearance Card Details / Notes
-                      </label>
-                      <textarea
-                        rows={4}
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Please state availability, valid cards (CSCS, CPCS, NPORS), and safety clearance details..."
-                        className="w-full px-4 py-3.5 rounded-xl border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none font-body text-white bg-white/5 transition-all placeholder:text-gray-600 text-sm resize-none"
-                      />
-                    </div>
-
-                    <div className="pt-4">
-                      <button
-                        type="submit"
-                        disabled={submitting}
-                        className="submit-app-btn w-full relative overflow-hidden group py-4 px-6 rounded-xl font-extrabold text-center flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-[length:200%_auto] hover:bg-right transition-all duration-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] cursor-pointer text-white border border-blue-400/20 disabled:opacity-50"
-                      >
-                        Submit Application
-                      </button>
-                    </div>
-                  </form>
-                )}
-              </div>
-
-              {/* Drawer Footer */}
-              <div className="p-6 border-t border-white/10 bg-slate-950 text-center text-[10px] text-gray-500 font-bold uppercase tracking-widest relative z-10">
-                Job Direct Recruitment Verification
-              </div>
-
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* Styled JSX (Cleaned and scoped helper animations) */}
-      <style jsx>{`
-        .bg-radial-glow {
-          background: radial-gradient(circle at 50% 50%, rgba(30, 92, 255, 0.15) 0%, transparent 60%);
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        .rduk-job-detail-page {
+          background: #f7f8fb !important;
+          padding: 55px 20px 70px !important;
+          font-family: Inter, Arial, sans-serif !important;
+          color: #06142f !important;
         }
-        @keyframes shimmer {
-          100% {
-            left: 200%;
+
+        .rduk-job-detail-page .job-detail-container {
+          max-width: 1120px !important;
+          margin: 0 auto !important;
+        }
+
+        .rduk-job-detail-page .back-link {
+          display: inline-block !important;
+          margin-bottom: 36px !important;
+          color: #006fff !important;
+          text-decoration: none !important;
+          font-weight: 700 !important;
+          font-size: 16px !important;
+        }
+
+        .rduk-job-detail-page .job-title-area {
+          margin-bottom: 34px !important;
+        }
+
+        .rduk-job-detail-page .status-badge {
+          display: inline-block !important;
+          background: #06142f !important;
+          color: #4cc3ff !important;
+          border: 1px solid #006fff !important;
+          border-radius: 999px !important;
+          padding: 8px 22px !important;
+          font-size: 13px !important;
+          font-weight: 800 !important;
+          letter-spacing: 1px !important;
+          text-transform: uppercase !important;
+          margin-bottom: 22px !important;
+        }
+
+        .rduk-job-detail-page .job-title-area h1 {
+          margin: 0 0 14px !important;
+          font-size: 64px !important;
+          line-height: 1 !important;
+          font-weight: 900 !important;
+          letter-spacing: -2px !important;
+          color: #06142f !important;
+          text-transform: none !important;
+        }
+
+        .rduk-job-detail-page .job-location {
+          margin: 0 0 18px !important;
+          font-size: 28px !important;
+          font-weight: 800 !important;
+          color: #06142f !important;
+        }
+
+        .rduk-job-detail-page .job-summary {
+          margin: 0 !important;
+          font-size: 28px !important;
+          font-weight: 600 !important;
+          color: #06142f !important;
+        }
+
+        .rduk-job-detail-page .job-summary strong {
+          color: #0075ff !important;
+          font-weight: 900 !important;
+        }
+
+        .rduk-job-detail-page .job-summary span {
+          color: #9aa3b3 !important;
+          margin: 0 16px !important;
+        }
+
+        .rduk-job-detail-page .job-info-bar,
+        .rduk-job-detail-page .job-section,
+        .rduk-job-detail-page .apply-panel {
+          background: #ffffff !important;
+          border: 1px solid #dfe5ef !important;
+          border-radius: 12px !important;
+          box-shadow: 0 8px 24px rgba(6, 20, 47, 0.045) !important;
+        }
+
+        .rduk-job-detail-page .job-info-bar {
+          display: grid !important;
+          grid-template-columns: repeat(4, 1fr) !important;
+          margin-bottom: 20px !important;
+          overflow: hidden !important;
+        }
+
+        .rduk-job-detail-page .job-info-bar div {
+          padding: 26px 30px !important;
+          border-right: 1px solid #dfe5ef !important;
+        }
+
+        .rduk-job-detail-page .job-info-bar div:last-child {
+          border-right: 0 !important;
+        }
+
+        .rduk-job-detail-page .job-info-bar span {
+          display: block !important;
+          margin-bottom: 8px !important;
+          color: #6d7484 !important;
+          font-size: 13px !important;
+          font-weight: 800 !important;
+          text-transform: uppercase !important;
+          letter-spacing: .8px !important;
+        }
+
+        .rduk-job-detail-page .job-info-bar strong {
+          font-size: 15px !important;
+          font-weight: 800 !important;
+          color: #06142f !important;
+        }
+
+        .rduk-job-detail-page .job-section {
+          padding: 34px 40px !important;
+          margin-bottom: 14px !important;
+        }
+
+        .rduk-job-detail-page .job-section h2 {
+          margin: 0 0 22px !important;
+          font-size: 28px !important;
+          font-weight: 900 !important;
+          color: #06142f !important;
+          text-transform: none !important;
+        }
+
+        .rduk-job-detail-page .job-section p,
+        .rduk-job-detail-page .job-section li {
+          font-size: 17px !important;
+          line-height: 1.75 !important;
+          color: #151d31 !important;
+        }
+
+        .rduk-job-detail-page .job-section p {
+          margin: 0 0 14px !important;
+        }
+
+        .rduk-job-detail-page .job-section ul {
+          margin: 0 !important;
+          padding-left: 22px !important;
+        }
+
+        .rduk-job-detail-page .job-section li {
+          margin-bottom: 8px !important;
+        }
+
+        .rduk-job-detail-page .job-section li::marker {
+          color: #0075ff !important;
+        }
+
+        .rduk-job-detail-page .apply-panel {
+          margin-top: 28px !important;
+          padding: 34px 40px !important;
+          border: 1px solid #0075ff !important;
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: center !important;
+          gap: 35px !important;
+        }
+
+        .rduk-job-detail-page .actively-recruiting {
+          display: flex !important;
+          align-items: center !important;
+          gap: 12px !important;
+          color: #009e6b !important;
+          text-transform: uppercase !important;
+          letter-spacing: .8px !important;
+          font-size: 18px !important;
+          font-weight: 900 !important;
+        }
+
+        .rduk-job-detail-page .actively-recruiting span {
+          width: 14px !important;
+          height: 14px !important;
+          background: #16c784 !important;
+          border-radius: 50% !important;
+          box-shadow: 0 0 0 4px rgba(22, 199, 132, .18) !important;
+          display: inline-block !important;
+        }
+
+        .rduk-job-detail-page .apply-btn {
+          min-width: 360px !important;
+          text-align: center !important;
+          background: linear-gradient(180deg, #ffe384 0%, #e4a914 100%) !important;
+          color: #06142f !important;
+          border: 1px solid #d79a00 !important;
+          border-radius: 8px !important;
+          padding: 22px 34px !important;
+          font-size: 26px !important;
+          font-weight: 900 !important;
+          text-decoration: none !important;
+          box-shadow: 0 8px 18px rgba(228, 169, 20, 0.28) !important;
+          display: inline-block !important;
+        }
+
+        @media (max-width: 768px) {
+          .rduk-job-detail-page {
+            padding: 35px 16px 45px !important;
+          }
+          
+          .rduk-job-detail-page .job-title-area h1 {
+            font-size: 36px !important;
+          }
+          
+          .rduk-job-detail-page .job-location,
+          .rduk-job-detail-page .job-summary,
+          .rduk-job-detail-page .job-section h2 {
+            font-size: 20px !important;
+          }
+          
+          .rduk-job-detail-page .job-info-bar {
+            grid-template-columns: 1fr !important;
+          }
+          
+          .rduk-job-detail-page .job-info-bar div {
+            border-right: 0 !important;
+            border-bottom: 1px solid #dfe5ef !important;
+            padding: 18px 20px !important;
+          }
+          
+          .rduk-job-detail-page .job-info-bar div:last-child {
+            border-bottom: 0 !important;
+          }
+          
+          .rduk-job-detail-page .job-section {
+            padding: 24px 20px !important;
+          }
+          
+          .rduk-job-detail-page .apply-panel {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            padding: 24px 20px !important;
+            gap: 20px !important;
+          }
+          
+          .rduk-job-detail-page .apply-btn {
+            min-width: unset !important;
+            width: 100% !important;
           }
         }
-        button.apply-now-btn, button.submit-app-btn {
-          width: 100% !important;
-          display: flex !important;
-          justify-content: center !important;
-          align-items: center !important;
-          box-sizing: border-box !important;
-        }
-      `}</style>
-
+        `
+      }} />
     </div>
   );
 }
