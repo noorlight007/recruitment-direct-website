@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import { api } from "@/services/api";
-import { Loader2 } from "lucide-react";
+import { Loader2, MapPin, ChevronRight, Search } from "lucide-react";
 
 interface Job {
   adId: number;
@@ -99,6 +99,29 @@ export default function JobSearchPage() {
 
   const getJobIndustry = (job: Job): string => {
     return job.industry || "";
+  };
+
+  const parsePayRate = (payRate: string): { amount: string; frequency: string } => {
+    const clean = payRate.trim();
+    if (clean.toLowerCase() === "competitive rate") {
+      return { amount: "Competitive", frequency: "Rate" };
+    }
+    
+    const match = clean.match(/^£\s*(\d+(?:\.\d+)?)\s*(?:ph|per hour|h)?/i);
+    if (match) {
+      let val = match[1];
+      if (!val.includes(".")) {
+        val = val + ".00";
+      } else {
+        const decimals = val.split(".")[1];
+        if (decimals.length === 1) {
+          val = val + "0";
+        }
+      }
+      return { amount: `£${val}`, frequency: "per hour" };
+    }
+    
+    return { amount: clean, frequency: "" };
   };
 
   const formatDate = (dateStr: string) => {
@@ -210,13 +233,16 @@ export default function JobSearchPage() {
                   handleSearch();
                 }}
               >
-                <input
-                  type="text"
-                  id="jobKeyword"
-                  placeholder="Search our live jobs"
-                  value={keyword}
-                  onChange={(e) => setKeyword(e.target.value)}
-                />
+                <div className="search-input-wrapper">
+                  <Search className="search-icon" />
+                  <input
+                    type="text"
+                    id="jobKeyword"
+                    placeholder="Search our live jobs"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                  />
+                </div>
                 <button type="submit">Search</button>
               </form>
             </div>
@@ -240,7 +266,10 @@ export default function JobSearchPage() {
                   >
                     <div className="job-main">
                       <h2>{getJobAdCleanTitle(job)}</h2>
-                      <p>{getJobAdLocation(job)}</p>
+                      <p className="job-location">
+                        <MapPin className="location-icon" />
+                        {getJobAdLocation(job)}
+                      </p>
                       
                       {(getJobType(job) || getJobCategory(job) || getJobIndustry(job)) && (
                         <div className="job-tags">
@@ -259,8 +288,16 @@ export default function JobSearchPage() {
                       <span>{getPostedTimeAgo(job.postAt)}</span>
                     </div>
                     <div className="job-side">
-                      <strong>{getJobAdPayRate(job)}</strong>
-                      <a href={`/job-search/${job.adId}`} className="view-job">View Job</a>
+                      <div className="rate-container">
+                        <span className="rate-label">Rate</span>
+                        <strong className="rate-amount">{parsePayRate(getJobAdPayRate(job)).amount}</strong>
+                        {parsePayRate(getJobAdPayRate(job)).frequency && (
+                          <span className="rate-frequency">{parsePayRate(getJobAdPayRate(job)).frequency}</span>
+                        )}
+                      </div>
+                      <a href={`/job-search/${job.adId}`} className="view-job">
+                        View Job <ChevronRight className="button-arrow" />
+                      </a>
                     </div>
                   </article>
                 ))}
@@ -281,7 +318,7 @@ export default function JobSearchPage() {
           background: #f7f8fb !important;
           padding: 60px 20px !important;
           font-family: Inter, Arial, sans-serif !important;
-          color: #06142f !important;
+          color: #111111 !important;
         }
 
         .rduk-latest-jobs .jobs-container {
@@ -302,7 +339,7 @@ export default function JobSearchPage() {
           font-size: 48px !important;
           font-weight: 800 !important;
           letter-spacing: -1px !important;
-          color: #06142f !important;
+          color: #001B5E !important;
           text-transform: none !important;
         }
 
@@ -315,19 +352,35 @@ export default function JobSearchPage() {
           overflow: hidden !important;
         }
 
+        .rduk-latest-jobs .search-input-wrapper {
+          position: relative !important;
+          flex: 1 !important;
+          display: flex !important;
+          align-items: center !important;
+        }
+
+        .rduk-latest-jobs .search-icon {
+          position: absolute !important;
+          left: 20px !important;
+          color: #536078 !important;
+          width: 20px !important;
+          height: 20px !important;
+          pointer-events: none !important;
+        }
+
         .rduk-latest-jobs .jobs-search input {
           flex: 1 !important;
           border: 0 !important;
-          padding: 17px 20px !important;
+          padding: 17px 20px 17px 50px !important;
           font-size: 16px !important;
           outline: none !important;
           background: #ffffff !important;
-          color: #06142f !important;
+          color: #111111 !important;
         }
 
         .rduk-latest-jobs .jobs-search button {
           border: 0 !important;
-          background: #06142f !important;
+          background: #001B5E !important;
           color: #ffffff !important;
           padding: 0 30px !important;
           font-size: 16px !important;
@@ -347,6 +400,7 @@ export default function JobSearchPage() {
         .rduk-latest-jobs .job-card {
           background: #ffffff !important;
           border: 1px solid #e0e3ea !important;
+          border-top: 3px solid #001B5E !important;
           border-radius: 10px !important;
           padding: 20px 26px !important;
           display: flex !important;
@@ -361,15 +415,25 @@ export default function JobSearchPage() {
           margin: 0 0 7px !important;
           font-size: 23px !important;
           font-weight: 800 !important;
-          color: #06142f !important;
+          color: #111111 !important;
           text-transform: none !important;
         }
 
-        .rduk-latest-jobs .job-main p {
+        .rduk-latest-jobs .job-location {
+          display: flex !important;
+          align-items: center !important;
+          gap: 6px !important;
           margin: 0 0 7px !important;
           font-size: 16px !important;
           font-weight: 600 !important;
-          color: #06142f !important;
+          color: #111111 !important;
+        }
+
+        .rduk-latest-jobs .location-icon {
+          width: 16px !important;
+          height: 16px !important;
+          color: #111111 !important;
+          display: inline-block !important;
         }
 
         .rduk-latest-jobs .job-main span {
@@ -394,25 +458,9 @@ export default function JobSearchPage() {
           display: inline-flex !important;
           align-items: center !important;
           white-space: nowrap !important;
-          text-transform: capitalize !important;
-        }
-
-        .rduk-latest-jobs .job-tag-type {
-          background-color: #e0f2fe !important;
-          color: #0369a1 !important;
-          border: 1px solid #bae6fd !important;
-        }
-
-        .rduk-latest-jobs .job-tag-category {
-          background-color: #f3e8ff !important;
-          color: #6b21a8 !important;
-          border: 1px solid #e9d5ff !important;
-        }
-
-        .rduk-latest-jobs .job-tag-industry {
-          background-color: #ecfdf5 !important;
-          color: #047857 !important;
-          border: 1px solid #a7f3d0 !important;
+          background-color: #EEF2F7 !important;
+          color: #374151 !important;
+          border: 1px solid #e2e8f0 !important;
         }
 
         .rduk-latest-jobs .job-side {
@@ -423,29 +471,63 @@ export default function JobSearchPage() {
           justify-content: flex-end !important;
         }
 
-        .rduk-latest-jobs .job-side strong {
-          font-size: 23px !important;
+        .rduk-latest-jobs .rate-container {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          justify-content: center !important;
+          margin-right: 20px !important;
+          text-align: left !important;
+        }
+
+        .rduk-latest-jobs .rate-label {
+          font-size: 12px !important;
+          color: #536078 !important;
+          font-weight: 600 !important;
+          margin-bottom: 2px !important;
+        }
+
+        .rduk-latest-jobs .rate-amount {
+          font-size: 28px !important;
           font-weight: 800 !important;
+          color: #111111 !important;
+          line-height: 1.1 !important;
           white-space: nowrap !important;
-          color: #06142f !important;
+        }
+
+        .rduk-latest-jobs .rate-frequency {
+          font-size: 14px !important;
+          color: #111111 !important;
+          font-weight: 700 !important;
+          margin-top: 2px !important;
+          white-space: nowrap !important;
         }
 
         .rduk-latest-jobs .view-job {
-          background: linear-gradient(180deg, #ffe384 0%, #e4a914 100%) !important;
-          color: #06142f !important;
+          background: linear-gradient(135deg, #F7D774 0%, #E5B93C 50%, #C99A1F 100%) !important;
+          color: #111111 !important;
           text-decoration: none !important;
           font-weight: 800 !important;
           border-radius: 7px !important;
           padding: 13px 28px !important;
-          border: 1px solid #d79a00 !important;
+          border: 1px solid #B8860B !important;
           white-space: nowrap !important;
           display: inline-flex !important;
           align-items: center !important;
           justify-content: center !important;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
         }
 
         .rduk-latest-jobs .view-job:hover {
-          filter: brightness(1.05) !important;
+          background: linear-gradient(135deg, #FFE08A 0%, #F4C542 50%, #D4A017 100%) !important;
+        }
+
+        .rduk-latest-jobs .button-arrow {
+          width: 16px !important;
+          height: 16px !important;
+          margin-left: 6px !important;
+          stroke-width: 3px !important;
+          display: inline-block !important;
         }
 
         @media (max-width: 768px) {
@@ -468,7 +550,11 @@ export default function JobSearchPage() {
           }
 
           .rduk-latest-jobs .jobs-search input {
-            padding: 15px !important;
+            padding: 15px 15px 15px 45px !important;
+          }
+
+          .rduk-latest-jobs .search-icon {
+            left: 15px !important;
           }
 
           .rduk-latest-jobs .jobs-search button {
@@ -491,8 +577,12 @@ export default function JobSearchPage() {
             gap: 14px !important;
           }
 
-          .rduk-latest-jobs .job-side strong {
-            font-size: 21px !important;
+          .rduk-latest-jobs .rate-amount {
+            font-size: 22px !important;
+          }
+
+          .rduk-latest-jobs .rate-container {
+            margin-right: 10px !important;
           }
 
           .rduk-latest-jobs .view-job {
