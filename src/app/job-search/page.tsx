@@ -532,17 +532,20 @@ export default function JobSearchPage() {
 
         @media (max-width: 768px) {
           .rduk-latest-jobs {
-            padding: 35px 16px !important;
+            padding: 24px 12px !important;
           }
 
           .rduk-latest-jobs .jobs-header {
-            display: block !important;
-            margin-bottom: 22px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+            margin-bottom: 20px !important;
           }
 
           .rduk-latest-jobs .jobs-header h1 {
-            font-size: 36px !important;
-            margin-bottom: 16px !important;
+            font-size: 26px !important;
+            margin-bottom: 0 !important;
           }
 
           .rduk-latest-jobs .jobs-search {
@@ -550,43 +553,103 @@ export default function JobSearchPage() {
           }
 
           .rduk-latest-jobs .jobs-search input {
-            padding: 15px 15px 15px 45px !important;
+            padding: 12px 12px 12px 40px !important;
+            font-size: 15px !important;
           }
 
           .rduk-latest-jobs .search-icon {
-            left: 15px !important;
+            left: 12px !important;
+            width: 16px !important;
+            height: 16px !important;
           }
 
           .rduk-latest-jobs .jobs-search button {
-            padding: 0 18px !important;
+            padding: 0 16px !important;
+            font-size: 15px !important;
           }
 
           .rduk-latest-jobs .job-card {
-            display: block !important;
-            padding: 18px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            padding: 14px 16px !important;
           }
 
           .rduk-latest-jobs .job-main h2 {
-            font-size: 21px !important;
+            font-size: 18px !important;
+            margin-bottom: 4px !important;
+          }
+
+          .rduk-latest-jobs .job-location {
+            font-size: 14px !important;
+            margin-bottom: 4px !important;
+          }
+
+          .rduk-latest-jobs .location-icon {
+            width: 14px !important;
+            height: 14px !important;
+          }
+
+          .rduk-latest-jobs .job-tags {
+            margin-top: 4px !important;
+            margin-bottom: 6px !important;
+            gap: 6px !important;
+          }
+
+          .rduk-latest-jobs .job-tag {
+            font-size: 10px !important;
+            padding: 2px 6px !important;
+            border-radius: 4px !important;
+          }
+
+          .rduk-latest-jobs .job-main span {
+            font-size: 12px !important;
           }
 
           .rduk-latest-jobs .job-side {
-            margin-top: 16px !important;
-            min-width: 0 !important;
+            display: flex !important;
+            flex-direction: row !important;
             justify-content: space-between !important;
-            gap: 14px !important;
-          }
-
-          .rduk-latest-jobs .rate-amount {
-            font-size: 22px !important;
+            align-items: center !important;
+            margin-top: 8px !important;
+            min-width: 0 !important;
+            width: 100% !important;
+            gap: 12px !important;
+            flex-wrap: wrap !important;
           }
 
           .rduk-latest-jobs .rate-container {
-            margin-right: 10px !important;
+            margin-right: 0 !important;
+            flex: 1 !important;
+            min-width: 0 !important;
+          }
+
+          .rduk-latest-jobs .rate-label {
+            font-size: 11px !important;
+          }
+
+          .rduk-latest-jobs .rate-amount {
+            font-size: 18px !important;
+            white-space: normal !important;
+            word-break: break-word !important;
+          }
+
+          .rduk-latest-jobs .rate-frequency {
+            font-size: 12px !important;
+            white-space: normal !important;
           }
 
           .rduk-latest-jobs .view-job {
-            padding: 12px 20px !important;
+            padding: 8px 16px !important;
+            font-size: 14px !important;
+            border-radius: 6px !important;
+          }
+
+          .rduk-latest-jobs .button-arrow {
+            width: 14px !important;
+            height: 14px !important;
+            margin-left: 4px !important;
+            stroke-width: 2.5px !important;
           }
         }
         ` }} />
