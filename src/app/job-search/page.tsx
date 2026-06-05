@@ -87,9 +87,9 @@ export default function JobSearchPage() {
 
   const getJobType = (job: Job): string => {
     const jt = job.job_type;
-    // if (!jt) return "Temporary / Contract";
-    // if (jt.toLowerCase() === "temp") return "Temporary";
-    // if (jt.toLowerCase() === "perm") return "Permanent";
+    if (!jt) return "";
+    if (jt.toLowerCase() === "temp") return "Temporary";
+    if (jt.toLowerCase() === "perm") return "Permanent";
     return jt;
   };
 
@@ -241,6 +241,21 @@ export default function JobSearchPage() {
                     <div className="job-main">
                       <h2>{getJobAdCleanTitle(job)}</h2>
                       <p>{getJobAdLocation(job)}</p>
+                      
+                      {(getJobType(job) || getJobCategory(job) || getJobIndustry(job)) && (
+                        <div className="job-tags">
+                          {getJobType(job) && (
+                            <span className="job-tag job-tag-type">{getJobType(job)}</span>
+                          )}
+                          {getJobCategory(job) && (
+                            <span className="job-tag job-tag-category">{getJobCategory(job)}</span>
+                          )}
+                          {getJobIndustry(job) && (
+                            <span className="job-tag job-tag-industry">{getJobIndustry(job)}</span>
+                          )}
+                        </div>
+                      )}
+
                       <span>{getPostedTimeAgo(job.postAt)}</span>
                     </div>
                     <div className="job-side">
@@ -361,6 +376,43 @@ export default function JobSearchPage() {
           font-size: 14px !important;
           color: #536078 !important;
           display: inline-block !important;
+        }
+
+        .rduk-latest-jobs .job-tags {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 8px !important;
+          margin-top: 6px !important;
+          margin-bottom: 10px !important;
+        }
+
+        .rduk-latest-jobs .job-tag {
+          font-size: 12px !important;
+          font-weight: 750 !important;
+          padding: 4px 10px !important;
+          border-radius: 6px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          white-space: nowrap !important;
+          text-transform: capitalize !important;
+        }
+
+        .rduk-latest-jobs .job-tag-type {
+          background-color: #e0f2fe !important;
+          color: #0369a1 !important;
+          border: 1px solid #bae6fd !important;
+        }
+
+        .rduk-latest-jobs .job-tag-category {
+          background-color: #f3e8ff !important;
+          color: #6b21a8 !important;
+          border: 1px solid #e9d5ff !important;
+        }
+
+        .rduk-latest-jobs .job-tag-industry {
+          background-color: #ecfdf5 !important;
+          color: #047857 !important;
+          border: 1px solid #a7f3d0 !important;
         }
 
         .rduk-latest-jobs .job-side {

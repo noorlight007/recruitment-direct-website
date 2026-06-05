@@ -108,14 +108,16 @@ interface JobDetails {
     locationId: number;
     name: string;
   };
-  category?: {
+  category?: string | {
     categoryId: number;
     name: string;
     subCategory?: {
       subCategoryId: number;
       name: string;
     };
-  };
+  } | null;
+  industry?: string | null;
+  job_type?: string | null;
   workShift?: {
     startTime: string;
     endTime: string;
@@ -216,8 +218,17 @@ export default function JobDetailsPage() {
     return "Competitive Rate";
   };
 
+  // Helper to format job type (e.g. Temp -> Temporary, Perm -> Permanent)
+  const formatJobType = (jobType: string | null | undefined): string => {
+    if (!jobType) return "";
+    if (jobType.toLowerCase() === "temp") return "Temporary";
+    if (jobType.toLowerCase() === "perm") return "Permanent";
+    return jobType;
+  };
+
   // Helper to dynamically extract employment type from title or bullet points
   const getJobAdWorkType = (item: JobDetails): string => {
+    if (item.job_type) return formatJobType(item.job_type);
     if (item.title) {
       const lowerTitle = item.title.toLowerCase();
       if (lowerTitle.includes("permanent")) return "Permanent";
@@ -255,6 +266,19 @@ export default function JobDetailsPage() {
         setError(null);
         const data = await api.get(`/core/live/jobads/${adId}`);
         if (data) {
+          try {
+            const listData = await api.get("/core/live/jobads");
+            if (listData && listData.items) {
+              const matchedJob = listData.items.find((item: any) => item.adId === Number(adId));
+              if (matchedJob) {
+                data.industry = matchedJob.industry;
+                data.category = matchedJob.category;
+                data.job_type = matchedJob.job_type;
+              }
+            }
+          } catch (listErr) {
+            console.error("Failed to fetch matching job fields from live jobads feed:", listErr);
+          }
           setJob(data);
         } else {
           setError("No records were found for this specific Job Ad ID.");
@@ -303,7 +327,20 @@ export default function JobDetailsPage() {
               </Link>
 
               <div className="job-title-area">
-                <span className="status-badge">Live Vacancy</span>
+                <div className="status-badges-group">
+                  <span className="status-badge">Live Vacancy</span>
+                  {job.job_type && (
+                    <span className="status-badge job-type-badge">{formatJobType(job.job_type)}</span>
+                  )}
+                  {job.category && (
+                    <span className="status-badge job-category-badge">
+                      {typeof job.category === "string" ? job.category : job.category.name}
+                    </span>
+                  )}
+                  {job.industry && (
+                    <span className="status-badge job-industry-badge">{job.industry}</span>
+                  )}
+                </div>
                 <h1>{getJobAdCleanTitle(job)}</h1>
                 <p className="job-location">{getJobAdLocation(job)}</p>
                 <p className="job-summary">
@@ -406,6 +443,13 @@ export default function JobDetailsPage() {
           margin-bottom: 34px !important;
         }
 
+        .rduk-job-detail-page .status-badges-group {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 8px !important;
+          margin-bottom: 22px !important;
+        }
+
         .rduk-job-detail-page .status-badge {
           display: inline-block !important;
           background: #06142f !important;
@@ -417,7 +461,25 @@ export default function JobDetailsPage() {
           font-weight: 800 !important;
           letter-spacing: 1px !important;
           text-transform: uppercase !important;
-          margin-bottom: 22px !important;
+          margin-bottom: 0px !important;
+        }
+
+        .rduk-job-detail-page .job-type-badge {
+          background: #e0f2fe !important;
+          color: #0369a1 !important;
+          border-color: #bae6fd !important;
+        }
+
+        .rduk-job-detail-page .job-category-badge {
+          background: #f3e8ff !important;
+          color: #6b21a8 !important;
+          border-color: #e9d5ff !important;
+        }
+
+        .rduk-job-detail-page .job-industry-badge {
+          background: #ecfdf5 !important;
+          color: #047857 !important;
+          border-color: #a7f3d0 !important;
         }
 
         .rduk-job-detail-page .job-title-area h1 {

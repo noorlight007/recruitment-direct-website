@@ -145,11 +145,11 @@ export default function AIHireNowFormPage() {
     <div className="min-h-screen bg-[#ffffff] relative">
       <Navbar />
 
-      <main className="pt-[140px] pb-20">
+      <main className="pt-[2px] pb-20">
         <section className="ai-hire-now-section">
           <div className="ai-hire-now-container">
             <div className="ai-hire-now-header">
-              <span className="ai-hire-now-eyebrow">EXISTING CLIENTS</span>
+              {/* <span className="ai-hire-now-eyebrow">EXISTING CLIENTS</span> */}
               <h1 className="ai-hire-now-title">AI Hire Now</h1>
               <p className="ai-hire-now-lead">
                 Fast staff ordering for existing clients.
@@ -405,7 +405,7 @@ export default function AIHireNowFormPage() {
       <style jsx>{`
         .ai-hire-now-section {
           background: #ffffff;
-          padding: 84px 20px;
+          padding: 50px 20px;
         }
 
         .ai-hire-now-container {
