@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Loader2, MapPin, ChevronRight, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -193,7 +193,7 @@ export default function JobDetailsPage() {
       return item.reference;
     }
 
-    return "Scotland";
+    return "Scotland / UK";
   };
 
   // Helper to dynamically extract salary from title or bullet points
@@ -254,6 +254,70 @@ export default function JobDetailsPage() {
       return item.title.split("|")[0].trim();
     }
     return item.title;
+  };
+
+  // Rate extractor & parser functions to mirror job list styling
+  const getJobAdPayRate = (item: JobDetails): string => {
+    if (item.title && item.title.includes("|")) {
+      const parts = item.title.split("|").map(p => p.trim());
+      if (parts.length >= 2) return parts[1];
+    }
+    return "Competitive Rate";
+  };
+
+  const parsePayRate = (payRate: string): { amount: string; frequency: string } => {
+    const clean = payRate.trim();
+    if (clean.toLowerCase() === "competitive rate") {
+      return { amount: "Competitive", frequency: "Rate" };
+    }
+    
+    const match = clean.match(/^£\s*(\d+(?:\.\d+)?)\s*(?:ph|per hour|h)?/i);
+    if (match) {
+      let val = match[1];
+      if (!val.includes(".")) {
+        val = val + ".00";
+      } else {
+        const decimals = val.split(".")[1];
+        if (decimals.length === 1) {
+          val = val + "0";
+        }
+      }
+      return { amount: `£${val}`, frequency: "per hour" };
+    }
+    
+    return { amount: clean, frequency: "" };
+  };
+
+  const formatDate = (dateStr: string) => {
+    try {
+      const date = new Date(dateStr);
+      if (isNaN(date.getTime())) return dateStr;
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
+  const getPostedTimeAgo = (dateStr: string): string => {
+    try {
+      const postDate = new Date(dateStr);
+      if (isNaN(postDate.getTime())) return dateStr;
+      
+      const now = new Date();
+      const d1 = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+      const d2 = Date.UTC(postDate.getFullYear(), postDate.getMonth(), postDate.getDate());
+      const diffDays = Math.floor((d1 - d2) / (1000 * 60 * 60 * 24));
+      
+      if (diffDays <= 0) return "Posted today";
+      if (diffDays === 1) return "Posted 1 day ago";
+      return `Posted ${diffDays} days ago`;
+    } catch {
+      return dateStr;
+    }
   };
 
   // Fetch job details by ID
@@ -318,95 +382,194 @@ export default function JobDetailsPage() {
           </div>
         </main>
       ) : job ? (
-        <main className="flex-grow bg-[#f7f8fb]">
+        <main className="flex-grow bg-[#f7f8fb] text-[#06142f] pt-2 md:pt-2">
           <section className="rduk-job-detail-page">
             <div className="job-detail-container">
 
-              <Link href="/job-search" className="back-link">
-                ← Back to Live Search
-              </Link>
+              <div className="back-link-wrapper">
+                <Link href="/job-search" className="back-link">
+                  ← Back to Live Search
+                </Link>
+              </div>
 
-              <div className="job-title-area">
-                <div className="status-badges-group">
-                  <span className="status-badge">Live Vacancy</span>
-                  {job.job_type && (
-                    <span className="status-badge job-type-badge">{formatJobType(job.job_type)}</span>
+              {/* Main Header Card - Styled like job-card */}
+              <div className="job-card main-header-card">
+                <div className="card-header-top">
+                  <div className="job-main">
+                    <h2>{getJobAdCleanTitle(job)}</h2>
+                    <p className="job-location">
+                      <MapPin className="location-icon" />
+                      {getJobAdLocation(job)}
+                    </p>
+                    
+                    {(job.job_type || job.category || job.industry) && (
+                      <div className="job-tags">
+                        {job.job_type && (
+                          <span className="job-tag job-tag-type">{formatJobType(job.job_type)}</span>
+                        )}
+                        {job.category && (
+                          <span className="job-tag job-tag-category">
+                            {typeof job.category === "string" ? job.category : job.category.name}
+                          </span>
+                        )}
+                        {job.industry && (
+                          <span className="job-tag job-tag-industry">{job.industry}</span>
+                        )}
+                      </div>
+                    )}
+                    
+                    <span className="posted-time">{getPostedTimeAgo(job.postAt)}</span>
+                  </div>
+
+                  <div className="job-side">
+                    <div className="rate-container">
+                      <span className="rate-label">Rate</span>
+                      <strong className="rate-amount">{parsePayRate(getJobAdPayRate(job)).amount}</strong>
+                      {parsePayRate(getJobAdPayRate(job)).frequency && (
+                        <span className="rate-frequency">{parsePayRate(getJobAdPayRate(job)).frequency}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card-header-bottom">
+                  <a 
+                    href={`https://apply.jobadder.com/eu3/1108/${job.adId}/l4ctmmabsdnuvmmrlk3jpydtma`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="apply-now-btn"
+                  >
+                    Apply Now <ChevronRight className="button-arrow" />
+                  </a>
+                  
+                  <div className="actively-recruiting">
+                    <span className="pulse-dot"></span>
+                    <strong>Actively Recruiting</strong>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2-Column Responsive Layout Grid */}
+              <div className="details-grid">
+                
+                {/* Left Column - Main sections */}
+                <div className="details-left">
+                  
+                  {/* Overview Section Card */}
+                  <div className="job-card section-card">
+                    <h3>Overview</h3>
+                    <div className="section-content" dangerouslySetInnerHTML={{ __html: job.description || job.summary || "No description provided." }} />
+                  </div>
+
+                  {/* Duties Section Card */}
+                  {job.bulletPoints && job.bulletPoints.length > 0 && (
+                    <div className="job-card section-card">
+                      <h3>Duties & Responsibilities</h3>
+                      <div className="section-content">
+                        <ul className="bullet-list">
+                          {job.bulletPoints.map((bp, idx) => (
+                            <li key={idx}>{bp}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   )}
-                  {job.category && (
-                    <span className="status-badge job-category-badge">
-                      {typeof job.category === "string" ? job.category : job.category.name}
-                    </span>
+
+                  {/* Compact Requirements & Eligibility Section Card */}
+                  {/* <div className="job-card section-card compact-requirements-card">
+                    <h3>Requirements & Eligibility</h3>
+                    <div className="section-content">
+                      <ul className="bullet-list">
+                        <li>Applicants must have the legal right to work in the UK.</li>
+                        <li>Must have your own transport and be able to commute.</li>
+                      </ul>
+                    </div>
+                  </div> */}
+
+                </div>
+
+                {/* Right Column - Sidebar metadata */}
+                <div className="details-right">
+                  
+                  {/* Job Details Sidebar Card */}
+                  <div className="job-card sidebar-card">
+                    <h3>Job Details</h3>
+                    <div className="sidebar-details-list">
+                      <div className="detail-item">
+                        <span className="detail-label">Base Location</span>
+                        <strong className="detail-value">{getJobAdLocation(job)}</strong>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Offered Rate</span>
+                        <strong className="detail-value">{getJobAdSalary(job)}</strong>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Employment Type</span>
+                        <strong className="detail-value">{getJobAdWorkType(job) || "Temporary"}</strong>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Start Date</span>
+                        <strong className="detail-value">Immediate Start</strong>
+                      </div>
+                      {job.category && (
+                        <div className="detail-item">
+                          <span className="detail-label">Category</span>
+                          <strong className="detail-value">
+                            {typeof job.category === "string" ? job.category : job.category.name}
+                          </strong>
+                        </div>
+                      )}
+                      {job.industry && (
+                        <div className="detail-item">
+                          <span className="detail-label">Industry</span>
+                          <strong className="detail-value">{job.industry}</strong>
+                        </div>
+                      )}
+                      <div className="detail-item">
+                        <span className="detail-label">Job Reference</span>
+                        <strong className="detail-value">{job.reference}</strong>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Published On</span>
+                        <strong className="detail-value">{formatDate(job.postAt)}</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hiring Contact Card (if available) */}
+                  {job.owner && (
+                    <div className="job-card sidebar-card contact-card">
+                      <h3>Hiring Contact</h3>
+                      <div className="contact-details">
+                        <strong className="contact-name">{job.owner.firstName} {job.owner.lastName}</strong>
+                        {job.owner.jobTitle && <span className="contact-title">{job.owner.jobTitle}</span>}
+                        
+                        <div className="contact-links">
+                          {job.owner.email && (
+                            <a href={`mailto:${job.owner.email}`} className="contact-link">
+                              <Mail className="contact-icon" />
+                              {job.owner.email}
+                            </a>
+                          )}
+                          {job.owner.phone && (
+                            <a href={`tel:${job.owner.phone}`} className="contact-link">
+                              <Phone className="contact-icon" />
+                              {job.owner.phone}
+                            </a>
+                          )}
+                          {!job.owner.phone && job.owner.mobile && (
+                            <a href={`tel:${job.owner.mobile}`} className="contact-link">
+                              <Phone className="contact-icon" />
+                              {job.owner.mobile}
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   )}
-                  {job.industry && (
-                    <span className="status-badge job-industry-badge">{job.industry}</span>
-                  )}
-                </div>
-                <h1>{getJobAdCleanTitle(job)}</h1>
-                <p className="job-location">{getJobAdLocation(job)}</p>
-                <p className="job-summary">
-                  <strong>{getJobAdSalary(job)}</strong>
-                  <span>|</span>
-                  {getJobAdWorkType(job)}
-                </p>
-              </div>
 
-              <div className="job-info-bar">
-                <div>
-                  <span>Base Location</span>
-                  <strong>{getJobAdLocation(job)}</strong>
-                </div>
-                <div>
-                  <span>Offered Salary</span>
-                  <strong>{getJobAdSalary(job)}</strong>
-                </div>
-                <div>
-                  <span>Employment Type</span>
-                  <strong>{getJobAdWorkType(job)}</strong>
-                </div>
-                <div>
-                  <span>Start Date</span>
-                  <strong>Immediate Start</strong>
-                </div>
-              </div>
-
-              <div className="job-section">
-                <h2>Job Overview</h2>
-                <div dangerouslySetInnerHTML={{ __html: job.description || job.summary || "No description provided." }} />
-              </div>
-
-              {job.bulletPoints && job.bulletPoints.length > 0 && (
-                <div className="job-section">
-                  <h2>Job Requirements</h2>
-                  <ul>
-                    {job.bulletPoints.map((bp, idx) => (
-                      <li key={idx}>{bp}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="job-section">
-                <h2>Eligibility</h2>
-                <ul>
-                  <li>Applicants must have the legal right to work in the UK.</li>
-                  <li>Must have your own transport and be able to commute.</li>
-                </ul>
-              </div>
-
-              <div className="apply-panel">
-                <div className="actively-recruiting">
-                  <span></span>
-                  <strong>Actively Recruiting</strong>
                 </div>
 
-                <a 
-                  href={`https://apply.jobadder.com/eu3/1108/${job.adId}/l4ctmmabsdnuvmmrlk3jpydtma`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="apply-btn"
-                >
-                  Apply Now
-                </a>
               </div>
 
             </div>
@@ -420,268 +583,460 @@ export default function JobDetailsPage() {
         __html: `
         .rduk-job-detail-page {
           background: #f7f8fb !important;
-          padding: 55px 20px 70px !important;
+          padding: 60px 20px !important;
           font-family: Inter, Arial, sans-serif !important;
-          color: #06142f !important;
+          color: #111111 !important;
         }
 
         .rduk-job-detail-page .job-detail-container {
-          max-width: 1120px !important;
+          max-width: 1180px !important;
           margin: 0 auto !important;
         }
 
+        /* Back link styles */
+        .rduk-job-detail-page .back-link-wrapper {
+          margin-bottom: 24px !important;
+        }
+
         .rduk-job-detail-page .back-link {
-          display: inline-block !important;
-          margin-bottom: 36px !important;
-          color: #006fff !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          color: #001B5E !important;
           text-decoration: none !important;
           font-weight: 700 !important;
-          font-size: 16px !important;
+          font-size: 15px !important;
+          transition: color 0.2s ease !important;
         }
 
-        .rduk-job-detail-page .job-title-area {
-          margin-bottom: 34px !important;
+        .rduk-job-detail-page .back-link:hover {
+          color: #E5B93C !important;
         }
 
-        .rduk-job-detail-page .status-badges-group {
+        /* Unified Card styles matching job-card on search page */
+        .rduk-job-detail-page .job-card {
+          background: #ffffff !important;
+          border: 1px solid #e0e3ea !important;
+          border-top: 3px solid #001B5E !important;
+          border-radius: 10px !important;
+          padding: 20px 26px !important;
+          box-shadow: 0 8px 22px rgba(6, 20, 47, 0.045) !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Main Header Card specifically */
+        .rduk-job-detail-page .main-header-card {
           display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 8px !important;
-          margin-bottom: 22px !important;
+          flex-direction: column !important;
+          gap: 0px !important;
         }
 
-        .rduk-job-detail-page .status-badge {
-          display: inline-block !important;
-          background: #06142f !important;
-          color: #4cc3ff !important;
-          border: 1px solid #006fff !important;
-          border-radius: 999px !important;
-          padding: 8px 22px !important;
-          font-size: 13px !important;
+        .rduk-job-detail-page .card-header-top {
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: flex-start !important;
+          gap: 28px !important;
+        }
+
+        .rduk-job-detail-page .job-main {
+          display: flex !important;
+          flex-direction: column !important;
+          flex: 1 !important;
+        }
+
+        .rduk-job-detail-page .job-main h2 {
+          margin: 0 0 7px !important;
+          font-size: 28px !important;
           font-weight: 800 !important;
-          letter-spacing: 1px !important;
-          text-transform: uppercase !important;
-          margin-bottom: 0px !important;
-        }
-
-        .rduk-job-detail-page .job-type-badge {
-          background: #e0f2fe !important;
-          color: #0369a1 !important;
-          border-color: #bae6fd !important;
-        }
-
-        .rduk-job-detail-page .job-category-badge {
-          background: #f3e8ff !important;
-          color: #6b21a8 !important;
-          border-color: #e9d5ff !important;
-        }
-
-        .rduk-job-detail-page .job-industry-badge {
-          background: #ecfdf5 !important;
-          color: #047857 !important;
-          border-color: #a7f3d0 !important;
-        }
-
-        .rduk-job-detail-page .job-title-area h1 {
-          margin: 0 0 14px !important;
-          font-size: 64px !important;
-          line-height: 1 !important;
-          font-weight: 900 !important;
-          letter-spacing: -2px !important;
-          color: #06142f !important;
+          color: #111111 !important;
           text-transform: none !important;
+          line-height: 1.25 !important;
         }
 
         .rduk-job-detail-page .job-location {
-          margin: 0 0 18px !important;
-          font-size: 28px !important;
-          font-weight: 800 !important;
-          color: #06142f !important;
-        }
-
-        .rduk-job-detail-page .job-summary {
-          margin: 0 !important;
-          font-size: 28px !important;
-          font-weight: 600 !important;
-          color: #06142f !important;
-        }
-
-        .rduk-job-detail-page .job-summary strong {
-          color: #0075ff !important;
-          font-weight: 900 !important;
-        }
-
-        .rduk-job-detail-page .job-summary span {
-          color: #9aa3b3 !important;
-          margin: 0 16px !important;
-        }
-
-        .rduk-job-detail-page .job-info-bar,
-        .rduk-job-detail-page .job-section,
-        .rduk-job-detail-page .apply-panel {
-          background: #ffffff !important;
-          border: 1px solid #dfe5ef !important;
-          border-radius: 12px !important;
-          box-shadow: 0 8px 24px rgba(6, 20, 47, 0.045) !important;
-        }
-
-        .rduk-job-detail-page .job-info-bar {
-          display: grid !important;
-          grid-template-columns: repeat(4, 1fr) !important;
-          margin-bottom: 20px !important;
-          overflow: hidden !important;
-        }
-
-        .rduk-job-detail-page .job-info-bar div {
-          padding: 26px 30px !important;
-          border-right: 1px solid #dfe5ef !important;
-        }
-
-        .rduk-job-detail-page .job-info-bar div:last-child {
-          border-right: 0 !important;
-        }
-
-        .rduk-job-detail-page .job-info-bar span {
-          display: block !important;
-          margin-bottom: 8px !important;
-          color: #6d7484 !important;
-          font-size: 13px !important;
-          font-weight: 800 !important;
-          text-transform: uppercase !important;
-          letter-spacing: .8px !important;
-        }
-
-        .rduk-job-detail-page .job-info-bar strong {
-          font-size: 15px !important;
-          font-weight: 800 !important;
-          color: #06142f !important;
-        }
-
-        .rduk-job-detail-page .job-section {
-          padding: 34px 40px !important;
-          margin-bottom: 14px !important;
-        }
-
-        .rduk-job-detail-page .job-section h2 {
-          margin: 0 0 22px !important;
-          font-size: 28px !important;
-          font-weight: 900 !important;
-          color: #06142f !important;
-          text-transform: none !important;
-        }
-
-        .rduk-job-detail-page .job-section p,
-        .rduk-job-detail-page .job-section li {
-          font-size: 17px !important;
-          line-height: 1.75 !important;
-          color: #151d31 !important;
-        }
-
-        .rduk-job-detail-page .job-section p {
-          margin: 0 0 14px !important;
-        }
-
-        .rduk-job-detail-page .job-section ul {
-          margin: 0 !important;
-          padding-left: 22px !important;
-        }
-
-        .rduk-job-detail-page .job-section li {
-          margin-bottom: 8px !important;
-        }
-
-        .rduk-job-detail-page .job-section li::marker {
-          color: #0075ff !important;
-        }
-
-        .rduk-job-detail-page .apply-panel {
-          margin-top: 28px !important;
-          padding: 34px 40px !important;
-          border: 1px solid #0075ff !important;
           display: flex !important;
-          justify-content: space-between !important;
           align-items: center !important;
-          gap: 35px !important;
+          gap: 6px !important;
+          margin: 0 0 7px !important;
+          font-size: 16px !important;
+          font-weight: 600 !important;
+          color: #111111 !important;
+        }
+
+        .rduk-job-detail-page .location-icon {
+          width: 16px !important;
+          height: 16px !important;
+          color: #111111 !important;
+          display: inline-block !important;
+        }
+
+        .rduk-job-detail-page .posted-time {
+          font-size: 14px !important;
+          color: #536078 !important;
+          display: inline-block !important;
+        }
+
+        .rduk-job-detail-page .job-tags {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 8px !important;
+          margin-top: 6px !important;
+          margin-bottom: 10px !important;
+        }
+
+        .rduk-job-detail-page .job-tag {
+          font-size: 12px !important;
+          font-weight: 750 !important;
+          padding: 4px 10px !important;
+          border-radius: 6px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          white-space: nowrap !important;
+          background-color: #EEF2F7 !important;
+          color: #374151 !important;
+          border: 1px solid #e2e8f0 !important;
+        }
+
+        .rduk-job-detail-page .job-side {
+          display: flex !important;
+          align-items: flex-start !important;
+          gap: 28px !important;
+          min-width: 200px !important;
+          justify-content: flex-end !important;
+        }
+
+        .rduk-job-detail-page .rate-container {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          justify-content: center !important;
+          text-align: left !important;
+        }
+
+        .rduk-job-detail-page .rate-label {
+          font-size: 12px !important;
+          color: #536078 !important;
+          font-weight: 600 !important;
+          margin-bottom: 2px !important;
+        }
+
+        .rduk-job-detail-page .rate-amount {
+          font-size: 28px !important;
+          font-weight: 800 !important;
+          color: #111111 !important;
+          line-height: 1.1 !important;
+          white-space: nowrap !important;
+        }
+
+        .rduk-job-detail-page .rate-frequency {
+          font-size: 14px !important;
+          color: #111111 !important;
+          font-weight: 700 !important;
+          margin-top: 2px !important;
+          white-space: nowrap !important;
+        }
+
+        /* Apply Button and Recruiting Status row */
+        .rduk-job-detail-page .card-header-bottom {
+          display: flex !important;
+          align-items: center !important;
+          gap: 20px !important;
+          margin-top: 20px !important;
+          padding-top: 20px !important;
+          border-top: 1px solid #e0e3ea !important;
+        }
+
+        .rduk-job-detail-page .apply-now-btn {
+          background: linear-gradient(135deg, #F7D774 0%, #E5B93C 50%, #C99A1F 100%) !important;
+          color: #111111 !important;
+          text-decoration: none !important;
+          font-weight: 800 !important;
+          border-radius: 7px !important;
+          padding: 13px 28px !important;
+          border: 1px solid #B8860B !important;
+          white-space: nowrap !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+          font-size: 16px !important;
+          transition: background 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .rduk-job-detail-page .apply-now-btn:hover {
+          background: linear-gradient(135deg, #FFE08A 0%, #F4C542 50%, #D4A017 100%) !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .rduk-job-detail-page .button-arrow {
+          width: 16px !important;
+          height: 16px !important;
+          margin-left: 6px !important;
+          stroke-width: 3px !important;
+          display: inline-block !important;
         }
 
         .rduk-job-detail-page .actively-recruiting {
           display: flex !important;
           align-items: center !important;
-          gap: 12px !important;
+          gap: 8px !important;
           color: #009e6b !important;
           text-transform: uppercase !important;
           letter-spacing: .8px !important;
-          font-size: 18px !important;
-          font-weight: 900 !important;
+          font-size: 13px !important;
+          font-weight: 800 !important;
         }
 
-        .rduk-job-detail-page .actively-recruiting span {
-          width: 14px !important;
-          height: 14px !important;
+        .rduk-job-detail-page .pulse-dot {
+          width: 10px !important;
+          height: 10px !important;
           background: #16c784 !important;
           border-radius: 50% !important;
-          box-shadow: 0 0 0 4px rgba(22, 199, 132, .18) !important;
+          box-shadow: 0 0 0 3px rgba(22, 199, 132, .18) !important;
           display: inline-block !important;
+          animation: pulse 1.5s infinite !important;
         }
 
-        .rduk-job-detail-page .apply-btn {
-          min-width: 360px !important;
-          text-align: center !important;
-          background: linear-gradient(180deg, #ffe384 0%, #e4a914 100%) !important;
-          color: #06142f !important;
-          border: 1px solid #d79a00 !important;
-          border-radius: 8px !important;
-          padding: 22px 34px !important;
-          font-size: 26px !important;
-          font-weight: 900 !important;
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0px rgba(22, 199, 132, 0.4);
+          }
+          70% {
+            box-shadow: 0 0 0 6px rgba(22, 199, 132, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0px rgba(22, 199, 132, 0);
+          }
+        }
+
+        /* Responsive Details Grid */
+        .rduk-job-detail-page .details-grid {
+          display: grid !important;
+          grid-template-columns: 1.8fr 1.2fr !important;
+          gap: 20px !important;
+          margin-top: 20px !important;
+          align-items: start !important;
+        }
+
+        .rduk-job-detail-page .details-left,
+        .rduk-job-detail-page .details-right {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 20px !important;
+        }
+
+        /* Section & Sidebar Card typography */
+        .rduk-job-detail-page .section-card h3,
+        .rduk-job-detail-page .sidebar-card h3 {
+          margin: 0 0 16px !important;
+          font-size: 20px !important;
+          font-weight: 800 !important;
+          color: #001B5E !important;
+          text-transform: none !important;
+          border-bottom: 2px solid #EEF2F7 !important;
+          padding-bottom: 8px !important;
+        }
+
+        .rduk-job-detail-page .section-content {
+          font-size: 15px !important;
+          line-height: 1.65 !important;
+          color: #374151 !important;
+        }
+
+        .rduk-job-detail-page .section-content p {
+          margin: 0 0 14px !important;
+        }
+
+        .rduk-job-detail-page .section-content p:last-child {
+          margin-bottom: 0 !important;
+        }
+
+        /* Bullet lists styling inside cards */
+        .rduk-job-detail-page .bullet-list {
+          margin: 0 !important;
+          padding-left: 20px !important;
+          list-style-type: none !important;
+        }
+
+        .rduk-job-detail-page .bullet-list li {
+          position: relative !important;
+          margin-bottom: 10px !important;
+          padding-left: 6px !important;
+          font-size: 15px !important;
+          line-height: 1.6 !important;
+          color: #374151 !important;
+        }
+
+        .rduk-job-detail-page .bullet-list li::before {
+          content: "•" !important;
+          color: #001B5E !important;
+          font-weight: bold !important;
+          display: inline-block !important;
+          width: 1em !important;
+          margin-left: -1em !important;
+          position: absolute !important;
+          left: 0 !important;
+          font-size: 18px !important;
+          line-height: 1 !important;
+          top: 0px !important;
+        }
+
+        .rduk-job-detail-page .bullet-list li:last-child {
+          margin-bottom: 0 !important;
+        }
+
+        /* Sidebar lists */
+        .rduk-job-detail-page .sidebar-details-list {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 14px !important;
+        }
+
+        .rduk-job-detail-page .detail-item {
+          display: flex !important;
+          flex-direction: column !important;
+          border-bottom: 1px solid #f0f2f5 !important;
+          padding-bottom: 10px !important;
+        }
+
+        .rduk-job-detail-page .detail-item:last-child {
+          border-bottom: 0 !important;
+          padding-bottom: 0 !important;
+        }
+
+        .rduk-job-detail-page .detail-label {
+          font-size: 12px !important;
+          color: #536078 !important;
+          font-weight: 600 !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.5px !important;
+          margin-bottom: 3px !important;
+        }
+
+        .rduk-job-detail-page .detail-value {
+          font-size: 15px !important;
+          font-weight: 700 !important;
+          color: #111111 !important;
+          word-break: break-word !important;
+        }
+
+        /* Hiring contact info styling */
+        .rduk-job-detail-page .contact-details {
+          display: flex !important;
+          flex-direction: column !important;
+        }
+
+        .rduk-job-detail-page .contact-name {
+          font-size: 17px !important;
+          font-weight: 800 !important;
+          color: #111111 !important;
+        }
+
+        .rduk-job-detail-page .contact-title {
+          font-size: 13px !important;
+          font-weight: 600 !important;
+          color: #536078 !important;
+          margin-top: 2px !important;
+          margin-bottom: 14px !important;
+        }
+
+        .rduk-job-detail-page .contact-links {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 8px !important;
+        }
+
+        .rduk-job-detail-page .contact-link {
+          display: inline-flex !important;
+          align-items: center !important;
+          gap: 8px !important;
+          color: #001B5E !important;
           text-decoration: none !important;
-          box-shadow: 0 8px 18px rgba(228, 169, 20, 0.28) !important;
-          display: inline-block !important;
+          font-weight: 700 !important;
+          font-size: 14px !important;
+          word-break: break-all !important;
+          transition: color 0.2s ease !important;
         }
 
+        .rduk-job-detail-page .contact-link:hover {
+          color: #E5B93C !important;
+          text-decoration: underline !important;
+        }
+
+        .rduk-job-detail-page .contact-icon {
+          width: 15px !important;
+          height: 15px !important;
+          color: #001B5E !important;
+          flex-shrink: 0 !important;
+          transition: color 0.2s ease !important;
+        }
+
+        .rduk-job-detail-page .contact-link:hover .contact-icon {
+          color: #E5B93C !important;
+        }
+
+        /* Mobile constraints and overrides */
         @media (max-width: 768px) {
           .rduk-job-detail-page {
-            padding: 35px 16px 45px !important;
+            padding: 24px 12px !important;
           }
-          
-          .rduk-job-detail-page .job-title-area h1 {
-            font-size: 36px !important;
+
+          .rduk-job-detail-page .job-card {
+            padding: 14px 16px !important;
           }
-          
-          .rduk-job-detail-page .job-location,
-          .rduk-job-detail-page .job-summary,
-          .rduk-job-detail-page .job-section h2 {
+
+          .rduk-job-detail-page .main-header-card h2 {
             font-size: 20px !important;
           }
-          
-          .rduk-job-detail-page .job-info-bar {
-            grid-template-columns: 1fr !important;
+
+          .rduk-job-detail-page .card-header-top {
+            flex-direction: column !important;
+            gap: 12px !important;
           }
-          
-          .rduk-job-detail-page .job-info-bar div {
-            border-right: 0 !important;
-            border-bottom: 1px solid #dfe5ef !important;
-            padding: 18px 20px !important;
+
+          .rduk-job-detail-page .job-side {
+            justify-content: flex-start !important;
+            min-width: 0 !important;
+            width: 100% !important;
           }
-          
-          .rduk-job-detail-page .job-info-bar div:last-child {
-            border-bottom: 0 !important;
+
+          .rduk-job-detail-page .rate-amount {
+            font-size: 20px !important;
           }
-          
-          .rduk-job-detail-page .job-section {
-            padding: 24px 20px !important;
-          }
-          
-          .rduk-job-detail-page .apply-panel {
+
+          .rduk-job-detail-page .card-header-bottom {
             flex-direction: column !important;
             align-items: stretch !important;
-            padding: 24px 20px !important;
-            gap: 20px !important;
+            gap: 12px !important;
+            margin-top: 14px !important;
+            padding-top: 14px !important;
           }
-          
-          .rduk-job-detail-page .apply-btn {
-            min-width: unset !important;
+
+          .rduk-job-detail-page .apply-now-btn {
             width: 100% !important;
+            padding: 10px 20px !important;
+            font-size: 15px !important;
+          }
+
+          .rduk-job-detail-page .details-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+            margin-top: 16px !important;
+          }
+
+          .rduk-job-detail-page .details-left,
+          .rduk-job-detail-page .details-right {
+            gap: 16px !important;
+          }
+
+          .rduk-job-detail-page .section-card h3,
+          .rduk-job-detail-page .sidebar-card h3 {
+            font-size: 18px !important;
+            margin-bottom: 12px !important;
+          }
+
+          .rduk-job-detail-page .bullet-list li,
+          .rduk-job-detail-page .section-content {
+            font-size: 14px !important;
           }
         }
         `
