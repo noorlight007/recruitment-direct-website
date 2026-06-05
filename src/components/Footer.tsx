@@ -140,7 +140,7 @@ export default function Footer() {
         }
         .rd-premium-head h2 {
           margin: 0 0 12px;
-          color: #fff;
+          color: #ffffff !important;
           font-size: clamp(28px, 3.5vw, 48px);
           line-height: 1.08;
           font-weight: 700;
@@ -149,7 +149,7 @@ export default function Footer() {
         .rd-premium-head p {
           max-width: 860px;
           margin: 0 auto;
-          color: #CBD5E1;
+          color: #CBD5E1 !important;
           font-size: 17px;
           line-height: 1.7;
           font-weight: 400;
@@ -199,23 +199,24 @@ export default function Footer() {
           height: auto;
           display: block;
           object-fit: contain;
+          margin: 0 auto;
         }
         .rd-card h3 {
           margin: 0 0 6px;
-          color: #fff;
+          color: #ffffff !important;
           font-size: 19px;
           line-height: 1.2;
           font-weight: 600;
         }
         .rd-card .rd-sub {
           margin: 0 0 4px;
-          color: #CBD5E1;
+          color: #CBD5E1 !important;
           font-size: 14px;
           line-height: 1.5;
         }
         .rd-card .rd-num {
           margin: 0 0 16px;
-          color: #60A5FA;
+          color: #60A5FA !important;
           font-size: 17px;
           font-weight: 500;
           line-height: 1.3;
@@ -296,7 +297,7 @@ export default function Footer() {
           text-transform: uppercase;
           letter-spacing: 2px;
           font-weight: 700;
-          color: #F4F4F2;
+          color: #F4F4F2 !important;
         }
 
         .footer-col h4::after {
@@ -311,7 +312,7 @@ export default function Footer() {
 
         .footer-col a {
           display: block;
-          color: #CFCFCB;
+          color: #CFCFCB !important;
           text-decoration: none;
           font-size: 14px;
           margin-bottom: 16px;
@@ -319,8 +320,8 @@ export default function Footer() {
         }
 
         .footer-col a:hover {
-          color: #ffffff;
-          text-shadow: 0 0 8px rgba(255,255,255,0.45);
+          color: #ffffff !important;
+          text-shadow: 0 0 8px rgba(255,255,255,0.45) !important;
         }
 
         /* Standardize footer buttons to match text links on desktop */
@@ -390,12 +391,20 @@ export default function Footer() {
           margin: 0 0 4px;
           font-size: 19px;
           letter-spacing: 0.5px;
-          color: #fff;
+          color: #ffffff !important;
+        }
+
+        .rd-ai-steve-card .rd-ai-text{
+          color: #ffffff !important;
+        }
+
+        .rd-ai-steve-card .rd-live{
+          color: #ffffff !important;
         }
 
         .rd-live {
           margin: 0 0 6px;
-          color: #57ff93;
+          color: #57ff93 !important;
           font-weight: 700;
           font-size: 12px;
         }
@@ -404,15 +413,15 @@ export default function Footer() {
           display: inline-block;
           width: 8px;
           height: 8px;
-          background: #30ff86;
+          background: #30ff86 !important;
           border-radius: 50%;
           margin-right: 6px;
-          box-shadow: 0 0 10px rgba(48, 255, 134, 0.9);
+          box-shadow: 0 0 10px rgba(48, 255, 134, 0.9) !important;
         }
 
         .rd-ai-text {
           margin: 0;
-          color: rgba(236, 244, 255, 0.78);
+          color: #ffffff !important;
           line-height: 1.4;
           font-size: 12px;
         }
@@ -541,28 +550,29 @@ export default function Footer() {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
+          justify-content: center;
           gap: 12px 24px;
           font-size: 13px;
-          color: #CFCFCB;
+          color: #CFCFCB !important;
         }
 
         .rd-footer-bottom .rd-footer-info .rd-sep {
-          color: rgba(255,255,255,0.18);
+          color: rgba(255,255,255,0.18) !important;
         }
 
         .rd-footer-info.mobile-only {
           display: none;
           margin: 20px 0 0;
           padding: 20px 0;
-          // border-top: 1px solid rgba(255,255,255,0.14);
-          // border-bottom: 1px solid rgba(255,255,255,0.14);
+          /* border-top: 1px solid rgba(255,255,255,0.14); */
+          /* border-bottom: 1px solid rgba(255,255,255,0.14); */
           width: 100%;
         }
 
         .rd-footer-bottom p {
           margin: 0;
           font-size: 13px;
-          color: rgba(255,255,255,0.35);
+          color: rgba(255,255,255,0.35) !important;
         }
 
         /* Mobile */
@@ -750,7 +760,7 @@ export default function Footer() {
 
           <div className="rd-trust">
             <span className="rd-trust-icon">🛡</span>
-            <span className="text-[#000]">Verified credentials. Transparent proof. Trusted delivery.</span>
+            <span className="text-gray-300">Verified credentials. Transparent proof. Trusted delivery.</span>
           </div>
 
           <footer className="rd-footer">
@@ -819,7 +829,7 @@ export default function Footer() {
                       <div>
                         <h3>Ask AI Steve</h3>
                         <p className="rd-live"><span></span> Live Now</p>
-                        <p className="rd-ai-text">Instant answers.<br />Smart AI calls.</p>
+                        <p className="rd-ai-text text-white">Instant answers.<br />Smart AI calls.</p>
                       </div>
                     </div>
 
