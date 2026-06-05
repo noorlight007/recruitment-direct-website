@@ -405,10 +405,16 @@ export default function JobSearchPage() {
           padding: 20px 26px !important;
           display: flex !important;
           justify-content: space-between !important;
-          align-items: center !important;
+          align-items: stretch !important;
           gap: 28px !important;
           box-shadow: 0 8px 22px rgba(6, 20, 47, 0.045) !important;
           transform: none !important;
+        }
+
+        .rduk-latest-jobs .job-main {
+          display: flex !important;
+          flex-direction: column !important;
+          flex: 1 !important;
         }
 
         .rduk-latest-jobs .job-main h2 {
@@ -440,6 +446,8 @@ export default function JobSearchPage() {
           font-size: 14px !important;
           color: #536078 !important;
           display: inline-block !important;
+          // margin-top: auto !important;
+          // padding-top: 14px !important;
         }
 
         .rduk-latest-jobs .job-tags {
@@ -465,10 +473,11 @@ export default function JobSearchPage() {
 
         .rduk-latest-jobs .job-side {
           display: flex !important;
-          align-items: center !important;
+          align-items: flex-end !important;
           gap: 28px !important;
           min-width: 250px !important;
           justify-content: flex-end !important;
+          padding-bottom: 2px !important;
         }
 
         .rduk-latest-jobs .rate-container {
