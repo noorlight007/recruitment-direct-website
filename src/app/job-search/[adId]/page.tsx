@@ -382,7 +382,7 @@ export default function JobDetailsPage() {
           </div>
         </main>
       ) : job ? (
-        <main className="flex-grow bg-[#f7f8fb] text-[#06142f] pt-2 md:pt-2">
+        <main className="flex-grow bg-[#f7f8fb] text-[#06142f] pt-2 md:pt-0">
           <section className="rduk-job-detail-page">
             <div className="job-detail-container">
 
@@ -583,7 +583,7 @@ export default function JobDetailsPage() {
         __html: `
         .rduk-job-detail-page {
           background: #f7f8fb !important;
-          padding: 60px 20px !important;
+          padding: 40px 20px !important;
           font-family: Inter, Arial, sans-serif !important;
           color: #111111 !important;
         }
@@ -740,9 +740,9 @@ export default function JobDetailsPage() {
           display: flex !important;
           align-items: center !important;
           gap: 20px !important;
-          margin-top: 20px !important;
-          padding-top: 20px !important;
-          border-top: 1px solid #e0e3ea !important;
+          margin-top: 5px !important;
+          padding-top: 5px !important;
+          // border-top: 1px solid #e0e3ea !important;
         }
 
         .rduk-job-detail-page .apply-now-btn {
