@@ -180,7 +180,7 @@ export default function ContactSection() {
 
         @media (max-width: 768px) {
             .rd-contact-section {
-                padding: 70px 20px;
+                padding: 20px 20px;
             }
 
             .rd-contact-cards {
@@ -194,7 +194,9 @@ export default function ContactSection() {
 
             .rd-contact-links {
                 flex-direction: column;
-                gap: 25px;
+                gap: 12px;
+                padding-top: 25px;
+                padding-bottom: 25px;
             }
 
             .rd-contact-section h2 {

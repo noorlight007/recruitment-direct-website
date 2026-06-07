@@ -258,10 +258,10 @@ const Index = () => {
           --rd-dark: #111111;
           --rd-white: #ffffff;
           --rd-offwhite: #f8f6f1;
-          --rd-gold: #c47a09;
-          --rd-gold-light: #f0b23a;
-          --rd-gold-dark: #8a5205;
-          --rd-border: #e4c486;
+          --rd-gold: #c89528;
+          --rd-gold-light: #f6d77d;
+          --rd-gold-dark: #8a6417;
+          --rd-border: #f7d98a;
           --rd-text: #171717;
           --rd-muted: #555555;
         }
@@ -358,10 +358,23 @@ const Index = () => {
         }
 
         .rd-team-page .btn.gold {
-          color: #ffffff !important;
-          background: linear-gradient(135deg, var(--rd-gold-light) 0%, var(--rd-gold) 45%, var(--rd-gold-dark) 100%) !important;
-          box-shadow: 0 8px 18px rgba(138, 82, 5, 0.35) !important;
-          border: none !important;
+          color: #071424 !important;
+          background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
+          border: 2px solid #f7d98a !important;
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.7),
+            inset 0 -2px 0 rgba(70,45,5,.35),
+            0 8px 18px rgba(184,134,11,.32) !important;
+          transition: all 0.25s ease !important;
+        }
+
+        .rd-team-page .btn.gold:hover {
+          filter: brightness(1.1) !important;
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.8),
+            inset 0 -2px 0 rgba(70,45,5,.4),
+            0 10px 22px rgba(184,134,11,.45) !important;
+          transform: translateY(-2px) !important;
         }
 
         .rd-team-page .btn.outline {
@@ -391,7 +404,7 @@ const Index = () => {
         .rd-team-page .benefits {
           padding: 55px 50px;
           text-align: center;
-          border-bottom: 1px solid #eadfcf;
+          border-bottom: 1px solid var(--rd-border) !important;
         }
 
         .rd-team-page .process h2,
@@ -510,7 +523,7 @@ const Index = () => {
           display: grid;
           grid-template-columns: 48% 52%;
           background: #ffffff;
-          border: 1px solid #eadfcf;
+          border: 1px solid var(--rd-border) !important;
           border-radius: 12px;
           overflow: hidden;
           box-shadow: 0 10px 28px rgba(0,0,0,0.08);
