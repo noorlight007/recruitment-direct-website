@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -11,12 +11,21 @@ import { api } from "@/services/api";
 interface FormErrors {
   company_name?: string;
   full_name?: string;
+  first_name?: string;
+  last_name?: string;
   phone_number?: string;
   job_title?: string;
   num_of_workers?: string;
   start_date?: string;
   location?: string;
   siteAndroles?: string;
+  workplace_type?: string;
+  contract_type?: string;
+  working_days?: string;
+  salary_min?: string;
+  salary_max?: string;
+  salary_per?: string;
+  qualifications?: string;
 }
 
 const fieldLabels: Record<string, string> = {
@@ -28,18 +37,34 @@ const fieldLabels: Record<string, string> = {
   start_date: "Start Date",
   location: "Location",
   siteAndroles: "Site & role details",
+  workplace_type: "Work Place Type",
+  contract_type: "Contract Type",
+  working_days: "Working Days",
+  salary_min: "Minimum Salary",
+  salary_max: "Maximum Salary",
+  salary_per: "Salary Per",
+  qualifications: "Specific Qualification Required",
 };
 
 const mapFieldToInputId = (field: string): string | null => {
   const mapping: Record<string, string> = {
     company_name: "company",
-    full_name: "contactName",
+    full_name: "firstName",
+    first_name: "firstName",
+    last_name: "lastName",
     phone_number: "phone",
     job_title: "jobTitles",
     num_of_workers: "workers",
     start_date: "startDate",
     location: "location",
     siteAndroles: "notes",
+    workplace_type: "workplaceType",
+    contract_type: "contractType",
+    working_days: "workingDays",
+    salary_min: "salaryMin",
+    salary_max: "salaryMax",
+    salary_per: "salaryPer",
+    qualifications: "qualifications",
   };
   return mapping[field] || null;
 };
@@ -59,6 +84,57 @@ export default function AIHireNowFormPage() {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorDetails, setErrorDetails] = useState<{ message: string; detail?: string } | null>(null);
 
+  const [selectedDays, setSelectedDays] = useState<string[]>([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const [selectedWorkplace, setSelectedWorkplace] = useState("");
+  const [isWorkplaceDropdownOpen, setIsWorkplaceDropdownOpen] = useState(false);
+
+  const [selectedContract, setSelectedContract] = useState("");
+  const [isContractDropdownOpen, setIsContractDropdownOpen] = useState(false);
+
+  const [selectedSalaryPer, setSelectedSalaryPer] = useState("");
+  const [isSalaryPerDropdownOpen, setIsSalaryPerDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      const workingDaysContainer = document.getElementById("workingDaysContainer");
+      if (workingDaysContainer && !workingDaysContainer.contains(target)) {
+        setIsDropdownOpen(false);
+      }
+
+      const workplaceContainer = document.getElementById("workplaceTypeContainer");
+      if (workplaceContainer && !workplaceContainer.contains(target)) {
+        setIsWorkplaceDropdownOpen(false);
+      }
+
+      const contractContainer = document.getElementById("contractTypeContainer");
+      if (contractContainer && !contractContainer.contains(target)) {
+        setIsContractDropdownOpen(false);
+      }
+
+      const salaryPerContainer = document.getElementById("salaryPerContainer");
+      if (salaryPerContainer && !salaryPerContainer.contains(target)) {
+        setIsSalaryPerDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const toggleDay = (day: string) => {
+    setSelectedDays((prev) =>
+      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+    );
+    if (formErrors.working_days) {
+      setFormErrors((prev) => ({ ...prev, working_days: undefined }));
+    }
+  };
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setMessage("");
@@ -66,15 +142,72 @@ export default function AIHireNowFormPage() {
     setFormErrors({});
 
     const formData = new FormData(e.currentTarget);
+    const salaryMinStr = formData.get("salaryMin") as string;
+    const salaryMaxStr = formData.get("salaryMax") as string;
+
+    // Client-side Frontend Validation
+    const errors: FormErrors = {};
+    const company = (formData.get("company") as string || "").trim();
+    const firstName = (formData.get("firstName") as string || "").trim();
+    const lastName = (formData.get("lastName") as string || "").trim();
+    const phone = (formData.get("phone") as string || "").trim();
+    const jobTitles = (formData.get("jobTitles") as string || "").trim();
+    const workersStr = formData.get("workers") as string;
+    const startDate = formData.get("startDate") as string;
+    const location = (formData.get("location") as string || "").trim();
+    const notes = (formData.get("notes") as string || "").trim();
+    const qualifications = (formData.get("qualifications") as string || "").trim();
+
+    if (!company) errors.company_name = "Missing required field: Company Name";
+    if (!firstName) errors.first_name = "Missing required field: First Name";
+    if (!lastName) errors.last_name = "Missing required field: Last Name";
+    if (!phone) errors.phone_number = "Missing required field: Phone Number";
+    if (!jobTitles) errors.job_title = "Missing required field: Job Title";
+    // if (!workersStr || parseInt(workersStr) <= 0) errors.num_of_workers = "Missing required field: Number of Workers";
+    if (!startDate) errors.start_date = "Missing required field: Start Date";
+    if (!location) errors.location = "Missing required field: Location";
+    if (!notes) errors.siteAndroles = "Missing required field: Site & role details";
+    if (!selectedWorkplace) errors.workplace_type = "Missing required field: Work Place Type";
+    if (!selectedContract) errors.contract_type = "Missing required field: Contract Type";
+    if (selectedDays.length === 0) errors.working_days = "Missing required field: Working Days";
+    if (!salaryMinStr) errors.salary_min = "Missing required field: Minimum Salary";
+    if (!salaryMaxStr) errors.salary_max = "Missing required field: Maximum Salary";
+    if (!selectedSalaryPer) errors.salary_per = "Missing required field: Salary Per";
+    if (!qualifications) errors.qualifications = "Missing required field: Specific Qualification Required";
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      setIsSubmitting(false);
+
+      // Auto scroll/focus first invalid field
+      const firstErrorKey = Object.keys(errors)[0];
+      const elementId = mapFieldToInputId(firstErrorKey);
+      if (elementId) {
+        const el = document.getElementById(elementId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+          el.focus();
+        }
+      }
+      return;
+    }
+
     const payload = {
       company_name: formData.get("company") as string,
-      full_name: formData.get("contactName") as string,
+      full_name: `${formData.get("firstName") || ""} ${formData.get("lastName") || ""}`.trim(),
       phone_number: formData.get("phone") as string,
       job_title: formData.get("jobTitles") as string,
       num_of_workers: parseInt(formData.get("workers") as string) || 0,
       start_date: formData.get("startDate") as string,
       location: formData.get("location") as string,
       siteAndroles: formData.get("notes") as string,
+      workplace_type: formData.get("workplaceType") as string,
+      contract_type: formData.get("contractType") as string,
+      working_days: selectedDays,
+      salary_min: salaryMinStr ? parseFloat(salaryMinStr) : 0,
+      salary_max: salaryMaxStr ? parseFloat(salaryMaxStr) : 0,
+      salary_per: formData.get("salaryPer") as string,
+      qualifications: formData.get("qualifications") as string,
     };
 
     try {
@@ -88,6 +221,14 @@ export default function AIHireNowFormPage() {
         });
         setShowSuccessModal(true);
         setMessage("");
+        setSelectedDays([]);
+        setIsDropdownOpen(false);
+        setSelectedWorkplace("");
+        setSelectedContract("");
+        setSelectedSalaryPer("");
+        setIsWorkplaceDropdownOpen(false);
+        setIsContractDropdownOpen(false);
+        setIsSalaryPerDropdownOpen(false);
         (e.target as HTMLFormElement).reset();
       } else if (result.error === "Missing required fields" && Array.isArray(result.fields)) {
         // Validation failure from server
@@ -183,20 +324,49 @@ export default function AIHireNowFormPage() {
                 </div>
 
                 <div className="ai-hire-now-field">
-                  <label htmlFor="contactName">Your Name</label>
+                  <label htmlFor="firstName">Your First Name</label>
                   <input
-                    id="contactName"
-                    name="contactName"
+                    id="firstName"
+                    name="firstName"
                     type="text"
-                    placeholder="Your full name"
-                    //required
-                    className={formErrors.full_name ? "has-error" : ""}
+                    placeholder="First name"
+                    className={formErrors.first_name || formErrors.full_name ? "has-error" : ""}
                     onChange={() => {
-                      if (formErrors.full_name) {
-                        setFormErrors((prev) => ({ ...prev, full_name: undefined }));
+                      if (formErrors.first_name || formErrors.full_name) {
+                        setFormErrors((prev) => ({
+                          ...prev,
+                          first_name: undefined,
+                          full_name: undefined,
+                        }));
                       }
                     }}
                   />
+                  {formErrors.first_name && (
+                    <span className="error-message">⚠️ {formErrors.first_name}</span>
+                  )}
+                </div>
+
+                <div className="ai-hire-now-field">
+                  <label htmlFor="lastName">Your Last Name</label>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    placeholder="Last name"
+                    className={formErrors.last_name || formErrors.full_name ? "has-error" : ""}
+                    onChange={() => {
+                      if (formErrors.last_name || formErrors.full_name) {
+                        setFormErrors((prev) => ({
+                          ...prev,
+                          last_name: undefined,
+                          full_name: undefined,
+                        }));
+                      }
+                    }}
+                  />
+                  {formErrors.last_name && (
+                    <span className="error-message">⚠️ {formErrors.last_name}</span>
+                  )}
                   {formErrors.full_name && (
                     <span className="error-message">⚠️ {formErrors.full_name}</span>
                   )}
@@ -283,6 +453,280 @@ export default function AIHireNowFormPage() {
                 </div>
               </div>
 
+              <div className="ai-hire-now-grid ai-hire-now-grid-two-col">
+                <div className="ai-hire-now-field" id="workplaceTypeContainer" style={{ position: 'relative' }}>
+                  <label htmlFor="workplaceType">Work Place Type</label>
+                  <div className="relative">
+                    <button
+                      id="workplaceType"
+                      type="button"
+                      className={`multiselect-trigger ${formErrors.workplace_type ? "has-error" : ""}`}
+                      onClick={() => setIsWorkplaceDropdownOpen(!isWorkplaceDropdownOpen)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isWorkplaceDropdownOpen}
+                    >
+                      {selectedWorkplace === "" ? (
+                        <span className="placeholder-text">Select Work Place Type</span>
+                      ) : (
+                        <span className="selected-value">{selectedWorkplace}</span>
+                      )}
+                      <span className="dropdown-arrow"></span>
+                    </button>
+
+                    {isWorkplaceDropdownOpen && (
+                      <div className="multiselect-dropdown" role="listbox">
+                        {[
+                          { label: "Select Work Place Type", value: "" },
+                          { label: "On-Site", value: "On-Site" },
+                          { label: "Hybrid", value: "Hybrid" },
+                          { label: "Fully Remote", value: "Fully Remote" }
+                        ].map((opt) => {
+                          const isSelected = selectedWorkplace === opt.value;
+                          return (
+                            <div
+                              key={opt.value}
+                              className={`multiselect-option ${isSelected ? "selected" : ""}`}
+                              role="option"
+                              aria-selected={isSelected}
+                              onClick={() => {
+                                setSelectedWorkplace(opt.value);
+                                setIsWorkplaceDropdownOpen(false);
+                                if (formErrors.workplace_type) {
+                                  setFormErrors((prev) => ({ ...prev, workplace_type: undefined }));
+                                }
+                              }}
+                            >
+                              <span className="option-text">{opt.label}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                  <input type="hidden" name="workplaceType" value={selectedWorkplace} />
+                  {formErrors.workplace_type && (
+                    <span className="error-message">⚠️ {formErrors.workplace_type}</span>
+                  )}
+                </div>
+
+                <div className="ai-hire-now-field" id="contractTypeContainer" style={{ position: 'relative' }}>
+                  <label htmlFor="contractType">Contract Type</label>
+                  <div className="relative">
+                    <button
+                      id="contractType"
+                      type="button"
+                      className={`multiselect-trigger ${formErrors.contract_type ? "has-error" : ""}`}
+                      onClick={() => setIsContractDropdownOpen(!isContractDropdownOpen)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isContractDropdownOpen}
+                    >
+                      {selectedContract === "" ? (
+                        <span className="placeholder-text">Select Contract Type</span>
+                      ) : (
+                        <span className="selected-value">
+                          {selectedContract === "418" ? "Temporary" : selectedContract === "417" ? "Contract" : "Permanent"}
+                        </span>
+                      )}
+                      <span className="dropdown-arrow"></span>
+                    </button>
+
+                    {isContractDropdownOpen && (
+                      <div className="multiselect-dropdown" role="listbox">
+                        {[
+                          { label: "Select Contract Type", value: "" },
+                          { label: "Temporary", value: "418" },
+                          { label: "Contract", value: "417" },
+                          { label: "Permanent", value: "416" }
+                        ].map((opt) => {
+                          const isSelected = selectedContract === opt.value;
+                          return (
+                            <div
+                              key={opt.value}
+                              className={`multiselect-option ${isSelected ? "selected" : ""}`}
+                              role="option"
+                              aria-selected={isSelected}
+                              onClick={() => {
+                                setSelectedContract(opt.value);
+                                setIsContractDropdownOpen(false);
+                                if (formErrors.contract_type) {
+                                  setFormErrors((prev) => ({ ...prev, contract_type: undefined }));
+                                }
+                              }}
+                            >
+                              <span className="option-text">{opt.label}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                  <input type="hidden" name="contractType" value={selectedContract} />
+                  {formErrors.contract_type && (
+                    <span className="error-message">⚠️ {formErrors.contract_type}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="ai-hire-now-grid">
+                <div className="ai-hire-now-field">
+                  <label htmlFor="salaryMin">Minimum Salary</label>
+                  <input
+                    id="salaryMin"
+                    name="salaryMin"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="e.g. 12.50"
+                    className={formErrors.salary_min ? "has-error" : ""}
+                    onChange={() => {
+                      if (formErrors.salary_min) {
+                        setFormErrors((prev) => ({ ...prev, salary_min: undefined }));
+                      }
+                    }}
+                  />
+                  {formErrors.salary_min && (
+                    <span className="error-message">⚠️ {formErrors.salary_min}</span>
+                  )}
+                </div>
+
+                <div className="ai-hire-now-field">
+                  <label htmlFor="salaryMax">Maximum Salary</label>
+                  <input
+                    id="salaryMax"
+                    name="salaryMax"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    placeholder="e.g. 15.00"
+                    className={formErrors.salary_max ? "has-error" : ""}
+                    onChange={() => {
+                      if (formErrors.salary_max) {
+                        setFormErrors((prev) => ({ ...prev, salary_max: undefined }));
+                      }
+                    }}
+                  />
+                  {formErrors.salary_max && (
+                    <span className="error-message">⚠️ {formErrors.salary_max}</span>
+                  )}
+                </div>
+
+                <div className="ai-hire-now-field" id="salaryPerContainer" style={{ position: 'relative' }}>
+                  <label htmlFor="salaryPer">Salary Per</label>
+                  <div className="relative">
+                    <button
+                      id="salaryPer"
+                      type="button"
+                      className={`multiselect-trigger ${formErrors.salary_per ? "has-error" : ""}`}
+                      onClick={() => setIsSalaryPerDropdownOpen(!isSalaryPerDropdownOpen)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isSalaryPerDropdownOpen}
+                    >
+                      {selectedSalaryPer === "" ? (
+                        <span className="placeholder-text">Select Period</span>
+                      ) : (
+                        <span className="selected-value">{selectedSalaryPer}</span>
+                      )}
+                      <span className="dropdown-arrow"></span>
+                    </button>
+
+                    {isSalaryPerDropdownOpen && (
+                      <div className="multiselect-dropdown" role="listbox">
+                        {[
+                          { label: "Select Period", value: "" },
+                          { label: "Hour", value: "Hour" },
+                          { label: "Day", value: "Day" },
+                          { label: "Week", value: "Week" },
+                          { label: "Month", value: "Month" },
+                          { label: "Year", value: "Year" }
+                        ].map((opt) => {
+                          const isSelected = selectedSalaryPer === opt.value;
+                          return (
+                            <div
+                              key={opt.value}
+                              className={`multiselect-option ${isSelected ? "selected" : ""}`}
+                              role="option"
+                              aria-selected={isSelected}
+                              onClick={() => {
+                                setSelectedSalaryPer(opt.value);
+                                setIsSalaryPerDropdownOpen(false);
+                                if (formErrors.salary_per) {
+                                  setFormErrors((prev) => ({ ...prev, salary_per: undefined }));
+                                }
+                              }}
+                            >
+                              <span className="option-text">{opt.label}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                  <input type="hidden" name="salaryPer" value={selectedSalaryPer} />
+                  {formErrors.salary_per && (
+                    <span className="error-message">⚠️ {formErrors.salary_per}</span>
+                  )}
+                </div>
+
+                <div className="ai-hire-now-field ai-hire-now-field-span-3" id="workingDaysContainer" style={{ position: 'relative' }}>
+                  <label id="workingDaysLabel">Working Days</label>
+                  <div className="relative">
+                    <button
+                      type="button"
+                      className={`multiselect-trigger ${formErrors.working_days ? "has-error" : ""}`}
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isDropdownOpen}
+                    >
+                      {selectedDays.length === 0 ? (
+                        <span className="placeholder-text">Select Working Days</span>
+                      ) : (
+                        <div className="selected-tags">
+                          {selectedDays.map((day) => (
+                            <span key={day} className="selected-tag">
+                              {day}
+                              <span
+                                className="remove-tag"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleDay(day);
+                                }}
+                                role="button"
+                                aria-label={`Remove ${day}`}
+                              >
+                                &times;
+                              </span>
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <span className="dropdown-arrow"></span>
+                    </button>
+
+                    {isDropdownOpen && (
+                      <div className="multiselect-dropdown" role="listbox" aria-multiselectable="true">
+                        {["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => {
+                          const isSelected = selectedDays.includes(day);
+                          return (
+                            <div
+                              key={day}
+                              className={`multiselect-option ${isSelected ? "selected" : ""}`}
+                              role="option"
+                              aria-selected={isSelected}
+                              onClick={() => toggleDay(day)}
+                            >
+                              <span className="option-text">{day}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                  {formErrors.working_days && (
+                    <span className="error-message" style={{ marginTop: '8px' }}>⚠️ {formErrors.working_days}</span>
+                  )}
+                </div>
+              </div>
+
               <div className="ai-hire-now-grid ai-hire-now-grid-bottom">
                 <div className="ai-hire-now-field ai-hire-now-field-wide">
                   <label htmlFor="location">Location</label>
@@ -322,6 +766,25 @@ export default function AIHireNowFormPage() {
                     <span className="error-message">⚠️ {formErrors.siteAndroles}</span>
                   )}
                 </div>
+              </div>
+
+              <div className="ai-hire-now-field ai-hire-now-field-full-width" style={{ marginTop: '28px', marginBottom: '28px' }}>
+                <label htmlFor="qualifications">Specific Qualification Required</label>
+                <textarea
+                  id="qualifications"
+                  name="qualifications"
+                  rows={4}
+                  placeholder="e.g. CSCS card required, 2 years experience minimum"
+                  className={formErrors.qualifications ? "has-error" : ""}
+                  onChange={() => {
+                    if (formErrors.qualifications) {
+                      setFormErrors((prev) => ({ ...prev, qualifications: undefined }));
+                    }
+                  }}
+                ></textarea>
+                {formErrors.qualifications && (
+                  <span className="error-message">⚠️ {formErrors.qualifications}</span>
+                )}
               </div>
 
               <div className="ai-hire-now-actions">
@@ -469,13 +932,224 @@ export default function AIHireNowFormPage() {
           margin-bottom: 28px;
         }
 
-        .ai-hire-now-grid-bottom {
+        .ai-hire-now-grid-bottom,
+        .ai-hire-now-grid-two-col {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .ai-hire-now-field {
           display: flex;
           flex-direction: column;
+        }
+
+        .ai-hire-now-field-span-3 {
+          grid-column: span 3;
+        }
+
+        .ai-hire-now-field-full-width {
+          width: 100%;
+        }
+
+        .ai-hire-now-field select {
+          width: 100%;
+          border: 1px solid #d9dde5;
+          border-radius: 14px;
+          background: #ffffff;
+          color: #111111;
+          font-family: inherit;
+          font-size: 1rem;
+          line-height: 1.5;
+          padding: 18px 18px;
+          outline: none;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+          box-sizing: border-box;
+          appearance: none;
+          -webkit-appearance: none;
+          background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+          background-position: right 1rem center;
+          background-repeat: no-repeat;
+          background-size: 1.5em 1.5em;
+          padding-right: 2.5rem;
+          cursor: pointer;
+        }
+
+        .ai-hire-now-field select option {
+          background-color: #ffffff !important;
+          color: #111111 !important;
+          font-family: inherit;
+          font-size: 1rem;
+        }
+
+        .ai-hire-now-field select:focus {
+          border-color: #111111;
+          box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.06);
+        }
+
+        .ai-hire-now-field select.has-error {
+          border-color: #ef4444 !important;
+          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+        }
+
+        .multiselect-trigger {
+          all: unset !important;
+          width: 100% !important;
+          height: auto !important;
+          min-height: 58px !important;
+          border: 1px solid #d9dde5 !important;
+          border-radius: 14px !important;
+          background: #ffffff !important;
+          color: #111111 !important;
+          font-family: inherit !important;
+          font-size: 1rem !important;
+          line-height: 1.5 !important;
+          padding: 14px 18px !important;
+          outline: none !important;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+          box-sizing: border-box !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          text-align: left !important;
+          cursor: pointer !important;
+          box-shadow: none !important;
+          text-transform: none !important;
+          letter-spacing: normal !important;
+          filter: none !important;
+        }
+
+        .multiselect-trigger::before,
+        .multiselect-trigger::after {
+          display: none !important;
+          content: none !important;
+        }
+
+        .multiselect-trigger:hover {
+          transform: none !important;
+          filter: none !important;
+          box-shadow: none !important;
+          background: #ffffff !important;
+          border-color: #d9dde5 !important;
+        }
+
+        .multiselect-trigger:active {
+          transform: none !important;
+          filter: none !important;
+          box-shadow: none !important;
+          background: #ffffff !important;
+        }
+
+        .multiselect-trigger:focus {
+          border-color: #111111 !important;
+          box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.06) !important;
+        }
+
+        .multiselect-trigger.has-error {
+          border-color: #ef4444 !important;
+          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+        }
+
+        .placeholder-text {
+          color: #8a8f98;
+        }
+
+        .selected-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+
+        .selected-tag {
+          display: inline-flex;
+          align-items: center;
+          background: #f3f4f6;
+          color: #1f2937;
+          font-size: 0.875rem;
+          font-weight: 500;
+          padding: 4px 10px;
+          border-radius: 8px;
+          border: 1px solid #e5e7eb;
+          transition: all 0.15s ease;
+        }
+
+        .selected-tag:hover {
+          background: #e5e7eb;
+        }
+
+        .remove-tag {
+          margin-left: 6px;
+          color: #9ca3af;
+          font-weight: bold;
+          font-size: 1.1rem;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+        }
+
+        .remove-tag:hover {
+          color: #ef4444;
+        }
+
+        .dropdown-arrow {
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 5px solid #6b7280;
+          margin-left: 10px;
+          transition: transform 0.2s ease;
+        }
+
+        .multiselect-dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          margin-top: 6px;
+          background: #ffffff;
+          border: 1px solid #e5e7eb;
+          border-radius: 14px;
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+          z-index: 50;
+          max-height: 260px;
+          overflow-y: auto;
+          padding: 8px;
+          box-sizing: border-box;
+          animation: slideDown 0.2s ease-out;
+        }
+
+        .multiselect-option {
+          display: flex;
+          align-items: center;
+          padding: 10px 14px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 0.15s ease, color 0.15s ease;
+          color: #111111;
+          font-weight: 500;
+          background: #ffffff;
+        }
+
+        .multiselect-option:hover {
+          background: #f3f4f6;
+          color: #111111;
+        }
+
+        .multiselect-option.selected {
+          background: #e5e7eb;
+          color: #111111;
+          font-weight: 600;
+        }
+
+        .option-text {
+          font-size: 0.95rem;
+          user-select: none;
+        }
+
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         .ai-hire-now-field label {
@@ -589,8 +1263,13 @@ export default function AIHireNowFormPage() {
           }
 
           .ai-hire-now-grid,
-          .ai-hire-now-grid-bottom {
+          .ai-hire-now-grid-bottom,
+          .ai-hire-now-grid-two-col {
             grid-template-columns: 1fr;
+          }
+
+          .ai-hire-now-field-span-3 {
+            grid-column: span 1;
           }
         }
 
@@ -613,9 +1292,19 @@ export default function AIHireNowFormPage() {
           }
 
           .ai-hire-now-field input,
+          .ai-hire-now-field select,
+          .multiselect-trigger,
           .ai-hire-now-field textarea {
-            padding: 16px 16px;
-            font-size: 16px;
+            padding: 16px 16px !important;
+            font-size: 16px !important;
+          }
+
+          .ai-hire-now-field select {
+            padding-right: 2.5rem !important;
+          }
+
+          .multiselect-trigger {
+            min-height: 52px !important;
           }
 
           .ai-hire-now-trust {
