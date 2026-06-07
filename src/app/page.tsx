@@ -659,7 +659,8 @@ const Index = () => {
           .rd-team-page .hero-image img {
             width: 100% !important;
             height: 100% !important;
-            object-fit: fixed !important;
+            object-fit: cover !important;
+            object-position: center !important;
           }
 
           .rd-team-page .process,
