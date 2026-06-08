@@ -232,15 +232,15 @@ export default function Footer() {
         .trust-strip {
           background: linear-gradient(135deg, #07111f, #0d1b2e) !important;
           border: 1px solid rgba(0, 153, 255, 0.35) !important;
-          border-radius: 18px !important;
-          padding: 34px 24px !important;
-          margin: 40px 22px !important;
+          border-radius: 11px !important; /* 40% size reduction (originally 18px) */
+          padding: 20.4px 14.4px !important; /* 40% size reduction (originally 34px 24px) */
+          margin: 24px 13.2px !important; /* 40% size reduction (originally 40px 22px) */
           text-align: center !important;
-          box-shadow: 0 18px 45px rgba(0,0,0,0.35) !important;
+          box-shadow: 0 10.8px 27px rgba(0,0,0,0.35) !important; /* 40% size reduction (originally 18px 45px) */
         }
         .trust-strip p {
           color: #ffffff !important;
-          font-size: 24px !important;
+          font-size: 14.4px !important; /* 40% size reduction (originally 24px) */
           line-height: 1.45 !important;
           font-weight: 500 !important;
           margin: 0 !important;
@@ -269,7 +269,7 @@ export default function Footer() {
           gap: 64px;
           align-items: flex-start;
           border-top: 1px solid rgba(255,255,255,0.18);
-          padding-top: 48px;
+          padding-top: 40px;
           max-width: 1200px;
           margin: 0 auto;
         }
@@ -280,7 +280,7 @@ export default function Footer() {
           grid-template-columns: repeat(4, 1fr);
           gap: 40px;
           flex: 1;
-          margin-top: 40px;
+          margin-top: 5px;
         }
 
         .footer-col {

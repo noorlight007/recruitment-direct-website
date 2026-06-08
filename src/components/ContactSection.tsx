@@ -19,7 +19,7 @@ export default function ContactSection() {
               <p className="standard-body-p">
                 Order Staff 24/7. Powered by AI.
               </p>
-              <a href="/ai-hire-now" className="rd-btn standard-cta-btn">
+              <a href="/ai-hire-now" className="rd-contact-card-btn standard-cta-btn">
                 Hire Now →
               </a>
             </div>
@@ -29,7 +29,7 @@ export default function ContactSection() {
               <p className="standard-body-p">
                 Temporary, Contract & Permanent.
               </p>
-              <a href="/contact" className="rd-btn standard-cta-btn">
+              <a href="/contact" className="rd-contact-card-btn standard-cta-btn">
                 Request Quote →
               </a>
             </div>
@@ -126,7 +126,7 @@ export default function ContactSection() {
 
         .rd-contact-card h3 {
             color: var(--rd-black);
-            font-size: 32px;
+            font-size: 24px !important; /* Reduced by 25% (originally 32px) */
             font-weight: 800;
             margin-bottom: 20px;
         }
@@ -138,23 +138,33 @@ export default function ContactSection() {
             margin-bottom: 35px;
         }
 
-        .rd-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 32px;
-            border: 1.5px solid var(--rd-brass);
-            border-radius: 12px;
-            color: var(--rd-black);
-            text-decoration: none;
-            font-weight: 700;
-            transition: all .3s ease;
+        .rd-contact-card-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 260px !important;
+            height: 64px !important;
+            line-height: 64px !important;
+            padding: 0 !important;
+            border-radius: 8px !important;
+            font-size: 18px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.2px !important;
+            cursor: pointer !important;
+            transition: all .25s ease !important;
+            text-decoration: none !important;
+            border: 1.5px solid var(--rd-brass) !important;
+            color: var(--rd-black) !important;
+            background: transparent !important;
+            box-sizing: border-box !important;
         }
 
-        .rd-btn:hover {
-            background: var(--rd-black);
-            border-color: var(--rd-black);
-            color: #ffffff;
+        .rd-contact-card-btn:hover {
+            background: var(--rd-black) !important;
+            border-color: var(--rd-black) !important;
+            color: #ffffff !important;
+            transform: translateY(-2px) !important;
         }
 
         .rd-contact-links {
@@ -204,6 +214,15 @@ export default function ContactSection() {
                 gap: 12px;
                 padding-top: 25px;
                 padding-bottom: 25px;
+            }
+
+            .rd-contact-card-btn {
+                width: 100% !important;
+                max-width: 280px !important;
+                height: 52px !important;
+                line-height: 52px !important;
+                font-size: 15px !important;
+                margin: 0 auto !important;
             }
 
             .rd-contact-section h2 {

@@ -68,6 +68,7 @@ const Index = () => {
           }
           .rd-hero .rd-btn {
             font-weight: 800 !important;
+            font-size: 18px !important;
             height: 64px !important;
             line-height: 64px !important;
             padding: 0 !important;
@@ -123,6 +124,7 @@ const Index = () => {
             .rd-hero .rd-btn {
               height: 52px !important;
               line-height: 52px !important;
+              font-size: 15px !important;
             }
             .rd-btn-q {
               font-size: 14.5px !important;
@@ -150,7 +152,7 @@ const Index = () => {
             <div className="rd-container rd-hero-content">
               <h1 className="standard-h1">Recruitment Across the UK</h1>
               <h2 className="standard-h2">Trusted Supplier Since 2006</h2>
-              <p className="standard-body-p">Connecting employers with quality temporary, contract and permanent staff across the UK.</p>
+              <p className="standard-body-p">Connecting employers fast with reliable temporary, contract and permanent staff.</p>
 
               <div className="rd-button-grid" style={{ justifyContent: "center" }}>
                 <div className="rd-hero-btn-col">
@@ -428,6 +430,10 @@ const Index = () => {
 
         .rd-team-page .hero-buttons div {
           text-align: center;
+          width: 260px !important;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .rd-team-page .hero-buttons small {
@@ -441,15 +447,18 @@ const Index = () => {
           display: inline-flex !important;
           align-items: center !important;
           justify-content: center !important;
-          min-width: 210px !important;
+          width: 100% !important;
+          min-width: 0 !important;
           height: 64px !important;
-          padding: 0 30px !important;
-          border-radius: 7px !important;
+          line-height: 64px !important;
+          padding: 0 !important;
+          border-radius: 8px !important;
           font-weight: 800 !important;
           font-size: 18px !important;
           text-decoration: none !important;
           letter-spacing: 0.2px !important;
           cursor: pointer !important;
+          text-transform: uppercase !important;
         }
 
         .rd-team-page .btn.gold {
@@ -547,7 +556,10 @@ const Index = () => {
         }
 
         .rd-team-page .process-btn {
+          width: auto !important;
           min-width: 360px !important;
+          max-width: 100% !important;
+          display: inline-flex !important;
         }
 
         .rd-team-page .benefits {
@@ -734,12 +746,16 @@ const Index = () => {
           .rd-team-page .hero-buttons div {
             text-align: center !important;
             width: 100% !important;
+            max-width: 280px !important;
+            margin: 0 auto !important;
           }
 
           .rd-team-page .btn {
             width: 100% !important;
             min-width: 0 !important;
-            height: 56px !important;
+            height: 52px !important;
+            line-height: 52px !important;
+            font-size: 15px !important;
           }
 
           .rd-team-page .hero-image {
