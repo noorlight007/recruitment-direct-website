@@ -67,7 +67,6 @@ const Index = () => {
             text-align: center !important;
           }
           .rd-hero .rd-btn {
-            font-size: 26px !important;
             font-weight: 800 !important;
             height: 64px !important;
             line-height: 64px !important;
@@ -122,7 +121,6 @@ const Index = () => {
               max-width: 280px !important;
             }
             .rd-hero .rd-btn {
-              font-size: 21px !important;
               height: 52px !important;
               line-height: 52px !important;
             }

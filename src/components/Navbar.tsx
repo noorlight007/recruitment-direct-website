@@ -155,7 +155,10 @@ export default function Navbar() {
                                 target={subItem.link?.startsWith("http") ? "_blank" : undefined}
                                 rel={subItem.link?.startsWith("http") ? "noopener noreferrer" : undefined}
                                 onClick={(e) => {
-                                  if (subItem.link === "#play-video") {
+                                  if (subItem.title === "Ask AI Steve") {
+                                    e.preventDefault();
+                                    window.dispatchEvent(new CustomEvent('open-ai-steve'));
+                                  } else if (subItem.link === "#play-video") {
                                     e.preventDefault();
                                     setIsVideoOpen(true);
                                   }
@@ -287,7 +290,10 @@ export default function Navbar() {
                                   key={subItem.title}
                                   href={subItem.link}
                                   onClick={(e) => {
-                                    if (subItem.link === "#play-video") {
+                                    if (subItem.title === "Ask AI Steve") {
+                                      e.preventDefault();
+                                      window.dispatchEvent(new CustomEvent('open-ai-steve'));
+                                    } else if (subItem.link === "#play-video") {
                                       e.preventDefault();
                                       setIsVideoOpen(true);
                                     }

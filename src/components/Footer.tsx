@@ -229,20 +229,22 @@ export default function Footer() {
           font-size: 22px;
           line-height: 1;
         }
-        .rd-trust {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 14px;
-          padding-bottom: 40px;
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 15px;
-          text-align: center;
+        .trust-strip {
+          background: linear-gradient(135deg, #07111f, #0d1b2e) !important;
+          border: 1px solid rgba(0, 153, 255, 0.35) !important;
+          border-radius: 18px !important;
+          padding: 34px 24px !important;
+          margin: 40px 22px !important;
+          text-align: center !important;
+          box-shadow: 0 18px 45px rgba(0,0,0,0.35) !important;
         }
-        .rd-trust-icon {
-          color: #5ea8ff;
-          font-size: 20px;
-          line-height: 1;
+        .trust-strip p {
+          color: #ffffff !important;
+          font-size: 24px !important;
+          line-height: 1.45 !important;
+          font-weight: 500 !important;
+          margin: 0 !important;
+          letter-spacing: 0.3px !important;
         }
         .rd-footer {
           background: transparent !important;
@@ -758,9 +760,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="rd-trust">
-            <span className="rd-trust-icon">🛡</span>
-            <span className="text-gray-300">Verified credentials. Transparent proof. Trusted delivery.</span>
+          <div className="trust-strip">
+            <p>Verified credentials. Transparent proof. Trusted delivery.</p>
           </div>
 
           <footer className="rd-footer">
