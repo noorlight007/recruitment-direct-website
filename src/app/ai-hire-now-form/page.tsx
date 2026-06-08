@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle, User, Briefcase, MapPin, Sparkles, ChevronDown, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
@@ -10,6 +10,7 @@ import { api } from "@/services/api";
 
 interface FormErrors {
   company_name?: string;
+  email?: string;
   full_name?: string;
   first_name?: string;
   last_name?: string;
@@ -30,6 +31,7 @@ interface FormErrors {
 
 const fieldLabels: Record<string, string> = {
   company_name: "Company Name",
+  email: "Email Address",
   full_name: "Full Name",
   phone_number: "Phone Number",
   job_title: "Job Title",
@@ -49,6 +51,7 @@ const fieldLabels: Record<string, string> = {
 const mapFieldToInputId = (field: string): string | null => {
   const mapping: Record<string, string> = {
     company_name: "company",
+    email: "email",
     full_name: "firstName",
     first_name: "firstName",
     last_name: "lastName",
@@ -150,6 +153,7 @@ export default function AIHireNowFormPage() {
     const company = (formData.get("company") as string || "").trim();
     const firstName = (formData.get("firstName") as string || "").trim();
     const lastName = (formData.get("lastName") as string || "").trim();
+    const email = (formData.get("email") as string || "").trim();
     const phone = (formData.get("phone") as string || "").trim();
     const jobTitles = (formData.get("jobTitles") as string || "").trim();
     const workersStr = formData.get("workers") as string;
@@ -161,6 +165,7 @@ export default function AIHireNowFormPage() {
     if (!company) errors.company_name = "Missing required field: Company Name";
     if (!firstName) errors.first_name = "Missing required field: First Name";
     if (!lastName) errors.last_name = "Missing required field: Last Name";
+    if (!email) errors.email = "Missing required field: Email Address";
     if (!phone) errors.phone_number = "Missing required field: Phone Number";
     if (!jobTitles) errors.job_title = "Missing required field: Job Title";
     // if (!workersStr || parseInt(workersStr) <= 0) errors.num_of_workers = "Missing required field: Number of Workers";
@@ -194,6 +199,7 @@ export default function AIHireNowFormPage() {
 
     const payload = {
       company_name: formData.get("company") as string,
+      email: formData.get("email") as string,
       full_name: `${formData.get("firstName") || ""} ${formData.get("lastName") || ""}`.trim(),
       phone_number: formData.get("phone") as string,
       job_title: formData.get("jobTitles") as string,
@@ -283,26 +289,32 @@ export default function AIHireNowFormPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#ffffff] relative">
+    <div className="min-h-screen bg-[#f8fafc] relative">
       <Navbar />
 
-      <main className="pt-[2px] pb-20">
-        <section className="ai-hire-now-section">
-          <div className="ai-hire-now-container">
-            <div className="ai-hire-now-header">
-              {/* <span className="ai-hire-now-eyebrow">EXISTING CLIENTS</span> */}
-              <h1 className="ai-hire-now-title">AI Hire Now</h1>
-              <p className="ai-hire-now-lead">
-                Fast staff ordering for existing clients.
-              </p>
-              <p className="ai-hire-now-copy">
-                Agreed rates are already in place, so your request can move immediately.
-                If anything falls outside agreed terms, we will confirm rates straight away.
-              </p>
-            </div>
+      <main className="pt-2 pb-2 px-4 sm:px-6">
+        <div className="ai-hire-now-header text-center max-w-2xl mx-auto mb-0">
+          <h1 className="ai-hire-now-title text-4xl sm:text-5xl font-bold tracking-tight text-[#091e42] mb-1">
+            AI Hire Now
+          </h1>
+          <p className="ai-hire-now-lead text-lg text-[#42526E] font-medium leading-relaxed">
+            Fast staff ordering for existing clients.
+          </p>
+        </div>
 
-            <form id="aiHireNowForm" className="ai-hire-now-form" onSubmit={handleSubmit}>
-              <div className="ai-hire-now-grid">
+        <div className="ai-hire-now-card bg-transparent border border-[#e2e8f0] rounded-2xl shadow-sm max-w-[960px] mx-auto p-6 md:p-6">
+          <form id="aiHireNowForm" className="ai-hire-now-form" onSubmit={handleSubmit}>
+
+            {/* Section 1: Contact Details */}
+            <div className="form-section mb-6">
+              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
+                <User className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+                  Contact Details
+                </h2>
+              </div>
+
+              <div className="grid-3-col">
                 <div className="ai-hire-now-field">
                   <label htmlFor="company">Company</label>
                   <input
@@ -310,7 +322,6 @@ export default function AIHireNowFormPage() {
                     name="company"
                     type="text"
                     placeholder="Company name"
-                    //required
                     className={formErrors.company_name ? "has-error" : ""}
                     onChange={() => {
                       if (formErrors.company_name) {
@@ -324,7 +335,7 @@ export default function AIHireNowFormPage() {
                 </div>
 
                 <div className="ai-hire-now-field">
-                  <label htmlFor="firstName">Your First Name</label>
+                  <label htmlFor="firstName">First Name</label>
                   <input
                     id="firstName"
                     name="firstName"
@@ -347,7 +358,7 @@ export default function AIHireNowFormPage() {
                 </div>
 
                 <div className="ai-hire-now-field">
-                  <label htmlFor="lastName">Your Last Name</label>
+                  <label htmlFor="lastName">Last Name</label>
                   <input
                     id="lastName"
                     name="lastName"
@@ -371,6 +382,27 @@ export default function AIHireNowFormPage() {
                     <span className="error-message">⚠️ {formErrors.full_name}</span>
                   )}
                 </div>
+              </div>
+
+              <div className="grid-3-col mt-5">
+                <div className="ai-hire-now-field">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    className={formErrors.email ? "has-error" : ""}
+                    onChange={() => {
+                      if (formErrors.email) {
+                        setFormErrors((prev) => ({ ...prev, email: undefined }));
+                      }
+                    }}
+                  />
+                  {formErrors.email && (
+                    <span className="error-message">⚠️ {formErrors.email}</span>
+                  )}
+                </div>
 
                 <div className="ai-hire-now-field">
                   <label htmlFor="phone">Phone Number</label>
@@ -379,7 +411,6 @@ export default function AIHireNowFormPage() {
                     name="phone"
                     type="tel"
                     placeholder="Your phone number"
-                    //required
                     className={formErrors.phone_number ? "has-error" : ""}
                     onChange={() => {
                       if (formErrors.phone_number) {
@@ -399,7 +430,6 @@ export default function AIHireNowFormPage() {
                     name="jobTitles"
                     type="text"
                     placeholder="e.g. Labourers, Forklift Drivers, Supervisor"
-                    //required
                     className={formErrors.job_title ? "has-error" : ""}
                     onChange={() => {
                       if (formErrors.job_title) {
@@ -411,7 +441,9 @@ export default function AIHireNowFormPage() {
                     <span className="error-message">⚠️ {formErrors.job_title}</span>
                   )}
                 </div>
+              </div>
 
+              <div className="grid-3-col mt-5">
                 <div className="ai-hire-now-field">
                   <label htmlFor="workers">Number of Workers</label>
                   <input
@@ -420,7 +452,6 @@ export default function AIHireNowFormPage() {
                     type="number"
                     min="1"
                     placeholder="e.g. 5"
-                    //required
                     className={formErrors.num_of_workers ? "has-error" : ""}
                     onChange={() => {
                       if (formErrors.num_of_workers) {
@@ -439,7 +470,7 @@ export default function AIHireNowFormPage() {
                     id="startDate"
                     name="startDate"
                     type="date"
-                    //required
+                    placeholder="mm/dd/yyyy"
                     className={formErrors.start_date ? "has-error" : ""}
                     onChange={() => {
                       if (formErrors.start_date) {
@@ -451,9 +482,23 @@ export default function AIHireNowFormPage() {
                     <span className="error-message">⚠️ {formErrors.start_date}</span>
                   )}
                 </div>
+
+                <div className="ai-hire-now-field hidden-on-mobile">
+                  {/* Empty cell to align items to a 3-column grid */}
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Role Details */}
+            <div className="form-section mb-6">
+              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
+                <Briefcase className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+                  Role Details
+                </h2>
               </div>
 
-              <div className="ai-hire-now-grid ai-hire-now-grid-two-col">
+              <div className="grid-3-col">
                 <div className="ai-hire-now-field" id="workplaceTypeContainer" style={{ position: 'relative' }}>
                   <label htmlFor="workplaceType">Work Place Type</label>
                   <div className="relative">
@@ -470,7 +515,25 @@ export default function AIHireNowFormPage() {
                       ) : (
                         <span className="selected-value">{selectedWorkplace}</span>
                       )}
-                      <span className="dropdown-arrow"></span>
+                      {selectedWorkplace !== "" && (
+                        <span
+                          className="clear-select-value"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedWorkplace("");
+                            if (formErrors.workplace_type) {
+                              setFormErrors((prev) => ({ ...prev, workplace_type: undefined }));
+                            }
+                          }}
+                          role="button"
+                          aria-label="Clear workplace type"
+                        >
+                          &times;
+                        </span>
+                      )}
+                      <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 6L12 18L24 6H0Z" />
+                      </svg>
                     </button>
 
                     {isWorkplaceDropdownOpen && (
@@ -527,7 +590,25 @@ export default function AIHireNowFormPage() {
                           {selectedContract === "418" ? "Temporary" : selectedContract === "417" ? "Contract" : "Permanent"}
                         </span>
                       )}
-                      <span className="dropdown-arrow"></span>
+                      {selectedContract !== "" && (
+                        <span
+                          className="clear-select-value"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedContract("");
+                            if (formErrors.contract_type) {
+                              setFormErrors((prev) => ({ ...prev, contract_type: undefined }));
+                            }
+                          }}
+                          role="button"
+                          aria-label="Clear contract type"
+                        >
+                          &times;
+                        </span>
+                      )}
+                      <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 6L12 18L24 6H0Z" />
+                      </svg>
                     </button>
 
                     {isContractDropdownOpen && (
@@ -565,9 +646,70 @@ export default function AIHireNowFormPage() {
                     <span className="error-message">⚠️ {formErrors.contract_type}</span>
                   )}
                 </div>
+
+                <div className="ai-hire-now-field" id="workingDaysContainer" style={{ position: 'relative' }}>
+                  <label id="workingDaysLabel">Working Days</label>
+                  <div className="relative">
+                    <button
+                      type="button"
+                      className={`multiselect-trigger ${formErrors.working_days ? "has-error" : ""}`}
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isDropdownOpen}
+                    >
+                      {selectedDays.length === 0 ? (
+                        <span className="placeholder-text">Select Working Days</span>
+                      ) : (
+                        <div className="selected-tags">
+                          {selectedDays.map((day) => (
+                            <span key={day} className="selected-tag">
+                              {day}
+                              <span
+                                className="remove-tag"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleDay(day);
+                                }}
+                                role="button"
+                                aria-label={`Remove ${day}`}
+                              >
+                                &times;
+                              </span>
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 6L12 18L24 6H0Z" />
+                      </svg>
+                    </button>
+
+                    {isDropdownOpen && (
+                      <div className="multiselect-dropdown" role="listbox" aria-multiselectable="true">
+                        {["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => {
+                          const isSelected = selectedDays.includes(day);
+                          return (
+                            <div
+                              key={day}
+                              className={`multiselect-option ${isSelected ? "selected" : ""}`}
+                              role="option"
+                              aria-selected={isSelected}
+                              onClick={() => toggleDay(day)}
+                            >
+                              <span className="option-text">{day}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                  {formErrors.working_days && (
+                    <span className="error-message">⚠️ {formErrors.working_days}</span>
+                  )}
+                </div>
               </div>
 
-              <div className="ai-hire-now-grid">
+              <div className="grid-3-col mt-5">
                 <div className="ai-hire-now-field">
                   <label htmlFor="salaryMin">Minimum Salary</label>
                   <input
@@ -626,7 +768,25 @@ export default function AIHireNowFormPage() {
                       ) : (
                         <span className="selected-value">{selectedSalaryPer}</span>
                       )}
-                      <span className="dropdown-arrow"></span>
+                      {selectedSalaryPer !== "" && (
+                        <span
+                          className="clear-select-value"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedSalaryPer("");
+                            if (formErrors.salary_per) {
+                              setFormErrors((prev) => ({ ...prev, salary_per: undefined }));
+                            }
+                          }}
+                          role="button"
+                          aria-label="Clear salary period"
+                        >
+                          &times;
+                        </span>
+                      )}
+                      <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 6L12 18L24 6H0Z" />
+                      </svg>
                     </button>
 
                     {isSalaryPerDropdownOpen && (
@@ -666,76 +826,26 @@ export default function AIHireNowFormPage() {
                     <span className="error-message">⚠️ {formErrors.salary_per}</span>
                   )}
                 </div>
+              </div>
+            </div>
 
-                <div className="ai-hire-now-field ai-hire-now-field-span-3" id="workingDaysContainer" style={{ position: 'relative' }}>
-                  <label id="workingDaysLabel">Working Days</label>
-                  <div className="relative">
-                    <button
-                      type="button"
-                      className={`multiselect-trigger ${formErrors.working_days ? "has-error" : ""}`}
-                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      aria-haspopup="listbox"
-                      aria-expanded={isDropdownOpen}
-                    >
-                      {selectedDays.length === 0 ? (
-                        <span className="placeholder-text">Select Working Days</span>
-                      ) : (
-                        <div className="selected-tags">
-                          {selectedDays.map((day) => (
-                            <span key={day} className="selected-tag">
-                              {day}
-                              <span
-                                className="remove-tag"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  toggleDay(day);
-                                }}
-                                role="button"
-                                aria-label={`Remove ${day}`}
-                              >
-                                &times;
-                              </span>
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                      <span className="dropdown-arrow"></span>
-                    </button>
-
-                    {isDropdownOpen && (
-                      <div className="multiselect-dropdown" role="listbox" aria-multiselectable="true">
-                        {["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => {
-                          const isSelected = selectedDays.includes(day);
-                          return (
-                            <div
-                              key={day}
-                              className={`multiselect-option ${isSelected ? "selected" : ""}`}
-                              role="option"
-                              aria-selected={isSelected}
-                              onClick={() => toggleDay(day)}
-                            >
-                              <span className="option-text">{day}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                  {formErrors.working_days && (
-                    <span className="error-message" style={{ marginTop: '8px' }}>⚠️ {formErrors.working_days}</span>
-                  )}
-                </div>
+            {/* Section 3: Location & Details */}
+            <div className="form-section mb-6">
+              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
+                <MapPin className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+                  Location & Details
+                </h2>
               </div>
 
-              <div className="ai-hire-now-grid ai-hire-now-grid-bottom">
-                <div className="ai-hire-now-field ai-hire-now-field-wide">
+              <div className="grid-2-col">
+                <div className="ai-hire-now-field">
                   <label htmlFor="location">Location</label>
                   <textarea
                     id="location"
                     name="location"
                     rows={4}
                     placeholder="Main site, postcode, or first location"
-                    //required
                     className={formErrors.location ? "has-error" : ""}
                     onChange={() => {
                       if (formErrors.location) {
@@ -748,13 +858,13 @@ export default function AIHireNowFormPage() {
                   )}
                 </div>
 
-                <div className="ai-hire-now-field ai-hire-now-field-wide">
-                  <label htmlFor="notes">Site &amp; role details (if multiple)</label>
+                <div className="ai-hire-now-field">
+                  <label htmlFor="notes">Site & Role Details (if multiple)</label>
                   <textarea
                     id="notes"
                     name="notes"
                     rows={4}
-                    placeholder="Example: 6 labourers - Glasgow site, 4 drivers - Edinburgh depot, 2 supervisors - Falkirk site"
+                    placeholder="Example: 6 labourers - Glasgow site, 4 drivers - Edinburgh depot"
                     className={formErrors.siteAndroles ? "has-error" : ""}
                     onChange={() => {
                       if (formErrors.siteAndroles) {
@@ -768,7 +878,7 @@ export default function AIHireNowFormPage() {
                 </div>
               </div>
 
-              <div className="ai-hire-now-field ai-hire-now-field-full-width" style={{ marginTop: '28px', marginBottom: '28px' }}>
+              <div className="ai-hire-now-field mt-5">
                 <label htmlFor="qualifications">Specific Qualification Required</label>
                 <textarea
                   id="qualifications"
@@ -786,19 +896,28 @@ export default function AIHireNowFormPage() {
                   <span className="error-message">⚠️ {formErrors.qualifications}</span>
                 )}
               </div>
+            </div>
 
+            {/* Submit Actions */}
+            <div className="ai-hire-now-actions-wrapper pt-1">
               <div className="ai-hire-now-actions">
-                <button type="submit" className="btn-ai-cta" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "AI Hire Now"}
+                <button type="submit" className="btn-ai-cta flex items-center justify-center" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      AI Hire Now
+                    </>
+                  )}
                 </button>
-                <p className="ai-hire-now-trust">24/7 ordering • Fast response • Existing client service</p>
-                <p id="aiHireNowMessage" className="ai-hire-now-message" aria-live="polite">
+                <p id="aiHireNowMessage" className="ai-hire-now-message mt-2" aria-live="polite">
                   {message}
                 </p>
               </div>
-            </form>
-          </div>
-        </section>
+            </div>
+          </form>
+        </div>
       </main>
 
       {/* Success Modal */}
@@ -866,220 +985,156 @@ export default function AIHireNowFormPage() {
       <FloatingElements />
 
       <style jsx>{`
-        .ai-hire-now-section {
-          background: #ffffff;
-          padding: 50px 20px;
-        }
-
-        .ai-hire-now-container {
-          width: 100%;
-          max-width: 1280px;
-          margin: 0 auto;
-        }
-
         .ai-hire-now-header {
-          max-width: 840px;
-          margin-bottom: 42px;
-        }
-
-        .ai-hire-now-eyebrow {
-          display: inline-block;
-          margin-bottom: 18px;
-          font-size: 0.95rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #2563eb;
+          margin-bottom: 1.5rem;
         }
 
         .ai-hire-now-title {
-          margin: 0 0 18px;
-          color: #0a0a0a;
+          color: #091e42;
           font-family: inherit;
-          font-size: clamp(2.9rem, 6vw, 5.4rem);
-          font-weight: inherit;
-          line-height: 0.96;
-          letter-spacing: -0.04em;
+          font-weight: 700;
+          line-height: 1.2;
+          letter-spacing: -0.02em;
         }
 
         .ai-hire-now-lead {
-          margin: 0 0 10px;
-          color: #111111;
-          font-family: inherit;
-          font-size: clamp(1.2rem, 2vw, 1.5rem);
-          font-weight: 600;
-          line-height: 1.35;
+          color: #42526e;
+          font-weight: 500;
         }
 
-        .ai-hire-now-copy {
+        .ai-hire-now-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+          margin-bottom: 1rem;
+        }
+
+        .form-section-header {
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #f1f5f9;
+          padding-bottom: 0.75rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .form-section-header h2 {
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #0f172a;
+          letter-spacing: 0.05em;
           margin: 0;
-          max-width: 860px;
-          color: #222222;
-          font-family: inherit;
-          font-size: 1.08rem;
-          line-height: 1.7;
         }
 
-        .ai-hire-now-form {
-          padding-top: 34px;
-          border-top: 1px solid #e5e7eb;
-        }
-
-        .ai-hire-now-grid {
+        .grid-3-col {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 28px 26px;
-          margin-bottom: 28px;
+          gap: 1.25rem 1.5rem;
         }
 
-        .ai-hire-now-grid-bottom,
-        .ai-hire-now-grid-two-col {
+        .grid-2-col {
+          display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1.25rem 1.5rem;
         }
 
         .ai-hire-now-field {
           display: flex;
           flex-direction: column;
+          position: relative;
         }
 
-        .ai-hire-now-field-span-3 {
-          grid-column: span 3;
+        .ai-hire-now-field label {
+          margin-bottom: 0.5rem;
+          color: #334155;
+          font-size: 0.85rem;
+          font-weight: 600;
+          line-height: 1.4;
         }
 
-        .ai-hire-now-field-full-width {
+        .ai-hire-now-field input,
+        .ai-hire-now-field textarea,
+        .multiselect-trigger {
           width: 100%;
-        }
-
-        .ai-hire-now-field select {
-          width: 100%;
-          border: 1px solid #d9dde5;
-          border-radius: 14px;
+          border: 1px solid #cbd5e1;
+          border-radius: 8px;
           background: #ffffff;
-          color: #111111;
+          color: #0f172a;
           font-family: inherit;
-          font-size: 1rem;
+          font-size: 0.95rem;
           line-height: 1.5;
-          padding: 18px 18px;
+          padding: 10px 14px;
           outline: none;
-          transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+          transition: border-color 0.15s ease, box-shadow 0.15s ease;
           box-sizing: border-box;
-          appearance: none;
-          -webkit-appearance: none;
-          background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
-          background-position: right 1rem center;
-          background-repeat: no-repeat;
-          background-size: 1.5em 1.5em;
-          padding-right: 2.5rem;
-          cursor: pointer;
         }
 
-        .ai-hire-now-field select option {
-          background-color: #ffffff !important;
-          color: #111111 !important;
-          font-family: inherit;
-          font-size: 1rem;
-        }
-
-        .ai-hire-now-field select:focus {
-          border-color: #111111;
-          box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.06);
-        }
-
-        .ai-hire-now-field select.has-error {
-          border-color: #ef4444 !important;
-          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+        .ai-hire-now-field .relative {
+          width: 100%;
         }
 
         .multiselect-trigger {
-          all: unset !important;
           width: 100% !important;
-          height: auto !important;
-          min-height: 58px !important;
-          border: 1px solid #d9dde5 !important;
-          border-radius: 14px !important;
-          background: #ffffff !important;
-          color: #111111 !important;
-          font-family: inherit !important;
-          font-size: 1rem !important;
-          line-height: 1.5 !important;
-          padding: 14px 18px !important;
-          outline: none !important;
-          transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
-          box-sizing: border-box !important;
           display: flex !important;
           align-items: center !important;
           justify-content: space-between !important;
           text-align: left !important;
           cursor: pointer !important;
-          box-shadow: none !important;
-          text-transform: none !important;
-          letter-spacing: normal !important;
-          filter: none !important;
-        }
-
-        .multiselect-trigger::before,
-        .multiselect-trigger::after {
-          display: none !important;
-          content: none !important;
-        }
-
-        .multiselect-trigger:hover {
-          transform: none !important;
-          filter: none !important;
+          min-height: 42px !important;
+          height: auto !important;
           box-shadow: none !important;
           background: #ffffff !important;
-          border-color: #d9dde5 !important;
+          padding: 6px 14px !important;
+          border-color: #94a3b8 !important;
         }
 
-        .multiselect-trigger:active {
-          transform: none !important;
-          filter: none !important;
-          box-shadow: none !important;
-          background: #ffffff !important;
+        .clear-select-value {
+          margin-left: auto;
+          margin-right: 8px;
+          color: #94a3b8;
+          font-weight: bold;
+          font-size: 1.2rem;
+          cursor: pointer;
+          line-height: 1;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: color 0.15s ease;
         }
 
-        .multiselect-trigger:focus {
-          border-color: #111111 !important;
-          box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.06) !important;
-        }
-
-        .multiselect-trigger.has-error {
-          border-color: #ef4444 !important;
-          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
-        }
-
-        .placeholder-text {
-          color: #8a8f98;
+        .clear-select-value:hover {
+          color: #ef4444;
         }
 
         .selected-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 6px;
+          gap: 4px;
+          margin-right: auto;
         }
 
         .selected-tag {
           display: inline-flex;
           align-items: center;
-          background: #f3f4f6;
-          color: #1f2937;
-          font-size: 0.875rem;
-          font-weight: 500;
-          padding: 4px 10px;
-          border-radius: 8px;
-          border: 1px solid #e5e7eb;
+          background: #f1f5f9;
+          color: #334155;
+          font-size: 0.8rem;
+          font-weight: 600;
+          padding: 2px 8px;
+          border-radius: 4px;
+          border: 1px solid #e2e8f0;
           transition: all 0.15s ease;
         }
 
         .selected-tag:hover {
-          background: #e5e7eb;
+          background: #e2e8f0;
         }
 
         .remove-tag {
-          margin-left: 6px;
-          color: #9ca3af;
+          margin-left: 4px;
+          color: #94a3b8;
           font-weight: bold;
-          font-size: 1.1rem;
+          font-size: 1rem;
           cursor: pointer;
           display: inline-flex;
           align-items: center;
@@ -1091,14 +1146,41 @@ export default function AIHireNowFormPage() {
           color: #ef4444;
         }
 
-        .dropdown-arrow {
-          width: 0;
-          height: 0;
-          border-left: 5px solid transparent;
-          border-right: 5px solid transparent;
-          border-top: 5px solid #6b7280;
-          margin-left: 10px;
-          transition: transform 0.2s ease;
+        .multiselect-trigger:hover {
+          border-color: #94a3b8 !important;
+        }
+
+        .multiselect-trigger:focus,
+        .ai-hire-now-field input:focus,
+        .ai-hire-now-field textarea:focus {
+          border-color: #0f172a;
+          box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.05);
+        }
+
+        .ai-hire-now-field input::placeholder,
+        .ai-hire-now-field textarea::placeholder {
+          color: #94a3b8;
+          opacity: 1;
+        }
+
+        .placeholder-text {
+          color: #94a3b8;
+        }
+
+        .selected-value {
+          color: #0f172a;
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .dropdown-chevron-icon {
+          width: 8px;
+          height: 8px;
+          color: #0f172a;
+          flex-shrink: 0;
+          opacity: 0.8;
         }
 
         .multiselect-dropdown {
@@ -1106,209 +1188,132 @@ export default function AIHireNowFormPage() {
           top: 100%;
           left: 0;
           right: 0;
-          margin-top: 6px;
+          margin-top: 4px;
           background: #ffffff;
-          border: 1px solid #e5e7eb;
-          border-radius: 14px;
-          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
           z-index: 50;
-          max-height: 260px;
+          max-height: 220px;
           overflow-y: auto;
-          padding: 8px;
+          padding: 4px;
           box-sizing: border-box;
-          animation: slideDown 0.2s ease-out;
         }
 
         .multiselect-option {
           display: flex;
           align-items: center;
-          padding: 10px 14px;
-          border-radius: 8px;
+          padding: 8px 12px;
+          border-radius: 6px;
           cursor: pointer;
-          transition: background 0.15s ease, color 0.15s ease;
-          color: #111111;
+          transition: background 0.1s ease;
+          color: #334155;
+          font-size: 0.9rem;
           font-weight: 500;
-          background: #ffffff;
         }
 
         .multiselect-option:hover {
-          background: #f3f4f6;
-          color: #111111;
+          background: #f1f5f9;
+          color: #0f172a;
         }
 
         .multiselect-option.selected {
-          background: #e5e7eb;
-          color: #111111;
+          background: #e2e8f0;
+          color: #0f172a;
           font-weight: 600;
-        }
-
-        .option-text {
-          font-size: 0.95rem;
-          user-select: none;
-        }
-
-        @keyframes slideDown {
-          from { opacity: 0; transform: translateY(-8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .ai-hire-now-field label {
-          margin-bottom: 10px;
-          color: #111111;
-          font-family: inherit;
-          font-size: 1rem;
-          font-weight: 600;
-          line-height: 1.4;
-        }
-
-        .ai-hire-now-field input,
-        .ai-hire-now-field textarea {
-          width: 100%;
-          border: 1px solid #d9dde5;
-          border-radius: 14px;
-          background: #ffffff;
-          color: #111111;
-          font-family: inherit;
-          font-size: 1rem;
-          line-height: 1.5;
-          padding: 18px 18px;
-          outline: none;
-          transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-          box-sizing: border-box;
-          appearance: none;
-          -webkit-appearance: none;
         }
 
         .ai-hire-now-field textarea {
           resize: vertical;
-          min-height: 132px;
-        }
-
-        .ai-hire-now-field input::placeholder,
-        .ai-hire-now-field textarea::placeholder {
-          color: #8a8f98;
-          opacity: 1;
-        }
-
-        .ai-hire-now-field input:focus,
-        .ai-hire-now-field textarea:focus {
-          border-color: #111111;
-          box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.06);
+          min-height: 100px;
         }
 
         .ai-hire-now-field input.has-error,
-        .ai-hire-now-field textarea.has-error {
+        .ai-hire-now-field textarea.has-error,
+        .multiselect-trigger.has-error {
           border-color: #ef4444 !important;
-          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
+          box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1) !important;
         }
 
         .error-message {
           color: #ef4444;
-          font-size: 0.85rem;
-          margin-top: 6px;
+          font-size: 0.8rem;
+          margin-top: 4px;
           font-weight: 500;
           display: flex;
           align-items: center;
           gap: 4px;
-          animation: fadeIn 0.2s ease-out forwards;
+        }
+
+        .ai-hire-now-actions-wrapper {
+          display: flex;
+          justify-content: center;
+          width: 100%;
         }
 
         .ai-hire-now-actions {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding-top: 10px;
+          width: 100%;
+          max-width: 320px;
         }
 
-        .ai-hire-now-trust {
-          margin: 22px 0 0;
-          color: #111111;
-          font-family: inherit;
+        .btn-ai-cta {
+          width: 100%;
+          padding: 12px 24px;
+          background: #001737;
+          color: #ffffff;
+          border: none;
+          border-radius: 8px;
           font-size: 1rem;
-          font-weight: 500;
-          line-height: 1.5;
-          text-align: center;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+          box-shadow: 0 2px 4px rgba(0, 23, 55, 0.1);
+        }
+
+        .btn-ai-cta:hover:not(:disabled) {
+          background: #091e42;
+          box-shadow: 0 4px 8px rgba(0, 23, 55, 0.15);
+        }
+
+        .btn-ai-cta:active:not(:disabled) {
+          transform: translateY(1px);
+        }
+
+        .btn-ai-cta:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
         }
 
         .ai-hire-now-message {
-          min-height: 24px;
-          margin: 14px 0 0;
-          color: #111111;
-          font-family: inherit;
-          font-size: 0.98rem;
+          font-size: 0.9rem;
+          color: #42526e;
           text-align: center;
         }
 
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-4px); }
-          to { opacity: 1; transform: translateY(0); }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+          cursor: pointer;
         }
 
-        @keyframes scaleUp {
-          from { transform: scale(0.95); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
-
-        .animate-fade-in {
-          animation: fadeIn 0.25s ease-out forwards;
-        }
-
-        .scale-up {
-          animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        @media (max-width: 991px) {
-          .ai-hire-now-section {
-            padding: 72px 18px;
-          }
-
-          .ai-hire-now-grid,
-          .ai-hire-now-grid-bottom,
-          .ai-hire-now-grid-two-col {
+        @media (max-width: 768px) {
+          .grid-3-col {
             grid-template-columns: 1fr;
+            gap: 1rem;
           }
 
-          .ai-hire-now-field-span-3 {
-            grid-column: span 1;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .ai-hire-now-section {
-            padding: 58px 16px;
+          .grid-2-col {
+            grid-template-columns: 1fr;
+            gap: 1rem;
           }
 
-          .ai-hire-now-header {
-            margin-bottom: 30px;
+          .hidden-on-mobile {
+            display: none;
           }
 
-          .ai-hire-now-form {
-            padding-top: 26px;
-          }
-
-          .ai-hire-now-grid {
-            gap: 20px;
-            margin-bottom: 20px;
-          }
-
-          .ai-hire-now-field input,
-          .ai-hire-now-field select,
-          .multiselect-trigger,
-          .ai-hire-now-field textarea {
-            padding: 16px 16px !important;
-            font-size: 16px !important;
-          }
-
-          .ai-hire-now-field select {
-            padding-right: 2.5rem !important;
-          }
-
-          .multiselect-trigger {
-            min-height: 52px !important;
-          }
-
-          .ai-hire-now-trust {
-            font-size: 0.95rem;
+          .ai-hire-now-card {
+            padding: 1.0rem;
           }
         }
       `}</style>
