@@ -656,11 +656,11 @@ export default function Footer() {
         }
       `}</style>
 
-      <section className="rd-premium-wrap" id="compliance">
+      <section className="rd-premium-wrap standard-section" id="compliance">
         <div className="rd-premium-container">
           <div className="rd-premium-head">
-            <h2>Compliance, Quality & Security</h2>
-            <p>
+            <h2 className="standard-h1">Compliance, Quality & Security</h2>
+            <p className="standard-h2">
               Recognised standards supporting consistent, compliant recruitment
               delivery.
             </p>
@@ -668,7 +668,7 @@ export default function Footer() {
 
           <div className="rd-cards">
             {/* Constructionline Gold */}
-            <div className="rd-card">
+            <div className="rd-card standard-card">
               <div className="rd-card-logo">
                 <img
                   src="/assets/compliance/constructionline-gold.png"
@@ -692,7 +692,7 @@ export default function Footer() {
             </div>
 
             {/* Cyber Essentials */}
-            <div className="rd-card">
+            <div className="rd-card standard-card">
               <div className="rd-card-logo">
                 <img
                   src="/assets/compliance/cyber-essentials.png"
@@ -716,7 +716,7 @@ export default function Footer() {
             </div>
 
             {/* ISO 9001:2015 */}
-            <div className="rd-card">
+            <div className="rd-card standard-card">
               <div className="rd-card-logo">
                 <img src="/assets/compliance/cqs-iso9001.png" alt="ISO 9001:2015" />
               </div>
@@ -737,7 +737,7 @@ export default function Footer() {
             </div>
 
             {/* REC Membership */}
-            <div className="rd-card">
+            <div className="rd-card standard-card">
               <div className="rd-card-logo">
                 <img src="/rec_logo_new.png" alt="REC Membership" />
               </div>

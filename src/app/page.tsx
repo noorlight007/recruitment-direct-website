@@ -48,6 +48,59 @@ const Index = () => {
           .rd-hero h1 {
             font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
           }
+          .rd-button-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            align-items: flex-start !important;
+            gap: 24px !important;
+            width: 100% !important;
+            max-width: 1200px !important;
+            margin: 40px auto 0 !important;
+          }
+          .rd-hero-btn-col {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            flex: 1 !important;
+            max-width: 260px !important;
+            text-align: center !important;
+          }
+          .rd-hero .rd-btn {
+            font-size: 26px !important;
+            font-weight: 800 !important;
+            height: 64px !important;
+            line-height: 64px !important;
+            padding: 0 !important;
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+            border-radius: 8px !important;
+            text-transform: uppercase !important;
+            display: flex !important;
+            align-items: center !important;
+          }
+          .rd-btn-caption {
+            margin-top: 12px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 2px !important;
+            text-align: center !important;
+          }
+          .rd-btn-q {
+            font-size: 17px !important;
+            font-weight: 600 !important;
+            color: #cbd5e1 !important;
+            line-height: 1.2 !important;
+            display: block !important;
+          }
+          .rd-btn-a {
+            font-size: 19px !important;
+            font-weight: 800 !important;
+            color: #f6d77d !important;
+            line-height: 1.2 !important;
+            display: block !important;
+          }
           .rd-sector-card {
             aspect-ratio: 3 / 2 !important;
             min-height: auto !important;
@@ -58,6 +111,26 @@ const Index = () => {
             .rd-hero {
               padding-top: 110px !important;
               min-height: 480px !important;
+            }
+            .rd-button-grid {
+              flex-direction: column !important;
+              align-items: center !important;
+              gap: 24px !important;
+            }
+            .rd-hero-btn-col {
+              width: 100% !important;
+              max-width: 280px !important;
+            }
+            .rd-hero .rd-btn {
+              font-size: 21px !important;
+              height: 52px !important;
+              line-height: 52px !important;
+            }
+            .rd-btn-q {
+              font-size: 14.5px !important;
+            }
+            .rd-btn-a {
+              font-size: 16px !important;
             }
             // .rd-sectors h2 {
             //   margin-bottom: 16px !important;
@@ -77,15 +150,39 @@ const Index = () => {
           <section className="rd-hero">
             <div className="rd-overlay"></div>
             <div className="rd-container rd-hero-content">
-              <h1>Recruitment Across the UK</h1>
-              <h2>Trusted Supplier Since 2006</h2>
-              <p>Connecting employers with quality temporary, contract and permanent staff across the UK.</p>
+              <h1 className="standard-h1">Recruitment Across the UK</h1>
+              <h2 className="standard-h2">Trusted Supplier Since 2006</h2>
+              <p className="standard-body-p">Connecting employers with quality temporary, contract and permanent staff across the UK.</p>
 
               <div className="rd-button-grid" style={{ justifyContent: "center" }}>
-                <a href="/ai-hire-now" className="rd-btn rd-btn-gold">AI HIRE NOW</a>
-                <a href="/contact" className="rd-btn rd-btn-gold">PLACE ENQUIRY</a>
-                <a href="/job-search" className="rd-btn rd-btn-outline">JOB SEARCH</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="rd-btn rd-btn-outline">WATCH AI CALL</a>
+                <div className="rd-hero-btn-col">
+                  <a href="/ai-hire-now" className="rd-btn rd-btn-gold standard-cta-btn">AI HIRE NOW</a>
+                  <div className="rd-btn-caption">
+                    <span className="rd-btn-q">Need staff fast?</span>
+                    <span className="rd-btn-a">Order Staff 24/7</span>
+                  </div>
+                </div>
+                <div className="rd-hero-btn-col">
+                  <a href="/contact" className="rd-btn rd-btn-gold standard-cta-btn">PLACE ENQUIRY</a>
+                  <div className="rd-btn-caption">
+                    <span className="rd-btn-q">Recruitment Quote?</span>
+                    <span className="rd-btn-a">Request a Callback</span>
+                  </div>
+                </div>
+                <div className="rd-hero-btn-col">
+                  <a href="/job-search" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
+                  <div className="rd-btn-caption">
+                    <span className="rd-btn-q">Looking for work?</span>
+                    <span className="rd-btn-a">Search Jobs</span>
+                  </div>
+                </div>
+                <div className="rd-hero-btn-col">
+                  <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="rd-btn rd-btn-outline standard-cta-btn">WATCH AI CALL</a>
+                  <div className="rd-btn-caption">
+                    <span className="rd-btn-q">Hiring made easier</span>
+                    <span className="rd-btn-a">See AI in Action</span>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -101,33 +198,33 @@ const Index = () => {
           </section>
 
           {/* SECTORS */}
-          <section className="rd-sectors" id="sectors">
+          <section className="rd-sectors standard-section" id="sectors">
             <div className="rd-container">
-              <h2>Sectors We Support</h2>
+              <h2 className="standard-h1">Sectors We Support</h2>
 
               <div className="rd-sector-grid">
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
                   {/* <span>Construction</span> */}
                 </div>
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
                   {/* <span>Renewables</span> */}
                 </div>
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Engineerings.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Engineerings.png')" }}>
                   {/* <span>Engineering</span> */}
                 </div>
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Logisticss.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Logisticss.png')" }}>
                   {/* <span>Logistics</span> */}
                 </div>
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Healthcares.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Healthcares.png')" }}>
                   {/* <span>Healthcare</span> */}
                 </div>
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Educations.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Educations.png')" }}>
                   {/* <span>Education</span> */}
                 </div>
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Hospitalitys.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Hospitalitys.png')" }}>
                   {/* <span>Hospitality</span> */}
                 </div>
-                <div className="rd-sector-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }}>
+                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }}>
                   {/* <span>Business Support &amp; IT</span> */}
                 </div>
               </div>
@@ -143,23 +240,23 @@ const Index = () => {
 
                 <div className="hero-buttons">
                   <div>
-                    <a href="/ai-hire-now" className="btn gold">AI HIRE NOW</a>
+                    <a href="/ai-hire-now" className="btn gold standard-cta-btn">AI HIRE NOW</a>
                     <small>Order Staff 24/7.</small>
                   </div>
                   <div>
-                    <a href="/contact" className="btn outline">REQUEST QUOTE</a>
+                    <a href="/contact" className="btn outline standard-cta-btn">REQUEST QUOTE</a>
                     <small>Consultant Call Back.</small>
                   </div>
                 </div>
               </div>
 
               <div className="hero-image">
-                <img src="/images/steven-peddie.jpg" alt="Steven" />
+                <img src="/images/steven.jpeg" alt="Steven" />
               </div>
             </div>
 
-            <section className="process">
-              <h2>OUR RECRUITMENT PROCESS</h2>
+            <section className="process standard-section">
+              <h2 className="standard-h1">OUR RECRUITMENT PROCESS</h2>
 
               <div className="process-flow">
                 <div>Vacancy<br />Received</div>
@@ -175,56 +272,56 @@ const Index = () => {
                 <div>Submitted to<br />Client</div>
               </div>
 
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="btn gold process-btn">WATCH AI SCREENING CALL</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="btn gold process-btn standard-cta-btn">WATCH AI SCREENING CALL</a>
             </section>
 
-            <section className="benefits">
-              <h2>WHY CLIENTS CHOOSE RECRUITMENT DIRECT</h2>
+            <section className="benefits standard-section">
+              <h2 className="standard-h1">WHY CLIENTS CHOOSE RECRUITMENT DIRECT</h2>
 
               <div className="benefit-grid">
-                <div className="benefit-card">
+                <div className="benefit-card standard-card">
                   <h3>24/7<br />Recruitment</h3>
-                  <p>Applicants contacted day and night.</p>
+                  <p className="standard-body-p">Applicants contacted day and night.</p>
                 </div>
 
-                <div className="benefit-card">
+                <div className="benefit-card standard-card">
                   <h3>Consultant Checked<br />CV Submission</h3>
-                  <p>Qualified applicants submitted faster.</p>
+                  <p className="standard-body-p">Qualified applicants submitted faster.</p>
                 </div>
 
-                <div className="benefit-card">
+                <div className="benefit-card standard-card">
                   <h3>Digital Timesheets</h3>
-                  <p>Remote approvals with reduced paperwork.</p>
+                  <p className="standard-body-p">Remote approvals with reduced paperwork.</p>
                 </div>
 
-                <div className="benefit-card">
+                <div className="benefit-card standard-card">
                   <h3>Reduce Administration<br />Costs</h3>
-                  <p>Reduce timesheet chasing and move towards 100% invoice accuracy.</p>
+                  <p className="standard-body-p">Reduce timesheet chasing and move towards 100% invoice accuracy.</p>
                 </div>
               </div>
             </section>
 
-            <section className="team">
+            <section className="team standard-section">
               <div className="team-intro">
-                <h2>YOUR RECRUITMENT TEAM</h2>
-                <p>Meet the people supporting clients and applicants every day.</p>
+                <h2 className="standard-h1">YOUR RECRUITMENT TEAM</h2>
+                <p className="standard-body-p">Meet the people supporting clients and applicants every day.</p>
               </div>
 
-              <div className="team-card">
+              <div className="team-card standard-card">
                 <img src="/images/nicola.jpg" alt="Nicola" />
                 <div>
                   <h3>Nicola</h3>
                   <span>Manager</span>
-                  <p>Recruitment delivery, compliance and client service.</p>
+                  <p className="standard-body-p">Recruitment delivery, compliance and client service.</p>
                 </div>
               </div>
 
-              <div className="team-card">
+              <div className="team-card standard-card">
                 <img src="/images/olia.png" alt="Olia" />
                 <div>
                   <h3>Olia</h3>
                   <span>Consultant</span>
-                  <p>Applicant support and vacancy fulfilment.</p>
+                  <p className="standard-body-p">Applicant support and vacancy fulfilment.</p>
                 </div>
               </div>
             </section>
@@ -385,7 +482,7 @@ const Index = () => {
         }
 
         .rd-team-page .hero-image {
-          height: calc(100% - 60px) !important;
+          // height: calc(100% - 60px) !important;
           margin-top: 30px !important;
           margin-bottom: 30px !important;
           margin-right: 30px !important;
@@ -397,7 +494,7 @@ const Index = () => {
           width: 100% !important;
           height: 100% !important;
           object-fit: cover !important;
-          object-position: center right !important;
+          // object-position: center right !important;
         }
 
         .rd-team-page .process,
@@ -663,7 +760,11 @@ const Index = () => {
             object-position: center !important;
           }
 
-          .rd-team-page .process,
+          .rd-team-page .process.standard-section {
+            padding-top: 30px !important;
+            padding-bottom: 30px !important;
+          }
+
           .rd-team-page .benefits,
           .rd-team-page .team {
             padding: 40px 24px !important;
@@ -676,7 +777,23 @@ const Index = () => {
             margin-bottom: 24px !important;
           }
 
-          .rd-team-page .process-flow,
+          .rd-team-page .process-flow {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0px !important;
+            max-width: 320px !important;
+            margin: 0 auto 24px !important;
+          }
+
+          .rd-team-page .process-flow div {
+            min-height: 48px !important;
+            padding: 9px 12px !important;
+            width: 100% !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+          }
+
           .rd-team-page .benefit-grid,
           .rd-team-page .team,
           .rd-team-page .contact-strip {
@@ -689,10 +806,11 @@ const Index = () => {
 
           .rd-team-page .process-flow span {
             display: block !important;
-            font-size: 28px !important;
+            font-size: 20px !important;
             color: var(--rd-gold) !important;
-            margin: 6px 0 !important;
+            margin: 12px 0 !important;
             text-align: center !important;
+            line-height: 1 !important;
           }
 
           .rd-team-page .process-btn {
@@ -774,35 +892,35 @@ const Index = () => {
         ` }} />
 
           {/* TESTIMONIALS */}
-          <section className="rd-testimonials-section">
+          <section className="rd-testimonials-section standard-section">
             <div className="rd-testimonials-container">
-              <h2>What Our Clients Say</h2>
+              <h2 className="standard-h1">What Our Clients Say</h2>
               <div className="rd-heading-line"></div>
-              <p className="rd-testimonials-intro">
+              <p className="rd-testimonials-intro standard-h2">
                 Trusted by businesses across the UK.
               </p>
 
-              <div className="rd-testimonial-card">
+              <div className="rd-testimonial-card standard-card">
                 <div className="rd-quote-mark">“</div>
-                <p>
+                <p className="standard-body-p">
                   “Professional, responsive and reliable. Recruitment Direct consistently delivers quality personnel when we need them.”
                 </p>
                 <div className="rd-card-line"></div>
                 <h3>Civil Engineering Contractor</h3>
               </div>
 
-              <div className="rd-testimonial-card">
+              <div className="rd-testimonial-card standard-card">
                 <div className="rd-quote-mark">“</div>
-                <p>
+                <p className="standard-body-p">
                   “A trusted recruitment partner that understands our industry and always provides an excellent service.”
                 </p>
                 <div className="rd-card-line"></div>
                 <h3>Manufacturing Business</h3>
               </div>
 
-              <div className="rd-testimonial-card">
+              <div className="rd-testimonial-card standard-card">
                 <div className="rd-quote-mark">“</div>
-                <p>
+                <p className="standard-body-p">
                   “Easy to work with, highly responsive and committed to delivering results.”
                 </p>
                 <div className="rd-card-line"></div>
@@ -1075,22 +1193,22 @@ const Index = () => {
       .hero-image img{
           width:100%;
           height:100%;
-          min-height:720px;
+          // min-height:720px;
           object-fit:cover;
           display:block;
       }
 
-      .hero-image::after{
-          content:"";
-          position:absolute;
-          inset:0;
-          background:linear-gradient(
-              90deg,
-              rgba(255,255,255,0.75) 0%,
-              rgba(7,20,47,0.05) 35%,
-              rgba(0,0,0,0.55) 100%
-          );
-      }
+      // .hero-image::after{
+      //     content:"";
+      //     position:absolute;
+      //     inset:0;
+      //     background:linear-gradient(
+      //         90deg,
+      //         rgba(255,255,255,0.75) 0%,
+      //         rgba(7,20,47,0.05) 35%,
+      //         rgba(0,0,0,0.55) 100%
+      //     );
+      // }
 
       .hero-overlay{
           position:absolute;

@@ -3671,3 +3671,144 @@ MOBILE RESPONSIVE
     padding-bottom: 0;
   }
 }
+
+/* ===== STANDARDISED TYPOGRAPHY & LAYOUT SYSTEM ===== */
+
+:root {
+  --standard-h2-color: #475569;
+  --card-border-color: #e5e7eb;
+  --card-shadow-color: rgba(15, 23, 42, 0.05);
+  --card-shadow-hover-color: rgba(15, 23, 42, 0.1);
+}
+
+.dark-section,
+.dark-bg,
+.bg-dark,
+.black-bg,
+.rd-premium-wrap,
+.rd-hero,
+.rd-team-page .hero,
+.rd-testimonials-section,
+.rd-compliance-v2 {
+  --standard-h2-color: #cbd5e1;
+  --card-border-color: rgba(0, 140, 255, 0.18);
+  --card-shadow-color: rgba(0, 0, 0, 0.55);
+  --card-shadow-hover-color: rgba(0, 0, 0, 0.7);
+}
+
+/* 1. Header H1 Styling */
+.standard-h1 {
+  font-family: var(--font-poppins), 'Inter', sans-serif !important;
+  font-size: 56px !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+  margin-top: 0 !important;
+  margin-bottom: 24px !important;
+  text-transform: none !important;
+  letter-spacing: -0.03em !important;
+}
+
+@media (max-width: 768px) {
+  .standard-h1 {
+    font-size: 36px !important;
+    margin-bottom: 16px !important;
+  }
+}
+
+/* 2. Sub-Header H2 Styling */
+.standard-h2 {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  margin-top: 0 !important;
+  margin-bottom: 40px !important;
+  color: var(--standard-h2-color, #475569) !important;
+}
+
+@media (max-width: 768px) {
+  .standard-h2 {
+    font-size: 18px !important;
+    margin-bottom: 24px !important;
+  }
+}
+
+/* 3. Body Text Paragraph Styling */
+.standard-body-p {
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+  margin-top: 0 !important;
+  margin-bottom: 24px !important;
+}
+
+@media (max-width: 768px) {
+  .standard-body-p {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 16px !important;
+  }
+}
+
+/* 4. CTA Buttons Styling */
+.standard-cta-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 54px !important;
+  padding: 0 28px !important;
+  border-radius: 12px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+  .standard-cta-btn {
+    height: 48px !important;
+    padding: 0 20px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* 5. Standard Section Spacing */
+.standard-section {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+@media (max-width: 768px) {
+  .standard-section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+/* 6. Standard Cards / Content Boxes */
+.standard-card {
+  border-radius: 20px !important;
+  padding: 32px !important;
+  border: 1px solid var(--card-border-color, #e2e8f0) !important;
+  box-shadow: 0 10px 30px var(--card-shadow-color, rgba(15, 23, 42, 0.04)) !important;
+  transition: all 0.3s ease !important;
+  box-sizing: border-box !important;
+}
+
+.standard-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 40px var(--card-shadow-hover-color, rgba(15, 23, 42, 0.08)) !important;
+}
+
+@media (max-width: 768px) {
+  .standard-card {
+    padding: 24px !important;
+  }
+}
+

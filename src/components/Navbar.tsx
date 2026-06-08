@@ -17,9 +17,16 @@ import {
 const aiProducts = [
   {
     title: "AI Hire Now",
-    description: "Instant hiring pipeline",
+    description: "Order Staff 24/7",
     icon: Zap,
     link: "/ai-hire-now",
+    isImage: false,
+  },
+  {
+    title: "Ask AI Steve",
+    description: "Recruitment support 24/7",
+    icon: UserCheck,
+    link: "/",
     isImage: false,
   },
   {

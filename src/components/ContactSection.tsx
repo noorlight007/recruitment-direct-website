@@ -5,31 +5,31 @@ import React from "react";
 export default function ContactSection() {
   return (
     <>
-      <section className="rd-contact-section">
+      <section className="rd-contact-section standard-section">
         <div className="rd-contact-container">
           <p className="rd-eyebrow">CONTACT US</p>
-          <h2>How can we help?</h2>
-          <p className="rd-intro">
+          <h2 className="standard-h1">How can we help?</h2>
+          <p className="rd-intro standard-h2">
             Choose the option that best suits your requirements.
           </p>
 
           <div className="rd-contact-cards">
-            <div className="rd-contact-card">
+            <div className="rd-contact-card standard-card">
               <h3>AI HIRE NOW</h3>
-              <p>
+              <p className="standard-body-p">
                 Order Staff 24/7. Powered by AI.
               </p>
-              <a href="/ai-hire-now" className="rd-btn">
+              <a href="/ai-hire-now" className="rd-btn standard-cta-btn">
                 Hire Now →
               </a>
             </div>
 
-            <div className="rd-contact-card">
+            <div className="rd-contact-card standard-card">
               <h3>LOOKING FOR STAFF?</h3>
-              <p>
+              <p className="standard-body-p">
                 Temporary, Contract & Permanent.
               </p>
-              <a href="/contact" className="rd-btn">
+              <a href="/contact" className="rd-btn standard-cta-btn">
                 Request Quote →
               </a>
             </div>
@@ -75,6 +75,7 @@ export default function ContactSection() {
 
         .rd-eyebrow {
             color: var(--rd-brass);
+            text-align: center !important;
             font-size: 14px;
             font-weight: 700;
             letter-spacing: 3px;
@@ -83,11 +84,17 @@ export default function ContactSection() {
         }
 
         .rd-contact-section h2 {
-            font-size: clamp(42px, 6vw, 72px);
+            font-size: 39.2px !important;
             font-weight: 800;
             color: var(--rd-black);
             line-height: 1.1;
             margin-bottom: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .rd-contact-section h2 {
+                font-size: 25.2px !important;
+            }
         }
 
         .rd-intro {
