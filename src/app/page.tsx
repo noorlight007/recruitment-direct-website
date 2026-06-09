@@ -556,10 +556,13 @@ const Index = () => {
         }
 
         .rd-team-page .process-btn {
-          width: auto !important;
-          min-width: 360px !important;
-          max-width: 100% !important;
-          display: inline-flex !important;
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 260px !important;
+            margin: 0 auto !important;
+            height: 64px !important;
+            line-height: 64px !important;
+            font-size: 16px !important;
         }
 
         .rd-team-page .benefits {
@@ -828,9 +831,13 @@ const Index = () => {
           }
 
           .rd-team-page .process-btn {
-            min-width: 100% !important;
-            max-width: 400px;
+            width: 100% !important;
+            min-width: 0 !important;
+            max-width: 280px !important;
             margin: 0 auto !important;
+            height: 52px !important;
+            line-height: 52px !important;
+            font-size: 15px !important;
           }
 
           .rd-team-page .benefit-grid {

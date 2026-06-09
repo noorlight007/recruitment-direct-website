@@ -786,7 +786,7 @@ export default function Footer() {
                     <h4>AI Platform</h4>
                     <a href="/ai-hire-now">Request Staff</a>
                     <a href="/#ai-recruitment">AI Recruitment</a>
-                    <a href="/callpilot">CallPilot (AI Voice)</a>
+                    <a href="/callpilot">AI Voice Call</a>
                     <a href="/integrations">Integrations</a>
                     <a href="/security">Security</a>
                   </div>
