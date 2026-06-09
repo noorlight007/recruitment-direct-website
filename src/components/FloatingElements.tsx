@@ -1,12 +1,87 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send } from "lucide-react";
+
+interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
 
 export default function FloatingElements() {
   const [chatOpen, setChatOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Initialize messages state from localStorage on mount
+  useEffect(() => {
+    const sessionStartStr = localStorage.getItem("rduk_chat_session_start");
+    const cachedMessagesStr = localStorage.getItem("rduk_chat_messages");
+    const now = new Date().getTime();
+    const ONE_HOUR = 60 * 60 * 1000;
+
+    let loadedMessages: ChatMessage[] = [
+      { role: "assistant", content: "Hi, I’m AI Steve. Are you looking to hire staff or search for a job?" }
+    ];
+
+    if (sessionStartStr && cachedMessagesStr) {
+      const sessionStart = parseInt(sessionStartStr, 10);
+      if (now - sessionStart < ONE_HOUR) {
+        try {
+          const parsed = JSON.parse(cachedMessagesStr);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            loadedMessages = parsed;
+          }
+        } catch (e) {
+          console.error("Failed to parse cached chat messages", e);
+        }
+      } else {
+        localStorage.removeItem("rduk_chat_messages");
+        localStorage.removeItem("rduk_chat_session_start");
+      }
+    }
+
+    setMessages(loadedMessages);
+  }, []);
+
+  // Check expiration when chat is opened
+  useEffect(() => {
+    if (chatOpen) {
+      const sessionStartStr = localStorage.getItem("rduk_chat_session_start");
+      const cachedMessagesStr = localStorage.getItem("rduk_chat_messages");
+      const now = new Date().getTime();
+      const ONE_HOUR = 60 * 60 * 1000;
+
+      if (sessionStartStr && cachedMessagesStr) {
+        const sessionStart = parseInt(sessionStartStr, 10);
+        if (now - sessionStart >= ONE_HOUR) {
+          // Expired, clear storage and reset to default message
+          localStorage.removeItem("rduk_chat_messages");
+          localStorage.removeItem("rduk_chat_session_start");
+          setMessages([
+            { role: "assistant", content: "Hi, I’m AI Steve. Are you looking to hire staff or search for a job?" }
+          ]);
+        } else {
+          try {
+            const parsed = JSON.parse(cachedMessagesStr);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setMessages(parsed);
+            }
+          } catch (e) {
+            console.error("Failed to parse cached chat messages", e);
+          }
+        }
+      }
+    }
+  }, [chatOpen]);
+
+  // Scroll to bottom on new messages
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isTyping]);
 
   useEffect(() => {
     const handleOpenChat = () => setChatOpen(true);
@@ -14,10 +89,64 @@ export default function FloatingElements() {
     return () => window.removeEventListener('open-ai-steve', handleOpenChat);
   }, []);
 
+  const handleSendMessage = async () => {
+    const trimmedMessage = message.trim();
+    if (!trimmedMessage || isTyping) return;
+
+    const userMsg: ChatMessage = { role: "user", content: trimmedMessage };
+    const updatedMessages = [...messages, userMsg];
+    
+    setMessages(updatedMessages);
+    setMessage("");
+
+    // Start session timer if not set
+    const now = new Date().getTime();
+    if (!localStorage.getItem("rduk_chat_session_start")) {
+      localStorage.setItem("rduk_chat_session_start", now.toString());
+    }
+    localStorage.setItem("rduk_chat_messages", JSON.stringify(updatedMessages));
+
+    setIsTyping(true);
+
+    try {
+      const response = await fetch("https://api.callpilot.pro/api/v1/core/ask-steve/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ messages: updatedMessages }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const assistantMsg: ChatMessage = {
+        role: "assistant",
+        content: data.reply || "I'm sorry, I couldn't process that. How else can I help you?",
+      };
+
+      const finalMessages = [...updatedMessages, assistantMsg];
+      setMessages(finalMessages);
+      localStorage.setItem("rduk_chat_messages", JSON.stringify(finalMessages));
+    } catch (err) {
+      console.error("Chat API error:", err);
+      const errorMsg: ChatMessage = {
+        role: "assistant",
+        content: "Sorry, I am having trouble responding right now. Please check your connection and try again.",
+      };
+      const finalMessages = [...updatedMessages, errorMsg];
+      setMessages(finalMessages);
+      localStorage.setItem("rduk_chat_messages", JSON.stringify(finalMessages));
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
   return (
     <>
-
-
       {/* AI Steve Chatbot */}
       <div className="fixed bottom-24 right-6 z-50">
         <AnimatePresence>
@@ -26,7 +155,7 @@ export default function FloatingElements() {
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.9 }}
-              className="mb-4 w-80 bg-background rounded-2xl overflow-hidden border border-primary/20"
+              className="mb-4 w-80 bg-background rounded-2xl overflow-hidden border border-primary/20 flex flex-col"
               style={{ boxShadow: "0 20px 60px hsla(217, 90%, 46%, 0.2)" }}
             >
               <div className="bg-navy p-4 flex items-center justify-between">
@@ -38,20 +167,83 @@ export default function FloatingElements() {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="p-4 h-48 overflow-y-auto">
-                <div className="bg-primary/10 rounded-xl p-3 text-sm text-foreground">
-                  Hi! I'm Steve, your AI recruitment assistant. How can I help you today? Looking for staff or a new role?
-                </div>
+              
+              <div className="p-4 h-64 overflow-y-auto flex flex-col gap-3">
+                {messages.map((msg, index) => (
+                  <div key={index} className="flex flex-col gap-1 w-full">
+                    <div
+                      className={`p-3 rounded-xl text-sm ${
+                        msg.role === "assistant"
+                          ? "bg-primary/10 text-foreground self-start max-w-[85%]"
+                          : "bg-navy text-white self-end max-w-[85%] ml-auto"
+                      }`}
+                    >
+                      {msg.content}
+                    </div>
+                    {/* Show suggested buttons right under the first message if it's the initial assistant message */}
+                    {index === 0 && msg.role === "assistant" && (
+                      <div className="mt-2 pl-2 flex flex-col gap-1.5 items-start">
+                        <span className="text-[11px] font-bold text-[#536078]/80 mb-1 uppercase tracking-wider">Suggested Buttons:</span>
+                        <div className="flex flex-col gap-1.5 w-full">
+                          <button
+                            onClick={() => setMessage("I Need Staff")}
+                            className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
+                          >
+                            I Need Staff
+                          </button>
+                          <button
+                            onClick={() => setMessage("Search Jobs")}
+                            className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
+                          >
+                            Search Jobs
+                          </button>
+                          <button
+                            onClick={() => setMessage("Learn About AI Recruitment")}
+                            className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
+                          >
+                            Learn About AI Recruitment
+                          </button>
+                          <button
+                            onClick={() => setMessage("Speak to Team")}
+                            className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
+                          >
+                            Speak to Team
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                
+                {isTyping && (
+                  <div className="bg-primary/10 text-foreground self-start p-3 rounded-xl text-sm max-w-[85%] flex gap-1 items-center">
+                    <span className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                    <span className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
               </div>
+
               <div className="p-3 border-t border-primary/10 flex gap-2">
                 <input
                   type="text"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleSendMessage();
+                    }
+                  }}
                   placeholder="Type your enquiry..."
                   className="flex-1 px-3 py-2 text-sm rounded-lg border-2 border-primary/20 focus:border-primary focus:outline-none bg-background text-foreground"
                 />
-                <button className="btn-metallic p-2 rounded-lg btn-icon">
+                <button
+                  onClick={handleSendMessage}
+                  disabled={isTyping}
+                  className="btn-metallic p-2 rounded-lg btn-icon"
+                >
                   <Send className="w-4 h-4" />
                 </button>
               </div>
