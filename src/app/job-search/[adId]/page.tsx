@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { Loader2, MapPin, ChevronRight, Mail, Phone } from "lucide-react";
+import { Loader2, MapPin, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -544,26 +544,15 @@ export default function JobDetailsPage() {
                         <strong className="contact-name">{job.owner.firstName} {job.owner.lastName}</strong>
                         {job.owner.jobTitle && <span className="contact-title">{job.owner.jobTitle}</span>}
                         
-                        <div className="contact-links">
-                          {job.owner.email && (
-                            <a href={`mailto:${job.owner.email}`} className="contact-link">
-                              <Mail className="contact-icon" />
-                              {job.owner.email}
-                            </a>
-                          )}
-                          {job.owner.phone && (
-                            <a href={`tel:${job.owner.phone}`} className="contact-link">
-                              <Phone className="contact-icon" />
-                              {job.owner.phone}
-                            </a>
-                          )}
-                          {!job.owner.phone && job.owner.mobile && (
-                            <a href={`tel:${job.owner.mobile}`} className="contact-link">
-                              <Phone className="contact-icon" />
-                              {job.owner.mobile}
-                            </a>
-                          )}
-                        </div>
+                        <a 
+                          href={`https://apply.jobadder.com/eu3/1108/${job.adId}/l4ctmmabsdnuvmmrlk3jpydtma`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="apply-now-btn"
+                          style={{ width: '100%', marginTop: job.owner.jobTitle ? '0px' : '12px' }}
+                        >
+                          Apply Now <ChevronRight className="button-arrow" />
+                        </a>
                       </div>
                     </div>
                   )}
