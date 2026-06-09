@@ -236,6 +236,17 @@ export default function AIHireNowFormPage() {
         setIsContractDropdownOpen(false);
         setIsSalaryPerDropdownOpen(false);
         (e.target as HTMLFormElement).reset();
+      } else if (
+        result.status === 502 ||
+        result.statusCode === 502 ||
+        result.error === 502 ||
+        result.error === "502"
+      ) {
+        setErrorDetails({
+          message: "A contact with this email address already exists under another company.",
+        });
+        setShowErrorModal(true);
+        setMessage("");
       } else if (result.error === "Missing required fields" && Array.isArray(result.fields)) {
         // Validation failure from server
         const errors: FormErrors = {};
@@ -278,8 +289,13 @@ export default function AIHireNowFormPage() {
       }
     } catch (error: any) {
       console.error("API submission error:", error);
+      const is502 = error.status === 502 || 
+                    (error.message && (error.message.includes("502") || error.message.toLowerCase().includes("bad gateway")));
+      
       setErrorDetails({
-        message: error.message || "Something went wrong. Please check your connection and try again.",
+        message: is502 
+          ? "A contact with this email address already exists under another company." 
+          : (error.message || "Something went wrong. Please check your connection and try again."),
       });
       setShowErrorModal(true);
       setMessage("");

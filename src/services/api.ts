@@ -67,6 +67,12 @@ export const api = {
         body: JSON.stringify(body),
       });
 
+      if (response.status === 502) {
+        const err = new Error("Bad Gateway");
+        (err as any).status = 502;
+        throw err;
+      }
+
       const data = await response.json();
       return data as T;
     } catch (error) {
