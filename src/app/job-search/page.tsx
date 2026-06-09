@@ -159,12 +159,32 @@ export default function JobSearchPage() {
   // Initial load: fetches ads then ends loading
   useEffect(() => {
     async function loadJobs() {
+      let hasCache = false;
       try {
-        setLoading(true);
+        // Try to load cached jobs from localStorage for instant display
+        const cached = localStorage.getItem("rduk_cached_jobs");
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setJobListings(parsed);
+              setLoading(false);
+              hasCache = true;
+            }
+          } catch (e) {
+            console.error("Failed to parse cached jobs", e);
+          }
+        }
+
+        if (!hasCache) {
+          setLoading(true);
+        }
         setError(null);
+
         const data = await api.get("/core/live/jobads");
         if (data && data.items) {
           setJobListings(data.items);
+          localStorage.setItem("rduk_cached_jobs", JSON.stringify(data.items));
 
           // Check URL query parameters
           const params = new URLSearchParams(window.location.search);
@@ -178,8 +198,10 @@ export default function JobSearchPage() {
         }
       } catch (err: any) {
         console.error("Job feed failed to load", err);
-        setError("Unable to load live jobs. Please check your connection or try again later.");
-        setJobListings([]);
+        if (!hasCache) {
+          setError("Unable to load live jobs. Please check your connection or try again later.");
+          setJobListings([]);
+        }
       } finally {
         setLoading(false);
       }

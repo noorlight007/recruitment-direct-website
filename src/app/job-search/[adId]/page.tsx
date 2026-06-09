@@ -325,31 +325,74 @@ export default function JobDetailsPage() {
     if (!adId) return;
 
     async function fetchJobDetails() {
+      let hasCache = false;
       try {
-        setLoading(true);
+        // Try to load cached individual job detail from localStorage
+        const cached = localStorage.getItem(`rduk_cached_job_${adId}`);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            if (parsed && parsed.adId === Number(adId)) {
+              setJob(parsed);
+              setLoading(false);
+              hasCache = true;
+            }
+          } catch (e) {
+            console.error("Failed to parse cached job detail", e);
+          }
+        }
+
+        if (!hasCache) {
+          setLoading(true);
+        }
         setError(null);
+
         const data = await api.get(`/core/live/jobads/${adId}`);
         if (data) {
-          try {
-            const listData = await api.get("/core/live/jobads");
-            if (listData && listData.items) {
-              const matchedJob = listData.items.find((item: any) => item.adId === Number(adId));
-              if (matchedJob) {
-                data.industry = matchedJob.industry;
-                data.category = matchedJob.category;
-                data.job_type = matchedJob.job_type;
+          // Check if we can extract category/industry/job_type from general list cache
+          let matchedJob = null;
+          const cachedList = localStorage.getItem("rduk_cached_jobs");
+          if (cachedList) {
+            try {
+              const parsedList = JSON.parse(cachedList);
+              if (Array.isArray(parsedList)) {
+                matchedJob = parsedList.find((item: any) => item.adId === Number(adId));
               }
+            } catch (e) {
+              console.error("Failed to parse cached job list", e);
             }
-          } catch (listErr) {
-            console.error("Failed to fetch matching job fields from live jobads feed:", listErr);
           }
+
+          // If not in cache, fallback to fetching from API
+          if (!matchedJob) {
+            try {
+              const listData = await api.get("/core/live/jobads");
+              if (listData && listData.items) {
+                // Update general cache as well
+                localStorage.setItem("rduk_cached_jobs", JSON.stringify(listData.items));
+                matchedJob = listData.items.find((item: any) => item.adId === Number(adId));
+              }
+            } catch (listErr) {
+              console.error("Failed to fetch matching job fields from live jobads feed:", listErr);
+            }
+          }
+
+          if (matchedJob) {
+            data.industry = matchedJob.industry;
+            data.category = matchedJob.category;
+            data.job_type = matchedJob.job_type;
+          }
+
           setJob(data);
+          localStorage.setItem(`rduk_cached_job_${adId}`, JSON.stringify(data));
         } else {
           setError("No records were found for this specific Job Ad ID.");
         }
       } catch (err: any) {
         console.error("Error fetching job details:", err);
-        setError("Unable to retrieve job details. The job opening may have been closed or is temporarily unavailable.");
+        if (!hasCache) {
+          setError("Unable to retrieve job details. The job opening may have been closed or is temporarily unavailable.");
+        }
       } finally {
         setLoading(false);
       }
