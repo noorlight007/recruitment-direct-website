@@ -59,7 +59,7 @@ export default function Footer() {
   const policyCategories = [
     {
       title: "FRAMEWORK & COMPLIANCE",
-      icon: <Scale className="w-5 h-5 text-blue-400" />,
+      icon: <Scale className="w-5 h-5 text-blue-600" />,
       items: [
         { name: "Modern Slavery Policy", link: "https://rduk.group/modernslaverypolucy" },
         { name: "Equality Policy", link: "https://rduk.group/equalitydiversity" },
@@ -69,7 +69,7 @@ export default function Footer() {
     },
     {
       title: "DATA & PRIVACY",
-      icon: <Lock className="w-5 h-5 text-blue-400" />,
+      icon: <Lock className="w-5 h-5 text-blue-600" />,
       items: [
         { name: "Privacy Policy", link: "https://rduk.group/privacy" },
         { name: "Cookie Policy", link: "https://rduk.group/cookiepolicy" },
@@ -80,7 +80,7 @@ export default function Footer() {
     },
     {
       title: "AI & TECHNOLOGY",
-      icon: <Shield className="w-5 h-5 text-blue-400" />,
+      icon: <Shield className="w-5 h-5 text-blue-600" />,
       items: [
         { name: "AI Transparency Statement" },
         { name: "Human Review Statement" },
@@ -89,7 +89,7 @@ export default function Footer() {
     },
     {
       title: "SECURITY",
-      icon: <Shield className="w-5 h-5 text-blue-400" />,
+      icon: <Shield className="w-5 h-5 text-blue-600" />,
       items: [
         { name: "Information Security Policy", link: "https://rduk.group/informationsecurity" },
         { name: "Data Breach Policy", link: "https://rduk.group/databreach" },
@@ -98,7 +98,7 @@ export default function Footer() {
     },
     {
       title: "RECRUITMENT COMPLIANCE",
-      icon: <Users className="w-5 h-5 text-blue-400" />,
+      icon: <Users className="w-5 h-5 text-blue-600" />,
       items: [
         { name: "AWR Policy" },
         { name: "Right to Work Policy" },
@@ -108,7 +108,7 @@ export default function Footer() {
     },
     {
       title: "WEBSITE LEGAL",
-      icon: <Info className="w-5 h-5 text-blue-400" />,
+      icon: <Info className="w-5 h-5 text-blue-600" />,
       items: [
         { name: "Terms of Use" }
       ]
@@ -634,27 +634,49 @@ export default function Footer() {
           align-items: center !important;
           justify-content: start !important;
           box-sizing: border-box !important;
-
-          /* Copy the premium button styling from globals.css to align <a> with <button> */
-          background:
-            linear-gradient(180deg, #0b1220 0%, #050816 100%) padding-box,
-            linear-gradient(135deg, #00D5FF 0%, #009DFF 35%, #006BFF 70%, #003CFF 100%) border-box !important;
-          border: 1.5px solid transparent !important;
+          background: #ffffff !important;
+          border: 1.5px solid #000000 !important;
           border-radius: 8px !important;
-          box-shadow:
-            0 0 12px rgba(0, 149, 255, 0.18),
-            0 6px 24px rgba(0, 0, 0, 0.55),
-            inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          color: #000000 !important;
+          font-weight: 600 !important;
+        }
+
+        .policy-btn span {
+          color: #000000 !important;
+          font-weight: 600 !important;
         }
 
         .policy-btn:hover {
           transform: translateY(-2px) !important;
-          box-shadow:
-            0 0 18px rgba(0, 170, 255, 0.28),
-            0 12px 32px rgba(0, 0, 0, 0.65),
-            inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-          filter: brightness(1.15) !important;
+          background: #f3f4f6 !important;
+          border-color: #000000 !important;
+          color: #000000 !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .policy-btn:hover span {
+          color: #000000 !important;
+        }
+
+        /* Target Dialog close button in top right */
+        .policies-dialog button.absolute {
+          background: #ffffff !important;
+          border: 1.5px solid #000000 !important;
+          color: #000000 !important;
+          opacity: 1 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 28px !important;
+          height: 28px !important;
+          border-radius: 6px !important;
+          transition: all 0.2s ease !important;
+        }
+
+        .policies-dialog button.absolute:hover {
+          background: #f3f4f6 !important;
+          color: #000000 !important;
         }
       `}</style>
 
@@ -957,13 +979,13 @@ export default function Footer() {
         </Dialog>
 
       <Dialog open={isPoliciesOpen} onOpenChange={setIsPoliciesOpen}>
-        <DialogContent className="max-w-6xl max-h-[85vh] overflow-y-auto bg-[#020817] border-white/10 text-white">
+        <DialogContent className="max-w-6xl max-h-[85vh] overflow-y-auto bg-white border-gray-200 text-gray-900 shadow-2xl policies-dialog">
           <DialogHeader className="mb-6">
-            <DialogTitle className="text-3xl font-bold flex items-center gap-3">
-              <FileText className="text-blue-500" />
+            <DialogTitle className="text-3xl font-bold flex items-center gap-3 text-gray-900">
+              <FileText className="text-blue-600" />
               Compliance & Policies
             </DialogTitle>
-            <p className="text-gray-400 mt-2">
+            <p className="text-gray-600 mt-2">
               Our commitment to transparency, security, and ethical recruitment practices.
             </p>
           </DialogHeader>
@@ -971,9 +993,9 @@ export default function Footer() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {policyCategories.map((category, idx) => (
               <div key={idx} className="space-y-4">
-                <div className="flex items-center gap-3 pb-2 border-b border-white/10">
+                <div className="flex items-center gap-3 pb-2 border-b border-gray-200">
                   {category.icon}
-                  <h4 className="font-bold text-sm tracking-widest text-gray-200 uppercase">
+                  <h4 className="font-bold text-sm tracking-widest text-gray-800 uppercase">
                     {category.title}
                   </h4>
                 </div>
@@ -981,32 +1003,28 @@ export default function Footer() {
                   {category.items.map((item, i) => {
                     const buttonProps = {
                       style: maxPolicyBtnHeight ? { height: `${maxPolicyBtnHeight}px` } : undefined,
-                      className: "policy-btn w-full text-left bg-white/[0.03] border border-white/5 hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300 rounded-lg text-gray-300 hover:text-white px-4 py-3 text-sm flex items-center gap-3 group"
+                      className: "policy-btn w-full text-left transition-all duration-300 rounded-lg px-4 py-3 text-sm flex items-center gap-3 group"
                     };
 
                     const content = (
                       <>
-                        <div className="w-1.5 h-1.5 bg-blue-500/80 rounded-full group-hover:bg-blue-400 group-hover:scale-125 transition-all duration-300 flex-shrink-0" />
+                        <div className="w-1.5 h-1.5 bg-black/80 rounded-full group-hover:bg-black group-hover:scale-125 transition-all duration-300 flex-shrink-0" />
                         <span className="leading-snug">{item.name}</span>
                       </>
                     );
 
                     return (
                       <li key={i}>
-                        {item.link ? (
-                          <a
-                            href={item.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            {...buttonProps}
-                          >
-                            {content}
-                          </a>
-                        ) : (
-                          <button {...buttonProps}>
-                            {content}
-                          </button>
-                        )}
+                        <button
+                          {...buttonProps}
+                          onClick={() => {
+                            if (item.link) {
+                              window.open(item.link, "_blank", "noopener,noreferrer");
+                            }
+                          }}
+                        >
+                          {content}
+                        </button>
                       </li>
                     );
                   })}
@@ -1015,13 +1033,13 @@ export default function Footer() {
             ))}
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-xs text-gray-500">
               Last updated: {new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
             </div>
             <button
               onClick={() => setIsPoliciesOpen(false)}
-              className="btn btn-secondary py-2 px-6 text-sm"
+              className="bg-white hover:bg-gray-50 text-black border border-black transition-all duration-200 rounded-lg py-2.5 px-6 font-semibold text-sm"
             >
               Close
             </button>
