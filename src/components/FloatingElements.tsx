@@ -14,6 +14,11 @@ const formatMessageContent = (content: string): string => {
   
   let formatted = content.trim();
   
+  // Convert Markdown links (e.g., "[Job Search](https://new.rd1.co.uk/job-search)") to plain URLs
+  formatted = formatted.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+    return url;
+  });
+
   // Format numbered bullet points (e.g., " 1. ", " 2) ") to start on a new line
   formatted = formatted.replace(/(?:\r?\n|\s)+(\d+)(\.|\))\s/g, (match, num, sep) => {
     return `\n${num}${sep} `;
@@ -25,6 +30,33 @@ const formatMessageContent = (content: string): string => {
   });
 
   return formatted;
+};
+
+const renderMessageContent = (content: string) => {
+  if (!content) return "";
+  
+  const formatted = formatMessageContent(content);
+  
+  // Split the message by URLs
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = formatted.split(urlRegex);
+  
+  return parts.map((part, index) => {
+    if (part.startsWith("http://") || part.startsWith("https://")) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:text-blue-800 underline break-all font-semibold"
+        >
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
 };
 
 export default function FloatingElements() {
@@ -197,7 +229,7 @@ export default function FloatingElements() {
                       }`}
                       style={{ whiteSpace: "pre-line" }}
                     >
-                      {msg.role === "assistant" ? formatMessageContent(msg.content) : msg.content}
+                      {msg.role === "assistant" ? renderMessageContent(msg.content) : msg.content}
                     </div>
                     {/* Show suggested buttons right under the first message if it's the initial assistant message */}
                     {index === 0 && msg.role === "assistant" && (
