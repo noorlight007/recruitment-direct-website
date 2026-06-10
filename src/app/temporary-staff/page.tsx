@@ -246,7 +246,7 @@ export default function TemporaryStaffPage() {
               team to discuss your requirements. We respond quickly and supply
               workers without unnecessary delays.
             </p>
-            <a href="/#contact" className="btn-ai-cta">
+            <a href="/ai-hire-now" className="btn-ai-cta">
               Request Temporary Staff
             </a>
           </motion.div>

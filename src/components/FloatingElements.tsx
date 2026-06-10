@@ -211,7 +211,7 @@ export default function FloatingElements() {
               <div className="bg-navy p-4 flex items-center justify-between">
                 <div>
                   <h4 className="font-heading font-semibold text-navy-foreground text-sm">AI Steve</h4>
-                  <p className="text-navy-foreground/60 text-xs">Job Enquiry Assistant</p>
+                  <p className="text-navy-foreground/60 text-xs">Recruitment Specialist</p>
                 </div>
                 <button onClick={() => setChatOpen(false)} className="text-navy-foreground/60 hover:text-navy-foreground">
                   <X className="w-5 h-5" />

@@ -336,8 +336,8 @@ const Index = () => {
             <section className="contact-strip">
               <div>
                 <span>CALL US</span>
-                <a href="tel:01324623198" style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <strong>01324 623198</strong>
+                <a href="tel:01324613198" style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <strong>01324 613198</strong>
                 </a>
               </div>
               <div>

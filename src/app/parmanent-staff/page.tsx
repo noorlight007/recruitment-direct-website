@@ -89,7 +89,7 @@ export default function PermanentStaffPage() {
             transition={{ delay: 0.2 }}
             className="mt-8"
           >
-            <a href="/#contact" className="btn-ai-cta">
+            <a href="/ai-hire-now" className="btn-ai-cta">
               Request Permanent Staff
             </a>
           </motion.div>

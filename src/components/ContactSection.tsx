@@ -36,9 +36,9 @@ export default function ContactSection() {
           </div>
 
           <div className="rd-contact-links">
-            <a href="tel:01324623198" className="rd-contact-link">
+            <a href="tel:01324613198" className="rd-contact-link">
               <span>Call Us</span>
-              <strong>01324 623198</strong>
+              <strong>01324 613198</strong>
             </a>
 
             <a href="https://wa.me/447590882626" className="rd-contact-link">

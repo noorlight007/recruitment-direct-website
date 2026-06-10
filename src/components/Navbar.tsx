@@ -281,7 +281,7 @@ export default function Navbar() {
               <div className="header-phone-icon">
                 <Phone />
               </div>
-              <span>01324613198</span>
+              <span>01324 613198</span>
             </a>
             <a href="/ai-hire-now" className="btn btn-primary header-btn ai-hire-btn">Request Staff</a>
           </div>

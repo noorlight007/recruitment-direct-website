@@ -103,9 +103,9 @@ export default function WhyChooseUsPage() {
             transition={{ delay: 0.15 }}
             className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto"
           >
-            <a href="/contact" className="btn-ai-cta">
+            {/* <a href="/contact" className="btn-ai-cta">
               Request Staff
-            </a>
+            </a> */}
             <Link href="/ai-hire-now" className="btn-ai-cta">
               Try AI Hire Now
             </Link>
