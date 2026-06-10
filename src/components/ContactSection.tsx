@@ -19,7 +19,7 @@ export default function ContactSection() {
               <p className="standard-body-p">
                 Order Staff 24/7. Powered by AI.
               </p>
-              <a href="/ai-hire-now" className="rd-contact-card-btn standard-cta-btn">
+              <a href="/ai-hire-now" className="rd-contact-card-btn standard-cta-btn rd-btn-gold">
                 Hire Now →
               </a>
             </div>
@@ -164,6 +164,28 @@ export default function ContactSection() {
             background: var(--rd-black) !important;
             border-color: var(--rd-black) !important;
             color: #ffffff !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .rd-contact-card-btn.rd-btn-gold {
+            color: #071424 !important;
+            background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
+            border: 2px solid #f7d98a !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, .7),
+                inset 0 -2px 0 rgba(70, 45, 5, .35),
+                0 10px 24px rgba(184, 134, 11, .32) !important;
+        }
+
+        .rd-contact-card-btn.rd-btn-gold:hover {
+            background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
+            border-color: #f7d98a !important;
+            filter: brightness(1.1) !important;
+            color: #071424 !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, .8),
+                inset 0 -2px 0 rgba(70, 45, 5, .4),
+                0 12px 28px rgba(184, 134, 11, .45) !important;
             transform: translateY(-2px) !important;
         }
 

@@ -112,6 +112,44 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  useEffect(() => {
+    const handleOpenAIRecruitment = () => {
+      setActiveDropdown("AI Recruitment");
+      setMobileOpen(true);
+      setMobileSubmenu("AI Recruitment");
+    };
+
+    const handleOpenClients = () => {
+      setActiveDropdown("Clients");
+      setMobileOpen(true);
+      setMobileSubmenu("Clients");
+    };
+
+    window.addEventListener("open-ai-recruitment", handleOpenAIRecruitment);
+    window.addEventListener("open-clients", handleOpenClients);
+    
+    const checkHash = () => {
+      if (window.location.hash === "#ai-recruitment") {
+        setActiveDropdown("AI Recruitment");
+        setMobileOpen(true);
+        setMobileSubmenu("AI Recruitment");
+      } else if (window.location.hash === "#clients") {
+        setActiveDropdown("Clients");
+        setMobileOpen(true);
+        setMobileSubmenu("Clients");
+      }
+    };
+    
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+
+    return () => {
+      window.removeEventListener("open-ai-recruitment", handleOpenAIRecruitment);
+      window.removeEventListener("open-clients", handleOpenClients);
+      window.removeEventListener("hashchange", checkHash);
+    };
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-white border-b-4">
       <div className="w-full px-6 lg:px-6">

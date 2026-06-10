@@ -785,15 +785,37 @@ export default function Footer() {
                   <div className="footer-col">
                     <h4>AI Platform</h4>
                     <a href="/ai-hire-now">Request Staff</a>
-                    <a href="/#ai-recruitment">AI Recruitment</a>
-                    <a href="/callpilot">AI Voice Call</a>
+                    <a
+                      href="/#ai-recruitment"
+                      onClick={() => {
+                        window.dispatchEvent(new CustomEvent('open-ai-recruitment'));
+                      }}
+                    >
+                      AI Recruitment
+                    </a>
+                    <a
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsVideoOpen(true);
+                      }}
+                    >
+                      AI Voice Call
+                    </a>
                     <a href="/integrations">Integrations</a>
                     <a href="/security">Security</a>
                   </div>
 
                   <div className="footer-col">
                     <h4>Resources</h4>
-                    <a href="/#clients">Clients</a>
+                    <a
+                      href="/#clients"
+                      onClick={() => {
+                        window.dispatchEvent(new CustomEvent('open-clients'));
+                      }}
+                    >
+                      Clients
+                    </a>
                     <a href="/job-search">Job Search</a>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
@@ -850,7 +872,13 @@ export default function Footer() {
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
-                    <a href="/#ai-recruitment" className="btn btn-primary btn-saas w-full mt-3 !justify-between">
+                    <a
+                      href="/#ai-recruitment"
+                      onClick={() => {
+                        window.dispatchEvent(new CustomEvent('open-ai-recruitment'));
+                      }}
+                      className="btn btn-primary btn-saas w-full mt-3 !justify-between"
+                    >
                       <span className="rd-ai-btn-text">AI Platform</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
@@ -913,20 +941,20 @@ export default function Footer() {
       </section>
 
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800 lg:left-auto lg:right-10 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:max-w-[45%] lg:h-auto">
-          <DialogHeader className="sr-only">
-            <DialogTitle>AI Call Demo Video</DialogTitle>
-          </DialogHeader>
-          <div className="aspect-video w-full">
-            <video
-              src="/Video.mov"
-              controls
-              autoPlay
-              className="w-full h-full"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
+          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
+            <DialogHeader className="sr-only">
+              <DialogTitle>AI Call Demo Video</DialogTitle>
+            </DialogHeader>
+            <div className="aspect-video w-full">
+              <video
+                src="/Video.mov"
+                controls
+                autoPlay
+                className="w-full h-full"
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
 
       <Dialog open={isPoliciesOpen} onOpenChange={setIsPoliciesOpen}>
         <DialogContent className="max-w-6xl max-h-[85vh] overflow-y-auto bg-[#020817] border-white/10 text-white">

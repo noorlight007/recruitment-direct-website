@@ -162,13 +162,13 @@ const Index = () => {
                     <span className="rd-btn-a">Order Staff 24/7</span>
                   </div>
                 </div>
-                <div className="rd-hero-btn-col">
+                {/* <div className="rd-hero-btn-col">
                   <a href="/contact" className="rd-btn rd-btn-gold standard-cta-btn">PLACE ENQUIRY</a>
                   <div className="rd-btn-caption">
                     <span className="rd-btn-q">Recruitment Quote?</span>
                     <span className="rd-btn-a">Request a Callback</span>
                   </div>
-                </div>
+                </div> */}
                 <div className="rd-hero-btn-col">
                   <a href="/job-search" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
                   <div className="rd-btn-caption">
@@ -250,8 +250,15 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="hero-image">
-                <img src="/images/steven.jpeg" alt="Steven" />
+              <div className="hero-image-wrap">
+                <div className="hero-image">
+                  <img src="/images/steven.jpeg" alt="Steven" />
+                </div>
+                <div className="director-caption">
+                  <strong className="director-name">Steven</strong>
+                  <span className="director-title">Director</span>
+                  <p className="director-tagline">Supporting clients with fast, reliable staffing solutions.</p>
+                </div>
               </div>
             </div>
 
@@ -488,13 +495,53 @@ const Index = () => {
           box-shadow: none !important;
         }
 
-        .rd-team-page .hero-image {
-          // height: calc(100% - 60px) !important;
+        .rd-team-page .hero-image-wrap {
           margin-top: 30px !important;
           margin-bottom: 30px !important;
           margin-right: 30px !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+        }
+
+        .rd-team-page .hero-image {
+          margin: 0 !important;
           overflow: hidden !important;
           border-radius: 12px !important;
+          width: 100% !important;
+        }
+
+        .rd-team-page .director-caption {
+          margin-top: 16px !important;
+          text-align: center !important;
+          color: #ffffff !important;
+        }
+
+        .rd-team-page .director-name {
+          display: block !important;
+          font-size: 20px !important;
+          font-weight: 800 !important;
+          color: #ffffff !important;
+        }
+
+        .rd-team-page .director-title {
+          display: block !important;
+          font-size: 15px !important;
+          font-weight: 500 !important;
+          color: #f6d77d !important;
+          text-transform: uppercase !important;
+          letter-spacing: 1.5px !important;
+          margin-top: 2px !important;
+        }
+
+        .rd-team-page .director-tagline {
+          display: block !important;
+          font-size: 13.5px !important;
+          font-style: italic !important;
+          color: #cbd5e1 !important;
+          margin-top: 6px !important;
+          max-width: 320px !important;
+          line-height: 1.4 !important;
         }
 
         .rd-team-page .hero-image img {
@@ -761,11 +808,18 @@ const Index = () => {
             font-size: 15px !important;
           }
 
+          .rd-team-page .hero-image-wrap {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            margin: 0 24px 40px !important;
+          }
+
           .rd-team-page .hero-image {
             display: block !important;
             height: auto !important;
             width: auto !important;
-            margin: 0 24px 40px !important;
+            margin: 0 0 16px 0 !important;
             overflow: hidden !important;
             border-radius: 12px !important;
           }

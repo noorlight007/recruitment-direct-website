@@ -39,10 +39,21 @@ p {
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
-  h1 { font-size: 38px; }
-  h2 { font-size: 30px; }
-  h3 { font-size: 22px; }
-  p { font-size: 17px; }
+  h1 {
+    font-size: 38px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 17px;
+  }
 }
 
 @layer base {
@@ -3236,7 +3247,7 @@ MOBILE RESPONSIVE
 .rd-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(3,8,18,.95), rgba(3,8,18,.78), rgba(3,8,18,.25));
+  background: linear-gradient(90deg, rgba(3, 8, 18, .95), rgba(3, 8, 18, .78), rgba(3, 8, 18, .25));
 }
 
 .rd-hero-content {
@@ -3253,6 +3264,7 @@ MOBILE RESPONSIVE
     min-width: 600px;
     max-width: 1100px;
   }
+
   .rd-hero h1 {
     white-space: nowrap !important;
   }
@@ -3312,23 +3324,23 @@ MOBILE RESPONSIVE
   background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
   border: 2px solid #f7d98a !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.7),
-    inset 0 -2px 0 rgba(70,45,5,.35),
-    0 10px 24px rgba(184,134,11,.32) !important;
+    inset 0 1px 0 rgba(255, 255, 255, .7),
+    inset 0 -2px 0 rgba(70, 45, 5, .35),
+    0 10px 24px rgba(184, 134, 11, .32) !important;
 }
 
 .rd-btn-gold:hover {
   filter: brightness(1.1);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    inset 0 -2px 0 rgba(70,45,5,.4),
-    0 12px 28px rgba(184,134,11,.45) !important;
+    inset 0 1px 0 rgba(255, 255, 255, .8),
+    inset 0 -2px 0 rgba(70, 45, 5, .4),
+    0 12px 28px rgba(184, 134, 11, .45) !important;
 }
 
 .rd-btn-outline {
   color: #fff !important;
   border: 2px solid #d8ad48 !important;
-  background: rgba(3,8,18,.48) !important;
+  background: rgba(3, 8, 18, .48) !important;
 }
 
 .rd-btn-outline:hover {
@@ -3340,7 +3352,7 @@ MOBILE RESPONSIVE
 .rd-trust {
   background: #fff;
   padding: 34px 0;
-  box-shadow: 0 10px 32px rgba(0,0,0,.08);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, .08);
 }
 
 .rd-trust-grid {
@@ -3354,7 +3366,7 @@ MOBILE RESPONSIVE
   font-size: 22px;
   font-weight: 800;
   color: #071424;
-  border-right: 1px solid rgba(184,134,11,.35);
+  border-right: 1px solid rgba(184, 134, 11, .35);
 }
 
 .rd-trust-grid div:last-child {
@@ -3394,7 +3406,7 @@ MOBILE RESPONSIVE
   padding: 24px;
   overflow: hidden;
   transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s ease;
-  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
   text-decoration: none;
 }
 
@@ -3409,7 +3421,7 @@ MOBILE RESPONSIVE
 
 .rd-sector-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(184,134,11,0.25);
+  box-shadow: 0 12px 30px rgba(184, 134, 11, 0.25);
 }
 
 .rd-sector-card span {
@@ -3468,13 +3480,13 @@ MOBILE RESPONSIVE
 
 .rd-team-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
 }
 
 .rd-team-card-featured {
   background: #fff;
   border: 2px solid #d8ad48;
-  box-shadow: 0 12px 40px rgba(184,134,11,.12);
+  box-shadow: 0 12px 40px rgba(184, 134, 11, .12);
 }
 
 .rd-team-card img {
@@ -3513,7 +3525,7 @@ MOBILE RESPONSIVE
   background: #030812;
   color: #fff;
   padding: 90px 0;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .rd-testimonial-grid {
@@ -3523,8 +3535,8 @@ MOBILE RESPONSIVE
 }
 
 .rd-testimonial-card {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid rgba(255, 255, 255, .08);
   border-radius: 20px;
   padding: 40px;
   display: flex;
@@ -3534,7 +3546,7 @@ MOBILE RESPONSIVE
 }
 
 .rd-testimonial-card:hover {
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   border-color: #d8ad48;
 }
 
@@ -3561,7 +3573,7 @@ MOBILE RESPONSIVE
 
 .rd-contact-box {
   background: linear-gradient(135deg, #071424 0%, #030812 100%);
-  border: 1px solid rgba(184,134,11,.3);
+  border: 1px solid rgba(184, 134, 11, .3);
   border-radius: 24px;
   padding: 60px;
   color: #fff;
@@ -3569,7 +3581,7 @@ MOBILE RESPONSIVE
   grid-template-columns: 1.2fr 1fr 1fr;
   align-items: center;
   gap: 40px;
-  box-shadow: 0 20px 50px rgba(3,8,18,.3);
+  box-shadow: 0 20px 50px rgba(3, 8, 18, .3);
 }
 
 .rd-contact-box h2 {
@@ -3626,12 +3638,15 @@ MOBILE RESPONSIVE
   .rd-trust-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .rd-trust-grid div {
     border-right: none;
   }
+
   .rd-trust-grid div:nth-child(odd) {
-    border-right: 1px solid rgba(184,134,11,.35);
+    border-right: 1px solid rgba(184, 134, 11, .35);
   }
+
   .rd-contact-box {
     grid-template-columns: 1fr;
     padding: 40px;
@@ -3644,12 +3659,14 @@ MOBILE RESPONSIVE
     min-height: 600px;
     padding: 60px 0;
   }
+
   .rd-button-grid {
     grid-template-columns: 1fr;
     gap: 12px;
     max-width: 300px;
     margin: 0 auto;
   }
+
   .rd-team-card img {
     width: 150px !important;
     height: 150px !important;
@@ -3661,11 +3678,13 @@ MOBILE RESPONSIVE
     grid-template-columns: 1fr;
     gap: 15px;
   }
+
   .rd-trust-grid div {
     border-right: none !important;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgba(184,134,11,.15);
+    border-bottom: 1px solid rgba(184, 134, 11, .15);
   }
+
   .rd-trust-grid div:last-child {
     border-bottom: none;
     padding-bottom: 0;
@@ -3811,4 +3830,3 @@ MOBILE RESPONSIVE
     padding: 24px !important;
   }
 }
-
