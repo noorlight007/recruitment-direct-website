@@ -9,6 +9,24 @@ interface ChatMessage {
   content: string;
 }
 
+const formatMessageContent = (content: string): string => {
+  if (!content) return content;
+  
+  let formatted = content.trim();
+  
+  // Format numbered bullet points (e.g., " 1. ", " 2) ") to start on a new line
+  formatted = formatted.replace(/(?:\r?\n|\s)+(\d+)(\.|\))\s/g, (match, num, sep) => {
+    return `\n${num}${sep} `;
+  });
+
+  // Format standard bullet points (e.g., " * ", " - ") to start on a new line
+  formatted = formatted.replace(/(?:\r?\n|\s)+([*\-])\s/g, (match, bullet) => {
+    return `\n${bullet} `;
+  });
+
+  return formatted;
+};
+
 export default function FloatingElements() {
   const [chatOpen, setChatOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -172,13 +190,14 @@ export default function FloatingElements() {
                 {messages.map((msg, index) => (
                   <div key={index} className="flex flex-col gap-1 w-full">
                     <div
-                      className={`p-3 rounded-xl text-sm ${
+                      className={`p-3 rounded-xl text-sm whitespace-pre-line ${
                         msg.role === "assistant"
                           ? "bg-primary/10 text-foreground self-start max-w-[85%]"
                           : "bg-navy text-white self-end max-w-[85%] ml-auto"
                       }`}
+                      style={{ whiteSpace: "pre-line" }}
                     >
-                      {msg.content}
+                      {msg.role === "assistant" ? formatMessageContent(msg.content) : msg.content}
                     </div>
                     {/* Show suggested buttons right under the first message if it's the initial assistant message */}
                     {index === 0 && msg.role === "assistant" && (
