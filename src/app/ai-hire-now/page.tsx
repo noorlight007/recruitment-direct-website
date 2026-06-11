@@ -55,7 +55,7 @@ function Hero() {
             </a>
 
             <a
-              href="/ai-hire-now-form?type=quote"
+              href="/contact"
               className="btn-ai-cta"
             >
               Request Quote
@@ -155,7 +155,7 @@ function FinalCTA() {
             AI Hire Now
           </a>
           <a
-            href="/ai-hire-now-form?type=quote"
+            href="/contact"
             className="btn-ai-cta"
           >
             Request Quote
