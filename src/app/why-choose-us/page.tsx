@@ -101,7 +101,7 @@ export default function WhyChooseUsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto"
+            className="mt-8"
           >
             {/* <a href="/contact" className="btn-ai-cta">
               Request Staff

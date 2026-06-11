@@ -379,6 +379,7 @@ export default function JobSearchPage() {
           flex: 1 !important;
           display: flex !important;
           align-items: center !important;
+          min-width: 0 !important;
         }
 
         .rduk-latest-jobs .search-icon {
@@ -398,6 +399,8 @@ export default function JobSearchPage() {
           outline: none !important;
           background: #ffffff !important;
           color: #111111 !important;
+          width: 100% !important;
+          min-width: 0 !important;
         }
 
         .rduk-latest-jobs .jobs-search button {
@@ -411,6 +414,8 @@ export default function JobSearchPage() {
           height: auto !important;
           width: auto !important;
           border-radius: 0 !important;
+          flex-shrink: 0 !important;
+          white-space: nowrap !important;
         }
 
         .rduk-latest-jobs .jobs-list {
@@ -595,7 +600,7 @@ export default function JobSearchPage() {
           }
 
           .rduk-latest-jobs .jobs-search button {
-            padding: 0 16px !important;
+            padding: 0 4px !important;
             font-size: 15px !important;
           }
 

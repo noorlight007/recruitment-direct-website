@@ -44,7 +44,7 @@ export default function ContactPage() {
 
       <Navbar />
 
-      <main className="pt-[140px] pb-20">
+      <main className="pt-[40px] pb-20">
         <div className="max-w-[1200px] mx-auto px-5">
           {/* HERO */}
           <motion.div {...fadeUp} className="text-center mb-[50px]">
@@ -161,28 +161,24 @@ export default function ContactPage() {
                 Contact Our Team
               </h2>
               <form className="space-y-4">
-                <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
                     type="text"
                     placeholder="Name"
                     className="form-input"
                   />
-                </div>
-                <div>
                   <input
                     type="text"
                     placeholder="Company"
                     className="form-input"
                   />
                 </div>
-                <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
                     type="tel"
                     placeholder="Phone"
                     className="form-input"
                   />
-                </div>
-                <div>
                   <input
                     type="email"
                     placeholder="Email"
@@ -192,7 +188,7 @@ export default function ContactPage() {
                 <div>
                   <textarea
                     placeholder="Message"
-                    className="form-input min-h-[150px] md:min-h-[220px] overflow-hidden resize-none"
+                    className="form-input min-h-[100px] md:min-h-[107px] overflow-hidden resize-none"
                   ></textarea>
                 </div>
 
@@ -208,4 +204,4 @@ export default function ContactPage() {
       <Footer />
     </div>
   );
-}
+}
