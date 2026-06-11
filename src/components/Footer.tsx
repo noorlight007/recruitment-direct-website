@@ -160,11 +160,16 @@ export default function Footer() {
           gap: 20px;
           margin-bottom: 32px;
         }
+        @media (min-width: 1024px) {
+          .rd-cards {
+            grid-template-columns: repeat(4, 1fr) !important;
+          }
+        }
         .rd-card {
           background: rgba(255, 255, 255, 0.04) !important;
           border: 1px solid rgba(0, 140, 255, 0.18) !important;
           border-radius: 28px;
-          padding: 22px 20px 18px;
+          padding: 22px 16px 18px !important;
           box-shadow:
             0 0 0 1px rgba(255,255,255,0.02) inset,
             0 10px 30px rgba(0,0,0,0.55),
@@ -202,24 +207,25 @@ export default function Footer() {
           margin: 0 auto;
         }
         .rd-card h3 {
-          margin: 0 0 6px;
+          margin: 0 0 6px !important;
           color: #ffffff !important;
-          font-size: 19px;
-          line-height: 1.2;
-          font-weight: 600;
+          font-size: 18px !important;
+          line-height: 1.25 !important;
+          font-weight: 600 !important;
+          text-transform: none !important;
         }
         .rd-card .rd-sub {
-          margin: 0 0 4px;
+          margin: 0 0 4px !important;
           color: #CBD5E1 !important;
-          font-size: 14px;
-          line-height: 1.5;
+          font-size: 14px !important;
+          line-height: 1.5 !important;
         }
         .rd-card .rd-num {
-          margin: 0 0 16px;
+          margin: 0 0 16px !important;
           color: #60A5FA !important;
-          font-size: 17px;
-          font-weight: 500;
-          line-height: 1.3;
+          font-size: 16px !important;
+          font-weight: 500 !important;
+          line-height: 1.3 !important;
         }
         .rd-card .rd-btn-wrap {
           padding-top: 16px;
@@ -228,6 +234,14 @@ export default function Footer() {
         .rd-btn-arrow {
           font-size: 22px;
           line-height: 1;
+        }
+        .rd-desktop-br {
+          display: none;
+        }
+        @media (min-width: 1024px) {
+          .rd-desktop-br {
+            display: inline;
+          }
         }
         .trust-strip {
           background: linear-gradient(135deg, #07111f, #0d1b2e) !important;
@@ -723,7 +737,7 @@ export default function Footer() {
                   alt="Cyber Essentials"
                 />
               </div>
-              <h3>Cyber Essentials</h3>
+              <h3>Cyber <br className="rd-desktop-br" />Essentials</h3>
               <p className="rd-sub">Certified</p>
               <p className="rd-num">4686a995</p>
               <div className="rd-btn-wrap">
@@ -744,7 +758,7 @@ export default function Footer() {
               <div className="rd-card-logo">
                 <img src="/assets/compliance/cqs-iso9001.png" alt="ISO 9001:2015" />
               </div>
-              <h3>ISO 9001:2015</h3>
+              <h3>ISO <br className="rd-desktop-br" />9001:2015</h3>
               <p className="rd-sub">Quality Management</p>
               <p className="rd-num">GB2006088</p>
               <div className="rd-btn-wrap">
@@ -765,7 +779,7 @@ export default function Footer() {
               <div className="rd-card-logo">
                 <img src="/rec_logo_new.png" alt="REC Membership" />
               </div>
-              <h3>REC Membership</h3>
+              <h3>REC <br className="rd-desktop-br" />Membership</h3>
               <p className="rd-sub">Corporate Member</p>
               <p className="rd-num">00207320</p>
               <div className="rd-btn-wrap">
@@ -963,20 +977,20 @@ export default function Footer() {
       </section>
 
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
-            <DialogHeader className="sr-only">
-              <DialogTitle>AI Call Demo Video</DialogTitle>
-            </DialogHeader>
-            <div className="aspect-video w-full">
-              <video
-                src="/Video.mov"
-                controls
-                autoPlay
-                className="w-full h-full"
-              />
-            </div>
-          </DialogContent>
-        </Dialog>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
+          <DialogHeader className="sr-only">
+            <DialogTitle>AI Call Demo Video</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video w-full">
+            <video
+              src="/Video.mov"
+              controls
+              autoPlay
+              className="w-full h-full"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={isPoliciesOpen} onOpenChange={setIsPoliciesOpen}>
         <DialogContent className="max-w-6xl max-h-[85vh] overflow-y-auto bg-white border-gray-200 text-gray-900 shadow-2xl policies-dialog">

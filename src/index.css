@@ -671,3 +671,72 @@
 .light-section {
   background: #FFFFFF !important;
 }
+
+/* ==================================================
+   STANDARDIZED FONT SIZES & BUTTON HEIGHTS (LAPTOP & DESKTOP)
+   ================================================== */
+@media (min-width: 769px) {
+  h1, h1[class], [class] h1, [class] h1[class], [class] [class] h1, [class] [class] h1[class],
+  .standard-h1, [class] .standard-h1, [class] [class] .standard-h1,
+  .hero-heading, [class] .hero-heading, [class] [class] .hero-heading {
+    font-size: 60px !important;
+  }
+  
+  h2, h2[class], [class] h2, [class] h2[class], [class] [class] h2, [class] [class] h2[class],
+  .section-title, [class] .section-title, [class] [class] .section-title,
+  .trusted-tech-title, [class] .trusted-tech-title, [class] [class] .trusted-tech-title,
+  .standard-h2, [class] .standard-h2, [class] [class] .standard-h2 {
+    font-size: 44px !important;
+  }
+  
+  h3, h3[class], [class] h3, [class] h3[class], [class] [class] h3, [class] [class] h3[class],
+  .standard-h3, [class] .standard-h3, [class] [class] .standard-h3 {
+    font-size: 30px !important;
+  }
+  
+  p, p[class], [class] p, [class] p[class], [class] [class] p, [class] [class] p[class],
+  .standard-body-p, [class] .standard-body-p, [class] [class] .standard-body-p,
+  .hero-text, [class] .hero-text, [class] [class] .hero-text,
+  .hero-subtext, [class] .hero-subtext, [class] [class] .hero-subtext,
+  .trusted-tech-subtitle, [class] .trusted-tech-subtitle, [class] [class] .trusted-tech-subtitle {
+    font-size: 18px !important;
+  }
+
+  button:not(.menu-btn):not(.close-btn):not(.absolute):not(.fixed button):not(.footer-col button):not(.rd-floating-trigger):not(.nav-btn):not(.dropdown-item):not(.rd1-cookie-buttons button),
+  [class] button:not(.menu-btn):not(.close-btn):not(.absolute):not(.fixed button):not(.footer-col button):not(.rd-floating-trigger):not(.nav-btn):not(.dropdown-item):not(.rd1-cookie-buttons button),
+  [class] [class] button:not(.menu-btn):not(.close-btn):not(.absolute):not(.fixed button):not(.footer-col button):not(.rd-floating-trigger):not(.nav-btn):not(.dropdown-item):not(.rd1-cookie-buttons button),
+  .btn, [class] .btn, [class] [class] .btn,
+  .cta-button, [class] .cta-button, [class] [class] .cta-button,
+  a.button, [class] a.button, [class] [class] a.button,
+  a.btn, [class] a.btn, [class] [class] a.btn,
+  .wp-block-button__link, [class] .wp-block-button__link, [class] [class] .wp-block-button__link,
+  .btn-ai-cta, [class] .btn-ai-cta, [class] [class] .btn-ai-cta,
+  .ai-button, [class] .ai-button, [class] [class] .ai-button,
+  .policy-btn, [class] .policy-btn, [class] [class] .policy-btn,
+  .elite-new-primary-btn, [class] .elite-new-primary-btn, [class] [class] .elite-new-primary-btn,
+  .elite-new-secondary-btn, [class] .elite-new-secondary-btn, [class] [class] .elite-new-secondary-btn,
+  .btn-secondary, [class] .btn-secondary, [class] [class] .btn-secondary,
+  .btn-saas, [class] .btn-saas, [class] [class] .btn-saas,
+  .btn-primary, [class] .btn-primary, [class] [class] .btn-primary,
+  .standard-cta-btn, [class] .standard-cta-btn, [class] [class] .standard-cta-btn,
+  .btn-gold, [class] .btn-gold, [class] [class] .btn-gold,
+  .btn-outline, [class] .btn-outline, [class] [class] .btn-outline,
+  .btn-outline-dark, [class] .btn-outline-dark, [class] [class] .btn-outline-dark,
+  .rd-btn-gold, [class] .rd-btn-gold, [class] [class] .rd-btn-gold,
+  .rd-btn-outline, [class] .rd-btn-outline, [class] [class] .rd-btn-outline,
+  .rd-contact-card-btn, [class] .rd-contact-card-btn, [class] [class] .rd-contact-card-btn,
+  .watch-btn, [class] .watch-btn, [class] [class] .watch-btn,
+  .btn-metallic, [class] .btn-metallic, [class] [class] .btn-metallic,
+  .rd-btn, [class] .rd-btn, [class] [class] .rd-btn {
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
+    line-height: 52px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
