@@ -235,7 +235,7 @@ const Index = () => {
           <section className="rd-team-page">
             <div className="hero">
               <div className="hero-content">
-                <h1>RECRUITMENT<br />SOLUTIONS THAT<br /><span>DELIVER RESULTS</span></h1>
+                <h1 className="standard-h1">RECRUITMENT<br />SOLUTIONS THAT<br /><span>DELIVER RESULTS</span></h1>
                 <p>Temporary, Contract and Permanent Recruitment Solutions Across the UK.</p>
 
                 <div className="hero-buttons">
@@ -244,7 +244,7 @@ const Index = () => {
                     <small>Order Staff 24/7.</small>
                   </div>
                   <div>
-                    <a href="/contact" className="btn outline standard-cta-btn">REQUEST QUOTE</a>
+                    <a href="/ai-hire-now-form?type=quote" className="btn outline standard-cta-btn">REQUEST QUOTE</a>
                     <small>Consultant Call Back.</small>
                   </div>
                 </div>

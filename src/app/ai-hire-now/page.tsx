@@ -155,7 +155,7 @@ function FinalCTA() {
             AI Hire Now
           </a>
           <a
-            href="/contact"
+            href="/ai-hire-now-form?type=quote"
             className="btn-ai-cta"
           >
             Request Quote

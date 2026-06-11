@@ -29,7 +29,7 @@ export default function ContactSection() {
               <p className="standard-body-p">
                 Temporary, Contract & Permanent.
               </p>
-              <a href="/contact" className="rd-contact-card-btn standard-cta-btn">
+              <a href="/ai-hire-now-form?type=quote" className="rd-contact-card-btn standard-cta-btn">
                 Request Quote →
               </a>
             </div>
