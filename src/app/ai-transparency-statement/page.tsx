@@ -11,7 +11,7 @@ export default function AITransparencyStatementPage() {
       <FloatingElements />
       <Navbar />
 
-      <main className="flex-grow pt-[120px] md:pt-[160px] pb-20 px-6 max-w-4xl mx-auto w-full ai-transparency-container">
+      <main className="flex-grow pt-[20px] md:pt-[40px] pb-20 px-6 max-w-4xl mx-auto w-full ai-transparency-container">
         {/* Page Title */}
         <h1 className="text-3xl md:text-5xl font-bold font-heading text-black mb-6 tracking-tight">
           AI Transparency Statement
