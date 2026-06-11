@@ -82,9 +82,9 @@ export default function Footer() {
       title: "AI & TECHNOLOGY",
       icon: <Shield className="w-5 h-5 text-blue-600" />,
       items: [
-        { name: "AI Transparency Statement" },
-        { name: "Human Review Statement" },
-        { name: "Bias / Fairness Statement" }
+        { name: "AI Transparency Statement", link: "/ai-transparency-statement" },
+        { name: "Human Review Statement", link: "/human-review-statement" },
+        { name: "Bias / Fairness Statement", link: "/bias-fairness-statement" }
       ]
     },
     {
@@ -100,17 +100,17 @@ export default function Footer() {
       title: "RECRUITMENT COMPLIANCE",
       icon: <Users className="w-5 h-5 text-blue-600" />,
       items: [
-        { name: "AWR Policy" },
-        { name: "Right to Work Policy" },
-        { name: "Complaints Policy" },
-        { name: "Safeguarding Policy" }
+        { name: "AWR Policy", link: "/awr-policy" },
+        { name: "Right to Work Policy", link: "/right-to-work-policy" },
+        { name: "Complaints Policy", link: "/complaints-policy" },
+        { name: "Safeguarding Policy", link: "/safeguarding-policy" }
       ]
     },
     {
       title: "WEBSITE LEGAL",
       icon: <Info className="w-5 h-5 text-blue-600" />,
       items: [
-        { name: "Terms of Use" }
+        { name: "Terms of Use", link: "/terms-of-use" }
       ]
     }
   ];
@@ -1019,7 +1019,7 @@ export default function Footer() {
                           {...buttonProps}
                           onClick={() => {
                             if (item.link) {
-                              window.open(item.link, "_blank", "noopener,noreferrer");
+                              window.open(item.link, "_self", "noopener,noreferrer");
                             }
                           }}
                         >

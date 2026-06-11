@@ -76,6 +76,19 @@ export default function AIHireNowFormPage() {
   const router = useRouter();
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [clientType, setClientType] = useState("existing");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get("type");
+      if (type === "quote") {
+        setClientType("new");
+      } else if (type === "order") {
+        setClientType("existing");
+      }
+    }
+  }, []);
 
   // Validation / Error States
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -206,7 +219,7 @@ export default function AIHireNowFormPage() {
       num_of_workers: parseInt(formData.get("workers") as string) || 0,
       start_date: formData.get("startDate") as string,
       location: formData.get("location") as string,
-      siteAndroles: formData.get("notes") as string,
+      siteAndroles: `[Client Status: ${clientType === "existing" ? "Existing Client – Order Now" : "New Client – Quote Request"}]\n\n${formData.get("notes") as string}`,
       workplace_type: formData.get("workplaceType") as string,
       contract_type: formData.get("contractType") as string,
       working_days: selectedDays,
@@ -214,6 +227,7 @@ export default function AIHireNowFormPage() {
       salary_max: salaryMaxStr ? parseFloat(salaryMaxStr) : 0,
       salary_per: formData.get("salaryPer") as string,
       qualifications: formData.get("qualifications") as string,
+      client_type: clientType,
     };
 
     try {
@@ -314,12 +328,52 @@ export default function AIHireNowFormPage() {
             AI Hire Now
           </h1>
           <p className="ai-hire-now-lead text-lg text-[#42526E] font-medium leading-relaxed">
-            Fast staff ordering for existing clients.
+            Fast staff ordering for existing clients and quote requests for new clients.
           </p>
         </div>
 
         <div className="ai-hire-now-card bg-transparent border border-[#e2e8f0] rounded-2xl shadow-sm max-w-[960px] mx-auto p-6 md:p-6">
           <form id="aiHireNowForm" className="ai-hire-now-form" onSubmit={handleSubmit}>
+
+            {/* Client Status Section */}
+            <div className="form-section mb-6">
+              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
+                <Sparkles className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+                  Client Status & Request Type
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                  <input
+                    type="radio"
+                    name="clientType"
+                    value="existing"
+                    checked={clientType === "existing"}
+                    onChange={() => setClientType("existing")}
+                    className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  />
+                  <div>
+                    <span className="block font-bold text-[#001737]">Existing Client – Order Now</span>
+                    <span className="block text-xs text-gray-500">Order staff directly under existing agreements</span>
+                  </div>
+                </label>
+                <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-slate-50 transition-colors">
+                  <input
+                    type="radio"
+                    name="clientType"
+                    value="new"
+                    checked={clientType === "new"}
+                    onChange={() => setClientType("new")}
+                    className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  />
+                  <div>
+                    <span className="block font-bold text-[#001737]">New Client – Quote Request</span>
+                    <span className="block text-xs text-gray-500">Submit staffing requirements to request pricing and setup</span>
+                  </div>
+                </label>
+              </div>
+            </div>
 
             {/* Section 1: Contact Details */}
             <div className="form-section mb-6">
