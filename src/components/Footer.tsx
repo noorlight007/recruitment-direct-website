@@ -61,39 +61,45 @@ export default function Footer() {
       title: "FRAMEWORK & COMPLIANCE",
       icon: <Scale className="w-5 h-5 text-blue-600" />,
       items: [
-        { name: "Modern Slavery Policy", link: "https://rduk.group/modernslaverypolucy" },
-        { name: "Equality Policy", link: "https://rduk.group/equalitydiversity" },
-        { name: "Health & Safety Policy", link: "https://rduk.group/healthsafetypolicy" },
-        { name: "Carbon Policy / Environmental Policy", link: "https://rduk.group/carbonreduction" }
+        { name: "Modern Slavery Policy", link: "/modern-slavery-policy" },
+        { name: "Equality & Diversity Policy", link: "/equality-diversity-policy" },
+        { name: "Health & Safety Policy", link: "/health-safety-policy" },
+        { name: "Carbon Reduction Plan", link: "/carbon-reduction-plan" },
+        { name: "Environmental & Carbon Policy", link: "/environmental-carbon-policy" },
+        { name: "Anti-Bribery Policy", link: "/anti-bribery-policy" },
+        { name: "Whistleblowing Policy", link: "/whistleblowing-policy" },
+        { name: "Data Protection & GDPR Policy", link: "/data-protection-gdpr-policy" },
       ]
     },
     {
       title: "DATA & PRIVACY",
       icon: <Lock className="w-5 h-5 text-blue-600" />,
       items: [
-        { name: "Privacy Policy", link: "https://rduk.group/privacy" },
-        { name: "Cookie Policy", link: "https://rduk.group/cookiepolicy" },
-        { name: "Candidate Privacy Notice", link: "https://rduk.group/candidateprivacynotice" },
-        { name: "Client Privacy Notice", link: "https://rduk.group/clientprivacy" },
-        { name: "Data Retention Policy", link: "https://rduk.group/data" }
+        { name: "Privacy Policy", link: "/privacy-policy" },
+        { name: "Cookie Policy", link: "/cookie-policy" },
+        { name: "Candidate Privacy Notice", link: "/candidate-privacy-notice" },
+        { name: "Client Privacy Notice", link: "/client-privacy-notice" },
+        { name: "Data Retention Policy", link: "/data-retention-policy" }
       ]
     },
     {
       title: "AI & TECHNOLOGY",
       icon: <Shield className="w-5 h-5 text-blue-600" />,
       items: [
-        { name: "AI Transparency Statement", link: "/ai-transparency-statement" },
-        { name: "Human Review Statement", link: "/human-review-statement" },
-        { name: "Bias / Fairness Statement", link: "/bias-fairness-statement" }
+        { name: "AI Transparency Policy", link: "/ai-transparency-statement" },
+        { name: "Human Review Policy", link: "/human-review-statement" },
+        { name: "AI Fairness & Bias Statement", link: "/bias-fairness-statement" },
+        { name: "AI Hire Now Statement", link: "/ai-hire-now-statement" },
+        { name: "AI Screening Call Statement", link: "/ai-screening-call-statement" },
       ]
     },
     {
       title: "SECURITY",
       icon: <Shield className="w-5 h-5 text-blue-600" />,
       items: [
-        { name: "Information Security Policy", link: "https://rduk.group/informationsecurity" },
-        { name: "Data Breach Policy", link: "https://rduk.group/databreach" },
-        { name: "Cyber Security / IT Policy", link: "https://rduk.group/securityitpolicy" }
+        { name: "Information Security Policy", link: "/information-security-policy" },
+        { name: "Data Breach Policy", link: "/data-breach-policy" },
+        { name: "Cyber Security & IT Policy", link: "/cyber-security-it-policy" }
       ]
     },
     {
@@ -864,11 +870,11 @@ export default function Footer() {
 
                   <div className="footer-col">
                     <h4>Policies</h4>
-                    <a href="https://rduk.group/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-                    <a href="https://rduk.group/cookiepolicy" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
-                    <a href="https://rduk.group/termsofuse" target="_blank" rel="noopener noreferrer">Terms of Use</a>
-                    <a href="https://rduk.group/modernslaverypolucy" target="_blank" rel="noopener noreferrer">Modern Slavery</a>
-                    <a href="https://rduk.group/equalitydiversity" target="_blank" rel="noopener noreferrer">Equality Policy</a>
+                    <a href="/privacy-policy">Privacy Policy</a>
+                    <a href="/cookie-policy">Cookie Policy</a>
+                    <a href="/terms-of-use">Terms of Use</a>
+                    <a href="/modern-slavery-policy">Modern Slavery</a>
+                    <a href="/equality-diversity-policy">Equality Policy</a>
                   </div>
 
                 </div>

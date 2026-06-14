@@ -5,16 +5,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 
-export default function BiasFairnessStatementPage() {
+export default function AIScreeningCallStatementPage() {
   return (
     <div className="min-h-screen bg-white text-black flex flex-col font-sans">
       <FloatingElements />
       <Navbar />
 
-      <main className="flex-grow pt-[20px] md:pt-[40px] pb-20 px-6 max-w-4xl mx-auto w-full bfs-container">
+      <main className="flex-grow pt-[20px] md:pt-[40px] pb-20 px-6 max-w-4xl mx-auto w-full ascs-container">
         {/* Page Title */}
         <h1 className="text-3xl md:text-5xl font-bold font-heading text-black mb-6 tracking-tight">
-          AI Fairness and Bias Statement
+          AI Applicant Screening Call Statement
         </h1>
 
         {/* Company Address Block */}
@@ -51,49 +51,50 @@ export default function BiasFairnessStatementPage() {
         {/* Sections */}
         <div className="space-y-12">
           {/* 1. Statement */}
-          <section className="bfs-section">
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
               1. Statement
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited (&ldquo;RDUK&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo; or &ldquo;us&rdquo;) is committed to the responsible, ethical and fair use of artificial intelligence (&ldquo;AI&rdquo;), machine learning and automated technologies.
+                Recruitment Direct UK Limited (&ldquo;RDUK&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo; or &ldquo;us&rdquo;) uses artificial intelligence (&ldquo;AI&rdquo;) to support the initial screening of applicants following the submission of a job application.
               </p>
               <p>
-                We recognise that AI-assisted systems must operate in a manner that supports fairness, transparency, consistency and accountability throughout recruitment, compliance and business operations.
+                The purpose of AI Applicant Screening Calls is to improve response times, enhance applicant engagement and support a more efficient recruitment process.
               </p>
             </div>
           </section>
 
           {/* 2. Purpose */}
-          <section className="bfs-section">
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
               2. Purpose
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                The purpose of this statement is to outline the principles that govern the use of AI technologies within Recruitment Direct UK Limited and our commitment to reducing the risk of unfair outcomes, bias and discrimination.
+                This statement explains how AI-assisted applicant screening calls operate and how information collected during these interactions may be used.
               </p>
             </div>
           </section>
 
-          {/* 3. Fairness Principles */}
-          <section className="bfs-section">
+          {/* 3. How AI Applicant Screening Calls Work */}
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              3. Fairness Principles
+              3. How AI Applicant Screening Calls Work
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited is committed to ensuring that AI-assisted technologies are used to:
+                Following an application, applicants may receive an AI-assisted telephone call designed to:
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
                 {[
-                  "Support fair recruitment practices.",
-                  "Improve consistency in recruitment processes.",
-                  "Assist with skills and vacancy matching.",
-                  "Improve operational efficiency.",
-                  "Support compliance and administrative activities.",
-                  "Promote objective decision-making processes."
+                  "Confirm application details.",
+                  "Ask role-specific screening questions.",
+                  "Verify availability and work preferences.",
+                  "Gather additional information relevant to the vacancy.",
+                  "Assess suitability against vacancy requirements.",
+                  "Support recruitment and compliance processes.",
+                  "Reduce delays in the recruitment process."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
                     <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
@@ -102,30 +103,30 @@ export default function BiasFairnessStatementPage() {
                 ))}
               </ul>
               <p className="mt-4">
-                AI technologies are used as support tools and do not replace professional judgement or human responsibility.
+                These calls are intended to assist consultants by collecting relevant information efficiently and consistently.
               </p>
             </div>
           </section>
 
-          {/* 4. Human Oversight */}
-          <section className="bfs-section">
+          {/* 4. Information Collected */}
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              4. Human Oversight
+              4. Information Collected
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Appropriate human oversight is maintained throughout AI-assisted recruitment and compliance processes.
-              </p>
-              <p>
-                AI technologies may assist with:
+                During an AI-assisted screening call, information may be collected including:
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
                 {[
-                  "Applicant screening.",
-                  "Skills and vacancy matching.",
-                  "Recruitment communications.",
-                  "Compliance administration.",
-                  "Database management."
+                  "Applicant contact details.",
+                  "Employment history.",
+                  "Skills and qualifications.",
+                  "Availability for work.",
+                  "Location preferences.",
+                  "Right to work information.",
+                  "Responses to vacancy-specific questions.",
+                  "Compliance-related information."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
                     <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
@@ -134,83 +135,37 @@ export default function BiasFairnessStatementPage() {
                 ))}
               </ul>
               <p className="mt-4">
-                Final recruitment, placement, compliance and business decisions remain subject to human review and approval.
+                Information collected may be recorded and stored within Recruitment Direct UK Limited&apos;s recruitment systems.
               </p>
             </div>
           </section>
 
-          {/* 5. Monitoring and Review */}
-          <section className="bfs-section">
+          {/* 5. Human Review */}
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              5. Monitoring and Review
+              5. Human Review
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited seeks to:
+                AI-assisted screening calls are used to support recruitment activities and improve operational efficiency.
               </p>
-              <ul className="space-y-3 mt-2 pl-2">
-                {[
-                  "Monitor AI-assisted processes.",
-                  "Review AI-generated outputs where appropriate.",
-                  "Identify potential inaccuracies or inconsistencies.",
-                  "Maintain accountability for decisions.",
-                  "Continually improve AI-assisted processes."
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4">
-                Where concerns are identified, appropriate corrective action will be taken.
+              <p>
+                Final recruitment decisions, applicant submissions, placements and employment-related decisions remain subject to human review and approval.
+              </p>
+              <p>
+                AI technologies do not replace professional judgement or human responsibility.
               </p>
             </div>
           </section>
 
-          {/* 6. Data Quality */}
-          <section className="bfs-section">
+          {/* 6. Compliance and Data Protection */}
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              6. Data Quality
+              6. Compliance and Data Protection
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                The effectiveness of AI-assisted systems depends on the quality of the information processed.
-              </p>
-              <p>
-                Recruitment Direct UK Limited may utilise AI-assisted technologies to:
-              </p>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
-                {[
-                  "Identify incomplete records.",
-                  "Identify duplicate records.",
-                  "Support recruitment database maintenance.",
-                  "Improve data quality.",
-                  "Support GDPR compliance activities."
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4">
-                All significant updates and actions remain subject to appropriate human oversight.
-              </p>
-            </div>
-          </section>
-
-          {/* 7. Transparency */}
-          <section className="bfs-section">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              7. Transparency
-            </h2>
-            <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
-              <p>
-                Recruitment Direct UK Limited is committed to being transparent regarding the use of AI technologies within recruitment, communication, compliance and business operations.
-              </p>
-              <p>
-                Information regarding AI-assisted processing is provided within our:
+                All AI-assisted recruitment activities operate in conjunction with:
               </p>
               <ul className="space-y-3 mt-2 pl-2">
                 <li>
@@ -218,9 +173,6 @@ export default function BiasFairnessStatementPage() {
                 </li>
                 <li>
                   <a href="/candidate-privacy-notice" className="text-blue-600 hover:underline">Candidate Privacy Notice</a>.
-                </li>
-                <li>
-                  <a href="/client-privacy-notice" className="text-blue-600 hover:underline">Client Privacy Notice</a>.
                 </li>
                 <li>
                   <a href="/data-protection-gdpr-policy" className="text-blue-600 hover:underline">Data Protection and GDPR Policy</a>.
@@ -231,33 +183,81 @@ export default function BiasFairnessStatementPage() {
                 <li>
                   <a href="/human-review-statement" className="text-blue-600 hover:underline">Human Review Statement</a>.
                 </li>
+                <li>
+                  <a href="/bias-fairness-statement" className="text-blue-600 hover:underline">AI Fairness and Bias Statement</a>.
+                </li>
+              </ul>
+              <p className="mt-4">
+                Recruitment Direct UK Limited is committed to ensuring that AI technologies are used lawfully, fairly and responsibly.
+              </p>
+            </div>
+          </section>
+
+          {/* 7. Applicant Choice */}
+          <section className="ascs-section">
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
+              7. Applicant Choice
+            </h2>
+            <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
+              <p>
+                Participation in AI-assisted screening calls is optional. Applicants who prefer not to participate can request a manual screening call or a traditional interview with a recruitment consultant.
+              </p>
+              <p>
+                This ensures all applicants have equal access to recruitment while maintaining appropriate human oversight.
+              </p>
+              <p>
+                Applicants may request further information regarding AI-assisted screening processes by contacting Recruitment Direct UK Limited.
+              </p>
+            </div>
+          </section>
+
+          {/* 8. Benefits of AI Applicant Screening Calls */}
+          <section className="ascs-section">
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
+              8. Benefits of AI Applicant Screening Calls
+            </h2>
+            <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
+              <p>
+                The use of AI-assisted screening calls helps:
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
+                {[
+                  "Contact applicants quickly after application.",
+                  "Improve applicant engagement.",
+                  "Reduce recruitment administration.",
+                  "Support consistent screening processes.",
+                  "Accelerate recruitment timescales.",
+                  "Improve service delivery to clients and applicants."
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-gray-800">
+                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </section>
 
-          {/* 8. Continuous Improvement */}
-          <section className="bfs-section">
+          {/* 9. Continuous Improvement */}
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              8. Continuous Improvement
+              9. Continuous Improvement
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited will continue to review developments in AI technology, regulatory requirements and industry best practice.
-              </p>
-              <p>
-                We are committed to ensuring that AI technologies are deployed responsibly and in a manner that supports fairness, accountability and compliance.
+                Recruitment Direct UK Limited will continue to review and improve AI-assisted recruitment technologies to ensure they remain effective, transparent and compliant with applicable legislation.
               </p>
             </div>
           </section>
 
-          {/* 9. Contact Information */}
-          <section className="bfs-section">
+          {/* 10. Contact Information */}
+          <section className="ascs-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              9. Contact Information
+              10. Contact Information
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Questions regarding the use of AI technologies within Recruitment Direct UK Limited may be directed to:
+                Questions regarding the use of AI screening technologies within Recruitment Direct UK Limited may be directed to:
               </p>
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 pl-8 text-sm text-gray-800">
                 Email: <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">accounts@rd1.co.uk</a>
@@ -271,7 +271,7 @@ export default function BiasFairnessStatementPage() {
               Director Approval
             </h3>
             <p className="text-base text-gray-800 leading-relaxed italic">
-              I confirm that this AI Fairness and Bias Statement has been reviewed and approved on behalf of Recruitment Direct UK Limited.
+              I confirm that this AI Applicant Screening Call Statement has been reviewed and approved on behalf of Recruitment Direct UK Limited.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-800 pt-2">
               <div>
@@ -312,29 +312,29 @@ export default function BiasFairnessStatementPage() {
           color: #000000 !important;
         }
         
-        .bfs-container h1,
-        .bfs-container h2,
-        .bfs-container h3,
-        .bfs-container p,
-        .bfs-container li,
-        .bfs-container span {
+        .ascs-container h1,
+        .ascs-container h2,
+        .ascs-container h3,
+        .ascs-container p,
+        .ascs-container li,
+        .ascs-container span {
           color: #000000 !important;
         }
 
-        .bfs-container h1 {
+        .ascs-container h1 {
           line-height: 1.25 !important;
         }
 
-        .bfs-container h2 {
+        .ascs-container h2 {
           line-height: 1.35 !important;
         }
 
-        .bfs-section {
+        .ascs-section {
           border-bottom: 1px solid #e5e7eb;
           padding-bottom: 2rem;
         }
 
-        .bfs-section:last-child {
+        .ascs-section:last-child {
           border-bottom: none;
           padding-bottom: 0;
         }

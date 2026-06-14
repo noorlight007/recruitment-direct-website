@@ -59,7 +59,7 @@ export default function CookieBanner() {
         <div className="rd1-cookie-buttons">
           <button onClick={handleAccept}>Accept All</button>
           <button onClick={handleReject} className="secondary">Reject Non-Essential</button>
-          <Link href="https://rduk.group/cookiepolicy" target="_blank" className="link">Cookie Policy</Link>
+          <Link href="/cookie-policy" className="link">Cookie Policy</Link>
         </div>
       </div>
 

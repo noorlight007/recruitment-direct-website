@@ -5,16 +5,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 
-export default function HumanReviewStatementPage() {
+export default function AITransparencyStatementPage() {
   return (
     <div className="min-h-screen bg-white text-black flex flex-col font-sans">
       <FloatingElements />
       <Navbar />
 
-      <main className="flex-grow pt-[20px] md:pt-[40px] pb-20 px-6 max-w-4xl mx-auto w-full hrs-container">
+      <main className="flex-grow pt-[20px] md:pt-[40px] pb-20 px-6 max-w-4xl mx-auto w-full aihns-container">
         {/* Page Title */}
         <h1 className="text-3xl md:text-5xl font-bold font-heading text-black mb-6 tracking-tight">
-          Human Review Statement
+          AI Hire Now Statement
         </h1>
 
         {/* Company Address Block */}
@@ -51,51 +51,51 @@ export default function HumanReviewStatementPage() {
         {/* Sections */}
         <div className="space-y-12">
           {/* 1. Statement */}
-          <section className="hrs-section">
+          <section className="aihns-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
               1. Statement
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited (&ldquo;RDUK&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo; or &ldquo;us&rdquo;) is committed to ensuring that appropriate human oversight and review are maintained throughout our recruitment, compliance and business operations.
+                Recruitment Direct UK Limited (&ldquo;RDUK&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo; or &ldquo;us&rdquo;) is committed to using artificial intelligence (&ldquo;AI&rdquo;) responsibly to improve recruitment speed, efficiency and service delivery.
               </p>
               <p>
-                Whilst we utilise artificial intelligence (&ldquo;AI&rdquo;), machine learning and automated technologies to improve efficiency, service delivery and compliance, we recognise the importance of human judgement, accountability and decision-making.
+                Our AI Hire Now approach enables applicants to be engaged rapidly following application, helping to reduce delays and improve the recruitment experience for both applicants and clients.
               </p>
             </div>
           </section>
 
           {/* 2. Purpose */}
-          <section className="hrs-section">
+          <section className="aihns-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
               2. Purpose
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                The purpose of this statement is to confirm that AI-assisted technologies are used to support business operations and do not replace human responsibility, accountability or professional judgement.
+                The purpose of this statement is to explain how Recruitment Direct UK Limited uses AI-assisted recruitment technologies to accelerate recruitment processes while maintaining compliance, transparency and human oversight.
               </p>
             </div>
           </section>
 
-          {/* 3. Human Oversight */}
-          <section className="hrs-section">
+          {/* 3. AI Hire Now Process */}
+          <section className="aihns-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              3. Human Oversight
+              3. AI Hire Now Process
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited maintains appropriate human oversight over:
+                Recruitment Direct UK Limited may utilise AI-assisted technologies to:
               </p>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
                 {[
-                  "Recruitment activities.",
-                  "Applicant screening processes.",
-                  "Placement decisions.",
-                  "Compliance activities.",
-                  "GDPR compliance processes.",
-                  "Client relationship management.",
-                  "Business operations and administration.",
-                  "AI-assisted communications."
+                  "Contact applicants shortly after an application is received.",
+                  "Conduct initial screening and qualification conversations.",
+                  "Ask role-specific recruitment questions.",
+                  "Assess responses against vacancy requirements.",
+                  "Support skills and experience matching.",
+                  "Assist with document collection and compliance processes.",
+                  "Support communication through telephone, email, SMS and WhatsApp.",
+                  "Reduce administrative delays within the recruitment process."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
                     <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
@@ -104,102 +104,82 @@ export default function HumanReviewStatementPage() {
                 ))}
               </ul>
               <p className="mt-4">
-                Human review may be applied before, during or after AI-assisted processes depending on the nature of the activity.
+                The objective is to ensure applicants are engaged quickly and efficiently while improving response times for clients.
               </p>
             </div>
           </section>
 
-          {/* 4. Recruitment Decisions */}
-          <section className="hrs-section">
+          {/* 4. Human Review */}
+          <section className="aihns-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              4. Recruitment Decisions
-            </h2>
-            <div className="space-y-6 text-base md:text-lg text-gray-800 leading-relaxed">
-              <div>
-                <p className="mb-2">AI technologies may assist with:</p>
-                <ul className="space-y-3 mt-2 pl-2">
-                  {[
-                    "Applicant screening.",
-                    "Skills and vacancy matching.",
-                    "Candidate communications.",
-                    "Compliance administration.",
-                    "Recruitment workflow management."
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-gray-800">
-                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <p className="mb-2">However, final decisions relating to:</p>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
-                  {[
-                    "Applicant suitability.",
-                    "Client submissions.",
-                    "Placements.",
-                    "Recruitment outcomes."
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-gray-800">
-                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4">
-                  remain subject to human review and approval.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* 5. Compliance and Data Management */}
-          <section className="hrs-section">
-            <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              5. Compliance and Data Management
+              4. Human Review
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited may utilise AI-assisted systems to support:
+                AI technologies are used to support recruitment activities and improve operational efficiency.
               </p>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
-                {[
-                  "GDPR compliance monitoring.",
-                  "Database maintenance.",
-                  "Identification of incomplete, inaccurate or duplicate records.",
-                  "Document verification.",
-                  "Compliance reporting."
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4">
-                Any significant compliance actions remain subject to human oversight and review.
+              <p>
+                Final recruitment decisions, applicant submissions, placements and employment-related decisions remain subject to human review and approval.
+              </p>
+              <p>
+                AI technologies do not replace professional judgement or human responsibility.
               </p>
             </div>
           </section>
 
-          {/* 6. Fairness and Accountability */}
-          <section className="hrs-section">
+          {/* 5. Compliance and Data Protection */}
+          <section className="aihns-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              6. Fairness and Accountability
+              5. Compliance and Data Protection
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                RDUK is committed to:
+                All AI-assisted recruitment activities operate in conjunction with:
               </p>
               <ul className="space-y-3 mt-2 pl-2">
+                <li>
+                  <a href="/privacy-policy" className="text-blue-600 hover:underline">Privacy Policy</a>.
+                </li>
+                <li>
+                  <a href="/candidate-privacy-notice" className="text-blue-600 hover:underline">Candidate Privacy Notice</a>.
+                </li>
+                <li>
+                  <a href="/data-protection-gdpr-policy" className="text-blue-600 hover:underline">Data Protection and GDPR Policy</a>.
+                </li>
+                <li>
+                  <a href="/ai-transparency-statement" className="text-blue-600 hover:underline">AI Transparency Statement</a>.
+                </li>
+                <li>
+                  <a href="/human-review-statement" className="text-blue-600 hover:underline">Human Review Statement</a>.
+                </li>
+                <li>
+                  <a href="/bias-fairness-statement" className="text-blue-600 hover:underline">AI Fairness and Bias Statement</a>.
+                </li>
+              </ul>
+              <p className="mt-4">
+                Recruitment Direct UK Limited is committed to ensuring that AI technologies are used lawfully, fairly and responsibly.
+              </p>
+            </div>
+          </section>
+
+          {/* 6. Benefits of AI Hire Now */}
+          <section className="aihns-section">
+            <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
+              6. Benefits of AI Hire Now
+            </h2>
+            <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
+              <p>
+                The AI Hire Now approach helps to:
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 pl-2">
                 {[
-                  "Maintaining accountability for decisions.",
-                  "Reviewing AI-assisted outputs where appropriate.",
-                  "Promoting fairness and consistency.",
-                  "Reducing the risk of errors.",
-                  "Ensuring compliance with applicable legislation."
+                  "Improve applicant response times.",
+                  "Increase recruitment efficiency.",
+                  "Reduce administrative workloads.",
+                  "Support faster vacancy fulfilment.",
+                  "Improve communication throughout the recruitment process.",
+                  "Enhance compliance and document management activities.",
+                  "Support a consistent recruitment experience."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
                     <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
@@ -207,20 +187,17 @@ export default function HumanReviewStatementPage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4">
-                The use of AI does not remove human responsibility for decisions made by Recruitment Direct UK Limited.
-              </p>
             </div>
           </section>
 
-          {/* 7. Continuous Review */}
-          <section className="hrs-section">
+          {/* 7. Continuous Improvement */}
+          <section className="aihns-section">
             <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-              7. Continuous Review
+              7. Continuous Improvement
             </h2>
             <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
               <p>
-                Recruitment Direct UK Limited will continue to assess the effectiveness of AI-assisted technologies and ensure that appropriate human oversight remains in place as technology and regulatory requirements evolve.
+                Recruitment Direct UK Limited will continue to review and improve AI-assisted recruitment technologies to ensure they remain effective, compliant and aligned with business and client requirements.
               </p>
             </div>
           </section>
@@ -231,7 +208,7 @@ export default function HumanReviewStatementPage() {
               Director Approval
             </h3>
             <p className="text-base text-gray-800 leading-relaxed italic">
-              I confirm that this Human Review Statement has been reviewed and approved on behalf of Recruitment Direct UK Limited.
+              I confirm that this AI Hire Now Statement has been reviewed and approved on behalf of Recruitment Direct UK Limited.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-800 pt-2">
               <div>
@@ -272,29 +249,29 @@ export default function HumanReviewStatementPage() {
           color: #000000 !important;
         }
         
-        .hrs-container h1,
-        .hrs-container h2,
-        .hrs-container h3,
-        .hrs-container p,
-        .hrs-container li,
-        .hrs-container span {
+        .aihns-container h1,
+        .aihns-container h2,
+        .aihns-container h3,
+        .aihns-container p,
+        .aihns-container li,
+        .aihns-container span {
           color: #000000 !important;
         }
 
-        .hrs-container h1 {
+        .aihns-container h1 {
           line-height: 1.25 !important;
         }
 
-        .hrs-container h2 {
+        .aihns-container h2 {
           line-height: 1.35 !important;
         }
 
-        .hrs-section {
+        .aihns-section {
           border-bottom: 1px solid #e5e7eb;
           padding-bottom: 2rem;
         }
 
-        .hrs-section:last-child {
+        .aihns-section:last-child {
           border-bottom: none;
           padding-bottom: 0;
         }
