@@ -277,7 +277,7 @@ export default function Navbar() {
                 </svg>
               </a>
             </div>
-            <a href="tel:01324613198" className="flex items-center gap-3 text-gray-900 font-medium hover:text-primary transition-colors group">
+            <a href="tel:01324613198" className="flex items-center gap-3 text-gray-800 font-medium hover:text-gray-900 transition-colors group">
               <div className="header-phone-icon">
                 <Phone />
               </div>
