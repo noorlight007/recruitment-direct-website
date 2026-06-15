@@ -466,7 +466,7 @@ export default function JobDetailsPage() {
 
                   <div className="job-side">
                     <div className="rate-container">
-                      <span className="rate-label">Rate</span>
+                      {/* <span className="rate-label">Rate</span> */}
                       <strong className="rate-amount">{parsePayRate(getJobAdPayRate(job)).amount}</strong>
                       {parsePayRate(getJobAdPayRate(job)).frequency && (
                         <span className="rate-frequency">{parsePayRate(getJobAdPayRate(job)).frequency}</span>
