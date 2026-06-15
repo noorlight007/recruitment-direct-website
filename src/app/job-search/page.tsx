@@ -12,6 +12,7 @@ interface Job {
   state: string;
   title: string;
   reference: string;
+  location: string;
   summary: string;
   bulletPoints: string[];
   owner?: {
@@ -67,7 +68,7 @@ export default function JobSearchPage() {
         }
       }
     }
-    return job.reference && isNaN(Number(job.reference)) ? job.reference : "Scotland / UK";
+    return job.location && isNaN(Number(job.location)) ? job.location : "Scotland / UK";
   };
 
   const getJobAdPayRate = (job: Job): string => {
