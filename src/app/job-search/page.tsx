@@ -395,7 +395,7 @@ export default function JobSearchPage() {
         .rduk-latest-jobs .jobs-search input {
           flex: 1 !important;
           border: 0 !important;
-          padding: 17px 20px 17px 50px !important;
+          padding: 17px 17px 11px 50px !important;
           font-size: 16px !important;
           outline: none !important;
           background: #ffffff !important;
