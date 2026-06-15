@@ -568,10 +568,10 @@ export default function JobDetailsPage() {
                           <strong className="detail-value">{job.industry}</strong>
                         </div>
                       )}
-                      <div className="detail-item">
+                      {/* <div className="detail-item">
                         <span className="detail-label">Job Reference</span>
                         <strong className="detail-value">{job.reference}</strong>
-                      </div>
+                      </div> */}
                       <div className="detail-item">
                         <span className="detail-label">Published On</span>
                         <strong className="detail-value">{formatDate(job.postAt)}</strong>
