@@ -525,7 +525,7 @@ export default function JobSearchPage() {
         }
 
         .rduk-latest-jobs .rate-amount {
-          font-size: 23.8px !important;
+          font-size: 16.66px !important;
           font-weight: 800 !important;
           color: #111111 !important;
           line-height: 1.1 !important;
@@ -666,7 +666,7 @@ export default function JobSearchPage() {
           }
 
           .rduk-latest-jobs .rate-amount {
-            font-size: 15.3px !important;
+            font-size: 10.71px !important;
             white-space: normal !important;
             word-break: break-word !important;
           }
