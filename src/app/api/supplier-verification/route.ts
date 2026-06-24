@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     // MOCK WORKFLOW ACTIONS FOR DEVELOPER:
     
     // 1. Companies House Verification Mock
-    const companyNumber = data.company_number || "";
+    const companyNumber = data.company_registration_number || data.company_number || "";
     const isCompanyActive = companyNumber.length > 0; // Simulated check
     console.log("1. Companies House check status: Active");
 
