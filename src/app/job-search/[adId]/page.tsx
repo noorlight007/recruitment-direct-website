@@ -151,6 +151,17 @@ interface JobDetails {
 export default function JobDetailsPage() {
   const { adId } = useParams();
 
+  // Extract numeric ID from slug if necessary
+  const numericAdId = (() => {
+    if (!adId) return "";
+    const str = Array.isArray(adId) ? adId[0] : adId;
+    const decoded = decodeURIComponent(str);
+    if (/^\d+$/.test(decoded)) return decoded;
+    const match = decoded.match(/-(\d+)$/);
+    if (match) return match[1];
+    return decoded;
+  })();
+
   const [job, setJob] = useState<JobDetails | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -322,17 +333,17 @@ export default function JobDetailsPage() {
 
   // Fetch job details by ID
   useEffect(() => {
-    if (!adId) return;
+    if (!numericAdId) return;
 
     async function fetchJobDetails() {
       let hasCache = false;
       try {
-        // Try to load cached individual job detail from localStorage
-        const cached = localStorage.getItem(`rduk_cached_job_${adId}`);
+        // Try to load cached individual job detail from localStorage using numeric ID
+        const cached = localStorage.getItem(`rduk_cached_job_${numericAdId}`);
         if (cached) {
           try {
             const parsed = JSON.parse(cached);
-            if (parsed && parsed.adId === Number(adId)) {
+            if (parsed && parsed.adId === Number(numericAdId)) {
               setJob(parsed);
               setLoading(false);
               hasCache = true;
@@ -347,7 +358,7 @@ export default function JobDetailsPage() {
         }
         setError(null);
 
-        const data = await api.get(`/core/live/jobads/${adId}`);
+        const data = await api.get(`/core/live/jobads/${numericAdId}`);
         if (data) {
           // Check if we can extract category/industry/job_type from general list cache
           let matchedJob = null;
@@ -356,7 +367,7 @@ export default function JobDetailsPage() {
             try {
               const parsedList = JSON.parse(cachedList);
               if (Array.isArray(parsedList)) {
-                matchedJob = parsedList.find((item: any) => item.adId === Number(adId));
+                matchedJob = parsedList.find((item: any) => item.adId === Number(numericAdId));
               }
             } catch (e) {
               console.error("Failed to parse cached job list", e);
@@ -370,7 +381,7 @@ export default function JobDetailsPage() {
               if (listData && listData.items) {
                 // Update general cache as well
                 localStorage.setItem("rduk_cached_jobs", JSON.stringify(listData.items));
-                matchedJob = listData.items.find((item: any) => item.adId === Number(adId));
+                matchedJob = listData.items.find((item: any) => item.adId === Number(numericAdId));
               }
             } catch (listErr) {
               console.error("Failed to fetch matching job fields from live jobads feed:", listErr);
@@ -384,7 +395,7 @@ export default function JobDetailsPage() {
           }
 
           setJob(data);
-          localStorage.setItem(`rduk_cached_job_${adId}`, JSON.stringify(data));
+          localStorage.setItem(`rduk_cached_job_${numericAdId}`, JSON.stringify(data));
         } else {
           setError("No records were found for this specific Job Ad ID.");
         }
@@ -399,7 +410,7 @@ export default function JobDetailsPage() {
     }
 
     fetchJobDetails();
-  }, [adId]);
+  }, [numericAdId]);
 
   return (
     <div className="min-h-screen bg-white relative flex flex-col justify-between overflow-x-hidden">

@@ -34,6 +34,7 @@ interface Job {
   industry?: string | null;
   category?: string | null;
   job_type?: string | null;
+  slug?: string;
 }
 
 export default function JobSearchPage() {
@@ -318,7 +319,7 @@ export default function JobSearchPage() {
                           <span className="rate-frequency">{parsePayRate(getJobAdPayRate(job)).frequency}</span>
                         )}
                       </div>
-                      <a href={`/job-search/${job.adId}`} className="view-job">
+                      <a href={`/job-search/${job.slug || job.adId}`} className="view-job">
                         View Job <ChevronRight className="button-arrow" />
                       </a>
                     </div>
