@@ -104,7 +104,7 @@ export default function ContactPage() {
                       Location
                     </strong>
                     <span className="text-white font-semibold text-lg leading-tight">
-                      Linlithgow, Scotland
+                      Herkimer House, Mill Road Ind-Est, Linlithgow EH49 7SF
                     </span>
                   </div>
                 </div>
