@@ -41,9 +41,9 @@ export default function ConstructionAgencyPage() {
       answer: "Clients submit their staffing requirement online 24/7. AI searches the Recruitment Direct UK candidate database before a consultant reviews the vacancy and contacts the client."
     }
   ];
-
-  const goldButtonClass = "rd-btn rd-btn-gold standard-cta-btn";
-  const blueButtonClass = "bg-gradient-to-r from-black/80 to-[#151C62] text-white border border-[#001B5E] font-extrabold shadow-md standard-cta-btn px-9 py-1.5 inline-flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-opacity-95 text-base gap-2 text-decoration-none";
+  const goldButtonDefaultClass = "rd-btn rd-btn-gold standard-cta-btn"
+  const goldButtonClass = "rd-btn rd-btn-gold standard-cta-btn w-[200px] h-[52px] text-center justify-center";
+  const blueButtonClass = "rd-btn bg-gradient-to-r from-black/80 to-[#151C62] text-white border border-[#001B5E] font-extrabold shadow-md standard-cta-btn w-[200px] h-[52px]";
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-slate-900 font-sans">
@@ -335,7 +335,7 @@ export default function ConstructionAgencyPage() {
                 Submit staffing requests 24/7. AI screens our database to matches qualified construction workers in minutes.
               </p>
               <div className="flex justify-center">
-                <Link href="/ai-hire-now" className={`${goldButtonClass} w-auto text-center`}>
+                <Link href="/ai-hire-now" className={`${goldButtonDefaultClass} w-auto text-center`}>
                 Submit Vacancy
               </Link>
               </div>
