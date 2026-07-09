@@ -42,8 +42,8 @@ export default function ConstructionAgencyPage() {
     }
   ];
 
-  const goldButtonClass = "bg-gradient-to-r from-[#F7D774] via-[#E5B93C] to-[#C99A1F] text-[#111111] border border-[#B8860B] font-extrabold shadow-[0_4px_12px_rgba(229,185,60,0.2)] rounded-full px-9 py-3.5 inline-flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_6px_20px_rgba(229,185,60,0.35)] hover:from-[#FFE08A] hover:to-[#D4A017] text-base gap-2 text-decoration-none";
-  const blueButtonClass = "bg-[#001B5E] text-white border border-[#001B5E] font-extrabold shadow-md rounded-full px-9 py-3.5 inline-flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-opacity-95 text-base gap-2 text-decoration-none";
+  const goldButtonClass = "rd-btn rd-btn-gold standard-cta-btn";
+  const blueButtonClass = "bg-gradient-to-r from-black/80 to-[#151C62] text-white border border-[#001B5E] font-extrabold shadow-md standard-cta-btn px-9 py-1.5 inline-flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:bg-opacity-95 text-base gap-2 text-decoration-none";
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-slate-900 font-sans">
@@ -52,21 +52,21 @@ export default function ConstructionAgencyPage() {
       <main className="max-w-[1140px] mx-auto px-5 pt-[100px] md:pt-[120px] pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-8">
-            <section className="mb-10">
-              <h1 className="text-[#001B5E] text-[38px] md:text-[54px] font-extrabold leading-[1.15] tracking-[-0.02em] mb-6">
+            <section className="mb-6">
+              <h1 className="text-black text-[38px] md:text-[54px] font-extrabold leading-[1.15] tracking-[-0.02em] mb-4">
                 Construction Recruitment Agency UK
               </h1>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
-                Recruitment Direct UK Ltd is a trusted <strong className="text-slate-900 font-bold">construction recruitment agency</strong> supplying <strong className="text-slate-900 font-bold">temporary, contract and permanent construction staff</strong> across the UK.
+              <p className="text-black text-[17.5px] leading-[1.8] mb-3">
+                Recruitment Direct UK Ltd is a trusted <strong className="text-black font-bold">construction recruitment agency</strong> supplying <strong className="text-black font-bold">temporary, contract and permanent construction staff</strong> across the UK.
               </p>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
+              <p className="text-black text-[17.5px] leading-[1.8] mb-3">
                 We support contractors, civil engineering companies, infrastructure projects, utilities, quarries, aggregates and facilities management providers with fast, reliable recruitment solutions.
               </p>
 
-              <p className="bg-[#f8fafc] p-5 rounded-xl border border-slate-100 shadow-sm text-slate-600 text-[17.5px] leading-[1.8] mb-5">
-                <strong className="text-slate-900 font-bold">AI Hire Now:</strong> Submit your staffing requirement online 24/7. AI instantly searches our candidate database before one of our consultants contacts you.
+              <p className="bg-[#f8fafc] p-5 rounded-xl border border-slate-100 shadow-sm text-black text-[17.5px] leading-[1.8] mb-4">
+                <strong className="text-black font-bold">AI Hire Now:</strong> Submit your staffing requirement online 24/7. AI instantly searches our candidate database before one of our consultants contacts you.
               </p>
             </section>
 
@@ -328,15 +328,17 @@ export default function ConstructionAgencyPage() {
 
           {/* Sidebar Area */}
           <div className="lg:col-span-4 space-y-8">
-            <div className="bg-[#001B5E] text-white p-6 rounded-2xl shadow-md border border-slate-200 mt-0 lg:mt-6">
+            <div className="bg-gradient-to-r from-black/80 to-[#151C62] text-white p-6 rounded-2xl shadow-md border border-slate-200 mt-0 lg:mt-6">
               <HardHat className="text-[#F7D774] w-10 h-10 mb-4" />
               <h3 className="text-white text-xl font-bold mb-2">Need Staff Now?</h3>
               <p className="text-slate-200 text-sm leading-relaxed mb-6">
                 Submit staffing requests 24/7. AI screens our database to matches qualified construction workers in minutes.
               </p>
-              <Link href="/ai-hire-now" className={`${goldButtonClass} w-full text-center`}>
+              <div className="flex justify-center">
+                <Link href="/ai-hire-now" className={`${goldButtonClass} w-auto text-center`}>
                 Submit Vacancy
               </Link>
+              </div>
             </div>
 
             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
