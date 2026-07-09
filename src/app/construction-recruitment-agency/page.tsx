@@ -82,11 +82,11 @@ export default function ConstructionAgencyPage() {
             </div>
 
             <section>
-              <h2 className="text-[#001B5E] text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
+              <h2 className="text-black text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
                 Trusted UK-Wide Construction Recruitment Since 2006
               </h2>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
+              <p className="text-black text-[17.5px] leading-[1.8] mb-5">
                 From a single labourer to complete project teams, Recruitment Direct UK helps clients recruit construction workers quickly without compromising on quality, compliance or service.
               </p>
 
@@ -121,11 +121,11 @@ export default function ConstructionAgencyPage() {
             </section>
 
             <section>
-              <h2 className="text-[#001B5E] text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
+              <h2 className="text-black text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
                 Construction Recruitment Sectors
               </h2>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
+              <p className="text-black text-[17.5px] leading-[1.8] mb-5">
                 We recruit across construction, civil engineering, infrastructure, facilities management, quarries and aggregates throughout England, Scotland and Wales.
               </p>
 
@@ -148,13 +148,13 @@ export default function ConstructionAgencyPage() {
             </section>
 
             <section>
-              <h2 className="text-[#001B5E] text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
+              <h2 className="text-black text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
                 Construction Roles We Recruit
               </h2>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-slate-800 text-[22px] font-bold mt-7 mb-3.5">Trades & Labour</h3>
+                  <h3 className="text-black text-[22px] font-bold mt-7 mb-3.5">Trades & Labour</h3>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pl-0 list-none">
                     <CheckListItem>Labourers</CheckListItem>
                     <CheckListItem>Skilled Labourers</CheckListItem>
@@ -172,7 +172,7 @@ export default function ConstructionAgencyPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-slate-800 text-[22px] font-bold mt-7 mb-3.5">Plant & Site Support</h3>
+                  <h3 className="text-black text-[22px] font-bold mt-7 mb-3.5">Plant & Site Support</h3>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pl-0 list-none">
                     <CheckListItem>CPCS Plant Operators</CheckListItem>
                     <CheckListItem>NPORS Plant Operators</CheckListItem>
@@ -189,7 +189,7 @@ export default function ConstructionAgencyPage() {
                 </div>
 
                 <div>
-                  <h3 className="text-slate-800 text-[22px] font-bold mt-7 mb-3.5">Engineering & Management</h3>
+                  <h3 className="text-black text-[22px] font-bold mt-7 mb-3.5">Engineering & Management</h3>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pl-0 list-none">
                     <CheckListItem>Site Engineers</CheckListItem>
                     <CheckListItem>Civil Engineers</CheckListItem>
@@ -206,16 +206,16 @@ export default function ConstructionAgencyPage() {
             </section>
 
             <section>
-              <h2 className="text-[#001B5E] text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
+              <h2 className="text-black text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
                 Quarry & Aggregates Recruitment
               </h2>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
-                Recruitment Direct UK supplies workers to the <strong className="text-slate-900 font-bold">quarrying, aggregates, asphalt, concrete, cement and extractive industries</strong> across the UK.
+              <p className="text-black text-[17.5px] leading-[1.8] mb-5">
+                Recruitment Direct UK supplies workers to the <strong className="text-black font-bold">quarrying, aggregates, asphalt, concrete, cement and extractive industries</strong> across the UK.
               </p>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
-                We understand the additional safety and competency requirements within quarry environments and can provide workers holding <strong className="text-slate-900 font-bold">MPQC qualifications</strong> where required by your site or project.
+              <p className="text-black text-[17.5px] leading-[1.8] mb-5">
+                We understand the additional safety and competency requirements within quarry environments and can provide workers holding <strong className="text-black font-bold">MPQC qualifications</strong> where required by your site or project.
               </p>
 
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mt-4 pl-0 list-none">
@@ -233,7 +233,7 @@ export default function ConstructionAgencyPage() {
             </section>
 
             <section>
-              <h2 className="text-[#001B5E] text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
+              <h2 className="text-black text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
                 Our Construction Recruitment Process
               </h2>
 
@@ -257,15 +257,15 @@ export default function ConstructionAgencyPage() {
             </section>
 
             <section>
-              <h2 className="text-[#001B5E] text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
+              <h2 className="text-black text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-100 pb-3 mt-12 mb-6">
                 Ready to Hire Construction Staff?
               </h2>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
+              <p className="text-black text-[17.5px] leading-[1.8] mb-5">
                 Looking for a trusted construction recruitment agency to supply temporary, contract or permanent construction staff across the UK?
               </p>
 
-              <p className="text-slate-600 text-[17.5px] leading-[1.8] mb-5">
+              <p className="text-black text-[17.5px] leading-[1.8] mb-5">
                 Submit your staffing requirement online 24/7. AI instantly searches our candidate database before one of our consultants contacts you.
               </p>
 
@@ -280,7 +280,7 @@ export default function ConstructionAgencyPage() {
             </section>
 
             <section className="mt-12 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-              <h2 className="text-[#001B5E] text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-200 pb-3 mb-6 mt-0">
+              <h2 className="text-black text-[26px] md:text-[34px] font-extrabold tracking-[-0.01em] border-b border-slate-200 pb-3 mb-6 mt-0">
                 Construction Recruitment FAQs
               </h2>
 
@@ -294,13 +294,13 @@ export default function ConstructionAgencyPage() {
                     >
                       <button
                         onClick={() => toggleFaq(index)}
-                        className="w-full flex justify-between items-center text-left py-2 group focus:outline-none"
+                        className="w-full flex justify-between items-center text-left py-2 group focus:outline-none !bg-gradient-to-r from-black/80 to-[#151C62]"
                       >
                         <span className="font-bold text-white text-[17px] group-hover:text-[#ffffff]/80 transition-colors">
                           {faq.question}
                         </span>
                         <ChevronDown
-                          className={`w-5 h-5 text-slate-500 transition-transform duration-300 ${isOpen ? "transform rotate-180" : ""
+                          className={`w-5 h-5 text-white transition-transform duration-300 ${isOpen ? "transform rotate-180" : ""
                             }`}
                         />
                       </button>
