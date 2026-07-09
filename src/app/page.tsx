@@ -204,7 +204,7 @@ const Index = () => {
               <h2 className="standard-h1">Sectors We Support</h2>
 
               <div className="rd-sector-grid">
-                <Link href="/sectors/construction" className="">
+                <Link href="/construction-recruitment-agency" className="">
                 <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
                   {/* <span>Construction</span> */}
                 </div>
