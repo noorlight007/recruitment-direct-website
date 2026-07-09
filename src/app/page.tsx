@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import Link from "next/link";
 
 // Previous sections from component folder
 import HeroSection from "@/components/HeroSection";
@@ -203,9 +204,11 @@ const Index = () => {
               <h2 className="standard-h1">Sectors We Support</h2>
 
               <div className="rd-sector-grid">
+                <Link href="/sectors/construction" className="">
                 <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
                   {/* <span>Construction</span> */}
                 </div>
+                </Link>
                 <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
                   {/* <span>Renewables</span> */}
                 </div>

@@ -910,7 +910,7 @@ export default function Footer() {
                       onClick={() => setIsVideoOpen(true)}
                       className="btn btn-secondary btn-saas w-full mt-3 !justify-between cursor-pointer"
                     >
-                      <span className="rd-ai-btn-text">Ai Call Demo</span>
+                      <span className="rd-ai-btn-text">AI Call Demo</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
 
