@@ -209,12 +209,16 @@ const Index = () => {
                   {/* <span>Construction</span> */}
                 </div>
                 </Link>
+                <Link href="/renewable-energy-recruitment-agency" className="">
                 <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
                   {/* <span>Renewables</span> */}
                 </div>
+                </Link>
+                <Link href="/engineering-recruitment-agency" className="">
                 <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Engineerings.png')" }}>
                   {/* <span>Engineering</span> */}
                 </div>
+                </Link>
                 <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Logisticss.png')" }}>
                   {/* <span>Logistics</span> */}
                 </div>

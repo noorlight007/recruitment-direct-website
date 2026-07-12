@@ -1,14 +1,35 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Construction Recruitment Agency UK | Temporary & Permanent Staff | Recruitment Direct UK Ltd",
-  description: "UK-wide construction recruitment agency supplying temporary, contract and permanent construction staff. Labour, trades, plant operators, civil engineering, quarries, aggregates and facilities management. Trusted since 2006.",
+  title: "Construction Recruitment Agency UK | Temporary, Contract & Permanent Construction Staff | Recruitment Direct UK",
+  description: "Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across England, Scotland, Wales, Northern Ireland and the Republic of Ireland. Trusted since 2006.",
+  keywords: "Construction Recruitment Agency, Construction Recruitment, Construction Staff, Temporary Construction, Permanent Construction, Contract Construction, UK, Ireland",
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
     canonical: "https://www.rd1.co.uk/construction-recruitment-agency",
+  },
+  openGraph: {
+    type: "website",
+    title: "Construction Recruitment Agency UK | Recruitment Direct UK",
+    description: "Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across the UK and Republic of Ireland.",
+    url: "https://www.rd1.co.uk/construction-recruitment-agency",
+    images: [
+      {
+        url: "https://www.rd1.co.uk/images/construction-recruitment-agency.webp",
+        width: 1200,
+        height: 630,
+        alt: "Construction Recruitment Agency UK",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Construction Recruitment Agency UK | Recruitment Direct UK",
+    description: "Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across the UK and Republic of Ireland.",
+    images: ["https://www.rd1.co.uk/images/construction-recruitment-agency.webp"],
   },
 };
 
