@@ -10,6 +10,7 @@ import { api } from "@/services/api";
 
 interface FormErrors {
   company_name?: string;
+  company_website?: string;
   email?: string;
   full_name?: string;
   first_name?: string;
@@ -31,6 +32,7 @@ interface FormErrors {
 
 const fieldLabels: Record<string, string> = {
   company_name: "Company Name",
+  company_website: "Company Website",
   email: "Email Address",
   full_name: "Full Name",
   phone_number: "Phone Number",
@@ -51,6 +53,7 @@ const fieldLabels: Record<string, string> = {
 const mapFieldToInputId = (field: string): string | null => {
   const mapping: Record<string, string> = {
     company_name: "company",
+    company_website: "companyWebsite",
     email: "email",
     full_name: "firstName",
     first_name: "firstName",
@@ -212,6 +215,7 @@ export default function AIHireNowFormPage() {
 
     const payload = {
       company_name: formData.get("company") as string,
+      company_website: (formData.get("companyWebsite") as string || "").trim(),
       email: formData.get("email") as string,
       full_name: `${formData.get("firstName") || ""} ${formData.get("lastName") || ""}`.trim(),
       phone_number: formData.get("phone") as string,
@@ -553,8 +557,23 @@ export default function AIHireNowFormPage() {
                   )}
                 </div>
 
-                <div className="ai-hire-now-field hidden-on-mobile">
-                  {/* Empty cell to align items to a 3-column grid */}
+                <div className="ai-hire-now-field">
+                  <label htmlFor="companyWebsite">Company Website</label>
+                  <input
+                    id="companyWebsite"
+                    name="companyWebsite"
+                    type="url"
+                    placeholder="https://example.com"
+                    className={formErrors.company_website ? "has-error" : ""}
+                    onChange={() => {
+                      if (formErrors.company_website) {
+                        setFormErrors((prev) => ({ ...prev, company_website: undefined }));
+                      }
+                    }}
+                  />
+                  {formErrors.company_website && (
+                    <span className="error-message">⚠️ {formErrors.company_website}</span>
+                  )}
                 </div>
               </div>
             </div>
