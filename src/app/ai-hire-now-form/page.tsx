@@ -167,6 +167,7 @@ export default function AIHireNowFormPage() {
     // Client-side Frontend Validation
     const errors: FormErrors = {};
     const company = (formData.get("company") as string || "").trim();
+    const companyWebsite = (formData.get("companyWebsite") as string || "").trim();
     const firstName = (formData.get("firstName") as string || "").trim();
     const lastName = (formData.get("lastName") as string || "").trim();
     const email = (formData.get("email") as string || "").trim();
@@ -178,7 +179,21 @@ export default function AIHireNowFormPage() {
     const notes = (formData.get("notes") as string || "").trim();
     const qualifications = (formData.get("qualifications") as string || "").trim();
 
+    const isValidUrl = (urlStr: string) => {
+      if (!urlStr) return true;
+      const formattedUrl = /^https?:\/\//i.test(urlStr) ? urlStr : `https://${urlStr}`;
+      try {
+        const parsed = new URL(formattedUrl);
+        return Boolean(parsed.hostname && parsed.hostname.includes(".") && parsed.hostname.split(".").every((part) => part.length > 0));
+      } catch (e) {
+        return false;
+      }
+    };
+
     if (!company) errors.company_name = "Missing required field: Company Name";
+    if (companyWebsite && !isValidUrl(companyWebsite)) {
+      errors.company_website = "Please enter a valid website URL (e.g. https://example.com or example.com)";
+    }
     if (!firstName) errors.first_name = "Missing required field: First Name";
     if (!lastName) errors.last_name = "Missing required field: Last Name";
     if (!email) errors.email = "Missing required field: Email Address";
@@ -337,7 +352,7 @@ export default function AIHireNowFormPage() {
         </div>
 
         <div className="ai-hire-now-card bg-transparent border border-[#e2e8f0] rounded-2xl shadow-sm max-w-[960px] mx-auto p-6 md:p-6">
-          <form id="aiHireNowForm" className="ai-hire-now-form" onSubmit={handleSubmit}>
+          <form id="aiHireNowForm" className="ai-hire-now-form" onSubmit={handleSubmit} noValidate>
 
             {/* Client Status Section */}
             <div className="form-section mb-6">
@@ -591,11 +606,18 @@ export default function AIHireNowFormPage() {
                 <div className="ai-hire-now-field" id="workplaceTypeContainer" style={{ position: 'relative' }}>
                   <label htmlFor="workplaceType">Work Place Type</label>
                   <div className="relative">
-                    <button
+                    <div
                       id="workplaceType"
-                      type="button"
+                      role="button"
+                      tabIndex={0}
                       className={`multiselect-trigger ${formErrors.workplace_type ? "has-error" : ""}`}
                       onClick={() => setIsWorkplaceDropdownOpen(!isWorkplaceDropdownOpen)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setIsWorkplaceDropdownOpen(!isWorkplaceDropdownOpen);
+                        }
+                      }}
                       aria-haspopup="listbox"
                       aria-expanded={isWorkplaceDropdownOpen}
                     >
@@ -623,7 +645,7 @@ export default function AIHireNowFormPage() {
                       <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 6L12 18L24 6H0Z" />
                       </svg>
-                    </button>
+                    </div>
 
                     {isWorkplaceDropdownOpen && (
                       <div className="multiselect-dropdown" role="listbox">
@@ -664,11 +686,18 @@ export default function AIHireNowFormPage() {
                 <div className="ai-hire-now-field" id="contractTypeContainer" style={{ position: 'relative' }}>
                   <label htmlFor="contractType">Contract Type</label>
                   <div className="relative">
-                    <button
+                    <div
                       id="contractType"
-                      type="button"
+                      role="button"
+                      tabIndex={0}
                       className={`multiselect-trigger ${formErrors.contract_type ? "has-error" : ""}`}
                       onClick={() => setIsContractDropdownOpen(!isContractDropdownOpen)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setIsContractDropdownOpen(!isContractDropdownOpen);
+                        }
+                      }}
                       aria-haspopup="listbox"
                       aria-expanded={isContractDropdownOpen}
                     >
@@ -698,7 +727,7 @@ export default function AIHireNowFormPage() {
                       <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 6L12 18L24 6H0Z" />
                       </svg>
-                    </button>
+                    </div>
 
                     {isContractDropdownOpen && (
                       <div className="multiselect-dropdown" role="listbox">
@@ -739,10 +768,17 @@ export default function AIHireNowFormPage() {
                 <div className="ai-hire-now-field" id="workingDaysContainer" style={{ position: 'relative' }}>
                   <label id="workingDaysLabel">Working Days</label>
                   <div className="relative">
-                    <button
-                      type="button"
+                    <div
+                      role="button"
+                      tabIndex={0}
                       className={`multiselect-trigger ${formErrors.working_days ? "has-error" : ""}`}
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setIsDropdownOpen(!isDropdownOpen);
+                        }
+                      }}
                       aria-haspopup="listbox"
                       aria-expanded={isDropdownOpen}
                     >
@@ -771,7 +807,7 @@ export default function AIHireNowFormPage() {
                       <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 6L12 18L24 6H0Z" />
                       </svg>
-                    </button>
+                    </div>
 
                     {isDropdownOpen && (
                       <div className="multiselect-dropdown" role="listbox" aria-multiselectable="true">
@@ -785,7 +821,10 @@ export default function AIHireNowFormPage() {
                               aria-selected={isSelected}
                               onClick={() => toggleDay(day)}
                             >
-                              <span className="option-text">{day}</span>
+                              <span className="option-text flex items-center justify-between w-full">
+                                {day}
+                                {isSelected && <span className="selected-check font-bold ml-2">✓</span>}
+                              </span>
                             </div>
                           );
                         })}
@@ -844,11 +883,18 @@ export default function AIHireNowFormPage() {
                 <div className="ai-hire-now-field" id="salaryPerContainer" style={{ position: 'relative' }}>
                   <label htmlFor="salaryPer">Salary Per</label>
                   <div className="relative">
-                    <button
+                    <div
                       id="salaryPer"
-                      type="button"
+                      role="button"
+                      tabIndex={0}
                       className={`multiselect-trigger ${formErrors.salary_per ? "has-error" : ""}`}
                       onClick={() => setIsSalaryPerDropdownOpen(!isSalaryPerDropdownOpen)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setIsSalaryPerDropdownOpen(!isSalaryPerDropdownOpen);
+                        }
+                      }}
                       aria-haspopup="listbox"
                       aria-expanded={isSalaryPerDropdownOpen}
                     >
@@ -876,7 +922,7 @@ export default function AIHireNowFormPage() {
                       <svg className="dropdown-chevron-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 6L12 18L24 6H0Z" />
                       </svg>
-                    </button>
+                    </div>
 
                     {isSalaryPerDropdownOpen && (
                       <div className="multiselect-dropdown" role="listbox">
@@ -1169,17 +1215,22 @@ export default function AIHireNowFormPage() {
           justify-content: space-between !important;
           text-align: left !important;
           cursor: pointer !important;
-          min-height: 42px !important;
+          min-height: 44px !important;
           height: auto !important;
           box-shadow: none !important;
           background: #ffffff !important;
-          padding: 6px 14px !important;
-          border-color: #94a3b8 !important;
+          padding: 6px 12px !important;
+          border: 1px solid #cbd5e1 !important;
+          border-radius: 8px !important;
+          box-sizing: border-box !important;
+          overflow: visible !important;
+          gap: 8px !important;
+          user-select: none;
         }
 
         .clear-select-value {
-          margin-left: auto;
-          margin-right: 8px;
+          margin-left: 6px;
+          // margin-right: auto;
           color: #94a3b8;
           font-weight: bold;
           font-size: 1.2rem;
@@ -1189,6 +1240,7 @@ export default function AIHireNowFormPage() {
           align-items: center;
           justify-content: center;
           transition: color 0.15s ease;
+          flex-shrink: 0;
         }
 
         .clear-select-value:hover {
@@ -1198,30 +1250,36 @@ export default function AIHireNowFormPage() {
         .selected-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 4px;
-          margin-right: auto;
+          align-items: center;
+          gap: 6px;
+          flex: 1;
+          min-width: 0;
+          padding: 2px 0;
         }
 
         .selected-tag {
           display: inline-flex;
           align-items: center;
           background: #f1f5f9;
-          color: #334155;
-          font-size: 0.8rem;
+          color: #0f172a;
+          font-size: 0.825rem;
           font-weight: 600;
-          padding: 2px 8px;
-          border-radius: 4px;
-          border: 1px solid #e2e8f0;
+          line-height: 1.2;
+          padding: 4px 8px;
+          border-radius: 6px;
+          border: 1px solid #cbd5e1;
           transition: all 0.15s ease;
+          white-space: nowrap;
         }
 
         .selected-tag:hover {
           background: #e2e8f0;
+          border-color: #94a3b8;
         }
 
         .remove-tag {
-          margin-left: 4px;
-          color: #94a3b8;
+          margin-left: 6px;
+          color: #64748b;
           font-weight: bold;
           font-size: 1rem;
           cursor: pointer;
@@ -1229,10 +1287,15 @@ export default function AIHireNowFormPage() {
           align-items: center;
           justify-content: center;
           line-height: 1;
+          border-radius: 50%;
+          width: 14px;
+          height: 14px;
+          transition: all 0.15s ease;
         }
 
         .remove-tag:hover {
           color: #ef4444;
+          background: rgba(239, 68, 68, 0.1);
         }
 
         .multiselect-trigger:hover {
@@ -1265,11 +1328,13 @@ export default function AIHireNowFormPage() {
         }
 
         .dropdown-chevron-icon {
-          width: 8px;
-          height: 8px;
+          width: 10px;
+          height: 10px;
           color: #0f172a;
           flex-shrink: 0;
           opacity: 0.8;
+          align-self: center;
+          margin-left: auto;
         }
 
         .multiselect-dropdown {
@@ -1307,9 +1372,14 @@ export default function AIHireNowFormPage() {
         }
 
         .multiselect-option.selected {
-          background: #e2e8f0;
-          color: #0f172a;
+          background: #eff6ff;
+          color: #1d4ed8;
           font-weight: 600;
+        }
+
+        .selected-check {
+          color: #2563eb;
+          font-weight: 700;
         }
 
         .ai-hire-now-field textarea {
