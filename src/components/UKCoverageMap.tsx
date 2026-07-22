@@ -1,0 +1,907 @@
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+
+// Interface for office location config
+interface OfficeLocation {
+  name: string;
+  coords: [number, number]; // [lng, lat]
+  url: string;
+}
+
+// Configurable office locations
+const offices: OfficeLocation[] = [
+  {
+    name: "London",
+    coords: [-0.1278, 51.5074],
+    url: "/location/london",
+  },
+  {
+    name: "Birmingham",
+    coords: [-1.8904, 52.4862],
+    url: "/location/birmingham",
+  },
+  {
+    name: "Manchester",
+    coords: [-2.2426, 53.4808],
+    url: "/location/manchester",
+  },
+  {
+    name: "Edinburgh (Head Office)",
+    coords: [-3.1883, 55.9533],
+    url: "/location/edinburgh",
+  },
+  {
+    name: "Glasgow",
+    coords: [-4.2518, 55.8642],
+    url: "/location/glasgow",
+  },
+];
+
+// Helper to format the tooltip name
+const formatTooltipName = (name: string) => {
+  if (name.includes("(Head Office)")) {
+    return `Edinburgh<br/><span style="font-size: 12px; font-weight: 500; opacity: 0.8; display: block; margin-top: 2px;">(Head Office)</span>`;
+  }
+  return name;
+};
+
+// Handcrafted responsive center and zoom defaults to frame the UK perfectly
+// This keeps London fully visible and pushes mainland Europe (France) off-screen
+const getMapDefaults = () => {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  return {
+    center: [-2.4, 53.75] as [number, number],
+    zoom: isMobile ? 4.5 : 5.4,
+  };
+};
+
+export default function UKCoverageMap() {
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mapRef = useRef<maplibregl.Map | null>(null);
+  const activePopupRef = useRef<maplibregl.Popup | null>(null);
+
+  // Handle clicking on the interactive sidebar city buttons
+  const handleCityClick = (office: OfficeLocation) => {
+    if (!mapRef.current) return;
+
+    // Clear active popup
+    if (activePopupRef.current) {
+      activePopupRef.current.remove();
+    }
+
+    // Smoothly fly camera to city
+    mapRef.current.flyTo({
+      center: office.coords,
+      zoom: 7.2,
+      pitch: 35,
+      bearing: 5,
+      duration: 1500,
+    });
+
+    // Create and open new popup at city coordinates
+    const popup = new maplibregl.Popup({
+      offset: 18,
+      closeButton: false,
+      closeOnClick: false,
+    })
+      .setLngLat(office.coords)
+      .setHTML(`<strong>${formatTooltipName(office.name)}</strong>`)
+      .addTo(mapRef.current);
+
+    activePopupRef.current = popup;
+  };
+
+  // Reset map view to fit defaults
+  const handleResetView = () => {
+    if (!mapRef.current) return;
+
+    // Clear active popup
+    if (activePopupRef.current) {
+      activePopupRef.current.remove();
+    }
+
+    const defaults = getMapDefaults();
+    mapRef.current.flyTo({
+      center: defaults.center,
+      zoom: defaults.zoom,
+      pitch: 25,
+      bearing: 0,
+      duration: 1500,
+    });
+  };
+
+  useEffect(() => {
+    if (!mapContainerRef.current || !canvasRef.current) return;
+
+    const defaults = getMapDefaults();
+
+    // 1. Initialize MapLibre using OpenFreeMap Dark style
+    const map = new maplibregl.Map({
+      container: mapContainerRef.current,
+      style: "https://tiles.openfreemap.org/styles/dark",
+      center: defaults.center,
+      zoom: defaults.zoom,
+      pitch: 25,
+      bearing: 0,
+      interactive: false,
+      attributionControl: false,
+    });
+
+    mapRef.current = map;
+
+    // 2. Disable default navigation controls/behaviors
+    map.scrollZoom.disable();
+    map.boxZoom.disable();
+    map.dragRotate.disable();
+    map.dragPan.disable();
+    map.keyboard.disable();
+    map.doubleClickZoom.disable();
+    map.touchZoomRotate.disable();
+
+    // 3. Initialize ResizeObserver to dynamically update map layout
+    const resizeObserver = new ResizeObserver(() => {
+      if (mapRef.current) {
+        mapRef.current.resize();
+      }
+    });
+    resizeObserver.observe(mapContainerRef.current);
+
+    // 4. Initialize particles (WGS84 Coordinates)
+    interface Particle {
+      lng: number;
+      lat: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      opacity: number;
+      pulseSpeed: number;
+      pulseOffset: number;
+    }
+
+    const particleCount = 120;
+    const particles: Particle[] = [];
+
+    // UK bounding box for spawning particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        lng: -7.5 + Math.random() * 9.0,
+        lat: 50.5 + Math.random() * 8.0,
+        vx: (Math.random() - 0.5) * 0.001,
+        vy: (Math.random() - 0.5) * 0.001,
+        radius: 1.5 + Math.random() * 2,
+        opacity: 0.25 + Math.random() * 0.55,
+        pulseSpeed: 0.01 + Math.random() * 0.03,
+        pulseOffset: Math.random() * Math.PI * 2,
+      });
+    }
+
+    // 5. Initialize Data Flow Packets along office connections
+    interface DataPacket {
+      pathIndex: number;
+      progress: number;
+      speed: number;
+      size: number;
+    }
+
+    // Connect sequentially in a loop: London -> Birmingham -> Manchester -> Edinburgh -> Glasgow -> London
+    const networkPaths = [
+      { start: 0, end: 1 },
+      { start: 1, end: 2 },
+      { start: 2, end: 3 },
+      { start: 3, end: 4 },
+      { start: 4, end: 0 },
+    ];
+
+    const dataPackets: DataPacket[] = networkPaths.map((_, idx) => ({
+      pathIndex: idx,
+      progress: Math.random(), // Stagger start positions
+      speed: 0.004 + Math.random() * 0.003,
+      size: 3.5 + Math.random() * 1.5,
+    }));
+
+    let animationFrameId: number;
+    const cameraStartTime = Date.now();
+    let pulseStep = 0;
+    let baseCenter = defaults.center;
+
+    // 6. Setup Custom Layers and Animations on map load
+    map.on("load", () => {
+      // A. HIDE ALL CLUTTER LAYERS (Hides roads, residential areas, forests, and other grey map elements)
+      const clutterLayers = [
+        "landuse_residential",
+        "landcover_wood",
+        "landuse_park",
+        "building",
+        "landcover_glacier",
+        "landcover_ice_shelf",
+        "aeroway-taxiway",
+        "aeroway-runway-casing",
+        "aeroway-area",
+        "aeroway-runway",
+        "road_area_pier",
+        "road_pier",
+        "highway_path",
+        "highway_minor",
+        "highway_major_casing",
+        "highway_major_inner",
+        "highway_major_subtle",
+        "highway_motorway_casing",
+        "highway_motorway_inner",
+        "highway_motorway_subtle",
+        "railway_transit",
+        "railway_transit_dashline",
+        "railway_minor",
+        "railway_minor_dashline",
+        "railway",
+        "railway_dashline",
+      ];
+
+      clutterLayers.forEach((layerId) => {
+        if (map.getLayer(layerId)) {
+          map.setLayoutProperty(layerId, "visibility", "none");
+        }
+      });
+
+      // B. STYLING THE BASE MAP (Set land to carbon black and water to deep navy)
+      if (map.getLayer("background")) {
+        map.setPaintProperty("background", "background-color", "#020203");
+      }
+      if (map.getLayer("water")) {
+        map.setPaintProperty("water", "fill-color", "#071324");
+      }
+
+      // C. STYLE POLITICAL BOUNDARY LINES
+      const boundaryLayers = ["boundary_state", "boundary_country_z0-4", "boundary_country_z5-"];
+      boundaryLayers.forEach((layerId) => {
+        if (map.getLayer(layerId)) {
+          map.setPaintProperty(layerId, "line-color", "#2E7DFF");
+          map.setPaintProperty(layerId, "line-opacity", 0.35);
+        }
+      });
+
+      // D. DYNAMICALLY CONVERT ALL MAP LABELS TO CRISP WHITE TEXT WITH BLACK HALO FOR HIGH VISIBILITY
+      const allLayers = map.getStyle().layers;
+      if (allLayers) {
+        allLayers.forEach((layer) => {
+          if (layer.type === "symbol") {
+            try {
+              map.setPaintProperty(layer.id, "text-color", "#ffffff");
+              map.setPaintProperty(layer.id, "text-halo-color", "#000000");
+              map.setPaintProperty(layer.id, "text-halo-width", 1.5);
+            } catch (e) {
+              // Ignore layers that don't support text-color or paint properties
+            }
+          }
+        });
+      }
+
+      // Find the first symbol layer to insert glow layers beneath labels
+      let firstLabelLayerId: string | undefined;
+      if (allLayers) {
+        for (let i = 0; i < allLayers.length; i++) {
+          if (
+            allLayers[i].type === "symbol" &&
+            allLayers[i].layout &&
+            "text-field" in (allLayers[i].layout as Record<string, unknown>)
+          ) {
+            firstLabelLayerId = allLayers[i].id;
+            break;
+          }
+        }
+      }
+
+      // Add Coastline Glow layers (Refined to match the dense cyan/blue halo in the provided image)
+      // Layer 1: Wide ambient outer electric blue glow
+      map.addLayer(
+        {
+          id: "coastline-glow-outer",
+          type: "line",
+          source: "openmaptiles",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#005FFF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 20, 10, 40],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 15, 10, 25],
+            "line-opacity": 0.35,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Layer 2: Intense inner cyan glow
+      map.addLayer(
+        {
+          id: "coastline-glow-inner",
+          type: "line",
+          source: "openmaptiles",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#00D2FF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 15],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 4, 10, 8],
+            "line-opacity": 0.65,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Layer 3: Sharp core electric blue coastline line
+      map.addLayer(
+        {
+          id: "coastline-core",
+          type: "line",
+          source: "openmaptiles",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#2E7DFF",
+            "line-width": 1.8,
+            "line-opacity": 0.9,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // 6. Connect every office with white coverage lines
+      map.addSource("coverage-network", {
+        type: "geojson",
+        data: {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "LineString",
+            coordinates: [
+              offices[0].coords,
+              offices[1].coords,
+              offices[2].coords,
+              offices[3].coords,
+              offices[4].coords,
+              offices[0].coords, // closed loop
+            ],
+          },
+        },
+      });
+
+      // Gold Glow beneath connection lines
+      map.addLayer(
+        {
+          id: "network-glow",
+          type: "line",
+          source: "coverage-network",
+          paint: {
+            "line-color": "#D6B25E",
+            "line-width": 8,
+            "line-blur": 6,
+            "line-opacity": 0.35,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Base elegant white coverage lines
+      map.addLayer(
+        {
+          id: "network-line",
+          type: "line",
+          source: "coverage-network",
+          paint: {
+            "line-color": "#ffffff",
+            "line-width": 2,
+            "line-opacity": 0.85,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Start animations
+      tick();
+    });
+
+    // 8. Animation Loop (Particles, Traveling light packets, camera drift, coastline pulse)
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    const tick = () => {
+      if (!ctx || !canvas || !mapRef.current) return;
+
+      // Adjust Canvas size for High DPI
+      const width = mapContainerRef.current?.clientWidth || 0;
+      const height = mapContainerRef.current?.clientHeight || 0;
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+
+      ctx.clearRect(0, 0, width, height);
+
+      // A. Automatic Camera Float (subtle elliptical path around the baseCenter)
+      const elapsed = (Date.now() - cameraStartTime) / 1000;
+      const cameraCycle = (elapsed % 12) / 12 * Math.PI * 2; // 12 seconds cycle
+      const lngOffset = Math.sin(cameraCycle) * 0.04;
+      const latOffset = Math.cos(cameraCycle) * 0.02;
+      const pitch = 25 + Math.sin(cameraCycle) * 1.5;
+      const bearing = Math.sin(cameraCycle) * 1.0;
+
+      map.setCenter([baseCenter[0] + lngOffset, baseCenter[1] + latOffset]);
+      map.setPitch(pitch);
+      map.setBearing(bearing);
+
+      // B. Pulse Coastline Glow Opacity
+      pulseStep += 0.025;
+      const basePulse = Math.sin(pulseStep);
+      const outerOpacity = 0.2 + (basePulse + 1) * 0.08; // 0.12 to 0.28
+      const innerOpacity = 0.4 + (basePulse + 1) * 0.12; // 0.28 to 0.52
+
+      if (map.getLayer("coastline-glow-outer")) {
+        map.setPaintProperty("coastline-glow-outer", "line-opacity", outerOpacity);
+      }
+      if (map.getLayer("coastline-glow-inner")) {
+        map.setPaintProperty("coastline-glow-inner", "line-opacity", innerOpacity);
+      }
+
+      // C. Render Particle Plexus (Digital Network)
+      // Update particles
+      particles.forEach((p) => {
+        p.lng += p.vx;
+        p.lat += p.vy;
+
+        // Reset if boundary exceeded
+        if (p.lng < -8.5 || p.lng > 2.5 || p.lat < 49.5 || p.lat > 59.5) {
+          p.lng = -7.5 + Math.random() * 9.0;
+          p.lat = 50.5 + Math.random() * 8.0;
+        }
+      });
+
+      // Project coordinates and calculate pulse
+      const projected = particles.map((p) => {
+        try {
+          const pt = map.project([p.lng, p.lat]);
+          const currentPulse = Math.sin(pulseStep * 1.5 + p.pulseOffset);
+          const opacity = Math.max(0.1, p.opacity + currentPulse * 0.15);
+          return { x: pt.x, y: pt.y, radius: p.radius, opacity };
+        } catch (e) {
+          return null;
+        }
+      });
+
+      // Draw particle connections (Plexus/Neural Net)
+      for (let i = 0; i < projected.length; i++) {
+        const p1 = projected[i];
+        if (!p1 || p1.x < 0 || p1.x > width || p1.y < 0 || p1.y > height) continue;
+
+        for (let j = i + 1; j < projected.length; j++) {
+          const p2 = projected[j];
+          if (!p2 || p2.x < 0 || p2.x > width || p2.y < 0 || p2.y > height) continue;
+
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
+          const maxDist = 65;
+          const maxDistSq = maxDist * maxDist;
+
+          if (distSq < maxDistSq) {
+            const dist = Math.sqrt(distSq);
+            const alpha = (1 - dist / maxDist) * 0.12 * Math.min(p1.opacity, p2.opacity);
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(214, 178, 94, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
+      projected.forEach((p) => {
+        if (!p || p.x < 0 || p.x > width || p.y < 0 || p.y > height) return;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(214, 178, 94, ${p.opacity})`;
+        ctx.shadowColor = "#D6B25E";
+        ctx.shadowBlur = 4;
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset shadow
+      });
+
+      // D. Render Traveling Data Packets (Comet effect along coverage lines)
+      dataPackets.forEach((packet) => {
+        // Increment progress
+        packet.progress += packet.speed;
+        if (packet.progress >= 1) {
+          packet.progress = 0;
+        }
+
+        const path = networkPaths[packet.pathIndex];
+        const startLoc = offices[path.start].coords;
+        const endLoc = offices[path.end].coords;
+
+        // Draw Comet tail
+        const tailLength = 8;
+        for (let i = tailLength; i >= 0; i--) {
+          const prog = packet.progress - i * 0.015;
+          if (prog < 0) continue;
+
+          // Interpolated geographic coordinates
+          const lng = startLoc[0] + (endLoc[0] - startLoc[0]) * prog;
+          const lat = startLoc[1] + (endLoc[1] - startLoc[1]) * prog;
+
+          try {
+            const pt = map.project([lng, lat]);
+            const opacity = (1 - i / tailLength) * 0.85;
+            const size = packet.size * (1 - i / tailLength * 0.4);
+
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2);
+            // White core, fading to gold tail
+            if (i === 0) {
+              ctx.fillStyle = "#ffffff";
+              ctx.shadowColor = "#ffffff";
+              ctx.shadowBlur = 12;
+            } else {
+              ctx.fillStyle = `rgba(214, 178, 94, ${opacity})`;
+              ctx.shadowColor = "#D6B25E";
+              ctx.shadowBlur = 8;
+            }
+            ctx.fill();
+            ctx.shadowBlur = 0; // reset
+          } catch (e) {
+            // Ignore projection edge cases
+          }
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(tick);
+    };
+
+    return () => {
+      resizeObserver.disconnect();
+      cancelAnimationFrame(animationFrameId);
+      if (activePopupRef.current) {
+        activePopupRef.current.remove();
+      }
+      if (mapRef.current) {
+        mapRef.current.remove();
+      }
+    };
+  }, []);
+
+  return (
+    <>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          /* Premium UK Coverage Map Styles - MapLibre GL JS */
+          .uk-map-section {
+            position: relative;
+            width: 100%;
+            min-height: 800px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #040404 0%, #07192d 100%);
+            padding: 80px 20px;
+          }
+
+          .background-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(0, 95, 255, 0.10), transparent 60%),
+                        radial-gradient(circle at bottom, rgba(0, 65, 180, 0.12), transparent 65%);
+            pointer-events: none;
+            z-index: 1;
+          }
+
+          .map-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+          }
+
+          #map-container {
+            position: relative;
+            width: 100%;
+            height: 620px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 80px rgba(0, 95, 255, 0.12),
+                        0 0 160px rgba(0, 95, 255, 0.05);
+            animation: floatMap 12s ease-in-out infinite;
+          }
+
+          #map {
+            width: 100%;
+            height: 100%;
+          }
+
+          /* Floating Map Animation */
+          @keyframes floatMap {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+          }
+
+          /* MapLibre Popup Overrides */
+          .maplibregl-popup {
+            z-index: 100;
+          }
+
+          .maplibregl-popup-content {
+            background: #060606 !important;
+            color: #ffffff !important;
+            padding: 12px 18px !important;
+            border-radius: 10px !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45) !important;
+            text-align: center !important;
+          }
+
+          .maplibregl-popup-tip {
+            border-top-color: #060606 !important;
+          }
+
+          /* MapLibre Controls Hidden */
+          .maplibregl-ctrl {
+            display: none !important;
+          }
+
+          /* Telephone CTA Section */
+          .telephone {
+            padding: 0px 20px;
+            text-align: center;
+          }
+
+          .telephone h2 {
+            font-size: 38px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+          }
+
+          .telephone a {
+            font-size: 34px;
+            font-weight: 800;
+            text-decoration: none;
+            color: #ffffff;
+            transition: color 0.3s, text-shadow 0.3s;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+          }
+
+          .telephone a:hover {
+            color: #d6b25e;
+            text-shadow: 0 0 20px rgba(214, 178, 94, 0.4);
+          }
+
+          /* Spacing and divider style for City links */
+          .city-links-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px 18px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+          }
+
+          .city-link {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.25s, transform 0.25s;
+            position: relative;
+            padding-bottom: 3px;
+          }
+
+          .city-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1.5px;
+            bottom: 0;
+            left: 0;
+            background-color: #ffffff;
+            transition: width 0.25s ease;
+          }
+
+          .city-link:hover {
+            color: #ffffff;
+          }
+
+          .city-link:hover::after {
+            width: 100%;
+          }
+
+          .city-divider {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 400;
+            user-select: none;
+          }
+
+          /* Responsive City Selector Panel */
+          .city-selector-panel {
+            transition: all 0.3s ease-in-out;
+          }
+
+          /* Responsive Styles */
+          @media (max-width: 1200px) {
+            #map-container { 
+              height: auto !important; 
+              aspect-ratio: 4 / 5 !important;
+              max-height: 650px !important;
+              min-height: 500px !important;
+            }
+          }
+
+          @media (max-width: 992px) {
+            #map-container { 
+              height: auto !important; 
+              aspect-ratio: 4 / 5 !important;
+              max-height: 620px !important;
+              min-height: 500px !important;
+              border-radius: 18px; 
+            }
+            .telephone h2 { font-size: 30px; }
+            .telephone a { font-size: 28px; }
+
+            /* Reposition selector panel to the bottom-left corner on tablet & mobile */
+            .city-selector-panel {
+              left: 20px !important;
+              top: auto !important;
+              bottom: 20px !important;
+              transform: none !important;
+              flex-direction: column !important;
+              gap: 10px !important;
+              padding: 14px 18px !important;
+              border-radius: 20px !important;
+              width: auto !important;
+              max-width: 260px !important;
+              align-items: flex-start !important;
+            }
+
+            .city-selector-panel span {
+              display: inline-block !important; /* Force text visibility on tablet/mobile */
+              font-size: 11.5px !important;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .uk-map-section { padding: 50px 15px; min-height: auto; }
+            #map-container { 
+              height: auto !important; 
+              aspect-ratio: 3 / 4 !important;
+              max-height: 580px !important;
+              min-height: 450px !important;
+              border-radius: 14px; 
+            }
+            .telephone h2 { font-size: 24px; margin-bottom: 8px; }
+            .telephone a { font-size: 24px; }
+            .city-link { font-size: 15px; }
+
+            .city-selector-panel {
+              left: 16px !important;
+              bottom: 16px !important;
+              padding: 10px 14px !important;
+              gap: 8px !important;
+              border-radius: 16px !important;
+            }
+
+            .city-selector-panel span {
+              font-size: 10.5px !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            #map-container { 
+              height: auto !important; 
+              aspect-ratio: 3 / 4 !important;
+              max-height: 500px !important;
+              min-height: 400px !important;
+            }
+            .telephone h2 { font-size: 20px; }
+            .telephone a { font-size: 20px; }
+            .city-links-container { gap: 8px 12px; }
+            .city-link { font-size: 14px; }
+          }
+        `,
+      }} />
+
+      <section className="uk-map-section">
+        <div className="background-gradient"></div>
+        <div className="map-wrapper">
+          <div id="map-container">
+            <div ref={mapContainerRef} id="map" />
+            <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3 }} />
+
+            {/* Vertical City Selector Panel (Exactly matching the 5 circular gold selectors in the provided image) */}
+            <div className="city-selector-panel absolute left-6 top-1/2 -translate-y-1/2 flex flex-col gap-5 z-20 bg-black/40 p-4 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
+              {offices.map((office) => (
+                <div
+                  key={office.name}
+                  className="flex items-center gap-3 group cursor-pointer"
+                  onClick={() => handleCityClick(office)}
+                >
+                  {/* Glowing circular badge selector */}
+                  <div className="w-6 h-6 rounded-full border border-[#d6b25e] bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_15px_#d6b25e] group-hover:bg-[#d6b25e]/10 relative">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#d6b25e] shadow-[0_0_6px_#d6b25e] transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_0_8px_#ffffff]" />
+                    {/* Pulsing glow ring */}
+                    <div className="absolute inset-0 rounded-full border border-[#d6b25e]/30 scale-150 animate-pulse pointer-events-none" />
+                  </div>
+
+                  {/* Permanently visible label text next to circle */}
+                  <span className="text-[13px] font-semibold text-white/80 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
+                    {office.name.replace(" (Head Office)", "")}
+                  </span>
+                </div>
+              ))}
+
+              {/* Reset View Button */}
+              <div
+                className="flex items-center gap-3 group cursor-pointer mt-1"
+                onClick={handleResetView}
+                title="Reset Map View"
+              >
+                <div className="w-6 h-6 rounded-full border border-white/20 bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:border-[#d6b25e] group-hover:bg-[#d6b25e]/10">
+                  <span className="text-[11px] font-bold text-white/50 group-hover:text-[#d6b25e] transition-colors duration-300">↺</span>
+                </div>
+                <span className="text-[13px] font-semibold text-white/50 group-hover:text-[#d6b25e] group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
+                  Reset View
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Premium Glassmorphic Telephone CTA & City Links Container */}
+          <div className="mt-12 bg-white/[0.02] border border-white/10 rounded-3xl p-8 max-w-4xl mx-auto text-center shadow-[0_20px_50px_rgba(0,0,0,0.45)] relative overflow-hidden backdrop-blur-md z-10">
+            {/* Ambient Background Glows */}
+            <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#d6b25e]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-12 -right-12 w-28 h-28 bg-[#2e7dff]/8 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 space-y-6">
+              <div className="space-y-2">
+                <span className="text-white text-xs font-bold uppercase tracking-[0.25em] block opacity-80">
+                  Direct Contact Line
+                </span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                  Nationwide Recruitment
+                </h2>
+                <a
+                  href="tel:03450678022"
+                  className="text-4xl md:text-5xl font-black text-white hover:text-[#d6b25e] transition-all duration-300 block tracking-tight hover:scale-105 active:scale-95"
+                >
+                  0345 067 8022
+                </a>
+              </div>
+
+              <div className="w-16 h-[1px] bg-white/10 mx-auto" />
+
+              <div className="space-y-3">
+                <span className="text-white text-xs font-semibold uppercase tracking-wider block opacity-70">
+                  Explore Regional Offices
+                </span>
+                <div className="city-links-container">
+                  {offices.map((office, idx) => (
+                    <React.Fragment key={office.name}>
+                      {idx > 0 && <span className="city-divider">│</span>}
+                      <a href={office.url} className="city-link">
+                        {office.name}
+                      </a>
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </>
+  );
+}

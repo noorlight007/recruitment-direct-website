@@ -11,6 +11,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const UKCoverageMap = dynamic(() => import("@/components/UKCoverageMap"), {
+  ssr: false,
+});
+
 
 // Previous sections from component folder
 import HeroSection from "@/components/HeroSection";
@@ -197,6 +203,9 @@ const Index = () => {
               <div>Multi-Sector Expertise</div>
             </div>
           </section>
+
+          {/* NATIONWIDE COVERAGE MAP */}
+          <UKCoverageMap />
 
           {/* SECTORS */}
           <section className="rd-sectors standard-section" id="sectors">
