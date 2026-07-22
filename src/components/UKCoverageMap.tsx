@@ -29,7 +29,7 @@ const offices: OfficeLocation[] = [
     url: "/location/manchester",
   },
   {
-    name: "Edinburgh (Head Office)",
+    name: "Edinburgh (HO)",
     coords: [-3.1883, 55.9533],
     url: "/location/edinburgh",
   },
@@ -48,13 +48,13 @@ const formatTooltipName = (name: string) => {
   return name;
 };
 
-// Handcrafted responsive center and zoom defaults to frame the UK perfectly
+// Handcrafted responsive center and zoom defaults to frame the UK perfectly inside the smaller container
 // This keeps London fully visible and pushes mainland Europe (France) off-screen
 const getMapDefaults = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   return {
     center: [-2.4, 53.75] as [number, number],
-    zoom: isMobile ? 4.5 : 5.4,
+    zoom: isMobile ? 4.3 : 5.0, // Reduced from 4.5/5.4 to fit the new 20% smaller map container
   };
 };
 
@@ -294,7 +294,7 @@ export default function UKCoverageMap() {
         }
       }
 
-      // Add Coastline Glow layers (Refined to match the dense cyan/blue halo in the provided image)
+      // Add Coastline Glow layers (Reduced by 25% to look more premium and allow gold markers to stand out)
       // Layer 1: Wide ambient outer electric blue glow
       map.addLayer(
         {
@@ -304,9 +304,9 @@ export default function UKCoverageMap() {
           "source-layer": "water",
           paint: {
             "line-color": "#005FFF",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 20, 10, 40],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 15, 10, 25],
-            "line-opacity": 0.35,
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 15, 10, 30],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 12, 10, 20],
+            "line-opacity": 0.25,
           },
         },
         firstLabelLayerId
@@ -321,9 +321,9 @@ export default function UKCoverageMap() {
           "source-layer": "water",
           paint: {
             "line-color": "#00D2FF",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 15],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 4, 10, 8],
-            "line-opacity": 0.65,
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 4.5, 10, 11],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 3, 10, 6],
+            "line-opacity": 0.45,
           },
         },
         firstLabelLayerId
@@ -338,8 +338,8 @@ export default function UKCoverageMap() {
           "source-layer": "water",
           paint: {
             "line-color": "#2E7DFF",
-            "line-width": 1.8,
-            "line-opacity": 0.9,
+            "line-width": 1.5,
+            "line-opacity": 0.7,
           },
         },
         firstLabelLayerId
@@ -429,11 +429,11 @@ export default function UKCoverageMap() {
       map.setPitch(pitch);
       map.setBearing(bearing);
 
-      // B. Pulse Coastline Glow Opacity
+      // B. Pulse Coastline Glow Opacity (Reduced by 25%)
       pulseStep += 0.025;
       const basePulse = Math.sin(pulseStep);
-      const outerOpacity = 0.2 + (basePulse + 1) * 0.08; // 0.12 to 0.28
-      const innerOpacity = 0.4 + (basePulse + 1) * 0.12; // 0.28 to 0.52
+      const outerOpacity = 0.15 + (basePulse + 1) * 0.06;
+      const innerOpacity = 0.3 + (basePulse + 1) * 0.09;
 
       if (map.getLayer("coastline-glow-outer")) {
         map.setPaintProperty("coastline-glow-outer", "line-opacity", outerOpacity);
@@ -442,7 +442,21 @@ export default function UKCoverageMap() {
         map.setPaintProperty("coastline-glow-inner", "line-opacity", innerOpacity);
       }
 
-      // C. Render Particle Plexus (Digital Network)
+      // C. Update custom HTML markers positions dynamically
+      offices.forEach((office) => {
+        const markerId = `marker-${office.name.replace(/[^a-zA-Z0-9]/g, "-")}`;
+        const markerEl = document.getElementById(markerId);
+        if (markerEl && mapRef.current) {
+          try {
+            const pt = mapRef.current.project(office.coords);
+            markerEl.style.transform = `translate(-50%, -50%) translate(${pt.x}px, ${pt.y}px)`;
+          } catch (e) {
+            markerEl.style.transform = `translate(-50%, -50%) translate(-9999px, -9999px)`;
+          }
+        }
+      });
+
+      // D. Render Particle Plexus (Digital Network)
       // Update particles
       particles.forEach((p) => {
         p.lng += p.vx;
@@ -507,7 +521,7 @@ export default function UKCoverageMap() {
         ctx.shadowBlur = 0; // reset shadow
       });
 
-      // D. Render Traveling Data Packets (Comet effect along coverage lines)
+      // E. Render Traveling Data Packets (Comet effect along coverage lines)
       dataPackets.forEach((packet) => {
         // Increment progress
         packet.progress += packet.speed;
@@ -577,23 +591,23 @@ export default function UKCoverageMap() {
           .uk-map-section {
             position: relative;
             width: 100%;
-            min-height: 800px;
+            min-height: 700px;
             overflow: hidden;
             background: linear-gradient(180deg, #040404 0%, #07192d 100%);
-            padding: 80px 20px;
+            padding: 50px 20px; /* Reduced vertical padding for better spacing */
           }
 
           .background-gradient {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top, rgba(0, 95, 255, 0.10), transparent 60%),
-                        radial-gradient(circle at bottom, rgba(0, 65, 180, 0.12), transparent 65%);
+            background: radial-gradient(circle at top, rgba(0, 95, 255, 0.08), transparent 60%),
+                        radial-gradient(circle at bottom, rgba(0, 65, 180, 0.10), transparent 65%);
             pointer-events: none;
             z-index: 1;
           }
 
           .map-wrapper {
-            max-width: 1200px;
+            max-width: 960px; /* Reduced by 20% from 1200px to balance the page */
             margin: 0 auto;
             position: relative;
             z-index: 2;
@@ -602,12 +616,12 @@ export default function UKCoverageMap() {
           #map-container {
             position: relative;
             width: 100%;
-            height: 620px;
+            height: 500px; /* Reduced by 20% from 620px to prevent dominating content fold */
             border-radius: 24px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 80px rgba(0, 95, 255, 0.12),
-                        0 0 160px rgba(0, 95, 255, 0.05);
+            box-shadow: 0 0 60px rgba(0, 95, 255, 0.10),
+                        0 0 120px rgba(0, 95, 255, 0.04);
             animation: floatMap 12s ease-in-out infinite;
           }
 
@@ -619,8 +633,35 @@ export default function UKCoverageMap() {
           /* Floating Map Animation */
           @keyframes floatMap {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
+            50% { transform: translateY(-5px); }
             100% { transform: translateY(0px); }
+          }
+
+          /* Premium Gold Marker Pins Style */
+          .gold-pin-custom {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #710822ff;
+            border: 3px solid #fff;
+            box-shadow: 0 0 10px rgba(214, 178, 94, 0.8),
+                        0 0 20px rgba(214, 178, 94, 0.5);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+          }
+
+          .gold-pin-custom:hover {
+            transform: scale(1.3) !important;
+            box-shadow: 0 0 18px rgba(214, 178, 94, 1),
+                        0 0 35px rgba(214, 178, 94, 0.7);
+          }
+
+          /* Custom Slow Ping Animation */
+          @keyframes pingSlow {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.4); opacity: 0; }
+          }
+          .animate-ping-slow {
+            animation: pingSlow 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
           }
 
           /* MapLibre Popup Overrides */
@@ -735,8 +776,8 @@ export default function UKCoverageMap() {
             #map-container { 
               height: auto !important; 
               aspect-ratio: 4 / 5 !important;
-              max-height: 650px !important;
-              min-height: 500px !important;
+              max-height: 520px !important;
+              min-height: 400px !important;
             }
           }
 
@@ -744,8 +785,8 @@ export default function UKCoverageMap() {
             #map-container { 
               height: auto !important; 
               aspect-ratio: 4 / 5 !important;
-              max-height: 620px !important;
-              min-height: 500px !important;
+              max-height: 500px !important;
+              min-height: 400px !important;
               border-radius: 18px; 
             }
             .telephone h2 { font-size: 30px; }
@@ -767,18 +808,18 @@ export default function UKCoverageMap() {
             }
 
             .city-selector-panel span {
-              display: inline-block !important; /* Force text visibility on tablet/mobile */
+              display: inline-block !important;
               font-size: 11.5px !important;
             }
           }
 
           @media (max-width: 768px) {
-            .uk-map-section { padding: 50px 15px; min-height: auto; }
+            .uk-map-section { padding: 40px 15px; min-height: auto; }
             #map-container { 
               height: auto !important; 
               aspect-ratio: 3 / 4 !important;
-              max-height: 580px !important;
-              min-height: 450px !important;
+              max-height: 460px !important;
+              min-height: 380px !important;
               border-radius: 14px; 
             }
             .telephone h2 { font-size: 24px; margin-bottom: 8px; }
@@ -802,8 +843,8 @@ export default function UKCoverageMap() {
             #map-container { 
               height: auto !important; 
               aspect-ratio: 3 / 4 !important;
-              max-height: 500px !important;
-              min-height: 400px !important;
+              max-height: 400px !important;
+              min-height: 320px !important;
             }
             .telephone h2 { font-size: 20px; }
             .telephone a { font-size: 20px; }
@@ -819,6 +860,44 @@ export default function UKCoverageMap() {
           <div id="map-container">
             <div ref={mapContainerRef} id="map" />
             <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3 }} />
+
+            {/* Custom Projected React-rendered Markers positioned directly via JS projection in the animation loop */}
+            {offices.map((office) => (
+              <div
+                key={office.name}
+                id={`marker-${office.name.replace(/[^a-zA-Z0-9]/g, "-")}`}
+                className="absolute z-10 cursor-pointer group"
+                style={{
+                  left: 0,
+                  top: 0,
+                  transform: "translate(-50%, -50%) translate(-9999px, -9999px)",
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCityClick(office);
+                }}
+              >
+                {/* Gold Pin Badge */}
+                <div className="gold-pin-custom relative flex items-center justify-center">
+                  {/* Outer Pulsing Ripple Ring */}
+                  <div className="absolute inset-0 rounded-full border border-[#d6b25e]/50 scale-[2.2] animate-ping-slow pointer-events-none" />
+                </div>
+                
+                {/* Premium Floating Tooltip on Hover */}
+                <div className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 bg-[#060606] text-white text-[12px] font-semibold py-1.5 px-3 rounded-lg border border-white/10 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap text-center">
+                  {office.name.includes("Head Office") ? (
+                    <>
+                      Edinburgh
+                      <span className="block text-[10px] font-normal text-white/70 mt-0.5">(Head Office)</span>
+                    </>
+                  ) : (
+                    office.name
+                  )}
+                  {/* Tooltip Tip arrow */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#060606]" />
+                </div>
+              </div>
+            ))}
 
             {/* Vertical City Selector Panel (Exactly matching the 5 circular gold selectors in the provided image) */}
             <div className="city-selector-panel absolute left-6 top-1/2 -translate-y-1/2 flex flex-col gap-5 z-20 bg-black/40 p-4 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
@@ -859,10 +938,10 @@ export default function UKCoverageMap() {
           </div>
 
           {/* Premium Glassmorphic Telephone CTA & City Links Container */}
-          <div className="mt-12 bg-white/[0.02] border border-white/10 rounded-3xl p-8 max-w-4xl mx-auto text-center shadow-[0_20px_50px_rgba(0,0,0,0.45)] relative overflow-hidden backdrop-blur-md z-10">
+          <div className="mt-12 bg-gradient-to-r from-black/80 to-[#151C62] rounded-3xl p-8 max-w-4xl mx-auto text-center shadow-[0_20px_50px_rgba(0,0,0,0.45)] relative overflow-hidden z-10">
             {/* Ambient Background Glows */}
-            <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#d6b25e]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-12 -right-12 w-28 h-28 bg-[#2e7dff]/8 rounded-full blur-3xl pointer-events-none" />
+            {/* <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#d6b25e]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-12 -right-12 w-28 h-28 bg-[#2e7dff]/8 rounded-full blur-3xl pointer-events-none" /> */}
 
             <div className="relative z-10 space-y-6">
               <div className="space-y-2">
