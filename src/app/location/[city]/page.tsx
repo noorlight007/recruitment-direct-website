@@ -59,6 +59,46 @@ const cityData: Record<string, {
     description: "Dedicated staffing solutions for Glasgow and the West of Scotland. Available round-the-clock to manage high-volume temporary labour demands.",
     sectors: ["Renewable Energy", "Logistics", "Healthcare", "Engineering", "Construction", "Hospitality"],
   },
+  cardiff: {
+    name: "Cardiff",
+    phone: "0345 067 8022",
+    email: "cardiff.sales@rd1.co.uk",
+    address: "Brunel House, 2 Fitzalan Road, Cardiff, CF24 0EB",
+    description: "Providing Welsh businesses with exceptional staffing support across construction, logistics, and technical sectors.",
+    sectors: ["Construction", "Logistics", "Engineering", "Business Support & IT"],
+  },
+  leeds: {
+    name: "Leeds",
+    phone: "0345 067 8022",
+    email: "leeds.sales@rd1.co.uk",
+    address: "1 City Square, Leeds, LS1 2AL",
+    description: "Connecting Yorkshire employers with top-tier personnel, from major infrastructure projects to administrative and professional roles.",
+    sectors: ["Construction", "Engineering", "Logistics", "Renewable Energy", "Business Support & IT"],
+  },
+  newcastle: {
+    name: "Newcastle",
+    phone: "0345 067 8022",
+    email: "newcastle.sales@rd1.co.uk",
+    address: "Gallowgate, Newcastle upon Tyne, NE1 4SG",
+    description: "Serving the North East with rapid-response recruitment services, specializing in industrial, engineering, and technical recruitment.",
+    sectors: ["Engineering", "Logistics", "Construction", "Hospitality"],
+  },
+  inverness: {
+    name: "Inverness",
+    phone: "01324 613198",
+    email: "inverness.sales@rd1.co.uk",
+    address: "Fairways Business Park, Inverness, IV2 6AA",
+    description: "Supporting Highland employers with certified and vetted personnel, specializing in renewable energy, forestry, and construction projects.",
+    sectors: ["Renewable Energy", "Construction", "Logistics", "Engineering"],
+  },
+  aberdeen: {
+    name: "Aberdeen",
+    phone: "01324 613198",
+    email: "aberdeen.sales@rd1.co.uk",
+    address: "Union Plaza, 1 Union Wynd, Aberdeen, AB10 1SL",
+    description: "Premium staffing solutions for the North East of Scotland. Trusted partners for engineering, renewable energy, and logistical operations.",
+    sectors: ["Renewable Energy", "Engineering", "Logistics", "Construction", "Business Support & IT"],
+  },
 };
 
 export default function LocationPage() {

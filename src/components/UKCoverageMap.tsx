@@ -3,12 +3,14 @@
 import React, { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { useRouter } from "next/navigation";
 
 // Interface for office location config
 interface OfficeLocation {
   name: string;
   coords: [number, number]; // [lng, lat]
   url: string;
+  labelPos: "left" | "right";
 }
 
 // Configurable office locations
@@ -17,32 +19,67 @@ const offices: OfficeLocation[] = [
     name: "London",
     coords: [-0.1278, 51.5074],
     url: "/location/london",
+    labelPos: "right",
+  },
+  {
+    name: "Cardiff",
+    coords: [-3.1791, 51.4816],
+    url: "/location/cardiff",
+    labelPos: "left",
   },
   {
     name: "Birmingham",
     coords: [-1.8904, 52.4862],
     url: "/location/birmingham",
+    labelPos: "right",
   },
   {
     name: "Manchester",
     coords: [-2.2426, 53.4808],
     url: "/location/manchester",
+    labelPos: "left",
+  },
+  {
+    name: "Leeds",
+    coords: [-1.5491, 53.8008],
+    url: "/location/leeds",
+    labelPos: "right",
+  },
+  {
+    name: "Newcastle",
+    coords: [-1.6178, 54.9783],
+    url: "/location/newcastle",
+    labelPos: "right",
   },
   {
     name: "Edinburgh (HO)",
     coords: [-3.1883, 55.9533],
     url: "/location/edinburgh",
+    labelPos: "right",
   },
   {
     name: "Glasgow",
     coords: [-4.2518, 55.8642],
     url: "/location/glasgow",
+    labelPos: "left",
+  },
+  {
+    name: "Inverness",
+    coords: [-4.2247, 57.4778],
+    url: "/location/inverness",
+    labelPos: "left",
+  },
+  {
+    name: "Aberdeen",
+    coords: [-2.0981, 57.1497],
+    url: "/location/aberdeen",
+    labelPos: "right",
   },
 ];
 
 // Helper to format the tooltip name
 const formatTooltipName = (name: string) => {
-  if (name.includes("(Head Office)")) {
+  if (name.includes("(Head Office)") || name.includes("(HO)")) {
     return `Edinburgh<br/><span style="font-size: 12px; font-weight: 500; opacity: 0.8; display: block; margin-top: 2px;">(Head Office)</span>`;
   }
   return name;
@@ -54,11 +91,12 @@ const getMapDefaults = () => {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   return {
     center: [-2.4, 53.75] as [number, number],
-    zoom: isMobile ? 4.3 : 5.0, // Reduced from 4.5/5.4 to fit the new 20% smaller map container
+    zoom: isMobile ? 3.9 : 4.6, // Adjusted to fit the new smaller map container
   };
 };
 
 export default function UKCoverageMap() {
+  const router = useRouter();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -66,33 +104,7 @@ export default function UKCoverageMap() {
 
   // Handle clicking on the interactive sidebar city buttons
   const handleCityClick = (office: OfficeLocation) => {
-    if (!mapRef.current) return;
-
-    // Clear active popup
-    if (activePopupRef.current) {
-      activePopupRef.current.remove();
-    }
-
-    // Smoothly fly camera to city
-    mapRef.current.flyTo({
-      center: office.coords,
-      zoom: 7.2,
-      pitch: 35,
-      bearing: 5,
-      duration: 1500,
-    });
-
-    // Create and open new popup at city coordinates
-    const popup = new maplibregl.Popup({
-      offset: 18,
-      closeButton: false,
-      closeOnClick: false,
-    })
-      .setLngLat(office.coords)
-      .setHTML(`<strong>${formatTooltipName(office.name)}</strong>`)
-      .addTo(mapRef.current);
-
-    activePopupRef.current = popup;
+    router.push(office.url);
   };
 
   // Reset map view to fit defaults
@@ -180,28 +192,33 @@ export default function UKCoverageMap() {
     }
 
     // 5. Initialize Data Flow Packets along office connections
-    interface DataPacket {
-      pathIndex: number;
+    interface RouteTraveler {
+      currentPathIndex: number;
       progress: number;
       speed: number;
       size: number;
     }
 
-    // Connect sequentially in a loop: London -> Birmingham -> Manchester -> Edinburgh -> Glasgow -> London
+    // Connect sequentially in a loop: London → Cardiff → Birmingham → Manchester → Leeds → Newcastle → Edinburgh → Glasgow → Inverness → Aberdeen → Edinburgh → London
     const networkPaths = [
-      { start: 0, end: 1 },
-      { start: 1, end: 2 },
-      { start: 2, end: 3 },
-      { start: 3, end: 4 },
-      { start: 4, end: 0 },
+      { start: 0, end: 1 }, // London -> Cardiff
+      { start: 1, end: 2 }, // Cardiff -> Birmingham
+      { start: 2, end: 3 }, // Birmingham -> Manchester
+      { start: 3, end: 4 }, // Manchester -> Leeds
+      { start: 4, end: 5 }, // Leeds -> Newcastle
+      { start: 5, end: 6 }, // Newcastle -> Edinburgh (HO)
+      { start: 6, end: 7 }, // Edinburgh (HO) -> Glasgow
+      { start: 7, end: 8 }, // Glasgow -> Inverness
+      { start: 8, end: 9 }, // Inverness -> Aberdeen
+      { start: 9, end: 6 }, // Aberdeen -> Edinburgh (HO)
+      { start: 6, end: 0 }, // Edinburgh (HO) -> London
     ];
 
-    const dataPackets: DataPacket[] = networkPaths.map((_, idx) => ({
-      pathIndex: idx,
-      progress: Math.random(), // Stagger start positions
-      speed: 0.004 + Math.random() * 0.003,
-      size: 3.5 + Math.random() * 1.5,
-    }));
+    // Moving white light travelling continuously around the route
+    const routeTravelers: RouteTraveler[] = [
+      { currentPathIndex: 0, progress: 0.0, speed: 0.006, size: 3.5 },
+      { currentPathIndex: 5, progress: 0.0, speed: 0.006, size: 3.5 },
+    ];
 
     let animationFrameId: number;
     const cameraStartTime = Date.now();
@@ -247,11 +264,14 @@ export default function UKCoverageMap() {
       });
 
       // B. STYLING THE BASE MAP (Set land to carbon black and water to deep navy)
+      if (mapContainerRef.current) {
+        mapContainerRef.current.style.background = "linear-gradient(90deg, #000000 0%, #000000 80%, #151C62 100%)";
+      }
       if (map.getLayer("background")) {
-        map.setPaintProperty("background", "background-color", "#020203");
+        map.setPaintProperty("background", "background-color", "rgba(2, 2, 3, 0.15)");
       }
       if (map.getLayer("water")) {
-        map.setPaintProperty("water", "fill-color", "#071324");
+        map.setPaintProperty("water", "fill-color", "rgba(7, 19, 36, 0.35)");
       }
 
       // C. STYLE POLITICAL BOUNDARY LINES
@@ -354,28 +374,34 @@ export default function UKCoverageMap() {
           geometry: {
             type: "LineString",
             coordinates: [
-              offices[0].coords,
-              offices[1].coords,
-              offices[2].coords,
-              offices[3].coords,
-              offices[4].coords,
-              offices[0].coords, // closed loop
+              offices[0].coords, // London
+              offices[1].coords, // Cardiff
+              offices[2].coords, // Birmingham
+              offices[3].coords, // Manchester
+              offices[4].coords, // Leeds
+              offices[5].coords, // Newcastle
+              offices[6].coords, // Edinburgh (HO)
+              offices[7].coords, // Glasgow
+              offices[8].coords, // Inverness
+              offices[9].coords, // Aberdeen
+              offices[6].coords, // Edinburgh (HO)
+              offices[0].coords, // London
             ],
           },
         },
       });
 
-      // Gold Glow beneath connection lines
+      // White Glow beneath connection lines
       map.addLayer(
         {
           id: "network-glow",
           type: "line",
           source: "coverage-network",
           paint: {
-            "line-color": "#D6B25E",
-            "line-width": 8,
-            "line-blur": 6,
-            "line-opacity": 0.35,
+            "line-color": "#ffffff",
+            "line-width": 6,
+            "line-blur": 5,
+            "line-opacity": 0.4,
           },
         },
         firstLabelLayerId
@@ -389,8 +415,8 @@ export default function UKCoverageMap() {
           source: "coverage-network",
           paint: {
             "line-color": "#ffffff",
-            "line-width": 2,
-            "line-opacity": 0.85,
+            "line-width": 1.5,
+            "line-opacity": 0.8,
           },
         },
         firstLabelLayerId
@@ -521,47 +547,58 @@ export default function UKCoverageMap() {
         ctx.shadowBlur = 0; // reset shadow
       });
 
-      // E. Render Traveling Data Packets (Comet effect along coverage lines)
-      dataPackets.forEach((packet) => {
+      // E. Render Traveling Route Lights (Continuous light along the complete route)
+      routeTravelers.forEach((traveler) => {
         // Increment progress
-        packet.progress += packet.speed;
-        if (packet.progress >= 1) {
-          packet.progress = 0;
+        traveler.progress += traveler.speed;
+        if (traveler.progress >= 1) {
+          traveler.progress = 0;
+          traveler.currentPathIndex = (traveler.currentPathIndex + 1) % networkPaths.length;
         }
 
-        const path = networkPaths[packet.pathIndex];
+        const path = networkPaths[traveler.currentPathIndex];
         const startLoc = offices[path.start].coords;
         const endLoc = offices[path.end].coords;
 
         // Draw Comet tail
         const tailLength = 8;
         for (let i = tailLength; i >= 0; i--) {
-          const prog = packet.progress - i * 0.015;
-          if (prog < 0) continue;
+          const prog = traveler.progress - i * 0.018;
+          let currentPathIdx = traveler.currentPathIndex;
+          let currentProg = prog;
+
+          // If prog is negative, go back to previous path(s) to draw the tail continuously!
+          if (currentProg < 0) {
+            currentPathIdx = (currentPathIdx - 1 + networkPaths.length) % networkPaths.length;
+            currentProg = 1 + currentProg;
+          }
+
+          const tailPath = networkPaths[currentPathIdx];
+          const tailStart = offices[tailPath.start].coords;
+          const tailEnd = offices[tailPath.end].coords;
 
           // Interpolated geographic coordinates
-          const lng = startLoc[0] + (endLoc[0] - startLoc[0]) * prog;
-          const lat = startLoc[1] + (endLoc[1] - startLoc[1]) * prog;
+          const lng = tailStart[0] + (tailEnd[0] - tailStart[0]) * currentProg;
+          const lat = tailStart[1] + (tailEnd[1] - tailStart[1]) * currentProg;
 
           try {
             const pt = map.project([lng, lat]);
-            const opacity = (1 - i / tailLength) * 0.85;
-            const size = packet.size * (1 - i / tailLength * 0.4);
+            const opacity = (1 - i / tailLength) * 0.9;
+            const size = traveler.size * (1 - i / tailLength * 0.45);
 
             ctx.beginPath();
             ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2);
-            // White core, fading to gold tail
             if (i === 0) {
               ctx.fillStyle = "#ffffff";
               ctx.shadowColor = "#ffffff";
-              ctx.shadowBlur = 12;
+              ctx.shadowBlur = 10;
             } else {
-              ctx.fillStyle = `rgba(214, 178, 94, ${opacity})`;
-              ctx.shadowColor = "#D6B25E";
-              ctx.shadowBlur = 8;
+              ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.75})`;
+              ctx.shadowColor = "#ffffff";
+              ctx.shadowBlur = 6;
             }
             ctx.fill();
-            ctx.shadowBlur = 0; // reset
+            ctx.shadowBlur = 0;
           } catch (e) {
             // Ignore projection edge cases
           }
@@ -591,7 +628,7 @@ export default function UKCoverageMap() {
           .uk-map-section {
             position: relative;
             width: 100%;
-            min-height: 700px;
+            min-height: 600px;
             overflow: hidden;
             background: linear-gradient(180deg, #040404 0%, #07192d 100%);
             padding: 50px 20px; /* Reduced vertical padding for better spacing */
@@ -607,7 +644,7 @@ export default function UKCoverageMap() {
           }
 
           .map-wrapper {
-            max-width: 960px; /* Reduced by 20% from 1200px to balance the page */
+            max-width: 800px; /* Reduced to balance the page and fit screen layout */
             margin: 0 auto;
             position: relative;
             z-index: 2;
@@ -616,13 +653,14 @@ export default function UKCoverageMap() {
           #map-container {
             position: relative;
             width: 100%;
-            height: 500px; /* Reduced by 20% from 620px to prevent dominating content fold */
+            height: 400px; /* Reduced to prevent dominating content fold */
             border-radius: 24px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            // border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 0 60px rgba(0, 95, 255, 0.10),
                         0 0 120px rgba(0, 95, 255, 0.04);
             animation: floatMap 12s ease-in-out infinite;
+            background: linear-gradient(90deg, #000000 0%, #000000 80%, #151C62 20%);
           }
 
           #map {
@@ -637,22 +675,25 @@ export default function UKCoverageMap() {
             100% { transform: translateY(0px); }
           }
 
-          /* Premium Gold Marker Pins Style */
-          .gold-pin-custom {
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: #710822ff;
-            border: 3px solid #fff;
-            box-shadow: 0 0 10px rgba(214, 178, 94, 0.8),
-                        0 0 20px rgba(214, 178, 94, 0.5);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+          /* Premium Red Marker Pins Style */
+          @keyframes pinPulse {
+            0% { box-shadow: 0 0 8px rgba(255, 59, 48, 0.8), 0 0 16px rgba(255, 59, 48, 0.4); }
+            50% { box-shadow: 0 0 14px rgba(255, 59, 48, 1), 0 0 28px rgba(255, 59, 48, 0.6); }
+            100% { box-shadow: 0 0 8px rgba(255, 59, 48, 0.8), 0 0 16px rgba(255, 59, 48, 0.4); }
           }
 
-          .gold-pin-custom:hover {
+          .red-pin-custom {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff3b30;
+            border: 2px solid #ffffff;
+            animation: pinPulse 2s ease-in-out infinite;
+            transition: transform 0.25s ease;
+          }
+
+          .red-pin-custom:hover {
             transform: scale(1.3) !important;
-            box-shadow: 0 0 18px rgba(214, 178, 94, 1),
-                        0 0 35px rgba(214, 178, 94, 0.7);
           }
 
           /* Custom Slow Ping Animation */
@@ -776,8 +817,8 @@ export default function UKCoverageMap() {
             #map-container { 
               height: auto !important; 
               aspect-ratio: 4 / 5 !important;
-              max-height: 520px !important;
-              min-height: 400px !important;
+              max-height: 420px !important;
+              min-height: 320px !important;
             }
           }
 
@@ -785,8 +826,8 @@ export default function UKCoverageMap() {
             #map-container { 
               height: auto !important; 
               aspect-ratio: 4 / 5 !important;
-              max-height: 500px !important;
-              min-height: 400px !important;
+              max-height: 400px !important;
+              min-height: 320px !important;
               border-radius: 18px; 
             }
             .telephone h2 { font-size: 30px; }
@@ -794,22 +835,22 @@ export default function UKCoverageMap() {
 
             /* Reposition selector panel to the bottom-left corner on tablet & mobile */
             .city-selector-panel {
-              left: 20px !important;
+              left: 16px !important;
               top: auto !important;
-              bottom: 20px !important;
+              bottom: 16px !important;
               transform: none !important;
               flex-direction: column !important;
-              gap: 10px !important;
-              padding: 14px 18px !important;
-              border-radius: 20px !important;
+              gap: 6px !important;
+              padding: 8px 12px !important;
+              border-radius: 10px !important;
               width: auto !important;
-              max-width: 260px !important;
+              max-width: 240px !important;
               align-items: flex-start !important;
             }
 
             .city-selector-panel span {
               display: inline-block !important;
-              font-size: 11.5px !important;
+              font-size: 9.5px !important;
             }
           }
 
@@ -818,8 +859,8 @@ export default function UKCoverageMap() {
             #map-container { 
               height: auto !important; 
               aspect-ratio: 3 / 4 !important;
-              max-height: 460px !important;
-              min-height: 380px !important;
+              max-height: 370px !important;
+              min-height: 300px !important;
               border-radius: 14px; 
             }
             .telephone h2 { font-size: 24px; margin-bottom: 8px; }
@@ -827,15 +868,15 @@ export default function UKCoverageMap() {
             .city-link { font-size: 15px; }
 
             .city-selector-panel {
-              left: 16px !important;
-              bottom: 16px !important;
-              padding: 10px 14px !important;
-              gap: 8px !important;
-              border-radius: 16px !important;
+              left: 8px !important;
+              bottom: 8px !important;
+              padding: 6px 10px !important;
+              gap: 4px !important;
+              border-radius: 8px !important;
             }
 
             .city-selector-panel span {
-              font-size: 10.5px !important;
+              font-size: 8.5px !important;
             }
           }
 
@@ -843,8 +884,8 @@ export default function UKCoverageMap() {
             #map-container { 
               height: auto !important; 
               aspect-ratio: 3 / 4 !important;
-              max-height: 400px !important;
-              min-height: 320px !important;
+              max-height: 320px !important;
+              min-height: 260px !important;
             }
             .telephone h2 { font-size: 20px; }
             .telephone a { font-size: 20px; }
@@ -857,7 +898,7 @@ export default function UKCoverageMap() {
       <section className="uk-map-section">
         <div className="background-gradient"></div>
         <div className="map-wrapper">
-          <div id="map-container">
+          <div id="map-container" style={{ background: "linear-gradient(90deg, #000000 0%, #000000 80%, #151C62 20%)" }}>
             <div ref={mapContainerRef} id="map" />
             <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3 }} />
 
@@ -877,15 +918,15 @@ export default function UKCoverageMap() {
                   handleCityClick(office);
                 }}
               >
-                {/* Gold Pin Badge */}
-                <div className="gold-pin-custom relative flex items-center justify-center">
+                {/* Red Pin Badge */}
+                <div className="red-pin-custom relative flex items-center justify-center">
                   {/* Outer Pulsing Ripple Ring */}
-                  <div className="absolute inset-0 rounded-full border border-[#d6b25e]/50 scale-[2.2] animate-ping-slow pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full border border-[#ff3b30]/60 scale-[2.5] animate-ping-slow pointer-events-none" />
                 </div>
                 
                 {/* Premium Floating Tooltip on Hover */}
                 <div className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 bg-[#060606] text-white text-[12px] font-semibold py-1.5 px-3 rounded-lg border border-white/10 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap text-center">
-                  {office.name.includes("Head Office") ? (
+                  {office.name.includes("Edinburgh") ? (
                     <>
                       Edinburgh
                       <span className="block text-[10px] font-normal text-white/70 mt-0.5">(Head Office)</span>
@@ -896,41 +937,56 @@ export default function UKCoverageMap() {
                   {/* Tooltip Tip arrow */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#060606]" />
                 </div>
+
+                {/* Permanent City Label */}
+                <span 
+                  className="absolute font-semibold text-white/95 text-[10px] tracking-wide pointer-events-none select-none"
+                  style={{
+                    fontFamily: "var(--font-sans), Inter, sans-serif",
+                    textShadow: "0 1px 4px rgba(0,0,0,0.95), 0 0 2px rgba(0,0,0,0.95)",
+                    whiteSpace: "nowrap",
+                    ...(office.labelPos === "left" 
+                      ? { right: "12px", top: "50%", transform: "translateY(-50%)" } 
+                      : { left: "12px", top: "50%", transform: "translateY(-50%)" })
+                  }}
+                >
+                  {office.name.replace(" (HO)", "").replace(" (Head Office)", "")}
+                </span>
               </div>
             ))}
 
-            {/* Vertical City Selector Panel (Exactly matching the 5 circular gold selectors in the provided image) */}
-            <div className="city-selector-panel absolute left-6 top-1/2 -translate-y-1/2 flex flex-col gap-5 z-20 bg-black/40 p-4 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
+            {/* Vertical City Selector Panel (Exactly matching the 5 circular gold selectors in the provided image, updated to red glow) */}
+            <div className="city-selector-panel absolute left-3 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-20 bg-black/40 p-2 rounded-lg border border-white/10 backdrop-blur-md shadow-2xl">
               {offices.map((office) => (
                 <div
                   key={office.name}
-                  className="flex items-center gap-3 group cursor-pointer"
+                  className="flex items-center gap-1.5 group cursor-pointer"
                   onClick={() => handleCityClick(office)}
                 >
                   {/* Glowing circular badge selector */}
-                  <div className="w-6 h-6 rounded-full border border-[#d6b25e] bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_15px_#d6b25e] group-hover:bg-[#d6b25e]/10 relative">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#d6b25e] shadow-[0_0_6px_#d6b25e] transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_0_8px_#ffffff]" />
+                  <div className="w-4 h-4 rounded-full border border-[#ff3b30] bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_15px_#ff3b30] group-hover:bg-[#ff3b30]/10 relative">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#ff3b30] shadow-[0_0_6px_#ff3b30] transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_0_8px_#ffffff]" />
                     {/* Pulsing glow ring */}
-                    <div className="absolute inset-0 rounded-full border border-[#d6b25e]/30 scale-150 animate-pulse pointer-events-none" />
+                    <div className="absolute inset-0 rounded-full border border-[#ff3b30]/30 scale-150 animate-pulse pointer-events-none" />
                   </div>
 
                   {/* Permanently visible label text next to circle */}
-                  <span className="text-[13px] font-semibold text-white/80 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
-                    {office.name.replace(" (Head Office)", "")}
+                  <span className="text-[10px] font-semibold text-white/80 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
+                    {office.name.replace(" (HO)", "").replace(" (Head Office)", "")}
                   </span>
                 </div>
               ))}
 
               {/* Reset View Button */}
               <div
-                className="flex items-center gap-3 group cursor-pointer mt-1"
+                className="flex items-center gap-1.5 group cursor-pointer mt-0"
                 onClick={handleResetView}
                 title="Reset Map View"
               >
-                <div className="w-6 h-6 rounded-full border border-white/20 bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:border-[#d6b25e] group-hover:bg-[#d6b25e]/10">
-                  <span className="text-[11px] font-bold text-white/50 group-hover:text-[#d6b25e] transition-colors duration-300">↺</span>
+                <div className="w-4 h-4 rounded-full border border-white/20 bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:border-[#ff3b30] group-hover:bg-[#ff3b30]/10">
+                  <span className="text-[8px] font-bold text-white/50 group-hover:text-[#ff3b30] transition-colors duration-300">↺</span>
                 </div>
-                <span className="text-[13px] font-semibold text-white/50 group-hover:text-[#d6b25e] group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
+                <span className="text-[10px] font-semibold text-white/50 group-hover:text-[#ff3b30] group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
                   Reset View
                 </span>
               </div>
@@ -938,7 +994,7 @@ export default function UKCoverageMap() {
           </div>
 
           {/* Premium Glassmorphic Telephone CTA & City Links Container */}
-          <div className="mt-12 bg-gradient-to-r from-black/80 to-[#151C62] rounded-3xl p-8 max-w-4xl mx-auto text-center shadow-[0_20px_50px_rgba(0,0,0,0.45)] relative overflow-hidden z-10">
+          <div className="mt-12 bg-[linear-gradient(to_right,#000000_0%,#000000_80%,#151C62_100%)] rounded-3xl p-8 max-w-4xl mx-auto text-center shadow-[0_20px_50px_rgba(0,0,0,0.45)] relative overflow-hidden z-10">
             {/* Ambient Background Glows */}
             {/* <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#d6b25e]/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-12 -right-12 w-28 h-28 bg-[#2e7dff]/8 rounded-full blur-3xl pointer-events-none" /> */}
