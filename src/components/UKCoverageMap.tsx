@@ -305,6 +305,17 @@ export default function UKCoverageMap() {
         "railway_minor_dashline",
         "railway",
         "railway_dashline",
+        // Hide place labels (cities, states, etc.) to keep map clean (only showing "UNITED KINGDOM" label)
+        "place_state",
+        "place_city",
+        "place_city_large",
+        "place_town",
+        "place_village",
+        "place_suburb",
+        "place_other",
+        "water_name",
+        "highway_name_other",
+        "highway_name_motorway",
       ];
 
       clutterLayers.forEach((layerId) => {
@@ -356,6 +367,17 @@ export default function UKCoverageMap() {
                 0,
                 originalSize,
               ]);
+
+              // Keep only the "UNITED KINGDOM" country label
+              if (layer.id.includes("country")) {
+                const originalTextField = map.getLayoutProperty(layer.id, "text-field") || ["coalesce", ["get", "name:en"], ["get", "name_en"], ["get", "name"], ""];
+                map.setLayoutProperty(layer.id, "text-field", [
+                  "case",
+                  ["==", ["downcase", ["coalesce", ["get", "name:en"], ["get", "name_en"], ["get", "name"], ""]], "united kingdom"],
+                  originalTextField,
+                  ""
+                ]);
+              }
             } catch (e) {
               // Ignore layers that don't support text-color or layout modifications
             }
