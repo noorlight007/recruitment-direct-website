@@ -87,11 +87,17 @@ const formatTooltipName = (name: string) => {
 
 // Handcrafted responsive center and zoom defaults to frame the UK perfectly inside the smaller container
 // This keeps London fully visible and pushes mainland Europe (France) off-screen
-const getMapDefaults = () => {
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+const getMapDefaults = (width?: number) => {
+  const currentWidth = width ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
+  let zoom = 4.6;
+  if (currentWidth < 360) zoom = 3.3;
+  else if (currentWidth < 480) zoom = 3.6;
+  else if (currentWidth < 600) zoom = 3.9;
+  else if (currentWidth < 768) zoom = 4.1;
+  else if (currentWidth < 992) zoom = 4.3;
   return {
     center: [-2.4, 53.75] as [number, number],
-    zoom: isMobile ? 3.9 : 4.6, // Adjusted to fit the new smaller map container
+    zoom,
   };
 };
 
@@ -116,7 +122,8 @@ export default function UKCoverageMap() {
       activePopupRef.current.remove();
     }
 
-    const defaults = getMapDefaults();
+    const containerWidth = mapContainerRef.current?.clientWidth ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
+    const defaults = getMapDefaults(containerWidth);
     mapRef.current.flyTo({
       center: defaults.center,
       zoom: defaults.zoom,
@@ -129,7 +136,8 @@ export default function UKCoverageMap() {
   useEffect(() => {
     if (!mapContainerRef.current || !canvasRef.current) return;
 
-    const defaults = getMapDefaults();
+    const initialWidth = mapContainerRef.current?.clientWidth ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
+    const defaults = getMapDefaults(initialWidth);
 
     // 1. Initialize MapLibre using OpenFreeMap Dark style
     const map = new maplibregl.Map({
@@ -155,9 +163,14 @@ export default function UKCoverageMap() {
     map.touchZoomRotate.disable();
 
     // 3. Initialize ResizeObserver to dynamically update map layout
-    const resizeObserver = new ResizeObserver(() => {
+    const resizeObserver = new ResizeObserver((entries) => {
       if (mapRef.current) {
         mapRef.current.resize();
+        for (let entry of entries) {
+          const width = entry.contentRect.width;
+          const newDefaults = getMapDefaults(width);
+          mapRef.current.setZoom(newDefaults.zoom);
+        }
       }
     });
     resizeObserver.observe(mapContainerRef.current);
@@ -812,6 +825,12 @@ export default function UKCoverageMap() {
             transition: all 0.3s ease-in-out;
           }
 
+          /* Permanent city label responsiveness */
+          .city-label-text {
+            font-size: 10px;
+            transition: font-size 0.25s ease;
+          }
+
           /* Responsive Styles */
           @media (max-width: 1200px) {
             #map-container { 
@@ -833,24 +852,36 @@ export default function UKCoverageMap() {
             .telephone h2 { font-size: 30px; }
             .telephone a { font-size: 28px; }
 
-            /* Reposition selector panel to the bottom-left corner on tablet & mobile */
+            /* Reposition selector panel to a horizontal scrolling bar on tablet & mobile */
             .city-selector-panel {
               left: 16px !important;
+              right: 16px !important;
               top: auto !important;
               bottom: 16px !important;
               transform: none !important;
-              flex-direction: column !important;
-              gap: 6px !important;
-              padding: 8px 12px !important;
-              border-radius: 10px !important;
+              flex-direction: row !important;
+              gap: 12px !important;
+              padding: 8px 14px !important;
+              border-radius: 12px !important;
               width: auto !important;
-              max-width: 240px !important;
-              align-items: flex-start !important;
+              max-width: none !important;
+              align-items: center !important;
+              overflow-x: auto !important;
+              white-space: nowrap !important;
+              -webkit-overflow-scrolling: touch;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+            .city-selector-panel::-webkit-scrollbar {
+              display: none;
+            }
+            .city-selector-panel > div {
+              flex-shrink: 0 !important;
             }
 
             .city-selector-panel span {
               display: inline-block !important;
-              font-size: 9.5px !important;
+              font-size: 10px !important;
             }
           }
 
@@ -868,15 +899,20 @@ export default function UKCoverageMap() {
             .city-link { font-size: 15px; }
 
             .city-selector-panel {
-              left: 8px !important;
-              bottom: 8px !important;
-              padding: 6px 10px !important;
-              gap: 4px !important;
-              border-radius: 8px !important;
+              left: 10px !important;
+              right: 10px !important;
+              bottom: 10px !important;
+              padding: 6px 12px !important;
+              gap: 10px !important;
+              border-radius: 10px !important;
             }
 
             .city-selector-panel span {
-              font-size: 8.5px !important;
+              font-size: 9px !important;
+            }
+
+            .city-label-text {
+              font-size: 9px !important;
             }
           }
 
@@ -891,6 +927,22 @@ export default function UKCoverageMap() {
             .telephone a { font-size: 20px; }
             .city-links-container { gap: 8px 12px; }
             .city-link { font-size: 14px; }
+
+            .city-selector-panel {
+              left: 8px !important;
+              right: 8px !important;
+              bottom: 8px !important;
+              padding: 6px 10px !important;
+              gap: 8px !important;
+            }
+
+            .city-selector-panel span {
+              font-size: 8.5px !important;
+            }
+
+            .city-label-text {
+              font-size: 8px !important;
+            }
           }
         `,
       }} />
@@ -940,7 +992,7 @@ export default function UKCoverageMap() {
 
                 {/* Permanent City Label */}
                 <span 
-                  className="absolute font-semibold text-white/95 text-[10px] tracking-wide pointer-events-none select-none"
+                  className="absolute font-semibold text-white/95 text-[10px] tracking-wide pointer-events-none select-none city-label-text"
                   style={{
                     fontFamily: "var(--font-sans), Inter, sans-serif",
                     textShadow: "0 1px 4px rgba(0,0,0,0.95), 0 0 2px rgba(0,0,0,0.95)",
@@ -956,28 +1008,28 @@ export default function UKCoverageMap() {
             ))}
 
             {/* Vertical City Selector Panel (Exactly matching the 5 circular gold selectors in the provided image, updated to red glow) */}
-            <div className="city-selector-panel absolute left-3 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-20 bg-black/40 p-2 rounded-lg border border-white/10 backdrop-blur-md shadow-2xl">
+            {/* <div className="city-selector-panel absolute left-3 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-20 bg-black/40 p-2 rounded-lg border border-white/10 backdrop-blur-md shadow-2xl">
               {offices.map((office) => (
                 <div
                   key={office.name}
                   className="flex items-center gap-1.5 group cursor-pointer"
                   onClick={() => handleCityClick(office)}
                 >
-                  {/* Glowing circular badge selector */}
+                  
                   <div className="w-4 h-4 rounded-full border border-[#ff3b30] bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_15px_#ff3b30] group-hover:bg-[#ff3b30]/10 relative">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#ff3b30] shadow-[0_0_6px_#ff3b30] transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_0_8px_#ffffff]" />
-                    {/* Pulsing glow ring */}
+                    
                     <div className="absolute inset-0 rounded-full border border-[#ff3b30]/30 scale-150 animate-pulse pointer-events-none" />
                   </div>
 
-                  {/* Permanently visible label text next to circle */}
+                  
                   <span className="text-[10px] font-semibold text-white/80 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
                     {office.name.replace(" (HO)", "").replace(" (Head Office)", "")}
                   </span>
                 </div>
               ))}
 
-              {/* Reset View Button */}
+              
               <div
                 className="flex items-center gap-1.5 group cursor-pointer mt-0"
                 onClick={handleResetView}
@@ -990,7 +1042,7 @@ export default function UKCoverageMap() {
                   Reset View
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Premium Glassmorphic Telephone CTA & City Links Container */}
