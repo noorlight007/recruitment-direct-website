@@ -5,7 +5,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/navigation";
 
-mapboxgl.accessToken = "pk.eyJ1Ijoic3RldmVucGVkZGllIiwiYSI6ImNtcnhyZHR5YzAyZXkyd3IzYmw5dWZldmEifQ.vWh5S_VnZQm6KEkQLqymkQ";
+mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
 
 // Interface for office location config
 interface OfficeLocation {
