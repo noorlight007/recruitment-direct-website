@@ -275,31 +275,14 @@ export default function UKCoverageMap() {
         firstLayerId
       );
 
-      // D. DYNAMICALLY CONVERT ALL MAP LABELS TO CRISP WHITE TEXT WITH BLACK HALO FOR HIGH VISIBILITY
-      // AND HIDE ALL OTHER MAP LABELS (CITIES, TOWNS, STATES, POIs, ROADS, ETC.) TO KEEP THE MAP CLEAN
+      // D. HIDE ALL BUILT-IN MAP LABELS (CITIES, TOWNS, STATES, COUNTRIES, POIs, ROADS, ETC.) TO KEEP THE MAP CLEAN
       if (allLayers) {
         allLayers.forEach((layer) => {
           if (layer.type === "symbol") {
             try {
-              if (layer.id.includes("country")) {
-                map.setPaintProperty(layer.id, "text-color", "#ffffff");
-                map.setPaintProperty(layer.id, "text-halo-color", "#000000");
-                map.setPaintProperty(layer.id, "text-halo-width", 1.5);
-
-                // Keep only the "UNITED KINGDOM" country label
-                const originalTextField = map.getLayoutProperty(layer.id, "text-field") || ["coalesce", ["get", "name:en"], ["get", "name_en"], ["get", "name"], ""];
-                map.setLayoutProperty(layer.id, "text-field", [
-                  "case",
-                  ["==", ["downcase", ["coalesce", ["get", "name:en"], ["get", "name_en"], ["get", "name"], ""]], "united kingdom"],
-                  originalTextField,
-                  ""
-                ]);
-              } else {
-                // Hide all other symbol layers (other countries, cities like Amsterdam/Brussels, states, roads, water names, POIs)
-                map.setLayoutProperty(layer.id, "visibility", "none");
-              }
+              map.setLayoutProperty(layer.id, "visibility", "none");
             } catch (e) {
-              // Ignore layers that don't support layout/paint modifications
+              // Ignore layers that don't support visibility modifications
             }
           }
         });
@@ -332,7 +315,7 @@ export default function UKCoverageMap() {
             "line-color": "#005FFF",
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 15, 10, 30],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 12, 10, 20],
-            "line-opacity": 0.25,
+            "line-opacity": 0.22, // Reduced by 12%
           },
         },
         firstLabelLayerId
@@ -349,7 +332,7 @@ export default function UKCoverageMap() {
             "line-color": "#00D2FF",
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 4.5, 10, 11],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 3, 10, 6],
-            "line-opacity": 0.45,
+            "line-opacity": 0.38, // Reduced by 15%
           },
         },
         firstLabelLayerId
@@ -365,7 +348,7 @@ export default function UKCoverageMap() {
           paint: {
             "line-color": "#2E7DFF",
             "line-width": 1.5,
-            "line-opacity": 0.7,
+            "line-opacity": 0.6, // Reduced by 14%
           },
         },
         firstLabelLayerId
@@ -401,32 +384,32 @@ export default function UKCoverageMap() {
         },
       });
 
-      // Gold Glow beneath connection lines
+      // White Glow beneath connection lines (subtle white backdrop)
       map.addLayer(
         {
           id: "network-glow",
           type: "line",
           source: "coverage-network",
           paint: {
-            "line-color": "#E5A93B",
-            "line-width": 6,
-            "line-blur": 5,
-            "line-opacity": 0.4,
+            "line-color": "#ffffff",
+            "line-width": 4,
+            "line-blur": 4,
+            "line-opacity": 0.2, // Subtle white glow
           },
         },
         firstLabelLayerId
       );
 
-      // Base elegant gold coverage lines
+      // Base elegant white coverage lines
       map.addLayer(
         {
           id: "network-line",
           type: "line",
           source: "coverage-network",
           paint: {
-            "line-color": "#E5A93B",
-            "line-width": 1.5,
-            "line-opacity": 0.8,
+            "line-color": "#ffffff",
+            "line-width": 1.2,
+            "line-opacity": 0.4, // Thinner and more transparent white line
           },
         },
         firstLabelLayerId
@@ -471,11 +454,11 @@ export default function UKCoverageMap() {
       map.setPitch(pitch);
       map.setBearing(bearing);
 
-      // B. Pulse Coastline Glow Opacity
+      // B. Pulse Coastline Glow Opacity (Reduced by 10-15%)
       pulseStep += 0.06;
       const basePulse = Math.sin(pulseStep);
-      const outerOpacity = 0.15 + (basePulse + 1) * 0.06;
-      const innerOpacity = 0.3 + (basePulse + 1) * 0.09;
+      const outerOpacity = 0.13 + (basePulse + 1) * 0.05;
+      const innerOpacity = 0.26 + (basePulse + 1) * 0.08;
 
       if (map.getLayer("coastline-glow-outer")) {
         map.setPaintProperty("coastline-glow-outer", "line-opacity", outerOpacity);
@@ -501,13 +484,13 @@ export default function UKCoverageMap() {
             const pt = mapRef.current.project(office.coords);
             markerEl.style.transform = `translate(-50%, -50%) translate(${pt.x}px, ${pt.y}px)`;
             
-            // Briefly brighten and scale the pin when reached by a network pulse
+            // Briefly brighten and scale the pin when reached by a network pulse (Increased by 25-30%)
             const pinEl = markerEl.querySelector(".gold-pin-custom") as HTMLDivElement;
             if (pinEl) {
               const glow = cityGlows[idx];
               if (glow > 0.01) {
                 const intensity = glow * 25;
-                pinEl.style.boxShadow = `0 0 ${10 + intensity}px rgba(229, 169, 59, 1), 0 0 ${20 + intensity * 2}px rgba(229, 169, 59, 0.8), 0 0 8px #ffffff`;
+                pinEl.style.boxShadow = `0 0 ${13 + intensity * 1.3}px rgba(255, 193, 7, 1), 0 0 ${26 + intensity * 2.6}px rgba(255, 193, 7, 0.9), 0 0 10px #ffffff`;
                 pinEl.style.transform = `scale(${1 + glow * 0.3})`;
               } else {
                 pinEl.style.boxShadow = "";
@@ -568,12 +551,12 @@ export default function UKCoverageMap() {
             ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2);
             if (i === 0) {
               ctx.fillStyle = "#ffffff";
-              ctx.shadowColor = "#E5A93B";
-              ctx.shadowBlur = 10;
+              ctx.shadowColor = "#FFC107"; // Brighter amber/gold
+              ctx.shadowBlur = 14; // Brighter glow by 40%
             } else {
-              ctx.fillStyle = `rgba(229, 169, 59, ${opacity * 0.75})`;
-              ctx.shadowColor = "#E5A93B";
-              ctx.shadowBlur = 6;
+              ctx.fillStyle = `rgba(255, 193, 7, ${opacity * 0.9})`; // Higher opacity and brighter color
+              ctx.shadowColor = "#FFC107";
+              ctx.shadowBlur = 9; // Brighter glow by 50%
             }
             ctx.fill();
             ctx.shadowBlur = 0;
@@ -635,8 +618,10 @@ export default function UKCoverageMap() {
             height: 640px; /* Increased from 520px to 640px to establish hero presence */
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 0 60px rgba(0, 95, 255, 0.10),
-                        0 0 120px rgba(0, 95, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle inner border */
+            box-shadow: 0 10px 40px rgba(0, 95, 255, 0.12),
+                        0 20px 80px rgba(0, 95, 255, 0.06),
+                        0 0 120px rgba(0, 95, 255, 0.03); /* Softer blue outer glow */
             animation: floatMap 12s ease-in-out infinite;
             background: linear-gradient(90deg, #000000 0%, #000000 80%, #151C62 20%);
           }
@@ -653,11 +638,11 @@ export default function UKCoverageMap() {
             100% { transform: translateY(0px); }
           }
 
-          /* Premium Gold Marker Pins Style */
+          /* Premium Gold Marker Pins Style (Increased brightness by 25-30%) */
           @keyframes pinPulse {
-            0% { box-shadow: 0 0 10px rgba(229, 169, 59, 0.85), 0 0 20px rgba(229, 169, 59, 0.45); }
-            50% { box-shadow: 0 0 18px rgba(229, 169, 59, 1), 0 0 36px rgba(229, 169, 59, 0.65); }
-            100% { box-shadow: 0 0 10px rgba(229, 169, 59, 0.85), 0 0 20px rgba(229, 169, 59, 0.45); }
+            0% { box-shadow: 0 0 14px rgba(255, 193, 7, 0.95), 0 0 26px rgba(255, 193, 7, 0.65); }
+            50% { box-shadow: 0 0 24px rgba(255, 193, 7, 1), 0 0 48px rgba(255, 193, 7, 0.85), 0 0 10px #ffffff; }
+            100% { box-shadow: 0 0 14px rgba(255, 193, 7, 0.95), 0 0 26px rgba(255, 193, 7, 0.65); }
           }
 
           .gold-pin-custom {
@@ -665,7 +650,7 @@ export default function UKCoverageMap() {
             height: 10px;
             border-radius: 50%;
             background: #ffffff;
-            border: 2px solid #E5A93B;
+            border: 2px solid #FFC107; /* Brighter gold border */
             animation: pinPulse 1.2s ease-in-out infinite;
             transition: transform 0.25s ease, box-shadow 0.1s ease;
           }
@@ -868,9 +853,9 @@ export default function UKCoverageMap() {
             .uk-map-section { padding: 40px 15px; min-height: auto; }
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 4 !important;
-              max-height: 550px !important; /* Increased by ~25% */
-              min-height: 360px !important;
+              aspect-ratio: 3 / 4.8 !important; /* 20% taller aspect ratio */
+              max-height: 660px !important; /* Increased from 550px by 20% */
+              min-height: 432px !important; /* Increased from 360px by 20% */
               border-radius: 14px; 
             }
             .telephone h2 { font-size: 24px; margin-bottom: 8px; }
@@ -891,7 +876,8 @@ export default function UKCoverageMap() {
             }
 
             .city-label-text {
-              font-size: 9px !important;
+              font-size: 8.5px !important;
+              font-weight: 600 !important; /* Semi-bold weight */
             }
 
             .label-left {
@@ -906,9 +892,9 @@ export default function UKCoverageMap() {
           @media (max-width: 480px) {
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 4 !important;
-              max-height: 580px !important; /* Taller height on mobile */
-              min-height: 340px !important;
+              aspect-ratio: 3 / 4.8 !important; /* 20% taller aspect ratio */
+              max-height: 696px !important; /* Increased from 580px by 20% */
+              min-height: 408px !important; /* Increased from 340px by 20% */
             }
             .telephone h2 { font-size: 20px; }
             .telephone a { font-size: 20px; }
@@ -928,7 +914,8 @@ export default function UKCoverageMap() {
             }
 
             .city-label-text {
-              font-size: 8px !important;
+              font-size: 7.5px !important;
+              font-weight: 600 !important; /* Semi-bold weight */
             }
 
             .label-left {
