@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import maplibregl from "maplibre-gl";
-import "maplibre-gl/dist/maplibre-gl.css";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/navigation";
+
+mapboxgl.accessToken = "pk.eyJ1Ijoic3RldmVucGVkZGllIiwiYSI6ImNtcnhyZHR5YzAyZXkyd3IzYmw5dWZldmEifQ.vWh5S_VnZQm6KEkQLqymkQ";
 
 // Interface for office location config
 interface OfficeLocation {
@@ -117,8 +119,8 @@ export default function UKCoverageMap() {
   const router = useRouter();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mapRef = useRef<maplibregl.Map | null>(null);
-  const activePopupRef = useRef<maplibregl.Popup | null>(null);
+  const mapRef = useRef<mapboxgl.Map | null>(null);
+  const activePopupRef = useRef<mapboxgl.Popup | null>(null);
 
   // Handle clicking on the interactive sidebar city buttons
   const handleCityClick = (office: OfficeLocation) => {
@@ -151,10 +153,10 @@ export default function UKCoverageMap() {
     const initialWidth = mapContainerRef.current?.clientWidth ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
     const defaults = getMapDefaults(initialWidth);
 
-    // 1. Initialize MapLibre using OpenFreeMap Dark style
-    const map = new maplibregl.Map({
+    // 1. Initialize Mapbox using standard Dark-v11 style
+    const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: "https://tiles.openfreemap.org/styles/dark",
+      style: "mapbox://styles/mapbox/dark-v11",
       center: defaults.center,
       zoom: defaults.zoom,
       pitch: 25,
@@ -202,35 +204,6 @@ export default function UKCoverageMap() {
     }, { threshold: 0.05 });
     observer.observe(mapContainerRef.current);
 
-    // 4. Initialize particles (WGS84 Coordinates)
-    interface Particle {
-      lng: number;
-      lat: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      opacity: number;
-      pulseSpeed: number;
-      pulseOffset: number;
-    }
-
-    const particleCount = 120;
-    const particles: Particle[] = [];
-
-    // UK bounding box for spawning particles
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        lng: -7.5 + Math.random() * 9.0,
-        lat: 50.5 + Math.random() * 8.0,
-        vx: (Math.random() - 0.5) * 0.001,
-        vy: (Math.random() - 0.5) * 0.001,
-        radius: 1.5 + Math.random() * 2,
-        opacity: 0.25 + Math.random() * 0.55,
-        pulseSpeed: 0.01 + Math.random() * 0.03,
-        pulseOffset: Math.random() * Math.PI * 2,
-      });
-    }
-
     // 5. Initialize Data Flow Packets along office connections
     interface RouteTraveler {
       currentPathIndex: number;
@@ -272,104 +245,24 @@ export default function UKCoverageMap() {
 
     let animationFrameId: number;
     const cameraStartTime = Date.now();
-    let pulseStep = 0;
     let baseCenter = defaults.center;
 
     // 6. Setup Custom Layers and Animations on map load
     map.on("load", () => {
-      // A. HIDE ALL CLUTTER LAYERS (Hides roads, residential areas, forests, and other grey map elements)
-      const clutterLayers = [
-        "landuse_residential",
-        "landcover_wood",
-        "landuse_park",
-        "building",
-        "landcover_glacier",
-        "landcover_ice_shelf",
-        "aeroway-taxiway",
-        "aeroway-runway-casing",
-        "aeroway-area",
-        "aeroway-runway",
-        "road_area_pier",
-        "road_pier",
-        "highway_path",
-        "highway_minor",
-        "highway_major_casing",
-        "highway_major_inner",
-        "highway_major_subtle",
-        "highway_motorway_casing",
-        "highway_motorway_inner",
-        "highway_motorway_subtle",
-        "railway_transit",
-        "railway_transit_dashline",
-        "railway_minor",
-        "railway_minor_dashline",
-        "railway",
-        "railway_dashline",
-        // Hide place labels (cities, states, etc.) to keep map clean (only showing "UNITED KINGDOM" label)
-        "place_state",
-        "place_city",
-        "place_city_large",
-        "place_town",
-        "place_village",
-        "place_suburb",
-        "place_other",
-        "water_name",
-        "highway_name_other",
-        "highway_name_motorway",
-      ];
-
-      clutterLayers.forEach((layerId) => {
-        if (map.getLayer(layerId)) {
-          map.setLayoutProperty(layerId, "visibility", "none");
-        }
-      });
-
-      // B. STYLING THE BASE MAP (Set land to carbon black and water to deep navy)
-      if (mapContainerRef.current) {
-        mapContainerRef.current.style.background = "linear-gradient(90deg, #000000 0%, #000000 80%, #151C62 100%)";
-      }
-      if (map.getLayer("background")) {
-        map.setPaintProperty("background", "background-color", "rgba(2, 2, 3, 0.15)");
-      }
-      if (map.getLayer("water")) {
-        map.setPaintProperty("water", "fill-color", "rgba(7, 19, 36, 0.35)");
-      }
-
-      // C. STYLE POLITICAL BOUNDARY LINES
-      const boundaryLayers = ["boundary_state", "boundary_country_z0-4", "boundary_country_z5-"];
-      boundaryLayers.forEach((layerId) => {
-        if (map.getLayer(layerId)) {
-          map.setPaintProperty(layerId, "line-color", "#2E7DFF");
-          map.setPaintProperty(layerId, "line-opacity", 0.35);
-        }
-      });
+      const allLayers = map.getStyle().layers;
 
       // D. DYNAMICALLY CONVERT ALL MAP LABELS TO CRISP WHITE TEXT WITH BLACK HALO FOR HIGH VISIBILITY
-      // AND HIDE THE BUILT-IN MAP LABELS FOR THE CITIES WE RENDER CUSTOM MARKERS FOR
-      const allLayers = map.getStyle().layers;
-      const targetCities = offices.map((o) =>
-        o.name.replace(" (HO)", "").replace(" (Head Office)", "").toLowerCase()
-      );
-
+      // AND HIDE ALL OTHER MAP LABELS (CITIES, TOWNS, STATES, POIs, ROADS, ETC.) TO KEEP THE MAP CLEAN
       if (allLayers) {
         allLayers.forEach((layer) => {
           if (layer.type === "symbol") {
             try {
-              map.setPaintProperty(layer.id, "text-color", "#ffffff");
-              map.setPaintProperty(layer.id, "text-halo-color", "#000000");
-              map.setPaintProperty(layer.id, "text-halo-width", 1.5);
-
-              // Hide default map text for matching cities to avoid double labeling
-              const originalSize = map.getLayoutProperty(layer.id, "text-size") || 12;
-              map.setLayoutProperty(layer.id, "text-size", [
-                "case",
-                ["in", ["downcase", ["coalesce", ["get", "name:en"], ["get", "name"], ""]], ["literal", targetCities]],
-                0,
-                originalSize,
-              ]);
-
-              // Keep only the "UNITED KINGDOM" country label
               if (layer.id.includes("country")) {
+                map.setPaintProperty(layer.id, "text-color", "#ffffff");
+                map.setPaintProperty(layer.id, "text-halo-color", "#000000");
+                map.setPaintProperty(layer.id, "text-halo-width", 1.5);
+
+                // Keep only the "UNITED KINGDOM" country label
                 const originalTextField = map.getLayoutProperty(layer.id, "text-field") || ["coalesce", ["get", "name:en"], ["get", "name_en"], ["get", "name"], ""];
                 map.setLayoutProperty(layer.id, "text-field", [
                   "case",
@@ -377,9 +270,12 @@ export default function UKCoverageMap() {
                   originalTextField,
                   ""
                 ]);
+              } else {
+                // Hide all other symbol layers (other countries, cities like Amsterdam/Brussels, states, roads, water names, POIs)
+                map.setLayoutProperty(layer.id, "visibility", "none");
               }
             } catch (e) {
-              // Ignore layers that don't support text-color or layout modifications
+              // Ignore layers that don't support layout/paint modifications
             }
           }
         });
@@ -400,58 +296,7 @@ export default function UKCoverageMap() {
         }
       }
 
-      // Add Coastline Glow layers (Reduced by 25% to look more premium and allow gold markers to stand out)
-      // Layer 1: Wide ambient outer electric blue glow
-      map.addLayer(
-        {
-          id: "coastline-glow-outer",
-          type: "line",
-          source: "openmaptiles",
-          "source-layer": "water",
-          paint: {
-            "line-color": "#005FFF",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 15, 10, 30],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 12, 10, 20],
-            "line-opacity": 0.25,
-          },
-        },
-        firstLabelLayerId
-      );
-
-      // Layer 2: Intense inner cyan glow
-      map.addLayer(
-        {
-          id: "coastline-glow-inner",
-          type: "line",
-          source: "openmaptiles",
-          "source-layer": "water",
-          paint: {
-            "line-color": "#00D2FF",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 4.5, 10, 11],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 3, 10, 6],
-            "line-opacity": 0.45,
-          },
-        },
-        firstLabelLayerId
-      );
-
-      // Layer 3: Sharp core electric blue coastline line
-      map.addLayer(
-        {
-          id: "coastline-core",
-          type: "line",
-          source: "openmaptiles",
-          "source-layer": "water",
-          paint: {
-            "line-color": "#2E7DFF",
-            "line-width": 1.5,
-            "line-opacity": 0.7,
-          },
-        },
-        firstLabelLayerId
-      );
-
-      // 6. Connect every office with white coverage lines
+      // Connect every office with white coverage lines
       map.addSource("coverage-network", {
         type: "geojson",
         data: {
@@ -516,7 +361,7 @@ export default function UKCoverageMap() {
       tick();
     });
 
-    // 8. Animation Loop (Particles, Traveling light packets, camera drift, coastline pulse)
+    // 8. Animation Loop (Traveling light packets, camera drift)
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
@@ -551,20 +396,7 @@ export default function UKCoverageMap() {
       map.setPitch(pitch);
       map.setBearing(bearing);
 
-      // B. Pulse Coastline Glow Opacity (Reduced by 25%)
-      pulseStep += 0.06;
-      const basePulse = Math.sin(pulseStep);
-      const outerOpacity = 0.15 + (basePulse + 1) * 0.06;
-      const innerOpacity = 0.3 + (basePulse + 1) * 0.09;
-
-      if (map.getLayer("coastline-glow-outer")) {
-        map.setPaintProperty("coastline-glow-outer", "line-opacity", outerOpacity);
-      }
-      if (map.getLayer("coastline-glow-inner")) {
-        map.setPaintProperty("coastline-glow-inner", "line-opacity", innerOpacity);
-      }
-
-      // B.5 Decay city glow states
+      // B. Decay city glow states
       for (let i = 0; i < cityGlows.length; i++) {
         if (cityGlows[i] > 0) {
           cityGlows[i] -= 0.04; // Decay over 25 frames (~0.4s)
@@ -600,72 +432,7 @@ export default function UKCoverageMap() {
         }
       });
 
-      // D. Render Particle Plexus (Digital Network)
-      // Update particles
-      particles.forEach((p) => {
-        p.lng += p.vx;
-        p.lat += p.vy;
-
-        // Reset if boundary exceeded
-        if (p.lng < -8.5 || p.lng > 2.5 || p.lat < 49.5 || p.lat > 59.5) {
-          p.lng = -7.5 + Math.random() * 9.0;
-          p.lat = 50.5 + Math.random() * 8.0;
-        }
-      });
-
-      // Project coordinates and calculate pulse
-      const projected = particles.map((p) => {
-        try {
-          const pt = map.project([p.lng, p.lat]);
-          const currentPulse = Math.sin(pulseStep * 1.5 + p.pulseOffset);
-          const opacity = Math.max(0.1, p.opacity + currentPulse * 0.15);
-          return { x: pt.x, y: pt.y, radius: p.radius, opacity };
-        } catch (e) {
-          return null;
-        }
-      });
-
-      // Draw particle connections (Plexus/Neural Net)
-      for (let i = 0; i < projected.length; i++) {
-        const p1 = projected[i];
-        if (!p1 || p1.x < 0 || p1.x > width || p1.y < 0 || p1.y > height) continue;
-
-        for (let j = i + 1; j < projected.length; j++) {
-          const p2 = projected[j];
-          if (!p2 || p2.x < 0 || p2.x > width || p2.y < 0 || p2.y > height) continue;
-
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distSq = dx * dx + dy * dy;
-          const maxDist = 65;
-          const maxDistSq = maxDist * maxDist;
-
-          if (distSq < maxDistSq) {
-            const dist = Math.sqrt(distSq);
-            const alpha = (1 - dist / maxDist) * 0.12 * Math.min(p1.opacity, p2.opacity);
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(214, 178, 94, ${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles
-      projected.forEach((p) => {
-        if (!p || p.x < 0 || p.x > width || p.y < 0 || p.y > height) return;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(214, 178, 94, ${p.opacity})`;
-        ctx.shadowColor = "#D6B25E";
-        ctx.shadowBlur = 4;
-        ctx.fill();
-        ctx.shadowBlur = 0; // reset shadow
-      });
-
-      // E. Render Traveling Route Lights (Continuous light along the complete route)
+      // D. Render Traveling Route Lights (Continuous light along the complete route)
       routeTravelers.forEach((traveler) => {
         // Increment progress
         traveler.progress += traveler.speed;
@@ -748,7 +515,7 @@ export default function UKCoverageMap() {
     <>
       <style dangerouslySetInnerHTML={{
         __html: `
-          /* Premium UK Coverage Map Styles - MapLibre GL JS */
+          /* Premium UK Coverage Map Styles - Mapbox GL JS */
            .uk-map-section {
             position: relative;
             width: 100%;
@@ -828,12 +595,12 @@ export default function UKCoverageMap() {
             animation: pingSlow 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
           }
 
-          /* MapLibre Popup Overrides */
-          .maplibregl-popup {
+          /* Mapbox Popup Overrides */
+          .mapboxgl-popup {
             z-index: 100;
           }
 
-          .maplibregl-popup-content {
+          .mapboxgl-popup-content {
             background: #060606 !important;
             color: #ffffff !important;
             padding: 12px 18px !important;
@@ -845,12 +612,12 @@ export default function UKCoverageMap() {
             text-align: center !important;
           }
 
-          .maplibregl-popup-tip {
+          .mapboxgl-popup-tip {
             border-top-color: #060606 !important;
           }
 
-          /* MapLibre Controls Hidden */
-          .maplibregl-ctrl {
+          /* Mapbox Controls Hidden */
+          .mapboxgl-ctrl {
             display: none !important;
           }
 
@@ -937,7 +704,9 @@ export default function UKCoverageMap() {
 
           /* Permanent city label responsiveness */
           .city-label-text {
-            font-size: 10px;
+            font-size: 12px;
+            color: #ffffff;
+            font-weight: 700;
             transition: font-size 0.25s ease, left 0.25s ease, right 0.25s ease;
           }
 
@@ -1130,10 +899,10 @@ export default function UKCoverageMap() {
 
                 {/* Permanent City Label */}
                 <span 
-                  className={`absolute font-semibold text-white/95 text-[10px] tracking-wide pointer-events-none select-none city-label-text ${office.labelPos === "left" ? "label-left" : "label-right"}`}
+                  className={`absolute font-bold text-white text-[12px] tracking-wide pointer-events-none select-none city-label-text ${office.labelPos === "left" ? "label-left" : "label-right"}`}
                   style={{
                     fontFamily: "var(--font-sans), Inter, sans-serif",
-                    textShadow: "0 1px 4px rgba(0,0,0,0.95), 0 0 2px rgba(0,0,0,0.95)",
+                    textShadow: "0 2px 4px rgba(0,0,0,1), 0 0 4px rgba(0,0,0,1)",
                     whiteSpace: "nowrap",
                   }}
                 >
