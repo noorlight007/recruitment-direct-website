@@ -245,11 +245,35 @@ export default function UKCoverageMap() {
 
     let animationFrameId: number;
     const cameraStartTime = Date.now();
+    let pulseStep = 0;
     let baseCenter = defaults.center;
 
     // 6. Setup Custom Layers and Animations on map load
     map.on("load", () => {
       const allLayers = map.getStyle().layers;
+
+      // Add NASA Black Marble raster source and layer to show city lights at night
+      map.addSource("black-marble", {
+        type: "raster",
+        tiles: [
+          "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_Black_Marble/default/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg"
+        ],
+        tileSize: 256,
+        attribution: "NASA GIBS"
+      });
+
+      const firstLayerId = allLayers[0]?.id;
+      map.addLayer(
+        {
+          id: "black-marble-layer",
+          type: "raster",
+          source: "black-marble",
+          paint: {
+            "raster-opacity": 0.85
+          }
+        },
+        firstLayerId
+      );
 
       // D. DYNAMICALLY CONVERT ALL MAP LABELS TO CRISP WHITE TEXT WITH BLACK HALO FOR HIGH VISIBILITY
       // AND HIDE ALL OTHER MAP LABELS (CITIES, TOWNS, STATES, POIs, ROADS, ETC.) TO KEEP THE MAP CLEAN
@@ -296,6 +320,57 @@ export default function UKCoverageMap() {
         }
       }
 
+      // Add Coastline Glow layers (electric blue/neon cyan) using Mapbox "composite" source & "water" source-layer
+      // Layer 1: Wide ambient outer electric blue glow
+      map.addLayer(
+        {
+          id: "coastline-glow-outer",
+          type: "line",
+          source: "composite",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#005FFF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 15, 10, 30],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 12, 10, 20],
+            "line-opacity": 0.25,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Layer 2: Intense inner cyan glow
+      map.addLayer(
+        {
+          id: "coastline-glow-inner",
+          type: "line",
+          source: "composite",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#00D2FF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 4.5, 10, 11],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 3, 10, 6],
+            "line-opacity": 0.45,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Layer 3: Sharp core electric blue coastline line
+      map.addLayer(
+        {
+          id: "coastline-core",
+          type: "line",
+          source: "composite",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#2E7DFF",
+            "line-width": 1.5,
+            "line-opacity": 0.7,
+          },
+        },
+        firstLabelLayerId
+      );
+
       // Connect every office with white coverage lines
       map.addSource("coverage-network", {
         type: "geojson",
@@ -326,14 +401,14 @@ export default function UKCoverageMap() {
         },
       });
 
-      // White Glow beneath connection lines
+      // Gold Glow beneath connection lines
       map.addLayer(
         {
           id: "network-glow",
           type: "line",
           source: "coverage-network",
           paint: {
-            "line-color": "#ffffff",
+            "line-color": "#E5A93B",
             "line-width": 6,
             "line-blur": 5,
             "line-opacity": 0.4,
@@ -342,14 +417,14 @@ export default function UKCoverageMap() {
         firstLabelLayerId
       );
 
-      // Base elegant white coverage lines
+      // Base elegant gold coverage lines
       map.addLayer(
         {
           id: "network-line",
           type: "line",
           source: "coverage-network",
           paint: {
-            "line-color": "#ffffff",
+            "line-color": "#E5A93B",
             "line-width": 1.5,
             "line-opacity": 0.8,
           },
@@ -396,7 +471,20 @@ export default function UKCoverageMap() {
       map.setPitch(pitch);
       map.setBearing(bearing);
 
-      // B. Decay city glow states
+      // B. Pulse Coastline Glow Opacity
+      pulseStep += 0.06;
+      const basePulse = Math.sin(pulseStep);
+      const outerOpacity = 0.15 + (basePulse + 1) * 0.06;
+      const innerOpacity = 0.3 + (basePulse + 1) * 0.09;
+
+      if (map.getLayer("coastline-glow-outer")) {
+        map.setPaintProperty("coastline-glow-outer", "line-opacity", outerOpacity);
+      }
+      if (map.getLayer("coastline-glow-inner")) {
+        map.setPaintProperty("coastline-glow-inner", "line-opacity", innerOpacity);
+      }
+
+      // B.5 Decay city glow states
       for (let i = 0; i < cityGlows.length; i++) {
         if (cityGlows[i] > 0) {
           cityGlows[i] -= 0.04; // Decay over 25 frames (~0.4s)
@@ -414,12 +502,12 @@ export default function UKCoverageMap() {
             markerEl.style.transform = `translate(-50%, -50%) translate(${pt.x}px, ${pt.y}px)`;
             
             // Briefly brighten and scale the pin when reached by a network pulse
-            const pinEl = markerEl.querySelector(".red-pin-custom") as HTMLDivElement;
+            const pinEl = markerEl.querySelector(".gold-pin-custom") as HTMLDivElement;
             if (pinEl) {
               const glow = cityGlows[idx];
               if (glow > 0.01) {
                 const intensity = glow * 25;
-                pinEl.style.boxShadow = `0 0 ${10 + intensity}px rgba(255, 59, 48, 1), 0 0 ${20 + intensity * 2}px rgba(255, 59, 48, 0.8), 0 0 8px #ffffff`;
+                pinEl.style.boxShadow = `0 0 ${10 + intensity}px rgba(229, 169, 59, 1), 0 0 ${20 + intensity * 2}px rgba(229, 169, 59, 0.8), 0 0 8px #ffffff`;
                 pinEl.style.transform = `scale(${1 + glow * 0.3})`;
               } else {
                 pinEl.style.boxShadow = "";
@@ -480,11 +568,11 @@ export default function UKCoverageMap() {
             ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2);
             if (i === 0) {
               ctx.fillStyle = "#ffffff";
-              ctx.shadowColor = "#ffffff";
+              ctx.shadowColor = "#E5A93B";
               ctx.shadowBlur = 10;
             } else {
-              ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.75})`;
-              ctx.shadowColor = "#ffffff";
+              ctx.fillStyle = `rgba(229, 169, 59, ${opacity * 0.75})`;
+              ctx.shadowColor = "#E5A93B";
               ctx.shadowBlur = 6;
             }
             ctx.fill();
@@ -565,24 +653,24 @@ export default function UKCoverageMap() {
             100% { transform: translateY(0px); }
           }
 
-          /* Premium Red Marker Pins Style */
+          /* Premium Gold Marker Pins Style */
           @keyframes pinPulse {
-            0% { box-shadow: 0 0 10px rgba(255, 59, 48, 0.85), 0 0 20px rgba(255, 59, 48, 0.45); }
-            50% { box-shadow: 0 0 18px rgba(255, 59, 48, 1), 0 0 36px rgba(255, 59, 48, 0.65); }
-            100% { box-shadow: 0 0 10px rgba(255, 59, 48, 0.85), 0 0 20px rgba(255, 59, 48, 0.45); }
+            0% { box-shadow: 0 0 10px rgba(229, 169, 59, 0.85), 0 0 20px rgba(229, 169, 59, 0.45); }
+            50% { box-shadow: 0 0 18px rgba(229, 169, 59, 1), 0 0 36px rgba(229, 169, 59, 0.65); }
+            100% { box-shadow: 0 0 10px rgba(229, 169, 59, 0.85), 0 0 20px rgba(229, 169, 59, 0.45); }
           }
 
-          .red-pin-custom {
+          .gold-pin-custom {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #ff3b30;
-            border: 2px solid #ffffff;
+            background: #ffffff;
+            border: 2px solid #E5A93B;
             animation: pinPulse 1.2s ease-in-out infinite;
             transition: transform 0.25s ease, box-shadow 0.1s ease;
           }
 
-          .red-pin-custom:hover {
+          .gold-pin-custom:hover {
             transform: scale(1.3) !important;
           }
 
@@ -877,10 +965,10 @@ export default function UKCoverageMap() {
                   handleCityClick(office);
                 }}
               >
-                {/* Red Pin Badge */}
-                <div className="red-pin-custom relative flex items-center justify-center">
+                {/* Gold Pin Badge */}
+                <div className="gold-pin-custom relative flex items-center justify-center">
                   {/* Outer Pulsing Ripple Ring */}
-                  <div className="absolute inset-0 rounded-full border border-[#ff3b30]/60 scale-[2.5] animate-ping-slow pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full border border-[#E5A93B]/60 scale-[2.5] animate-ping-slow pointer-events-none" />
                 </div>
                 
                 {/* Premium Floating Tooltip on Hover */}
