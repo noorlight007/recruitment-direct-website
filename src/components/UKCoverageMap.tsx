@@ -495,17 +495,37 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "fill-color": "#030E1F",
+            "fill-color": "#020B1A", // Dark navy sea background
             "fill-opacity": 0.96,
           },
         },
         firstLabelLayerId
       );
 
-      // Soft, opulent electric-blue shadow beneath the coastline — two wide, heavily blurred
-      // layers only (no crisp/bright/white outline), so the coastline reads as a gentle glow
-      // rather than a hard-edged line.
-      // Layer 1: Wide ambient outer shadow
+      // Layered electric-blue coastline glow hugging the coastline precisely:
+      // - Core edge: #00F0FF (bright electric blue)
+      // - Main glow: #1F51FF (rich sapphire blue)
+      // - Outer shadow: #0B1E5B fading into the dark sea.
+      // Built using 4 soft layers plus a core edge.
+
+      // Layer 1: Atmospheric bloom (120–160px at very low opacity)
+      map.addLayer(
+        {
+          id: "coastline-glow-bloom",
+          type: "line",
+          source: "composite",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#0B1E5B",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 120, 10, 160],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 90, 10, 120],
+            "line-opacity": 0.08,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Layer 2: Outer glow (60–90px)
       map.addLayer(
         {
           id: "coastline-glow-outer",
@@ -513,16 +533,33 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#1E4FCF",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 18, 10, 36],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 16, 10, 26],
+            "line-color": "#1F51FF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 60, 10, 90],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 45, 10, 70],
             "line-opacity": 0.16,
           },
         },
         firstLabelLayerId
       );
 
-      // Layer 2: Tighter inner shadow for a touch more depth close to the coast
+      // Layer 3: Mid glow (25–35px)
+      map.addLayer(
+        {
+          id: "coastline-glow-mid",
+          type: "line",
+          source: "composite",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#1F51FF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 25, 10, 35],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 18, 10, 28],
+            "line-opacity": 0.28,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Layer 4: Inner glow (8–12px)
       map.addLayer(
         {
           id: "coastline-glow-inner",
@@ -530,10 +567,26 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#2F6FE0",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 13],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 5, 10, 9],
-            "line-opacity": 0.14,
+            "line-color": "#00F0FF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 8, 10, 12],
+            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 9],
+            "line-opacity": 0.48,
+          },
+        },
+        firstLabelLayerId
+      );
+
+      // Layer 5: Core edge (bright electric blue line)
+      map.addLayer(
+        {
+          id: "coastline-glow-core",
+          type: "line",
+          source: "composite",
+          "source-layer": "water",
+          paint: {
+            "line-color": "#00F0FF",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.5, 10, 2.5],
+            "line-opacity": 0.80,
           },
         },
         firstLabelLayerId
@@ -681,17 +734,28 @@ export default function UKCoverageMap() {
       map.setPitch(pitch);
       map.setBearing(bearing);
 
-      // B. Pulse Coastline Glow Opacity (soft, opulent electric-blue breathing shadow)
-      pulseStep += 0.06;
-      const basePulse = Math.sin(pulseStep);
-      const outerOpacity = 0.12 + (basePulse + 1) * 0.04;
-      const innerOpacity = 0.10 + (basePulse + 1) * 0.04;
+      // B. Shimmer Coastline Glow Opacity (subtle 2–3s shimmer/breathing travelling around the coastline)
+      const nowSec = Date.now() / 1000;
+      const bloomShimmer = Math.sin(nowSec * (2 * Math.PI / 3.0));
+      const outerShimmer = Math.sin(nowSec * (2 * Math.PI / 2.5) + 1.0);
+      const midShimmer = Math.sin(nowSec * (2 * Math.PI / 2.2) + 2.0);
+      const innerShimmer = Math.sin(nowSec * (2 * Math.PI / 2.0) + 3.0);
+      const coreShimmer = Math.sin(nowSec * (2 * Math.PI / 2.8) + 0.5);
 
+      if (map.getLayer("coastline-glow-bloom")) {
+        map.setPaintProperty("coastline-glow-bloom", "line-opacity", 0.06 + bloomShimmer * 0.02);
+      }
       if (map.getLayer("coastline-glow-outer")) {
-        map.setPaintProperty("coastline-glow-outer", "line-opacity", outerOpacity);
+        map.setPaintProperty("coastline-glow-outer", "line-opacity", 0.12 + outerShimmer * 0.04);
+      }
+      if (map.getLayer("coastline-glow-mid")) {
+        map.setPaintProperty("coastline-glow-mid", "line-opacity", 0.22 + midShimmer * 0.06);
       }
       if (map.getLayer("coastline-glow-inner")) {
-        map.setPaintProperty("coastline-glow-inner", "line-opacity", innerOpacity);
+        map.setPaintProperty("coastline-glow-inner", "line-opacity", 0.40 + innerShimmer * 0.08);
+      }
+      if (map.getLayer("coastline-glow-core")) {
+        map.setPaintProperty("coastline-glow-core", "line-opacity", 0.70 + coreShimmer * 0.10);
       }
 
       // B.5 Decay city glow states
