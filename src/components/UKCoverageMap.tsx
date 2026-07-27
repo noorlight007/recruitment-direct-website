@@ -100,7 +100,7 @@ const formatTooltipName = (name: string) => {
 };
 
 // Handcrafted responsive center and zoom defaults to frame the UK perfectly inside the smaller container
-// Increased map scale by 20% (zoom +0.26) and re-centered to make the UK more dominant while keeping Scotland, Cardiff, and London visible.
+// Increased map scale by 20% (zoom +0.26) and re-centered to make the UK more dominant and keep Scotland, Cardiff, and London visible.
 const getMapDefaults = (width?: number) => {
   const currentWidth = width ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
   let zoom = 5.41;
@@ -110,7 +110,7 @@ const getMapDefaults = (width?: number) => {
   else if (currentWidth < 768) zoom = 4.56;
   else if (currentWidth < 992) zoom = 4.76;
   return {
-    center: [-2.5, 53.95] as [number, number],
+    center: [-2.5, 54.30] as [number, number],
     zoom,
   };
 };
@@ -141,7 +141,7 @@ export default function UKCoverageMap() {
     mapRef.current.flyTo({
       center: defaults.center,
       zoom: defaults.zoom,
-      pitch: 25,
+      pitch: 0,
       bearing: 0,
       duration: 1500,
     });
@@ -161,13 +161,14 @@ export default function UKCoverageMap() {
       const initialWidth = mapContainerRef.current?.clientWidth ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
       const defaults = getMapDefaults(initialWidth);
 
-      // 1. Initialize Mapbox using standard Dark-v11 style
+      // 1. Initialize Mapbox using standard Dark-v11 style in a flat 2D projection
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/dark-v11",
+      projection: { name: "mercator" } as any, // Force flat Mercator projection so Scotland is not distorted by Globe curvature
       center: defaults.center,
       zoom: defaults.zoom,
-      pitch: 25,
+      pitch: 0,
       bearing: 0,
       interactive: false,
       attributionControl: false,
@@ -718,17 +719,10 @@ export default function UKCoverageMap() {
       }
       ctx.globalAlpha = 1;
 
-      // A. Automatic Camera Float (subtle elliptical path around the baseCenter)
-      const elapsed = (Date.now() - cameraStartTime) / 1000;
-      const cameraCycle = (elapsed % 12) / 12 * Math.PI * 2; // 12 seconds cycle
-      const lngOffset = Math.sin(cameraCycle) * 0.04;
-      const latOffset = Math.cos(cameraCycle) * 0.02;
-      const pitch = 25 + Math.sin(cameraCycle) * 1.5;
-      const bearing = Math.sin(cameraCycle) * 1.0;
-
-      map.setCenter([baseCenter[0] + lngOffset, baseCenter[1] + latOffset]);
-      map.setPitch(pitch);
-      map.setBearing(bearing);
+      // Keep map static, stable, and flat (pitch: 0, bearing: 0) to ensure accurate proportions.
+      map.setCenter(baseCenter);
+      map.setPitch(0);
+      map.setBearing(0);
 
       // B. Shimmer Coastline Glow Opacity (subtle 2–3s shimmer/breathing travelling around the coastline)
       const nowSec = Date.now() / 1000;
@@ -1001,7 +995,7 @@ export default function UKCoverageMap() {
           #map-container {
             position: relative;
             width: 100%;
-            height: 640px; /* Increased from 520px to 640px to establish hero presence */
+            height: 800px; /* Increased from 640px to 800px to establish hero presence */
             border-radius: 24px;
             overflow: hidden;
             border: none; /* Removed gold border to blend naturally */
@@ -1229,18 +1223,18 @@ export default function UKCoverageMap() {
           @media (max-width: 1200px) {
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 4 / 5 !important;
-              max-height: 540px !important; /* Increased by ~28% */
-              min-height: 380px !important;
+              aspect-ratio: 9 / 13 !important; /* Taller aspect ratio */
+              max-height: 720px !important; 
+              min-height: 480px !important;
             }
           }
 
           @media (max-width: 992px) {
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 4 / 4.2 !important; /* Slightly wider to reduce vertical space */
-              max-height: 480px !important; 
-              min-height: 340px !important; 
+              aspect-ratio: 9 / 12 !important; /* Taller aspect ratio */
+              max-height: 640px !important; 
+              min-height: 420px !important; 
               border-radius: 18px;
             }
             .nationwide-heading { font-size: 13px; }
@@ -1283,9 +1277,9 @@ export default function UKCoverageMap() {
             .uk-map-section { padding: 40px 18px; min-height: auto; } /* ~16-20px side margins so the map nearly fills the mobile panel */
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 2.8 !important; /* Reduced vertical space inside the map container */
-              max-height: 420px !important; 
-              min-height: 300px !important; 
+              aspect-ratio: 3 / 3.8 !important; /* Taller aspect ratio for mobile viewports */
+              max-height: 560px !important; 
+              min-height: 380px !important; 
               border-radius: 14px;
             }
             .nationwide-heading { font-size: 12px; margin: 14px 0 8px; }
@@ -1322,9 +1316,9 @@ export default function UKCoverageMap() {
           @media (max-width: 480px) {
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 2.8 !important; /* Reduced vertical space inside the map container */
-              max-height: 400px !important; 
-              min-height: 280px !important; 
+              aspect-ratio: 3 / 3.8 !important; /* Taller aspect ratio for mobile viewports */
+              max-height: 520px !important; 
+              min-height: 340px !important; 
             }
             .nationwide-heading { font-size: 11px; }
             .nationwide-phone { font-size: 20px; }
