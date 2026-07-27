@@ -1179,9 +1179,9 @@ export default function UKCoverageMap() {
           @media (max-width: 992px) {
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 4 / 5 !important;
-              max-height: 520px !important; /* Increased by ~30% */
-              min-height: 380px !important;
+              aspect-ratio: 4 / 4.2 !important; /* Slightly wider to reduce vertical space */
+              max-height: 480px !important; 
+              min-height: 340px !important; 
               border-radius: 18px;
             }
             .nationwide-heading { font-size: 13px; }
@@ -1224,9 +1224,9 @@ export default function UKCoverageMap() {
             .uk-map-section { padding: 40px 18px; min-height: auto; } /* ~16-20px side margins so the map nearly fills the mobile panel */
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 4.0 !important; /* Reduced vertical space inside the map container */
-              max-height: 550px !important; 
-              min-height: 360px !important; 
+              aspect-ratio: 3 / 2.8 !important; /* Reduced vertical space inside the map container */
+              max-height: 420px !important; 
+              min-height: 300px !important; 
               border-radius: 14px;
             }
             .nationwide-heading { font-size: 12px; margin: 14px 0 8px; }
@@ -1263,9 +1263,9 @@ export default function UKCoverageMap() {
           @media (max-width: 480px) {
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 4.0 !important; /* Reduced vertical space inside the map container */
-              max-height: 580px !important; 
-              min-height: 340px !important; 
+              aspect-ratio: 3 / 2.8 !important; /* Reduced vertical space inside the map container */
+              max-height: 400px !important; 
+              min-height: 280px !important; 
             }
             .nationwide-heading { font-size: 11px; }
             .nationwide-phone { font-size: 20px; }
