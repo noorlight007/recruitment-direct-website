@@ -106,12 +106,13 @@ const getMapDefaults = (width?: number) => {
   // Zoom levels bumped ~+0.35 across the board (~27% larger, 2^0.35) so the UK/Ireland
   // landmass fills the panel with far less surrounding sea, while still keeping every
   // named hub (Inverness/Aberdeen down to Dublin/London) inside the frame.
+  // Zoom levels slightly adjusted down on mobile viewports to prevent vertical cropping after height reduction.
   let zoom = 5.15;
-  if (currentWidth < 360) zoom = 3.85;
-  else if (currentWidth < 480) zoom = 4.15;
-  else if (currentWidth < 600) zoom = 4.35;
-  else if (currentWidth < 768) zoom = 4.55;
-  else if (currentWidth < 992) zoom = 4.75;
+  if (currentWidth < 360) zoom = 3.65;
+  else if (currentWidth < 480) zoom = 3.9;
+  else if (currentWidth < 600) zoom = 4.1;
+  else if (currentWidth < 768) zoom = 4.3;
+  else if (currentWidth < 992) zoom = 4.5;
   return {
     center: [-2.4, 53.75] as [number, number],
     zoom,
@@ -1223,9 +1224,9 @@ export default function UKCoverageMap() {
             .uk-map-section { padding: 40px 18px; min-height: auto; } /* ~16-20px side margins so the map nearly fills the mobile panel */
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 4.8 !important; /* 20% taller aspect ratio */
-              max-height: 660px !important; /* Increased from 550px by 20% */
-              min-height: 432px !important; /* Increased from 360px by 20% */
+              aspect-ratio: 3 / 4.0 !important; /* Reduced vertical space inside the map container */
+              max-height: 550px !important; 
+              min-height: 360px !important; 
               border-radius: 14px;
             }
             .nationwide-heading { font-size: 12px; margin: 14px 0 8px; }
@@ -1262,9 +1263,9 @@ export default function UKCoverageMap() {
           @media (max-width: 480px) {
             #map-container { 
               height: auto !important; 
-              aspect-ratio: 3 / 4.8 !important; /* 20% taller aspect ratio */
-              max-height: 696px !important; /* Increased from 580px by 20% */
-              min-height: 408px !important; /* Increased from 340px by 20% */
+              aspect-ratio: 3 / 4.0 !important; /* Reduced vertical space inside the map container */
+              max-height: 580px !important; 
+              min-height: 340px !important; 
             }
             .nationwide-heading { font-size: 11px; }
             .nationwide-phone { font-size: 20px; }
