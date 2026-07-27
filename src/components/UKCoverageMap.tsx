@@ -100,21 +100,17 @@ const formatTooltipName = (name: string) => {
 };
 
 // Handcrafted responsive center and zoom defaults to frame the UK perfectly inside the smaller container
-// This keeps London fully visible and pushes mainland Europe (France) off-screen
+// Increased map scale by 20% (zoom +0.26) and re-centered to make the UK more dominant while keeping Scotland, Cardiff, and London visible.
 const getMapDefaults = (width?: number) => {
   const currentWidth = width ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
-  // Zoom levels bumped ~+0.35 across the board (~27% larger, 2^0.35) so the UK/Ireland
-  // landmass fills the panel with far less surrounding sea, while still keeping every
-  // named hub (Inverness/Aberdeen down to Dublin/London) inside the frame.
-  // Zoom levels slightly adjusted down on mobile viewports to prevent vertical cropping after height reduction.
-  let zoom = 5.15;
-  if (currentWidth < 360) zoom = 3.65;
-  else if (currentWidth < 480) zoom = 3.9;
-  else if (currentWidth < 600) zoom = 4.1;
-  else if (currentWidth < 768) zoom = 4.3;
-  else if (currentWidth < 992) zoom = 4.5;
+  let zoom = 5.41;
+  if (currentWidth < 360) zoom = 3.91;
+  else if (currentWidth < 480) zoom = 4.16;
+  else if (currentWidth < 600) zoom = 4.36;
+  else if (currentWidth < 768) zoom = 4.56;
+  else if (currentWidth < 992) zoom = 4.76;
   return {
-    center: [-2.4, 53.75] as [number, number],
+    center: [-2.5, 53.95] as [number, number],
     zoom,
   };
 };
@@ -1008,12 +1004,11 @@ export default function UKCoverageMap() {
             height: 640px; /* Increased from 520px to 640px to establish hero presence */
             border-radius: 24px;
             overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.5); /* Very thin metallic-gold border */
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), /* grounding shadow so the map appears to float above the page */
-                        0 0 34px rgba(10, 30, 70, 0.30), /* subtle navy outer glow */
-                        inset 0 0 20px rgba(212, 175, 55, 0.08); /* restrained inner gold highlight */
+            border: none; /* Removed gold border to blend naturally */
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), /* Deeper shadow for borderless blend */
+                        0 0 45px rgba(0, 175, 255, 0.18); /* Rich electric blue outer glow */
             animation: floatMap 12s ease-in-out infinite;
-            background: linear-gradient(135deg, #000000 0%, #000000 80%, #0A1B3D 100%); /* 80% matte black to 20% deep navy-blue */
+            background: #050505; /* Matches deep black background of the section */
           }
 
           #map {
