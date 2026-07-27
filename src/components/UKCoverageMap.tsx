@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/navigation";
-import { ShieldCheck } from "lucide-react";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
 
@@ -1041,76 +1040,6 @@ export default function UKCoverageMap() {
             display: none !important;
           }
 
-          /* "No Supply Areas" Badge (top-right of map) */
-          .no-supply-badge {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            z-index: 25;
-            width: 148px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 12px 14px;
-            border-radius: 14px;
-            background: rgba(4, 8, 16, 0.6);
-            border: 1px solid rgba(255, 193, 7, 0.35);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-            text-align: center;
-          }
-
-          .no-supply-badge .badge-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1.5px solid #FFC107;
-            color: #FFC107;
-            flex-shrink: 0;
-          }
-
-          .no-supply-badge .badge-title {
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.06em;
-            color: #FFC107;
-            line-height: 1.3;
-            text-transform: uppercase;
-          }
-
-          .no-supply-badge .badge-subtitle {
-            font-size: 10.5px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.35;
-          }
-
-          @media (max-width: 768px) {
-            .no-supply-badge {
-              top: 14px;
-              right: 14px;
-              width: 128px;
-              padding: 12px 10px 11px;
-              border-radius: 12px;
-              gap: 6px;
-            }
-            .no-supply-badge .badge-icon {
-              width: 28px;
-              height: 28px;
-            }
-            .no-supply-badge .badge-title {
-              font-size: 10.5px;
-            }
-            .no-supply-badge .badge-subtitle {
-              font-size: 9.5px;
-            }
-          }
-
           /* Minimal Nationwide Recruitment CTA — gold heading, white number, thin gold dividers */
           .nationwide-cta {
             padding: 0 20px;
@@ -1266,7 +1195,7 @@ export default function UKCoverageMap() {
               transform: none !important;
               flex-direction: row !important;
               gap: 12px !important;
-              padding: 8px 14px !important;
+              padding: 8px 8px !important;
               border-radius: 12px !important;
               width: auto !important;
               max-width: none !important;
@@ -1376,15 +1305,6 @@ export default function UKCoverageMap() {
           <div id="map-container" style={{ background: "linear-gradient(135deg, #000000 0%, #000000 80%, #0A1B3D 100%)" }}>
             <div ref={mapContainerRef} id="map" />
             <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3 }} />
-
-            {/* "No Supply Areas" Badge, matching reference design */}
-            <div className="no-supply-badge">
-              <div className="badge-icon">
-                <ShieldCheck size={16} strokeWidth={2.4} />
-              </div>
-              <span className="badge-title">No Supply Areas</span>
-              <span className="badge-subtitle">We deliver across the UK &amp; Ireland</span>
-            </div>
 
             {/* Custom Projected React-rendered Markers positioned directly via JS projection in the animation loop */}
             {offices.map((office) => (
