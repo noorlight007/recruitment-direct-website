@@ -250,12 +250,12 @@ export default function UKCoverageMap() {
     // Primary white light pulses — fast, continuous, varying speeds (~1.0-2.0s per city-to-city
     // hop) so several are always visible travelling the network at once (fibre-optic effect).
     const primaryPulses: RouteTraveler[] = [
-      { currentPathIndex: 0, progress: 0.0, speed: 0.0167, size: 3.4 }, // ~1.0s/hop
-      { currentPathIndex: 2, progress: 0.5, speed: 0.0119, size: 3.4 }, // ~1.4s/hop
-      { currentPathIndex: 5, progress: 0.2, speed: 0.0093, size: 3.4 }, // ~1.8s/hop
-      { currentPathIndex: 7, progress: 0.8, speed: 0.0139, size: 3.4 }, // ~1.2s/hop
-      { currentPathIndex: 10, progress: 0.35, speed: 0.0104, size: 3.4 }, // ~1.6s/hop
-      { currentPathIndex: 13, progress: 0.65, speed: 0.0083, size: 3.4 }, // ~2.0s/hop
+      { currentPathIndex: 0, progress: 0.0, speed: 0.0167, size: 1.8 }, // ~1.0s/hop
+      { currentPathIndex: 2, progress: 0.5, speed: 0.0119, size: 1.8 }, // ~1.4s/hop
+      { currentPathIndex: 5, progress: 0.2, speed: 0.0093, size: 1.8 }, // ~1.8s/hop
+      { currentPathIndex: 7, progress: 0.8, speed: 0.0139, size: 1.8 }, // ~1.2s/hop
+      { currentPathIndex: 10, progress: 0.35, speed: 0.0104, size: 1.8 }, // ~1.6s/hop
+      { currentPathIndex: 13, progress: 0.65, speed: 0.0083, size: 1.8 }, // ~2.0s/hop
     ];
 
     // Secondary gold micro-pulses — small, dim, continuous ambient traffic on every route
@@ -264,8 +264,8 @@ export default function UKCoverageMap() {
       currentPathIndex: i,
       progress: (i * 0.37) % 1,
       speed: 0.0104 + (i % 5) * 0.0016,
-      size: 1.3 + (i % 3) * 0.2,
-      baseAlpha: 0.32 + (i % 4) * 0.08,
+      size: 0.8 + (i % 3) * 0.15,
+      baseAlpha: 0.12 + (i % 4) * 0.04,
     }));
 
     // Maintain city glow timers to briefly brighten a pin when a pulse passes through
@@ -299,11 +299,21 @@ export default function UKCoverageMap() {
       warmth: number; // 0 = deep amber, 1 = pale warm gold
     }
 
-    const DUST_TARGET_COUNT = isLowPowerDevice ? 180 : 380; // "hundreds of subtle gold nodes"
+    const DUST_TARGET_COUNT = isLowPowerDevice ? 320 : 750; // "Increase the density of the small gold lights throughout the UK and Ireland"
     const DUST_MAX_ATTEMPTS = 9000;
     const MESH_NEIGHBOURS = isLowPowerDevice ? 1 : 2;
     let dustParticles: DustParticle[] = [];
-    let meshLines: [number, number, number, number][] = [];
+    interface MeshLine {
+      lng1: number;
+      lat1: number;
+      lng2: number;
+      lat2: number;
+      x1?: number;
+      y1?: number;
+      x2?: number;
+      y2?: number;
+    }
+    let meshLines: MeshLine[] = [];
 
     // Scatter candidate screen points, keep only the ones that land on the UK/Ireland
     // landmass (i.e. NOT on the "water-fill" layer) using Mapbox's own vector
@@ -351,7 +361,7 @@ export default function UKCoverageMap() {
 
       // Build a nearest-neighbour mesh (once, at generation time — cheap even at O(n^2) for
       // a few hundred nodes) so the nodes read as one connected nationwide network.
-      const lines: [number, number, number, number][] = [];
+      const lines: MeshLine[] = [];
       const connected = new Set<string>();
       for (let i = 0; i < generated.length; i++) {
         const bestIdx: number[] = [];
@@ -379,7 +389,12 @@ export default function UKCoverageMap() {
           const key = i < j ? `${i}-${j}` : `${j}-${i}`;
           if (!connected.has(key)) {
             connected.add(key);
-            lines.push([generated[i].lng, generated[i].lat, generated[j].lng, generated[j].lat]);
+            lines.push({
+              lng1: generated[i].lng,
+              lat1: generated[i].lat,
+              lng2: generated[j].lng,
+              lat2: generated[j].lat,
+            });
           }
         });
       }
@@ -502,13 +517,12 @@ export default function UKCoverageMap() {
         firstLabelLayerId
       );
 
-      // Layered electric-blue coastline glow hugging the coastline precisely:
-      // - Core edge: #00F0FF (bright electric blue)
-      // - Main glow: #0099FF (vibrant electric cyan-blue)
-      // - Outer shadow: #001540 fading into the dark sea.
-      // Built using 4 soft layers plus a core edge.
+      // Layered Electric Pearl-White Coastline & Sapphire Blue Sea Shadow:
+      // - Core edge: #F6F8FC (subtle refined pearl-white line, 2-3px)
+      // - Soft outer white glow: #F6F8FC at very low opacity
+      // - Deep sapphire-blue sea shadow/glow fading smoothly outwards.
 
-      // Layer 1: Atmospheric bloom (120–160px at very low opacity)
+      // Layer 1: Deepest sapphire-blue sea shadow (120–160px at very low opacity)
       map.addLayer(
         {
           id: "coastline-glow-bloom",
@@ -516,16 +530,16 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#001540",
+            "line-color": "#000a26", // very deep sapphire shadow
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 120, 10, 160],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 90, 10, 120],
-            "line-opacity": 0.08,
+            "line-opacity": 0.10,
           },
         },
         firstLabelLayerId
       );
 
-      // Layer 2: Outer glow (60–90px)
+      // Layer 2: Deep sapphire-blue outer sea shadow (60–90px)
       map.addLayer(
         {
           id: "coastline-glow-outer",
@@ -533,16 +547,16 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#165cac",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 10, 10, 90],
+            "line-color": "#082260", // deep sapphire
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 60, 10, 90],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 45, 10, 70],
-            "line-opacity": 0.16,
+            "line-opacity": 0.18,
           },
         },
         firstLabelLayerId
       );
 
-      // Layer 3: Mid glow (25–35px)
+      // Layer 3: Mid sapphire-blue sea glow (reflected light on water) (25–35px)
       map.addLayer(
         {
           id: "coastline-glow-mid",
@@ -550,7 +564,7 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#135e90",
+            "line-color": "#0b3c95", // vivid sapphire
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 25, 10, 35],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 18, 10, 28],
             "line-opacity": 0.28,
@@ -559,7 +573,7 @@ export default function UKCoverageMap() {
         firstLabelLayerId
       );
 
-      // Layer 4: Inner glow (8–12px)
+      // Layer 4: Soft outer white glow (8–12px)
       map.addLayer(
         {
           id: "coastline-glow-inner",
@@ -567,16 +581,16 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#2d11a7",
+            "line-color": "#F6F8FC", // pearl-white soft glow
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 8, 10, 12],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 9],
-            "line-opacity": 0.48,
+            "line-opacity": 0.24,
           },
         },
         firstLabelLayerId
       );
 
-      // Layer 5: Core edge (bright electric blue line)
+      // Layer 5: Core edge (subtle refined pearl-white line)
       map.addLayer(
         {
           id: "coastline-glow-core",
@@ -584,9 +598,9 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#00F0FF",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.5, 10, 2.5],
-            "line-opacity": 0.80,
+            "line-color": "#F6F8FC", // pearl-white core
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.2, 10, 2.2], // refined thin line
+            "line-opacity": 0.65, // less bright than gold hubs
           },
         },
         firstLabelLayerId
@@ -667,6 +681,18 @@ export default function UKCoverageMap() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
+    let lastCameraState = { zoom: -1, lng: 0, lat: 0 };
+    interface ActiveWave {
+      cityIdx: number;
+      startTime: number;
+      duration: number;
+      maxRadius: number;
+    }
+    const activeWaves: ActiveWave[] = [];
+    let lastWaveTriggerTime = 0;
+    let nextCityWaveIdx = 0;
+    const waveInterval = 2200; // Trigger staggered city waves every 2.2 seconds
+
     const tick = () => {
       if (!ctx || !canvas || !mapRef.current) return;
 
@@ -682,43 +708,130 @@ export default function UKCoverageMap() {
       if (canvas.width !== width || canvas.height !== height) {
         canvas.width = width;
         canvas.height = height;
+        // Reset cached positions on resize to force re-projection
+        lastCameraState = { zoom: -1, lng: 0, lat: 0 };
       }
 
       ctx.clearRect(0, 0, width, height);
 
-      // A.-2 Ultra-thin white nationwide mesh connecting the gold network nodes (drawn first,
-      // underneath the nodes themselves, so it reads as wiring beneath the lights)
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.10)";
-      ctx.lineWidth = 0.6;
-      for (let i = 0; i < meshLines.length; i++) {
-        const [lng1, lat1, lng2, lat2] = meshLines[i];
-        try {
-          const p1 = map.project([lng1, lat1]);
-          const p2 = map.project([lng2, lat2]);
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        } catch (e) {
-          // Ignore projection edge cases
+      const zoom = mapRef.current.getZoom();
+      const center = mapRef.current.getCenter();
+      const cameraChanged = lastCameraState.zoom !== zoom ||
+        lastCameraState.lng !== center.lng ||
+        lastCameraState.lat !== center.lat;
+
+      if (cameraChanged) {
+        lastCameraState = { zoom, lng: center.lng, lat: center.lat };
+      }
+
+      // Trigger wave of gold energy spreading outward from cities
+      const now = Date.now();
+      if (now - lastWaveTriggerTime > waveInterval) {
+        lastWaveTriggerTime = now;
+        activeWaves.push({
+          cityIdx: nextCityWaveIdx,
+          startTime: now,
+          duration: 3800, // 3.8 seconds for smooth premium wavefront travel
+          maxRadius: Math.max(width, height) * 0.75, // travels across the country
+        });
+        nextCityWaveIdx = (nextCityWaveIdx + 1) % offices.length;
+      }
+
+      // Clean up finished waves
+      for (let i = activeWaves.length - 1; i >= 0; i--) {
+        if (now - activeWaves[i].startTime > activeWaves[i].duration) {
+          activeWaves.splice(i, 1);
         }
       }
 
-      // A.-1 Ambient Golden Dust (nationwide gold network nodes, gently twinkling, land-clipped)
-      const dustTime = Date.now() / 1000;
+      // Project wave origins on screen once per frame
+      const waveScreenOrigins = activeWaves.map(wave => {
+        try {
+          const pt = mapRef.current!.project(offices[wave.cityIdx].coords);
+          return { x: pt.x, y: pt.y, wave };
+        } catch (e) {
+          return null;
+        }
+      }).filter(Boolean) as { x: number, y: number, wave: ActiveWave }[];
+
+      // A.-2 Ultra-thin white nationwide mesh connecting the gold network nodes (drawn first,
+      // underneath the nodes themselves, so it reads as wiring beneath the lights)
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.lineWidth = 0.55;
+      for (let i = 0; i < meshLines.length; i++) {
+        const line = meshLines[i];
+        if (cameraChanged || line.x1 === undefined || line.y1 === undefined || line.x2 === undefined || line.y2 === undefined) {
+          try {
+            const p1 = mapRef.current.project([line.lng1, line.lat1]);
+            const p2 = mapRef.current.project([line.lng2, line.lat2]);
+            line.x1 = p1.x;
+            line.y1 = p1.y;
+            line.x2 = p2.x;
+            line.y2 = p2.y;
+          } catch (e) {
+            continue;
+          }
+        }
+        ctx.beginPath();
+        ctx.moveTo(line.x1, line.y1);
+        ctx.lineTo(line.x2, line.y2);
+        ctx.stroke();
+      }
+
+      // A.-1 Ambient Golden Dust (nationwide gold network nodes, gently twinkling, land-clipped, animated by wave pulses)
+      const dustTime = now / 1000;
+      const globalShimmer = 0.85 + 0.15 * Math.sin(dustTime * 0.7); // gentle nationwide background shimmer
+
       for (let i = 0; i < dustParticles.length; i++) {
         const p = dustParticles[i];
-        try {
-          const pt = map.project([p.lng, p.lat]);
-          if (pt.x < -20 || pt.x > width + 20 || pt.y < -20 || pt.y > height + 20) continue;
-          const twinkle = 0.5 + 0.5 * Math.sin(dustTime * p.twinkleSpeed + p.twinklePhase);
-          const alpha = p.baseAlpha * (0.45 + 0.55 * twinkle);
-          const size = p.radius * (2.8 + p.warmth * 1.8);
-          ctx.globalAlpha = alpha;
-          ctx.drawImage(dustSprite, pt.x - size / 2, pt.y - size / 2, size, size);
-        } catch (e) {
-          // Ignore projection edge cases
+        if (cameraChanged || p.x === undefined || p.y === undefined) {
+          try {
+            const pt = mapRef.current.project([p.lng, p.lat]);
+            p.x = pt.x;
+            p.y = pt.y;
+          } catch (e) {
+            continue;
+          }
         }
+
+        const ptX = p.x;
+        const ptY = p.y;
+        if (ptX < -20 || ptX > width + 20 || ptY < -20 || ptY > height + 20) continue;
+
+        // Base twinkle
+        const twinkle = 0.5 + 0.5 * Math.sin(dustTime * p.twinkleSpeed + p.twinklePhase);
+        let alpha = p.baseAlpha * (0.35 + 0.65 * twinkle);
+
+        // Progressively brighten and fade as waves pass over them
+        let waveBoost = 0;
+        for (let w = 0; w < waveScreenOrigins.length; w++) {
+          const origin = waveScreenOrigins[w];
+          const dx = ptX - origin.x;
+          const dy = ptY - origin.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          const progress = (now - origin.wave.startTime) / origin.wave.duration;
+          const currentRadius = progress * origin.wave.maxRadius;
+          const waveWidth = 90; // soft broad wavefront
+          const diff = Math.abs(dist - currentRadius);
+
+          if (diff < waveWidth) {
+            // Smooth bell-shaped curve for wavefront glow
+            const shape = 0.5 + 0.5 * Math.cos((diff / waveWidth) * Math.PI);
+            const intensity = shape * (1.0 - progress) * 1.5; // fades out as it expands
+            waveBoost += intensity;
+          }
+        }
+
+        // Combine base twinkling, global shimmer, and wave energy pulses
+        alpha = (alpha + waveBoost) * globalShimmer;
+        alpha = Math.min(1.0, alpha);
+
+        // Slightly increase size when the energy wave reaches them
+        const size = p.radius * (2.8 + p.warmth * 1.8) * (1.0 + waveBoost * 0.45);
+
+        ctx.globalAlpha = alpha;
+        ctx.drawImage(dustSprite, ptX - size / 2, ptY - size / 2, size, size);
       }
       ctx.globalAlpha = 1;
 
@@ -728,7 +841,7 @@ export default function UKCoverageMap() {
       map.setBearing(0);
 
       // B. Shimmer Coastline Glow Opacity (subtle 2–3s shimmer/breathing travelling around the coastline)
-      const nowSec = Date.now() / 1000;
+      const nowSec = now / 1000;
       const bloomShimmer = Math.sin(nowSec * (2 * Math.PI / 3.0));
       const outerShimmer = Math.sin(nowSec * (2 * Math.PI / 2.5) + 1.0);
       const midShimmer = Math.sin(nowSec * (2 * Math.PI / 2.2) + 2.0);
@@ -736,19 +849,19 @@ export default function UKCoverageMap() {
       const coreShimmer = Math.sin(nowSec * (2 * Math.PI / 2.8) + 0.5);
 
       if (map.getLayer("coastline-glow-bloom")) {
-        map.setPaintProperty("coastline-glow-bloom", "line-opacity", 0.06 + bloomShimmer * 0.02);
+        map.setPaintProperty("coastline-glow-bloom", "line-opacity", 0.10 + bloomShimmer * 0.02);
       }
       if (map.getLayer("coastline-glow-outer")) {
-        map.setPaintProperty("coastline-glow-outer", "line-opacity", 0.12 + outerShimmer * 0.04);
+        map.setPaintProperty("coastline-glow-outer", "line-opacity", 0.18 + outerShimmer * 0.04);
       }
       if (map.getLayer("coastline-glow-mid")) {
-        map.setPaintProperty("coastline-glow-mid", "line-opacity", 0.22 + midShimmer * 0.06);
+        map.setPaintProperty("coastline-glow-mid", "line-opacity", 0.28 + midShimmer * 0.06);
       }
       if (map.getLayer("coastline-glow-inner")) {
-        map.setPaintProperty("coastline-glow-inner", "line-opacity", 0.40 + innerShimmer * 0.08);
+        map.setPaintProperty("coastline-glow-inner", "line-opacity", 0.24 + innerShimmer * 0.05);
       }
       if (map.getLayer("coastline-glow-core")) {
-        map.setPaintProperty("coastline-glow-core", "line-opacity", 0.70 + coreShimmer * 0.10);
+        map.setPaintProperty("coastline-glow-core", "line-opacity", 0.65 + coreShimmer * 0.08);
       }
 
       // B.5 Decay city glow states
@@ -829,7 +942,7 @@ export default function UKCoverageMap() {
           const lat = tailStart[1] + (tailEnd[1] - tailStart[1]) * currentProg;
 
           try {
-            const pt = map.project([lng, lat]);
+            const pt = mapRef.current!.project([lng, lat]);
             const opacity = (1 - i / tailLength) * 0.9;
             const size = traveler.size * (1 - i / tailLength * 0.45);
 
@@ -838,11 +951,11 @@ export default function UKCoverageMap() {
             if (i === 0) {
               ctx.fillStyle = "#ffffff";
               ctx.shadowColor = "#BFE9FF"; // Cool white-blue fibre-optic glow
-              ctx.shadowBlur = 16;
+              ctx.shadowBlur = 8;
             } else {
-              ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.85})`; // White comet tail
+              ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.40})`; // Thin understated white comet tail
               ctx.shadowColor = "#BFE9FF";
-              ctx.shadowBlur = 10;
+              ctx.shadowBlur = 5;
             }
             ctx.fill();
             ctx.shadowBlur = 0;
@@ -867,12 +980,12 @@ export default function UKCoverageMap() {
         const lat = startLoc[1] + (endLoc[1] - startLoc[1]) * traveler.progress;
 
         try {
-          const pt = map.project([lng, lat]);
+          const pt = mapRef.current!.project([lng, lat]);
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, traveler.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 193, 7, ${traveler.baseAlpha})`;
+          ctx.fillStyle = `rgba(255, 209, 102, ${traveler.baseAlpha})`;
           ctx.shadowColor = "#FFC107";
-          ctx.shadowBlur = 6;
+          ctx.shadowBlur = 4;
           ctx.fill();
           ctx.shadowBlur = 0;
         } catch (e) {
@@ -895,7 +1008,7 @@ export default function UKCoverageMap() {
         const office = offices[burst.officeIdx];
 
         try {
-          const pt = map.project(office.coords);
+          const pt = mapRef.current!.project(office.coords);
 
           // Expanding ring
           ctx.beginPath();
