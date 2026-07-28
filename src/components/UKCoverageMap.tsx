@@ -533,8 +533,8 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#0077FF",
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 60, 10, 90],
+            "line-color": "#165cac",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 10, 10, 90],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 45, 10, 70],
             "line-opacity": 0.16,
           },
@@ -550,7 +550,7 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#0099FF",
+            "line-color": "#135e90",
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 25, 10, 35],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 18, 10, 28],
             "line-opacity": 0.28,
@@ -567,7 +567,7 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#00F0FF",
+            "line-color": "#2d11a7",
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 8, 10, 12],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 9],
             "line-opacity": 0.48,
