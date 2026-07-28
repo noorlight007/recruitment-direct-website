@@ -103,14 +103,27 @@ const formatTooltipName = (name: string) => {
 // Increased map scale by 20% (zoom +0.26) and re-centered to make the UK more dominant and keep Scotland, Cardiff, and London visible.
 const getMapDefaults = (width?: number) => {
   const currentWidth = width ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
-  let zoom = 5.41;
-  if (currentWidth < 360) zoom = 3.91;
-  else if (currentWidth < 480) zoom = 4.16;
-  else if (currentWidth < 600) zoom = 4.36;
-  else if (currentWidth < 768) zoom = 4.56;
-  else if (currentWidth < 992) zoom = 4.76;
+  let zoom = 4.85;
+  let center: [number, number] = [-2.5, 54.60];
+  if (currentWidth < 360) {
+    zoom = 3.90;
+    center = [-3.8, 54.60];
+  } else if (currentWidth < 480) {
+    zoom = 4.10;
+    center = [-3.8, 54.60];
+  } else if (currentWidth < 600) {
+    zoom = 4.30;
+    center = [-3.8, 54.60];
+  } else if (currentWidth < 768) {
+    zoom = 4.50;
+    center = [-3.8, 54.60];
+  } else if (currentWidth < 992) {
+    zoom = 4.55;
+  } else if (currentWidth < 1200) {
+    zoom = 4.70;
+  }
   return {
-    center: [-2.5, 54.30] as [number, number],
+    center,
     zoom,
   };
 };
@@ -193,6 +206,7 @@ export default function UKCoverageMap() {
           const width = entry.contentRect.width;
           const newDefaults = getMapDefaults(width);
           mapRef.current.setZoom(newDefaults.zoom);
+          baseCenter = newDefaults.center;
         }
       }
     });
@@ -501,8 +515,8 @@ export default function UKCoverageMap() {
 
       // Layered electric-blue coastline glow hugging the coastline precisely:
       // - Core edge: #00F0FF (bright electric blue)
-      // - Main glow: #1F51FF (rich sapphire blue)
-      // - Outer shadow: #0B1E5B fading into the dark sea.
+      // - Main glow: #0099FF (vibrant electric cyan-blue)
+      // - Outer shadow: #001540 fading into the dark sea.
       // Built using 4 soft layers plus a core edge.
 
       // Layer 1: Atmospheric bloom (120–160px at very low opacity)
@@ -513,7 +527,7 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#0B1E5B",
+            "line-color": "#001540",
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 120, 10, 160],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 90, 10, 120],
             "line-opacity": 0.08,
@@ -530,7 +544,7 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#1F51FF",
+            "line-color": "#0077FF",
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 60, 10, 90],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 45, 10, 70],
             "line-opacity": 0.16,
@@ -547,7 +561,7 @@ export default function UKCoverageMap() {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#1F51FF",
+            "line-color": "#0099FF",
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 25, 10, 35],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 18, 10, 28],
             "line-opacity": 0.28,
