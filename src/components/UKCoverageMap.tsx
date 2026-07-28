@@ -103,25 +103,14 @@ const formatTooltipName = (name: string) => {
 // Increased map scale by 20% (zoom +0.26) and re-centered to make the UK more dominant and keep Scotland, Cardiff, and London visible.
 const getMapDefaults = (width?: number) => {
   const currentWidth = width ?? (typeof window !== "undefined" ? window.innerWidth : 1024);
-  let zoom = 4.85;
-  let center: [number, number] = [-2.5, 54.60];
-  if (currentWidth < 360) {
-    zoom = 3.90;
-    center = [-3.8, 54.60];
-  } else if (currentWidth < 480) {
-    zoom = 4.10;
-    center = [-3.8, 54.60];
-  } else if (currentWidth < 600) {
-    zoom = 4.30;
-    center = [-3.8, 54.60];
-  } else if (currentWidth < 768) {
-    zoom = 4.50;
-    center = [-3.8, 54.60];
-  } else if (currentWidth < 992) {
-    zoom = 4.55;
-  } else if (currentWidth < 1200) {
-    zoom = 4.70;
-  }
+  let zoom = 5.41;
+  let center: [number, number] = [-3.8, 55.00];
+  if (currentWidth < 360) zoom = 3.91;
+  else if (currentWidth < 480) zoom = 4.16;
+  else if (currentWidth < 600) zoom = 4.36;
+  else if (currentWidth < 768) zoom = 4.56;
+  else if (currentWidth < 992) zoom = 4.76;
+  else if (currentWidth < 1200) zoom = 5.20;
   return {
     center,
     zoom,
