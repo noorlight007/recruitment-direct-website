@@ -8,6 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       disallow: [
         "/api/",
         "/admin/",
+        "/locations/admin/",
       ],
     },
     sitemap: "https://rd1.co.uk/sitemap.xml",

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { api } from "@/services/api";
+import { promises as fs } from "fs";
+import path from "path";
 
 export const revalidate = 3600; // Cache sitemap for 1 hour
 
@@ -108,5 +110,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch jobs for sitemap generation:", error);
   }
 
-  return [...staticUrls, ...jobUrls];
+  let locationUrls: MetadataRoute.Sitemap = [];
+  try {
+    const filePath = path.join(process.cwd(), "src", "data", "locations.json");
+    const fileContent = await fs.readFile(filePath, "utf-8");
+    const locations = JSON.parse(fileContent);
+
+    // 1. Main locations page
+    locationUrls.push({
+      url: `${baseUrl}/locations/`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    });
+
+    // 2. Country pages
+    const countries = ["scotland", "england", "wales", "northern-ireland", "republic-of-ireland"];
+    countries.forEach((c) => {
+      locationUrls.push({
+        url: `${baseUrl}/locations/${c}/`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.8,
+      });
+    });
+
+    // 3. Published location pages
+    locations.forEach((loc: any) => {
+      if (loc.published) {
+        locationUrls.push({
+          url: `${baseUrl}/locations/${loc.country}/${loc.slug}/`,
+          lastModified: new Date(),
+          changeFrequency: "weekly" as const,
+          priority: 0.7,
+        });
+      }
+    });
+  } catch (error) {
+    console.error("Failed to load locations for sitemap:", error);
+  }
+
+  return [...staticUrls, ...locationUrls, ...jobUrls];
 }

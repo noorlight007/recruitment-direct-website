@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, } from "lucide-react";
+import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, MapPin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
@@ -85,9 +85,43 @@ const clientSubmenu = [
   },
 ];
 
+const locationsSubmenu = [
+  {
+    title: "Scotland",
+    description: "Recruitment services across Scotland",
+    link: "/locations/scotland/",
+    icon: MapPin,
+  },
+  {
+    title: "England",
+    description: "Recruitment services across England",
+    link: "/locations/england/",
+    icon: MapPin,
+  },
+  {
+    title: "Wales",
+    description: "Recruitment services across Wales",
+    link: "/locations/wales/",
+    icon: MapPin,
+  },
+  {
+    title: "Northern Ireland",
+    description: "Recruitment services across Northern Ireland",
+    link: "/locations/northern-ireland/",
+    icon: MapPin,
+  },
+  {
+    title: "Republic of Ireland",
+    description: "Recruitment services across Republic of Ireland",
+    link: "/locations/republic-of-ireland/",
+    icon: MapPin,
+  },
+];
+
 const menuItems = [
   { label: "Home", href: "/" },
   { label: "Clients", href: "/#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
+  { label: "Locations", href: "/locations/", hasDropdown: true, dropdownItems: locationsSubmenu, columns: 1 },
   { label: "Job Search", href: "/job-search" },
   { label: "Sectors", href: "/#sectors" },
   { label: "AI Recruitment", href: "/#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
