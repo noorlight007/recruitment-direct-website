@@ -1260,22 +1260,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (isEmbed) {
-                    handleCityClick(office);
-                  } else {
-                    const cityData = getCityData(office.name);
-                    setSelectedOffice(office);
-                    setSelectedCityData(cityData);
-                    if (mapRef.current) {
-                      mapRef.current.flyTo({
-                        center: office.coords,
-                        zoom: 6.8,
-                        duration: 1000,
-                        pitch: 0,
-                        bearing: 0
-                      });
-                    }
-                  }
+                  router.push(office.url);
                 }}
               >
                 {/* City hub: Refined Champagne-Gold Node */}
@@ -1317,47 +1302,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             ))}
           </div>
 
-          {/* Premium Floating Info Card (shown when isEmbed is false on Locations page) */}
-          {!isEmbed && (
-            <div className="absolute bottom-6 left-4 right-4 lg:bottom-10 lg:left-1/2 lg:-translate-x-1/2 lg:w-[480px] z-20 bg-[#030c1b]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl transition-all duration-300">
-              {selectedOffice && selectedCityData ? (
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <h3 className="text-white text-xl font-bold tracking-wide flex items-center gap-2">
-                      {selectedCityData.city}
-                      <span className="text-xs font-semibold text-[#D4AF37] bg-[#D4AF37]/10 px-2.5 py-0.5 rounded-full">
-                        {selectedCityData.country}
-                      </span>
-                    </h3>
-                    <p className="text-white/70 text-xs mt-1.5 leading-relaxed line-clamp-2">
-                      {selectedCityData.metaDescription}
-                    </p>
-                  </div>
-                  <div className="flex gap-3">
-                    <Link
-                      href={`/job-search?q=${encodeURIComponent(selectedCityData.city)}`}
-                      className="flex-1 bg-gradient-to-r from-[#0A7CFF] to-[#2563EB] hover:from-[#2563EB] hover:to-[#0A7CFF] text-white text-xs font-bold py-3 px-4 rounded-xl text-center shadow-[0_4px_12px_rgba(10,124,255,0.3)] transition-all active:scale-[0.98] duration-200"
-                    >
-                      View Jobs
-                    </Link>
-                    <Link
-                      href={selectedCityData.path}
-                      className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold py-3 px-4 rounded-xl text-center transition-all active:scale-[0.98] duration-200"
-                    >
-                      View City Page
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <div className="text-center py-4 flex flex-col items-center justify-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse shadow-[0_0_8px_#D4AF37]" />
-                  <p className="text-white/60 text-sm font-medium tracking-wide text-center">
-                    Tap a city to explore recruitment services
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
+
 
           {/* Minimal Nationwide Recruitment CTA (Only on homepage or desktop locations view) */}
           {(isEmbed || !isEmbed) && (
