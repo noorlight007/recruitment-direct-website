@@ -377,6 +377,24 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
       return { start: startIdx, end: endIdx };
     }).filter(p => p.start !== undefined && p.end !== undefined);
 
+    // Background particles config
+    const particles: Array<{
+      x: number;
+      y: number;
+      size: number;
+      speed: number;
+      opacity: number;
+    }> = [];
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random(),
+        y: Math.random(),
+        size: 1 + Math.random(), // 1-2px
+        speed: 0.05 + Math.random() * 0.05,
+        opacity: 0.02 + Math.random() * 0.06, // max 0.08
+      });
+    }
+
     // Maintain city glow timers to briefly brighten a pin when a pulse passes through
     const cityGlows = new Float32Array(offices.length);
 
@@ -384,7 +402,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
     const primaryPulses: RouteTraveler[] = networkPaths.map((_, i) => ({
       currentPathIndex: i,
       progress: Math.random(),
-      speed: 0.009 + Math.random() * 0.006, // fast speed
+      speed: 0.015 + Math.random() * 0.010, // Fast speed
       size: 1.5
     }));
 
@@ -448,19 +466,18 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         }
       }
 
-      // Force the land tone to dark charcoal (never light grey), regardless of the default
-      // style's own landuse/background colouring, by recolouring any land-ish base layers.
+      // Force the land tone to #070707 and water to #031226
       if (allLayers) {
         allLayers.forEach((layer) => {
           try {
             if (layer.type === "background") {
-              map.setPaintProperty(layer.id, "background-color", "#141414");
+              map.setPaintProperty(layer.id, "background-color", "#070707");
             } else if (
               layer.type === "fill" &&
               /land|park/i.test(layer.id) &&
               !/water/i.test(layer.id)
             ) {
-              map.setPaintProperty(layer.id, "fill-color", "#161616");
+              map.setPaintProperty(layer.id, "fill-color", "#070707");
             }
           } catch (e) {
             // Ignore layers that don't support these paint properties
@@ -468,9 +485,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         });
       }
 
-      // Near-black water fill with a rich navy undertone (matches the reference image's ocean
-      // tone) — sits beneath the coastline shadow, and doubles as the land/water hit-test mask
-      // used when scattering the golden dust particles further down.
+      // Sea fill: #031226 at 0.90 opacity to blend with the container background navy gradient
       map.addLayer(
         {
           id: "water-fill",
@@ -478,97 +493,58 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "fill-color": "#020B1A", // Dark navy sea background
-            "fill-opacity": 0.96,
+            "fill-color": "#031226",
+            "fill-opacity": 0.90,
           },
         },
         firstLabelLayerId
       );
 
-      // Layered Electric Pearl-White Coastline & Sapphire Blue Sea Shadow:
-      // - Core edge: #F6F8FC (subtle refined pearl-white line, 2-3px)
-      // - Soft outer white glow: #F6F8FC at very low opacity
-      // - Deep sapphire-blue sea shadow/glow fading smoothly outwards.
-
-      // Layer 1: Deepest sapphire-blue sea shadow (120–160px at very low opacity)
+      // Coastline Outer Shadow: #1E6DFF, blur 40px, opacity 0.18
       map.addLayer(
         {
-          id: "coastline-glow-bloom",
+          id: "coastline-outer-shadow",
           type: "line",
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#078cff", // very deep sapphire shadow -> pure electric blue
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 120, 10, 160],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 90, 10, 120],
-            "line-opacity": 0.15,
+            "line-color": "#1E6DFF",
+            "line-width": 40,
+            "line-blur": 40,
+            "line-opacity": 0.18,
           },
         },
         firstLabelLayerId
       );
 
-      // Layer 2: Deep sapphire-blue outer sea shadow (60–90px)
+      // Coastline Outer Glow: #39B8FF, blur 10px, opacity 0.35
       map.addLayer(
         {
-          id: "coastline-glow-outer",
+          id: "coastline-outer-glow",
           type: "line",
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#078cff", // deep sapphire -> pure electric blue
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 60, 10, 90],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 45, 10, 70],
-            "line-opacity": 0.25,
-          },
-        },
-        firstLabelLayerId
-      );
-
-      // Layer 3: Mid sapphire-blue sea glow (reflected light on water) (25–35px)
-      map.addLayer(
-        {
-          id: "coastline-glow-mid",
-          type: "line",
-          source: "composite",
-          "source-layer": "water",
-          paint: {
-            "line-color": "#168fff", // vivid sapphire -> pure electric blue
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 25, 10, 35],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 18, 10, 28],
+            "line-color": "#39B8FF",
+            "line-width": 10,
+            "line-blur": 10,
             "line-opacity": 0.35,
           },
         },
         firstLabelLayerId
       );
 
-      // Layer 4: Soft outer white glow (8–12px)
+      // Coastline Core Line: #FFFFFF, width 1.6px
       map.addLayer(
         {
-          id: "coastline-glow-inner",
+          id: "coastline-core",
           type: "line",
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#ffffff", // pearl-white soft glow -> white glow
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 8, 10, 12],
-            "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 9],
-            "line-opacity": 0.45,
-          },
-        },
-        firstLabelLayerId
-      );
-
-      // Layer 5: Core edge (subtle refined pearl-white line)
-      map.addLayer(
-        {
-          id: "coastline-glow-core",
-          type: "line",
-          source: "composite",
-          "source-layer": "water",
-          paint: {
-            "line-color": "#ffffff", // pearl-white core -> solid white core
-            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.2, 10, 2.2], // refined thin line
-            "line-opacity": 0.95, // crisp white line
+            "line-color": "#FFFFFF",
+            "line-width": 1.6,
+            "line-opacity": 1.0,
           },
         },
         firstLabelLayerId
@@ -634,27 +610,29 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
       const now = Date.now();
       const nowSec = now / 1000;
 
-      // B. Shimmer Coastline Glow Opacity (subtle 2–3s shimmer/breathing travelling around the coastline)
-      const bloomShimmer = Math.sin(nowSec * (2 * Math.PI / 3.0));
-      const outerShimmer = Math.sin(nowSec * (2 * Math.PI / 2.5) + 1.0);
-      const midShimmer = Math.sin(nowSec * (2 * Math.PI / 2.2) + 2.0);
-      const innerShimmer = Math.sin(nowSec * (2 * Math.PI / 2.0) + 3.0);
-      const coreShimmer = Math.sin(nowSec * (2 * Math.PI / 2.8) + 0.5);
+      // Draw background particles
+      ctx.fillStyle = "#6EC1FF";
+      particles.forEach((p) => {
+        // Slow float upwards
+        p.y -= p.speed * 0.003;
+        if (p.y < 0) p.y = 1;
+        ctx.globalAlpha = p.opacity;
+        ctx.beginPath();
+        ctx.arc(p.x * width, p.y * height, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1.0; // reset
 
-      if (map.getLayer("coastline-glow-bloom")) {
-        map.setPaintProperty("coastline-glow-bloom", "line-opacity", 0.15 + bloomShimmer * 0.02);
+      // B. Shimmer Coastline Glow Opacity very subtly every 4 seconds
+      const shimmerVal = Math.sin(nowSec * (2 * Math.PI / 4.0));
+      if (map.getLayer("coastline-outer-shadow")) {
+        map.setPaintProperty("coastline-outer-shadow", "line-opacity", 0.18 + shimmerVal * 0.02);
       }
-      if (map.getLayer("coastline-glow-outer")) {
-        map.setPaintProperty("coastline-glow-outer", "line-opacity", 0.25 + outerShimmer * 0.04);
+      if (map.getLayer("coastline-outer-glow")) {
+        map.setPaintProperty("coastline-outer-glow", "line-opacity", 0.35 + shimmerVal * 0.04);
       }
-      if (map.getLayer("coastline-glow-mid")) {
-        map.setPaintProperty("coastline-glow-mid", "line-opacity", 0.35 + midShimmer * 0.06);
-      }
-      if (map.getLayer("coastline-glow-inner")) {
-        map.setPaintProperty("coastline-glow-inner", "line-opacity", 0.45 + innerShimmer * 0.05);
-      }
-      if (map.getLayer("coastline-glow-core")) {
-        map.setPaintProperty("coastline-glow-core", "line-opacity", 0.95 + coreShimmer * 0.08);
+      if (map.getLayer("coastline-core")) {
+        map.setPaintProperty("coastline-core", "line-opacity", 0.95 + shimmerVal * 0.05);
       }
 
       // B.5 Decay city glow states
@@ -690,7 +668,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         }
       });
 
-      // D. Draw permanent fine white route lines with subtle AI-blue shadow
+      // D. Draw permanent fine white route lines with subtle blue shadow
       networkPaths.forEach((path) => {
         try {
           const ptStart = mapRef.current!.project(offices[path.start].coords);
@@ -699,10 +677,10 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           ctx.beginPath();
           ctx.moveTo(ptStart.x, ptStart.y);
           ctx.lineTo(ptEnd.x, ptEnd.y);
-          ctx.strokeStyle = "rgba(255, 255, 255, 0.24)";
-          ctx.lineWidth = 1.0;
-          ctx.shadowColor = "rgba(7, 140, 255, 0.4)";
-          ctx.shadowBlur = 5;
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.28)"; // Opacity 0.28
+          ctx.lineWidth = 1.0; // Width 1px
+          ctx.shadowColor = "rgba(56, 189, 248, 0.35)"; // Blue shadow
+          ctx.shadowBlur = 4; // Blur 4px
           ctx.stroke();
           ctx.shadowBlur = 0; // reset shadow
         } catch (e) {
@@ -717,40 +695,44 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           traveler.progress = 0;
           const arrivedPath = networkPaths[traveler.currentPathIndex];
           cityGlows[arrivedPath.end] = 1.0; // Trigger hub bloom
-          traveler.speed = 0.009 + Math.random() * 0.006; // Randomize next hop speed
+          traveler.speed = 0.015 + Math.random() * 0.010; // Randomize next hop speed (Fast)
         }
 
         const path = networkPaths[traveler.currentPathIndex];
         const start = offices[path.start].coords;
         const end = offices[path.end].coords;
 
-        // Streak segment from progress - tailLength to progress
-        const tailLength = 0.18;
-        const tailProgress = Math.max(0, traveler.progress - tailLength);
-
-        const headLng = start[0] + (end[0] - start[0]) * traveler.progress;
-        const headLat = start[1] + (end[1] - start[1]) * traveler.progress;
-
-        const tailLng = start[0] + (end[0] - start[0]) * tailProgress;
-        const tailLat = start[1] + (end[1] - start[1]) * tailProgress;
-
         try {
-          const ptHead = mapRef.current!.project([headLng, headLat]);
-          const ptTail = mapRef.current!.project([tailLng, tailLat]);
+          const ptStart = mapRef.current!.project(start);
+          const ptEnd = mapRef.current!.project(end);
+
+          const dx = ptEnd.x - ptStart.x;
+          const dy = ptEnd.y - ptStart.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          // tail length in progress units (14px tail)
+          const tailProg = dist > 0 ? (14 / dist) : 0.1;
+          const tailProgress = Math.max(0, traveler.progress - tailProg);
+
+          const headX = ptStart.x + dx * traveler.progress;
+          const headY = ptStart.y + dy * traveler.progress;
+
+          const tailX = ptStart.x + dx * tailProgress;
+          const tailY = ptStart.y + dy * tailProgress;
 
           ctx.beginPath();
-          ctx.moveTo(ptTail.x, ptTail.y);
-          ctx.lineTo(ptHead.x, ptHead.y);
+          ctx.moveTo(tailX, tailY);
+          ctx.lineTo(headX, headY);
 
           // Draw comets with gradient fading backwards
-          const grad = ctx.createLinearGradient(ptTail.x, ptTail.y, ptHead.x, ptHead.y);
+          const grad = ctx.createLinearGradient(tailX, tailY, headX, headY);
           grad.addColorStop(0, "rgba(255, 255, 255, 0)");
-          grad.addColorStop(1, "rgba(255, 255, 255, 0.95)");
+          grad.addColorStop(1, "rgba(255, 255, 255, 1.0)"); // White packets only
 
           ctx.strokeStyle = grad;
-          ctx.lineWidth = 1.6;
+          ctx.lineWidth = 2.0; // Width 2px
           ctx.shadowColor = "#ffffff";
-          ctx.shadowBlur = 6;
+          ctx.shadowBlur = 5; // Blur 5px
           ctx.stroke();
           ctx.shadowBlur = 0; // reset shadow
         } catch (e) {
@@ -809,8 +791,8 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             width: 100%;
             min-height: 800px;
             overflow: hidden;
-            background: linear-gradient(180deg, #030303 0%, #030303 80%, #08152c 100%); /* 80% matte black to 20% deep navy-blue */
-            padding: 100px 24px; /* Spacious vertical padding for premium breathing room */
+            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
+            padding: 100px 24px;
           }
 
           /* Dedicated Locations Full Page Wrapper */
@@ -819,7 +801,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             width: 100%;
             height: calc(100vh - 56px); /* minus top bar on mobile */
             overflow: hidden;
-            background: #020B1A;
+            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
           }
 
           @media (min-width: 992px) {
@@ -827,7 +809,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               height: auto;
               min-height: 850px;
               padding: 60px 24px 100px;
-              background: linear-gradient(180deg, #030303 0%, #030303 80%, #08152c 100%);
+              background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
             }
           }
 
@@ -838,7 +820,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             border-radius: 0;
             box-shadow: none;
             animation: none;
-            background: #020B1A;
+            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
           }
 
           @media (min-width: 992px) {
@@ -847,7 +829,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               border-radius: 24px;
               box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(0, 175, 255, 0.18);
               animation: floatMap 12s ease-in-out infinite;
-              background: #050505;
+              background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
             }
           }
 
@@ -879,8 +861,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           .background-gradient {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top, rgba(0, 95, 255, 0.08), transparent 60%),
-                        radial-gradient(circle at bottom, rgba(0, 65, 180, 0.10), transparent 65%);
+            background: radial-gradient(circle at center, rgba(20, 120, 255, 0.10) 0%, transparent 60%);
             pointer-events: none;
             z-index: 1;
           }
@@ -902,7 +883,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), /* Deeper shadow for borderless blend */
                         0 0 45px rgba(0, 175, 255, 0.18); /* Rich electric blue outer glow */
             animation: floatMap 12s ease-in-out infinite;
-            background: #050505; /* Matches deep black background of the section */
+            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
           }
 
           #map {
@@ -917,55 +898,40 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             100% { transform: translateY(0px); }
           }
 
-          /* Refined Gold City Nodes */
-          :root {
-            --rd-gold: #d8b45b;
-            --rd-gold-light: #ffe5a2;
-            --rd-gold-dark: #9b7428;
-          }
-
+          /* Premium Gold City Nodes */
           .rd-city-node {
             display: block;
             width: 38px;
             height: 38px;
             overflow: visible;
+            transform-origin: center;
+            animation: rd-gold-pulse 4.5s ease-in-out infinite;
           }
 
           .rd-city-node__outer {
-            fill: rgba(216, 180, 91, 0.11);
-            stroke: rgba(216, 180, 91, 0.56);
-            stroke-width: 1.5px;
-            filter: url("#rd-gold-node-glow");
-            transform-origin: center;
-            animation: rd-gold-breathe 3.4s ease-in-out infinite;
+            fill: rgba(212, 175, 55, 0.35);
+            filter: blur(6px); /* 12px blur diameter */
           }
 
           .rd-city-node__ring {
-            fill: rgba(3, 12, 26, 0.9);
-            stroke: var(--rd-gold);
-            stroke-width: 2.2px;
-            filter: url("#rd-gold-ring-glow");
+            fill: none;
+            stroke: url(#metallic-gold-grad);
+            stroke-width: 1.5px;
           }
 
           .rd-city-node__centre {
-            fill: var(--rd-gold-light);
-            stroke: #ffffff;
-            stroke-width: 1px;
-            filter: url("#rd-gold-centre-glow");
+            fill: #ffffff;
           }
 
-          @keyframes rd-gold-breathe {
+          @keyframes rd-gold-pulse {
             0% {
-              transform: scale(0.92);
-              opacity: 0.85;
+              transform: scale(1.00);
             }
             50% {
-              transform: scale(1.08);
-              opacity: 1.0;
+              transform: scale(1.10);
             }
             100% {
-              transform: scale(0.92);
-              opacity: 0.85;
+              transform: scale(1.00);
             }
           }
 
@@ -1002,20 +968,21 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           }
 
           .nationwide-divider {
-            width: 64px;
+            width: 180px;
             height: 1px;
             margin: 0 auto;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7), transparent);
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
           }
 
           .nationwide-heading {
             display: block;
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 11px;
+            font-weight: 600;
             color: #D4AF37;
-            letter-spacing: 0.35em;
+            letter-spacing: 0.40em;
             text-transform: uppercase;
             margin: 18px 0 10px;
+            font-family: var(--font-sans), Inter, sans-serif;
           }
 
           .nationwide-phone {
@@ -1256,18 +1223,11 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
 
       <svg className="absolute hidden" width="0" height="0">
         <defs>
-          <filter id="rd-gold-node-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3.5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="rd-gold-ring-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
-          <filter id="rd-gold-centre-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="1.0" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
+          <linearGradient id="metallic-gold-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#FFF2BF" stopOpacity="1" />
+            <stop offset="50%" stopColor="#D4AF37" stopOpacity="1" />
+            <stop offset="100%" stopColor="#8E6A16" stopOpacity="1" />
+          </linearGradient>
         </defs>
       </svg>
 
@@ -1352,9 +1312,9 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               >
                 {/* City hub: Refined Champagne-Gold Node */}
                 <svg width="38" height="38" viewBox="0 0 38 38" className="rd-city-node relative select-none pointer-events-none" style={{ transition: "transform 0.15s ease-out" }}>
-                  <circle className="rd-city-node__outer" cx="19" cy="19" r="14" />
-                  <circle className="rd-city-node__ring" cx="19" cy="19" r="7.2" />
-                  <circle className="rd-city-node__centre" cx="19" cy="19" r="3.0" />
+                  <circle className="rd-city-node__outer" cx="19" cy="19" r="12" />
+                  <circle className="rd-city-node__ring" cx="19" cy="19" r="7" />
+                  <circle className="rd-city-node__centre" cx="19" cy="19" r="3.5" />
                 </svg>
                 
                 {/* Premium Floating Tooltip on Hover */}
