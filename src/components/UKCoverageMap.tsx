@@ -20,7 +20,13 @@ interface OfficeLocation {
   labelPos: "left" | "right";
 }
 
-// Configurable office locations
+// ======================================================
+// FLAGSHIP MAP LOCATIONS (12 ONLY)
+// SEO pages for Liverpool, Sheffield, Nottingham,
+// Leicester and Bristol remain live but are NOT shown
+// on the homepage map.
+// ======================================================
+
 const offices: OfficeLocation[] = [
   {
     name: "London",
@@ -92,36 +98,6 @@ const offices: OfficeLocation[] = [
     name: "Dublin",
     coords: [-6.2603, 53.3498],
     url: "/locations/ireland/dublin",
-    labelPos: "left",
-  },
-  {
-    name: "Liverpool",
-    coords: [-2.9916, 53.4084],
-    url: "/locations/england/liverpool",
-    labelPos: "left",
-  },
-  {
-    name: "Sheffield",
-    coords: [-1.4701, 53.3811],
-    url: "/locations/england/sheffield",
-    labelPos: "right",
-  },
-  {
-    name: "Nottingham",
-    coords: [-1.1581, 52.9548],
-    url: "/locations/england/nottingham",
-    labelPos: "right",
-  },
-  {
-    name: "Leicester",
-    coords: [-1.1398, 52.6369],
-    url: "/locations/england/leicester",
-    labelPos: "left",
-  },
-  {
-    name: "Bristol",
-    coords: [-2.5879, 51.4545],
-    url: "/locations/england/bristol",
     labelPos: "left",
   },
 ];
@@ -353,16 +329,8 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
       { start: "Edinburgh", end: "Newcastle" },
       { start: "Newcastle", end: "Leeds" },
       { start: "Leeds", end: "Manchester" },
-      { start: "Leeds", end: "Sheffield" },
-      { start: "Manchester", end: "Liverpool" },
       { start: "Manchester", end: "Birmingham" },
-      { start: "Sheffield", end: "Nottingham" },
-      { start: "Nottingham", end: "Leicester" },
-      { start: "Birmingham", end: "Leicester" },
-      { start: "Birmingham", end: "Bristol" },
       { start: "Birmingham", end: "London" },
-      { start: "Bristol", end: "Cardiff" },
-      { start: "Bristol", end: "London" },
       { start: "Cardiff", end: "London" },
       { start: "Glasgow", end: "Belfast" },
       { start: "Belfast", end: "Dublin" },
