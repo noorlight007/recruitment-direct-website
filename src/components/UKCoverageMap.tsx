@@ -1286,7 +1286,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
 
                 {/* Permanent City Label */}
                 <span 
-                  className={`absolute font-bold text-white text-[12px] tracking-wide pointer-events-none select-none city-label-text ${office.labelPos === "left" ? "label-left" : "label-right"}`}
+                  className={`absolute font-bold text-white text-[12px] tracking-wide cursor-pointer pointer-events-auto select-text city-label-text ${office.labelPos === "left" ? "label-left" : "label-right"}`}
                   style={{
                     fontFamily: "var(--font-sans), Inter, sans-serif",
                     textShadow: "0 2px 4px rgba(0,0,0,1), 0 0 4px rgba(0,0,0,1)",
