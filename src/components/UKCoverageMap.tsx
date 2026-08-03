@@ -1312,6 +1312,11 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               <a href="tel:03450678022" className="nationwide-phone">
                 0345 067 8022
               </a>
+              <div className="mt-4 mb-4">
+                <Link href="/locations/falkirk" className="text-[#D4AF37] hover:underline font-bold text-sm tracking-wider uppercase">
+                  Recruitment Agency Falkirk
+                </Link>
+              </div>
               <div className="nationwide-divider" />
             </div>
           )}

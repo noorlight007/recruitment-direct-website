@@ -60,7 +60,7 @@ export default function LogisticsSectorPage() {
               Whether you need drivers for muck shifting, concrete delivery, plant transport, or site logistics, Recruitment Direct ensures fully checked drivers are ready to start without delay.
             </p>
             <p>
-              We supply construction drivers across Glasgow, Edinburgh, Falkirk, Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, and throughout Scotland and the UK.
+              We supply construction drivers across Glasgow, Edinburgh, Falkirk (see our dedicated <a href="/locations/falkirk" className="text-blue-600 hover:underline">Recruitment Agency Falkirk</a> page), Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, and throughout Scotland and the UK.
             </p>
 
             <a href="/contact" className="btn btn-primary">

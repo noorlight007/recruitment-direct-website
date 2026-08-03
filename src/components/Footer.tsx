@@ -822,6 +822,7 @@ export default function Footer() {
                     <a href="/why-choose-us">Why RDUK</a>
                     <a href="/our-process">Our Process</a>
                     <a href="/contact">Contact Us</a>
+                    <a href="/locations/falkirk">Recruitment Agency Falkirk</a>
                   </div>
 
                   <div className="footer-col">

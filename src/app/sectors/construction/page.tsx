@@ -27,7 +27,7 @@ export default function ConstructionSectorPage() {
                             Construction
                         </h1>
                         <p className="subtitle max-w-[920px] mx-auto font-normal text-[#475569]">
-                            Reliable, consultant-verified construction labour supplied across Glasgow, Edinburgh, Falkirk, Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, throughout Scotland, and across the UK.
+                            Reliable, consultant-verified construction labour supplied across Glasgow, Edinburgh, Falkirk (see our dedicated <Link href="/locations/falkirk" className="text-blue-600 hover:underline">Recruitment Agency Falkirk</Link> page), Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, throughout Scotland, and across the UK.
                         </p>
                     </motion.div>
 

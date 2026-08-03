@@ -533,13 +533,16 @@ export default function EngineeringAgencyPage() {
 
             {/* Related Sector Agencies widget for contextual internal link building */}
             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-              <h3 className="text-slate-800 text-lg font-bold mb-4">Related Sector Agencies</h3>
+              <h3 className="text-slate-800 text-lg font-bold mb-4">Related Sector Agencies & Locations</h3>
               <div className="space-y-3 text-sm">
                 <Link href="/construction-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Construction Recruitment
                 </Link>
                 <Link href="/renewable-energy-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Renewable Energy Recruitment
+                </Link>
+                <Link href="/locations/falkirk" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                  → Recruitment Agency Falkirk
                 </Link>
                 <Link href="/" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Home
