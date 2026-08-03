@@ -94,6 +94,36 @@ const offices: OfficeLocation[] = [
     url: "/locations/ireland/dublin",
     labelPos: "left",
   },
+  {
+    name: "Liverpool",
+    coords: [-2.9916, 53.4084],
+    url: "/locations/england/liverpool",
+    labelPos: "left",
+  },
+  {
+    name: "Sheffield",
+    coords: [-1.4701, 53.3811],
+    url: "/locations/england/sheffield",
+    labelPos: "right",
+  },
+  {
+    name: "Nottingham",
+    coords: [-1.1581, 52.9548],
+    url: "/locations/england/nottingham",
+    labelPos: "right",
+  },
+  {
+    name: "Leicester",
+    coords: [-1.1398, 52.6369],
+    url: "/locations/england/leicester",
+    labelPos: "left",
+  },
+  {
+    name: "Bristol",
+    coords: [-2.5879, 51.4545],
+    url: "/locations/england/bristol",
+    labelPos: "left",
+  },
 ];
 
 // Helper to format the tooltip name
@@ -309,201 +339,54 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
       size: number;
     }
 
-    // Connect sequentially in a loop: London → Cardiff → Birmingham → Manchester → Leeds → Newcastle → Edinburgh → Glasgow → Inverness → Aberdeen → Edinburgh → Glasgow → Belfast → Dublin → Cardiff → London
-    const networkPaths = [
-      { start: 0, end: 1 }, // London -> Cardiff
-      { start: 1, end: 2 }, // Cardiff -> Birmingham
-      { start: 2, end: 3 }, // Birmingham -> Manchester
-      { start: 3, end: 4 }, // Manchester -> Leeds
-      { start: 4, end: 5 }, // Leeds -> Newcastle
-      { start: 5, end: 6 }, // Newcastle -> Edinburgh (HO)
-      { start: 6, end: 7 }, // Edinburgh (HO) -> Glasgow
-      { start: 7, end: 8 }, // Glasgow -> Inverness
-      { start: 8, end: 9 }, // Inverness -> Aberdeen
-      { start: 9, end: 6 }, // Aberdeen -> Edinburgh (HO)
-      { start: 6, end: 7 }, // Edinburgh -> Glasgow
-      { start: 7, end: 10 }, // Glasgow -> Belfast
-      { start: 10, end: 11 }, // Belfast -> Dublin
-      { start: 11, end: 1 }, // Dublin -> Cardiff
-      { start: 1, end: 0 }, // Cardiff -> London
+    const cityIndexMap: Record<string, number> = {};
+    offices.forEach((office, idx) => {
+      const cleanName = office.name.replace(" (HO)", "").replace(" (Head Office)", "").trim();
+      cityIndexMap[cleanName] = idx;
+    });
+
+    const networkRouteNames = [
+      { start: "Inverness", end: "Aberdeen" },
+      { start: "Inverness", end: "Glasgow" },
+      { start: "Aberdeen", end: "Edinburgh" },
+      { start: "Glasgow", end: "Edinburgh" },
+      { start: "Edinburgh", end: "Newcastle" },
+      { start: "Newcastle", end: "Leeds" },
+      { start: "Leeds", end: "Manchester" },
+      { start: "Leeds", end: "Sheffield" },
+      { start: "Manchester", end: "Liverpool" },
+      { start: "Manchester", end: "Birmingham" },
+      { start: "Sheffield", end: "Nottingham" },
+      { start: "Nottingham", end: "Leicester" },
+      { start: "Birmingham", end: "Leicester" },
+      { start: "Birmingham", end: "Bristol" },
+      { start: "Birmingham", end: "London" },
+      { start: "Bristol", end: "Cardiff" },
+      { start: "Bristol", end: "London" },
+      { start: "Cardiff", end: "London" },
+      { start: "Glasgow", end: "Belfast" },
+      { start: "Belfast", end: "Dublin" },
+      { start: "Belfast", end: "Manchester" },
+      { start: "Dublin", end: "Manchester" },
+      { start: "Dublin", end: "Cardiff" }
     ];
 
-    interface MicroPulse extends RouteTraveler {
-      baseAlpha: number;
-    }
-
-    // Primary white light pulses — fast, continuous, varying speeds (~1.0-2.0s per city-to-city
-    // hop) so several are always visible travelling the network at once (fibre-optic effect).
-    const primaryPulses: RouteTraveler[] = [
-      { currentPathIndex: 0, progress: 0.0, speed: 0.0167, size: 1.8 }, // ~1.0s/hop
-      { currentPathIndex: 2, progress: 0.5, speed: 0.0119, size: 1.8 }, // ~1.4s/hop
-      { currentPathIndex: 5, progress: 0.2, speed: 0.0093, size: 1.8 }, // ~1.8s/hop
-      { currentPathIndex: 7, progress: 0.8, speed: 0.0139, size: 1.8 }, // ~1.2s/hop
-      { currentPathIndex: 10, progress: 0.35, speed: 0.0104, size: 1.8 }, // ~1.6s/hop
-      { currentPathIndex: 13, progress: 0.65, speed: 0.0083, size: 1.8 }, // ~2.0s/hop
-    ];
-
-    // Secondary gold micro-pulses — small, dim, continuous ambient traffic on every route
-    // segment (no city bursts) so the whole network feels permanently, quietly alive.
-    const microPulses: MicroPulse[] = networkPaths.map((_, i) => ({
-      currentPathIndex: i,
-      progress: (i * 0.37) % 1,
-      speed: 0.0104 + (i % 5) * 0.0016,
-      size: 0.8 + (i % 3) * 0.15,
-      baseAlpha: 0.12 + (i % 4) * 0.04,
-    }));
+    const networkPaths = networkRouteNames.map(route => {
+      const startIdx = cityIndexMap[route.start];
+      const endIdx = cityIndexMap[route.end];
+      return { start: startIdx, end: endIdx };
+    }).filter(p => p.start !== undefined && p.end !== undefined);
 
     // Maintain city glow timers to briefly brighten a pin when a pulse passes through
     const cityGlows = new Float32Array(offices.length);
 
-    // Brief gold "electrical burst" animations fired when a primary white pulse reaches a hub
-    interface HubBurst {
-      officeIdx: number;
-      startTime: number;
-      duration: number; // ms (~0.2s - 0.4s)
-      angles: number[];
-    }
-    const hubBursts: HubBurst[] = [];
-
-    // Detect lower-powered devices (few CPU cores and/or a small mobile viewport) so the
-    // nationwide network can automatically scale down its node/mesh/tail complexity.
-    const isLowPowerDevice =
-      (typeof navigator !== "undefined" && !!navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
-      (typeof window !== "undefined" && window.innerWidth < 480);
-
-    // 5.5 Nationwide Gold Network Nodes (hundreds of subtle, low-brightness gold nodes spread
-    // across the whole UK/Ireland landmass, not just the named cities) plus an ultra-thin white
-    // nearest-neighbour mesh connecting them, so the network reads as one dense, live system.
-    interface DustParticle {
-      lng: number;
-      lat: number;
-      radius: number;
-      baseAlpha: number;
-      twinkleSpeed: number;
-      twinklePhase: number;
-      warmth: number; // 0 = deep amber, 1 = pale warm gold
-    }
-
-    const DUST_TARGET_COUNT = isLowPowerDevice ? 320 : 750; // "Increase the density of the small gold lights throughout the UK and Ireland"
-    const DUST_MAX_ATTEMPTS = 9000;
-    const MESH_NEIGHBOURS = isLowPowerDevice ? 1 : 2;
-    let dustParticles: DustParticle[] = [];
-    interface MeshLine {
-      lng1: number;
-      lat1: number;
-      lng2: number;
-      lat2: number;
-      x1?: number;
-      y1?: number;
-      x2?: number;
-      y2?: number;
-    }
-    let meshLines: MeshLine[] = [];
-
-    // Scatter candidate screen points, keep only the ones that land on the UK/Ireland
-    // landmass (i.e. NOT on the "water-fill" layer) using Mapbox's own vector
-    // tile data, so every node is strictly clipped to the map's outline. Then connect each
-    // node to its nearest neighbour(s) to build a lightweight, organic-looking mesh.
-    const generateDustParticles = () => {
-      const width = mapContainerRef.current?.clientWidth || 0;
-      const height = mapContainerRef.current?.clientHeight || 0;
-      if (!width || !height || !map.getLayer("water-fill")) return;
-
-      const generated: DustParticle[] = [];
-      let attempts = 0;
-
-      while (generated.length < DUST_TARGET_COUNT && attempts < DUST_MAX_ATTEMPTS) {
-        attempts++;
-        const px = Math.random() * width;
-        const py = Math.random() * height;
-
-        let onWater = true;
-        try {
-          const hits = map.queryRenderedFeatures([px, py], { layers: ["water-fill"] });
-          onWater = hits.length > 0;
-        } catch (e) {
-          onWater = true;
-        }
-        if (onWater) continue;
-
-        try {
-          const lngLat = map.unproject([px, py]);
-          generated.push({
-            lng: lngLat.lng,
-            lat: lngLat.lat,
-            radius: 0.9 + Math.random() * 1.7,
-            baseAlpha: 0.14 + Math.random() * 0.4,
-            twinkleSpeed: 0.35 + Math.random() * 1.1,
-            twinklePhase: Math.random() * Math.PI * 2,
-            warmth: Math.random(),
-          });
-        } catch (e) {
-          // Ignore unprojectable points
-        }
-      }
-
-      dustParticles = generated;
-
-      // Build a nearest-neighbour mesh (once, at generation time — cheap even at O(n^2) for
-      // a few hundred nodes) so the nodes read as one connected nationwide network.
-      const lines: MeshLine[] = [];
-      const connected = new Set<string>();
-      for (let i = 0; i < generated.length; i++) {
-        const bestIdx: number[] = [];
-        const bestDist: number[] = [];
-        for (let j = 0; j < generated.length; j++) {
-          if (i === j) continue;
-          const dx = generated[i].lng - generated[j].lng;
-          const dy = generated[i].lat - generated[j].lat;
-          const d = dx * dx + dy * dy;
-          if (bestIdx.length < MESH_NEIGHBOURS) {
-            bestIdx.push(j);
-            bestDist.push(d);
-          } else {
-            let worst = 0;
-            for (let k = 1; k < bestDist.length; k++) {
-              if (bestDist[k] > bestDist[worst]) worst = k;
-            }
-            if (d < bestDist[worst]) {
-              bestIdx[worst] = j;
-              bestDist[worst] = d;
-            }
-          }
-        }
-        bestIdx.forEach((j) => {
-          const key = i < j ? `${i}-${j}` : `${j}-${i}`;
-          if (!connected.has(key)) {
-            connected.add(key);
-            lines.push({
-              lng1: generated[i].lng,
-              lat1: generated[i].lat,
-              lng2: generated[j].lng,
-              lat2: generated[j].lat,
-            });
-          }
-        });
-      }
-      meshLines = lines;
-    };
-
-    // Pre-render a soft radial glow sprite once; drawing it via drawImage for every particle
-    // is far cheaper per-frame than recomputing a gradient or using shadowBlur thousands of times.
-    const dustSpriteSize = 30;
-    const dustSprite = document.createElement("canvas");
-    dustSprite.width = dustSpriteSize;
-    dustSprite.height = dustSpriteSize;
-    const spriteCtx = dustSprite.getContext("2d");
-    if (spriteCtx) {
-      const grad = spriteCtx.createRadialGradient(
-        dustSpriteSize / 2, dustSpriteSize / 2, 0,
-        dustSpriteSize / 2, dustSpriteSize / 2, dustSpriteSize / 2
-      );
-      grad.addColorStop(0, "rgba(255, 246, 220, 1)");
-      grad.addColorStop(0.35, "rgba(255, 199, 110, 0.75)");
-      grad.addColorStop(1, "rgba(255, 176, 60, 0)");
-      spriteCtx.fillStyle = grad;
-      spriteCtx.fillRect(0, 0, dustSpriteSize, dustSpriteSize);
-    }
+    // Primary white light pulses — fast, continuous, varying speeds, staggered starting positions
+    const primaryPulses: RouteTraveler[] = networkPaths.map((_, i) => ({
+      currentPathIndex: i,
+      progress: Math.random(),
+      speed: 0.009 + Math.random() * 0.006, // fast speed
+      size: 1.5
+    }));
 
     let animationFrameId: number;
     const cameraStartTime = Date.now();
@@ -615,10 +498,10 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#000a26", // very deep sapphire shadow
+            "line-color": "#078cff", // very deep sapphire shadow -> pure electric blue
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 120, 10, 160],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 90, 10, 120],
-            "line-opacity": 0.10,
+            "line-opacity": 0.15,
           },
         },
         firstLabelLayerId
@@ -632,10 +515,10 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#082260", // deep sapphire
+            "line-color": "#078cff", // deep sapphire -> pure electric blue
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 60, 10, 90],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 45, 10, 70],
-            "line-opacity": 0.18,
+            "line-opacity": 0.25,
           },
         },
         firstLabelLayerId
@@ -649,10 +532,10 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#0b3c95", // vivid sapphire
+            "line-color": "#168fff", // vivid sapphire -> pure electric blue
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 25, 10, 35],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 18, 10, 28],
-            "line-opacity": 0.28,
+            "line-opacity": 0.35,
           },
         },
         firstLabelLayerId
@@ -666,10 +549,10 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#F6F8FC", // pearl-white soft glow
+            "line-color": "#ffffff", // pearl-white soft glow -> white glow
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 8, 10, 12],
             "line-blur": ["interpolate", ["linear"], ["zoom"], 4, 6, 10, 9],
-            "line-opacity": 0.24,
+            "line-opacity": 0.45,
           },
         },
         firstLabelLayerId
@@ -683,83 +566,15 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#F6F8FC", // pearl-white core
+            "line-color": "#ffffff", // pearl-white core -> solid white core
             "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.2, 10, 2.2], // refined thin line
-            "line-opacity": 0.65, // less bright than gold hubs
+            "line-opacity": 0.95, // crisp white line
           },
         },
         firstLabelLayerId
       );
-
-      // Connect every office with white coverage lines
-      map.addSource("coverage-network", {
-        type: "geojson",
-        data: {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "LineString",
-            coordinates: [
-              offices[0].coords, // London
-              offices[1].coords, // Cardiff
-              offices[2].coords, // Birmingham
-              offices[3].coords, // Manchester
-              offices[4].coords, // Leeds
-              offices[5].coords, // Newcastle
-              offices[6].coords, // Edinburgh (HO)
-              offices[7].coords, // Glasgow
-              offices[8].coords, // Inverness
-              offices[9].coords, // Aberdeen
-              offices[6].coords, // Edinburgh (HO)
-              offices[7].coords, // Glasgow
-              offices[10].coords, // Belfast
-              offices[11].coords, // Dublin
-              offices[1].coords, // Cardiff
-              offices[0].coords, // London
-            ],
-          },
-        },
-      });
-
-      // Soft cool-white ambient backdrop beneath connection lines (subtle, not gold — gold is
-      // now reserved for the travelling burst/micro-pulse effects)
-      map.addLayer(
-        {
-          id: "network-glow",
-          type: "line",
-          source: "coverage-network",
-          paint: {
-            "line-color": "#BFE9FF",
-            "line-width": 3.5,
-            "line-blur": 4,
-            "line-opacity": 0.07,
-          },
-        },
-        firstLabelLayerId
-      );
-
-      // Thin, understated white coverage lines between the named hubs. Kept deliberately
-      // restrained — movement/impact comes entirely from the travelling light pulses, never
-      // from flashing or thickening these base lines.
-      map.addLayer(
-        {
-          id: "network-line",
-          type: "line",
-          source: "coverage-network",
-          paint: {
-            "line-color": "#F2F6FF",
-            "line-width": 1,
-            "line-opacity": 0.32,
-          },
-        },
-        firstLabelLayerId
-      );
-
       // Start animations
       tick();
-
-      // Give the vector tiles a moment to finish loading before hit-testing for land vs. water
-      setTimeout(generateDustParticles, 900);
     });
 
     // 8. Animation Loop (Traveling light packets, camera drift)
@@ -809,117 +624,6 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         lastCameraState = { zoom, lng: center.lng, lat: center.lat };
       }
 
-      // Trigger wave of gold energy spreading outward from cities
-      const now = Date.now();
-      if (now - lastWaveTriggerTime > waveInterval) {
-        lastWaveTriggerTime = now;
-        activeWaves.push({
-          cityIdx: nextCityWaveIdx,
-          startTime: now,
-          duration: 3800, // 3.8 seconds for smooth premium wavefront travel
-          maxRadius: Math.max(width, height) * 0.75, // travels across the country
-        });
-        nextCityWaveIdx = (nextCityWaveIdx + 1) % offices.length;
-      }
-
-      // Clean up finished waves
-      for (let i = activeWaves.length - 1; i >= 0; i--) {
-        if (now - activeWaves[i].startTime > activeWaves[i].duration) {
-          activeWaves.splice(i, 1);
-        }
-      }
-
-      // Project wave origins on screen once per frame
-      const waveScreenOrigins = activeWaves.map(wave => {
-        try {
-          const pt = mapRef.current!.project(offices[wave.cityIdx].coords);
-          return { x: pt.x, y: pt.y, wave };
-        } catch (e) {
-          return null;
-        }
-      }).filter(Boolean) as { x: number, y: number, wave: ActiveWave }[];
-
-      // A.-2 Ultra-thin white nationwide mesh connecting the gold network nodes (drawn first,
-      // underneath the nodes themselves, so it reads as wiring beneath the lights)
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-      ctx.lineWidth = 0.55;
-      for (let i = 0; i < meshLines.length; i++) {
-        const line = meshLines[i];
-        if (cameraChanged || line.x1 === undefined || line.y1 === undefined || line.x2 === undefined || line.y2 === undefined) {
-          try {
-            const p1 = mapRef.current.project([line.lng1, line.lat1]);
-            const p2 = mapRef.current.project([line.lng2, line.lat2]);
-            line.x1 = p1.x;
-            line.y1 = p1.y;
-            line.x2 = p2.x;
-            line.y2 = p2.y;
-          } catch (e) {
-            continue;
-          }
-        }
-        ctx.beginPath();
-        ctx.moveTo(line.x1, line.y1);
-        ctx.lineTo(line.x2, line.y2);
-        ctx.stroke();
-      }
-
-      // A.-1 Ambient Golden Dust (nationwide gold network nodes, gently twinkling, land-clipped, animated by wave pulses)
-      const dustTime = now / 1000;
-      const globalShimmer = 0.85 + 0.15 * Math.sin(dustTime * 0.7); // gentle nationwide background shimmer
-
-      for (let i = 0; i < dustParticles.length; i++) {
-        const p = dustParticles[i];
-        if (cameraChanged || p.x === undefined || p.y === undefined) {
-          try {
-            const pt = mapRef.current.project([p.lng, p.lat]);
-            p.x = pt.x;
-            p.y = pt.y;
-          } catch (e) {
-            continue;
-          }
-        }
-
-        const ptX = p.x;
-        const ptY = p.y;
-        if (ptX < -20 || ptX > width + 20 || ptY < -20 || ptY > height + 20) continue;
-
-        // Base twinkle
-        const twinkle = 0.5 + 0.5 * Math.sin(dustTime * p.twinkleSpeed + p.twinklePhase);
-        let alpha = p.baseAlpha * (0.35 + 0.65 * twinkle);
-
-        // Progressively brighten and fade as waves pass over them
-        let waveBoost = 0;
-        for (let w = 0; w < waveScreenOrigins.length; w++) {
-          const origin = waveScreenOrigins[w];
-          const dx = ptX - origin.x;
-          const dy = ptY - origin.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          const progress = (now - origin.wave.startTime) / origin.wave.duration;
-          const currentRadius = progress * origin.wave.maxRadius;
-          const waveWidth = 90; // soft broad wavefront
-          const diff = Math.abs(dist - currentRadius);
-
-          if (diff < waveWidth) {
-            // Smooth bell-shaped curve for wavefront glow
-            const shape = 0.5 + 0.5 * Math.cos((diff / waveWidth) * Math.PI);
-            const intensity = shape * (1.0 - progress) * 1.5; // fades out as it expands
-            waveBoost += intensity;
-          }
-        }
-
-        // Combine base twinkling, global shimmer, and wave energy pulses
-        alpha = (alpha + waveBoost) * globalShimmer;
-        alpha = Math.min(1.0, alpha);
-
-        // Slightly increase size when the energy wave reaches them
-        const size = p.radius * (2.8 + p.warmth * 1.8) * (1.0 + waveBoost * 0.45);
-
-        ctx.globalAlpha = alpha;
-        ctx.drawImage(dustSprite, ptX - size / 2, ptY - size / 2, size, size);
-      }
-      ctx.globalAlpha = 1;
-
       // Keep map static, stable, and flat (pitch: 0, bearing: 0) to ensure accurate proportions.
       if (isEmbed) {
         map.setCenter(baseCenter);
@@ -927,8 +631,10 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
       map.setPitch(0);
       map.setBearing(0);
 
-      // B. Shimmer Coastline Glow Opacity (subtle 2–3s shimmer/breathing travelling around the coastline)
+      const now = Date.now();
       const nowSec = now / 1000;
+
+      // B. Shimmer Coastline Glow Opacity (subtle 2–3s shimmer/breathing travelling around the coastline)
       const bloomShimmer = Math.sin(nowSec * (2 * Math.PI / 3.0));
       const outerShimmer = Math.sin(nowSec * (2 * Math.PI / 2.5) + 1.0);
       const midShimmer = Math.sin(nowSec * (2 * Math.PI / 2.2) + 2.0);
@@ -936,25 +642,25 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
       const coreShimmer = Math.sin(nowSec * (2 * Math.PI / 2.8) + 0.5);
 
       if (map.getLayer("coastline-glow-bloom")) {
-        map.setPaintProperty("coastline-glow-bloom", "line-opacity", 0.10 + bloomShimmer * 0.02);
+        map.setPaintProperty("coastline-glow-bloom", "line-opacity", 0.15 + bloomShimmer * 0.02);
       }
       if (map.getLayer("coastline-glow-outer")) {
-        map.setPaintProperty("coastline-glow-outer", "line-opacity", 0.18 + outerShimmer * 0.04);
+        map.setPaintProperty("coastline-glow-outer", "line-opacity", 0.25 + outerShimmer * 0.04);
       }
       if (map.getLayer("coastline-glow-mid")) {
-        map.setPaintProperty("coastline-glow-mid", "line-opacity", 0.28 + midShimmer * 0.06);
+        map.setPaintProperty("coastline-glow-mid", "line-opacity", 0.35 + midShimmer * 0.06);
       }
       if (map.getLayer("coastline-glow-inner")) {
-        map.setPaintProperty("coastline-glow-inner", "line-opacity", 0.24 + innerShimmer * 0.05);
+        map.setPaintProperty("coastline-glow-inner", "line-opacity", 0.45 + innerShimmer * 0.05);
       }
       if (map.getLayer("coastline-glow-core")) {
-        map.setPaintProperty("coastline-glow-core", "line-opacity", 0.65 + coreShimmer * 0.08);
+        map.setPaintProperty("coastline-glow-core", "line-opacity", 0.95 + coreShimmer * 0.08);
       }
 
       // B.5 Decay city glow states
       for (let i = 0; i < cityGlows.length; i++) {
         if (cityGlows[i] > 0) {
-          cityGlows[i] -= 0.055; // Decay over ~18 frames (~0.3s), matching the hub burst duration
+          cityGlows[i] -= 0.055; // Decay over ~18 frames (~0.3s)
           if (cityGlows[i] < 0) cityGlows[i] = 0;
         }
       }
@@ -968,17 +674,14 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             const pt = mapRef.current.project(office.coords);
             markerEl.style.transform = `translate(-50%, -50%) translate(${pt.x}px, ${pt.y}px)`;
             
-            // Briefly intensify the amber bloom and scale the pin when reached by a network pulse
-            const pinEl = markerEl.querySelector(".gold-pin-custom") as HTMLDivElement;
-            if (pinEl) {
+            // Briefly scale the node slightly when reached by a network pulse
+            const nodeEl = markerEl.querySelector(".rd-city-node") as SVGSVGElement | null;
+            if (nodeEl) {
               const glow = cityGlows[idx];
               if (glow > 0.01) {
-                const intensity = glow * 25;
-                pinEl.style.boxShadow = `0 0 ${10 + intensity * 1.2}px 3px rgba(244, 180, 0, 1), 0 0 ${28 + intensity * 2.4}px 8px rgba(244, 180, 0, 0.75), 0 0 ${48 + intensity * 3}px 14px rgba(244, 180, 0, 0.4)`;
-                pinEl.style.transform = `scale(${1 + glow * 0.35})`;
+                nodeEl.style.transform = `scale(${1 + glow * 0.25})`;
               } else {
-                pinEl.style.boxShadow = "";
-                pinEl.style.transform = "";
+                nodeEl.style.transform = "";
               }
             }
           } catch (e) {
@@ -987,149 +690,73 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         }
       });
 
-      // D. Render Primary White Light Pulses (fast, fibre-optic style, continuous along the network)
+      // D. Draw permanent fine white route lines with subtle AI-blue shadow
+      networkPaths.forEach((path) => {
+        try {
+          const ptStart = mapRef.current!.project(offices[path.start].coords);
+          const ptEnd = mapRef.current!.project(offices[path.end].coords);
+
+          ctx.beginPath();
+          ctx.moveTo(ptStart.x, ptStart.y);
+          ctx.lineTo(ptEnd.x, ptEnd.y);
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.24)";
+          ctx.lineWidth = 1.0;
+          ctx.shadowColor = "rgba(7, 140, 255, 0.4)";
+          ctx.shadowBlur = 5;
+          ctx.stroke();
+          ctx.shadowBlur = 0; // reset shadow
+        } catch (e) {
+          // ignore projection boundary cases
+        }
+      });
+
+      // E. Render high-speed white light streaks (fibre-optic comets)
       primaryPulses.forEach((traveler) => {
         traveler.progress += traveler.speed;
         if (traveler.progress >= 1) {
           traveler.progress = 0;
-
-          // Trigger a brief gold electrical burst + pin bloom when the pulse reaches its hub
           const arrivedPath = networkPaths[traveler.currentPathIndex];
-          cityGlows[arrivedPath.end] = 1.0;
-          const sparkCount = 5 + Math.floor(Math.random() * 3);
-          hubBursts.push({
-            officeIdx: arrivedPath.end,
-            startTime: Date.now(),
-            duration: 220 + Math.random() * 160, // ~0.22s - 0.38s
-            angles: Array.from({ length: sparkCount }, () => Math.random() * Math.PI * 2),
-          });
-
-          traveler.currentPathIndex = (traveler.currentPathIndex + 1) % networkPaths.length;
-        }
-
-        // Draw comet tail (shorter on lower-powered devices to cut per-frame draw calls)
-        const tailLength = isLowPowerDevice ? 4 : 8;
-        for (let i = tailLength; i >= 0; i--) {
-          const prog = traveler.progress - i * 0.018;
-          let currentPathIdx = traveler.currentPathIndex;
-          let currentProg = prog;
-
-          // If prog is negative, go back to previous path(s) to draw the tail continuously!
-          if (currentProg < 0) {
-            currentPathIdx = (currentPathIdx - 1 + networkPaths.length) % networkPaths.length;
-            currentProg = 1 + currentProg;
-          }
-
-          const tailPath = networkPaths[currentPathIdx];
-          const tailStart = offices[tailPath.start].coords;
-          const tailEnd = offices[tailPath.end].coords;
-
-          // Interpolated geographic coordinates
-          const lng = tailStart[0] + (tailEnd[0] - tailStart[0]) * currentProg;
-          const lat = tailStart[1] + (tailEnd[1] - tailStart[1]) * currentProg;
-
-          try {
-            const pt = mapRef.current!.project([lng, lat]);
-            const opacity = (1 - i / tailLength) * 0.9;
-            const size = traveler.size * (1 - i / tailLength * 0.45);
-
-            ctx.beginPath();
-            ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2);
-            if (i === 0) {
-              ctx.fillStyle = "#ffffff";
-              ctx.shadowColor = "#BFE9FF"; // Cool white-blue fibre-optic glow
-              ctx.shadowBlur = 8;
-            } else {
-              ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.40})`; // Thin understated white comet tail
-              ctx.shadowColor = "#BFE9FF";
-              ctx.shadowBlur = 5;
-            }
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          } catch (e) {
-            // Ignore projection edge cases
-          }
-        }
-      });
-
-      // D.5 Render Secondary Gold Micro-Pulses (dim, continuous ambient traffic, no bursts)
-      microPulses.forEach((traveler) => {
-        traveler.progress += traveler.speed;
-        if (traveler.progress >= 1) {
-          traveler.progress = 0;
-          traveler.currentPathIndex = (traveler.currentPathIndex + 1) % networkPaths.length;
+          cityGlows[arrivedPath.end] = 1.0; // Trigger hub bloom
+          traveler.speed = 0.009 + Math.random() * 0.006; // Randomize next hop speed
         }
 
         const path = networkPaths[traveler.currentPathIndex];
-        const startLoc = offices[path.start].coords;
-        const endLoc = offices[path.end].coords;
-        const lng = startLoc[0] + (endLoc[0] - startLoc[0]) * traveler.progress;
-        const lat = startLoc[1] + (endLoc[1] - startLoc[1]) * traveler.progress;
+        const start = offices[path.start].coords;
+        const end = offices[path.end].coords;
+
+        // Streak segment from progress - tailLength to progress
+        const tailLength = 0.18;
+        const tailProgress = Math.max(0, traveler.progress - tailLength);
+
+        const headLng = start[0] + (end[0] - start[0]) * traveler.progress;
+        const headLat = start[1] + (end[1] - start[1]) * traveler.progress;
+
+        const tailLng = start[0] + (end[0] - start[0]) * tailProgress;
+        const tailLat = start[1] + (end[1] - start[1]) * tailProgress;
 
         try {
-          const pt = mapRef.current!.project([lng, lat]);
+          const ptHead = mapRef.current!.project([headLng, headLat]);
+          const ptTail = mapRef.current!.project([tailLng, tailLat]);
+
           ctx.beginPath();
-          ctx.arc(pt.x, pt.y, traveler.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 209, 102, ${traveler.baseAlpha})`;
-          ctx.shadowColor = "#FFC107";
-          ctx.shadowBlur = 4;
-          ctx.fill();
-          ctx.shadowBlur = 0;
+          ctx.moveTo(ptTail.x, ptTail.y);
+          ctx.lineTo(ptHead.x, ptHead.y);
+
+          // Draw comets with gradient fading backwards
+          const grad = ctx.createLinearGradient(ptTail.x, ptTail.y, ptHead.x, ptHead.y);
+          grad.addColorStop(0, "rgba(255, 255, 255, 0)");
+          grad.addColorStop(1, "rgba(255, 255, 255, 0.95)");
+
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1.6;
+          ctx.shadowColor = "#ffffff";
+          ctx.shadowBlur = 6;
+          ctx.stroke();
+          ctx.shadowBlur = 0; // reset shadow
         } catch (e) {
-          // Ignore projection edge cases
+          // ignore projection boundary cases
         }
       });
-
-      // D.75 Render brief gold electrical bursts at hubs a white pulse has just reached
-      const burstNow = Date.now();
-      for (let i = hubBursts.length - 1; i >= 0; i--) {
-        const burst = hubBursts[i];
-        const elapsed = burstNow - burst.startTime;
-        if (elapsed >= burst.duration) {
-          hubBursts.splice(i, 1);
-          continue;
-        }
-
-        const t = elapsed / burst.duration;
-        const fade = 1 - t;
-        const office = offices[burst.officeIdx];
-
-        try {
-          const pt = mapRef.current!.project(office.coords);
-
-          // Expanding ring
-          ctx.beginPath();
-          ctx.arc(pt.x, pt.y, 6 + t * 26, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(255, 209, 102, ${fade * 0.85})`;
-          ctx.lineWidth = 1.6;
-          ctx.shadowColor = "#FFC107";
-          ctx.shadowBlur = 10;
-          ctx.stroke();
-
-          // Radiating electrical spark lines
-          burst.angles.forEach((angle) => {
-            const r1 = 3 + t * 6;
-            const r2 = 8 + t * 22;
-            const x1 = pt.x + Math.cos(angle) * r1;
-            const y1 = pt.y + Math.sin(angle) * r1;
-            const x2 = pt.x + Math.cos(angle) * r2;
-            const y2 = pt.y + Math.sin(angle) * r2;
-
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.strokeStyle = `rgba(255, 236, 179, ${fade})`;
-            ctx.lineWidth = 1.1;
-            ctx.shadowColor = "#FFD873";
-            ctx.shadowBlur = 8;
-            ctx.stroke();
-          });
-
-          ctx.shadowBlur = 0;
-        } catch (e) {
-          // Ignore projection edge cases
-        }
-      }
 
       animationFrameId = requestAnimationFrame(tick);
     };
@@ -1290,55 +917,56 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             100% { transform: translateY(0px); }
           }
 
-          /* Premium Gold Marker Pins — pure white core with warm amber (#F4B400) bloom */
-          @keyframes pinPulse {
-            0% { box-shadow: 0 0 6px 2px rgba(244, 180, 0, 0.9), 0 0 18px 6px rgba(244, 180, 0, 0.5), 0 0 34px 10px rgba(244, 180, 0, 0.25); }
-            50% { box-shadow: 0 0 10px 3px rgba(244, 180, 0, 1), 0 0 26px 8px rgba(244, 180, 0, 0.65), 0 0 46px 14px rgba(244, 180, 0, 0.32); }
-            100% { box-shadow: 0 0 6px 2px rgba(244, 180, 0, 0.9), 0 0 18px 6px rgba(244, 180, 0, 0.5), 0 0 34px 10px rgba(244, 180, 0, 0.25); }
+          /* Refined Gold City Nodes */
+          :root {
+            --rd-gold: #d8b45b;
+            --rd-gold-light: #ffe5a2;
+            --rd-gold-dark: #9b7428;
           }
 
-          .gold-pin-custom {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #ffffff; /* bright white central core */
-            border: 1.5px solid #D4AF37; /* metallic gold ring */
-            animation: pinPulse 1.6s ease-in-out infinite; /* soft gold halo, slow breathing glow */
-            transition: transform 0.25s ease;
+          .rd-city-node {
+            display: block;
+            width: 38px;
+            height: 38px;
+            overflow: visible;
           }
 
-          .gold-pin-custom:hover {
-            transform: scale(1.3) !important;
+          .rd-city-node__outer {
+            fill: rgba(216, 180, 91, 0.11);
+            stroke: rgba(216, 180, 91, 0.56);
+            stroke-width: 1.5px;
+            filter: url("#rd-gold-node-glow");
+            transform-origin: center;
+            animation: rd-gold-breathe 3.4s ease-in-out infinite;
           }
 
-          /* Thin white radial connections — four fine spokes, not a thick starburst */
-          @keyframes starburstPulse {
-            0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) rotate(45deg) scale(0.9); }
-            50% { opacity: 0.65; transform: translate(-50%, -50%) rotate(45deg) scale(1.1); }
+          .rd-city-node__ring {
+            fill: rgba(3, 12, 26, 0.9);
+            stroke: var(--rd-gold);
+            stroke-width: 2.2px;
+            filter: url("#rd-gold-ring-glow");
           }
 
-          .gold-pin-custom::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40px;
-            height: 40px;
-            transform: translate(-50%, -50%) rotate(45deg);
-            pointer-events: none;
-            animation: starburstPulse 1.6s ease-in-out infinite;
-            background:
-              linear-gradient(to right, transparent 0%, transparent 48.3%, rgba(255, 255, 255, 0.55) 49.5%, rgba(255, 255, 255, 0.55) 50.5%, transparent 51.7%, transparent 100%),
-              linear-gradient(to bottom, transparent 0%, transparent 48.3%, rgba(255, 255, 255, 0.55) 49.5%, rgba(255, 255, 255, 0.55) 50.5%, transparent 51.7%, transparent 100%);
+          .rd-city-node__centre {
+            fill: var(--rd-gold-light);
+            stroke: #ffffff;
+            stroke-width: 1px;
+            filter: url("#rd-gold-centre-glow");
           }
 
-          /* Concentric golden rings of varying opacity & thickness, fading outward — radar pulse */
-          @keyframes pingSlow {
-            0% { transform: scale(1); opacity: 0.85; }
-            100% { transform: scale(4.5); opacity: 0; }
-          }
-          .animate-ping-slow {
-            animation: pingSlow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+          @keyframes rd-gold-breathe {
+            0% {
+              transform: scale(0.92);
+              opacity: 0.85;
+            }
+            50% {
+              transform: scale(1.08);
+              opacity: 1.0;
+            }
+            100% {
+              transform: scale(0.92);
+              opacity: 0.85;
+            }
           }
 
           /* Mapbox Popup Overrides */
@@ -1626,6 +1254,23 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         `,
       }} />
 
+      <svg className="absolute hidden" width="0" height="0">
+        <defs>
+          <filter id="rd-gold-node-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="rd-gold-ring-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+          <filter id="rd-gold-centre-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.0" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+      </svg>
+
       {/* DEDICATED FULL PAGE LAYOUT (only when isEmbed={false}) */}
       {!isEmbed && (
         <>
@@ -1705,12 +1350,12 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
                   }
                 }}
               >
-                {/* City hub: white core, metallic gold ring, thin white radial spokes, radar-like concentric rings fading outward */}
-                <div className="gold-pin-custom relative flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-full animate-ping-slow pointer-events-none" style={{ border: "1.75px solid rgba(244, 180, 0, 0.6)", animationDelay: "0s" }} />
-                  <div className="absolute inset-0 rounded-full animate-ping-slow pointer-events-none" style={{ border: "1.25px solid rgba(244, 180, 0, 0.42)", animationDelay: "0.8s" }} />
-                  <div className="absolute inset-0 rounded-full animate-ping-slow pointer-events-none" style={{ border: "0.75px solid rgba(244, 180, 0, 0.28)", animationDelay: "1.6s" }} />
-                </div>
+                {/* City hub: Refined Champagne-Gold Node */}
+                <svg width="38" height="38" viewBox="0 0 38 38" className="rd-city-node relative select-none pointer-events-none" style={{ transition: "transform 0.15s ease-out" }}>
+                  <circle className="rd-city-node__outer" cx="19" cy="19" r="14" />
+                  <circle className="rd-city-node__ring" cx="19" cy="19" r="7.2" />
+                  <circle className="rd-city-node__centre" cx="19" cy="19" r="3.0" />
+                </svg>
                 
                 {/* Premium Floating Tooltip on Hover */}
                 <div className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 bg-[#060606] text-white text-[12px] font-semibold py-1.5 px-3 rounded-lg border border-white/10 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap text-center">

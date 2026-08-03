@@ -565,6 +565,116 @@ export const cities: CityPageData[] = [
       "Swords", "Dún Laoghaire", "Blackrock", "Lucan", "Malahide", "Finglas", "Santry", "Ballymount", "County Dublin",
     ],
   }),
+
+  createCity({
+    city: "Liverpool",
+    country: "England",
+    countrySlug: "england",
+    slug: "liverpool",
+    widerArea: "Merseyside",
+    metaDescription: "Recruitment agency in Liverpool supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",
+    introduction: [
+      "Recruitment Direct UK provides temporary, contract and permanent recruitment services to employers throughout Liverpool and Merseyside.",
+      "We supply skilled, operational, technical and professional candidates across every core RDUK recruitment sector.",
+      "Our services support urgent temporary cover, specialist contracts, permanent vacancies and larger project workforces.",
+    ],
+    localMarket: [
+      "Liverpool has a diverse maritime, commercial, logistical and manufacturing economy with strong demand across infrastructure, construction, logistics, healthcare, education and hospitality.",
+      "RDUK works with regional and national organisations, managing candidate sourcing, screening, shortlisting and Right to Work checks.",
+    ],
+    areas: [
+      "Liverpool city centre", "Aigburth", "Allerton", "Anfield", "Crosby", "Kirkby", "Speke", "Toxteth",
+      "West Derby", "Birkenhead", "Wallasey", "St Helens", "Southport", "Bootle", "Prescot",
+    ],
+  }),
+
+  createCity({
+    city: "Sheffield",
+    country: "England",
+    countrySlug: "england",
+    slug: "sheffield",
+    widerArea: "South Yorkshire",
+    metaDescription: "Recruitment agency in Sheffield supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",
+    introduction: [
+      "Recruitment Direct UK provides temporary, contract and permanent recruitment services to employers throughout Sheffield and South Yorkshire.",
+      "Our experienced consultants supply operational, technical, professional and skilled personnel across all core RDUK sectors.",
+      "We support urgent temporary coverage, contract assignments, permanent recruitment and high-volume workforce requirements.",
+    ],
+    localMarket: [
+      "Sheffield supports a broad industrial and commercial employment market with demand across engineering, advanced manufacturing, construction, healthcare, education and logistics.",
+      "RDUK matches qualified local candidates with employers, ensuring Right to Work and compliance checks are fully satisfied before placement.",
+    ],
+    areas: [
+      "Sheffield city centre", "Attercliffe", "Darnall", "Ecclesall", "Hillsborough", "Meadowhall", "Mosborough",
+      "Rotherham", "Barnsley", "Doncaster", "Chesterfield", "Worksop",
+    ],
+  }),
+
+  createCity({
+    city: "Nottingham",
+    country: "England",
+    countrySlug: "england",
+    slug: "nottingham",
+    widerArea: "Nottinghamshire",
+    metaDescription: "Recruitment agency in Nottingham supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",
+    introduction: [
+      "Recruitment Direct UK provides temporary, contract and permanent recruitment services to employers throughout Nottingham and Nottinghamshire.",
+      "We support businesses with operational, skilled, professional and technical personnel across every core RDUK recruitment sector.",
+      "From urgent temporary cover to specialist permanent appointments and larger contract workforces, our consultants provide responsive support.",
+    ],
+    localMarket: [
+      "Nottingham has an active regional economy creating demand across construction, healthcare, education, technology, logistics, commercial office and hospitality.",
+      "Our consultants combine local market knowledge with AI-supported candidate screening and robust compliance procedures.",
+    ],
+    areas: [
+      "Nottingham city centre", "Beeston", "Clifton", "Lenton", "Sherwood", "West Bridgford", "Wollaton",
+      "Mansfield", "Worksop", "Newark-on-Trent", "Sutton-in-Ashfield", "Hucknall",
+    ],
+  }),
+
+  createCity({
+    city: "Leicester",
+    country: "England",
+    countrySlug: "england",
+    slug: "leicester",
+    widerArea: "Leicestershire",
+    metaDescription: "Recruitment agency in Leicester supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",
+    introduction: [
+      "Recruitment Direct UK provides temporary, contract and permanent recruitment services to employers throughout Leicester and Leicestershire.",
+      "Our experienced consultants supply operational, technical, professional and skilled personnel across all core RDUK sectors.",
+      "We support urgent temporary cover, contract assignments, permanent recruitment and high-volume workforce requirements.",
+    ],
+    localMarket: [
+      "Leicester supports a diverse commercial and manufacturing market with demand across engineering, logistics, healthcare, construction, education and commercial office roles.",
+      "RDUK coordinates local candidate sourcing and screening with Right to Work checks completed in line with assignment requirements.",
+    ],
+    areas: [
+      "Leicester city centre", "Aylestone", "Belgrave", "Braunstone", "Evington", "Oadby", "Wigston",
+      "Loughborough", "Hinckley", "Melton Mowbray", "Coalville", "Market Harborough",
+    ],
+  }),
+
+  createCity({
+    city: "Bristol",
+    country: "England",
+    countrySlug: "england",
+    slug: "bristol",
+    widerArea: "the West of England",
+    metaDescription: "Recruitment agency in Bristol supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",
+    introduction: [
+      "Recruitment Direct UK provides temporary, contract and permanent recruitment services to employers throughout Bristol and the West of England.",
+      "We recruit skilled, operational, technical and professional personnel across every core RDUK recruitment sector.",
+      "Our consultants support urgent temporary vacancies, contract recruitment, permanent appointments and larger campaign requirements.",
+    ],
+    localMarket: [
+      "Bristol has a strong regional economy with demand across engineering, technology, construction, aerospace, logistics, facilities management and commercial services.",
+      "RDUK manages candidate sourcing, applicant screening, shortlisting and relevant compliance checks.",
+    ],
+    areas: [
+      "Bristol city centre", "Clifton", "Bedminster", "Brislington", "Redland", "Horfield", "Filton", "Keynsham",
+      "Kingswood", "Bath", "Weston-super-Mare", "Yate", "Clevedon",
+    ],
+  }),
 ];
 
 export function getCity(countrySlug: string, citySlug: string): CityPageData | undefined {
