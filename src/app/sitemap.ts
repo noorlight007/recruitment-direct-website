@@ -15,7 +15,7 @@ interface ApiResponse {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://rd1.co.uk";
+  const baseUrl = "https://www.rd1.co.uk";
 
   const staticPages = [
     "",
@@ -110,7 +110,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const locationUrls: MetadataRoute.Sitemap = cities.map((city) => ({
-    url: `${baseUrl}${city.path}/`,
+    url: `${baseUrl}${city.path}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,

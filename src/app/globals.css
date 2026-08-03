@@ -4313,3 +4313,116 @@ MOBILE RESPONSIVE
     grid-template-columns: 1fr;
   }
 }
+
+/* Premium City Page Breadcrumbs & Internal Links Styling */
+.city-breadcrumbs {
+  margin-bottom: 24px;
+}
+
+.city-breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.city-breadcrumbs li {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.city-breadcrumbs a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.city-breadcrumbs a:hover {
+  color: #ffffff;
+}
+
+.city-breadcrumbs .separator {
+  margin: 0 4px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.25);
+  user-select: none;
+}
+
+.city-breadcrumbs .current {
+  color: #d6b25e;
+  font-weight: 600;
+}
+
+.city-internal-links {
+  padding: 80px 0;
+  background: rgba(10, 15, 30, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 60px;
+}
+
+.city-internal-links h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 40px;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.links-col h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #d6b25e;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(214, 178, 94, 0.15);
+  padding-bottom: 8px;
+}
+
+.links-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links-col li {
+  margin-bottom: 12px;
+}
+
+.links-col a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.links-col a:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+@media (max-width: 768px) {
+  .city-internal-links {
+    padding: 60px 0;
+  }
+  .city-internal-links h2 {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+  .links-grid {
+    gap: 30px;
+  }
+}

@@ -522,7 +522,7 @@ export const cities: CityPageData[] = [
   createCity({
     city: "Belfast",
     country: "Northern Ireland",
-    countrySlug: "northern-ireland",
+    countrySlug: "ireland",
     slug: "belfast",
     widerArea: "Greater Belfast",
     metaDescription: "Recruitment agency in Belfast supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",

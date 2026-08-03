@@ -30,7 +30,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const canonicalUrl = `https://rd1.co.uk${page.path}/`;
+  const canonicalUrl = `https://www.rd1.co.uk${page.path}`;
 
   return {
     title: page.seoTitle,
@@ -67,7 +67,7 @@ export default async function CityRecruitmentPage({
     notFound();
   }
 
-  const canonicalUrl = `https://rd1.co.uk${page.path}/`;
+  const canonicalUrl = `https://www.rd1.co.uk${page.path}`;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -77,19 +77,19 @@ export default async function CityRecruitmentPage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://rd1.co.uk",
+        item: "https://www.rd1.co.uk",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Locations",
-        item: "https://rd1.co.uk/locations",
+        item: "https://www.rd1.co.uk/locations",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: page.country,
-        item: `https://rd1.co.uk/locations/${page.countrySlug}`,
+        item: `https://www.rd1.co.uk/locations/${page.countrySlug}`,
       },
       {
         "@type": "ListItem",
@@ -113,11 +113,39 @@ export default async function CityRecruitmentPage({
     })),
   };
 
+  const agencySchema = {
+    "@context": "https://schema.org",
+    "@type": "EmploymentAgency",
+    "name": `Recruitment Direct UK Ltd - ${page.city}`,
+    "url": canonicalUrl,
+    "telephone": "0345 067 8022",
+    "logo": "https://www.rd1.co.uk/logo.png",
+    "image": "https://www.rd1.co.uk/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/recruitmentdirectukltd",
+      "https://www.linkedin.com/company/recruitment-direct-uk-ltd"
+    ],
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": page.city
+    },
+    "serviceType": [
+      "Temporary recruitment",
+      "Contract recruitment",
+      "Permanent recruitment"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Recruitment Direct UK Ltd",
+      "url": "https://www.rd1.co.uk"
+    }
+  };
+
   const organisationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Recruitment Direct UK Ltd",
-    url: "https://rd1.co.uk",
+    url: "https://www.rd1.co.uk",
     telephone: "0345 067 8022",
     foundingDate: "2006",
     areaServed: [page.city, page.country],
@@ -147,6 +175,13 @@ export default async function CityRecruitmentPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(agencySchema),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify(organisationSchema),
         }}
       />
@@ -157,6 +192,26 @@ export default async function CityRecruitmentPage({
 
         <div className="flex-grow pt-28 pb-20">
           <main className="city-page-main">
+            <nav className="city-breadcrumbs" aria-label="Breadcrumb">
+              <div className="container">
+                <ol>
+                  <li>
+                    <Link href="/">Home</Link>
+                  </li>
+                  <span className="separator">/</span>
+                  <li>
+                    <Link href="/locations">Locations</Link>
+                  </li>
+                  <span className="separator">/</span>
+                  <li>
+                    <span className="capitalize">{page.country}</span>
+                  </li>
+                  <span className="separator">/</span>
+                  <li className="current">{page.city}</li>
+                </ol>
+              </div>
+            </nav>
+
             <section className="city-hero">
               <div className="container">
                 <p className="eyebrow">
@@ -348,6 +403,81 @@ export default async function CityRecruitmentPage({
                   <Link className="button button-secondary" href="/contact">
                     Contact Recruitment Direct UK
                   </Link>
+                </div>
+              </div>
+            </section>
+
+            <section className="city-internal-links">
+              <div className="container">
+                <h2>Recruitment Direct UK Information & Resources</h2>
+                <div className="links-grid">
+                  <div className="links-col">
+                    <h3>Explore Locations</h3>
+                    <ul>
+                      {cities
+                        .filter((c) => c.countrySlug === page.countrySlug && c.slug !== page.slug)
+                        .slice(0, 4)
+                        .map((c) => (
+                          <li key={c.slug}>
+                            <Link href={c.path}>Recruitment Agency in {c.city}</Link>
+                          </li>
+                        ))}
+                      <li>
+                        <Link href="/locations">View All Our Locations</Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="links-col">
+                    <h3>Recruitment Sectors</h3>
+                    <ul>
+                      <li>
+                        <Link href="/sectors/construction">Construction Recruitment</Link>
+                      </li>
+                      <li>
+                        <Link href="/sectors/engineering">Engineering Recruitment</Link>
+                      </li>
+                      <li>
+                        <Link href="/sectors/logistics">Logistics & Driving Recruitment</Link>
+                      </li>
+                      <li>
+                        <Link href="/sectors/healthcare">Healthcare & Care Recruitment</Link>
+                      </li>
+                      <li>
+                        <Link href="/sectors/education">Education Sector Recruitment</Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="links-col">
+                    <h3>Employer Services</h3>
+                    <ul>
+                      <li>
+                        <Link href="/why-choose-us">Why Choose RDUK</Link>
+                      </li>
+                      <li>
+                        <Link href="/temporary-staff">Temporary Staff Supply</Link>
+                      </li>
+                      <li>
+                        <Link href="/contract-staff">Contract Staff Supply</Link>
+                      </li>
+                      <li>
+                        <Link href="/place-enquiry">Submit a Staffing Inquiry</Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="links-col">
+                    <h3>Agency Resources</h3>
+                    <ul>
+                      <li>
+                        <Link href="/about">About Our Agency</Link>
+                      </li>
+                      <li>
+                        <Link href="/job-search">Search Active Jobs</Link>
+                      </li>
+                      <li>
+                        <Link href="/contact">Get in Touch / Contact Us</Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </section>

@@ -85,7 +85,7 @@ const offices: OfficeLocation[] = [
   {
     name: "Belfast",
     coords: [-5.9301, 54.5973],
-    url: "/locations/northern-ireland/belfast",
+    url: "/locations/ireland/belfast",
     labelPos: "left",
   },
   {
