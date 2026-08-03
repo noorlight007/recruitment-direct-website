@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useRouter } from "next/navigation";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { cities, CityPageData } from "@/data/cities";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
 
@@ -117,16 +122,36 @@ const getMapDefaults = (width?: number) => {
   };
 };
 
-export default function UKCoverageMap() {
+interface UKCoverageMapProps {
+  isEmbed?: boolean;
+}
+
+const getCityData = (officeName: string): CityPageData | null => {
+  const cleanName = officeName.replace(" (HO)", "").replace(" (Head Office)", "").trim();
+  return cities.find((c) => c.city.toLowerCase() === cleanName.toLowerCase()) || null;
+};
+
+export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
   const router = useRouter();
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const activePopupRef = useRef<mapboxgl.Popup | null>(null);
 
+  const [selectedOffice, setSelectedOffice] = useState<OfficeLocation | null>(null);
+  const [selectedCityData, setSelectedCityData] = useState<CityPageData | null>(null);
+
   // Handle clicking on the interactive sidebar city buttons
   const handleCityClick = (office: OfficeLocation) => {
     router.push(office.url);
+  };
+
+  const handleBack = () => {
+    if (typeof window !== "undefined" && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/");
+    }
   };
 
   // Reset map view to fit defaults
@@ -172,30 +197,90 @@ export default function UKCoverageMap() {
       zoom: defaults.zoom,
       pitch: 0,
       bearing: 0,
-      interactive: false,
+      interactive: !isEmbed,
       attributionControl: false,
     });
 
     mapRef.current = map;
 
-    // 2. Disable default navigation controls/behaviors
-    map.scrollZoom.disable();
-    map.boxZoom.disable();
-    map.dragRotate.disable();
-    map.dragPan.disable();
-    map.keyboard.disable();
-    map.doubleClickZoom.disable();
-    map.touchZoomRotate.disable();
+    // 2. Configure navigation controls/behaviors based on isEmbed
+    if (isEmbed) {
+      map.scrollZoom.disable();
+      map.boxZoom.disable();
+      map.dragRotate.disable();
+      map.dragPan.disable();
+      map.keyboard.disable();
+      map.doubleClickZoom.disable();
+      map.touchZoomRotate.disable();
+    } else {
+      map.scrollZoom.enable();
+      map.boxZoom.enable();
+      map.dragPan.enable();
+      map.keyboard.enable();
+      map.doubleClickZoom.enable();
+      map.touchZoomRotate.enable();
+      map.dragRotate.disable(); // Lock orientation
+      map.touchZoomRotate.disableRotation(); // Lock rotation on pinch
+      
+      // Fit UK & Ireland bounds initially
+      const ukBounds: [[number, number], [number, number]] = [
+        [-10.5, 49.8],
+        [2.5, 58.6]
+      ];
+      map.fitBounds(ukBounds, {
+        padding: {
+          top: typeof window !== "undefined" && window.innerWidth < 768 ? 80 : 100,
+          bottom: typeof window !== "undefined" && window.innerWidth < 768 ? 200 : 100,
+          left: typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 100,
+          right: typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 100
+        },
+        animate: false
+      });
+      
+      // Background click resets city selection
+      map.on("click", (e) => {
+        const target = e.originalEvent.target as HTMLElement;
+        if (!target.closest("[id^='marker-']")) {
+          setSelectedOffice(null);
+          setSelectedCityData(null);
+          map.fitBounds(ukBounds, {
+            padding: {
+              top: typeof window !== "undefined" && window.innerWidth < 768 ? 80 : 100,
+              bottom: typeof window !== "undefined" && window.innerWidth < 768 ? 200 : 100,
+              left: typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 100,
+              right: typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 100
+            },
+            duration: 1000
+          });
+        }
+      });
+    }
 
     // 3. Initialize ResizeObserver to dynamically update map layout
     const resizeObserver = new ResizeObserver((entries) => {
       if (mapRef.current) {
         mapRef.current.resize();
-        for (let entry of entries) {
-          const width = entry.contentRect.width;
-          const newDefaults = getMapDefaults(width);
-          mapRef.current.setZoom(newDefaults.zoom);
-          baseCenter = newDefaults.center;
+        if (isEmbed) {
+          for (let entry of entries) {
+            const width = entry.contentRect.width;
+            const newDefaults = getMapDefaults(width);
+            mapRef.current.setZoom(newDefaults.zoom);
+            baseCenter = newDefaults.center;
+          }
+        } else {
+          const ukBounds: [[number, number], [number, number]] = [
+            [-10.5, 49.8],
+            [2.5, 58.6]
+          ];
+          mapRef.current.fitBounds(ukBounds, {
+            padding: {
+              top: typeof window !== "undefined" && window.innerWidth < 768 ? 80 : 100,
+              bottom: typeof window !== "undefined" && window.innerWidth < 768 ? 200 : 100,
+              left: typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 100,
+              right: typeof window !== "undefined" && window.innerWidth < 768 ? 24 : 100
+            },
+            duration: 500
+          });
         }
       }
     });
@@ -836,7 +921,9 @@ export default function UKCoverageMap() {
       ctx.globalAlpha = 1;
 
       // Keep map static, stable, and flat (pitch: 0, bearing: 0) to ensure accurate proportions.
-      map.setCenter(baseCenter);
+      if (isEmbed) {
+        map.setCenter(baseCenter);
+      }
       map.setPitch(0);
       map.setBearing(0);
 
@@ -1060,23 +1147,30 @@ export default function UKCoverageMap() {
       };
     };
 
-    // Only stand up the Mapbox instance once the section actually scrolls into (or near) view.
-    const lazyLoadObserver = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          cleanupMap = initMap() ?? null;
-          lazyLoadObserver.disconnect();
-        }
-      },
-      { threshold: 0.01, rootMargin: "200px 0px" }
-    );
-    lazyLoadObserver.observe(mapContainerRef.current);
+    // Eagerly mount the map if it's the dedicated page, else lazy-load it on scroll.
+    if (!isEmbed) {
+      cleanupMap = initMap() ?? null;
+      return () => {
+        if (cleanupMap) cleanupMap();
+      };
+    } else {
+      const lazyLoadObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            cleanupMap = initMap() ?? null;
+            lazyLoadObserver.disconnect();
+          }
+        },
+        { threshold: 0.01, rootMargin: "200px 0px" }
+      );
+      lazyLoadObserver.observe(mapContainerRef.current);
 
-    return () => {
-      lazyLoadObserver.disconnect();
-      if (cleanupMap) cleanupMap();
-    };
-  }, []);
+      return () => {
+        lazyLoadObserver.disconnect();
+        if (cleanupMap) cleanupMap();
+      };
+    }
+  }, [isEmbed]);
 
   return (
     <>
@@ -1090,6 +1184,69 @@ export default function UKCoverageMap() {
             overflow: hidden;
             background: linear-gradient(180deg, #030303 0%, #030303 80%, #08152c 100%); /* 80% matte black to 20% deep navy-blue */
             padding: 100px 24px; /* Spacious vertical padding for premium breathing room */
+          }
+
+          /* Dedicated Locations Full Page Wrapper */
+          .locations-page-section {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 56px); /* minus top bar on mobile */
+            overflow: hidden;
+            background: #020B1A;
+          }
+
+          @media (min-width: 992px) {
+            .locations-page-section {
+              height: auto;
+              min-height: 850px;
+              padding: 60px 24px 100px;
+              background: linear-gradient(180deg, #030303 0%, #030303 80%, #08152c 100%);
+            }
+          }
+
+          /* Ensure full screen map container when not embedded */
+          .locations-page-section #map-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            box-shadow: none;
+            animation: none;
+            background: #020B1A;
+          }
+
+          @media (min-width: 992px) {
+            .locations-page-section #map-container {
+              height: 800px;
+              border-radius: 24px;
+              box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(0, 175, 255, 0.18);
+              animation: floatMap 12s ease-in-out infinite;
+              background: #050505;
+            }
+          }
+
+          /* Invisible Touch Target for Markers */
+          .city-marker-touch-target {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          /* Homepage Mobile overlay to catch taps */
+          .mobile-map-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            cursor: pointer;
+            background: transparent;
+          }
+
+          @media (max-width: 991px) {
+            .mobile-map-overlay {
+              display: block;
+            }
           }
 
           .background-gradient {
@@ -1324,13 +1481,13 @@ export default function UKCoverageMap() {
           }
 
           .label-left {
-            right: 12px;
+            right: 30px;
             top: 50%;
             transform: translateY(-50%);
           }
 
           .label-right {
-            left: 12px;
+            left: 30px;
             top: 50%;
             transform: translateY(-50%);
           }
@@ -1421,11 +1578,11 @@ export default function UKCoverageMap() {
             }
 
             .label-left {
-              right: 8px !important;
+              right: 26px !important;
             }
 
             .label-right {
-              left: 8px !important;
+              left: 26px !important;
             }
           }
 
@@ -1459,29 +1616,70 @@ export default function UKCoverageMap() {
             }
 
             .label-left {
-              right: 6px !important;
+              right: 24px !important;
             }
 
             .label-right {
-              left: 6px !important;
+              left: 24px !important;
             }
           }
         `,
       }} />
 
-      <section className="uk-map-section">
+      {/* DEDICATED FULL PAGE LAYOUT (only when isEmbed={false}) */}
+      {!isEmbed && (
+        <>
+          {/* Desktop Navbar */}
+          <div className="hidden lg:block">
+            <Navbar />
+          </div>
+
+          {/* Mobile Top Bar */}
+          <div className="lg:hidden h-14 w-full bg-[#020B1A]/85 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-4 z-20 relative select-none">
+            <button 
+              onClick={handleBack}
+              className="flex items-center gap-1 text-white/80 hover:text-white transition-colors py-2"
+            >
+              <ChevronLeft className="w-5 h-5 text-white" />
+              <span className="text-sm font-medium">Back</span>
+            </button>
+            <h1 className="text-white font-bold text-base tracking-wide absolute left-1/2 -translate-x-1/2">
+              Locations
+            </h1>
+            <div className="w-10" />
+          </div>
+        </>
+      )}
+
+      <section className={isEmbed ? "uk-map-section" : "locations-page-section flex flex-col justify-between"}>
+        {/* Desktop Page Title if not embedded */}
+        {!isEmbed && (
+          <div className="hidden lg:block max-w-7xl mx-auto px-4 mb-4 text-center pt-24">
+            <h1 className="text-white text-4xl font-extrabold tracking-tight">Our Locations</h1>
+            <p className="text-white/60 text-base mt-2">Explore our recruitment services across flagship cities in the UK and Ireland</p>
+          </div>
+        )}
+
         <div className="background-gradient"></div>
-        <div className="map-wrapper">
+        <div className="map-wrapper w-full flex-1 lg:flex-initial relative flex flex-col justify-center">
           <div id="map-container" style={{ background: "linear-gradient(135deg, #000000 0%, #000000 80%, #0A1B3D 100%)" }}>
             <div ref={mapContainerRef} id="map" />
             <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3 }} />
+
+            {/* Mobile tap overlay (only when isEmbed={true} and on mobile) */}
+            {isEmbed && (
+              <div 
+                className="mobile-map-overlay"
+                onClick={() => router.push("/locations")}
+              />
+            )}
 
             {/* Custom Projected React-rendered Markers positioned directly via JS projection in the animation loop */}
             {offices.map((office) => (
               <div
                 key={office.name}
                 id={`marker-${office.name.replace(/[^a-zA-Z0-9]/g, "-")}`}
-                className="absolute z-10 cursor-pointer group"
+                className="absolute z-10 cursor-pointer group city-marker-touch-target"
                 style={{
                   left: 0,
                   top: 0,
@@ -1489,7 +1687,22 @@ export default function UKCoverageMap() {
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleCityClick(office);
+                  if (isEmbed) {
+                    handleCityClick(office);
+                  } else {
+                    const cityData = getCityData(office.name);
+                    setSelectedOffice(office);
+                    setSelectedCityData(cityData);
+                    if (mapRef.current) {
+                      mapRef.current.flyTo({
+                        center: office.coords,
+                        zoom: 6.8,
+                        duration: 1000,
+                        pitch: 0,
+                        bearing: 0
+                      });
+                    }
+                  }
                 }}
               >
                 {/* City hub: white core, metallic gold ring, thin white radial spokes, radar-like concentric rings fading outward */}
@@ -1529,56 +1742,69 @@ export default function UKCoverageMap() {
                 </span>
               </div>
             ))}
+          </div>
 
-            {/* Vertical City Selector Panel (Exactly matching the 5 circular gold selectors in the provided image, updated to red glow) */}
-            {/* <div className="city-selector-panel absolute left-3 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-20 bg-black/40 p-2 rounded-lg border border-white/10 backdrop-blur-md shadow-2xl">
-              {offices.map((office) => (
-                <div
-                  key={office.name}
-                  className="flex items-center gap-1.5 group cursor-pointer"
-                  onClick={() => handleCityClick(office)}
-                >
-                  
-                  <div className="w-4 h-4 rounded-full border border-[#ff3b30] bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:shadow-[0_0_15px_#ff3b30] group-hover:bg-[#ff3b30]/10 relative">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#ff3b30] shadow-[0_0_6px_#ff3b30] transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_0_8px_#ffffff]" />
-                    
-                    <div className="absolute inset-0 rounded-full border border-[#ff3b30]/30 scale-150 animate-pulse pointer-events-none" />
+          {/* Premium Floating Info Card (shown when isEmbed is false on Locations page) */}
+          {!isEmbed && (
+            <div className="absolute bottom-6 left-4 right-4 lg:bottom-10 lg:left-1/2 lg:-translate-x-1/2 lg:w-[480px] z-20 bg-[#030c1b]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-2xl transition-all duration-300">
+              {selectedOffice && selectedCityData ? (
+                <div className="flex flex-col gap-4">
+                  <div>
+                    <h3 className="text-white text-xl font-bold tracking-wide flex items-center gap-2">
+                      {selectedCityData.city}
+                      <span className="text-xs font-semibold text-[#D4AF37] bg-[#D4AF37]/10 px-2.5 py-0.5 rounded-full">
+                        {selectedCityData.country}
+                      </span>
+                    </h3>
+                    <p className="text-white/70 text-xs mt-1.5 leading-relaxed line-clamp-2">
+                      {selectedCityData.metaDescription}
+                    </p>
                   </div>
-
-                  
-                  <span className="text-[10px] font-semibold text-white/80 group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
-                    {office.name.replace(" (HO)", "").replace(" (Head Office)", "")}
-                  </span>
+                  <div className="flex gap-3">
+                    <Link
+                      href={`/job-search?q=${encodeURIComponent(selectedCityData.city)}`}
+                      className="flex-1 bg-gradient-to-r from-[#0A7CFF] to-[#2563EB] hover:from-[#2563EB] hover:to-[#0A7CFF] text-white text-xs font-bold py-3 px-4 rounded-xl text-center shadow-[0_4px_12px_rgba(10,124,255,0.3)] transition-all active:scale-[0.98] duration-200"
+                    >
+                      View Jobs
+                    </Link>
+                    <Link
+                      href={selectedCityData.path}
+                      className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-bold py-3 px-4 rounded-xl text-center transition-all active:scale-[0.98] duration-200"
+                    >
+                      View City Page
+                    </Link>
+                  </div>
                 </div>
-              ))}
-
-              
-              <div
-                className="flex items-center gap-1.5 group cursor-pointer mt-0"
-                onClick={handleResetView}
-                title="Reset Map View"
-              >
-                <div className="w-4 h-4 rounded-full border border-white/20 bg-[#060606]/85 flex items-center justify-center transition-all duration-300 group-hover:scale-125 group-hover:border-[#ff3b30] group-hover:bg-[#ff3b30]/10">
-                  <span className="text-[8px] font-bold text-white/50 group-hover:text-[#ff3b30] transition-colors duration-300">↺</span>
+              ) : (
+                <div className="text-center py-4 flex flex-col items-center justify-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse shadow-[0_0_8px_#D4AF37]" />
+                  <p className="text-white/60 text-sm font-medium tracking-wide text-center">
+                    Tap a city to explore recruitment services
+                  </p>
                 </div>
-                <span className="text-[10px] font-semibold text-white/50 group-hover:text-[#ff3b30] group-hover:translate-x-0.5 transition-all duration-300 whitespace-nowrap">
-                  Reset View
-                </span>
-              </div>
-            </div> */}
-          </div>
+              )}
+            </div>
+          )}
 
-          {/* Minimal Nationwide Recruitment CTA */}
-          <div className="nationwide-cta mt-16">
-            <div className="nationwide-divider" />
-            <span className="nationwide-heading">Nationwide Recruitment</span>
-            <a href="tel:03450678022" className="nationwide-phone">
-              0345 067 8022
-            </a>
-            <div className="nationwide-divider" />
-          </div>
-
+          {/* Minimal Nationwide Recruitment CTA (Only on homepage or desktop locations view) */}
+          {(isEmbed || !isEmbed) && (
+            <div className={`nationwide-cta mt-16 ${!isEmbed ? "hidden lg:block" : ""}`}>
+              <div className="nationwide-divider" />
+              <span className="nationwide-heading">Nationwide Recruitment</span>
+              <a href="tel:03450678022" className="nationwide-phone">
+                0345 067 8022
+              </a>
+              <div className="nationwide-divider" />
+            </div>
+          )}
         </div>
+
+        {/* Desktop Footer */}
+        {!isEmbed && (
+          <div className="hidden lg:block w-full">
+            <Footer />
+          </div>
+        )}
       </section>
     </>
   );
