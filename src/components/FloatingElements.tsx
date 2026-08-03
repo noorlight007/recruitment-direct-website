@@ -139,8 +139,8 @@ export default function FloatingElements() {
     return () => window.removeEventListener('open-ai-steve', handleOpenChat);
   }, []);
 
-  const handleSendMessage = async () => {
-    const trimmedMessage = message.trim();
+  const handleSendMessage = async (customMessage?: string) => {
+    const trimmedMessage = (typeof customMessage === "string" ? customMessage : message).trim();
     if (!trimmedMessage || isTyping) return;
 
     const userMsg: ChatMessage = { role: "user", content: trimmedMessage };
@@ -237,25 +237,25 @@ export default function FloatingElements() {
                         <span className="text-[11px] font-bold text-[#536078]/80 mb-1 uppercase tracking-wider">Suggested Buttons:</span>
                         <div className="flex flex-col gap-1.5 w-full">
                           <button
-                            onClick={() => setMessage("I Need Staff")}
+                            onClick={() => handleSendMessage("I Need Staff")}
                             className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
                           >
                             I Need Staff
                           </button>
                           <button
-                            onClick={() => setMessage("Search Jobs")}
+                            onClick={() => handleSendMessage("Search Jobs")}
                             className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
                           >
                             Search Jobs
                           </button>
                           <button
-                            onClick={() => setMessage("Learn About AI Recruitment")}
+                            onClick={() => handleSendMessage("Learn About AI Recruitment")}
                             className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
                           >
                             Learn About AI Recruitment
                           </button>
                           <button
-                            onClick={() => setMessage("Speak to Team")}
+                            onClick={() => handleSendMessage("Speak to Team")}
                             className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
                           >
                             Speak to Team
@@ -291,7 +291,7 @@ export default function FloatingElements() {
                   className="flex-1 px-3 py-2 text-sm rounded-lg border-2 border-primary/20 focus:border-primary focus:outline-none bg-background text-foreground"
                 />
                 <button
-                  onClick={handleSendMessage}
+                  onClick={() => handleSendMessage()}
                   disabled={isTyping}
                   className="btn-metallic p-2 rounded-lg btn-icon"
                 >
