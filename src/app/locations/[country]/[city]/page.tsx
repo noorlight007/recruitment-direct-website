@@ -69,35 +69,56 @@ export default async function CityRecruitmentPage({
 
   const canonicalUrl = `https://www.rd1.co.uk${page.path}`;
 
+  // Find hub page if this is a spoke town page
+  const hubPage = !page.isHub && page.hubSlug ? getCity(page.countrySlug, page.hubSlug) : undefined;
+
+  const breadcrumbElements: any[] = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.rd1.co.uk",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Locations",
+      item: "https://www.rd1.co.uk/locations",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: page.country,
+      item: `https://www.rd1.co.uk/locations/${page.countrySlug}`,
+    }
+  ];
+
+  if (hubPage) {
+    breadcrumbElements.push({
+      "@type": "ListItem",
+      position: 4,
+      name: hubPage.city,
+      item: `https://www.rd1.co.uk${hubPage.path}`,
+    });
+    breadcrumbElements.push({
+      "@type": "ListItem",
+      position: 5,
+      name: page.city,
+      item: canonicalUrl,
+    });
+  } else {
+    breadcrumbElements.push({
+      "@type": "ListItem",
+      position: 4,
+      name: page.city,
+      item: canonicalUrl,
+    });
+  }
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.rd1.co.uk",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Locations",
-        item: "https://www.rd1.co.uk/locations",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: page.country,
-        item: `https://www.rd1.co.uk/locations/${page.countrySlug}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        name: page.city,
-        item: canonicalUrl,
-      },
-    ],
+    itemListElement: breadcrumbElements,
   };
 
   const faqSchema = {
@@ -206,6 +227,14 @@ export default async function CityRecruitmentPage({
                   <li>
                     <span className="capitalize">{page.country}</span>
                   </li>
+                  {hubPage && (
+                    <>
+                      <span className="separator">/</span>
+                      <li>
+                        <Link href={hubPage.path}>{hubPage.city}</Link>
+                      </li>
+                    </>
+                  )}
                   <span className="separator">/</span>
                   <li className="current">{page.city}</li>
                 </ol>
@@ -407,6 +436,63 @@ export default async function CityRecruitmentPage({
               </div>
             </section>
 
+            {/* Hub "Areas We Cover" Spoke Links */}
+            {page.isHub && (
+              <section className="city-areas-covered-hub">
+                <div className="container">
+                  <h2>Areas We Cover around {page.city}</h2>
+                  <p>
+                    Recruitment Direct UK provides professional staffing and recruitment services across the entire {page.city} region, including the following local areas and towns:
+                  </p>
+                  <div className="areas-grid">
+                    {cities
+                      .filter((c) => c.hubSlug === page.slug)
+                      .map((town) => (
+                        <div key={town.slug} className="area-link-wrapper">
+                          <Link href={town.path}>
+                            Recruitment Agency {town.city}
+                          </Link>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Spoke "Nearby Towns & Hub" Links */}
+            {!page.isHub && page.hubSlug && (
+              <section className="city-town-spokes">
+                <div className="container">
+                  <h2>Local Recruitment Hubs Near {page.city}</h2>
+                  <p>
+                    Explore our local recruitment services and active job vacancies in nearby towns across the region:
+                  </p>
+                  <div className="areas-grid">
+                    {/* Link back to the main Hub page */}
+                    {hubPage && (
+                      <div className="area-link-wrapper hub-highlight">
+                        <Link href={hubPage.path}>
+                          {hubPage.city} Hub
+                        </Link>
+                      </div>
+                    )}
+                    
+                    {/* Link to other towns under the same hub */}
+                    {cities
+                      .filter((c) => c.hubSlug === page.hubSlug && c.slug !== page.slug)
+                      .slice(0, 6)
+                      .map((town) => (
+                        <div key={town.slug} className="area-link-wrapper">
+                          <Link href={town.path}>
+                            Recruitment Agency {town.city}
+                          </Link>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </section>
+            )}
+
             <section className="city-internal-links">
               <div className="container">
                 <h2>Recruitment Direct UK Information & Resources</h2>
@@ -415,7 +501,7 @@ export default async function CityRecruitmentPage({
                     <h3>Explore Locations</h3>
                     <ul>
                       {cities
-                        .filter((c) => c.countrySlug === page.countrySlug && c.slug !== page.slug)
+                        .filter((c) => c.countrySlug === page.countrySlug && c.slug !== page.slug && c.isHub === true)
                         .slice(0, 4)
                         .map((c) => (
                           <li key={c.slug}>
