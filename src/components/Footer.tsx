@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { FileText, Shield, Scale, Lock, Users, Info } from "lucide-react";
+import { cities } from "@/data/cities";
 
 export default function Footer() {
   const [isPoliciesOpen, setIsPoliciesOpen] = useState(false);
@@ -822,7 +823,15 @@ export default function Footer() {
                     <a href="/why-choose-us">Why RDUK</a>
                     <a href="/our-process">Our Process</a>
                     <a href="/contact">Contact Us</a>
-                    <a href="/locations/falkirk" className="sr-only">Recruitment Agency Falkirk</a>
+                    {cities.map((city, idx) => (
+                      <a
+                        key={`${city.countrySlug}-${city.slug}-${idx}`}
+                        href={city.path}
+                        className="sr-only"
+                      >
+                        Recruitment Agency {city.city}
+                      </a>
+                    ))}
                   </div>
 
                   <div className="footer-col">
