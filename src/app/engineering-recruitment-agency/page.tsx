@@ -571,13 +571,13 @@ export default function EngineeringAgencyPage() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://www.rd1.co.uk"
+                "item": "https://rd1.co.uk"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Engineering Recruitment Agency",
-                "item": "https://www.rd1.co.uk/engineering-recruitment-agency"
+                "item": "https://rd1.co.uk/engineering-recruitment-agency"
               }
             ]
           })
@@ -592,8 +592,8 @@ export default function EngineeringAgencyPage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Recruitment Direct UK Ltd",
-            "url": "https://www.rd1.co.uk",
-            "logo": "https://www.rd1.co.uk/logo.png",
+            "url": "https://rd1.co.uk",
+            "logo": "https://rd1.co.uk/logo.png",
             "sameAs": [
               "https://www.facebook.com/recruitmentdirect",
               "https://www.linkedin.com/company/recruitment-direct-uk-ltd"
@@ -610,9 +610,9 @@ export default function EngineeringAgencyPage() {
             "@context": "https://schema.org",
             "@type": "EmploymentAgency",
             "name": "Recruitment Direct UK Ltd",
-            "image": "https://www.rd1.co.uk/images/engineering-recruitment-agency.webp",
-            "url": "https://www.rd1.co.uk",
-            "logo": "https://www.rd1.co.uk/logo.png",
+            "image": "https://rd1.co.uk/images/engineering-recruitment-agency.webp",
+            "url": "https://rd1.co.uk",
+            "logo": "https://rd1.co.uk/logo.png",
             "telephone": "01324556644",
             "address": {
               "@type": "PostalAddress",
@@ -660,12 +660,12 @@ export default function EngineeringAgencyPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Engineering Recruitment Agency UK",
-            "url": "https://www.rd1.co.uk/engineering-recruitment-agency",
+            "url": "https://rd1.co.uk/engineering-recruitment-agency",
             "description": "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across England, Scotland, Wales, Northern Ireland and the Republic of Ireland.",
             "isPartOf": {
               "@type": "WebSite",
               "name": "Recruitment Direct UK",
-              "url": "https://www.rd1.co.uk"
+              "url": "https://rd1.co.uk"
             }
           })
         }}

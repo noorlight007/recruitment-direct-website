@@ -14,12 +14,12 @@ import {
 } from "lucide-react";
 
 const sectors = [
-  { name: "Construction", icon: HardHat, href: "/sectors/construction" },
-  { name: "Engineering", icon: Wrench, href: "/sectors/engineering" },
-  { name: "Renewables", icon: Zap, href: "/sectors/renewables" },
+  { name: "Construction", icon: HardHat, href: "/construction-recruitment-agency" },
+  { name: "Engineering", icon: Wrench, href: "/engineering-recruitment-agency" },
+  { name: "Renewables", icon: Zap, href: "/renewable-energy-recruitment-agency" },
   { name: "Logistics", icon: Truck, href: "/sectors/logistics" },
-  { name: "Healthcare", icon: Heart, href: "/sectors/healthcare" },
-  { name: "Education", icon: GraduationCap, href: "/sectors/education" },
+  { name: "Healthcare", icon: Heart, href: "/healthcare-recruitment-agency" },
+  { name: "Education", icon: GraduationCap, href: "/education-recruitment-agency" },
   { name: "IT & Tech", icon: Monitor, href: "/sectors/it-tech" },
   { name: "Commercial", icon: Briefcase, href: "/sectors/commercial" },
 ];

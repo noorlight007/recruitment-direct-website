@@ -15,7 +15,7 @@ interface ApiResponse {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.rd1.co.uk";
+  const baseUrl = "https://rd1.co.uk";
 
   const staticPages = [
     "",
@@ -44,10 +44,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/data-breach-policy",
     "/data-protection-gdpr-policy",
     "/data-retention-policy",
+    "/education-recruitment-agency",
     "/engineering-recruitment-agency",
     "/environmental-carbon-policy",
     "/equality-diversity-policy",
     "/health-safety-policy",
+    "/healthcare-recruitment-agency",
+    "/hospitality-recruitment-agency",
     "/human-review-statement",
     "/information-security-policy",
     "/integrations",
@@ -65,13 +68,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/right-to-work-policy",
     "/safeguarding-policy",
     "/sectors/commercial",
-    "/sectors/construction",
-    "/sectors/education",
-    "/sectors/engineering",
-    "/sectors/healthcare",
     "/sectors/it-tech",
     "/sectors/logistics",
-    "/sectors/renewables",
     "/security",
     "/services",
     "/temporary-staff",

@@ -30,7 +30,7 @@ export async function generateMetadata({
     return {};
   }
 
-  const canonicalUrl = `https://www.rd1.co.uk${page.path}`;
+  const canonicalUrl = `https://rd1.co.uk${page.path}`;
 
   return {
     title: page.seoTitle,
@@ -57,6 +57,25 @@ export async function generateMetadata({
   };
 }
 
+const getSectorHref = (slug: string) => {
+  switch (slug) {
+    case "construction":
+      return "/construction-recruitment-agency";
+    case "engineering":
+      return "/engineering-recruitment-agency";
+    case "renewable-energy":
+      return "/renewable-energy-recruitment-agency";
+    case "healthcare":
+      return "/healthcare-recruitment-agency";
+    case "education":
+      return "/education-recruitment-agency";
+    case "hospitality":
+      return "/hospitality-recruitment-agency";
+    default:
+      return `/sectors/${slug}`;
+  }
+};
+
 export default async function CityRecruitmentPage({
   params,
 }: CityPageProps) {
@@ -67,7 +86,7 @@ export default async function CityRecruitmentPage({
     notFound();
   }
 
-  const canonicalUrl = `https://www.rd1.co.uk${page.path}`;
+  const canonicalUrl = `https://rd1.co.uk${page.path}`;
 
   // Find hub page if this is a spoke town page
   const hubPage = !page.isHub && page.hubSlug ? getCity(page.countrySlug, page.hubSlug) : undefined;
@@ -77,19 +96,19 @@ export default async function CityRecruitmentPage({
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.rd1.co.uk",
+      item: "https://rd1.co.uk",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Locations",
-      item: "https://www.rd1.co.uk/locations",
+      item: "https://rd1.co.uk/locations",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: page.country,
-      item: `https://www.rd1.co.uk/locations/${page.countrySlug}`,
+      item: `https://rd1.co.uk/locations/${page.countrySlug}`,
     }
   ];
 
@@ -98,7 +117,7 @@ export default async function CityRecruitmentPage({
       "@type": "ListItem",
       position: 4,
       name: hubPage.city,
-      item: `https://www.rd1.co.uk${hubPage.path}`,
+      item: `https://rd1.co.uk${hubPage.path}`,
     });
     breadcrumbElements.push({
       "@type": "ListItem",
@@ -140,8 +159,8 @@ export default async function CityRecruitmentPage({
     "name": `Recruitment Direct UK Ltd - ${page.city}`,
     "url": canonicalUrl,
     "telephone": "0345 067 8022",
-    "logo": "https://www.rd1.co.uk/logo.png",
-    "image": "https://www.rd1.co.uk/logo.png",
+    "logo": "https://rd1.co.uk/logo.png",
+    "image": "https://rd1.co.uk/logo.png",
     "sameAs": [
       "https://www.facebook.com/recruitmentdirectukltd",
       "https://www.linkedin.com/company/recruitment-direct-uk-ltd"
@@ -158,7 +177,7 @@ export default async function CityRecruitmentPage({
     "parentOrganization": {
       "@type": "Organization",
       "name": "Recruitment Direct UK Ltd",
-      "url": "https://www.rd1.co.uk"
+      "url": "https://rd1.co.uk"
     }
   };
 
@@ -166,7 +185,7 @@ export default async function CityRecruitmentPage({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Recruitment Direct UK Ltd",
-    url: "https://www.rd1.co.uk",
+    url: "https://rd1.co.uk",
     telephone: "0345 067 8022",
     foundingDate: "2006",
     areaServed: [page.city, page.country],
@@ -316,7 +335,7 @@ export default async function CityRecruitmentPage({
                         ))}
                       </ul>
 
-                      <Link href={`/sectors/${sector.slug}`}>
+                      <Link href={getSectorHref(sector.slug)}>
                         Learn more about {sector.name} recruitment
                       </Link>
                     </article>
@@ -517,19 +536,19 @@ export default async function CityRecruitmentPage({
                     <h3>Recruitment Sectors</h3>
                     <ul>
                       <li>
-                        <Link href="/sectors/construction">Construction Recruitment</Link>
+                        <Link href="/construction-recruitment-agency">Construction Recruitment</Link>
                       </li>
                       <li>
-                        <Link href="/sectors/engineering">Engineering Recruitment</Link>
+                        <Link href="/engineering-recruitment-agency">Engineering Recruitment</Link>
                       </li>
                       <li>
                         <Link href="/sectors/logistics">Logistics & Driving Recruitment</Link>
                       </li>
                       <li>
-                        <Link href="/sectors/healthcare">Healthcare & Care Recruitment</Link>
+                        <Link href="/healthcare-recruitment-agency">Healthcare & Care Recruitment</Link>
                       </li>
                       <li>
-                        <Link href="/sectors/education">Education Sector Recruitment</Link>
+                        <Link href="/education-recruitment-agency">Education Sector Recruitment</Link>
                       </li>
                     </ul>
                   </div>

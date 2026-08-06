@@ -200,7 +200,7 @@ export default function PermanentStaffPage() {
               </Link>
               , as well as{" "}
               <Link
-                href="/construction-recruitment"
+                href="/construction-recruitment-agency"
                 className="text-primary hover:underline font-medium"
               >
                 specialist construction recruitment

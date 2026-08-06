@@ -9,16 +9,16 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://www.rd1.co.uk/engineering-recruitment-agency",
+    canonical: "https://rd1.co.uk/engineering-recruitment-agency",
   },
   openGraph: {
     type: "website",
     title: "Engineering Recruitment Agency UK | Recruitment Direct UK",
     description: "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across the UK and Republic of Ireland.",
-    url: "https://www.rd1.co.uk/engineering-recruitment-agency",
+    url: "https://rd1.co.uk/engineering-recruitment-agency",
     images: [
       {
-        url: "https://www.rd1.co.uk/images/engineering-recruitment-agency.webp",
+        url: "https://rd1.co.uk/images/engineering-recruitment-agency.webp",
         width: 1200,
         height: 630,
         alt: "Engineering Recruitment Agency UK",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Engineering Recruitment Agency UK | Recruitment Direct UK",
     description: "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across the UK and Republic of Ireland.",
-    images: ["https://www.rd1.co.uk/images/engineering-recruitment-agency.webp"],
+    images: ["https://rd1.co.uk/images/engineering-recruitment-agency.webp"],
   },
 };
 

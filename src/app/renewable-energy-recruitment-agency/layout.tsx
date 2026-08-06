@@ -9,16 +9,16 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://www.rd1.co.uk/renewable-energy-recruitment-agency",
+    canonical: "https://rd1.co.uk/renewable-energy-recruitment-agency",
   },
   openGraph: {
     type: "website",
     title: "Renewable Energy Recruitment Agency UK | Recruitment Direct UK",
     description: "Renewable Energy Recruitment Agency supplying temporary, contract and permanent professionals across the UK and Republic of Ireland.",
-    url: "https://www.rd1.co.uk/renewable-energy-recruitment-agency",
+    url: "https://rd1.co.uk/renewable-energy-recruitment-agency",
     images: [
       {
-        url: "https://www.rd1.co.uk/images/renewable-energy-recruitment-agency.webp",
+        url: "https://rd1.co.uk/images/renewable-energy-recruitment-agency.webp",
         width: 1200,
         height: 630,
         alt: "Renewable Energy Recruitment Agency UK",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Renewable Energy Recruitment Agency UK | Recruitment Direct UK",
     description: "Renewable Energy Recruitment Agency supplying temporary, contract and permanent professionals across the UK and Republic of Ireland.",
-    images: ["https://www.rd1.co.uk/images/renewable-energy-recruitment-agency.webp"],
+    images: ["https://rd1.co.uk/images/renewable-energy-recruitment-agency.webp"],
   },
 };
 

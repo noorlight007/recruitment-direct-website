@@ -176,7 +176,7 @@ export default function TemporaryStaffPage() {
               For construction-specific roles, including site-based staff and
               project support, view our{" "}
               <Link
-                href="/construction-recruitment"
+                href="/construction-recruitment-agency"
                 className="text-primary hover:underline font-medium"
               >
                 Construction Recruitment services
