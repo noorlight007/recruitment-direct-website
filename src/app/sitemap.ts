@@ -61,7 +61,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/news",
     "/open-credit-account",
     "/our-process",
-    "/parmanent-staff",
+    "/permanent-staff",
     "/place-enquiry",
     "/privacy-policy",
     "/renewable-energy-recruitment-agency",
@@ -109,12 +109,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch jobs for sitemap generation:", error);
   }
 
-  const locationUrls: MetadataRoute.Sitemap = cities.map((city) => ({
-    url: `${baseUrl}${city.path}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  const locationUrls: MetadataRoute.Sitemap = cities
+    .filter((city) => city.isHub)
+    .map((city) => ({
+      url: `${baseUrl}${city.path}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
 
   return [...staticUrls, ...locationUrls, ...jobUrls];
 }

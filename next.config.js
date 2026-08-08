@@ -10,6 +10,24 @@ const nextConfig = {
     },
     async redirects() {
         return [
+            // Force www to non-www
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'www.rd1.co.uk' }],
+                destination: 'https://rd1.co.uk/:path*',
+                permanent: true,
+            },
+            // Spelling correction redirects
+            {
+                source: '/parmanent-staff',
+                destination: '/permanent-staff',
+                permanent: true,
+            },
+            {
+                source: '/parmanent-staff/',
+                destination: '/permanent-staff',
+                permanent: true,
+            },
             // Construction redirects
             {
                 source: '/construction',

@@ -444,7 +444,7 @@ export default function EliteAISection() {
               CVs, qualifications and applicant information submitted quickly for
               faster permanent placements.
             </p>
-            <a href="/parmanent-staff">Hire Permanent Staff →</a>
+            <a href="/permanent-staff">Hire Permanent Staff →</a>
           </div>
         </div>
 

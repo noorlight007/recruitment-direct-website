@@ -68,7 +68,7 @@ const clientSubmenu = [
   {
     title: "Permanent Staff",
     description: "Long-term hires",
-    link: "/parmanent-staff",
+    link: "/permanent-staff",
     icon: Briefcase,
   },
   {

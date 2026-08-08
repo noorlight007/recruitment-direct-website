@@ -39,7 +39,7 @@ export async function generateMetadata({
       canonical: canonicalUrl,
     },
     robots: {
-      index: true,
+      index: page.isHub ? true : false,
       follow: true,
     },
     openGraph: {
