@@ -82,9 +82,17 @@ export default function NewsPage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-xl text-muted-dark leading-relaxed font-normal mb-0 max-w-3xl">
+              <p className="text-xl text-muted-dark leading-relaxed font-normal mb-4 max-w-3xl">
                 Stay updated with the latest news, recruitment trends, industry insights, and updates from Recruitment Direct.
               </p>
+              <div className="text-base text-muted-dark leading-relaxed max-w-3xl space-y-4">
+                <p>
+                  Welcome to our industry insights hub. We publish weekly articles and reports covering employment law, HMRC tax compliance (such as CIS, VAT, and IR35), candidate sourcing methods, and hiring advice.
+                </p>
+                <p>
+                  Our articles draw on our experience supplying temporary, contract, and permanent staff across Scotland and the UK since 2006. Whether you are a business looking for staffing trends in Construction, Logistics, and Engineering, or a candidate seeking compliance updates, our articles keep you informed.
+                </p>
+              </div>
             </motion.div>
           </div>
         </header>
@@ -98,6 +106,9 @@ export default function NewsPage() {
               transition={{ delay: 0.1 }}
               className="bg-white rounded-2xl p-6 sm:p-8 md:p-12 shadow-sm border border-gray-100 min-h-[400px]"
             >
+              <h2 className="text-2xl font-bold font-heading text-black mb-6 border-b border-gray-100 pb-4">
+                Our Latest Articles & Updates
+              </h2>
               <div id="soro-blog"></div>
             </motion.div>
           </div>

@@ -708,6 +708,8 @@ export default function Footer() {
                 <img
                   src="/assets/compliance/constructionline-gold.png"
                   alt="Constructionline Gold"
+                  width="180"
+                  height="92"
                 />
               </div>
               <h3>Constructionline Gold</h3>
@@ -732,6 +734,8 @@ export default function Footer() {
                 <img
                   src="/assets/compliance/cyber-essentials.png"
                   alt="Cyber Essentials"
+                  width="180"
+                  height="92"
                 />
               </div>
               <h3>Cyber <br className="rd-desktop-br" />Essentials</h3>
@@ -753,7 +757,7 @@ export default function Footer() {
             {/* ISO 9001:2015 */}
             <div className="rd-card standard-card">
               <div className="rd-card-logo">
-                <img src="/assets/compliance/cqs-iso9001.png" alt="ISO 9001:2015" />
+                <img src="/assets/compliance/cqs-iso9001.png" alt="ISO 9001:2015" width="180" height="92" />
               </div>
               <h3>ISO <br className="rd-desktop-br" />9001:2015</h3>
               <p className="rd-sub">Quality Management</p>
@@ -774,7 +778,7 @@ export default function Footer() {
             {/* REC Membership */}
             <div className="rd-card standard-card">
               <div className="rd-card-logo">
-                <img src="/rec_logo_new.png" alt="REC Membership" />
+                <img src="/rec_logo_new.png" alt="REC Membership" width="180" height="92" />
               </div>
               <h3>REC <br className="rd-desktop-br" />Membership</h3>
               <p className="rd-sub">Corporate Member</p>

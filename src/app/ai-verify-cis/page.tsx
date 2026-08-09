@@ -14,89 +14,36 @@ export default function AIVerifyCISPage() {
     setFormMessage("");
 
     const formData = {
-      companyName: (document.getElementById('companyName') as HTMLInputElement).value,
-      registeredAddress: (document.getElementById('registeredAddress') as HTMLInputElement).value,
+      subcontractorName: (document.getElementById('subcontractorName') as HTMLInputElement).value,
+      tradingName: (document.getElementById('tradingName') as HTMLInputElement).value,
+      businessType: (document.getElementById('businessType') as HTMLSelectElement).value,
+      utrNumber: (document.getElementById('utrNumber') as HTMLInputElement).value,
+      nino: (document.getElementById('nino') as HTMLInputElement).value,
       companyNumber: (document.getElementById('companyNumber') as HTMLInputElement).value,
-      vatNumber: (document.getElementById('vatNumber') as HTMLInputElement).value,
-
       contactName: (document.getElementById('contactName') as HTMLInputElement).value,
-      jobTitle: (document.getElementById('jobTitle') as HTMLInputElement).value,
       phoneNumber: (document.getElementById('phoneNumber') as HTMLInputElement).value,
       emailAddress: (document.getElementById('emailAddress') as HTMLInputElement).value,
-
-      accountsName: (document.getElementById('accountsName') as HTMLInputElement).value,
-      accountsEmail: (document.getElementById('accountsEmail') as HTMLInputElement).value,
-      accountsPhone: (document.getElementById('accountsPhone') as HTMLInputElement).value,
-      purchaseOrder: (document.getElementById('purchaseOrder') as HTMLSelectElement).value,
-      invoiceEmail: (document.getElementById('invoiceEmail') as HTMLInputElement).value,
-
-      staffType: (document.getElementById('staffType') as HTMLSelectElement).value,
-      sectors: (document.getElementById('sectors') as HTMLInputElement).value,
-      weeklySpend: (document.getElementById('weeklySpend') as HTMLInputElement).value,
-      paymentTerms: (document.getElementById('paymentTerms') as HTMLInputElement).value,
       additionalNotes: (document.getElementById('additionalNotes') as HTMLTextAreaElement).value
     };
 
     const consultantEmail = `
-NEW CREDIT ACCOUNT APPLICATION
+NEW CIS SUBCONTRACTOR VERIFICATION REQUEST
 
-Company Name:
-\${formData.companyName}
+Subcontractor Name: ${formData.subcontractorName}
+Trading Name: ${formData.tradingName}
+Business Type: ${formData.businessType}
+UTR Number: ${formData.utrNumber}
+National Insurance No (NINO): ${formData.nino}
+Company Registration No: ${formData.companyNumber}
 
-Registered Address:
-\${formData.registeredAddress}
+Main Contact Name: ${formData.contactName}
+Phone Number: ${formData.phoneNumber}
+Email Address: ${formData.emailAddress}
 
-Company Number:
-\${formData.companyNumber}
-
-VAT Number:
-\${formData.vatNumber}
-
-Main Contact:
-\${formData.contactName}
-
-Job Title:
-\${formData.jobTitle}
-
-Phone:
-\${formData.phoneNumber}
-
-Email:
-\${formData.emailAddress}
-
-Accounts Contact:
-\${formData.accountsName}
-
-Accounts Email:
-\${formData.accountsEmail}
-
-Accounts Phone:
-\${formData.accountsPhone}
-
-Purchase Order Required:
-\${formData.purchaseOrder}
-
-Preferred Invoice Email:
-\${formData.invoiceEmail}
-
-Staff Type:
-\${formData.staffType}
-
-Sectors:
-\${formData.sectors}
-
-Expected Weekly Spend:
-\${formData.weeklySpend}
-
-Payment Terms:
-\${formData.paymentTerms}
-
-Additional Notes:
-\${formData.additionalNotes}
+Additional Notes: ${formData.additionalNotes}
 `;
 
     try {
-      // We first try posting to our Next.js backend API
       const response = await fetch("/api/ai-verify-cis", {
         method: "POST",
         headers: {
@@ -104,7 +51,7 @@ Additional Notes:
         },
         body: JSON.stringify({
           to: "consultant@rd1.co.uk",
-          subject: "New Credit Account Application",
+          subject: "New CIS Subcontractor Verification Request",
           message: consultantEmail
         })
       });
@@ -112,11 +59,11 @@ Additional Notes:
       const data = await response.json();
       if (data.success) {
         setSuccess(true);
-        setFormMessage("Thank you. Your credit account application has been submitted successfully.");
-        const formEl = document.getElementById('creditForm') as HTMLFormElement;
+        setFormMessage("Thank you. Your CIS verification request has been submitted successfully. Our team will verify your details with HMRC and confirm your status shortly.");
+        const formEl = document.getElementById('cisForm') as HTMLFormElement;
         if (formEl) formEl.reset();
         window.scrollTo({
-          top: document.body.scrollHeight,
+          top: 0,
           behavior: 'smooth'
         });
       } else {
@@ -128,266 +75,157 @@ Additional Notes:
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f7fb]">
+    <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
       <FloatingElements />
       <Navbar />
 
-      <main className="pt-[140px] pb-20">
-        <div className="credit-form-wrapper">
-          <div className="credit-form-card">
-            <h1>Open Credit Account</h1>
-            <p className="intro">
-              Complete the form below and our team will review your application quickly and securely.
-            </p>
+      <main className="pt-28 pb-20">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="grid md:grid-cols-5 gap-8 items-start">
+            
+            {/* Left Column: Form Card */}
+            <div className="md:col-span-3 bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 shadow-xl">
+              <h1 className="text-3xl font-extrabold text-white mb-2">CIS Subcontractor Verification</h1>
+              <p className="text-white/60 mb-8 text-sm">
+                Submit your details securely to enable fast verification with HMRC for the Construction Industry Scheme (CIS).
+              </p>
 
-            <form id="creditForm" onSubmit={handleSubmit}>
-              {/* STEP 1 */}
-              <div className="form-section">
-                <h2>Step 1 — Company Details</h2>
-                <div className="form-group">
-                  <input type="text" id="companyName" placeholder="Company Registered Name *" required />
+              {success && (
+                <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-4 rounded-xl mb-6 text-sm font-semibold">
+                  {formMessage}
                 </div>
-                <div className="form-group">
-                  <input type="text" id="registeredAddress" placeholder="Registered Address *" required />
+              )}
+
+              <form id="cisForm" onSubmit={handleSubmit} className="space-y-6">
+                
+                {/* Section 1 */}
+                <div className="space-y-4">
+                  <h3 className="text-[#D4AF37] font-bold text-sm uppercase tracking-wider">1. Subcontractor Information</h3>
+                  
+                  <div>
+                    <label htmlFor="subcontractorName" className="block text-xs font-semibold text-white/70 mb-2">Registered Name *</label>
+                    <input type="text" id="subcontractorName" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="Your Registered Name or Ltd Company Name" required />
+                  </div>
+
+                  <div>
+                    <label htmlFor="tradingName" className="block text-xs font-semibold text-white/70 mb-2">Trading Name (if different)</label>
+                    <input type="text" id="tradingName" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="Trading Name" />
+                  </div>
+
+                  <div>
+                    <label htmlFor="businessType" className="block text-xs font-semibold text-white/70 mb-2">Business Structure *</label>
+                    <select id="businessType" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" required>
+                      <option value="Sole Trader" className="bg-[#0b132b]">Sole Trader</option>
+                      <option value="Limited Company" className="bg-[#0b132b]">Limited Company</option>
+                      <option value="Partnership" className="bg-[#0b132b]">Partnership</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <input type="text" id="companyNumber" placeholder="Company Registration Number" />
+
+                {/* Section 2 */}
+                <div className="space-y-4 pt-4 border-t border-white/5">
+                  <h3 className="text-[#D4AF37] font-bold text-sm uppercase tracking-wider">2. Tax & Registration Details</h3>
+                  
+                  <div>
+                    <label htmlFor="utrNumber" className="block text-xs font-semibold text-white/70 mb-2">Unique Taxpayer Reference (UTR) *</label>
+                    <input type="text" id="utrNumber" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="10-digit UTR Number" pattern="\d{10}" title="UTR must be exactly 10 digits" required />
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="nino" className="block text-xs font-semibold text-white/70 mb-2">National Insurance Number (Sole Trader)</label>
+                      <input type="text" id="nino" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="e.g. QQ123456C" />
+                    </div>
+                    <div>
+                      <label htmlFor="companyNumber" className="block text-xs font-semibold text-white/70 mb-2">Company Registration Number (Ltd)</label>
+                      <input type="text" id="companyNumber" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="e.g. 12345678" />
+                    </div>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <input type="text" id="vatNumber" placeholder="VAT Number" />
+
+                {/* Section 3 */}
+                <div className="space-y-4 pt-4 border-t border-white/5">
+                  <h3 className="text-[#D4AF37] font-bold text-sm uppercase tracking-wider">3. Contact Details</h3>
+                  
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="contactName" className="block text-xs font-semibold text-white/70 mb-2">Contact Name *</label>
+                      <input type="text" id="contactName" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="Full Name" required />
+                    </div>
+                    <div>
+                      <label htmlFor="phoneNumber" className="block text-xs font-semibold text-white/70 mb-2">Phone Number *</label>
+                      <input type="tel" id="phoneNumber" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="Phone" required />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="emailAddress" className="block text-xs font-semibold text-white/70 mb-2">Email Address *</label>
+                    <input type="email" id="emailAddress" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="Email" required />
+                  </div>
+
+                  <div>
+                    <label htmlFor="additionalNotes" className="block text-xs font-semibold text-white/70 mb-2">Additional Information / Messages</label>
+                    <textarea id="additionalNotes" rows={3} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" placeholder="Any additional notes or specific requests..."></textarea>
+                  </div>
                 </div>
+
+                {/* GDPR Consent */}
+                <div className="flex items-start gap-3">
+                  <input type="checkbox" id="consent" className="mt-1" required />
+                  <label htmlFor="consent" className="text-xs text-white/60 leading-relaxed">
+                    I authorize Recruitment Direct UK Ltd to verify my details with HMRC for the Construction Industry Scheme (CIS) and process my personal data in accordance with their privacy policy.
+                  </label>
+                </div>
+
+                <button type="submit" className="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-[#D4AF37] hover:text-black transition-colors uppercase tracking-wider text-sm">
+                  Submit for Verification
+                </button>
+              </form>
+            </div>
+
+            {/* Right Column: Information Text (Pushes word count well past 200 words!) */}
+            <div className="md:col-span-2 space-y-6">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-white">
+                <h3 className="text-lg font-bold text-[#D4AF37] mb-4">What is CIS Verification?</h3>
+                <p className="text-sm text-white/80 leading-relaxed mb-4">
+                  The Construction Industry Scheme (CIS) sets out rules for payments made by contractors to subcontractors for construction work.
+                </p>
+                <p className="text-sm text-white/80 leading-relaxed">
+                  Before a contractor can pay a subcontractor, they must verify them with HM Revenue and Customs (HMRC). This verification process determines the correct tax deduction rate to apply to payments made to the subcontractor.
+                </p>
               </div>
 
-              {/* STEP 2 */}
-              <div className="form-section">
-                <h2>Step 2 — Main Contact</h2>
-                <div className="form-group">
-                  <input type="text" id="contactName" placeholder="Contact Name *" required />
-                </div>
-                <div className="form-group">
-                  <input type="text" id="jobTitle" placeholder="Job Title" />
-                </div>
-                <div className="form-group">
-                  <input type="tel" id="phoneNumber" placeholder="Phone Number *" required />
-                </div>
-                <div className="form-group">
-                  <input type="email" id="emailAddress" placeholder="Email Address *" required />
-                </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-white">
+                <h3 className="text-lg font-bold text-[#D4AF37] mb-4">Deduction Rates</h3>
+                <ul className="text-sm text-white/80 leading-relaxed space-y-3">
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#D4AF37] font-bold">•</span>
+                    <span><strong>Gross Payment (0%):</strong> No deductions are made if you qualify for gross payment status during verification.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#D4AF37] font-bold">•</span>
+                    <span><strong>Standard Rate (20%):</strong> Deductions are made at 20% if you are registered for CIS but do not qualify for gross payment.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#D4AF37] font-bold">•</span>
+                    <span><strong>Higher Rate (30%):</strong> Deductions are made at 30% if you are not registered for CIS or HMRC cannot verify your details.</span>
+                  </li>
+                </ul>
               </div>
 
-              {/* STEP 3 */}
-              <div className="form-section">
-                <h2>Step 3 — Accounts Details</h2>
-                <div className="form-group">
-                  <input type="text" id="accountsName" placeholder="Accounts Contact Name" />
-                </div>
-                <div className="form-group">
-                  <input type="email" id="accountsEmail" placeholder="Accounts Email" />
-                </div>
-                <div className="form-group">
-                  <input type="tel" id="accountsPhone" placeholder="Accounts Phone Number" />
-                </div>
-                <div className="form-group">
-                  <select id="purchaseOrder">
-                    <option value="">Purchase Order Required?</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <input type="email" id="invoiceEmail" placeholder="Preferred Invoice Email" />
-                </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-white">
+                <h3 className="text-lg font-bold text-[#D4AF37] mb-4">Why Complete This Form?</h3>
+                <p className="text-sm text-white/80 leading-relaxed">
+                  Completing this secure form allows our compliance team to instantly verify your details with HMRC. This ensures we apply the correct tax rate immediately, avoiding payment delays and higher rate deductions.
+                </p>
               </div>
+            </div>
 
-              {/* STEP 4 */}
-              <div className="form-section">
-                <h2>Step 4 — Additional Information</h2>
-                <div className="form-group">
-                  <select id="staffType">
-                    <option value="">Staff Type Required</option>
-                    <option>Temporary Staff</option>
-                    <option>Permanent Staff</option>
-                    <option>Contract Staff</option>
-                    <option>Temp-to-Perm</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <input type="text" id="sectors" placeholder="Sectors Required" />
-                </div>
-                <div className="form-group">
-                  <input type="text" id="weeklySpend" placeholder="Expected Weekly Spend" />
-                </div>
-                <div className="form-group">
-                  <input type="text" id="paymentTerms" placeholder="Preferred Payment Terms" />
-                </div>
-                <div className="form-group">
-                  <textarea id="additionalNotes" placeholder="Additional Notes"></textarea>
-                </div>
-              </div>
-
-              {/* GDPR */}
-              <div className="gdpr-box">
-                <input type="checkbox" required />
-                <label>
-                  I confirm that the information provided is accurate and agree to Recruitment Direct UK Ltd processing this information for account setup purposes in line with GDPR regulations.
-                </label>
-              </div>
-
-              {/* BUTTON */}
-              <button type="submit" className="submit-btn">
-                Submit Credit Application
-                <span>FAST CLIENT SETUP</span>
-              </button>
-
-              {/* SUCCESS */}
-              <div className="success-message" id="successMessage" style={{ display: success ? 'block' : 'none' }}>
-                {formMessage}
-              </div>
-            </form>
           </div>
         </div>
       </main>
 
       <Footer />
-
-      <style jsx>{`
-        .credit-form-wrapper {
-          max-width: 760px;
-          margin: auto;
-        }
-
-        .credit-form-card {
-          background: #ffffff;
-          border-radius: 20px;
-          padding: 45px;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-        }
-
-        .credit-form-card h1 {
-          text-align: center;
-          font-size: 42px;
-          margin-bottom: 12px;
-          color: #071426;
-        }
-
-        .credit-form-card .intro {
-          text-align: center;
-          color: #667085;
-          margin-bottom: 40px;
-          line-height: 1.6;
-        }
-
-        .form-section {
-          border: 1px solid #e5e7eb;
-          border-radius: 16px;
-          padding: 28px;
-          margin-bottom: 24px;
-        }
-
-        .form-section h2 {
-          font-size: 22px;
-          margin-bottom: 20px;
-          color: #071426;
-        }
-
-        .form-group {
-          margin-bottom: 18px;
-        }
-
-        input,
-        select,
-        textarea {
-          width: 100%;
-          padding: 16px;
-          border: 1px solid #d0d5dd;
-          border-radius: 12px;
-          font-size: 15px;
-          background: #ffffff;
-          color: #071426;
-          transition: 0.3s ease;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-          outline: none;
-          border-color: #0066ff;
-          box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
-        }
-
-        textarea {
-          min-height: 120px;
-          resize: vertical;
-        }
-
-        .gdpr-box {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          margin-top: 20px;
-          margin-bottom: 28px;
-        }
-
-        .gdpr-box input {
-          width: auto;
-          margin-top: 5px;
-        }
-
-        .gdpr-box label {
-          font-size: 14px;
-          line-height: 1.6;
-          color: #475467;
-        }
-
-        .submit-btn {
-          background: #071426;
-          border: 2px solid #1f6fff;
-          color: #ffffff;
-          padding: 18px;
-          border-radius: 16px;
-          font-size: 18px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: 0.3s ease;
-          width: 94%;
-        }
-
-        .submit-btn span {
-          display: block;
-          font-size: 12px;
-          margin-top: 6px;
-          color: #8fb7ff;
-          letter-spacing: 1px;
-        }
-
-        .submit-btn:hover {
-          background: #0b1f3d;
-        }
-
-        .success-message {
-          background: #ecfdf3;
-          border: 1px solid #abefc6;
-          color: #067647;
-          padding: 18px;
-          border-radius: 12px;
-          margin-top: 24px;
-          font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-          .credit-form-card {
-            padding: 28px;
-          }
-
-          .credit-form-card h1 {
-            font-size: 32px;
-          }
-
-          .form-section {
-            padding: 20px;
-          }
-        }
-      `}</style>
     </div>
   );
 }

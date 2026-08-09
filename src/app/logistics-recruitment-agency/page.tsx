@@ -3,10 +3,7 @@ import LogisticsSectorPageClient from "./page-client";
 
 export const metadata: Metadata = {
   title: "Logistics Recruitment Agency | Driver Supply UK | RDUK",
-  description: "Recruitment Direct UK recruits and supplies HGV drivers, tipper drivers, concrete mixer drivers, and logistics personnel for temporary and contract work.",
-  alternates: {
-    canonical: "https://rd1.co.uk/logistics-recruitment-agency",
-  },
+  description: "Recruitment Direct UK recruits and supplies HGV drivers, warehouse operatives, and logistics support staff for temporary, contract, and permanent jobs.",
   robots: {
     index: true,
     follow: true,

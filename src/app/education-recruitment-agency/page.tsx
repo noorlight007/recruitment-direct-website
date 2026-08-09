@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import EducationAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Education Recruitment Agency UK | Temporary & Permanent Teaching Staff | Recruitment Direct UK",
-  description: "Education Recruitment Agency supplying temporary, contract and permanent teaching assistants, supply teachers and learning support workers across the UK. Trusted since 2006.",
+  title: "Education Recruitment Agency | Recruitment Direct",
+  description: "Education Recruitment Agency supplying supply teachers, teaching assistants and learning support workers across the UK. Trusted since 2006.",
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "https://rd1.co.uk/education-recruitment-agency",
   },
   openGraph: {
     type: "website",

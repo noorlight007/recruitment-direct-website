@@ -450,7 +450,7 @@ export default function JobDetailsPage() {
               <div className="job-card main-header-card">
                 <div className="card-header-top">
                   <div className="job-main">
-                    <h2>{getJobAdCleanTitle(job)}</h2>
+                    <h1>{getJobAdCleanTitle(job)}</h1>
                     <p className="job-location">
                       <MapPin className="location-icon" />
                       {getJobAdLocation(job)}
@@ -686,7 +686,7 @@ export default function JobDetailsPage() {
           flex: 1 !important;
         }
 
-        .rduk-job-detail-page .job-main h2 {
+        .rduk-job-detail-page .job-main h1 {
           margin: 0 0 7px !important;
           font-size: 28px !important;
           font-weight: 800 !important;

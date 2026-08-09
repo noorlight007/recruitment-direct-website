@@ -24,7 +24,7 @@ export async function generateMetadata({
   params,
 }: CityPageProps): Promise<Metadata> {
   const { country, city } = await params;
-  const page = getCity(country, city);
+  const page = getCity(country.toLowerCase(), city.toLowerCase());
 
   if (!page) {
     return {};
@@ -36,11 +36,12 @@ export async function generateMetadata({
     title: page.seoTitle,
     description: page.metaDescription,
     alternates: {
-      canonical: canonicalUrl,
       languages: page.countrySlug === "republic-of-ireland" ? {
         "en-IE": canonicalUrl,
+        "x-default": canonicalUrl,
       } : {
         "en-GB": canonicalUrl,
+        "x-default": canonicalUrl,
       }
     },
     robots: {
@@ -105,7 +106,15 @@ export default async function CityRecruitmentPage({
   params,
 }: CityPageProps) {
   const { country, city } = await params;
-  const page = getCity(country, city);
+  const normalizedCountry = country.toLowerCase();
+  const normalizedCity = city.toLowerCase();
+
+  // Redirect to lowercase URL if uppercase characters are detected
+  if (country !== normalizedCountry || city !== normalizedCity) {
+    permanentRedirect(`/locations/${normalizedCountry}/${normalizedCity}`);
+  }
+
+  const page = getCity(normalizedCountry, normalizedCity);
 
   if (!page) {
     notFound();
@@ -394,7 +403,7 @@ export default async function CityRecruitmentPage({
 
             <section className="areas-covered">
               <div className="container">
-                <h2>Areas We Cover Around {page.city}</h2>
+                <h2>Local Districts We Support</h2>
 
                 <ul className="area-list">
                   {page.areas.map((area) => (

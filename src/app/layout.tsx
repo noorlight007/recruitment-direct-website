@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import ButtonEffects from "@/components/ButtonEffects";
 import CookieBanner from "@/components/CookieBanner";
+import DynamicCanonical from "@/components/DynamicCanonical";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,13 +28,9 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
   description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK, including Construction, Engineering, Logistics, Healthcare and Education Staff.",
-  alternates: {
-    canonical: "https://rd1.co.uk/",
-  },
   openGraph: {
     title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
     description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK, including Construction, Engineering, Logistics, Healthcare and Education Staff.",
-    url: "https://rd1.co.uk/",
     type: "website",
     images: [
       {
@@ -60,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <DynamicCanonical />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{

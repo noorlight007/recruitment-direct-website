@@ -72,7 +72,7 @@ export default function ConstructionAgencyPage() {
               </span>
 
               <h1 className="text-black text-[38px] md:text-[54px] font-extrabold leading-[1.15] tracking-[-0.02em] mb-4">
-                Construction Recruitment Agency UK | Temporary, Contract & Permanent Construction Staff
+                Construction Recruitment Agency UK | Temporary & Permanent Staff
               </h1>
 
               <p className="text-black text-[17.5px] leading-[1.8] mb-3">

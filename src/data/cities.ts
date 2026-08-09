@@ -704,7 +704,7 @@ function createTown(config: {
   const slug = config.city.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   const path = `/locations/${config.countrySlug}/${slug}`;
   const seoTitle = `Recruitment Agency ${config.city} | Recruitment Direct UK`;
-  const metaDescription = `Recruitment agency in ${config.city} supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare and commercial sectors.`;
+  const metaDescription = `Recruitment agency in ${config.city} supplying temporary, contract and permanent staff across construction, engineering and logistics.`;
 
   const hubName = config.hubSlug.charAt(0).toUpperCase() + config.hubSlug.slice(1);
 

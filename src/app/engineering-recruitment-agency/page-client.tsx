@@ -72,7 +72,7 @@ export default function EngineeringAgencyPage() {
               </span>
 
               <h1 className="text-black text-[38px] md:text-[54px] font-extrabold leading-[1.15] tracking-[-0.02em] mb-4">
-                Engineering Recruitment Agency UK | Temporary, Contract & Permanent Engineering Staff
+                Engineering Recruitment Agency UK | Temporary & Permanent Staff
               </h1>
 
               <p className="text-black text-[17.5px] leading-[1.8] mb-3">

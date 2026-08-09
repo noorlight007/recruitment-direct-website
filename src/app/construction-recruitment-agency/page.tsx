@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import ConstructionAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Construction Recruitment Agency UK | Temporary, Contract & Permanent Construction Staff | Recruitment Direct UK",
-  description: "Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across England, Scotland, Wales, Northern Ireland and the Republic of Ireland. Trusted since 2006.",
+  title: "Construction Recruitment Agency | Recruitment Direct",
+  description: "Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across the UK and Ireland. Trusted since 2006.",
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "https://rd1.co.uk/construction-recruitment-agency",
   },
   openGraph: {
     type: "website",

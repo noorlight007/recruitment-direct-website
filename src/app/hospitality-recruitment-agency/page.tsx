@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import HospitalityAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Hospitality Recruitment Agency UK | Temporary & Permanent Catering Staff | Recruitment Direct UK",
-  description: "Hospitality Recruitment Agency supplying temporary, contract and permanent chefs, waiting staff, kitchen assistants and bar staff across the UK. Trusted since 2006.",
+  title: "Hospitality Recruitment Agency | Recruitment Direct",
+  description: "Hospitality Recruitment Agency supplying chefs, waiting staff, kitchen assistants and bar staff across the UK. Trusted since 2006.",
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "https://rd1.co.uk/hospitality-recruitment-agency",
   },
   openGraph: {
     type: "website",

@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import EngineeringAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Engineering Recruitment Agency UK | Temporary, Contract & Permanent Engineering Staff | Recruitment Direct UK",
-  description: "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across England, Scotland, Wales, Northern Ireland and the Republic of Ireland. Trusted since 2006.",
+  title: "Engineering Recruitment Agency | Recruitment Direct",
+  description: "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across the UK and Ireland. Trusted since 2006.",
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "https://rd1.co.uk/engineering-recruitment-agency",
   },
   openGraph: {
     type: "website",

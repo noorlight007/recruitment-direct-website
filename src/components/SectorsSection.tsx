@@ -17,11 +17,11 @@ const sectors = [
   { name: "Construction", icon: HardHat, href: "/construction-recruitment-agency" },
   { name: "Engineering", icon: Wrench, href: "/engineering-recruitment-agency" },
   { name: "Renewables", icon: Zap, href: "/renewable-energy-recruitment-agency" },
-  { name: "Logistics", icon: Truck, href: "/sectors/logistics" },
+  { name: "Logistics", icon: Truck, href: "/logistics-recruitment-agency" },
   { name: "Healthcare", icon: Heart, href: "/healthcare-recruitment-agency" },
   { name: "Education", icon: GraduationCap, href: "/education-recruitment-agency" },
-  { name: "IT & Tech", icon: Monitor, href: "/sectors/it-tech" },
-  { name: "Commercial", icon: Briefcase, href: "/sectors/commercial" },
+  { name: "IT & Tech", icon: Monitor, href: "/it-technology-recruitment-agency" },
+  { name: "Commercial", icon: Briefcase, href: "/commercial-office-recruitment-agency" },
 ];
 
 const fadeUp = {

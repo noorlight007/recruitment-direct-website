@@ -2,14 +2,11 @@ import type { Metadata } from "next";
 import HealthcareAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Healthcare Recruitment Agency UK | Temporary & Permanent Care Staff | Recruitment Direct UK",
-  description: "Healthcare Recruitment Agency supplying temporary, contract and permanent care assistants, support workers and care professionals across the UK. Trusted since 2006.",
+  title: "Healthcare Recruitment Agency | Recruitment Direct",
+  description: "Healthcare Recruitment Agency supplying care assistants, support workers and care professionals across the UK. Trusted since 2006.",
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "https://rd1.co.uk/healthcare-recruitment-agency",
   },
   openGraph: {
     type: "website",

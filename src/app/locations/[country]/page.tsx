@@ -48,9 +48,6 @@ export async function generateMetadata({
   return {
     title: `Recruitment Agency Locations in ${countryName} | RDUK`,
     description: `Find temporary, contract and permanent recruitment services across ${countryName}. Explore our local recruitment hubs.`,
-    alternates: {
-      canonical: canonicalUrl,
-    },
     robots: {
       index: true,
       follow: true,
@@ -89,6 +86,11 @@ export default async function CountryLocationsPage({
 }: CountryPageProps) {
   const { country } = await params;
   const normalizedSlug = country.toLowerCase();
+
+  // Redirect to lowercase URL if uppercase characters are detected
+  if (country !== normalizedSlug) {
+    permanentRedirect(`/locations/${normalizedSlug}`);
+  }
 
   // Check if it's a flat city route that needs redirecting
   if (!VALID_COUNTRIES.includes(normalizedSlug)) {
