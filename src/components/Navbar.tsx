@@ -33,7 +33,7 @@ const aiProducts = [
     title: "AI Applicant Screening Call",
     description: "Watch screening in action",
     icon: Phone,
-    link: "#play-video",
+    link: "/",
     isImage: false,
   },
   {
@@ -197,7 +197,7 @@ export default function Navbar() {
                                   if (subItem.title === "Ask AI Steve") {
                                     e.preventDefault();
                                     window.dispatchEvent(new CustomEvent('open-ai-steve'));
-                                  } else if (subItem.link === "#play-video") {
+                                  } else if (subItem.title === "AI Applicant Screening Call") {
                                     e.preventDefault();
                                     setIsVideoOpen(true);
                                   }
@@ -332,7 +332,7 @@ export default function Navbar() {
                                     if (subItem.title === "Ask AI Steve") {
                                       e.preventDefault();
                                       window.dispatchEvent(new CustomEvent('open-ai-steve'));
-                                    } else if (subItem.link === "#play-video") {
+                                    } else if (subItem.title === "AI Applicant Screening Call") {
                                       e.preventDefault();
                                       setIsVideoOpen(true);
                                     }

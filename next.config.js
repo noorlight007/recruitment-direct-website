@@ -59,6 +59,19 @@ const nextConfig = {
                 destination: 'https://rd1.co.uk/:path*',
                 permanent: true,
             },
+            // Disambiguated duplicate town name: two distinct real places named "Blackburn"
+            // (West Lothian and Aberdeenshire) previously collided on the same slug, with the
+            // West Lothian entry winning the lookup. Preserve that old URL as a 301.
+            {
+                source: '/locations/scotland/blackburn',
+                destination: '/locations/scotland/blackburn-west-lothian',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/blackburn/',
+                destination: '/locations/scotland/blackburn-west-lothian',
+                permanent: true,
+            },
             // Spelling correction redirects
             {
                 source: '/parmanent-staff',
