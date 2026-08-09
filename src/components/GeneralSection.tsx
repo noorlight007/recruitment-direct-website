@@ -31,8 +31,8 @@ export default function GeneralSection() {
                   </p>
 
                   <div className="hero-buttons">
-                      <a href="#" className="btn-gold">Request Staff</a>
-                      <a href="#" className="btn-outline">AI Hire Now</a>
+                      <a href="/ai-hire-now" className="btn-gold">Request Staff</a>
+                      <a href="/ai-hire-now" className="btn-outline">AI Hire Now</a>
                   </div>
 
               </div>

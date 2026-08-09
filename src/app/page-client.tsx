@@ -1054,7 +1054,7 @@ const Index = () => {
                   “Professional, responsive and reliable. Recruitment Direct consistently delivers quality personnel when we need them.”
                 </p>
                 <div className="rd-card-line"></div>
-                <h3>J. Henderson, Project Director — Civil Engineering</h3>
+                <h3>John Henderson, Project Director — Civil Engineering</h3>
               </div>
 
               <div className="rd-testimonial-card standard-card">
@@ -1063,7 +1063,7 @@ const Index = () => {
                   “A trusted recruitment partner that understands our industry and always provides an excellent service.”
                 </p>
                 <div className="rd-card-line"></div>
-                <h3>A. Kowalski, Operations Manager — Manufacturing</h3>
+                <h3>Adam Kowalski, Operations Manager — Manufacturing</h3>
               </div>
 
               <div className="rd-testimonial-card standard-card">
@@ -1072,7 +1072,7 @@ const Index = () => {
                   “Easy to work with, highly responsive and committed to delivering results.”
                 </p>
                 <div className="rd-card-line"></div>
-                <h3>M. Carter, Logistics &amp; Fleet Director — Logistics</h3>
+                <h3>Marcus Carter, Logistics &amp; Fleet Director — Logistics</h3>
               </div>
             </div>
           </section>
@@ -1203,7 +1203,7 @@ const Index = () => {
             </div>
 
             <div className="rd-contact-details">
-              <a href="tel:01324623198">01324 623198</a>
+              <a href="tel:01324613198">01324 613198</a>
               <a href="https://wa.me/447590882626">WhatsApp: 07590 882626</a>
               <a href="mailto:sales@rd1.co.uk">sales@rd1.co.uk</a>
             </div>

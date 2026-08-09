@@ -396,7 +396,7 @@ export default function Navbar() {
                 <a href="/ai-hire-now" onClick={() => setMobileOpen(false)} className="btn btn-primary py-4 text-center">Request Staff</a>
               </div>
               <div className="px-4 pb-2 text-center text-xs text-foreground/60 font-medium">
-                Prefer to speak? Call us on <a href="tel:01324613298" className="hover:text-primary transition-colors">01324 613198</a>
+                Prefer to speak? Call us on <a href="tel:01324613198" className="hover:text-primary transition-colors">01324 613198</a>
               </div>
             </div>
           </motion.div>

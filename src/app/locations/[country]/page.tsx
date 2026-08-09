@@ -16,13 +16,7 @@ type CountryPageProps = {
 const VALID_COUNTRIES = ["scotland", "england", "wales", "northern-ireland", "republic-of-ireland"];
 
 export function generateStaticParams() {
-  // Pre-render country slugs
-  const countryParams = VALID_COUNTRIES.map((slug) => ({ country: slug }));
-  
-  // Pre-render flat city slugs for instant redirection
-  const cityParams = cities.map((city) => ({ country: city.slug }));
-  
-  return [...countryParams, ...cityParams];
+  return VALID_COUNTRIES.map((slug) => ({ country: slug }));
 }
 
 export async function generateMetadata({

@@ -1216,9 +1216,9 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               <ChevronLeft className="w-5 h-5 text-white" />
               <span className="text-sm font-medium">Back</span>
             </button>
-            <h1 className="text-white font-bold text-base tracking-wide absolute left-1/2 -translate-x-1/2">
+            <span className="text-white font-bold text-base tracking-wide absolute left-1/2 -translate-x-1/2">
               Locations
-            </h1>
+            </span>
             <div className="w-10" />
           </div>
         </>
@@ -1228,7 +1228,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         {/* Desktop Page Title if not embedded */}
         {!isEmbed && (
           <div className="hidden lg:block max-w-7xl mx-auto px-4 mb-4 text-center pt-24">
-            <h1 className="text-white text-4xl font-extrabold tracking-tight">Our Locations</h1>
+            <h2 className="text-white text-4xl font-extrabold tracking-tight">Our Locations</h2>
             <p className="text-white/60 text-base mt-2">Explore our recruitment services across flagship cities in the UK and Ireland</p>
           </div>
         )}
