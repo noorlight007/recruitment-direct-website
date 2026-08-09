@@ -231,27 +231,31 @@ function createSectors(city: string, widerArea: string): RecruitmentSector[] {
   }));
 }
 
-function createFAQs(city: string, surroundingArea: string): RecruitmentFAQ[] {
+function createFAQs(city: string, surroundingArea: string, areas: string[]): RecruitmentFAQ[] {
+  const areasText = areas && areas.length > 0
+    ? areas.slice(0, 5).join(", ").replace(/, ([^,]*)$/, " and $1")
+    : surroundingArea;
+
   return [
     {
       question: `What sectors does RDUK recruit for in ${city}?`,
-      answer: "We recruit across construction, civil engineering, engineering, renewable energy, facilities management, logistics, healthcare, education, IT and technology, commercial and office support, and hospitality.",
+      answer: `We recruit across construction, civil engineering, engineering, renewable energy, facilities management, logistics, healthcare, education, IT and technology, commercial and office support, and hospitality in the ${city} area.`,
     },
     {
       question: `Can RDUK provide temporary staff in ${city}?`,
-      answer: "Yes. We provide temporary personnel for urgent cover, seasonal demand, projects, increased workloads and ongoing workforce requirements.",
+      answer: `Yes. We provide temporary personnel in ${city} for urgent cover, seasonal demand, projects, increased workloads and ongoing workforce requirements.`,
     },
     {
       question: `Does Recruitment Direct UK provide permanent recruitment in ${city}?`,
-      answer: "Yes. We recruit permanent employees across every RDUK sector, from operational and skilled positions to professional, technical and senior appointments.",
+      answer: `Yes. We recruit permanent employees across every RDUK sector in ${city}, from operational and skilled positions to professional, technical and senior appointments.`,
     },
     {
       question: `Which areas around ${city} does RDUK cover?`,
-      answer: "We support employers throughout Edinburgh, Glasgow, Aberdeen, Inverness, London, Birmingham, Manchester, Leeds, Newcastle, Cardiff, Belfast, Dublin and surrounding areas.",
+      answer: `We support employers and supply candidates throughout ${city} and surrounding areas, including ${areasText}.`,
     },
     {
       question: `How quickly can RDUK begin recruiting in ${city}?`,
-      answer: "Our consultants can begin sourcing and screening candidates as soon as the vacancy requirements, working arrangements and compliance criteria have been confirmed.",
+      answer: `Our consultants can begin sourcing and screening candidates for ${city} vacancies as soon as the requirements, working arrangements and compliance criteria have been confirmed.`,
     },
   ];
 }
@@ -281,7 +285,7 @@ function createCity(config: {
     localMarket: config.localMarket,
     areas: config.areas,
     sectors: createSectors(config.city, config.widerArea),
-    faqs: createFAQs(config.city, config.widerArea),
+    faqs: createFAQs(config.city, config.widerArea, config.areas),
   };
 }
 
@@ -524,7 +528,7 @@ const flagshipCities: CityPageData[] = [
   createCity({
     city: "Belfast",
     country: "Northern Ireland",
-    countrySlug: "ireland",
+    countrySlug: "northern-ireland",
     slug: "belfast",
     widerArea: "Greater Belfast",
     metaDescription: "Recruitment agency in Belfast supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",
@@ -547,8 +551,8 @@ const flagshipCities: CityPageData[] = [
 
   createCity({
     city: "Dublin",
-    country: "Ireland",
-    countrySlug: "ireland",
+    country: "Republic of Ireland",
+    countrySlug: "republic-of-ireland",
     slug: "dublin",
     widerArea: "County Dublin",
     metaDescription: "Recruitment agency in Dublin supplying temporary, contract and permanent staff across construction, engineering, logistics, healthcare, IT, education and hospitality.",
@@ -717,7 +721,7 @@ function createTown(config: {
 
   const localMarket = [
     `The employment market in ${config.city} is supported by key business parks, industrial estates and local infrastructure including ${employersList.join(" and ")}, as well as the ${infraList.join(" and ")}.`,
-    `With demand across ${sectorsList.join(", ")}, RDUK supplies high-quality candidates who have undergone full Right to Work, qualification and compliance screening.`,
+    `With demand across ${sectorsList.join(", ").replace(/, ([^,]*)$/, " and $1")}, RDUK supplies high-quality candidates who have undergone full Right to Work, qualification and compliance screening.`,
     `We work closely with employers in ${config.city} to reduce recruitment admin times and ensure staffing continuity for critical operations.`
   ];
 
@@ -733,7 +737,7 @@ function createTown(config: {
     localMarket,
     areas: areasList,
     sectors: createSectors(config.city, config.widerArea),
-    faqs: createFAQs(config.city, config.widerArea),
+    faqs: createFAQs(config.city, config.widerArea, areasList),
     isHub: false,
     hubSlug: config.hubSlug,
   };
@@ -856,58 +860,58 @@ const townConfigs = [
   { city: "Muir of Ord", hubSlug: "inverness", country: "Scotland", countrySlug: "scotland", widerArea: "Highlands", employers: ["Muir of Ord Industrial Estate", "local distillation complexes"], infrastructure: ["A862 corridor", "Muir of Ord station"], mainSectors: ["Manufacturing", "Industrial", "Logistics"], areas: ["Beauly", "Dingwall", "Tore"] },
 
   // ================= BELFAST HUB =================
-  { city: "Lisburn", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Newtownabbey", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Bangor", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down" },
-  { city: "Holywood", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down" },
-  { city: "Carrickfergus", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Larne", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Antrim", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Ballymena", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Ballyclare", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Newtownards", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down" },
-  { city: "Comber", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down" },
-  { city: "Saintfield", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down" },
-  { city: "Downpatrick", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down" },
-  { city: "Banbridge", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down" },
-  { city: "Craigavon", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Armagh" },
-  { city: "Lurgan", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Armagh" },
-  { city: "Portadown", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Armagh" },
-  { city: "Armagh", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Armagh" },
-  { city: "Newry", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Down / Armagh" },
-  { city: "Dungannon", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Tyrone" },
-  { city: "Cookstown", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Tyrone" },
-  { city: "Magherafelt", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Londonderry" },
-  { city: "Coleraine", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Londonderry" },
-  { city: "Portrush", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Antrim" },
-  { city: "Omagh", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Tyrone" },
-  { city: "Enniskillen", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "ireland", widerArea: "County Fermanagh" },
+  { city: "Lisburn", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Newtownabbey", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Bangor", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down" },
+  { city: "Holywood", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down" },
+  { city: "Carrickfergus", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Larne", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Antrim", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Ballymena", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Ballyclare", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Newtownards", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down" },
+  { city: "Comber", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down" },
+  { city: "Saintfield", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down" },
+  { city: "Downpatrick", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down" },
+  { city: "Banbridge", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down" },
+  { city: "Craigavon", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Armagh" },
+  { city: "Lurgan", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Armagh" },
+  { city: "Portadown", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Armagh" },
+  { city: "Armagh", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Armagh" },
+  { city: "Newry", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Down / Armagh" },
+  { city: "Dungannon", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Tyrone" },
+  { city: "Cookstown", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Tyrone" },
+  { city: "Magherafelt", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Londonderry" },
+  { city: "Coleraine", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Londonderry" },
+  { city: "Portrush", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Antrim" },
+  { city: "Omagh", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Tyrone" },
+  { city: "Enniskillen", hubSlug: "belfast", country: "Northern Ireland", countrySlug: "northern-ireland", widerArea: "County Fermanagh" },
 
   // ================= DUBLIN HUB =================
-  { city: "Swords", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "Fingal / North Dublin", employers: ["Airside Retail & Business Park", "Dublin Airport Business Park"], infrastructure: ["M1 motorway corridor", "Dublin Airport proximity"], mainSectors: ["Logistics", "Commercial", "IT & Tech"] },
-  { city: "Malahide", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "Fingal / North Dublin", employers: ["Malahide retail sector", "local hospitality and yachting operations"], infrastructure: ["DART railway link", "R106 coastal road"], mainSectors: ["Hospitality", "Commercial", "Facilities Management"] },
-  { city: "Donabate", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "Fingal / North Dublin", employers: ["Donabate commercial zones", "local leisure operations"], infrastructure: ["DART rail link", "M1 motorway access"], mainSectors: ["Facilities Management", "Commercial", "Construction"] },
-  { city: "Balbriggan", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "Fingal / North Dublin", employers: ["Balbriggan Business Park", "Stephenstown Industrial Estate"], infrastructure: ["M1 motorway Junction 6", "Balbriggan station"], mainSectors: ["Manufacturing", "Industrial", "Logistics"] },
-  { city: "Skerries", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "Fingal / North Dublin", employers: ["Skerries commercial businesses", "local harbour services"], infrastructure: ["DART railway link", "R127 road"], mainSectors: ["Hospitality", "Facilities Management", "Healthcare"] },
-  { city: "Rush", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "Fingal / North Dublin", employers: ["Rush agricultural operations", "local trade facilities"], infrastructure: ["DART rail link", "R128 road"], mainSectors: ["Industrial", "Construction", "Facilities Management"] },
-  { city: "Howth", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "North Dublin", employers: ["Howth Harbour commercial fisheries", "local hospitality operations"], infrastructure: ["DART rail terminal", "R105 road"], mainSectors: ["Hospitality", "Marine", "Facilities Management"] },
-  { city: "Portmarnock", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "North Dublin", employers: ["Portmarnock business trade park", "local leisure and hospitality operators"], infrastructure: ["DART rail link", "R106 road"], mainSectors: ["Hospitality", "Facilities Management", "Commercial"] },
-  { city: "Blanchardstown", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "West Dublin", employers: ["Blanchardstown Corporate Park", "Ballycoolin Industrial Estate"], infrastructure: ["N3 dual carriageway", "M50 motorway Junction 6"], mainSectors: ["IT & Technology", "Logistics", "Warehouse & Commercial"] },
-  { city: "Lucan", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "West Dublin", employers: ["Lucan commercial parks", "Liffey Valley fringe trade zones"], infrastructure: ["N4 road corridor", "M50 motorway access"], mainSectors: ["Commercial", "Logistics", "Facilities Management"] },
-  { city: "Clondalkin", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "South West Dublin", employers: ["Grange Castle Business Park", "Oak Road Industrial Estate"], infrastructure: ["N7 corridor", "M50 Junction 9", "Luas Red Line"], mainSectors: ["Logistics", "Manufacturing", "IT & Tech"] },
-  { city: "Tallaght", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "South West Dublin", employers: ["Belgard Road industrial parks", "Tallaght University Hospital"], infrastructure: ["N81 road", "M50 motorway access", "Luas Red Line"], mainSectors: ["Healthcare", "Commercial", "Warehouse & Logistics"] },
-  { city: "Leixlip", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Kildare", employers: ["Intel Ireland campus", "Liffey Valley business complexes"], infrastructure: ["M4 motorway corridor", "Leixlip Louisa Bridge station"], mainSectors: ["Engineering", "IT & Tech", "Manufacturing"] },
-  { city: "Maynooth", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Kildare", employers: ["Maynooth Business Campus", "Maynooth University"], infrastructure: ["M4 motorway", "Maynooth railway station"], mainSectors: ["Education", "IT & Tech", "Commercial"] },
-  { city: "Celbridge", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Kildare", employers: ["Celbridge business park", "local commercial operations"], infrastructure: ["M4 and N7 road links", "Hazelhatch railway station"], mainSectors: ["Commercial", "Healthcare", "Facilities Management"] },
-  { city: "Naas", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Kildare", employers: ["Millennium Business Park", "Naas Enterprise Park"], infrastructure: ["M7 motorway Junction 9", "Sallins railway station"], mainSectors: ["Logistics", "Warehouse", "Commercial"] },
-  { city: "Newbridge", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Kildare", employers: ["Newbridge Industrial Estate", "Pfizer manufacturing site"], infrastructure: ["M7 motorway corridor", "Newbridge railway station"], mainSectors: ["Manufacturing", "Logistics", "Commercial"] },
-  { city: "Bray", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Wicklow", employers: ["Bray Business Park", "Southern Cross Business Park"], infrastructure: ["N11/M11 corridor", "Bray DART station"], mainSectors: ["Manufacturing", "Commercial", "Healthcare"] },
-  { city: "Greystones", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Wicklow", employers: ["Greystones Business Park", "local commercial retail sector"], infrastructure: ["M11 corridor", "Greystones DART station"], mainSectors: ["Commercial", "Facilities Management", "Hospitality"] },
-  { city: "Wicklow", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Wicklow", employers: ["Wicklow Port trade zones", "Murrough Industrial Estate"], infrastructure: ["N11 road", "Wicklow railway station"], mainSectors: ["Marine", "Facilities Management", "Healthcare"] },
-  { city: "Arklow", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Wicklow", employers: ["Arklow Business Park", "Croghan Industrial Estate"], infrastructure: ["M11 motorway corridor", "Arklow railway station"], mainSectors: ["Manufacturing", "Industrial", "Logistics"] },
-  { city: "Drogheda", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Louth", employers: ["Drogheda Industrial Park", "Donore Road business parks"], infrastructure: ["M1 motorway corridor", "Drogheda railway station"], mainSectors: ["Manufacturing", "Logistics", "Commercial"] },
-  { city: "Ashbourne", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Meath", employers: ["Ashbourne Business Park", "local distribution centres"], infrastructure: ["M2 motorway", "N2 corridor"], mainSectors: ["Logistics", "Warehouse", "Manufacturing"] },
-  { city: "Navan", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "ireland", widerArea: "County Meath", employers: ["Navan Enterprise Centre", "Mullaghboy Industrial Park"], infrastructure: ["M3 motorway corridor", "N51 road"], mainSectors: ["Manufacturing", "Industrial", "Commercial"] },
+  { city: "Swords", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "Fingal / North Dublin", employers: ["Airside Retail & Business Park", "Dublin Airport Business Park"], infrastructure: ["M1 motorway corridor", "Dublin Airport proximity"], mainSectors: ["Logistics", "Commercial", "IT & Tech"] },
+  { city: "Malahide", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "Fingal / North Dublin", employers: ["Malahide retail sector", "local hospitality and yachting operations"], infrastructure: ["DART railway link", "R106 coastal road"], mainSectors: ["Hospitality", "Commercial", "Facilities Management"] },
+  { city: "Donabate", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "Fingal / North Dublin", employers: ["Donabate commercial zones", "local leisure operations"], infrastructure: ["DART rail link", "M1 motorway access"], mainSectors: ["Facilities Management", "Commercial", "Construction"] },
+  { city: "Balbriggan", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "Fingal / North Dublin", employers: ["Balbriggan Business Park", "Stephenstown Industrial Estate"], infrastructure: ["M1 motorway Junction 6", "Balbriggan station"], mainSectors: ["Manufacturing", "Industrial", "Logistics"] },
+  { city: "Skerries", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "Fingal / North Dublin", employers: ["Skerries commercial businesses", "local harbour services"], infrastructure: ["DART railway link", "R127 road"], mainSectors: ["Hospitality", "Facilities Management", "Healthcare"] },
+  { city: "Rush", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "Fingal / North Dublin", employers: ["Rush agricultural operations", "local trade facilities"], infrastructure: ["DART rail link", "R128 road"], mainSectors: ["Industrial", "Construction", "Facilities Management"] },
+  { city: "Howth", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "North Dublin", employers: ["Howth Harbour commercial fisheries", "local hospitality operations"], infrastructure: ["DART rail terminal", "R105 road"], mainSectors: ["Hospitality", "Marine", "Facilities Management"] },
+  { city: "Portmarnock", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "North Dublin", employers: ["Portmarnock business trade park", "local leisure and hospitality operators"], infrastructure: ["DART rail link", "R106 road"], mainSectors: ["Hospitality", "Facilities Management", "Commercial"] },
+  { city: "Blanchardstown", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "West Dublin", employers: ["Blanchardstown Corporate Park", "Ballycoolin Industrial Estate"], infrastructure: ["N3 dual carriageway", "M50 motorway Junction 6"], mainSectors: ["IT & Technology", "Logistics", "Warehouse & Commercial"] },
+  { city: "Lucan", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "West Dublin", employers: ["Lucan commercial parks", "Liffey Valley fringe trade zones"], infrastructure: ["N4 road corridor", "M50 motorway access"], mainSectors: ["Commercial", "Logistics", "Facilities Management"] },
+  { city: "Clondalkin", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "South West Dublin", employers: ["Grange Castle Business Park", "Oak Road Industrial Estate"], infrastructure: ["N7 corridor", "M50 Junction 9", "Luas Red Line"], mainSectors: ["Logistics", "Manufacturing", "IT & Tech"] },
+  { city: "Tallaght", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "South West Dublin", employers: ["Belgard Road industrial parks", "Tallaght University Hospital"], infrastructure: ["N81 road", "M50 motorway access", "Luas Red Line"], mainSectors: ["Healthcare", "Commercial", "Warehouse & Logistics"] },
+  { city: "Leixlip", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Kildare", employers: ["Intel Ireland campus", "Liffey Valley business complexes"], infrastructure: ["M4 motorway corridor", "Leixlip Louisa Bridge station"], mainSectors: ["Engineering", "IT & Tech", "Manufacturing"] },
+  { city: "Maynooth", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Kildare", employers: ["Maynooth Business Campus", "Maynooth University"], infrastructure: ["M4 motorway", "Maynooth railway station"], mainSectors: ["Education", "IT & Tech", "Commercial"] },
+  { city: "Celbridge", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Kildare", employers: ["Celbridge business park", "local commercial operations"], infrastructure: ["M4 and N7 road links", "Hazelhatch railway station"], mainSectors: ["Commercial", "Healthcare", "Facilities Management"] },
+  { city: "Naas", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Kildare", employers: ["Millennium Business Park", "Naas Enterprise Park"], infrastructure: ["M7 motorway Junction 9", "Sallins railway station"], mainSectors: ["Logistics", "Warehouse", "Commercial"] },
+  { city: "Newbridge", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Kildare", employers: ["Newbridge Industrial Estate", "Pfizer manufacturing site"], infrastructure: ["M7 motorway corridor", "Newbridge railway station"], mainSectors: ["Manufacturing", "Logistics", "Commercial"] },
+  { city: "Bray", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Wicklow", employers: ["Bray Business Park", "Southern Cross Business Park"], infrastructure: ["N11/M11 corridor", "Bray DART station"], mainSectors: ["Manufacturing", "Commercial", "Healthcare"] },
+  { city: "Greystones", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Wicklow", employers: ["Greystones Business Park", "local commercial retail sector"], infrastructure: ["M11 corridor", "Greystones DART station"], mainSectors: ["Commercial", "Facilities Management", "Hospitality"] },
+  { city: "Wicklow", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Wicklow", employers: ["Wicklow Port trade zones", "Murrough Industrial Estate"], infrastructure: ["N11 road", "Wicklow railway station"], mainSectors: ["Marine", "Facilities Management", "Healthcare"] },
+  { city: "Arklow", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Wicklow", employers: ["Arklow Business Park", "Croghan Industrial Estate"], infrastructure: ["M11 motorway corridor", "Arklow railway station"], mainSectors: ["Manufacturing", "Industrial", "Logistics"] },
+  { city: "Drogheda", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Louth", employers: ["Drogheda Industrial Park", "Donore Road business parks"], infrastructure: ["M1 motorway corridor", "Drogheda railway station"], mainSectors: ["Manufacturing", "Logistics", "Commercial"] },
+  { city: "Ashbourne", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Meath", employers: ["Ashbourne Business Park", "local distribution centres"], infrastructure: ["M2 motorway", "N2 corridor"], mainSectors: ["Logistics", "Warehouse", "Manufacturing"] },
+  { city: "Navan", hubSlug: "dublin", country: "Republic of Ireland", countrySlug: "republic-of-ireland", widerArea: "County Meath", employers: ["Navan Enterprise Centre", "Mullaghboy Industrial Park"], infrastructure: ["M3 motorway corridor", "N51 road"], mainSectors: ["Manufacturing", "Industrial", "Commercial"] },
 
   // ================= CARDIFF HUB =================
   { city: "Newport", hubSlug: "cardiff", country: "Wales", countrySlug: "wales", widerArea: "South Wales", employers: ["Celestica", "Maesglas Industrial Estate"], infrastructure: ["M4 motorway corridor", "Newport railway station"], mainSectors: ["Logistics", "Manufacturing", "Commercial"] },

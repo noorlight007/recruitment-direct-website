@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 
-export default function ITTechSectorPage() {
+export default function ITTechSectorPageClient() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />

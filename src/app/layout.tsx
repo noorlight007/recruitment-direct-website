@@ -35,11 +35,20 @@ export const metadata: Metadata = {
     description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK, including Construction, Engineering, Logistics, Healthcare and Education Staff.",
     url: "https://rd1.co.uk/",
     type: "website",
+    images: [
+      {
+        url: "https://rd1.co.uk/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Recruitment Direct UK Ltd Logo",
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
     description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK, including Construction, Engineering, Logistics, Healthcare and Education Staff.",
+    images: ["https://rd1.co.uk/logo.png"],
   },
 };
 

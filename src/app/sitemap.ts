@@ -56,7 +56,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/integrations",
     "/job-search",
     "/locations",
-    "/locations/falkirk",
     "/modern-slavery-policy",
     "/news",
     "/open-credit-account",
@@ -67,9 +66,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/renewable-energy-recruitment-agency",
     "/right-to-work-policy",
     "/safeguarding-policy",
-    "/sectors/commercial",
-    "/sectors/it-tech",
-    "/sectors/logistics",
+    "/logistics-recruitment-agency",
+    "/it-technology-recruitment-agency",
+    "/commercial-office-recruitment-agency",
     "/security",
     "/services",
     "/temporary-staff",
@@ -109,14 +108,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch jobs for sitemap generation:", error);
   }
 
-  const locationUrls: MetadataRoute.Sitemap = cities
-    .filter((city) => city.isHub)
-    .map((city) => ({
-      url: `${baseUrl}${city.path}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    }));
+  // Include all country landing pages
+  const countries = Array.from(new Set(cities.map((city) => city.countrySlug)));
+  const countryUrls: MetadataRoute.Sitemap = countries.map((countrySlug) => ({
+    url: `${baseUrl}/locations/${countrySlug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
 
-  return [...staticUrls, ...locationUrls, ...jobUrls];
+  // Include all cities (hubs and spoke towns)
+  const locationUrls: MetadataRoute.Sitemap = cities.map((city) => ({
+    url: `${baseUrl}${city.path}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticUrls, ...countryUrls, ...locationUrls, ...jobUrls];
 }

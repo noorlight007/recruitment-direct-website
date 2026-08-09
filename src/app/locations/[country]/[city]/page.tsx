@@ -37,9 +37,14 @@ export async function generateMetadata({
     description: page.metaDescription,
     alternates: {
       canonical: canonicalUrl,
+      languages: page.countrySlug === "republic-of-ireland" ? {
+        "en-IE": canonicalUrl,
+      } : {
+        "en-GB": canonicalUrl,
+      }
     },
     robots: {
-      index: page.isHub ? true : false,
+      index: true,
       follow: true,
     },
     openGraph: {
@@ -48,11 +53,20 @@ export async function generateMetadata({
       url: canonicalUrl,
       siteName: "Recruitment Direct UK",
       type: "website",
+      images: [
+        {
+          url: "https://rd1.co.uk/logo.png",
+          width: 1200,
+          height: 630,
+          alt: "Recruitment Direct UK",
+        }
+      ]
     },
     twitter: {
       card: "summary_large_image",
       title: page.seoTitle,
       description: page.metaDescription,
+      images: ["https://rd1.co.uk/logo.png"],
     },
   };
 }
@@ -62,6 +76,7 @@ const getSectorHref = (slug: string) => {
     case "construction":
       return "/construction-recruitment-agency";
     case "engineering":
+    case "civil-engineering":
       return "/engineering-recruitment-agency";
     case "renewable-energy":
       return "/renewable-energy-recruitment-agency";
@@ -71,8 +86,18 @@ const getSectorHref = (slug: string) => {
       return "/education-recruitment-agency";
     case "hospitality":
       return "/hospitality-recruitment-agency";
+    case "logistics":
+      return "/logistics-recruitment-agency";
+    case "it-technology":
+    case "it-tech":
+      return "/it-technology-recruitment-agency";
+    case "commercial-office":
+    case "commercial":
+      return "/commercial-office-recruitment-agency";
+    case "facilities-management":
+      return "/commercial-office-recruitment-agency";
     default:
-      return `/sectors/${slug}`;
+      return `/${slug}-recruitment-agency`;
   }
 };
 
@@ -88,10 +113,9 @@ export default async function CityRecruitmentPage({
 
   const canonicalUrl = `https://rd1.co.uk${page.path}`;
 
-  // Find hub page if this is a spoke town page
   const hubPage = !page.isHub && page.hubSlug ? getCity(page.countrySlug, page.hubSlug) : undefined;
 
-  const breadcrumbElements: any[] = [
+  const breadcrumbElements = [
     {
       "@type": "ListItem",
       position: 1,
@@ -109,30 +133,14 @@ export default async function CityRecruitmentPage({
       position: 3,
       name: page.country,
       item: `https://rd1.co.uk/locations/${page.countrySlug}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: page.city,
+      item: canonicalUrl,
     }
   ];
-
-  if (hubPage) {
-    breadcrumbElements.push({
-      "@type": "ListItem",
-      position: 4,
-      name: hubPage.city,
-      item: `https://rd1.co.uk${hubPage.path}`,
-    });
-    breadcrumbElements.push({
-      "@type": "ListItem",
-      position: 5,
-      name: page.city,
-      item: canonicalUrl,
-    });
-  } else {
-    breadcrumbElements.push({
-      "@type": "ListItem",
-      position: 4,
-      name: page.city,
-      item: canonicalUrl,
-    });
-  }
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -244,16 +252,10 @@ export default async function CityRecruitmentPage({
                   </li>
                   <span className="separator">/</span>
                   <li>
-                    <span className="capitalize">{page.country}</span>
+                    <Link href={`/locations/${page.countrySlug}`} className="capitalize">
+                      {page.country}
+                    </Link>
                   </li>
-                  {hubPage && (
-                    <>
-                      <span className="separator">/</span>
-                      <li>
-                        <Link href={hubPage.path}>{hubPage.city}</Link>
-                      </li>
-                    </>
-                  )}
                   <span className="separator">/</span>
                   <li className="current">{page.city}</li>
                 </ol>
@@ -542,7 +544,7 @@ export default async function CityRecruitmentPage({
                         <Link href="/engineering-recruitment-agency">Engineering Recruitment</Link>
                       </li>
                       <li>
-                        <Link href="/sectors/logistics">Logistics & Driving Recruitment</Link>
+                        <Link href="/logistics-recruitment-agency">Logistics &amp; Driving Recruitment</Link>
                       </li>
                       <li>
                         <Link href="/healthcare-recruitment-agency">Healthcare & Care Recruitment</Link>
@@ -563,6 +565,9 @@ export default async function CityRecruitmentPage({
                       </li>
                       <li>
                         <Link href="/contract-staff">Contract Staff Supply</Link>
+                      </li>
+                      <li>
+                        <Link href="/permanent-staff">Permanent Staff Supply</Link>
                       </li>
                       <li>
                         <Link href="/place-enquiry">Submit a Staffing Inquiry</Link>

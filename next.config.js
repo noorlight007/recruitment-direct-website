@@ -154,6 +154,182 @@ const nextConfig = {
                 destination: '/renewable-energy-recruitment-agency',
                 permanent: true,
             },
+            // Logistics redirects
+            {
+                source: '/logistics',
+                destination: '/logistics-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/logistics/',
+                destination: '/logistics-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/logistics',
+                destination: '/logistics-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/logistics/',
+                destination: '/logistics-recruitment-agency',
+                permanent: true,
+            },
+            // IT & Tech redirects
+            {
+                source: '/it-tech',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/it-tech/',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/it-tech',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/it-tech/',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/it-technology',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/it-technology/',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/it-technology',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/it-technology/',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            // Commercial & Office redirects
+            {
+                source: '/commercial',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/commercial/',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/commercial',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/commercial/',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/commercial-office',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/commercial-office/',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/commercial-office',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/commercial-office/',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            // Civil Engineering redirects
+            {
+                source: '/civil-engineering',
+                destination: '/engineering-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/civil-engineering/',
+                destination: '/engineering-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/civil-engineering',
+                destination: '/engineering-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/civil-engineering/',
+                destination: '/engineering-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/civil-engineering-recruitment-agency',
+                destination: '/engineering-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/civil-engineering-recruitment-agency/',
+                destination: '/engineering-recruitment-agency',
+                permanent: true,
+            },
+            // Facilities Management redirects
+            {
+                source: '/facilities-management',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/facilities-management/',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/facilities-management',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/facilities-management/',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/facilities-management-recruitment-agency',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/facilities-management-recruitment-agency/',
+                destination: '/commercial-office-recruitment-agency',
+                permanent: true,
+            },
+            // Business Support & IT redirects (Legacy typo protection)
+            {
+                source: '/business-support-it',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/business-support-it/',
+                destination: '/it-technology-recruitment-agency',
+                permanent: true,
+            },
             // Recruitment Services redirects
             {
                 source: '/recruitment-services',

@@ -4,7 +4,6 @@ import EducationAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Education Recruitment Agency UK | Temporary & Permanent Teaching Staff | Recruitment Direct UK",
   description: "Education Recruitment Agency supplying temporary, contract and permanent teaching assistants, supply teachers and learning support workers across the UK. Trusted since 2006.",
-  keywords: "Education Recruitment Agency, Supply Teachers, Teaching Assistants, Temporary Education Staff, Permanent Education Staff, UK",
   robots: {
     index: true,
     follow: true,

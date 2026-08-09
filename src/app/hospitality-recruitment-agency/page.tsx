@@ -4,7 +4,6 @@ import HospitalityAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Hospitality Recruitment Agency UK | Temporary & Permanent Catering Staff | Recruitment Direct UK",
   description: "Hospitality Recruitment Agency supplying temporary, contract and permanent chefs, waiting staff, kitchen assistants and bar staff across the UK. Trusted since 2006.",
-  keywords: "Hospitality Recruitment Agency, Catering Recruitment, Catering Staff, Temporary Hospitality Staff, Permanent Hospitality Staff, UK",
   robots: {
     index: true,
     follow: true,

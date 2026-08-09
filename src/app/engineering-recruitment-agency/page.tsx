@@ -4,7 +4,6 @@ import EngineeringAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Engineering Recruitment Agency UK | Temporary, Contract & Permanent Engineering Staff | Recruitment Direct UK",
   description: "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across England, Scotland, Wales, Northern Ireland and the Republic of Ireland. Trusted since 2006.",
-  keywords: "Engineering Recruitment Agency, Engineering Recruitment, Engineering Staff, Temporary Engineering, Permanent Engineering, Contract Engineering, UK, Ireland",
   robots: {
     index: true,
     follow: true,

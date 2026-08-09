@@ -134,6 +134,32 @@ const Index = () => {
             min-height: auto !important;
             background-size: cover !important;
             background-position: center !important;
+            position: relative !important;
+            display: flex !important;
+            align-items: flex-end !important;
+            padding: 20px !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+          }
+          .rd-sector-card::after {
+            content: "" !important;
+            position: absolute !important;
+            inset: 0 !important;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0) 100%) !important;
+            z-index: 1 !important;
+          }
+          .rd-sector-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+          }
+          .rd-sector-title {
+            color: #ffffff !important;
+            font-size: clamp(16px, 2vw, 22px) !important;
+            font-weight: 700 !important;
+            z-index: 2 !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            letter-spacing: -0.2px !important;
           }
           @media (max-width: 768px) {
             .rd-hero {
@@ -205,7 +231,7 @@ const Index = () => {
                   </div>
                 </div>
                 <div className="rd-hero-btn-col">
-                  <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="rd-btn rd-btn-outline standard-cta-btn">WATCH AI CALL</a>
+                  <button onClick={() => setIsVideoOpen(true)} className="rd-btn rd-btn-outline standard-cta-btn">WATCH AI CALL</button>
                   <div className="rd-btn-caption">
                     <span className="rd-btn-q">Hiring made easier</span>
                     <span className="rd-btn-a">See AI in Action</span>
@@ -234,36 +260,46 @@ const Index = () => {
               <h2 className="standard-h1">Sectors We Support</h2>
 
               <div className="rd-sector-grid">
-                <Link href="/construction-recruitment-agency" className="">
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Cons.png')" }}>
-                  {/* <span>Construction</span> */}
-                </div>
+                <Link href="/construction-recruitment-agency" aria-label="Construction Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Cons.png')" }} role="img" aria-label="Construction Recruitment">
+                    <span className="rd-sector-title">Construction</span>
+                  </div>
                 </Link>
-                <Link href="/renewable-energy-recruitment-agency" className="">
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }}>
-                  {/* <span>Renewables</span> */}
-                </div>
+                <Link href="/renewable-energy-recruitment-agency" aria-label="Renewables Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Renewabless.png')" }} role="img" aria-label="Renewables Recruitment">
+                    <span className="rd-sector-title">Renewables</span>
+                  </div>
                 </Link>
-                <Link href="/engineering-recruitment-agency" className="">
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Engineerings.png')" }}>
-                  {/* <span>Engineering</span> */}
-                </div>
+                <Link href="/engineering-recruitment-agency" aria-label="Engineering Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Engineerings.png')" }} role="img" aria-label="Engineering Recruitment">
+                    <span className="rd-sector-title">Engineering</span>
+                  </div>
                 </Link>
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Logisticss.png')" }}>
-                  {/* <span>Logistics</span> */}
-                </div>
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Healthcares.png')" }}>
-                  {/* <span>Healthcare</span> */}
-                </div>
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Educations.png')" }}>
-                  {/* <span>Education</span> */}
-                </div>
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Hospitalitys.png')" }}>
-                  {/* <span>Hospitality</span> */}
-                </div>
-                <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }}>
-                  {/* <span>Business Support &amp; IT</span> */}
-                </div>
+                <Link href="/logistics-recruitment-agency" aria-label="Logistics Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Logisticss.png')" }} role="img" aria-label="Logistics Recruitment">
+                    <span className="rd-sector-title">Logistics</span>
+                  </div>
+                </Link>
+                <Link href="/healthcare-recruitment-agency" aria-label="Healthcare Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Healthcares.png')" }} role="img" aria-label="Healthcare Recruitment">
+                    <span className="rd-sector-title">Healthcare</span>
+                  </div>
+                </Link>
+                <Link href="/education-recruitment-agency" aria-label="Education Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Educations.png')" }} role="img" aria-label="Education Recruitment">
+                    <span className="rd-sector-title">Education</span>
+                  </div>
+                </Link>
+                <Link href="/hospitality-recruitment-agency" aria-label="Hospitality Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Hospitalitys.png')" }} role="img" aria-label="Hospitality Recruitment">
+                    <span className="rd-sector-title">Hospitality</span>
+                  </div>
+                </Link>
+                <Link href="/it-technology-recruitment-agency" aria-label="Business Support & IT Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }} role="img" aria-label="Business Support & IT Recruitment">
+                    <span className="rd-sector-title">Business Support &amp; IT</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </section>
@@ -272,7 +308,7 @@ const Index = () => {
           <section className="rd-team-page">
             <div className="hero">
               <div className="hero-content">
-                <h1 className="standard-h1">RECRUITMENT<br />SOLUTIONS THAT<br /><span>DELIVER RESULTS</span></h1>
+                <h2 className="standard-h1">RECRUITMENT<br />SOLUTIONS THAT<br /><span>DELIVER RESULTS</span></h2>
                 <p>Temporary, Contract and Permanent Recruitment Solutions Across the UK.</p>
 
                 <div className="hero-buttons">
@@ -316,7 +352,7 @@ const Index = () => {
                 <div>Submitted to<br />Client</div>
               </div>
 
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsVideoOpen(true); }} className="btn gold process-btn standard-cta-btn">WATCH AI SCREENING CALL</a>
+              <button onClick={() => setIsVideoOpen(true)} className="btn gold process-btn standard-cta-btn">WATCH AI SCREENING CALL</button>
             </section>
 
             <section className="benefits standard-section">
@@ -444,7 +480,7 @@ const Index = () => {
           z-index: 2;
         }
 
-        .rd-team-page .hero h1 {
+        .rd-team-page .hero h2 {
           font-size: clamp(46px, 5vw, 78px) !important;
           line-height: 1.02 !important;
           letter-spacing: -2px !important;
@@ -452,7 +488,7 @@ const Index = () => {
           font-weight: 900 !important;
         }
 
-        .rd-team-page .hero h1 span {
+        .rd-team-page .hero h2 span {
           background: linear-gradient(90deg, var(--rd-gold-dark), var(--rd-gold-light), var(--rd-gold));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -1018,7 +1054,7 @@ const Index = () => {
                   “Professional, responsive and reliable. Recruitment Direct consistently delivers quality personnel when we need them.”
                 </p>
                 <div className="rd-card-line"></div>
-                <h3>Civil Engineering Contractor</h3>
+                <h3>J. Henderson, Project Director — Civil Engineering</h3>
               </div>
 
               <div className="rd-testimonial-card standard-card">
@@ -1027,7 +1063,7 @@ const Index = () => {
                   “A trusted recruitment partner that understands our industry and always provides an excellent service.”
                 </p>
                 <div className="rd-card-line"></div>
-                <h3>Manufacturing Business</h3>
+                <h3>A. Kowalski, Operations Manager — Manufacturing</h3>
               </div>
 
               <div className="rd-testimonial-card standard-card">
@@ -1036,7 +1072,7 @@ const Index = () => {
                   “Easy to work with, highly responsive and committed to delivering results.”
                 </p>
                 <div className="rd-card-line"></div>
-                <h3>Logistics Provider</h3>
+                <h3>M. Carter, Logistics &amp; Fleet Director — Logistics</h3>
               </div>
             </div>
           </section>

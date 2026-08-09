@@ -400,7 +400,7 @@ export default function RenewableEnergyAgencyPage() {
             "image": "https://rd1.co.uk/images/renewable-energy-recruitment-agency.webp",
             "url": "https://rd1.co.uk",
             "logo": "https://rd1.co.uk/logo.png",
-            "telephone": "01324556644",
+            "telephone": "01324613198",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "Suite 3, Enterprise House, Springkerse Business Park",

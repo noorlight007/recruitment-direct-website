@@ -4,7 +4,6 @@ import ConstructionAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Construction Recruitment Agency UK | Temporary, Contract & Permanent Construction Staff | Recruitment Direct UK",
   description: "Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across England, Scotland, Wales, Northern Ireland and the Republic of Ireland. Trusted since 2006.",
-  keywords: "Construction Recruitment Agency, Construction Recruitment, Construction Staff, Temporary Construction, Permanent Construction, Contract Construction, UK, Ireland",
   robots: {
     index: true,
     follow: true,

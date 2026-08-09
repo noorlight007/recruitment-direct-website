@@ -541,7 +541,7 @@ export default function EngineeringAgencyPage() {
                 <Link href="/renewable-energy-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Renewable Energy Recruitment
                 </Link>
-                <Link href="/locations/falkirk" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/locations/scotland/falkirk" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Recruitment Agency Falkirk
                 </Link>
                 <Link href="/" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
@@ -613,7 +613,7 @@ export default function EngineeringAgencyPage() {
             "image": "https://rd1.co.uk/images/engineering-recruitment-agency.webp",
             "url": "https://rd1.co.uk",
             "logo": "https://rd1.co.uk/logo.png",
-            "telephone": "01324556644",
+            "telephone": "01324613198",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "Suite 3, Enterprise House, Springkerse Business Park",

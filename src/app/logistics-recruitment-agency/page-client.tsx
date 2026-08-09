@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 
-export default function LogisticsSectorPage() {
+export default function LogisticsSectorPageClient() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -15,7 +15,7 @@ export default function LogisticsSectorPage() {
             <span className="rd-tag">Construction Driver Recruitment</span>
             <h1>Construction Drivers</h1>
             <p className="rd-sub">
-              Reliable, consultant-verified construction drivers supplied across Glasgow, Edinburgh, Falkirk, Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, throughout Scotland, and across the UK.
+              Reliable, consultant-verified construction drivers supplied across Glasgow, Edinburgh, Falkirk (see our dedicated <a href="/locations/scotland/falkirk" className="text-blue-600 hover:underline">Recruitment Agency Falkirk</a> page), Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, throughout Scotland, and across the UK.
             </p>
           </div>
 
@@ -47,6 +47,7 @@ export default function LogisticsSectorPage() {
                 <li>HIAB Drivers</li>
                 <li>Low Loader Drivers</li>
                 <li>Plant Transport Drivers</li>
+                <li>Plant Drivers</li>
               </ul>
             </div>
           </div>
@@ -60,7 +61,7 @@ export default function LogisticsSectorPage() {
               Whether you need drivers for muck shifting, concrete delivery, plant transport, or site logistics, Recruitment Direct ensures fully checked drivers are ready to start without delay.
             </p>
             <p>
-              We supply construction drivers across Glasgow, Edinburgh, Falkirk (see our dedicated <a href="/locations/falkirk" className="text-blue-600 hover:underline">Recruitment Agency Falkirk</a> page), Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, and throughout Scotland and the UK.
+              We supply construction drivers across Glasgow, Edinburgh, Falkirk (see our dedicated <a href="/locations/scotland/falkirk" className="text-blue-600 hover:underline">Recruitment Agency Falkirk</a> page), Stirling, Livingston, Cumbernauld, Aberdeen, Dundee, and throughout Scotland and the UK.
             </p>
 
             <a href="/contact" className="btn btn-primary">

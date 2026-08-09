@@ -4,7 +4,6 @@ import HealthcareAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Healthcare Recruitment Agency UK | Temporary & Permanent Care Staff | Recruitment Direct UK",
   description: "Healthcare Recruitment Agency supplying temporary, contract and permanent care assistants, support workers and care professionals across the UK. Trusted since 2006.",
-  keywords: "Healthcare Recruitment Agency, Care Recruitment, Care Staff, Temporary Care, Permanent Care, Support Workers, UK",
   robots: {
     index: true,
     follow: true,

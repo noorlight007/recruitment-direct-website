@@ -620,7 +620,7 @@ export default function ConstructionAgencyPage() {
                 <Link href="/request-quote" className={blueButtonClass}>
                   Request Quote
                 </Link>
-                <a href="tel:01324556644" className={goldButtonClass}>
+                <a href="tel:01324613198" className={goldButtonClass}>
                   Call Now
                 </a>
               </div>
@@ -717,7 +717,7 @@ export default function ConstructionAgencyPage() {
                 <Link href="/engineering-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Engineering Recruitment
                 </Link>
-                <Link href="/locations/falkirk" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/locations/scotland/falkirk" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Recruitment Agency Falkirk
                 </Link>
                 <Link href="/" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
@@ -789,7 +789,7 @@ export default function ConstructionAgencyPage() {
             "image": "https://rd1.co.uk/images/construction-recruitment-agency.webp",
             "url": "https://rd1.co.uk",
             "logo": "https://rd1.co.uk/logo.png",
-            "telephone": "01324556644",
+            "telephone": "01324613198",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "Suite 3, Enterprise House, Springkerse Business Park",
