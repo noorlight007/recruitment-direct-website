@@ -4303,6 +4303,16 @@ MOBILE RESPONSIVE
   .city-hero, .final-client-cta {
     padding: 40px 24px;
   }
+  .cta-row .button {
+    width: auto !important;
+    min-height: unset !important;
+    display: inline-flex !important;
+    padding: 16px 32px !important;
+    border-radius: 9999px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+  }
   .sector-card {
     padding: 24px;
   }

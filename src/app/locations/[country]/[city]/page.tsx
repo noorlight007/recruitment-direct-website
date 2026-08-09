@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { cities, getCity } from "@/data/cities";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";

@@ -1209,17 +1209,24 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
 
           {/* Mobile Top Bar */}
           <div className="lg:hidden h-14 w-full bg-[#020B1A]/85 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-4 z-20 relative select-none">
-            <button 
-              onClick={handleBack}
-              className="flex items-center gap-1 text-white/80 hover:text-white transition-colors py-2"
-            >
-              <ChevronLeft className="w-5 h-5 text-white" />
-              <span className="text-sm font-medium">Back</span>
-            </button>
-            <span className="text-white font-bold text-base tracking-wide absolute left-1/2 -translate-x-1/2">
-              Locations
-            </span>
-            <div className="w-10" />
+            <div className="flex-1 flex justify-start">
+              <button 
+                onClick={handleBack}
+                className="flex items-center gap-1.5 text-white/90 hover:text-white transition-all py-1.5 px-3 rounded-full border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 text-xs font-semibold focus:outline-none focus-visible:ring-1 focus-visible:ring-white/30"
+              >
+                <ChevronLeft className="w-4 h-4 text-white" />
+                <span>Back</span>
+              </button>
+            </div>
+            <div className="flex-shrink-0 text-center px-2">
+              <span className="text-white font-bold text-sm sm:text-base tracking-wide">
+                Locations
+              </span>
+            </div>
+            <div className="flex-1 flex justify-end">
+              {/* Symmetrical empty spacer to perfectly center the title */}
+              <div className="w-[74px]" />
+            </div>
           </div>
         </>
       )}
