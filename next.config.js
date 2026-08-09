@@ -1,4 +1,11 @@
-const locationsRedirects = require('./src/data/locations-redirects.json');
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const locationsRedirects = JSON.parse(
+    readFileSync(join(__dirname, 'src/data/locations-redirects.json'), 'utf-8')
+);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
