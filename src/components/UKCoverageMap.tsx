@@ -91,13 +91,13 @@ const offices: OfficeLocation[] = [
   {
     name: "Belfast",
     coords: [-5.9301, 54.5973],
-    url: "/locations/ireland/belfast",
+    url: "/locations/northern-ireland/belfast",
     labelPos: "left",
   },
   {
     name: "Dublin",
     coords: [-6.2603, 53.3498],
-    url: "/locations/ireland/dublin",
+    url: "/locations/republic-of-ireland/dublin",
     labelPos: "left",
   },
 ];
@@ -1241,7 +1241,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         )}
 
         <div className="background-gradient"></div>
-        <div className="map-wrapper w-full flex-1 lg:flex-initial relative flex flex-col justify-center">
+        <div className="map-wrapper w-full flex-1 lg:flex-initial relative flex flex-col justify-start lg:justify-center pt-2 lg:pt-0 px-4 lg:px-0">
           <div id="map-container" style={{ background: "linear-gradient(135deg, #000000 0%, #000000 80%, #0A1B3D 100%)" }}>
             <div ref={mapContainerRef} id="map" />
             <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3 }} />

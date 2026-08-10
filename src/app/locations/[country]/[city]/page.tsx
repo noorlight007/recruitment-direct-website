@@ -24,7 +24,33 @@ export async function generateMetadata({
   params,
 }: CityPageProps): Promise<Metadata> {
   const { country, city } = await params;
-  const page = getCity(country.toLowerCase(), city.toLowerCase());
+  const normalizedCountry = country.toLowerCase();
+  const normalizedCity = city.toLowerCase();
+
+  if (normalizedCountry === "ireland") {
+    const northernIrelandTowns = [
+      "belfast", "derry", "lisburn", "newtownabbey", "bangor", "holywood", 
+      "carrickfergus", "larne", "antrim", "ballymena", "ballyclare", 
+      "newtownards", "comber", "saintfield", "downpatrick", "banbridge", 
+      "craigavon", "lurgan", "portadown", "armagh", "newry", "dungannon", 
+      "cookstown", "magherafelt", "coleraine", "portrush", "omagh", "enniskillen"
+    ];
+    const republicOfIrelandTowns = [
+      "dublin", "cork", "galway", "swords", "malahide", "donabate", 
+      "balbriggan", "skerries", "rush", "howth", "portmarnock", "blanchardstown", 
+      "lucan", "clondalkin", "tallaght", "leixlip", "maynooth", "celbridge", 
+      "naas", "newbridge", "bray", "greystones", "wicklow", "arklow", 
+      "drogheda", "ashbourne", "navan"
+    ];
+
+    if (northernIrelandTowns.includes(normalizedCity)) {
+      permanentRedirect(`/locations/northern-ireland/${normalizedCity}`);
+    } else if (republicOfIrelandTowns.includes(normalizedCity)) {
+      permanentRedirect(`/locations/republic-of-ireland/${normalizedCity}`);
+    }
+  }
+
+  const page = getCity(normalizedCountry, normalizedCity);
 
   if (!page) {
     return {};
@@ -112,6 +138,29 @@ export default async function CityRecruitmentPage({
   // Redirect to lowercase URL if uppercase characters are detected
   if (country !== normalizedCountry || city !== normalizedCity) {
     permanentRedirect(`/locations/${normalizedCountry}/${normalizedCity}`);
+  }
+
+  if (normalizedCountry === "ireland") {
+    const northernIrelandTowns = [
+      "belfast", "derry", "lisburn", "newtownabbey", "bangor", "holywood", 
+      "carrickfergus", "larne", "antrim", "ballymena", "ballyclare", 
+      "newtownards", "comber", "saintfield", "downpatrick", "banbridge", 
+      "craigavon", "lurgan", "portadown", "armagh", "newry", "dungannon", 
+      "cookstown", "magherafelt", "coleraine", "portrush", "omagh", "enniskillen"
+    ];
+    const republicOfIrelandTowns = [
+      "dublin", "cork", "galway", "swords", "malahide", "donabate", 
+      "balbriggan", "skerries", "rush", "howth", "portmarnock", "blanchardstown", 
+      "lucan", "clondalkin", "tallaght", "leixlip", "maynooth", "celbridge", 
+      "naas", "newbridge", "bray", "greystones", "wicklow", "arklow", 
+      "drogheda", "ashbourne", "navan"
+    ];
+
+    if (northernIrelandTowns.includes(normalizedCity)) {
+      permanentRedirect(`/locations/northern-ireland/${normalizedCity}`);
+    } else if (republicOfIrelandTowns.includes(normalizedCity)) {
+      permanentRedirect(`/locations/republic-of-ireland/${normalizedCity}`);
+    }
   }
 
   const page = getCity(normalizedCountry, normalizedCity);

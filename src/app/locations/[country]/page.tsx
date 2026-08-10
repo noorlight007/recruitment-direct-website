@@ -25,6 +25,10 @@ export async function generateMetadata({
   const { country } = await params;
   const normalizedCountry = country.toLowerCase();
 
+  if (normalizedCountry === "ireland") {
+    permanentRedirect("/locations");
+  }
+
   // If this is a redirect city, we don't want indexable metadata here
   if (!VALID_COUNTRIES.includes(normalizedCountry)) {
     return {
@@ -84,6 +88,10 @@ export default async function CountryLocationsPage({
   // Redirect to lowercase URL if uppercase characters are detected
   if (country !== normalizedSlug) {
     permanentRedirect(`/locations/${normalizedSlug}`);
+  }
+
+  if (normalizedSlug === "ireland") {
+    permanentRedirect("/locations");
   }
 
   // Check if it's a flat city route that needs redirecting
