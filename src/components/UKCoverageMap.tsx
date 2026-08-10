@@ -1259,7 +1259,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               <div
                 key={office.name}
                 id={`marker-${office.name.replace(/[^a-zA-Z0-9]/g, "-")}`}
-                className="absolute z-10 cursor-pointer group city-marker-touch-target"
+                className="absolute z-40 cursor-pointer group city-marker-touch-target"
                 style={{
                   left: 0,
                   top: 0,
