@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import HealthcareAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Healthcare Recruitment Agency | Recruitment Direct",
+  title: "Healthcare Recruitment Agency UK | Recruitment Direct UK",
   description: "Healthcare Recruitment Agency supplying care assistants, support workers and care professionals across the UK. Trusted since 2006.",
   robots: {
     index: true,

@@ -46,6 +46,16 @@ export async function generateMetadata({
   return {
     title: `Recruitment Agency Locations in ${countryName} | RDUK`,
     description: `Find temporary, contract and permanent recruitment services across ${countryName}. Explore our local recruitment hubs.`,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: normalizedCountry === "republic-of-ireland" ? {
+        "en-IE": canonicalUrl,
+        "x-default": canonicalUrl,
+      } : {
+        "en-GB": canonicalUrl,
+        "x-default": canonicalUrl,
+      }
+    },
     robots: {
       index: true,
       follow: true,

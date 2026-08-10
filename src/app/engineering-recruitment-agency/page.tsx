@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import EngineeringAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Engineering Recruitment Agency | Recruitment Direct",
+  title: "Engineering Recruitment Agency UK | Recruitment Direct UK",
   description: "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across the UK and Ireland. Trusted since 2006.",
   robots: {
     index: true,

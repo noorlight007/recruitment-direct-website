@@ -300,6 +300,16 @@ const Index = () => {
                     <span className="rd-sector-title">Business Support &amp; IT</span>
                   </div>
                 </Link>
+                <Link href="/commercial-office-recruitment-agency" aria-label="Commercial & Office Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Businesssss.png')" }} role="img" aria-label="Commercial & Office Recruitment">
+                    <span className="rd-sector-title">Commercial &amp; Office</span>
+                  </div>
+                </Link>
+                <Link href="/construction-recruitment-agency" aria-label="Facilities Management Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" style={{ backgroundImage: "url('/images/Facilitiess.png')" }} role="img" aria-label="Facilities Management Recruitment">
+                    <span className="rd-sector-title">Facilities Management</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </section>
@@ -308,7 +318,7 @@ const Index = () => {
           <section className="rd-team-page">
             <div className="hero">
               <div className="hero-content">
-                <h2 className="standard-h1">RECRUITMENT<br />SOLUTIONS THAT<br /><span>DELIVER RESULTS</span></h2>
+                <h2 className="standard-h2">RECRUITMENT<br />SOLUTIONS THAT<br /><span>DELIVER RESULTS</span></h2>
                 <p>Temporary, Contract and Permanent Recruitment Solutions Across the UK.</p>
 
                 <div className="hero-buttons">

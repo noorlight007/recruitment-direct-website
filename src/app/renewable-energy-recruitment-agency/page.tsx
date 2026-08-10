@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RenewableEnergyAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Renewable Energy Recruitment | Recruitment Direct",
+  title: "Renewable Energy Recruitment Agency UK | Recruitment Direct UK",
   description: "Renewable Energy Recruitment Agency supplying wind, solar, BESS, EV charging, hydrogen and utilities professionals across the UK. Trusted since 2006.",
   robots: {
     index: true,

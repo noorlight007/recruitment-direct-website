@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ITTechSectorPageClient from "./page-client";
 
 export const metadata: Metadata = {
-  title: "IT & Technology Recruitment | Recruitment Direct",
+  title: "IT & Technology Recruitment Agency | Tech Staffing UK | RDUK",
   description: "Recruitment Direct UK supplies IT support, developers, network engineers, cloud, and digital tech professionals for contract and permanent jobs.",
   robots: {
     index: true,

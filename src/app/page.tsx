@@ -4,6 +4,10 @@ import Index from "./page-client";
 export const metadata: Metadata = {
   title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
   description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK. Sourcing candidates since 2006.",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
     description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK. Sourcing candidates since 2006.",

@@ -706,23 +706,62 @@ function createTown(config: {
     .replace(/^-+|-+$/g, "");
   const path = `/locations/${config.countrySlug}/${slug}`;
   const seoTitle = `Recruitment Agency ${config.city} | Recruitment Direct UK`;
-  const metaDescription = `Recruitment agency in ${config.city} supplying temporary, contract and permanent staff across construction, engineering and logistics.`;
+  // Simple deterministic hash based on city name to vary templates
+  let hash = 0;
+  for (let i = 0; i < config.city.length; i++) {
+    hash = (hash << 5) - hash + config.city.charCodeAt(i);
+    hash |= 0;
+  }
+  const variant = Math.abs(hash) % 3;
 
   const hubName = config.hubSlug.charAt(0).toUpperCase() + config.hubSlug.slice(1);
 
-  const employersList = config.employers || ["local business parks", "commercial trade zones"];
-  const infraList = config.infrastructure || ["local transport networks", "road connections"];
+  // Dynamic Fallbacks for Placeholders
+  const hasCustomData = config.employers && config.infrastructure;
+  const employersList = config.employers || ["regional business centers", "commercial trade facilities"];
+  const infraList = config.infrastructure || ["local road networks", "transit connections"];
   const sectorsList = config.mainSectors || ["Construction", "Logistics", "Commercial"];
-  const areasList = config.areas || [config.city, `surrounding ${config.city} districts`];
+  const areasList = config.areas || [config.city, `the surrounding commercial and residential areas`];
 
-  const introduction = [
-    `Recruitment Direct UK provides temporary, contract and permanent recruitment services to employers throughout ${config.city}, ${config.widerArea} and the surrounding region.`,
-    `Supporting local business growth and national operations, we leverage ${config.city}'s strategic position and connections to the ${hubName} employment hub to supply pre-screened, compliant personnel.`,
-    `Whether you require urgent temporary cover, short-term contract staff or permanent placements, our experienced consultants deliver responsive and efficient recruitment services.`
+  // Dynamic Meta Descriptions
+  const metaDescriptions = [
+    `Recruitment agency in ${config.city} supplying temporary, contract and permanent staff across construction, engineering and logistics.`,
+    `Looking for a recruitment agency in ${config.city}? We supply pre-screened temporary, contract and permanent personnel across the region.`,
+    `Recruitment Direct UK provides professional staffing services in ${config.city}. Sourcing temporary, contract and permanent staff.`
   ];
+  const metaDescription = metaDescriptions[variant];
+
+  // Dynamic Introductions
+  const introPart1 = [
+    `Recruitment Direct UK provides temporary, contract and permanent recruitment services to employers throughout ${config.city}, ${config.widerArea} and the surrounding region.`,
+    `As a trusted partner, Recruitment Direct UK delivers comprehensive staffing and recruitment solutions to businesses across ${config.city}, ${config.widerArea} and nearby districts.`,
+    `Employers in ${config.city} and the wider ${config.widerArea} region can access fully qualified temporary, contract and permanent candidates through Recruitment Direct UK.`
+  ][variant];
+
+  const introPart2 = [
+    `Supporting local business growth and national operations, we leverage ${config.city}'s strategic position and connections to the ${hubName} employment hub to supply pre-screened, compliant personnel.`,
+    `By leveraging connections to the ${hubName} employment corridor, we help companies in ${config.city} secure reliable, pre-screened and fully compliant staff.`,
+    `We draw from regional talent pools and connections to the ${hubName} hub to supply businesses in ${config.city} with compliant, high-caliber personnel.`
+  ][variant];
+
+  const introPart3 = [
+    `Whether you require urgent temporary cover, short-term contract staff or permanent placements, our experienced consultants deliver responsive and efficient recruitment services.`,
+    `Our consultants provide responsive recruitment services, matching candidates for permanent vacancies, contract roles or urgent temporary staffing needs.`,
+    `From immediate temporary cover to strategic permanent appointments, our recruitment consultants ensure efficient vacancy fulfilment tailored to your timeframe.`
+  ][variant];
+
+  const introduction = [introPart1, introPart2, introPart3];
+
+  // Dynamic Local Market Section
+  let marketText = "";
+  if (hasCustomData) {
+    marketText = `The employment market in ${config.city} is supported by key business parks, industrial estates and local infrastructure including ${employersList.join(" and ")}, as well as the ${infraList.join(" and ")}.`;
+  } else {
+    marketText = `The employment market in ${config.city} is driven by a diverse mix of commercial enterprises, retail centers, and industrial facilities, well-connected to nearby regional hubs.`;
+  }
 
   const localMarket = [
-    `The employment market in ${config.city} is supported by key business parks, industrial estates and local infrastructure including ${employersList.join(" and ")}, as well as the ${infraList.join(" and ")}.`,
+    marketText,
     `With demand across ${sectorsList.join(", ").replace(/, ([^,]*)$/, " and $1")}, RDUK supplies high-quality candidates who have undergone full Right to Work, qualification and compliance screening.`,
     `We work closely with employers in ${config.city} to reduce recruitment admin times and ensure staffing continuity for critical operations.`
   ];

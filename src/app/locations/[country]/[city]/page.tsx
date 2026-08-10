@@ -62,6 +62,7 @@ export async function generateMetadata({
     title: page.seoTitle,
     description: page.metaDescription,
     alternates: {
+      canonical: canonicalUrl,
       languages: page.countrySlug === "republic-of-ireland" ? {
         "en-IE": canonicalUrl,
         "x-default": canonicalUrl,
@@ -103,8 +104,9 @@ const getSectorHref = (slug: string) => {
     case "construction":
       return "/construction-recruitment-agency";
     case "engineering":
-    case "civil-engineering":
       return "/engineering-recruitment-agency";
+    case "civil-engineering":
+      return "/construction-recruitment-agency";
     case "renewable-energy":
       return "/renewable-energy-recruitment-agency";
     case "healthcare":
@@ -122,7 +124,7 @@ const getSectorHref = (slug: string) => {
     case "commercial":
       return "/commercial-office-recruitment-agency";
     case "facilities-management":
-      return "/commercial-office-recruitment-agency";
+      return "/construction-recruitment-agency";
     default:
       return `/${slug}-recruitment-agency`;
   }
@@ -219,18 +221,32 @@ export default async function CityRecruitmentPage({
     })),
   };
 
+  const contactPhone = page.countrySlug === "republic-of-ireland" ? "+353 (0)1 905 8022" : "0345 067 8022";
+
   const agencySchema = {
     "@context": "https://schema.org",
     "@type": "EmploymentAgency",
     "name": `Recruitment Direct UK Ltd - ${page.city}`,
     "url": canonicalUrl,
-    "telephone": "0345 067 8022",
+    "telephone": contactPhone,
     "logo": "https://rd1.co.uk/logo.png",
     "image": "https://rd1.co.uk/logo.png",
     "sameAs": [
       "https://www.facebook.com/recruitmentdirectukltd",
       "https://www.linkedin.com/company/recruitment-direct-uk-ltd"
     ],
+    "address": page.countrySlug === "republic-of-ireland" ? {
+      "@type": "PostalAddress",
+      "addressLocality": page.city,
+      "addressRegion": page.widerArea,
+      "addressCountry": "IE"
+    } : {
+      "@type": "PostalAddress",
+      "streetAddress": "Suite 3, Enterprise House, Springkerse Business Park",
+      "addressLocality": "Stirling",
+      "postalCode": "FK7 7UF",
+      "addressCountry": "GB"
+    },
     "areaServed": {
       "@type": "AdministrativeArea",
       "name": page.city
@@ -252,7 +268,7 @@ export default async function CityRecruitmentPage({
     "@type": "Organization",
     name: "Recruitment Direct UK Ltd",
     url: "https://rd1.co.uk",
-    telephone: "0345 067 8022",
+    telephone: contactPhone,
     foundingDate: "2006",
     areaServed: [page.city, page.country],
     serviceType: [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ConstructionAgencyPage from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Construction Recruitment Agency | Recruitment Direct",
+  title: "Construction Recruitment Agency UK | Recruitment Direct UK",
   description: "Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across the UK and Ireland. Trusted since 2006.",
   robots: {
     index: true,

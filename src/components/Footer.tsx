@@ -718,7 +718,7 @@ export default function Footer() {
               <div className="rd-btn-wrap">
                 <a
                   className="btn btn-secondary btn-saas"
-                  href="/certificates/Recruitment-Direct-ISO-9001-Certificate-Signed.pdf"
+                  href="/certificates/constructionline-gold-1324569.pdf"
                   target="_blank"
                   rel="noopener"
                 >
@@ -817,15 +817,11 @@ export default function Footer() {
                     <a href="/why-choose-us">Why RDUK</a>
                     <a href="/our-process">Our Process</a>
                     <a href="/contact">Contact Us</a>
-                    {cities.map((city, idx) => (
-                      <a
-                        key={`${city.countrySlug}-${city.slug}-${idx}`}
-                        href={city.path}
-                        className="sr-only"
-                      >
-                        Recruitment Agency {city.city}
-                      </a>
-                    ))}
+                    <a href="/locations/scotland">Recruitment Agency Scotland</a>
+                    <a href="/locations/england">Recruitment Agency England</a>
+                    <a href="/locations/wales">Recruitment Agency Wales</a>
+                    <a href="/locations/northern-ireland">Recruitment Agency Northern Ireland</a>
+                    <a href="/locations/republic-of-ireland">Recruitment Agency Republic of Ireland</a>
                   </div>
 
                   <div className="footer-col">
@@ -859,16 +855,12 @@ export default function Footer() {
                       Clients
                     </a>
                     <a href="/job-search">Job Search</a>
-                    <a
-                      href="#policies"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsPoliciesOpen(true);
-                      }}
-                      className="cursor-pointer"
+                    <button
+                      onClick={() => setIsPoliciesOpen(true)}
+                      className="cursor-pointer text-left"
                     >
                       Policies
-                    </a>
+                    </button>
                     <a href="/accreditations">Accreditations</a>
                     <a href="/news">News & Insights</a>
                   </div>
