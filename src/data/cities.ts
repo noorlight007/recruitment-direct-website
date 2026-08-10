@@ -701,7 +701,9 @@ function createTown(config: {
   mainSectors?: string[];
   areas?: string[];
 }): CityPageData {
-  const slug = config.city.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const slug = config.city.toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
   const path = `/locations/${config.countrySlug}/${slug}`;
   const seoTitle = `Recruitment Agency ${config.city} | Recruitment Direct UK`;
   const metaDescription = `Recruitment agency in ${config.city} supplying temporary, contract and permanent staff across construction, engineering and logistics.`;
