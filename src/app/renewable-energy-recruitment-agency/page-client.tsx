@@ -382,8 +382,8 @@ export default function RenewableEnergyAgencyPage() {
             "url": "https://rd1.co.uk",
             "logo": "https://rd1.co.uk/logo.png",
             "sameAs": [
-              "https://www.facebook.com/recruitmentdirect",
-              "https://www.linkedin.com/company/recruitment-direct-uk-ltd"
+              "https://www.facebook.com/recruitmentdirect/",
+              "https://www.linkedin.com/company/recruitment-direct/?utm_source=chatgpt%2Ecom&originalSubdomain=uk"
             ]
           })
         }}
