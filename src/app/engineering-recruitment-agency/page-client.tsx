@@ -112,6 +112,7 @@ export default function EngineeringAgencyPage() {
                 alt="Engineering recruitment agency supplying temporary, contract and permanent engineering professionals across the UK and Republic of Ireland"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 className="object-cover"
               />
             </div>
@@ -319,14 +320,14 @@ export default function EngineeringAgencyPage() {
                   </p>
                 </div>
                 <div className="relative w-full h-[220px] rounded-xl overflow-hidden shadow-sm border border-slate-100">
-                  <Image src="/images/engineering-recruitment-agency.webp" alt="Mechanical engineering recruitment" fill className="object-cover" />
+                  <Image src="/images/engineering-recruitment-agency.webp" alt="Mechanical engineering recruitment" fill sizes="(max-width: 640px) 100vw, 400px" className="object-cover" />
                 </div>
               </div>
 
               {/* Electrical Engineering */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center border-b border-slate-100 pb-8">
                 <div className="relative w-full h-[220px] rounded-xl overflow-hidden shadow-sm border border-slate-100 order-last sm:order-first">
-                  <Image src="/images/engineering-recruitment-agency.webp" alt="Electrical engineering recruitment" fill className="object-cover" />
+                  <Image src="/images/engineering-recruitment-agency.webp" alt="Electrical engineering recruitment" fill sizes="(max-width: 640px) 100vw, 400px" className="object-cover" />
                 </div>
                 <div>
                   <h2 className="text-black text-[22px] md:text-[28px] font-bold mb-3">Electrical Engineering Recruitment</h2>
@@ -351,14 +352,14 @@ export default function EngineeringAgencyPage() {
                   </p>
                 </div>
                 <div className="relative w-full h-[220px] rounded-xl overflow-hidden shadow-sm border border-slate-100">
-                  <Image src="/images/engineering-recruitment-agency.webp" alt="Automation and controls recruitment" fill className="object-cover" />
+                  <Image src="/images/engineering-recruitment-agency.webp" alt="Automation and controls recruitment" fill sizes="(max-width: 640px) 100vw, 400px" className="object-cover" />
                 </div>
               </div>
 
               {/* Process & Manufacturing */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center border-b border-slate-100 pb-8">
                 <div className="relative w-full h-[220px] rounded-xl overflow-hidden shadow-sm border border-slate-100 order-last sm:order-first">
-                  <Image src="/images/engineering-recruitment-agency.webp" alt="Process and manufacturing engineering recruitment" fill className="object-cover" />
+                  <Image src="/images/engineering-recruitment-agency.webp" alt="Process and manufacturing engineering recruitment" fill sizes="(max-width: 640px) 100vw, 400px" className="object-cover" />
                 </div>
                 <div>
                   <h2 className="text-black text-[22px] md:text-[28px] font-bold mb-3">Process & Manufacturing Engineering Recruitment</h2>
@@ -383,7 +384,7 @@ export default function EngineeringAgencyPage() {
                   </p>
                 </div>
                 <div className="relative w-full h-[220px] rounded-xl overflow-hidden shadow-sm border border-slate-100">
-                  <Image src="/images/engineering-recruitment-agency.webp" alt="Project engineering recruitment" fill className="object-cover" />
+                  <Image src="/images/engineering-recruitment-agency.webp" alt="Project engineering recruitment" fill sizes="(max-width: 640px) 100vw, 400px" className="object-cover" />
                 </div>
               </div>
             </section>

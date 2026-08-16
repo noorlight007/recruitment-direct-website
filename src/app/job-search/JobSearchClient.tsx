@@ -289,7 +289,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
         .rduk-latest-jobs {
           background: #f7f8fb !important;
           padding: 60px 20px !important;
-          font-family: Inter, Arial, sans-serif !important;
+          font-family: var(--font-inter), Arial, sans-serif !important;
           color: #111111 !important;
         }
 

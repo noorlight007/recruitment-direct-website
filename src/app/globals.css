@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -103,7 +102,7 @@ p {
     overflow-x: hidden;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), sans-serif;
   }
 
   h1,
@@ -3224,7 +3223,7 @@ MOBILE RESPONSIVE
    ========================================================= */
 
 .rd-landing {
-  font-family: 'Poppins', 'Inter', sans-serif;
+  font-family: var(--font-poppins), var(--font-inter), sans-serif;
   color: #071424;
   background-color: #030812;
 }
@@ -3422,6 +3421,14 @@ MOBILE RESPONSIVE
 .rd-sector-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 30px rgba(184, 134, 11, 0.25);
+}
+
+.rd-sector-card img {
+  transition: transform .5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.rd-sector-card:hover img {
+  transform: scale(1.06) !important;
 }
 
 .rd-sector-card span {

@@ -23,7 +23,7 @@ export default function AccreditationsPage() {
         .accreditations-page {
           background-color: #ffffff !important;
           background-image: none !important;
-          font-family: 'Inter', 'Poppins', sans-serif;
+          font-family: var(--font-inter), var(--font-poppins), sans-serif;
         }
         
         .accreditations-page-content h1,

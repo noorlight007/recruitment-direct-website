@@ -27,7 +27,7 @@ export default function SecurityPage() {
         .security-page {
           background-color: #ffffff !important;
           background-image: none !important;
-          font-family: 'Inter', 'Poppins', sans-serif;
+          font-family: var(--font-inter), var(--font-poppins), sans-serif;
         }
         
         .security-page-content h1,

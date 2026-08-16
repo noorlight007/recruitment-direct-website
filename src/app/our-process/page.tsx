@@ -23,7 +23,7 @@ export default function OurProcessPage() {
         .our-process-page {
           background-color: #ffffff !important;
           background-image: none !important;
-          font-family: 'Inter', 'Poppins', sans-serif;
+          font-family: var(--font-inter), var(--font-poppins), sans-serif;
         }
         
         .our-process-page-content h1,
@@ -128,7 +128,7 @@ export default function OurProcessPage() {
         }
         
         .our-process-page-content .step-num {
-          font-family: 'Poppins', sans-serif;
+          font-family: var(--font-poppins), sans-serif;
           font-weight: 800;
           color: #8a6417 !important;
           background-color: rgba(200, 149, 40, 0.1);

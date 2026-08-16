@@ -27,7 +27,7 @@ export default function IntegrationsPage() {
         .integrations-page {
           background-color: #ffffff !important;
           background-image: none !important;
-          font-family: 'Inter', 'Poppins', sans-serif;
+          font-family: var(--font-inter), var(--font-poppins), sans-serif;
         }
         
         .integrations-page-content h1,

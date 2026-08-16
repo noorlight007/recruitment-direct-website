@@ -26,7 +26,7 @@ export default function ServicesPage() {
         .services-page {
           background-color: #ffffff !important;
           background-image: none !important;
-          font-family: 'Inter', 'Poppins', sans-serif;
+          font-family: var(--font-inter), var(--font-poppins), sans-serif;
         }
         
         .services-page-content h1,

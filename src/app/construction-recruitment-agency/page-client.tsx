@@ -112,6 +112,7 @@ export default function ConstructionAgencyPage() {
                 alt="Construction Recruitment Agency supplying temporary, contract and permanent construction professionals across the UK and Republic of Ireland"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 className="object-cover"
               />
             </div>

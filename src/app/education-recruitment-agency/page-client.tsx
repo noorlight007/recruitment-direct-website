@@ -109,9 +109,10 @@ export default function EducationAgencyPage() {
             <div className="relative w-full h-[280px] md:h-[420px] rounded-2xl overflow-hidden mb-12 shadow-md border border-slate-200">
               <Image
                 src="/images/Educations.png"
-                alt="Education Recruitment Agency supplying supply teachers, teaching assistants and learning support workers"
+                alt="Education Recruitment Agency supplying temporary and permanent teachers and support staff"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 className="object-cover"
               />
             </div>

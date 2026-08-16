@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/assets/logo.png";
-import callpilotLogo from "@/assets/callpilot_logo.png";
+// import logo from "@/assets/logo.png";
+// import callpilotLogo from "@/assets/callpilot_logo.png";
 import {
   Dialog,
   DialogContent,

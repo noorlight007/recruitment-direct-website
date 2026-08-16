@@ -112,6 +112,7 @@ export default function HealthcareAgencyPage() {
                 alt="Healthcare Recruitment Agency supplying temporary and permanent care assistants and support workers"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 className="object-cover"
               />
             </div>

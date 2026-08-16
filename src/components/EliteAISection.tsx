@@ -15,7 +15,7 @@ export default function EliteAISection() {
     <div className="new-ai-section-wrapper">
       <style dangerouslySetInnerHTML={{ __html: `
         .new-ai-section-wrapper {
-          font-family: 'Inter', sans-serif;
+          font-family: var(--font-inter), sans-serif;
           background: radial-gradient(circle at top right,#0f2d68 0%,#050816 30%,#02040d 70%);
           color: white;
           overflow-x: hidden;

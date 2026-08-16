@@ -112,6 +112,7 @@ export default function HospitalityAgencyPage() {
                 alt="Hospitality Recruitment Agency supplying temporary chefs, bar staff and kitchen porters"
                 fill
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 className="object-cover"
               />
             </div>
