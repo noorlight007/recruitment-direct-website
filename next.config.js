@@ -59,6 +59,28 @@ const nextConfig = {
                 destination: 'https://rd1.co.uk/:path*',
                 permanent: true,
             },
+            // Redirect any feed URL to its parent page
+            {
+                source: '/:path*/feed',
+                destination: '/:path*',
+                permanent: true,
+            },
+            {
+                source: '/:path*/feed/',
+                destination: '/:path*',
+                permanent: true,
+            },
+            // Legacy policy redirects to GDPR policy
+            {
+                source: '/data-protection-policy',
+                destination: '/data-protection-gdpr-policy',
+                permanent: true,
+            },
+            {
+                source: '/data-protection-policy/',
+                destination: '/data-protection-gdpr-policy',
+                permanent: true,
+            },
             // Disambiguated duplicate town name: two distinct real places named "Blackburn"
             // (West Lothian and Aberdeenshire) previously collided on the same slug, with the
             // West Lothian entry winning the lookup. Preserve that old URL as a 301.
