@@ -429,7 +429,7 @@ export default function JobDetailsPage() {
           <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-xl font-bold text-red-700 shadow-md max-w-2xl text-center">
             {error}
             <div className="mt-4">
-              <Link href="/job-search" className="text-[#006fff] hover:underline font-bold">
+              <Link href="/job_details" className="text-[#006fff] hover:underline font-bold">
                 ← Return to Live Search
               </Link>
             </div>
@@ -441,7 +441,7 @@ export default function JobDetailsPage() {
             <div className="job-detail-container">
 
               <div className="back-link-wrapper">
-                <Link href="/job-search" className="back-link">
+                <Link href="/job_details" className="back-link">
                   ← Back to Live Search
                 </Link>
               </div>

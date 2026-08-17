@@ -32,7 +32,7 @@ export default function SearchJobsSection() {
             />
 
             <a
-              href={keyword.trim() ? `/job-search?q=${encodeURIComponent(keyword.trim())}` : "/job-search"}
+              href={keyword.trim() ? `/job_details?q=${encodeURIComponent(keyword.trim())}` : "/job_details"}
               className="inline-flex h-20 items-center justify-center rounded-xl border border-yellow-700 bg-gradient-to-b from-yellow-300 to-yellow-600 px-14 text-2xl font-black uppercase text-black shadow-md hover:opacity-90"
             >
               Search Jobs

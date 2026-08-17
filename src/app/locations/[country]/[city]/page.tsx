@@ -655,7 +655,7 @@ export default async function CityRecruitmentPage({
                         <Link href="/about">About Our Agency</Link>
                       </li>
                       <li>
-                        <Link href="/job-search">Search Active Jobs</Link>
+                        <Link href="/job_details">Search Active Jobs</Link>
                       </li>
                       <li>
                         <Link href="/contact">Get in Touch / Contact Us</Link>

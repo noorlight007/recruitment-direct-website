@@ -52,10 +52,10 @@ const nextConfig = {
     },
     async redirects() {
         return [
-            // Redirect old job-search detail URLs to the new job_details URLs
+            // Redirect old job-search URLs to the new job_details URLs
             {
-                source: '/job-search/:adId',
-                destination: '/job_details/:adId',
+                source: '/job-search/:path*',
+                destination: '/job_details/:path*',
                 permanent: true,
             },
             // Force www to non-www

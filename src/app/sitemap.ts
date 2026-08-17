@@ -54,7 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/human-review-statement",
     "/information-security-policy",
     "/integrations",
-    "/job-search",
+    "/job_details",
     "/locations",
     "/modern-slavery-policy",
     "/news",
