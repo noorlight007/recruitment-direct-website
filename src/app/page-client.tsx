@@ -1274,7 +1274,7 @@ const Index = () => {
         </main>
 
         {/* Previous all sections from components folder */}
-        <HeroSection />
+        {/* <HeroSection /> */}
         {/* <TrustTechSection /> */}
         {/* <HowWeDeliverSection /> */}
         {/* <AIFlowSection /> */}
