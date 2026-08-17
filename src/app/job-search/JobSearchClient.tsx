@@ -267,7 +267,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
                           <span className="rate-frequency">{parsePayRate(getJobAdPayRate(job)).frequency}</span>
                         )}
                       </div>
-                      <a href={`/job-search/${job.slug || job.adId}`} className="view-job">
+                      <a href={`/job_details/${job.slug || job.adId}`} className="view-job">
                         View Job <ChevronRight className="button-arrow" />
                       </a>
                     </div>

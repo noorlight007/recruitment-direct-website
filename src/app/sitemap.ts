@@ -97,7 +97,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const encodedIdentifier = encodeURIComponent(identifier);
         
         return {
-          url: `${baseUrl}/job-search/${encodedIdentifier}`,
+          url: `${baseUrl}/job_details/${encodedIdentifier}`,
           lastModified: job.postAt ? new Date(job.postAt) : new Date(),
           changeFrequency: "daily" as const,
           priority: 0.7,
