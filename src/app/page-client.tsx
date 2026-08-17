@@ -73,12 +73,20 @@ const Index = () => {
             margin-bottom: 0 !important;
           }
           .rd-hero {
-            align-items: flex-start !important;
+            align-items: center !important;
             padding-top: 100px !important;
-            min-height: 600px !important;
+            padding-bottom: 100px !important;
+            min-height: 650px !important;
           }
           .rd-hero h1 {
             font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
+            white-space: normal !important;
+          }
+          @media (min-width: 1024px) {
+            .rd-hero .rd-button-grid {
+              justify-content: flex-start !important;
+              margin: 40px 0 0 !important;
+            }
           }
           .rd-button-grid {
             display: flex !important;
@@ -168,7 +176,8 @@ const Index = () => {
           @media (max-width: 768px) {
             .rd-hero {
               padding-top: 110px !important;
-              min-height: 480px !important;
+              padding-bottom: 50px !important;
+              min-height: auto !important;
             }
             .rd-button-grid {
               flex-direction: column !important;
@@ -207,39 +216,47 @@ const Index = () => {
           {/* HERO */}
           <section className="rd-hero">
             <div className="rd-overlay"></div>
-            <div className="rd-container rd-hero-content">
-              <h1 className="standard-h1">Recruitment Across the UK</h1>
-              <h2 className="standard-h2">Trusted Supplier Since 2006</h2>
-              <p className="standard-body-p">Connecting employers fast with reliable temporary, contract and permanent staff.</p>
+            <div className="rd-container relative z-10 w-full">
+              <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
+                {/* Left Column: Content and Actions */}
+                <div className="flex flex-col text-center items-center lg:text-left lg:items-start">
+                  <h1 className="standard-h1 text-center lg:text-left w-full">Recruitment Across the UK</h1>
+                  <h2 className="standard-h2 text-center lg:text-left w-full">Trusted Supplier Since 2006</h2>
+                  <p className="standard-body-p text-center lg:text-left">Connecting employers fast with reliable temporary, contract and permanent staff.</p>
 
-              <div className="rd-button-grid" style={{ justifyContent: "center" }}>
-                <div className="rd-hero-btn-col">
-                  <a href="/ai-hire-now" className="rd-btn rd-btn-gold standard-cta-btn">AI HIRE NOW</a>
-                  <div className="rd-btn-caption">
-                    <span className="rd-btn-q">Need staff fast?</span>
-                    <span className="rd-btn-a">Order Staff 24/7</span>
+                  <div className="rd-button-grid">
+                    <div className="rd-hero-btn-col">
+                      <a href="/ai-hire-now" className="rd-btn rd-btn-gold standard-cta-btn">AI HIRE NOW</a>
+                      <div className="rd-btn-caption">
+                        <span className="rd-btn-q">Need staff fast?</span>
+                        <span className="rd-btn-a">Order Staff 24/7</span>
+                      </div>
+                    </div>
+                    <div className="rd-hero-btn-col">
+                      <a href="/job_details" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
+                      <div className="rd-btn-caption">
+                        <span className="rd-btn-q">Looking for work?</span>
+                        <span className="rd-btn-a">Search Jobs</span>
+                      </div>
+                    </div>
+                    <div className="rd-hero-btn-col">
+                      <button onClick={() => setIsVideoOpen(true)} className="rd-btn rd-btn-outline standard-cta-btn">WATCH AI CALL</button>
+                      <div className="rd-btn-caption">
+                        <span className="rd-btn-q">Hiring made easier</span>
+                        <span className="rd-btn-a">See AI in Action</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                {/* <div className="rd-hero-btn-col">
-                  <a href="/contact" className="rd-btn rd-btn-gold standard-cta-btn">PLACE ENQUIRY</a>
-                  <div className="rd-btn-caption">
-                    <span className="rd-btn-q">Recruitment Quote?</span>
-                    <span className="rd-btn-a">Request a Callback</span>
-                  </div>
-                </div> */}
-                <div className="rd-hero-btn-col">
-                  <a href="/job_details" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
-                  <div className="rd-btn-caption">
-                    <span className="rd-btn-q">Looking for work?</span>
-                    <span className="rd-btn-a">Search Jobs</span>
-                  </div>
-                </div>
-                <div className="rd-hero-btn-col">
-                  <button onClick={() => setIsVideoOpen(true)} className="rd-btn rd-btn-outline standard-cta-btn">WATCH AI CALL</button>
-                  <div className="rd-btn-caption">
-                    <span className="rd-btn-q">Hiring made easier</span>
-                    <span className="rd-btn-a">See AI in Action</span>
-                  </div>
+
+                {/* Right Column: 24/7 Applicant Call Board Animation */}
+                <div className="w-full flex justify-center items-center">
+                  <iframe
+                    src="/assets/rd1-24-7-live-call.html"
+                    style={{ width: "100%", height: "520px", border: 0 }}
+                    title="RD1 24/7 Applicant Call"
+                    scrolling="no"
+                  />
                 </div>
               </div>
             </div>
@@ -1257,7 +1274,7 @@ const Index = () => {
         </main>
 
         {/* Previous all sections from components folder */}
-        {/* <HeroSection /> */}
+        <HeroSection />
         {/* <TrustTechSection /> */}
         {/* <HowWeDeliverSection /> */}
         {/* <AIFlowSection /> */}

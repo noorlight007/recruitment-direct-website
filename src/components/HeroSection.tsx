@@ -77,16 +77,16 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column: Content and Primary Actions */}
-          <div className="flex flex-col">
-            <h1 className="hero-heading">
+          <div className="flex flex-col text-left items-start">
+            <h1 className="hero-heading text-left">
               Recruitment Across the UK
             </h1>
 
-            <h2 className="text-xl md:text-2xl font-bold text-[#60A5FA] mt-3 mb-2 tracking-tight glow-text mx-auto">
+            <h2 className="text-xl md:text-2xl font-bold text-[#60A5FA] mt-3 mb-2 tracking-tight glow-text text-left mr-auto lg:mx-0 w-full">
               Fast, reliable staffing solutions since 2006.
             </h2>
 
-            <p className="hero-subtext">
+            <p className="hero-subtext text-left">
               Temporary, contract and permanent staffing delivered with speed, accuracy and full compliance, delivered by experienced consultants.
             </p>
 
@@ -119,54 +119,19 @@ export default function HeroSection() {
 
           </div>
 
-          {/* Right Column: AI Automation Dashboard */}
+          {/* Right Column: 24/7 Applicant Call Board Animation */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="hero-box relative overflow-hidden"
+            className="w-full flex justify-center items-center"
           >
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="text-xl font-bold">AI Screening Live</h3>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs font-medium text-green-500 uppercase tracking-wider">System Active</span>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              {[
-                { icon: <FileText className="w-5 h-5" />, title: "Application Received", status: "completed" },
-                { icon: <PhoneCall className="w-5 h-5" />, title: "AI Call Initiated", status: "completed" },
-                { icon: <Activity className="w-5 h-5" />, title: "AI Screening Analysis", status: "current" },
-                { icon: <UserCheck className="w-5 h-5" />, title: "Automated Shortlisting", status: "pending" },
-              ].map((step, idx) => (
-                <div key={idx} className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center border ${step.status === 'completed' ? 'border-blue-500 bg-blue-500/10 text-blue-400' :
-                      step.status === 'current' ? 'border-yellow-500 bg-yellow-500/10 text-yellow-400' :
-                        'border-gray-800 bg-gray-900 text-gray-600'
-                    }`}>
-                    {step.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium">{step.title}</div>
-                    <div className="text-[10px] text-gray-500 uppercase tracking-widest">{step.status}</div>
-                  </div>
-                  {step.status === 'completed' && <CheckCircle2 className="w-4 h-4 text-green-500" />}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 pt-8 border-t border-white/5 grid grid-cols-2 gap-4">
-              <div className="p-2 rounded-xl bg-white/5 border border-white/10 items-center justify-center flex flex-col">
-                <div className="text-2xl font-bold">92%</div>
-                <div className="text-[10px] text-gray-500 uppercase tracking-widest">Match Accuracy</div>
-              </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10 items-center justify-center flex flex-col">
-                <div className="text-2xl font-bold">58s</div>
-                <div className="text-[10px] text-gray-500 uppercase tracking-widest">Screening Time</div>
-              </div>
-            </div>
+            <iframe
+              src="/assets/rd1-24-7-live-call.html"
+              style={{ width: "100%", height: "520px", border: 0 }}
+              title="RD1 24/7 Applicant Call"
+              scrolling="no"
+            />
           </motion.div>
         </div>
 

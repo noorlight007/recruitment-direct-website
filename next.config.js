@@ -28,7 +28,7 @@ const nextConfig = {
                     },
                     {
                         key: 'X-Frame-Options',
-                        value: 'DENY',
+                        value: 'SAMEORIGIN',
                     },
                     {
                         key: 'X-Content-Type-Options',
@@ -44,7 +44,7 @@ const nextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://app.trysoro.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: *; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' *; frame-src 'self' https://www.googletagmanager.com; worker-src 'self' blob:; child-src 'self' blob:;",
+                        value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://app.trysoro.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: *; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' *; frame-src 'self' https://www.googletagmanager.com; frame-ancestors 'self'; worker-src 'self' blob:; child-src 'self' blob:;",
                     },
                 ],
             },

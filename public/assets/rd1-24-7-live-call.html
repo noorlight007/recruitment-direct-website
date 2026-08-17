@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>24/7 Applicant Call</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --board:#080B10;
+    --board-2:#121721;
+    --amber:#FFB020;
+    --amber-dim:#8A6318;
+    --off:#E4E9F0;
+    --silver:#AEB8C4;
+    --green:#4FBE72;
+    --amber-led:#FFB020;
+    --red:#E5544A;
+    --blue:#2E86FF;
+    --line:rgba(46,134,255,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:transparent;font-family:"Space Mono",monospace;color:var(--off);padding:0}
+  .page{max-width:920px;margin:0 auto}
+
+  .board{
+    position:relative;
+    background:
+      radial-gradient(120% 140% at 15% -10%, rgba(46,134,255,.10), transparent 55%),
+      radial-gradient(90% 90% at 100% 0%, rgba(46,134,255,.06), transparent 60%),
+      linear-gradient(180deg, var(--board), #050709);
+    border:1px solid #16202C;
+    border-radius:6px;
+    box-shadow:0 40px 80px -40px rgba(0,0,0,.8), 0 0 60px -30px rgba(46,134,255,.25), inset 0 0 0 1px rgba(46,134,255,.04);
+    overflow:hidden;
+  }
+  .board::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0px, rgba(255,255,255,.018) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:overlay;
+  }
+
+  .masthead{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:16px 22px;border-bottom:1px solid var(--line);
+  }
+  .masthead__title{
+    font-family:"Archivo Black",sans-serif;font-size:15px;letter-spacing:.02em;color:var(--off);
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .masthead__title span{color:var(--blue);text-shadow:0 0 14px rgba(46,134,255,.5)}
+  @keyframes fadein{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+  .live-tag{
+    display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.22em;color:var(--red);
+    border:1px solid rgba(229,84,74,.4);padding:5px 9px;border-radius:3px;
+  }
+  .live-tag i{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);animation:blink .9s steps(2) infinite}
+  @keyframes blink{50%{opacity:.15}}
+
+  .tally{display:flex;gap:18px;padding:9px 22px;border-bottom:1px solid var(--line);font-size:10.5px;color:#8B9096;letter-spacing:.04em}
+  .tally span{display:inline-flex;align-items:baseline;gap:5px;white-space:nowrap}
+  .tally b{color:var(--off);font-weight:700}
+  .tally .g b{color:var(--green)} .tally .a b{color:var(--amber)} .tally .r b{color:var(--red)} .tally .b b{color:var(--blue)}
+
+  .ticker{border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:7px 0;background:#0D0D0D;position:relative;height:31px}
+  .ticker__track{position:relative;height:100%}
+  .ticker__item{position:absolute;top:50%;left:0;transform:translate(0,-50%);white-space:nowrap;font-size:10.5px;color:#7C828A;letter-spacing:.03em;will-change:transform}
+  .ticker__item b{color:#C9CDD2}
+  .ticker .ok{color:var(--green);font-weight:700}
+  .ticker .warn{color:var(--amber);font-weight:700}
+  .ticker .bad{color:var(--red);font-weight:700}
+  .ticker .neutral{color:#9AA0A6;font-weight:700}
+  .ticker .done{color:var(--blue);font-weight:700}
+
+  /* ---- flap board for name / role / location ---- */
+  .flaprow{display:flex;flex-wrap:wrap;gap:3px;padding:20px 22px 4px}
+  .flap{
+    position:relative;background:var(--board-2);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Space Mono",monospace;font-weight:700;color:var(--off);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
+    transform-origin:center;
+  }
+  .flap::after{
+    content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.55);
+  }
+  .flap--lg{width:19px;height:30px;font-size:18px}
+  .flap--sm{width:11px;height:18px;font-size:11px}
+  .flap--space{background:transparent;box-shadow:none}
+  .flap--space.flap--sm{width:8px}
+
+  .subrow{display:flex;align-items:center;gap:10px;padding:10px 22px 16px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+  .subrow .lbl{font-size:9.5px;letter-spacing:.2em;color:#6E747B}
+  .tagline{
+    display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.03em;color:#C9CDD2;
+    animation:fadein .35s ease both;
+  }
+  .tagline b{color:var(--blue);font-weight:700}
+  .tagline .dot{color:#4A4F55}
+  .timer{margin-left:auto;font-size:11px;color:#8B9096}
+
+  /* ---- printed Q&A ticket lines ---- */
+  .qa{padding:16px 22px 6px;display:flex;flex-direction:column;gap:11px;min-height:110px}
+  .qa-line{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+    border-top:1px dashed var(--line);padding-top:10px;
+  }
+  .qa-line:first-child{border-top:none;padding-top:0}
+  .qa-line__q{
+    font-size:12.5px;line-height:1.45;color:#C9CDD2;
+    white-space:normal;overflow-wrap:break-word;
+    flex:1;min-width:0;
+  }
+  .qa-line__q.reveal{ animation:qain .3s ease both; }
+  @keyframes qain{ from{opacity:0;transform:translateX(-4px)} to{opacity:1;transform:none} }
+  .ans{ flex:none;
+    font-family:"Space Mono",monospace;font-weight:700;font-size:11.5px;letter-spacing:.08em;
+    padding:3px 9px;border-radius:3px;white-space:nowrap;
+    animation:stamp .28s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes stamp{from{opacity:0;transform:scale(1.4)}to{opacity:1;transform:scale(1)}}
+  .ans--yes{color:var(--green);border:1px solid rgba(79,190,114,.5)}
+  .ans--no{color:var(--red);border:1px solid rgba(229,84,74,.5)}
+
+  .verdict-bar{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 22px;border-top:1px solid var(--line);background:#0D0D0D;
+  }
+  .verdict-bar__label{font-size:9.5px;letter-spacing:.22em;color:#6E747B}
+  .verdict{
+    display:inline-flex;align-items:center;gap:8px;font-family:"Archivo Black",sans-serif;font-size:12px;
+    letter-spacing:.03em;padding:6px 13px;border-radius:3px;
+    animation:stamp .3s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  .verdict i{width:7px;height:7px;border-radius:50%}
+  .verdict--green{color:var(--green);border:1px solid rgba(79,190,114,.5)} .verdict--green i{background:var(--green);box-shadow:0 0 8px var(--green)}
+  .verdict--amber{color:var(--amber);border:1px solid rgba(255,176,32,.5)} .verdict--amber i{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .verdict--red{color:var(--red);border:1px solid rgba(229,84,74,.5)} .verdict--red i{background:var(--red);box-shadow:0 0 8px var(--red)}
+  .verdict--neutral{color:#C9CDD2;border:1px solid rgba(255,255,255,.2)} .verdict--neutral i{background:#9AA0A6;box-shadow:0 0 6px rgba(255,255,255,.3);animation:blink 1s steps(2) infinite}
+  .verdict--blue{color:var(--blue);border:1px solid rgba(46,125,255,.5)} .verdict--blue i{background:var(--blue);box-shadow:0 0 9px var(--blue)}
+
+  @media (max-width:600px){
+    .flap--lg{width:14px;height:23px;font-size:13px}
+    .flap--sm{width:9px;height:15px;font-size:9.5px}
+    .tally{flex-wrap:wrap;row-gap:4px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .live-tag i,.qa-line__q.reveal,.ans,.verdict{animation:none !important}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="board">
+    <div class="masthead">
+      <div class="masthead__title"><span>24/7 APPLICANT CALL</span></div>
+      <div class="live-tag"><i></i>ON AIR</div>
+    </div>
+    <div class="tally">
+      <span>SCREENED TODAY <b id="statTotal">1,284</b></span>
+      <span class="b">SUBMITTED TO CLIENT <b id="statSub">0</b></span>
+      <span class="g">DOCS. RECEIVED <b id="statGreen">812</b></span>
+      <span class="a">DOCS. REQUESTED <b id="statAmber">301</b></span>
+      <span class="r">UNSUCCESSFUL <b id="statRed">171</b></span>
+    </div>
+    <div class="ticker"><div class="ticker__track" id="tickerTrack"></div></div>
+
+    <div class="subrow" style="border-bottom:none;padding-bottom:2px"><span class="lbl">APPLICANT</span></div>
+    <div class="flaprow flaprow--lg" id="flapName"></div>
+
+    <div class="subrow">
+      <span class="lbl">ROLE &amp; LOCATION</span>
+      <span class="tagline" id="tagLine"><b>—</b> <span class="dot">·</span> <span id="tagLoc">—</span></span>
+      <span class="timer" id="candTimer">00:00</span>
+    </div>
+
+    <div class="qa" id="qaBlock"></div>
+
+    <div class="verdict-bar">
+      <span class="verdict-bar__label">VERDICT</span>
+      <span class="verdict verdict--amber" id="verdictBadge"><i></i>SCREENING…</span>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- data: 100 UK applicant names ---------- */
+const FIRST = ["James","Oliver","Harry","George","Jack","Thomas","Charlie","Freddie","Alfie","Henry",
+"Noah","Leo","Arthur","Oscar","Ryan","Connor","Callum","Kai","Rhys","Dylan",
+"Amelia","Olivia","Isla","Ava","Emily","Sophia","Grace","Lily","Freya","Poppy",
+"Ruby","Chloe","Ella","Millie","Daisy","Charlotte","Muhammad","Ahmed","Ibrahim","Yusuf",
+"Bilal","Aisha","Fatima","Zainab","Priya","Simran","Kiran","Amara","Kwame","Chidi"];
+const LAST = ["Smith","Jones","Taylor","Williams","Brown","Davies","Evans","Wilson","Roberts","Johnson",
+"Lewis","Walker","Robinson","Wood","Thompson","White","Jackson","Wright","Green","Harris",
+"Cooper","King","Baker","Hall","Clarke","Turner","Hill","Scott","Edwards","Morris",
+"Bell","Murphy","Bailey","Kelly","Kennedy","Ryan","Walsh","Khan","Hussain","Malik",
+"Patel","Shah","Sharma","Singh","Rahman","MacDonald","Campbell","Adeyemi","Okafor","Nguyen"];
+const NAMES = Array.from({length:100}, (_,i)=> `${FIRST[i%50]} ${LAST[(i*13+7)%50]}`);
+
+const CITIES = ["LONDON","MANCHESTER","BIRMINGHAM","LEEDS","GLASGOW","LIVERPOOL","BRISTOL","SHEFFIELD",
+"EDINBURGH","CARDIFF","NEWCASTLE","NOTTINGHAM","BELFAST","LEICESTER","COVENTRY","SOUTHAMPTON",
+"READING","DERBY","PLYMOUTH","SWANSEA","ABERDEEN","SUNDERLAND","PRESTON","HULL","YORK",
+"OXFORD","CAMBRIDGE","NORWICH","BRADFORD","STOKE-ON-TRENT"];
+const SCOTLAND_CITIES = new Set(["GLASGOW","EDINBURGH","ABERDEEN"]);
+
+/* ---------- data: 100 UK jobs across RD1's 10 sectors ---------- */
+const SECTORS = [
+  { name:"Construction", jobs:["General Labourer","Groundworker","Bricklayer","Carpenter / Joiner","Plant Operator","Scaffolder","Site Supervisor","Steel Fixer","Painter & Decorator","Traffic Marshal"],
+    dbs:false, questions:["Do you hold a valid CSCS card?","Do you have NVQ Level 3 in your trade?","Can you provide your own PPE?"] },
+  { name:"Renewables", jobs:["Solar PV Installer","Wind Turbine Technician","Cable Jointer","Renewables Site Manager","Battery Storage Technician","EV Charge Point Installer","Heat Pump Installer","Insulation Installer","Retrofit Coordinator","Electrical Testing Engineer"],
+    dbs:false, questions:["Do you hold an 18th Edition certificate?","Do you have working-at-height experience?","Do you hold a valid IPAF licence?"] },
+  { name:"Engineering", jobs:["Mechanical Engineer","Electrical Engineer","Maintenance Engineer","CNC Machinist","Welder / Fabricator","Quality Control Inspector","Production Engineer","Design Engineer","Multi-Skilled Engineer","Toolmaker"],
+    dbs:false, questions:["Do you hold an 18th Edition certificate?","Do you have a valid ECS / JIB card?","Do you have 2+ years' experience in this discipline?"] },
+  { name:"Logistics", jobs:["LGV Class 1 Driver","LGV Class 2 Driver","Van Driver","Warehouse Operative","Forklift Driver","Transport Planner","Yard Operative","Delivery Driver","Logistics Coordinator","Picker / Packer"],
+    dbs:false, questions:["Do you hold a valid UK driving licence?","Do you hold a Driver CPC card?","Do you hold a valid counterbalance licence?"],
+    questionOverrides:{
+      "LGV Class 1 Driver": {0:"Do you hold a Category C+E driving licence?"},
+      "LGV Class 2 Driver": {0:"Do you hold a Category C driving licence?"}
+    } },
+  { name:"Healthcare", jobs:["Healthcare Assistant","Registered Nurse","Support Worker","Care Assistant","Domiciliary Carer","Mental Health Support Worker","Theatre Support Worker","Phlebotomist","Clinical Support Worker","Complex Care Assistant"],
+    dbs:true, dbsLabel:"NHS / Care", questions:["Do you have current moving & handling training?","Are you cleared for occupational health?"] },
+  { name:"Education", jobs:["Teaching Assistant","Cover Supervisor","SEN Support Worker","Learning Support Assistant","School Site Supervisor","Exam Invigilator","Nursery Practitioner","Behaviour Mentor","Science Technician","School Administrator"],
+    dbs:true, dbsLabel:"School", questions:["Do you have experience working with SEN pupils?","Are you available for the full school term?"] },
+  { name:"Hospitality", jobs:["Chef de Partie","Kitchen Porter","Bartender","Waiting Staff","Hotel Housekeeper","Events Staff","Front of House Team Member","Sous Chef","Catering Assistant","Duty Manager"],
+    dbs:false, questions:["Do you hold current food hygiene certification?","Are you available for weekend shifts?","Do you hold a personal licence?"] },
+  { name:"Business Support & IT", jobs:["IT Support Technician","Helpdesk Analyst","Data Entry Clerk","Customer Service Advisor","Payroll Administrator","HR Administrator","Recruitment Resourcer","Network Engineer","Software Support Analyst","Systems Administrator"],
+    dbs:false, questions:["Do you have relevant IT certifications?","Are you available to start within a week?","Do you have at least 1 year's relevant experience?"] },
+  { name:"Commercial & Office", jobs:["Receptionist","Office Administrator","Accounts Assistant","PA / Executive Assistant","Sales Administrator","Credit Controller","Purchasing Administrator","Office Manager","Document Controller","Bid Coordinator"],
+    dbs:false, questions:["Do you have relevant admin software experience?","Are you available immediately?","Do you have at least 1 year's office experience?"] },
+  { name:"Facilities Management", jobs:["Cleaning Operative","Security Officer","Caretaker","Maintenance Operative","Grounds Maintenance Operative","Handyperson","Fire & Security Engineer","Porter","Custodial Support Officer","Facilities Coordinator"],
+    dbs:false, questions:["Are you available for shift work (early / late)?","Can you provide two work references?","Are you comfortable with lone working?"], dbsJobs:{"Custodial Support Officer":"Prison / Justice","Security Officer":"Basic DBS"} }
+];
+
+const JOBS = [];
+SECTORS.forEach(sec=>{
+  sec.jobs.forEach(title=>{
+    let dbs = sec.dbs || false, dbsLabel = sec.dbsLabel || null;
+    if(sec.dbsJobs && sec.dbsJobs[title]){ dbs = true; dbsLabel = sec.dbsJobs[title]; }
+    // some roles need a specific question swapped in (e.g. LGV licence category) instead of the sector default
+    let questions = sec.questions;
+    if(sec.questionOverrides && sec.questionOverrides[title]){
+      questions = questions.slice();
+      Object.entries(sec.questionOverrides[title]).forEach(([idx,q]) => { questions[idx] = q; });
+    }
+    JOBS.push({ title: title.toUpperCase(), sector: sec.name.toUpperCase(), questions, dbs, dbsLabel });
+  });
+});
+
+const RIGHT_TO_WORK = "Do you have the legal right to work in the UK?";
+
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function weightedYes(p=0.8){ return Math.random() < p; }
+const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
+
+/* ---------- flap board renderer ---------- */
+function buildFlapRow(container, size){
+  container.innerHTML = "";
+  container._cells = [];
+  const cls = size === 'lg' ? 'flap--lg' : 'flap--sm';
+  container._size = size;
+}
+function setFlapText(container, text, width, size){
+  const cls = size === 'lg' ? 'flap--lg' : 'flap--sm';
+  const padded = text.toUpperCase().padEnd(width," ").slice(0,width);
+  // rebuild cells if count changed
+  if(container.children.length !== width){
+    container.innerHTML = "";
+    for(let i=0;i<width;i++){
+      const c = document.createElement('div');
+      c.className = 'flap ' + cls;
+      c.textContent = " ";
+      container.appendChild(c);
+    }
+  }
+  [...container.children].forEach((cell, i)=>{
+    const ch = padded[i];
+    if(cell.dataset.ch === ch) return;
+    const delay = i * 28;
+    setTimeout(()=>{
+      cell.style.transition = 'transform .11s ease-in';
+      cell.style.transform = 'rotateX(90deg)';
+      setTimeout(()=>{
+        cell.textContent = ch === " " ? "" : ch;
+        cell.dataset.ch = ch;
+        cell.style.transition = 'transform .13s ease-out';
+        cell.style.transform = 'rotateX(0deg)';
+      }, 110);
+    }, delay);
+  });
+}
+
+const flapName = document.getElementById('flapName');
+const tagLine  = document.getElementById('tagLine');
+const tagLoc   = document.getElementById('tagLoc');
+
+function fmtTimer(s){
+  const m = Math.floor(s/60).toString().padStart(2,'0');
+  const sec = (s%60).toString().padStart(2,'0');
+  return `${m}:${sec}`;
+}
+
+/* start near zero and let the board build up live as calls run, rather than opening on a big pre-loaded number.
+   every call asks the same 4 questions (right-to-work + 3 more); any NO halts it as Unsuccessful;
+   a full pass splits between Documents Received (30-40% of total) and Documents Requested */
+let total=1, gTotal=0, aTotal=0, rTotal=0, sTotal=0, rPrimary=0;
+function updateStats(){
+  document.getElementById('statTotal').textContent = total.toLocaleString();
+  document.getElementById('statGreen').textContent = gTotal.toLocaleString();
+  document.getElementById('statAmber').textContent = aTotal.toLocaleString();
+  document.getElementById('statRed').textContent = rTotal.toLocaleString();
+  document.getElementById('statSub').textContent = sTotal.toLocaleString();
+}
+updateStats();
+
+// Ticker: every item tracks its OWN x position independently, driven by requestAnimationFrame at a
+// constant px/s. The previous version positioned items via one shared transform on the whole track —
+// so a new item's on-screen position depended on how far *earlier* items had already drifted. Since
+// calls take several real seconds to resolve, that drift was often larger than the viewport, so new
+// items were frequently spawning already scrolled past the left edge and getting pruned before they
+// were ever visible — that's what caused the line to keep flickering empty. Now every new item always
+// spawns exactly at the right edge of the viewport, fully independent of anything else in flight.
+const tickerViewport = document.querySelector('.ticker');
+const tickerTrack = document.getElementById('tickerTrack');
+const tickerNodes = new Map(); // id -> {el, labelEl, x}
+const TICKER_MAX = 12;
+const TICKER_SPEED = 220; // px/second, constant — fast enough to grab attention, matches the quick Q&A pace
+const TICKER_GAP = 30; // minimum px between consecutive items so text never overlaps
+let tickerSeq = 0;
+let tickerLastTs = null;
+let tickerRightEdge = -Infinity; // right edge (x + width) of the most recently spawned item
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function pushTicker(item){
+  const el = document.createElement('span');
+  el.className = 'ticker__item';
+  el.dataset.tid = item.id;
+  const b = document.createElement('b'); b.textContent = item.name;
+  const label = document.createElement('span'); label.className = item.tickClass; label.textContent = item.label;
+  el.appendChild(b);
+  el.appendChild(document.createTextNode(` — ${item.job} — ${item.city} — `));
+  el.appendChild(label);
+  tickerTrack.appendChild(el);
+  // spawn at the right edge, but never closer than TICKER_GAP behind whatever was spawned last —
+  // guarantees items can never overlap, since everything moves at the same constant speed
+  const x = Math.max(tickerViewport.clientWidth, tickerRightEdge + TICKER_GAP);
+  el.style.transform = `translate(${x}px,-50%)`;
+  tickerRightEdge = x + el.offsetWidth;
+  tickerNodes.set(item.id, { el, labelEl: label, x });
+
+  if(tickerNodes.size > TICKER_MAX){
+    let oldestId = null, oldestX = Infinity;
+    tickerNodes.forEach((v,k)=>{ if(v.x < oldestX){ oldestX = v.x; oldestId = k; } });
+    if(oldestId !== null){ tickerNodes.get(oldestId).el.remove(); tickerNodes.delete(oldestId); }
+  }
+}
+function updateTicker(id, label, tickClass){
+  const node = tickerNodes.get(id);
+  if(!node) return;
+  node.labelEl.textContent = label;
+  node.labelEl.className = tickClass;
+}
+function tickerFrame(ts){
+  if(!reduceMotion){
+    if(tickerLastTs == null) tickerLastTs = ts;
+    const dx = TICKER_SPEED * (ts - tickerLastTs) / 1000;
+    tickerLastTs = ts;
+    // keep the spacing reference decaying at the same rate as real items, otherwise it goes stale
+    // between pushes and forces new items to spawn further right (and later) than actually necessary
+    if(tickerRightEdge > -1e8) tickerRightEdge -= dx;
+    tickerNodes.forEach((node, id)=>{
+      node.x -= dx;
+      node.el.style.transform = `translate(${node.x}px,-50%)`;
+      if(node.x + node.el.offsetWidth < 0){
+        node.el.remove();
+        tickerNodes.delete(id);
+      }
+    });
+  } else {
+    tickerLastTs = ts;
+  }
+  requestAnimationFrame(tickerFrame);
+}
+requestAnimationFrame(tickerFrame);
+
+function runCall(){
+  const job = pick(JOBS);
+  const name = pick(NAMES);
+  const city = pick(CITIES);
+
+  setFlapText(flapName, name, 19, 'lg');
+  tagLine.style.animation = 'none'; void tagLine.offsetWidth; tagLine.style.animation = '';
+  tagLine.querySelector('b').textContent = `${job.title} · ${job.sector}`;
+  tagLoc.textContent = city;
+
+  // every call always asks exactly 4 questions: right-to-work + 3 more.
+  // where DBS applies it takes one of those 3 slots; otherwise all 3 come from the sector's question bank.
+  let qset = [{ q: RIGHT_TO_WORK, yes: true }];
+  if(job.dbs){
+    job.questions.slice(0,2).forEach(q => qset.push({ q, yes: weightedYes(0.97) }));
+    // Scotland uses Disclosure Scotland/PVG, not DBS — ask it the way it's actually phrased there
+    const dbsQ = SCOTLAND_CITIES.has(city)
+      ? `Do you have a clean criminal record so we can obtain a Disclosure? (${job.dbsLabel})`
+      : `Do you have an Enhanced DBS check? (${job.dbsLabel})`;
+    qset.push({ q: dbsQ, yes: weightedYes(0.97) });
+  } else {
+    job.questions.slice(0,3).forEach(q => qset.push({ q, yes: weightedYes(0.97) }));
+  }
+
+  // screening stops the moment a question gets a NO — nothing after that point is asked
+  const failIdx = qset.findIndex(item => !item.yes);
+  let outcome;
+  if(failIdx !== -1){
+    qset = qset.slice(0, failIdx + 1);
+    outcome = 'red';
+  } else {
+    // A full pass (all YES) still splits between an instant pass and one needing documents sent on.
+    // Calibrated so, long-run: Documents Received lands on the real ~34% figure, and Documents
+    // Requested comes out clearly higher than that among qualified passes (per-question pass rate
+    // 0.97, 3 questions -> ~91% reach a full pass; 42% of those go green, discounted further by the
+    // ~12% recruiter-verification failure rate applied later -> Documents Received ~34% of all calls,
+    // Documents Requested ~53%, Unsuccessful ~13%).
+    outcome = weightedYes(0.42) ? 'green' : 'amber';
+  }
+
+  const qaBlock = document.getElementById('qaBlock');
+  qaBlock.innerHTML = "";
+
+  const baseDelay = 500;
+  const verdictDelay = baseDelay + qset.length*460 + 250;
+
+  // the on-screen call timer always lands between 55-65s right as the verdict lands,
+  // even though the visual cycle itself only takes a few real seconds
+  const targetSeconds = 55 + Math.floor(Math.random()*11);
+  const timerEl = document.getElementById('candTimer');
+  timerEl.textContent = "00:00";
+  if(window._rdTimerInt) clearInterval(window._rdTimerInt);
+  const timerStart = performance.now();
+  window._rdTimerInt = setInterval(()=>{
+    const t = Math.min(1, (performance.now()-timerStart)/verdictDelay);
+    timerEl.textContent = fmtTimer(Math.round(t*targetSeconds));
+  }, 120);
+
+  qset.forEach((item, idx)=>{
+    setTimeout(()=>{
+      const row = document.createElement('div');
+      row.className = 'qa-line';
+      const q = document.createElement('span');
+      q.className = 'qa-line__q reveal';
+      q.textContent = item.q;
+      const a = document.createElement('span');
+      a.className = 'ans ' + (item.yes?'ans--yes':'ans--no');
+      a.textContent = item.yes ? 'YES' : 'NO';
+      row.appendChild(q); row.appendChild(a);
+      qaBlock.appendChild(row);
+    }, baseDelay + idx*420);
+  });
+
+  setTimeout(()=>{
+    // NOTE: this card and the ticker are the fast "activity feed" — deliberately quick so the
+    // widget feels alive. The big Screened Today / Docs Received / etc counters at the top are
+    // intentionally NOT tied to this speed (see scoreboardTick below): if they climbed every time
+    // a card completed here, "Screened Today" would rocket to implausible daily volumes within a
+    // minute of anyone actually watching it. The scoreboard runs on its own slower, believable clock.
+    let cls, label;
+    if(outcome === 'green'){ cls='verdict--green'; label='DOCUMENTS RECEIVED'; }
+    else if(outcome === 'amber'){ cls='verdict--amber'; label='DOCUMENTS REQUESTED'; }
+    else { cls='verdict--red'; label='UNSUCCESSFUL'; }
+    const badge = document.getElementById('verdictBadge');
+    badge.className = `verdict ${cls}`;
+    badge.innerHTML = `<i></i>${label}`;
+
+    const tickId = ++tickerSeq;
+    const tickClass = cls==='verdict--green' ? 'ok' : (cls==='verdict--amber' ? 'warn' : 'bad');
+    pushTicker({ id: tickId, name, job: job.title, city, label, tickClass });
+
+    if(outcome === 'green'){
+      // Documents Received leads on to a recruiter verification step, then submission to the client —
+      // the top ticker line for this call updates in step with the badge below
+      setTimeout(()=>{
+        badge.className = 'verdict verdict--neutral';
+        badge.innerHTML = '<i></i>RECRUITER VERIFYING…';
+        updateTicker(tickId, 'RECRUITER VERIFYING', 'neutral');
+      }, 500);
+      setTimeout(()=>{
+        // realistically the recruiter's manual check occasionally catches something
+        // the automated screen missed (expired document, mismatched details, etc.)
+        if(weightedYes(0.88)){
+          badge.className = 'verdict verdict--blue';
+          badge.innerHTML = '<i></i>SUBMITTED TO CLIENT';
+          updateTicker(tickId, 'SUBMITTED TO CLIENT', 'done');
+        } else {
+          badge.className = 'verdict verdict--red';
+          badge.innerHTML = '<i></i>UNSUCCESSFUL';
+          updateTicker(tickId, 'UNSUCCESSFUL', 'bad');
+        }
+      }, 2300);
+    }
+  }, verdictDelay);
+
+  // Recruiter Verifying and Submitted to Client both get a longer dwell time now so they're
+  // actually readable, not just flashed past — Documents Received (~500ms) -> Recruiter Verifying
+  // (~1800ms) -> Submitted to Client / Unsuccessful (~1800ms) -> reset for the next call.
+  const cycleLength = verdictDelay + (outcome === 'green' ? 4100 : 1200);
+  setTimeout(()=>{
+    if(window._rdTimerInt) clearInterval(window._rdTimerInt);
+    const badge = document.getElementById('verdictBadge');
+    badge.className = 'verdict verdict--amber';
+    badge.innerHTML = '<i></i>SCREENING…';
+  }, cycleLength - 60);
+
+  return cycleLength;
+}
+
+function loop(){
+  const len = runCall();
+  setTimeout(loop, len);
+}
+loop();
+
+// The scoreboard's own clock: a believable "candidates screened today" pace, independent of how
+// fast the card above cycles. Targets: Docs Received 35-40%, Docs Requested 30-35%, Unsuccessful
+// ~30%, Submitted 33% (88% of Docs Received going on to submission). Docs Received is a permanent
+// "reached this stage" milestone once hit — it does NOT get reversed if verification later fails,
+// so it stays meaningfully above Submitted (that's what makes the two numbers different rather than
+// converging to the same value over time). Because Docs Received and Unsuccessful can both count the
+// same rare failed-verification call, the four figures can add up to slightly over 100% of Screened
+// Today — expected for a funnel-style scoreboard, not a bug.
+//
+// Outcomes are NOT drawn as pure independent random picks. At low totals (the first few dozen calls)
+// independent draws produce wild swings — e.g. Docs Requested spiking to 50% for a stretch — which
+// looks broken, not "realistic". Instead pickOutcome() below mostly hands each result to whichever
+// category is currently furthest behind its target share of the running total (a self-correcting
+// allocation), so the live percentages hug their target bands from the first handful of calls onward,
+// not just in the long run. A minority of draws are still fully random so the order doesn't look
+// robotic.
+// Target shares for the primary 3-way split (Docs Received / Docs Requested / Unsuccessful).
+// Red's primary share is set a little under the 30% headline because failed-verification calls
+// (below) add roughly another 4-5 points to Unsuccessful over time — the two combine to land Unsuccessful
+// at ~30-32%, matching the brief.
+const SCORE_TARGET = { green:0.375, amber:0.35, red:0.275 };
+
+// Pure independent random draws only match the target percentages "on average, eventually" — at low
+// totals (the first few dozen calls of a session) the sample is too small and the ratios can swing a
+// long way off (e.g. Docs Requested spiking to 50% for a stretch), which reads as broken rather than
+// "realistic". Instead, most ticks hand the result to whichever category is currently furthest BELOW
+// its target share of the running total, so the live percentages hug 35-40 / 30-35 / ~30 from the very
+// first handful of calls onward. A minority of ticks still draw randomly (weighted by target) so the
+// order doesn't look robotic/round-robin.
+function pickOutcome(){
+  // NOTE: the deficit check uses rPrimary (only calls that were sent to Unsuccessful directly by this
+  // draw), not rTotal (which also gets topped up later by failed verifications, below). If it balanced
+  // against rTotal instead, it would "notice" those extra failed-verification calls and quietly draw
+  // fewer primary reds to compensate — silently pulling the true long-run Unsuccessful rate back down
+  // to the 27.5% primary share instead of the ~30-32% the brief actually wants.
+  if(Math.random() < 0.8){
+    let best = 'green', bestDeficit = -Infinity;
+    for(const k of ['green','amber','red']){
+      const current = k==='green'?gTotal:(k==='amber'?aTotal:rPrimary);
+      const deficit = SCORE_TARGET[k]*total - current;
+      if(deficit > bestDeficit){ bestDeficit = deficit; best = k; }
+    }
+    return best;
+  }
+  const r = Math.random();
+  return r < SCORE_TARGET.green ? 'green' : (r < SCORE_TARGET.green+SCORE_TARGET.amber ? 'amber' : 'red');
+}
+
+function scoreboardTick(){
+  total++;
+  const outcome = pickOutcome();
+  if(outcome === 'green') gTotal++;
+  else if(outcome === 'amber') aTotal++;
+  else { rTotal++; rPrimary++; }
+  updateStats();
+
+  if(outcome === 'green'){
+    setTimeout(()=>{
+      if(weightedYes(0.88)){ sTotal++; }
+      else { rTotal++; } // stays counted in Docs Received too — reached that stage, then fell down.
+      // Deliberately NOT added to rPrimary — see the note in pickOutcome() above.
+      updateStats();
+    }, 4000 + Math.random()*5000);
+  }
+
+  setTimeout(scoreboardTick, 7000 + Math.random()*6000);
+}
+setTimeout(scoreboardTick, 3000);
+</script>
+</body>
+</html>
