@@ -52,6 +52,74 @@ const nextConfig = {
     },
     async redirects() {
         return [
+            // WordPress/Legacy Crawled-but-not-indexed URL Redirects
+            {
+                source: '/job search/:path*',
+                destination: '/job_details',
+                permanent: true,
+            },
+            {
+                source: '/job%20search/:path*',
+                destination: '/job_details',
+                permanent: true,
+            },
+            {
+                source: '/video gallery',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/video gallery/',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/video%20gallery',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/video%20gallery/',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/author/:path*',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/',
+                has: [{ type: 'query', key: 'page_id' }],
+                destination: '/',
+                permanent: true,
+            },
+            // Trailing slash redirects for active pages to avoid GSC crawling duplicates
+            {
+                source: '/client-privacy-notice/',
+                destination: '/client-privacy-notice',
+                permanent: true,
+            },
+            {
+                source: '/our-process/',
+                destination: '/our-process',
+                permanent: true,
+            },
+            {
+                source: '/terms-of-use/',
+                destination: '/terms-of-use',
+                permanent: true,
+            },
+            {
+                source: '/news/',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/services/',
+                destination: '/services',
+                permanent: true,
+            },
             // Legacy 404 URL Redirects from Search Console
             {
                 source: '/blogs',
