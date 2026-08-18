@@ -4,7 +4,6 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import ButtonEffects from "@/components/ButtonEffects";
 import CookieBanner from "@/components/CookieBanner";
-import DynamicCanonical from "@/components/DynamicCanonical";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,7 +56,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <DynamicCanonical />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{

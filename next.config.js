@@ -52,6 +52,209 @@ const nextConfig = {
     },
     async redirects() {
         return [
+            // Legacy 404 URL Redirects from Search Console
+            {
+                source: '/blogs',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/blogs/',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/register-a-vacancy',
+                destination: '/ai-hire-now',
+                permanent: true,
+            },
+            {
+                source: '/register-a-vacancy/',
+                destination: '/ai-hire-now',
+                permanent: true,
+            },
+            {
+                source: '/fair-treatment-equality-policy',
+                destination: '/equality-diversity-policy',
+                permanent: true,
+            },
+            {
+                source: '/fair-treatment-equality-policy/',
+                destination: '/equality-diversity-policy',
+                permanent: true,
+            },
+            {
+                source: '/terms-and-conditions',
+                destination: '/terms-of-use',
+                permanent: true,
+            },
+            {
+                source: '/terms-and-conditions/',
+                destination: '/terms-of-use',
+                permanent: true,
+            },
+            {
+                source: '/office-locations',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/office-locations/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/health-and-safety-policy',
+                destination: '/health-safety-policy',
+                permanent: true,
+            },
+            {
+                source: '/health-and-safety-policy/',
+                destination: '/health-safety-policy',
+                permanent: true,
+            },
+            {
+                source: '/equality-plan',
+                destination: '/equality-diversity-policy',
+                permanent: true,
+            },
+            {
+                source: '/equality-plan/',
+                destination: '/equality-diversity-policy',
+                permanent: true,
+            },
+            // Legacy Location Page Redirects
+            {
+                source: '/locations/republic-of-ireland/tralee',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/tralee/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/kirkintilloch',
+                destination: '/locations/scotland/glasgow',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/kirkintilloch/',
+                destination: '/locations/scotland/glasgow',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/grimsby',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/grimsby/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/naas',
+                destination: '/locations/republic-of-ireland/dublin',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/naas/',
+                destination: '/locations/republic-of-ireland/dublin',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/kilmarnock',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/kilmarnock/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/irvine',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/irvine/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/forfar',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/forfar/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/brighton',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/brighton/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/cupar',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/cupar/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/carrick%20on%20shannon',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/carrick%20on%20shannon/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/carrick-on-shannon',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/carrick-on-shannon/',
+                destination: '/locations',
+                permanent: true,
+            },
+            // Country trailing slash explicit redirects
+            {
+                source: '/locations/scotland/',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/',
+                destination: '/locations/england',
+                permanent: true,
+            },
+            {
+                source: '/locations/northern-ireland/',
+                destination: '/locations/northern-ireland',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/',
+                destination: '/locations/republic-of-ireland',
+                permanent: true,
+            },
             // Redirect old job-search URLs to the new job_details URLs
             {
                 source: '/job-search/:path*',

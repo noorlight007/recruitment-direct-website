@@ -8,6 +8,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: "https://rd1.co.uk",
+  },
   openGraph: {
     title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
     description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK. Sourcing candidates since 2006.",

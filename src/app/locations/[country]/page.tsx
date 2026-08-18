@@ -85,6 +85,7 @@ export async function generateMetadata({
 }
 
 function getCountryName(slug: string): string | null {
+  if (slug === "wales") return "Wales";
   const match = cities.find((c) => c.countrySlug === slug);
   return match ? match.country : null;
 }
