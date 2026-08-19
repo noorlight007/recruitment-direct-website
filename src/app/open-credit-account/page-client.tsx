@@ -31,7 +31,7 @@ export default function OpenCreditAccountPage() {
             <form id="creditAccountForm" onSubmit={handleSubmit}>
               {/* STEP 1 */}
               <div className="form-card">
-                <h2>Step 1 — Company Details</h2>
+                <h2>Step 1 — Registered Office Address</h2>
                 <input
                   type="text"
                   name="company_registered_name"
