@@ -854,7 +854,7 @@ export default function Footer() {
                     >
                       Clients
                     </a>
-                    <a href="/job_details">Job Search</a>
+                    <a href="/job-search">Job Search</a>
                     <button
                       onClick={() => setIsPoliciesOpen(true)}
                       className="cursor-pointer text-left"

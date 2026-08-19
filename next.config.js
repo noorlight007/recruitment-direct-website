@@ -55,12 +55,12 @@ const nextConfig = {
             // WordPress/Legacy Crawled-but-not-indexed URL Redirects
             {
                 source: '/job search/:path*',
-                destination: '/job_details',
+                destination: '/job-search',
                 permanent: true,
             },
             {
                 source: '/job%20search/:path*',
-                destination: '/job_details',
+                destination: '/job-search',
                 permanent: true,
             },
             {
@@ -323,10 +323,16 @@ const nextConfig = {
                 destination: '/locations/republic-of-ireland',
                 permanent: true,
             },
-            // Redirect old job-search URLs to the new job_details URLs
+            // Redirect `/job_details` (the old search page) to the new `/job-search` URL
             {
-                source: '/job-search/:path*',
-                destination: '/job_details/:path*',
+                source: '/job_details',
+                destination: '/job-search',
+                permanent: true,
+            },
+            // Redirect old job-search URLs containing a path segment (i.e. specific jobs) to the job_details pages
+            {
+                source: '/job-search/:path+',
+                destination: '/job_details/:path+',
                 permanent: true,
             },
             // Force www to non-www

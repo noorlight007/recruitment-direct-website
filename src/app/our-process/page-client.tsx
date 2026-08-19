@@ -418,7 +418,7 @@ export default function OurProcessPage() {
                   <span>AI Hire Now</span>
                   <ArrowRight className="w-4 h-4 text-[#071424]" />
                 </Link>
-                <Link href="/job_details" className="btn-outline-dark">
+                <Link href="/job-search" className="btn-outline-dark">
                   <span>Search Jobs</span>
                 </Link>
               </div>

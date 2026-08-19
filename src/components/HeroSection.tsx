@@ -111,7 +111,7 @@ export default function HeroSection() {
               </a>
 
               {/* Button 3: Job Search */}
-              <a href="/job_details" className="btn-primary flex flex-col !h-auto !py-3 !px-4 text-center items-center group w-full">
+              <a href="/job-search" className="btn-primary flex flex-col !h-auto !py-3 !px-4 text-center items-center group w-full">
                 <span className="text-base font-bold">Job Search</span>
                 <span className="text-[10px] opacity-80 font-semibold uppercase tracking-widest mt-0.5">Live Jobs</span>
               </a>

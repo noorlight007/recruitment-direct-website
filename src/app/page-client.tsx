@@ -233,7 +233,7 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="rd-hero-btn-col">
-                      <a href="/job_details" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
+                      <a href="/job-search" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
                       <div className="rd-btn-caption">
                         <span className="rd-btn-q">Looking for work?</span>
                         <span className="rd-btn-a">Search Jobs</span>
