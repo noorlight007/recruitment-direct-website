@@ -36,20 +36,20 @@ const aiProducts = [
     link: "/",
     isImage: false,
   },
-  {
-    title: "AI Verify Supplier",
-    description: "Start supplier verification form",
-    icon: ShieldCheck,
-    link: "/verify-supplier-form",
-    isImage: false,
-  },
-  {
-    title: "AI Verify CIS",
-    description: "Start CIS verification form",
-    icon: ShieldCheck,
-    link: "/ai-verify-cis",
-    isImage: false,
-  },
+  // {
+  //   title: "AI Verify Supplier",
+  //   description: "Start supplier verification form",
+  //   icon: ShieldCheck,
+  //   link: "/verify-supplier-form",
+  //   isImage: false,
+  // },
+  // {
+  //   title: "AI Verify CIS",
+  //   description: "Start CIS verification form",
+  //   icon: ShieldCheck,
+  //   link: "/ai-verify-cis",
+  //   isImage: false,
+  // },
 ];
 
 const clientSubmenu = [
