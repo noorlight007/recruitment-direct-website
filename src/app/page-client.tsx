@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
@@ -38,6 +38,18 @@ import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [iframeHeight, setIframeHeight] = useState(520);
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data && event.data.type === "RD_IFRAME_HEIGHT") {
+        const height = Math.ceil(event.data.height);
+        setIframeHeight(height);
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   return (
     <>
@@ -253,7 +265,7 @@ const Index = () => {
                 <div className="w-full flex justify-center items-center">
                   <iframe
                     src="/assets/rd1-24-7-live-call.html"
-                    style={{ width: "100%", height: "520px", border: 0 }}
+                    style={{ width: "100%", height: `${iframeHeight}px`, border: 0 }}
                     title="RD1 24/7 Applicant Call"
                     scrolling="no"
                   />

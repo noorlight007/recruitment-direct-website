@@ -141,10 +141,29 @@
   .verdict--blue{color:var(--blue);border:1px solid rgba(46,125,255,.5)} .verdict--blue i{background:var(--blue);box-shadow:0 0 9px var(--blue)}
 
   @media (max-width:600px){
-    .flap--lg{width:14px;height:23px;font-size:13px}
-    .flap--sm{width:9px;height:15px;font-size:9.5px}
-    .tally{flex-wrap:wrap;row-gap:4px}
+    .flap--lg{width:13px;height:21px;font-size:12px}
+    .flap--sm{width:8.5px;height:14px;font-size:9px}
+    .flap--space.flap--sm{width:5px}
+    .flaprow{padding:12px 14px 4px;gap:2px;flex-wrap:nowrap}
+    .tally{flex-wrap:wrap;row-gap:4px;padding:8px 14px}
+    .masthead{padding:12px 14px}
+    .subrow{padding:8px 14px 10px}
+    .qa{padding:10px 14px 4px;gap:8px;min-height:90px}
+    .verdict-bar{padding:10px 14px}
   }
+
+  @media (max-width:360px){
+    .flap--lg{width:11px;height:18px;font-size:10px}
+    .flap--sm{width:7px;height:12px;font-size:7.5px}
+    .flap--space.flap--sm{width:4px}
+    .flaprow{padding:10px 10px 4px;gap:1.5px}
+    .tally{padding:8px 10px}
+    .masthead{padding:10px 10px}
+    .subrow{padding:8px 10px}
+    .qa{padding:8px 10px;gap:6px}
+    .verdict-bar{padding:8px 10px}
+  }
+
   @media (prefers-reduced-motion: reduce){
     .live-tag i,.qa-line__q.reveal,.ans,.verdict{animation:none !important}
   }
@@ -586,6 +605,31 @@ function scoreboardTick(){
   setTimeout(scoreboardTick, 7000 + Math.random()*6000);
 }
 setTimeout(scoreboardTick, 3000);
+
+// Notify parent page of the layout height dynamically
+function sendHeightToParent() {
+  const board = document.querySelector('.board');
+  if (board) {
+    // Add 32px to cover box shadows and page margins
+    const height = board.offsetHeight + 32;
+    window.parent.postMessage({ type: 'RD_IFRAME_HEIGHT', height: height }, '*');
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', sendHeightToParent);
+  window.addEventListener('resize', sendHeightToParent);
+
+  if ('ResizeObserver' in window) {
+    const board = document.querySelector('.board');
+    if (board) {
+      const observer = new ResizeObserver(() => {
+        sendHeightToParent();
+      });
+      observer.observe(board);
+    }
+  }
+}
 </script>
 </body>
 </html>
