@@ -26,6 +26,7 @@ export type CityPageData = {
   faqs: RecruitmentFAQ[];
   isHub?: boolean;
   hubSlug?: string;
+  widerArea: string;
 };
 
 const sectorDefinitions = [
@@ -286,6 +287,7 @@ function createCity(config: {
     areas: config.areas,
     sectors: createSectors(config.city, config.widerArea),
     faqs: createFAQs(config.city, config.widerArea, config.areas),
+    widerArea: config.widerArea,
   };
 }
 
@@ -781,6 +783,7 @@ function createTown(config: {
     faqs: createFAQs(config.city, config.widerArea, areasList),
     isHub: false,
     hubSlug: config.hubSlug,
+    widerArea: config.widerArea,
   };
 }
 

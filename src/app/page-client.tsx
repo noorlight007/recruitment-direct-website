@@ -232,32 +232,30 @@ const Index = () => {
               <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
                 {/* Left Column: Content and Actions */}
                 <div className="flex flex-col text-center items-center lg:text-left lg:items-start">
-                  <h1 className="standard-h1 text-center lg:text-left w-full">Recruitment Across the UK</h1>
-                  <h2 className="standard-h2 text-center lg:text-left w-full">Trusted Supplier Since 2006</h2>
-                  <p className="standard-body-p text-center lg:text-left">Connecting employers fast with reliable temporary, contract and permanent staff.</p>
+                  <h1 className="standard-h1 text-center lg:text-left w-full">Need Staff?</h1>
+                  <h2 className="standard-h2 text-center lg:text-left w-full">Trusted UK Recruitment Agency Since 2006</h2>
+                  <p className="standard-body-p text-center lg:text-left">Connecting employers fast with reliable temporary, contract and permanent staff supplied nationwide.</p>
 
                   <div className="rd-button-grid">
                     <div className="rd-hero-btn-col">
                       <a href="/ai-hire-now" className="rd-btn rd-btn-gold standard-cta-btn">AI HIRE NOW</a>
                       <div className="rd-btn-caption">
-                        <span className="rd-btn-q">Need staff fast?</span>
-                        <span className="rd-btn-a">Order Staff 24/7</span>
+                        <span className="rd-btn-q">Order Staff 24/7</span>
+                        <span className="rd-btn-a">or Get a Quote</span>
                       </div>
                     </div>
                     <div className="rd-hero-btn-col">
                       <a href="/job-search" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
                       <div className="rd-btn-caption">
-                        <span className="rd-btn-q">Looking for work?</span>
                         <span className="rd-btn-a">Search Jobs</span>
                       </div>
                     </div>
-                    <div className="rd-hero-btn-col">
+                    {/* <div className="rd-hero-btn-col">
                       <button onClick={() => setIsVideoOpen(true)} className="rd-btn rd-btn-outline standard-cta-btn">WATCH AI CALL</button>
                       <div className="rd-btn-caption">
-                        <span className="rd-btn-q">Hiring made easier</span>
-                        <span className="rd-btn-a">See AI in Action</span>
+                        <span className="rd-btn-a">Hire Faster</span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -311,6 +309,12 @@ const Index = () => {
                     <span className="rd-sector-title">Engineering</span>
                   </div>
                 </Link>
+                <Link href="/construction-recruitment-agency" aria-label="Facilities Management Recruitment" className="rd-sector-link">
+                  <div className="rd-sector-card standard-card" role="img" aria-label="Facilities Management Recruitment">
+                    <Image src="/images/Facilitiess.png" alt="Facilities Management Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
+                    <span className="rd-sector-title">Facilities Management</span>
+                  </div>
+                </Link>
                 <Link href="/logistics-recruitment-agency" aria-label="Logistics Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Logistics Recruitment">
                     <Image src="/images/Logisticss.png" alt="Logistics Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
@@ -345,12 +349,6 @@ const Index = () => {
                   <div className="rd-sector-card standard-card" role="img" aria-label="Commercial & Office Recruitment">
                     <Image src="/images/Businesssss.png" alt="Commercial & Office Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Commercial &amp; Office</span>
-                  </div>
-                </Link>
-                <Link href="/construction-recruitment-agency" aria-label="Facilities Management Recruitment" className="rd-sector-link">
-                  <div className="rd-sector-card standard-card" role="img" aria-label="Facilities Management Recruitment">
-                    <Image src="/images/Facilitiess.png" alt="Facilities Management Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
-                    <span className="rd-sector-title">Facilities Management</span>
                   </div>
                 </Link>
               </div>
@@ -447,12 +445,12 @@ const Index = () => {
               </div>
 
               <div className="team-card standard-card">
-                 <Image
-                   src={nicolaImg}
-                   alt="Nicola"
-                   placeholder="blur"
-                   className="w-full h-full object-cover"
-                 />
+                <Image
+                  src={nicolaImg}
+                  alt="Nicola"
+                  placeholder="blur"
+                  className="w-full h-full object-cover"
+                />
                 <div>
                   <h3>Nicola</h3>
                   <span>Manager</span>
@@ -461,12 +459,12 @@ const Index = () => {
               </div>
 
               <div className="team-card standard-card">
-                 <Image
-                   src={oliaImg}
-                   alt="Olia"
-                   placeholder="blur"
-                   className="w-full h-full object-cover"
-                 />
+                <Image
+                  src={oliaImg}
+                  alt="Olia"
+                  placeholder="blur"
+                  className="w-full h-full object-cover"
+                />
                 <div>
                   <h3>Olia</h3>
                   <span>Consultant</span>

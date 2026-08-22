@@ -1,0 +1,628 @@
+<title>Find Staff Flow</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --page-bg: #ffffff;
+    --ink: #10141f;
+    --ink-dim: #5b6172;
+    --border: #e2e4e8;
+    --navy: #05070d;
+    --navy-2: #0d1526;
+    --panel-border: #232b40;
+    --gold: #d3a94a;
+    --gold-soft: #f0d9a0;
+    --whatsapp: #24b862;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--page-bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page{ max-width: 1120px; margin: 0 auto; padding: 24px 20px 90px; }
+
+  /* ---- real header: white bg, dark nav text, navy pill button ---- */
+  .site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 16px;
+    padding: 14px 22px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #2a3550, #05070d 72%);
+    border: 1.5px solid #9aa5c0;
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 700;
+    font-size: 13px;
+    color: #d6dcec;
+    flex-shrink: 0;
+  }
+  .brand-word{ font-weight: 800; letter-spacing: 0.01em; color: var(--ink); font-size: 14.5px; line-height:1.1; }
+  .brand-sub{ font-size: 9px; letter-spacing: 0.13em; color: #9096a6; text-transform: uppercase; margin-top: 2px; }
+  .site-nav{ display:flex; gap: 20px; font-size: 13.5px; font-weight: 600; color: #333a4d; }
+  .site-nav a{ color: inherit; text-decoration: none; }
+  @media (max-width: 860px){ .site-nav{ display:none; } }
+
+  .header-right{ display:flex; align-items:center; gap: 16px; }
+  .social-icons{ display:flex; gap: 8px; }
+  .social-dot{
+    width: 26px; height:26px; border-radius:50%;
+    background: #f2f3f6; border: 1px solid #dde0e8;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 10px; color: #5b6172; font-weight:700;
+  }
+  .phone{ font-size: 12.5px; font-weight: 700; color: #333a4d; white-space:nowrap; }
+  @media (max-width: 620px){ .social-icons, .phone{ display:none; } }
+
+  .hire-btn{
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13.5px;
+    color: #ffffff;
+    background: #0c1730;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+  .hire-btn:hover{ background: #16213f; }
+  .hire-btn[aria-expanded="true"]{ background: var(--gold); color: #17130a; }
+  .hire-btn:focus-visible{ outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .demo-note{
+    font-size: 12px;
+    color: #6b7280;
+    margin: 14px 2px 0;
+  }
+
+  /* ---- collapsible panel ---- */
+  .panel-wrap{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.38s cubic-bezier(.4,0,.2,1);
+    margin-top: 0;
+  }
+  .panel-wrap.open{ grid-template-rows: 1fr; margin-top: 16px; }
+  .panel-inner{ overflow: hidden; min-height:0; }
+
+  .tool{
+    background: #ffffff;
+    border: 1px solid #d7dbe4;
+    border-radius: 16px;
+    padding: 30px;
+    display: grid;
+    gap: 26px;
+    color: #10141f;
+  }
+  @media (max-width: 560px){ .tool{ padding: 20px; } }
+
+  .tool-head{ margin-bottom: -4px; }
+  .tool-eyebrow{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7a6220;
+    margin: 0 0 8px;
+  }
+  .tool-head h1{
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0 0 6px;
+    color: #10141f;
+  }
+  .tool-head p{ color: #4b5163; margin:0; font-size: 14px; max-width: 60ch; }
+
+  .step-label{
+    display:flex; align-items:center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #5b6172;
+    margin-bottom: 14px;
+  }
+  .step-num{
+    width: 19px; height: 19px; border-radius: 50%;
+    background: #f2f3f6; border: 1px solid #d7dbe4;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 10.5px; color: #10141f; flex-shrink:0;
+  }
+
+  .browse-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px){ .browse-row{ grid-template-columns: 1fr; } }
+
+  label{ display:block; font-size: 12.5px; font-weight: 600; color: #10141f; margin-bottom: 6px; }
+  select, input[type="text"], input[type="tel"], input[type="email"]{
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    color: #10141f;
+    background: #ffffff;
+    border: 1px solid #ccd0da;
+    border-radius: 9px;
+    padding: 11px 13px;
+    appearance: none;
+  }
+  select{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 34px;
+  }
+  select:focus, input:focus{
+    outline: none;
+    border-color: #10141f;
+    box-shadow: 0 0 0 3px rgba(16,20,31,0.12);
+  }
+  ::placeholder{ color: #8a90a3; }
+  .field-hint{ font-size: 12px; color: #6b7280; margin-top: 6px; }
+
+  .divider-or{
+    display:flex; align-items:center; gap: 12px;
+    margin: 18px 0;
+    color: #6b7280;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .divider-or::before, .divider-or::after{ content:''; flex:1; height:1px; background: #e2e4e8; }
+
+  .reverse-search{ position: relative; }
+  .reverse-search input{ padding-left: 38px; }
+  .search-icon{ position:absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #6b7280; pointer-events:none; }
+
+  .selection-summary{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; min-height: 2px; }
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    background: #f2f3f6; border: 1px solid #d7dbe4;
+    color: #10141f; font-size: 12.5px; font-weight: 600;
+    padding: 6px 12px; border-radius: 999px;
+  }
+  .chip b{ color: #10141f; font-weight: 700; }
+
+  hr.section-rule{ border:none; border-top: 1px solid #e2e4e8; margin: 4px 0; }
+
+  .quantity-row{ display:flex; gap: 8px; flex-wrap: wrap; }
+  .qty-btn{
+    font-family: var(--font-mono);
+    font-size: 13px; font-weight: 600; color: #10141f;
+    background: #ffffff; border: 1px solid #ccd0da;
+    border-radius: 9px; padding: 9px 16px; cursor: pointer;
+  }
+  .qty-btn[aria-pressed="true"]{ background: #10141f; border-color: #10141f; color: #ffffff; }
+
+  .form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 640px){ .form-grid{ grid-template-columns: 1fr; } }
+  .form-grid .full{ grid-column: 1 / -1; }
+  .optional-tag{ color: #6b7280; font-weight: 500; }
+
+  .channels{ display:grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 12px; }
+  @media (max-width: 720px){ .channels{ grid-template-columns: 1fr; } }
+
+  .channel-btn{
+    display:flex; align-items:center; justify-content:center; gap: 9px;
+    font-family: var(--font-body);
+    font-weight: 700; font-size: 14px;
+    padding: 15px 14px; border-radius: 10px;
+    border: 1.5px solid #ccd0da;
+    cursor: pointer;
+    background: #ffffff;
+    color: #10141f;
+  }
+  .channel-btn:disabled{ opacity: 0.4; cursor: not-allowed; }
+  .channel-btn svg{ flex-shrink:0; }
+
+  .channel-whatsapp{ color: #1f9a5a; border-color: #bfe3cf; }
+  .channel-whatsapp:not(:disabled):hover{ background: #f1faf5; }
+  .channel-email{ color: #10141f; }
+  .channel-ai{
+    background: #10141f;
+    color: #ffffff;
+    border-color: #10141f;
+  }
+  .channel-ai .ai-sub{ display:block; font-size: 10.5px; font-weight: 500; opacity: 0.75; font-family: var(--font-mono); color: #d7dbe4; }
+
+  .channel-note{ font-size: 12px; color: #6b7280; margin-top: 12px; text-align: center; }
+
+  .confirm{
+    display:none;
+    background: #f2f3f6;
+    border: 1px solid #ccd0da;
+    border-radius: 12px;
+    padding: 18px 20px;
+    color: #10141f;
+  }
+  .confirm.show{ display:block; }
+  .confirm h3{ margin: 0 0 6px; font-weight: 700; font-size: 16px; color: #10141f; }
+  .confirm p{ margin: 0; font-size: 13.5px; opacity: 0.85; line-height:1.5; }
+  .confirm code{ font-family: var(--font-mono); font-size: 12px; color: #10141f; }
+
+  .proto-note{
+    margin-top: 20px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: #4b5163;
+    font-size: 12px;
+    background: #fafafb;
+  }
+</style>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">RD</div>
+      <div>
+        <div class="brand-word">RECRUITMENT DIRECT</div>
+        <div class="brand-sub">Trusted Supplier Since 2006</div>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="#">Home</a>
+      <a href="#">Clients</a>
+      <a href="#">Job Search</a>
+      <a href="#">Sectors</a>
+      <a href="#">AI Recruitment</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="header-right">
+      <div class="social-icons">
+        <span class="social-dot">W</span>
+        <span class="social-dot">in</span>
+        <span class="social-dot">f</span>
+      </div>
+      <span class="phone">01324 613198</span>
+      <button class="hire-btn" type="button" id="findStaffBtn" aria-expanded="false" aria-controls="panelWrap">Find Staff</button>
+    </div>
+  </header>
+
+  <p class="demo-note">↑ this is the real header, unchanged except the button. Click <b>Find Staff</b> to see what opens.</p>
+
+  <div class="panel-wrap" id="panelWrap">
+    <div class="panel-inner">
+      <div class="tool">
+
+        <div class="tool-head">
+          <p class="tool-eyebrow">Find Staff</p>
+          <h1>Tell us who you need — takes around 15 seconds</h1>
+        </div>
+
+        <hr class="section-rule">
+
+        <!-- Step 1: sector / position, with reverse search -->
+        <div>
+          <div class="step-label"><span class="step-num">1</span> What do you need?</div>
+
+          <div class="reverse-search">
+            <label for="roleSearch">Search a role</label>
+            <span class="search-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.2" stroke="currentColor" stroke-width="1.6"/><path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <input type="text" id="roleSearch" list="roleList" placeholder="Start typing a job title, e.g. Joiner">
+            <datalist id="roleList"></datalist>
+            <p class="field-hint">Picking a role here sets the sector automatically.</p>
+          </div>
+
+          <div class="divider-or">or browse by sector</div>
+
+          <div class="browse-row">
+            <div>
+              <label for="sector">Sector</label>
+              <select id="sector">
+                <option value="">Choose a sector…</option>
+              </select>
+            </div>
+            <div>
+              <label for="position">Position</label>
+              <select id="position" disabled>
+                <option value="">Choose a sector first…</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="selection-summary" id="step1Summary"></div>
+        </div>
+
+        <hr class="section-rule">
+
+        <!-- Step 2: location -->
+        <div>
+          <div class="step-label"><span class="step-num">2</span> Where</div>
+          <label for="location">Location</label>
+          <input type="text" id="location" list="locationList" placeholder="e.g. Newcastle, Hull, Birkenhead">
+          <datalist id="locationList"></datalist>
+          <p class="field-hint">Matched against RD1's existing location pages, so the enquiry and the page it came from stay in sync.</p>
+        </div>
+
+        <hr class="section-rule">
+
+        <!-- Step 3: quantity -->
+        <div>
+          <div class="step-label"><span class="step-num">3</span> How many</div>
+          <div class="quantity-row" id="qtyRow" role="group" aria-label="Quantity needed">
+            <button type="button" class="qty-btn" data-qty="1" aria-pressed="true">1</button>
+            <button type="button" class="qty-btn" data-qty="2-5" aria-pressed="false">2–5</button>
+            <button type="button" class="qty-btn" data-qty="6-10" aria-pressed="false">6–10</button>
+            <button type="button" class="qty-btn" data-qty="10+" aria-pressed="false">10+</button>
+          </div>
+          <p class="field-hint">Defaults to 1 — change it if you're hiring in bulk.</p>
+        </div>
+
+        <hr class="section-rule">
+
+        <!-- Step 4: contact details -->
+        <div>
+          <div class="step-label"><span class="step-num">4</span> Your details</div>
+          <div class="form-grid">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" autocomplete="name">
+            </div>
+            <div>
+              <label for="company">Company</label>
+              <input type="text" id="company" autocomplete="organization">
+            </div>
+            <div>
+              <label for="website">Website <span class="optional-tag">(optional)</span></label>
+              <input type="text" id="website" placeholder="yourcompany.co.uk">
+            </div>
+            <div>
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" autocomplete="tel">
+            </div>
+            <div class="full">
+              <label for="email">Email</label>
+              <input type="email" id="email" autocomplete="email">
+            </div>
+          </div>
+        </div>
+
+        <hr class="section-rule">
+
+        <!-- Step 5: submit channel -->
+        <div>
+          <div class="step-label"><span class="step-num">5</span> Send it</div>
+          <div class="channels">
+            <button type="button" class="channel-btn channel-whatsapp" id="sendWhatsapp" disabled>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.1-1.34A9.94 9.94 0 0012.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2zm5.78 14.2c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .4 0 .57.01.18.01.43-.07.68.52.24.6.82 2.07.9 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.38-.44.51-.15.14-.3.3-.13.6.17.29.75 1.24 1.6 2 1.1 1 2.03 1.31 2.32 1.46.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.64.77 1.92.91.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+              WhatsApp
+            </button>
+            <button type="button" class="channel-btn channel-email" id="sendEmail" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/><path d="M3 6l9 7 9-7"/></svg>
+              Email
+            </button>
+            <button type="button" class="channel-btn channel-ai" id="sendAi" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"/><path d="M19 14l.9 2.5L22.5 17.4l-2.6.9L19 20.8l-.9-2.5-2.6-.9 2.6-.9L19 14z" opacity="0.7"/></svg>
+              <span>AI Hire Now<span class="ai-sub">Creates a new JobAdder job</span></span>
+            </button>
+          </div>
+          <p class="channel-note">Fill in sector, position, location and contact details to send.</p>
+        </div>
+
+        <div class="confirm" id="confirmBox"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <p class="proto-note">Prototype only — no messages are actually sent, no data leaves this page. Colours and header match the real rd1.co.uk (confirmed from screenshots); WhatsApp/Email need wiring, AI Hire Now hooks into the existing integration — details in the accompanying spec.</p>
+
+</div>
+
+<script>
+(function(){
+  const SECTORS = {
+    "Construction": ["Labourer","Groundworker","Joiner","Bricklayer","Plumber","Electrician","Painter & Decorator","Scaffolder","Plant Operator","Carpenter","Roofer","Site Manager"],
+    "Renewables": ["Solar Installer","Wind Turbine Technician","Cable Jointer","Renewables Electrical Technician"],
+    "Engineering": ["Mechanical Engineer","Electrical Engineer","Design Engineer","Maintenance Engineer","CNC Machinist","Welder / Fabricator"],
+    "Logistics": ["Warehouse Operative","Forklift Driver","LGV Class 1 Driver","LGV Class 2 Driver","Picker & Packer","Delivery Driver","Supply Chain Coordinator"],
+    "Healthcare": ["Care Assistant","Support Worker","Registered Nurse","Healthcare Assistant","Domiciliary Carer"],
+    "Education": ["Teaching Assistant","SEN Support Worker","Cover Supervisor","Learning Support Assistant"],
+    "Hospitality": ["Chef","Kitchen Porter","Waiting Staff","Bar Staff","Housekeeping","Event Staff"],
+    "Business Support & IT": ["Administrator","Customer Service Advisor","IT Support Technician","Data Entry Clerk","Receptionist"],
+    "Commercial & Office": ["Office Manager","PA / EA","Receptionist Cover","Team Assistant"],
+    "Facilities Management": ["Cleaner","Caretaker","Maintenance Operative","Security Officer","Grounds Maintenance"],
+    "IT & Technology": ["Software Developer","Data Analyst","Cloud Engineer","DevOps Engineer","Cybersecurity Analyst","IT Project Manager","QA Engineer"],
+    "Accountancy, Finance & Banking": ["Accountant","Bookkeeper","Credit Controller","Payroll Administrator","Financial Analyst","Mortgage Advisor"],
+    "Legal": ["Paralegal","Legal Secretary","Solicitor","Conveyancer","Legal Cashier","Compliance Officer"],
+    "Manufacturing & Production": ["Production Operative","Machine Operator","Quality Control Inspector","Production Supervisor","Assembly Operative"],
+    "Retail": ["Sales Assistant","Store Manager","Visual Merchandiser","Retail Supervisor","Stock Assistant"],
+    "Sales & Marketing": ["Sales Executive","Account Manager","Business Development Manager","Marketing Executive","Telesales Advisor"],
+    "Human Resources": ["HR Advisor","HR Administrator","HR Manager","Talent Acquisition Specialist","Recruitment Consultant"],
+    "Insurance": ["Insurance Advisor","Claims Handler","Underwriter","Insurance Broker"],
+    "Energy & Oil/Gas": ["Energy Engineer","Offshore Technician","Rig Worker","HSE Advisor","Energy Analyst"],
+    "Property & Real Estate": ["Estate Agent","Lettings Negotiator","Property Manager","Surveyor","Block Manager","Valuer"]
+  };
+
+  const CORE_SECTORS = ["Construction","Renewables","Engineering","Logistics","Healthcare","Education","Hospitality","Business Support & IT","Commercial & Office","Facilities Management"];
+
+  const LOCATIONS = ["Newcastle","London","Hull","Coventry","Durham","Birkenhead","Glasgow","Edinburgh","Aberdeen","Falkirk","Cardiff","Belfast","Manchester","Liverpool","Leeds","Bristol"];
+
+  const sectorSel = document.getElementById('sector');
+  const positionSel = document.getElementById('position');
+  const roleSearch = document.getElementById('roleSearch');
+  const roleList = document.getElementById('roleList');
+  const locationInput = document.getElementById('location');
+  const locationList = document.getElementById('locationList');
+  const step1Summary = document.getElementById('step1Summary');
+  const qtyRow = document.getElementById('qtyRow');
+  const confirmBox = document.getElementById('confirmBox');
+  const findStaffBtn = document.getElementById('findStaffBtn');
+  const panelWrap = document.getElementById('panelWrap');
+
+  let state = { sector:'', position:'', location:'', qty:'1' };
+
+  const coreGroup = document.createElement('optgroup');
+  coreGroup.label = 'Core sectors';
+  const moreGroup = document.createElement('optgroup');
+  moreGroup.label = 'Also available';
+
+  Object.keys(SECTORS).forEach(s=>{
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s;
+    (CORE_SECTORS.includes(s) ? coreGroup : moreGroup).appendChild(o);
+  });
+  sectorSel.appendChild(coreGroup);
+  sectorSel.appendChild(moreGroup);
+
+  Object.values(SECTORS).flat().sort().forEach(p=>{
+    const o = document.createElement('option');
+    o.value = p;
+    roleList.appendChild(o);
+  });
+
+  LOCATIONS.forEach(l=>{
+    const o = document.createElement('option');
+    o.value = l;
+    locationList.appendChild(o);
+  });
+
+  function fillPositions(sector, preselect){
+    positionSel.innerHTML = '';
+    if(!sector){
+      positionSel.disabled = true;
+      const o = document.createElement('option');
+      o.value=''; o.textContent='Choose a sector first…';
+      positionSel.appendChild(o);
+      return;
+    }
+    positionSel.disabled = false;
+    const blank = document.createElement('option');
+    blank.value=''; blank.textContent='Choose a position…';
+    positionSel.appendChild(blank);
+    SECTORS[sector].forEach(p=>{
+      const o = document.createElement('option');
+      o.value = p; o.textContent = p;
+      if(preselect === p) o.selected = true;
+      positionSel.appendChild(o);
+    });
+  }
+
+  function updateSummary(){
+    let html = '';
+    if(state.sector) html += `<span class="chip">Sector <b>${state.sector}</b></span>`;
+    if(state.position) html += `<span class="chip">Role <b>${state.position}</b></span>`;
+    step1Summary.innerHTML = html;
+    refreshSendButtons();
+  }
+
+  sectorSel.addEventListener('change', ()=>{
+    state.sector = sectorSel.value;
+    state.position = '';
+    fillPositions(state.sector);
+    updateSummary();
+  });
+
+  positionSel.addEventListener('change', ()=>{
+    state.position = positionSel.value;
+    updateSummary();
+  });
+
+  roleSearch.addEventListener('change', ()=>{
+    const val = roleSearch.value.trim();
+    if(!val) return;
+    for(const [sector, positions] of Object.entries(SECTORS)){
+      const match = positions.find(p => p.toLowerCase() === val.toLowerCase());
+      if(match){
+        state.sector = sector;
+        state.position = match;
+        sectorSel.value = sector;
+        fillPositions(sector, match);
+        updateSummary();
+        return;
+      }
+    }
+  });
+
+  locationInput.addEventListener('input', ()=>{
+    state.location = locationInput.value.trim();
+    refreshSendButtons();
+  });
+
+  qtyRow.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.qty-btn');
+    if(!btn) return;
+    qtyRow.querySelectorAll('.qty-btn').forEach(b=>b.setAttribute('aria-pressed','false'));
+    btn.setAttribute('aria-pressed','true');
+    state.qty = btn.dataset.qty;
+  });
+
+  const nameEl = document.getElementById('name');
+  const companyEl = document.getElementById('company');
+  const phoneEl = document.getElementById('phone');
+  const emailEl = document.getElementById('email');
+  [nameEl, companyEl, phoneEl, emailEl].forEach(el => el.addEventListener('input', refreshSendButtons));
+
+  function formReady(){
+    return state.sector && state.position && state.location &&
+      nameEl.value.trim() && companyEl.value.trim() &&
+      (phoneEl.value.trim() || emailEl.value.trim());
+  }
+
+  function refreshSendButtons(){
+    const ready = !!formReady();
+    document.getElementById('sendWhatsapp').disabled = !ready;
+    document.getElementById('sendEmail').disabled = !ready;
+    document.getElementById('sendAi').disabled = !ready;
+  }
+
+  function summaryText(){
+    const qtyLabel = {'1':'1 person','2-5':'2–5 people','6-10':'6–10 people','10+':'10+ people'}[state.qty] || state.qty;
+    return `${qtyLabel} · ${state.position} · ${state.sector} · ${state.location}`;
+  }
+
+  function showConfirm(channel, detail){
+    confirmBox.innerHTML = `<h3>${channel}</h3><p>${detail}</p>`;
+    confirmBox.classList.add('show');
+    confirmBox.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  document.getElementById('sendWhatsapp').addEventListener('click', ()=>{
+    if(!formReady()) return;
+    const msg = `Hi RD1, I'd like to hire staff: ${summaryText()}. Company: ${companyEl.value}. Contact: ${nameEl.value}, ${phoneEl.value || emailEl.value}.`;
+    showConfirm('Would open WhatsApp', `Prototype — in production this opens a wa.me link pre-filled with: <br><code>${msg}</code>`);
+  });
+
+  document.getElementById('sendEmail').addEventListener('click', ()=>{
+    if(!formReady()) return;
+    showConfirm('Would open Email', `Prototype — in production this opens a pre-filled email to the branch inbox summarising: <br><code>${summaryText()} — ${nameEl.value}, ${companyEl.value}, ${phoneEl.value}, ${emailEl.value}</code>`);
+  });
+
+  document.getElementById('sendAi').addEventListener('click', ()=>{
+    if(!formReady()) return;
+    showConfirm('New JobAdder job created (simulated)', `Prototype — in production this hands these details to RD1's existing AI Hire Now integration, which creates the job in JobAdder directly, even if it never existed there before: <br><code>${summaryText()} — ${nameEl.value}, ${companyEl.value}, ${phoneEl.value}, ${emailEl.value}</code>`);
+  });
+
+  findStaffBtn.addEventListener('click', ()=>{
+    const isOpen = panelWrap.classList.toggle('open');
+    findStaffBtn.setAttribute('aria-expanded', String(isOpen));
+    findStaffBtn.textContent = isOpen ? 'Close' : 'Find Staff';
+    if(isOpen){
+      setTimeout(()=> panelWrap.scrollIntoView({behavior:'smooth', block:'start'}), 120);
+    }
+  });
+
+  fillPositions('');
+})();
+</script>

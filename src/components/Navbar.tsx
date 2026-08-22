@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-// import logo from "@/assets/logo.png";
-// import callpilotLogo from "@/assets/callpilot_logo.png";
+import FindStaffModal from "@/components/FindStaffModal";
+import { cities } from "@/data/cities";
 import {
   Dialog,
   DialogContent,
@@ -101,7 +101,54 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isFindStaffOpen, setIsFindStaffOpen] = useState(false);
+  const [initialLocation, setInitialLocation] = useState("");
+  const [initialSector, setInitialSector] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleHeaderFindStaffClick = () => {
+    if (typeof window === "undefined") return;
+
+    const path = window.location.pathname;
+    const segments = path.split("/").filter(Boolean);
+
+    let detectedLoc = "";
+    let detectedSector = "";
+
+    // 1. Detect location page
+    if (segments[0] === "locations" && segments.length >= 3) {
+      const citySlug = segments[segments.length - 1];
+      const cityObj = cities.find((c) => c.slug === citySlug);
+      if (cityObj) {
+        detectedLoc = cityObj.city;
+      }
+    }
+
+    // 2. Detect sector page
+    if (path.includes("construction-recruitment-agency")) {
+      detectedSector = "Construction";
+    } else if (path.includes("renewable-energy-recruitment-agency")) {
+      detectedSector = "Renewables";
+    } else if (path.includes("engineering-recruitment-agency")) {
+      detectedSector = "Engineering";
+    } else if (path.includes("logistics-recruitment-agency")) {
+      detectedSector = "Logistics";
+    } else if (path.includes("healthcare-recruitment-agency")) {
+      detectedSector = "Healthcare";
+    } else if (path.includes("education-recruitment-agency")) {
+      detectedSector = "Education";
+    } else if (path.includes("hospitality-recruitment-agency")) {
+      detectedSector = "Hospitality";
+    } else if (path.includes("it-technology-recruitment-agency")) {
+      detectedSector = "IT & Technology";
+    } else if (path.includes("commercial-office-recruitment-agency")) {
+      detectedSector = "Commercial & Office";
+    }
+
+    setInitialLocation(detectedLoc);
+    setInitialSector(detectedSector);
+    setIsFindStaffOpen(true);
+  };
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -126,8 +173,16 @@ export default function Navbar() {
       setMobileSubmenu("Clients");
     };
 
+    const handleOpenFindStaff = (e: Event) => {
+      const detail = (e as CustomEvent).detail || {};
+      setInitialLocation(detail.location || "");
+      setInitialSector(detail.sector || "");
+      setIsFindStaffOpen(true);
+    };
+
     window.addEventListener("open-ai-recruitment", handleOpenAIRecruitment);
     window.addEventListener("open-clients", handleOpenClients);
+    window.addEventListener("open-find-staff", handleOpenFindStaff);
     
     const checkHash = () => {
       if (window.location.hash === "#ai-recruitment") {
@@ -147,6 +202,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("open-ai-recruitment", handleOpenAIRecruitment);
       window.removeEventListener("open-clients", handleOpenClients);
+      window.removeEventListener("open-find-staff", handleOpenFindStaff);
       window.removeEventListener("hashchange", checkHash);
     };
   }, []);
@@ -284,7 +340,12 @@ export default function Navbar() {
               </div>
               <span>01324 613198</span>
             </a>
-            <a href="/ai-hire-now" className="btn btn-primary header-btn ai-hire-btn">Request Staff</a>
+            <button
+              onClick={handleHeaderFindStaffClick}
+              className="btn btn-primary header-btn ai-hire-btn cursor-pointer"
+            >
+              Find Staff
+            </button>
           </div>
 
           {/* Mobile/Tablet Menu Button */}
@@ -393,7 +454,15 @@ export default function Navbar() {
 
               {/* Mobile Actions */}
               <div className="grid grid-cols-1 gap-3 px-4 pt-2">
-                <a href="/ai-hire-now" onClick={() => setMobileOpen(false)} className="btn btn-primary py-4 text-center">Request Staff</a>
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    handleHeaderFindStaffClick();
+                  }}
+                  className="btn btn-primary py-4 text-center cursor-pointer"
+                >
+                  Find Staff
+                </button>
               </div>
               <div className="px-4 pb-2 text-center text-xs text-foreground/60 font-medium">
                 Prefer to speak? Call us on <a href="tel:01324613198" className="hover:text-primary transition-colors">01324 613198</a>
@@ -417,6 +486,12 @@ export default function Navbar() {
           </div>
         </DialogContent>
       </Dialog>
+      <FindStaffModal
+        open={isFindStaffOpen}
+        onOpenChange={setIsFindStaffOpen}
+        initialLocation={initialLocation}
+        initialSector={initialSector}
+      />
     </nav>
   );
 }

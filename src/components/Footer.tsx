@@ -921,6 +921,16 @@ export default function Footer() {
                       <span className="rd-ai-btn-text">AI Platform</span>
                       <b className="rd-ai-btn-arrow">→</b>
                     </a>
+
+                    <button
+                      onClick={() => {
+                        window.dispatchEvent(new CustomEvent('open-find-staff'));
+                      }}
+                      className="btn btn-primary btn-saas w-full mt-3 !justify-between cursor-pointer !bg-[#d3a94a] hover:!bg-[#b88e3a] !text-[#0c1730] border-none font-bold"
+                    >
+                      <span className="rd-ai-btn-text">Find Staff</span>
+                      <b className="rd-ai-btn-arrow">→</b>
+                    </button>
                   </div>
 
                 </div>
@@ -956,15 +966,29 @@ export default function Footer() {
               </div>
 
               <div className="rd-footer-bottom">
-                <div className="rd-footer-info">
-                  <span>Recruitment Direct UK Ltd</span>
-                  <span className="rd-sep">|</span>
-                  <span>Company No: SC301107</span>
-                  <span className="rd-sep">|</span>
-                  <span>VAT No: GB880406428</span>
+                <div className="rd-footer-info" style={{ flexDirection: "column", gap: "8px" }}>
+                  <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                    <span>Recruitment Direct UK Ltd</span>
+                    <span className="rd-sep">|</span>
+                    <span>Registered in Scotland | SC301107</span>
+                    <span className="rd-sep">|</span>
+                    <span>VAT Number: GB880406428</span>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-foreground/80">
+                    <span>Registered Office: Herkimer House</span>
+                    <span className="rd-sep">|</span>
+                    <span>Mill Road Industrial Estate</span>
+                    <span className="rd-sep">|</span>
+                    <span>Linlithgow</span>
+                    <span className="rd-sep">|</span>
+                    <span>EH49 7SF</span>
+                  </div>
+                  <div className="mt-2 max-w-3xl text-xs text-foreground/60 font-normal italic leading-relaxed">
+                    Recruitment Direct UK Ltd acts as an employment agency for permanent vacancies and an employment business for temporary and contract roles.
+                  </div>
                 </div>
 
-                <p>© {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.</p>
+                <p style={{ marginTop: "16px" }}>© {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.</p>
               </div>
             </div>
           </footer>

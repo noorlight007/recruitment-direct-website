@@ -5,6 +5,7 @@ import { cities, getCity } from "@/data/cities";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
+import FindStaffButton from "@/components/FindStaffButton";
 
 type CityPageProps = {
   params: Promise<{
@@ -169,6 +170,7 @@ export default async function CityRecruitmentPage({
 
   if (!page) {
     notFound();
+    return null;
   }
 
   const canonicalUrl = `https://rd1.co.uk${page.path}`;
@@ -349,9 +351,9 @@ export default async function CityRecruitmentPage({
                 ))}
 
                 <div className="cta-row">
-                  <Link className="button button-primary" href="/ai-hire-now">
-                    Request Staff
-                  </Link>
+                  <FindStaffButton className="button button-primary cursor-pointer" location={page.city}>
+                    Find Staff
+                  </FindStaffButton>
 
                   <Link className="button button-secondary" href="/contact">
                     Contact Our Recruitment Team
@@ -520,9 +522,9 @@ export default async function CityRecruitmentPage({
                 </p>
 
                 <div className="cta-row">
-                  <Link className="button button-primary" href="/ai-hire-now">
-                    Request Staff
-                  </Link>
+                  <FindStaffButton className="button button-primary cursor-pointer" location={page.city}>
+                    Find Staff
+                  </FindStaffButton>
 
                   <Link className="button button-secondary" href="/contact">
                     Contact Recruitment Direct UK
