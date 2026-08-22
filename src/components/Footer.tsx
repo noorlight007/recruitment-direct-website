@@ -948,7 +948,7 @@ export default function Footer() {
                       onClick={() => {
                         window.dispatchEvent(new CustomEvent('open-find-staff'));
                       }}
-                      className="btn btn-primary btn-saas w-full mt-3 !justify-between cursor-pointer !bg-[#d3a94a] hover:!bg-[#b88e3a] !text-[#0c1730] border-none font-bold"
+                      className="btn btn-primary btn-saas w-full mt-3 !justify-between cursor-pointer !bg-[#d3a94a] hover:!bg-[#b88e3a] border-none font-bold"
                     >
                       <span className="rd-ai-btn-text">Find Staff</span>
                       <b className="rd-ai-btn-arrow">→</b>
