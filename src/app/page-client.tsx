@@ -247,7 +247,7 @@ const Index = () => {
                     <div className="rd-hero-btn-col">
                       <a href="/job-search" className="rd-btn rd-btn-outline standard-cta-btn">JOB SEARCH</a>
                       <div className="rd-btn-caption">
-                        <span className="rd-btn-a">Search Jobs</span>
+                        {/* <span className="rd-btn-a">Search Jobs</span> */}
                       </div>
                     </div>
                     {/* <div className="rd-hero-btn-col">
