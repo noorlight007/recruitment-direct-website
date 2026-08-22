@@ -583,6 +583,13 @@ export default function Footer() {
           color: rgba(255,255,255,0.18) !important;
         }
 
+        .rd-desktop-info {
+          display: flex !important;
+        }
+        .rd-mobile-info {
+          display: none !important;
+        }
+
 
 
         .rd-footer-bottom p {
@@ -628,6 +635,21 @@ export default function Footer() {
 
           .rd-footer-bottom .rd-footer-info .rd-sep {
             display: none;
+          }
+
+          .rd-desktop-info {
+            display: none !important;
+          }
+
+          .rd-mobile-info {
+            display: flex !important;
+            flex-direction: column;
+            gap: 4px;
+            text-align: center;
+            font-size: 13px;
+            color: #CFCFCB !important;
+            margin: 20px 0 0;
+            padding: 20px 0;
           }
 
           .rd-footer-bottom p {
@@ -966,7 +988,8 @@ export default function Footer() {
               </div>
 
               <div className="rd-footer-bottom">
-                <div className="rd-footer-info" style={{ flexDirection: "column", gap: "8px" }}>
+                {/* Desktop/Tablet Layout */}
+                <div className="rd-footer-info rd-desktop-info" style={{ flexDirection: "column", gap: "8px" }}>
                   <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
                     <span>Recruitment Direct UK Ltd</span>
                     <span className="rd-sep">|</span>
@@ -988,7 +1011,21 @@ export default function Footer() {
                   </div>
                 </div>
 
-                <p style={{ marginTop: "16px" }}>© {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.</p>
+                {/* Mobile Layout */}
+                <div className="rd-mobile-info">
+                  <div className="font-bold text-white text-sm mb-1">Recruitment Direct UK Ltd</div>
+                  <div>Registered in Scotland | SC301107</div>
+                  <div>Registered Office: Herkimer House |</div>
+                  <div>Mill Road Industrial Estate |</div>
+                  <div>Linlithgow |</div>
+                  <div>EH497SF</div>
+                  <div className="font-semibold text-white mt-2">VAT Number GB880406428</div>
+                  <div className="mt-2 text-xs text-foreground/60 font-normal italic leading-relaxed">
+                    Recruitment Direct UK Ltd acts as an employment agency for permanent vacancies and an employment business for temporary and contract roles.
+                  </div>
+                </div>
+
+                <p style={{ marginTop: "24px" }}>© {new Date().getFullYear()} Recruitment Direct UK Ltd. All rights reserved.</p>
               </div>
             </div>
           </footer>
