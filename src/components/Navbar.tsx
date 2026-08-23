@@ -54,6 +54,12 @@ const aiProducts = [
 
 const clientSubmenu = [
   {
+    title: "Hire Staff",
+    description: "Submit staffing requirements 24/7",
+    link: "/hire-staff",
+    icon: Users,
+  },
+  {
     title: "Temporary Staff",
     description: "Flexible short-term staffing",
     link: "/temporary-staff",
