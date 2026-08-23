@@ -37,7 +37,6 @@ const SECTORS: Record<string, string[]> = {
 const CORE_SECTORS = ["Construction","Renewables","Engineering","Logistics","Healthcare","Education","Hospitality","Business Support & IT","Commercial & Office","Facilities Management"];
 
 const ALL_ROLES = Object.values(SECTORS).flat().sort();
-const UNIQUE_LOCATIONS = Array.from(new Set(cities.map((c) => c.city))).sort();
 
 interface FindStaffModalProps {
   open: boolean;
@@ -52,6 +51,7 @@ export default function FindStaffModal({
   initialLocation = "",
   initialSector = "",
 }: FindStaffModalProps) {
+  const [uniqueLocations, setUniqueLocations] = useState<string[]>([]);
   // Form State
   const [roleQuery, setRoleQuery] = useState("");
   const [selectedSector, setSelectedSector] = useState(initialSector);
@@ -76,6 +76,32 @@ export default function FindStaffModal({
 
   const locRef = useRef<HTMLDivElement>(null);
   const roleRef = useRef<HTMLDivElement>(null);
+
+  // Fetch locations from feed or fallback to cities import
+  useEffect(() => {
+    const fallbackList = [
+      "Newcastle", "London", "Hull", "Coventry", "Durham", "Birkenhead",
+      "Glasgow", "Edinburgh", "Aberdeen", "Falkirk", "Cardiff", "Belfast",
+      "Manchester", "Liverpool", "Leeds", "Bristol"
+    ];
+    const cityNames = cities.map((c) => c.city);
+    const combined = Array.from(new Set([...cityNames, ...fallbackList])).sort();
+    setUniqueLocations(combined);
+
+    fetch("/api/locations")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch locations feed");
+        return res.json();
+      })
+      .then((data) => {
+        if (data && Array.isArray(data.locations)) {
+          setUniqueLocations(data.locations);
+        }
+      })
+      .catch((err) => {
+        console.error("Error loading locations feed, using fallback:", err);
+      });
+  }, []);
 
   // Sync initials when they change or modal opens
   useEffect(() => {
@@ -141,7 +167,7 @@ export default function FindStaffModal({
       setShowLocSuggestions(false);
       return;
     }
-    const filtered = UNIQUE_LOCATIONS.filter((l) =>
+    const filtered = uniqueLocations.filter((l) =>
       l.toLowerCase().includes(val.toLowerCase())
     ).slice(0, 5);
     setLocSuggestions(filtered);
@@ -539,7 +565,7 @@ export default function FindStaffModal({
                     <Sparkles className="w-4 h-4 text-[#d3a94a] flex-shrink-0" />
                     {isSubmitting ? "Creating..." : "AI Hire Now"}
                   </span>
-                  <span className="text-[10px] font-mono font-medium text-slate-300">Creates JobAdder job</span>
+                  {/* <span className="text-[10px] font-mono font-medium text-slate-300">Creates JobAdder job</span> */}
                 </button>
               </div>
               <p className="text-center text-[11px] text-slate-400">

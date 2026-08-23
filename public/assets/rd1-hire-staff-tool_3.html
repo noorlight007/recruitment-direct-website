@@ -414,7 +414,7 @@
             </button>
             <button type="button" class="channel-btn channel-ai" id="sendAi" disabled>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"/><path d="M19 14l.9 2.5L22.5 17.4l-2.6.9L19 20.8l-.9-2.5-2.6-.9 2.6-.9L19 14z" opacity="0.7"/></svg>
-              <span>AI Hire Now<span class="ai-sub">Creates a new JobAdder job</span></span>
+              <span>AI Hire Now</span>
             </button>
           </div>
           <p class="channel-note">Fill in sector, position, location and contact details to send.</p>
@@ -457,7 +457,7 @@
 
   const CORE_SECTORS = ["Construction","Renewables","Engineering","Logistics","Healthcare","Education","Hospitality","Business Support & IT","Commercial & Office","Facilities Management"];
 
-  const LOCATIONS = ["Newcastle","London","Hull","Coventry","Durham","Birkenhead","Glasgow","Edinburgh","Aberdeen","Falkirk","Cardiff","Belfast","Manchester","Liverpool","Leeds","Bristol"];
+  const fallbackLocations = ["Newcastle","London","Hull","Coventry","Durham","Birkenhead","Glasgow","Edinburgh","Aberdeen","Falkirk","Cardiff","Belfast","Manchester","Liverpool","Leeds","Bristol"];
 
   const sectorSel = document.getElementById('sector');
   const positionSel = document.getElementById('position');
@@ -492,11 +492,32 @@
     roleList.appendChild(o);
   });
 
-  LOCATIONS.forEach(l=>{
-    const o = document.createElement('option');
-    o.value = l;
-    locationList.appendChild(o);
-  });
+  // Dynamically populate locations list from endpoint, fallback if fetch fails
+  fetch('/api/locations')
+    .then(r => {
+      if (!r.ok) throw new Error('API offline');
+      return r.json();
+    })
+    .then(data => {
+      if (data && Array.isArray(data.locations)) {
+        populateLocations(data.locations);
+      } else {
+        populateLocations(fallbackLocations);
+      }
+    })
+    .catch(err => {
+      console.warn('Fallback to static locations:', err);
+      populateLocations(fallbackLocations);
+    });
+
+  function populateLocations(list) {
+    locationList.innerHTML = '';
+    list.forEach(l => {
+      const o = document.createElement('option');
+      o.value = l;
+      locationList.appendChild(o);
+    });
+  }
 
   function fillPositions(sector, preselect){
     positionSel.innerHTML = '';
