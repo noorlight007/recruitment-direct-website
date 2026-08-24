@@ -264,7 +264,7 @@ export default function FindStaffForm({
           )}
         </div>
       ) : (
-        <div className="space-y-6 text-slate-900">
+        <div className="space-y-3 text-slate-900">
           {submitError && (
             <div className="flex items-start gap-3 p-4 bg-rose-50 border border-rose-200 text-rose-800 rounded-xl text-sm">
               <AlertCircle className="w-5 h-5 flex-shrink-0 text-rose-600 mt-0.5" />
@@ -276,15 +276,15 @@ export default function FindStaffForm({
           )}
 
           {/* STEP 1 */}
-          <div className="space-y-4">
-            {/* <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">
               <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 border border-slate-200 text-slate-700">1</span>
-              What do you need?
-            </div> */}
+              Search a role
+            </div>
 
             {/* Reverse role search */}
             <div className="relative" ref={roleRef}>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Search a role</label>
+              {/* <label className="block text-xs font-bold text-slate-700 mb-1">Search a role</label> */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <input
@@ -293,7 +293,7 @@ export default function FindStaffForm({
                   onChange={(e) => handleRoleQueryChange(e.target.value)}
                   onFocus={() => roleQuery && setShowRoleSuggestions(true)}
                   placeholder="Start typing a job title, e.g. Joiner"
-                  className="w-full pl-9 pr-4 py-2.5 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 focus:ring-1 focus:ring-slate-800 outline-none"
+                  className="w-full pl-9 pr-4 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 focus:ring-1 focus:ring-slate-800 outline-none"
                 />
               </div>
               {showRoleSuggestions && roleSuggestions.length > 0 && (
@@ -310,7 +310,7 @@ export default function FindStaffForm({
                   ))}
                 </div>
               )}
-              <p className="text-[11px] text-slate-400 mt-1">Picking a role here sets the sector automatically.</p>
+              {/* <p className="text-[11px] text-slate-400 mt-1">Picking a role here sets the sector automatically.</p> */}
             </div>
 
             <div className="flex items-center gap-3 text-xs font-mono font-bold text-slate-400 uppercase py-1">
@@ -328,7 +328,7 @@ export default function FindStaffForm({
                     setSelectedSector(e.target.value);
                     setSelectedPosition("");
                   }}
-                  className="w-full px-3 py-2.5 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none"
+                  className="w-full px-3 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none"
                 >
                   <option value="">Choose a sector…</option>
                   <optgroup label="Core Sectors">
@@ -351,7 +351,7 @@ export default function FindStaffForm({
                   value={selectedPosition}
                   onChange={(e) => setSelectedPosition(e.target.value)}
                   disabled={!selectedSector}
-                  className="w-full px-3 py-2.5 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none disabled:bg-slate-50 disabled:text-slate-400"
+                  className="w-full px-3 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none disabled:bg-slate-50 disabled:text-slate-400"
                 >
                   <option value="">
                     {selectedSector ? "Choose a position…" : "Choose a sector first…"}
@@ -364,7 +364,7 @@ export default function FindStaffForm({
               </div>
             </div>
 
-            {(selectedSector || selectedPosition) && (
+            {/* {(selectedSector || selectedPosition) && (
               <div className="flex flex-wrap gap-2 pt-1">
                 {selectedSector && (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 border border-slate-200 text-slate-700">
@@ -377,7 +377,7 @@ export default function FindStaffForm({
                   </span>
                 )}
               </div>
-            )}
+            )} */}
           </div>
 
           <hr className="border-slate-100" />
@@ -396,7 +396,7 @@ export default function FindStaffForm({
                 onChange={(e) => handleLocationChange(e.target.value)}
                 onFocus={() => location && setShowLocSuggestions(true)}
                 placeholder="e.g. Newcastle, Hull, Birkenhead"
-                className="w-full px-4 py-2.5 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none"
+                className="w-full px-4 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none"
               />
               {showLocSuggestions && locSuggestions.length > 0 && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
@@ -470,18 +470,6 @@ export default function FindStaffForm({
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  Website <span className="text-slate-400 font-normal">(optional)</span>
-                </label>
-                <input
-                  type="text"
-                  value={website}
-                  onChange={(e) => setWebsite(e.target.value)}
-                  placeholder="yourcompany.co.uk"
-                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
-                />
-              </div>
-              <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">Phone Number</label>
                 <input
                   type="tel"
@@ -490,12 +478,34 @@ export default function FindStaffForm({
                   className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
                 />
               </div>
-              <div className="md:col-span-2">
+              <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">Email</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Position</label>
+                <input
+                  type="text"
+                  value={selectedPosition}
+                  onChange={(e) => setSelectedPosition(e.target.value)}
+                  placeholder="e.g. Joiner"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Website <span className="text-slate-400 font-normal">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  placeholder="yourcompany.co.uk"
                   className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
                 />
               </div>
@@ -541,7 +551,7 @@ export default function FindStaffForm({
                 type="button"
                 onClick={handleAIHireNow}
                 disabled={!isFormValid() || isSubmitting}
-                className="flex flex-col items-center justify-center gap-0.5 py-2.5 px-4 rounded-xl border border-[#0c1730] bg-[#0c1730] hover:bg-[#15244b] text-white font-bold text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex flex-col items-center justify-center gap-0.5 py-2 px-4 rounded-xl border border-[#0c1730] bg-[#0c1730] hover:bg-[#15244b] text-white font-bold text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <span className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#d3a94a] flex-shrink-0" />

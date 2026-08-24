@@ -62,7 +62,7 @@ export default function ConstructionAgencyPage() {
     <div className="min-h-screen bg-[#ffffff] text-slate-900 font-sans">
       <Navbar />
 
-      <main className="max-w-[1140px] mx-auto px-5 pt-[100px] md:pt-[120px] pb-20">
+      <main className="max-w-[1140px] mx-auto px-5 pt-[4px] md:pt-[12px] pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-8">
             {/* Hero Section */}

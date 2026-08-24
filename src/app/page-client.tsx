@@ -347,12 +347,12 @@ const Index = () => {
                     <span className="rd-sector-title">Business Support &amp; IT</span>
                   </div>
                 </Link>
-                <Link href="/commercial-office-recruitment-agency" aria-label="Commercial & Office Recruitment" className="rd-sector-link">
+                {/* <Link href="/commercial-office-recruitment-agency" aria-label="Commercial & Office Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Commercial & Office Recruitment">
                     <Image src="/images/Businesssss.png" alt="Commercial & Office Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Commercial &amp; Office</span>
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </section>
