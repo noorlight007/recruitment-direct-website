@@ -2,7 +2,11 @@
 
 import React from "react";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  onFindStaffClick?: () => void;
+}
+
+export default function ContactSection({ onFindStaffClick }: ContactSectionProps) {
   return (
     <>
       <section className="rd-contact-section standard-section">
@@ -29,8 +33,17 @@ export default function ContactSection() {
               <p className="standard-body-p">
                 Temporary, Contract & Permanent.
               </p>
-              <a href="/ai-hire-now-form?type=quote" className="rd-contact-card-btn standard-cta-btn">
-                Request Quote →
+              <a
+                href="/ai-hire-now-form?type=quote"
+                onClick={(e) => {
+                  if (onFindStaffClick) {
+                    e.preventDefault();
+                    onFindStaffClick();
+                  }
+                }}
+                className="rd-contact-card-btn standard-cta-btn"
+              >
+                Find Staff →
               </a>
             </div>
           </div>

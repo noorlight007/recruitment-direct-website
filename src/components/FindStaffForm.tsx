@@ -277,10 +277,10 @@ export default function FindStaffForm({
 
           {/* STEP 1 */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">
+            {/* <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">
               <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 border border-slate-200 text-slate-700">1</span>
               What do you need?
-            </div>
+            </div> */}
 
             {/* Reverse role search */}
             <div className="relative" ref={roleRef}>

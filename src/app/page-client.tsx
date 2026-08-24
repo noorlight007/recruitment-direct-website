@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import FindStaffModal from "@/components/FindStaffModal";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -38,6 +39,7 @@ import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isFindStaffOpen, setIsFindStaffOpen] = useState(false);
   const [iframeHeight, setIframeHeight] = useState(520);
 
   useEffect(() => {
@@ -368,7 +370,16 @@ const Index = () => {
                     <small>Order Staff 24/7.</small>
                   </div>
                   <div>
-                    <a href="/ai-hire-now-form?type=quote" className="btn outline standard-cta-btn">REQUEST QUOTE</a>
+                    <a
+                      href="/ai-hire-now-form?type=quote"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsFindStaffOpen(true);
+                      }}
+                      className="btn outline standard-cta-btn"
+                    >
+                      Find Staff
+                    </a>
                     <small>Consultant Call Back.</small>
                   </div>
                 </div>
@@ -1295,7 +1306,7 @@ const Index = () => {
         {/* <SectorsSection /> */}
         {/* <TrustedBySection /> */}
         {/* <SearchJobsSection /> */}
-        <ContactSection />
+        <ContactSection onFindStaffClick={() => setIsFindStaffOpen(true)} />
 
         <Footer />
         <FloatingElements />
@@ -1315,6 +1326,11 @@ const Index = () => {
             </div>
           </DialogContent>
         </Dialog>
+
+        <FindStaffModal
+          open={isFindStaffOpen}
+          onOpenChange={setIsFindStaffOpen}
+        />
       </div>
       <style dangerouslySetInnerHTML={{
         __html: `

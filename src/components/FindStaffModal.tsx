@@ -28,9 +28,9 @@ export default function FindStaffModal({
           <DialogTitle className="text-2xl font-extrabold text-[#0c1730]">
             Tell us who you need — takes around 15 seconds
           </DialogTitle>
-          <p className="text-sm text-slate-500 mt-1">
+          {/* <p className="text-sm text-slate-500 mt-1">
             Let us match your requirements against our nationwide candidate database.
-          </p>
+          </p> */}
         </DialogHeader>
 
         <FindStaffForm

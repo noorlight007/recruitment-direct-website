@@ -759,7 +759,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             width: 100%;
             min-height: 800px;
             overflow: hidden;
-            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
+            background: linear-gradient(180deg, #000000 0%, #000000 80%, #1c1c1c 100%);
             padding: 100px 24px;
           }
 
@@ -788,7 +788,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             border-radius: 0;
             box-shadow: none;
             animation: none;
-            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
+            background: linear-gradient(180deg, #000000 0%, #000000 80%, #1c1c1c 100%);
           }
 
           @media (min-width: 992px) {
@@ -797,7 +797,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               border-radius: 24px;
               box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(0, 175, 255, 0.18);
               animation: floatMap 12s ease-in-out infinite;
-              background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
+              background: linear-gradient(180deg, #000000 0%, #000000 80%, #1c1c1c 100%);
             }
           }
 
@@ -851,7 +851,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), /* Deeper shadow for borderless blend */
                         0 0 45px rgba(0, 175, 255, 0.18); /* Rich electric blue outer glow */
             animation: floatMap 12s ease-in-out infinite;
-            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
+            background: linear-gradient(180deg, #000000 0%, #000000 80%, #1c1c1c 100%);
           }
 
           #map {
@@ -1240,9 +1240,9 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           </div>
         )}
 
-        <div className="background-gradient"></div>
+        {/* <div className="background-gradient"></div> */}
         <div className="map-wrapper w-full flex-1 lg:flex-initial relative flex flex-col justify-start lg:justify-center pt-2 lg:pt-0 px-4 lg:px-0">
-          <div id="map-container" style={{ background: "linear-gradient(135deg, #000000 0%, #000000 80%, #0A1B3D 100%)" }}>
+          <div id="map-container" style={{ background: "linear-gradient(135deg, #000000 0%, #000000 80%, #1c1c1c 100%)" }}>
             <div ref={mapContainerRef} id="map" />
             <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 3 }} />
 
@@ -1319,11 +1319,11 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               <a href="tel:03450678022" className="nationwide-phone">
                 0345 067 8022
               </a>
-              <div className="mt-4 mb-4">
+              {/* <div className="mt-4 mb-4">
                 <Link href="/locations/scotland/falkirk" className="text-[#D4AF37] hover:underline font-bold text-sm tracking-wider uppercase">
                   Recruitment Agency Falkirk
                 </Link>
-              </div>
+              </div> */}
               <div className="nationwide-divider" />
             </div>
           )}

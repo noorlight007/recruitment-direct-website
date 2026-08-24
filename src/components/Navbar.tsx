@@ -459,13 +459,13 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Actions */}
-              <div className="grid grid-cols-1 gap-3 px-4 pt-2">
+              <div className="flex justify-center px-4 pt-2">
                 <button
                   onClick={() => {
                     setMobileOpen(false);
                     handleHeaderFindStaffClick();
                   }}
-                  className="btn btn-primary py-4 text-center cursor-pointer"
+                  className="btn btn-primary py-2.5 px-8 text-center cursor-pointer w-auto max-w-[200px]"
                 >
                   Find Staff
                 </button>
