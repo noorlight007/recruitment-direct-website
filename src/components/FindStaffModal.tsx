@@ -26,7 +26,7 @@ export default function FindStaffModal({
       <DialogContent className="max-w-2xl bg-white text-slate-900 border border-slate-200 rounded-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto shadow-2xl">
         <DialogHeader className="border-b border-slate-100 pb-4 mb-4">
           <DialogTitle className="text-2xl font-extrabold text-[#0c1730] leading-tight">
-            Tell us who you need — takes around 15 seconds
+            Tell us who you need, takes around 15 seconds
           </DialogTitle>
           {/* <p className="text-sm text-slate-500 mt-1">
             Let us match your requirements against our nationwide candidate database.
