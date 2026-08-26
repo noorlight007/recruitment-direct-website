@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hire Staff — Recruitment Direct</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+    :root{
+      --ink: #10141f;
+      --ink-dim: #4b5163;
+      --border: #e2e4e8;
+      --navy: #05070d;
+      --navy-2: #0d1526;
+      --panel-border: #232b40;
+      --gold: #d3a94a;
+      --gold-soft: #f0d9a0;
+      --whatsapp: #1f9a5a;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      background: #ffffff;
+      color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img{ max-width:100%; display:block; }
+    .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    section{ padding: 64px 0; }
+    @media (max-width: 700px){ section{ padding: 44px 0; } }
+    h2{ font-size: clamp(24px,3vw,32px); font-weight: 800; margin: 0 0 10px; letter-spacing: -0.01em; }
+    .eyebrow{
+      font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #7a6220; margin: 0 0 10px; font-weight:600;
+    }
+    .lede{ color: var(--ink-dim); font-size: 15.5px; max-width: 62ch; margin: 0 0 36px; }
+
+    /* ---- header (real site, unchanged) ---- */
+    .site-header{
+      display:flex; align-items:center; justify-content:space-between; gap: 16px;
+      padding: 14px 24px; background: #ffffff; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 40;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .brand-mark{
+      width: 38px; height: 38px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #2a3550, #05070d 72%);
+      border: 1.5px solid #9aa5c0; display:flex; align-items:center; justify-content:center;
+      font-weight: 700; font-size: 13px; color: #d6dcec; flex-shrink: 0;
+    }
+    .brand-word{ font-weight: 800; letter-spacing: 0.01em; color: var(--ink); font-size: 14.5px; line-height:1.1; }
+    .brand-sub{ font-size: 9px; letter-spacing: 0.13em; color: #9096a6; text-transform: uppercase; margin-top: 2px; }
+    .site-nav{ display:flex; gap: 20px; font-size: 13.5px; font-weight: 600; color: #333a4d; }
+    .site-nav a{ color: inherit; text-decoration: none; }
+    .site-nav a.current{ color: var(--gold); }
+    @media (max-width: 900px){ .site-nav{ display:none; } }
+    .header-right{ display:flex; align-items:center; gap: 16px; }
+    .phone{ font-size: 12.5px; font-weight: 700; color: #333a4d; white-space:nowrap; }
+    @media (max-width: 640px){ .phone{ display:none; } }
+    .hire-btn{
+      font-family: var(--font-body); font-weight: 700; font-size: 13.5px; color: #ffffff;
+      background: #0c1730; border: none; border-radius: 999px; padding: 11px 20px;
+      cursor: pointer; white-space: nowrap;
+    }
+    .hire-btn:hover{ background: #16213f; }
+
+    /* ---- breadcrumb ---- */
+    .crumb{ font-size: 12.5px; color: var(--ink-dim); padding: 14px 0 0; }
+    .crumb a{ color: inherit; }
+
+    /* ---- hero ---- */
+    .hero{
+      background: radial-gradient(ellipse at 15% 0%, var(--navy-2) 0%, var(--navy) 65%);
+      color: #fff; padding: 60px 0 50px; margin-top: 18px;
+    }
+    .hero-grid{ display:grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items:center; }
+    @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr; } }
+    .hero h1{
+      font-size: clamp(30px,4.2vw,44px); font-weight: 900; line-height:1.12; letter-spacing:-0.015em;
+      margin: 0 0 16px;
+    }
+    .hero h1 .gold{ color: var(--gold); display:block; }
+    .hero p.sub{ color: #b7bdcc; font-size: 16px; max-width: 52ch; margin: 0 0 28px; }
+    .hero-ctas{ display:flex; gap: 14px; flex-wrap:wrap; }
+    .btn{
+      font-weight: 800; font-size: 14.5px; padding: 14px 26px; border-radius: 8px;
+      cursor:pointer; border: none; font-family: var(--font-body);
+    }
+    .btn-gold{ background: var(--gold); color: #17130a; box-shadow: 0 10px 26px rgba(211,169,74,0.28); }
+    .btn-outline{ background: transparent; color: #fff; border: 1.5px solid #4a5470; }
+
+    /* recent placements strip */
+    .placements{
+      margin-top: 34px; border-top: 1px solid #232b40; padding-top: 22px;
+    }
+    .placements-label{ font-family: var(--font-mono); font-size: 10.5px; letter-spacing:0.1em; text-transform:uppercase; color:#6fa8ff; margin-bottom: 12px; }
+    .placement-row{ display:flex; flex-direction:column; gap: 8px; }
+    .placement-item{ display:flex; gap: 10px; align-items:baseline; font-size: 13.5px; color:#cfd5e4; }
+    .placement-item b{ color:#fff; }
+    .placement-item .tag{ font-family: var(--font-mono); font-size: 10.5px; color: var(--gold); }
+
+    /* hero-right card: live board mini */
+    .board{
+      background: #05070d; border: 1px solid #232b40; border-radius: 12px; padding: 20px;
+    }
+    .board-title{ font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #6fa8ff; font-weight: 700; margin-bottom:14px; }
+    .board-stats{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .board-stat{ background: rgba(255,255,255,0.03); border:1px solid #1c2438; border-radius:8px; padding:12px; text-align:center; }
+    .board-stat .n{ font-size:22px; font-weight:800; color:#fff; }
+    .board-stat .l{ font-size:9px; letter-spacing:0.05em; text-transform:uppercase; color:#7c8bb0; margin-top:3px; }
+
+    /* ---- how it works ---- */
+    .steps{ display:grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
+    @media (max-width: 880px){ .steps{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 520px){ .steps{ grid-template-columns: 1fr; } }
+    .step{ border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+    .step .num{ font-family: var(--font-mono); font-size: 12px; color: var(--gold); font-weight:700; margin-bottom:10px; }
+    .step h3{ font-size: 16px; margin: 0 0 8px; }
+    .step p{ font-size: 13.5px; color: var(--ink-dim); margin:0; }
+
+    /* ---- sectors grid ---- */
+    .sector-section{ background: var(--navy); color:#fff; }
+    .sector-section .eyebrow{ color: var(--gold); }
+    .sector-section .lede{ color:#9aa3ba; }
+    .sector-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    @media (max-width: 980px){ .sector-grid{ grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 720px){ .sector-grid{ grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px){ .sector-grid{ grid-template-columns: 1fr; } }
+    .sector-card{
+      background: linear-gradient(160deg, #16203a, #0a0e18);
+      border: 1px solid #232b40; border-radius: 12px; padding: 18px;
+      display:flex; flex-direction:column; gap: 10px; min-height: 150px;
+    }
+    .sector-card h3{ font-size: 15px; margin:0; color:#fff; }
+    .sector-card .roles{ font-size: 12px; color:#8b93aa; line-height:1.7; max-height: 56px; overflow: hidden; position: relative; }
+    .sector-card .roles.expanded{ max-height: none; }
+    .sector-card .roles::after{
+      content:''; position:absolute; left:0; right:0; bottom:0; height:26px;
+      background: linear-gradient(to bottom, rgba(10,14,24,0), #0a0e18);
+    }
+    .sector-card .roles.expanded::after{ display:none; }
+    .sector-card .roles b{ color:#cfd5e4; font-weight:500; }
+    .sector-card.core{ border-color: rgba(211,169,74,0.45); }
+    .roles-toggle{
+      background:none; border:none; padding:0; margin-top:2px; align-self:flex-start;
+      color: var(--gold); font-size: 11px; font-weight:700; cursor:pointer;
+      font-family: var(--font-mono); letter-spacing: 0.03em; text-transform: uppercase;
+    }
+    .roles-toggle:hover{ text-decoration: underline; }
+
+    /* ---- find staff tool (reused component) ---- */
+    .tool-section{ background: #fafafb; }
+    .tool{
+      background: #ffffff; border: 1px solid #d7dbe4; border-radius: 16px; padding: 30px;
+      display: grid; gap: 24px; color: #10141f; max-width: 760px; margin: 0 auto;
+    }
+    @media (max-width: 560px){ .tool{ padding: 20px; } }
+    .step-label{
+      display:flex; align-items:center; gap: 10px; font-family: var(--font-mono); font-size: 11.5px;
+      letter-spacing: 0.06em; text-transform: uppercase; color: #5b6172; margin-bottom: 14px;
+    }
+    .step-num2{
+      width: 19px; height: 19px; border-radius: 50%; background: #f2f3f6; border: 1px solid #d7dbe4;
+      display:flex; align-items:center; justify-content:center; font-size: 10.5px; color: #10141f; flex-shrink:0;
+    }
+    .browse-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 640px){ .browse-row{ grid-template-columns: 1fr; } }
+    label{ display:block; font-size: 12.5px; font-weight: 600; color: #10141f; margin-bottom: 6px; }
+    select, input[type="text"], input[type="tel"], input[type="email"]{
+      width: 100%; font-family: var(--font-body); font-size: 14.5px; color: #10141f; background: #fff;
+      border: 1px solid #ccd0da; border-radius: 9px; padding: 11px 13px; appearance: none;
+    }
+    select{
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23555' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 13px center; padding-right: 34px;
+    }
+    select:focus, input:focus{ outline:none; border-color:#10141f; box-shadow:0 0 0 3px rgba(16,20,31,0.12); }
+    ::placeholder{ color:#8a90a3; }
+    .field-hint{ font-size: 12px; color: #6b7280; margin-top: 6px; }
+    .divider-or{
+      display:flex; align-items:center; gap: 12px; margin: 18px 0; color: #6b7280;
+      font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .divider-or::before, .divider-or::after{ content:''; flex:1; height:1px; background: #e2e4e8; }
+    .reverse-search{ position: relative; }
+    .reverse-search input{ padding-left: 38px; }
+    .search-icon{ position:absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #6b7280; pointer-events:none; }
+    .selection-summary{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; min-height: 2px; }
+    .chip{
+      display:inline-flex; align-items:center; gap:6px; background: #f2f3f6; border: 1px solid #d7dbe4;
+      color: #10141f; font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px;
+    }
+    hr.section-rule{ border:none; border-top: 1px solid #e2e4e8; margin: 4px 0; }
+    .quantity-row{ display:flex; gap: 8px; flex-wrap: wrap; }
+    .qty-btn{
+      font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: #10141f; background: #ffffff;
+      border: 1px solid #ccd0da; border-radius: 9px; padding: 9px 16px; cursor: pointer;
+    }
+    .qty-btn[aria-pressed="true"]{ background: #10141f; border-color: #10141f; color: #ffffff; }
+    .form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 640px){ .form-grid{ grid-template-columns: 1fr; } }
+    .form-grid .full{ grid-column: 1 / -1; }
+    .optional-tag{ color: #6b7280; font-weight: 500; }
+    .channels{ display:grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 12px; }
+    @media (max-width: 720px){ .channels{ grid-template-columns: 1fr; } }
+    .channel-btn{
+      display:flex; align-items:center; justify-content:center; gap: 9px; font-weight: 700; font-size: 14px;
+      padding: 15px 14px; border-radius: 10px; border: 1.5px solid #ccd0da; cursor: pointer; background: #fff; color: #10141f;
+    }
+    .channel-btn:disabled{ opacity: 0.4; cursor: not-allowed; }
+    .channel-btn svg{ flex-shrink:0; }
+    .channel-whatsapp{ color: var(--whatsapp); border-color: #bfe3cf; }
+    .channel-ai{ background: #10141f; color: #fff; border-color: #10141f; }
+    .channel-ai .ai-sub{ display:block; font-size: 10.5px; font-weight: 500; opacity: 0.75; font-family: var(--font-mono); color: #d7dbe4; }
+    .channel-note{ font-size: 12px; color: #6b7280; margin-top: 12px; text-align: center; }
+    .confirm{ display:none; background: #f2f3f6; border: 1px solid #ccd0da; border-radius: 12px; padding: 18px 20px; color: #10141f; }
+    .confirm.show{ display:block; }
+    .confirm h3{ margin: 0 0 6px; font-weight: 700; font-size: 16px; }
+    .confirm p{ margin: 0; font-size: 13.5px; opacity:0.85; }
+    .confirm code{ font-family: var(--font-mono); font-size: 12px; }
+
+    /* ---- trust / compliance ---- */
+    .badges{ display:flex; flex-wrap:wrap; gap: 14px; }
+    .badge{
+      border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;
+      font-size: 13px; font-weight: 700; color: var(--ink); display:flex; align-items:center; gap:8px;
+    }
+    .badge .dot{ width:7px; height:7px; border-radius:50%; background: var(--gold); }
+
+    /* ---- FAQ ---- */
+    .faq-list{ display:grid; gap: 10px; max-width: 800px; }
+    .faq-item{ border: 1px solid var(--border); border-radius: 10px; overflow:hidden; }
+    .faq-q{
+      width:100%; text-align:left; background:#fff; border:none; cursor:pointer;
+      padding: 16px 18px; font-size: 14.5px; font-weight: 700; color: var(--ink);
+      display:flex; justify-content:space-between; align-items:center; gap:12px; font-family: var(--font-body);
+    }
+    .faq-q .plus{ font-size: 18px; color: var(--gold); flex-shrink:0; transition: transform 0.2s ease; }
+    .faq-item[open] .plus{ transform: rotate(45deg); }
+    .faq-a{ padding: 0 18px 16px; font-size: 13.5px; color: var(--ink-dim); margin:0; }
+
+    /* ---- final CTA ---- */
+    .final-cta{
+      background: radial-gradient(ellipse at 50% 0%, var(--navy-2), var(--navy) 70%);
+      color:#fff; text-align:center; padding: 64px 24px;
+    }
+    .final-cta h2{ color:#fff; }
+    .final-cta p{ color:#b7bdcc; max-width:52ch; margin: 0 auto 26px; }
+
+    .proto-note{
+      margin: 24px auto; max-width: 1180px; padding: 12px 16px; border: 1px solid var(--border);
+      border-radius: 10px; color: #4b5163; font-size: 12px; background: #fafafb;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-mark">RD</div>
+    <div>
+      <div class="brand-word">RECRUITMENT DIRECT</div>
+      <div class="brand-sub">Trusted Supplier Since 2006</div>
+    </div>
+  </div>
+  <nav class="site-nav">
+    <a href="#">Home</a>
+    <a href="#" class="current">Clients</a>
+    <a href="#">Job Search</a>
+    <a href="#">Sectors</a>
+    <a href="#">AI Recruitment</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+  <div class="header-right">
+    <span class="phone">01324 613198</span>
+    <button class="hire-btn" type="button" id="scrollToTool">Find Staff</button>
+  </div>
+</header>
+
+<p class="crumb wrap"><a href="#">Home</a> / <a href="#">Clients</a> / Hire Staff</p>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Hire Staff UK-Wide<span class="gold">Any Sector. Any Role. Fast.</span></h1>
+      <p class="sub">From a x4 Pharmacist in Newcastle to 24 labourers in Liverpool — tell us who you need and we'll try to find them, fast. Backed by AI-powered screening, every candidate recruiter verified, and a UK-wide network built since 2006.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-gold" type="button" id="heroFindStaff">Find Staff Now</button>
+        <a class="btn btn-outline" href="#sectors">Browse Sectors</a>
+      </div>
+
+      <div class="placements">
+        <div class="placements-label">● Recent placements — recruiter verified</div>
+        <div class="placement-row">
+          <div class="placement-item"><span class="tag">Healthcare</span> <b>Pharmacist</b> — Coventry</div>
+          <div class="placement-item"><span class="tag">Facilities</span> <b>Facilities Manager</b> — Durham</div>
+          <div class="placement-item"><span class="tag">Construction</span> <b>24× Labourers</b> — Liverpool</div>
+          <div class="placement-item"><span class="tag">Construction</span> <b>ADT Operator</b> — Inverness</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="board-title">24/7 Applicant Call — Live</div>
+      <div class="board-stats">
+        <div class="board-stat"><div class="n">132</div><div class="l">Screened Today</div></div>
+        <div class="board-stat"><div class="n">44</div><div class="l">Submitted to Client</div></div>
+        <div class="board-stat"><div class="n">50</div><div class="l">Docs. Received</div></div>
+        <div class="board-stat"><div class="n">39</div><div class="l">Unsuccessful</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>From enquiry to shortlist, in minutes</h2>
+    <p class="lede">No account, no lengthy forms — search a role or browse by sector, and choose how you want to hear back.</p>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h3>Tell us who you need</h3><p>Search a job title directly, or browse by sector and pick the exact role.</p></div>
+      <div class="step"><div class="num">02</div><h3>Add location &amp; quantity</h3><p>One person or twenty — tell us where and how many.</p></div>
+      <div class="step"><div class="num">03</div><h3>Choose how to send it</h3><p>WhatsApp, email, or AI Hire Now for the fastest possible start.</p></div>
+      <div class="step"><div class="num">04</div><h3>We get to work</h3><p>AI-screened candidates, recruiter verified and compliance-checked, matched to your brief.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sector-section" id="sectors">
+  <div class="wrap">
+    <p class="eyebrow">Every sector, one agency</p>
+    <h2>Hire staff in any of these sectors</h2>
+    <p class="lede">Twenty sectors, all backed by the same AI-screened, compliance-checked process — whatever your industry, we can staff it.</p>
+    <div class="sector-grid" id="sectorGrid"></div>
+  </div>
+</section>
+
+<section class="tool-section" id="tool-section">
+  <div class="wrap">
+    <p class="eyebrow" style="text-align:center;">Find Staff</p>
+    <h2 style="text-align:center;">Tell us who you need — takes around 15 seconds</h2>
+    <p class="lede" style="text-align:center; margin-left:auto; margin-right:auto;">Fill it in below, no account needed.</p>
+
+    <div class="tool" id="tool">
+      <div>
+        <div class="step-label"><span class="step-num2">1</span> What do you need?</div>
+        <div class="reverse-search">
+          <label for="roleSearch">Search a role</label>
+          <span class="search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.2" stroke="currentColor" stroke-width="1.6"/><path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <input type="text" id="roleSearch" list="roleList" placeholder="Start typing a job title, e.g. Joiner">
+          <datalist id="roleList"></datalist>
+          <p class="field-hint">Picking a role here sets the sector automatically.</p>
+        </div>
+        <div class="divider-or">or browse by sector</div>
+        <div class="browse-row">
+          <div>
+            <label for="sector">Sector</label>
+            <select id="sector"><option value="">Choose a sector…</option></select>
+          </div>
+          <div>
+            <label for="position">Position</label>
+            <select id="position" disabled><option value="">Choose a sector first…</option></select>
+          </div>
+        </div>
+        <div class="selection-summary" id="step1Summary"></div>
+      </div>
+
+      <hr class="section-rule">
+
+      <div>
+        <div class="step-label"><span class="step-num2">2</span> Where</div>
+        <label for="location">Location</label>
+        <input type="text" id="location" list="locationList" placeholder="e.g. Newcastle, Hull, Birkenhead">
+        <datalist id="locationList"></datalist>
+        <p class="field-hint">Matched against RD1's existing location pages, so the enquiry and the page it came from stay in sync.</p>
+      </div>
+
+      <hr class="section-rule">
+
+      <div>
+        <div class="step-label"><span class="step-num2">3</span> How many</div>
+        <div class="quantity-row" id="qtyRow" role="group" aria-label="Quantity needed">
+          <button type="button" class="qty-btn" data-qty="1" aria-pressed="true">1</button>
+          <button type="button" class="qty-btn" data-qty="2-5" aria-pressed="false">2–5</button>
+          <button type="button" class="qty-btn" data-qty="6-10" aria-pressed="false">6–10</button>
+          <button type="button" class="qty-btn" data-qty="10+" aria-pressed="false">10+</button>
+        </div>
+        <p class="field-hint">Defaults to 1 — change it if you're hiring in bulk.</p>
+      </div>
+
+      <hr class="section-rule">
+
+      <div>
+        <div class="step-label"><span class="step-num2">4</span> Your details</div>
+        <div class="form-grid">
+          <div><label for="name">Name</label><input type="text" id="name" autocomplete="name"></div>
+          <div><label for="company">Company</label><input type="text" id="company" autocomplete="organization"></div>
+          <div><label for="website">Website <span class="optional-tag">(optional)</span></label><input type="text" id="website" placeholder="yourcompany.co.uk"></div>
+          <div><label for="phone">Phone Number</label><input type="tel" id="phone" autocomplete="tel"></div>
+          <div class="full"><label for="email">Email</label><input type="email" id="email" autocomplete="email"></div>
+        </div>
+      </div>
+
+      <hr class="section-rule">
+
+      <div>
+        <div class="step-label"><span class="step-num2">5</span> Send it</div>
+        <div class="channels">
+          <button type="button" class="channel-btn channel-whatsapp" id="sendWhatsapp" disabled>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.1-1.34A9.94 9.94 0 0012.02 22C17.53 22 22 17.52 22 12S17.53 2 12.02 2zm5.78 14.2c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .4 0 .57.01.18.01.43-.07.68.52.24.6.82 2.07.9 2.22.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.31.38-.44.51-.15.14-.3.3-.13.6.17.29.75 1.24 1.6 2 1.1 1 2.03 1.31 2.32 1.46.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.19-.29.38-.24.64-.14.26.1 1.64.77 1.92.91.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+            WhatsApp
+          </button>
+          <button type="button" class="channel-btn channel-email" id="sendEmail" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/><path d="M3 6l9 7 9-7"/></svg>
+            Email
+          </button>
+          <button type="button" class="channel-btn channel-ai" id="sendAi" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"/><path d="M19 14l.9 2.5L22.5 17.4l-2.6.9L19 20.8l-.9-2.5-2.6-.9 2.6-.9L19 14z" opacity="0.7"/></svg>
+            <span>AI Hire Now<span class="ai-sub">Creates a new JobAdder job</span></span>
+          </button>
+        </div>
+        <p class="channel-note">Fill in sector, position, location and contact details to send.</p>
+      </div>
+
+      <div class="confirm" id="confirmBox"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Why Recruitment Direct</p>
+    <h2>Compliance you can hand straight to your ops team</h2>
+    <div class="badges">
+      <div class="badge"><span class="dot"></span>Constructionline Gold</div>
+      <div class="badge"><span class="dot"></span>Cyber Essentials</div>
+      <div class="badge"><span class="dot"></span>ISO 9001:2015</div>
+      <div class="badge"><span class="dot"></span>REC Membership</div>
+      <div class="badge"><span class="dot"></span>Framework Approved</div>
+      <div class="badge"><span class="dot"></span>UK Wide Coverage</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Common questions</p>
+    <h2>Hiring staff through Recruitment Direct</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">How quickly can you find me staff? <span class="plus">+</span></summary>
+        <p class="faq-a">Enquiries submitted through AI Hire Now are picked up straight away, with AI-screened candidates matched against your brief and recruiter verified before they ever reach you. WhatsApp and email enquiries go to a consultant for a fast personal response.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Which sectors do you cover? <span class="plus">+</span></summary>
+        <p class="faq-a">Twenty sectors in total — from Construction, Logistics and Healthcare through to IT &amp; Technology, Legal and Property. See the full list above, or search for your role directly.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Can I hire just one person, or is this for bulk staffing only? <span class="plus">+</span></summary>
+        <p class="faq-a">Both. Requests range from a single role to large multi-person orders — recent placements include everything from one facilities manager to 24 labourers in a single enquiry.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Do you supply staff across the whole UK? <span class="plus">+</span></summary>
+        <p class="faq-a">Yes — Recruitment Direct has placed staff UK-wide since 2006, with dedicated coverage across England, Scotland, Wales and Northern Ireland.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is there a cost to submit an enquiry? <span class="plus">+</span></summary>
+        <p class="faq-a">No — submitting your staffing requirement, by any method, is free. You'll only discuss terms once we're matching candidates to your brief.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What is AI Hire Now? <span class="plus">+</span></summary>
+        <p class="faq-a">AI Hire Now takes your enquiry and creates a live job directly in our system, starting the matching process immediately — no waiting on a callback to get the ball rolling.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Ready to hire?</h2>
+    <p>Search a role, browse by sector, or send your requirement straight through — whichever's quickest for you.</p>
+    <button class="btn btn-gold" type="button" id="finalCtaBtn">Find Staff Now</button>
+  </div>
+</section>
+
+<p class="proto-note">Prototype only — content and structure for developer/content handoff. No messages are actually sent; sector/location data and AI Hire Now wiring covered in the accompanying dev notes. Compliance badges and sector list reflect facts already confirmed from rd1.co.uk — verify current logos/certification status before publishing.</p>
+
+<script>
+(function(){
+  const WHATSAPP_NUMBER = '447000000000'; // TODO — real WhatsApp Business number, digits only, country code, no + or spaces
+  const BRANCH_EMAIL = 'enquiries@rd1.co.uk'; // TODO — real inbox this should land in
+
+  const SECTORS = {
+    "Construction": ["Labourer","General Operative","Groundworker","Groundworks Supervisor","Groundworks Foreman","Banksman","Traffic Marshal","Slinger/Signaller","Steel Fixer","Shuttering Carpenter","Formwork Carpenter","Formwork Labourer","Concrete Finisher","Concrete Pump Operator","Concrete Gang Labourer","Demolition Operative","Demolition Supervisor","Asbestos Removal Operative","Insulation Installer","Dryliner","Plasterer","Renderer","Tiler","Roofer","Flat Roofer","Slater","Leadworker","Glazier","Fencing Installer","Paviour","Block Paver","Kerb Layer","Drainage Operative","Utilities Operative","Cable Layer","Pipe Layer","Pipefitter","Welder","Coded Welder","Rigger","Crane Operator","Mobile Crane Operator","Tower Crane Operator","Crane Supervisor","Telehandler Operator","Forklift Operator","Dumper Driver","Roller Operator","Loading Shovel Operator","360 Excavator Operator","Midi Excavator Operator","Mini Digger Operator","ADT Operator","Dozer Operator","Grader Operator","Compactor Operator","Piling Operative","Piling Rig Operator","Scaffolder","Scaffold Labourer","IPAF/MEWP Operator","Cherry Picker Operator","Bricklayer","Blocklayer","Stonemason","Dry Stone Waller","Carpenter","Joiner","First Fix Carpenter","Second Fix Carpenter","Bench Joiner","Shopfitter","Kitchen Fitter","Painter","Decorator","Spray Painter","Electrician","Domestic Electrician","Commercial Electrician","Industrial Electrician","Electrical Improver","Electrician's Mate","PAT Tester","Cable Jointer","Plumber","Gas Engineer","Heating Engineer","HVAC Engineer","Air Conditioning Engineer","Mechanical Fitter","M&E Engineer","M&E Coordinator","M&E Project Manager","Facade Engineer","Cladding Installer","Curtain Wall Installer","Waterproofing Operative","Damp Proofing Specialist","Fire Stopping Operative","Passive Fire Protection Installer","Timber Frame Erector","Structural Steel Erector","Steeplejack","Site Manager","Assistant Site Manager","Project Manager","Contracts Manager","Construction Manager","Site Engineer","Setting Out Engineer","Civil Engineer","Structural Engineer","Geotechnical Engineer","Land Surveyor","Topographical Surveyor","Quantity Surveyor","Assistant Quantity Surveyor","Estimator","Buyer","Health & Safety Officer","SHEQ Advisor","CDM Advisor","Document Controller","Planner","Design Manager","BIM Coordinator","Architectural Technician","Clerk of Works","Building Control Surveyor","Resident Engineer","General Foreman","Trade Supervisor","Labour Coordinator","Ganger","Chargehand","Traffic Management Operative","Traffic Management Supervisor","Streetworks Operative","Highways Operative","Highways Maintenance Operative","Reinstatement Operative","NRSWA Operative","Utility Locator","Cable Avoidance Technician","Water Network Operative","Tunnelling Operative","Confined Space Operative","Asphalt Layer","Road Marking Operative","Kerbing Operative","Groundsource Installer","Quarry Operative","Quarry Supervisor","Weighbridge Operator","Crusher Operator","Blaster/Shotfirer","HGV Driver","Skip Lorry Driver","Muck Away Driver","Plant Fitter","Plant Mechanic","Plant Maintenance Engineer","Site Cleaner","Site Security Officer","Site Administrator","Materials Controller","Stores Person","Yard Operative","Tool Hire Coordinator","Abnormal Loads Escort","Working at Height Technician","Apprentice Electrician","Apprentice Plumber","Apprentice Joiner","Apprentice Bricklayer","Trainee Groundworker"],
+    "Renewables": ["Solar Installer","Solar PV Technician","Solar Panel Fitter","Wind Turbine Technician","Wind Turbine Engineer","Offshore Wind Technician","Cable Jointer","Renewables Electrical Technician","Battery Storage Engineer","BESS Technician","Heat Pump Installer","Air Source Heat Pump Engineer","Ground Source Heat Pump Engineer","EV Charge Point Installer","Renewable Energy Project Manager","Renewable Energy Site Manager","Commissioning Engineer","HV/LV Electrician","Grid Connection Engineer","SCADA Engineer","Renewables Health & Safety Advisor","Renewables Site Supervisor","Rope Access Technician","Turbine Blade Technician","Substation Technician","Renewables Cable Layer","Renewables Design Engineer","Renewables Estimator","Energy Assessor","Retrofit Coordinator"],
+    "Engineering": ["Mechanical Engineer","Electrical Engineer","Design Engineer","Maintenance Engineer","CNC Machinist","CNC Programmer","Welder/Fabricator","TIG Welder","MIG Welder","Fabricator","Sheet Metal Worker","Toolmaker","Tool & Die Maker","Engineering Pipefitter","Millwright","Multi-Skilled Engineer","Electrical Maintenance Engineer","Mechanical Maintenance Engineer","Field Service Engineer","Commissioning Engineer","Controls Engineer","PLC Programmer","Automation Engineer","Instrumentation Engineer","Quality Engineer","Quality Inspector","Process Engineer","Manufacturing Engineer","Project Engineer","Draughtsperson","CAD Technician","R&D Engineer","Test Engineer","Reliability Engineer","Hydraulics Engineer","Pneumatics Technician","Electrical Panel Wirer","Engineering Team Leader","Engineering Manager","Apprentice Engineer"],
+    "Logistics": ["Warehouse Operative","Forklift Driver","Reach Truck Driver","Counterbalance Driver","LGV Class 1 Driver","LGV Class 2 Driver","Multi-Drop Driver","Van Driver","Picker & Packer","Order Picker","Delivery Driver","Supply Chain Coordinator","Logistics Coordinator","Transport Planner","Transport Manager","Fleet Manager","Warehouse Supervisor","Warehouse Manager","Warehouse Shift Manager","Stock Controller","Inventory Controller","Goods In Operative","Goods Out Operative","Loader/Unloader","Logistics Yard Operative","Traffic Office Administrator","Freight Forwarder","Import/Export Coordinator","Customs Clearance Agent","Courier","HGV Technician","Vehicle Maintenance Technician","Distribution Centre Operative","Despatch Operative","Route Planner","Warehouse Administrator","Logistics Health & Safety Officer","Transport Compliance Officer","Driver Trainer","Apprentice Warehouse Operative"],
+    "Healthcare": ["Care Assistant","Support Worker","Senior Support Worker","Registered Nurse","Healthcare Assistant","Domiciliary Carer","Live-in Carer","Complex Care Worker","Mental Health Support Worker","Learning Disability Support Worker","Deputy Manager (Care)","Care Home Manager","Registered Manager","Clinical Lead","Occupational Therapist","Physiotherapist","Speech & Language Therapist","Paramedic","Emergency Care Assistant","Phlebotomist","Pharmacist","Pharmacy Technician","Dental Nurse","Dentist","Radiographer","Theatre Nurse","Recovery Nurse","ICU Nurse","Midwife","Health Visitor","Social Worker","Community Nurse","Palliative Care Nurse","Dementia Care Specialist","Activities Coordinator","Care Coordinator","Medical Receptionist","Practice Nurse","Locum GP","Locum Doctor"],
+    "Education": ["Teaching Assistant","Higher Level Teaching Assistant","SEN Support Worker","SEN Teaching Assistant","Cover Supervisor","Learning Support Assistant","Supply Teacher","Primary Teacher","Secondary Teacher","Subject Teacher","Head of Department","Nursery Practitioner","Nursery Nurse","Early Years Practitioner","Behaviour Mentor","Pastoral Support Worker","Exam Invigilator","School Administrator","School Receptionist","School Site Manager","Lunchtime Supervisor","SENCo","Learning Mentor","Youth Worker","FE Lecturer","Tutor","Education Welfare Officer","Midday Assistant","Classroom Assistant","Deputy Headteacher"],
+    "Hospitality": ["Chef","Head Chef","Sous Chef","Commis Chef","Pastry Chef","Kitchen Porter","Kitchen Assistant","Waiting Staff","Bar Staff","Bartender","Housekeeping","Housekeeping Supervisor","Event Staff","Events Coordinator","Front of House Staff","Restaurant Manager","Bar Manager","Hotel Manager","Duty Manager","Hotel Receptionist","Concierge","Porter","Banqueting Staff","Catering Assistant","Catering Manager","Barista","Hospitality Cleaner","Steward/Stewardess","Food & Beverage Assistant","Chalet Host","Cabin Crew","Cruise Staff","Conference & Events Assistant","Wedding Coordinator","Sommelier"],
+    "Business Support & IT": ["Administrator","Customer Service Advisor","IT Support Technician","Data Entry Clerk","Receptionist","Office Junior","Helpdesk Analyst","1st Line Support Engineer","2nd Line Support Engineer","IT Field Engineer","Service Desk Analyst","Call Centre Advisor","Customer Service Team Leader","Complaints Handler","Scheduling Coordinator","Sales Administrator","Purchasing Administrator","Contracts Administrator","Business Support HR Administrator","Business Support Payroll Administrator","Business Support Data Analyst","Business Support Officer","Office Coordinator","Office Facilities Coordinator","Reprographics Operative","Post Room Assistant","Switchboard Operator","Diary Manager","Virtual Assistant","General Office Assistant"],
+    "Commercial & Office": ["Office Manager","PA / EA","Personal Assistant","Executive Assistant","Receptionist Cover","Team Assistant","Office Administrator","Commercial Data Entry Clerk","Commercial Document Controller","Facilities Assistant","Front of House Coordinator","Business Support Assistant","Project Coordinator","Bid Coordinator","Commercial Marketing Assistant","Commercial Finance Assistant","Commercial Legal Secretary","Minute Taker","Board Support Officer","Diary Coordinator","Commercial Office Junior","Print Room Operative","Commercial Switchboard Operator","Hybrid Office Assistant"],
+    "Facilities Management": ["Cleaner","Caretaker","Maintenance Operative","Security Officer","Grounds Maintenance Operative","Facilities Manager","Facilities Coordinator","Handyperson","Window Cleaner","Janitor","FM Porter","Building Services Engineer","Mobile Maintenance Engineer","Fire Alarm Engineer","CCTV Engineer","Access Control Engineer","Lift Engineer","FM HVAC Engineer","Pest Control Technician","Waste Management Operative","Grounds Supervisor","Landscaper","Gardener","Cleaning Supervisor","Contract Cleaner","Environmental Services Operative","Security Supervisor","Door Supervisor","FM Concierge","Facilities Helpdesk Coordinator"],
+    "IT & Technology": ["Software Developer","Data Analyst","Cloud Engineer","DevOps Engineer","Cybersecurity Analyst","IT Project Manager","QA Engineer","Front End Developer","Back End Developer","Full Stack Developer","Mobile App Developer","Java Developer","Python Developer",".NET Developer","Software Architect","Systems Administrator","Network Engineer","Database Administrator","Data Engineer","Data Scientist","IT Business Analyst","Product Manager","Scrum Master","UX/UI Designer","IT Security Engineer","Penetration Tester","Infrastructure Engineer","Cloud Architect","AI/Machine Learning Engineer","IT Manager","Head of IT","Technical Support Engineer","Applications Support Analyst","ERP Consultant","CRM Administrator","IT Trainer","IT Procurement Officer","Release Manager","Site Reliability Engineer","Junior Developer"],
+    "Accountancy, Finance & Banking": ["Accountant","Bookkeeper","Credit Controller","Payroll Administrator","Financial Analyst","Mortgage Advisor","Management Accountant","Financial Accountant","Assistant Accountant","Purchase Ledger Clerk","Sales Ledger Clerk","Accounts Payable Clerk","Accounts Receivable Clerk","Finance Manager","Finance Director","Financial Controller","Tax Advisor","Auditor","Internal Auditor","Payroll Manager","Payroll Officer","Treasury Analyst","Investment Analyst","Financial Planner","Wealth Manager","Bank Cashier","Banking Compliance Officer","Risk Analyst","Loan Officer","Underwriter","Insolvency Practitioner","Cost Accountant","Budget Analyst","Finance Business Partner","Trainee Accountant"],
+    "Legal": ["Paralegal","Legal Secretary","Solicitor","Conveyancer","Legal Cashier","Legal Compliance Officer","Trainee Solicitor","Legal Assistant","Barrister's Clerk","Litigation Executive","Family Law Solicitor","Commercial Solicitor","Property Solicitor","Employment Solicitor","Criminal Solicitor","Court Usher","Legal Administrator","Costs Draftsman","Legal Contract Manager","Data Protection Officer","Company Secretary","Legal Receptionist","Notary","Will Writer","Probate Executive","Immigration Advisor","Legal Office Manager","Licensed Conveyancer","Chartered Legal Executive","In-House Counsel"],
+    "Manufacturing & Production": ["Production Operative","Machine Operator","Quality Control Inspector","Production Supervisor","Assembly Operative","Line Operative","Packing Operative","Manufacturing Warehouse Operative","Manufacturing Forklift Driver","Production Manager","Production Shift Manager","Production Team Leader","Quality Assurance Manager","Manufacturing Quality Engineer","Manufacturing Health & Safety Officer","Maintenance Technician","Multi-Skilled Maintenance Engineer","Press Operator","Machine Setter","CNC Operator","Manufacturing Welder","Manufacturing Fabricator","Food Production Operative","Food Technologist","NPD Technologist","Process Operator","Manufacturing Plant Operator","Injection Moulding Operator","Print Operator","Laminator","Cutting Operative","Sewing Machinist","Textile Operative","Manufacturing Stores Person","Manufacturing Goods In/Out Operative","Manufacturing Despatch Operative","Continuous Improvement Engineer","Lean Manufacturing Engineer","Production Planner","Trainee Production Operative"],
+    "Retail": ["Sales Assistant","Store Manager","Assistant Store Manager","Visual Merchandiser","Retail Supervisor","Stock Assistant","Cashier","Checkout Operator","Department Manager","Retail Area Manager","Retail Regional Manager","Retail Buyer","Merchandiser","Stockroom Operative","Retail Team Leader","Concession Manager","Personal Shopper","Fashion Advisor","Retail Customer Service Assistant","Retail Warehouse Assistant","Loss Prevention Officer","Retail Security Officer","E-commerce Assistant","Online Order Picker","Till Supervisor","Retail Trainer","Shop Floor Assistant","Retail Delivery Driver","Seasonal Sales Assistant","Retail Administrator"],
+    "Sales & Marketing": ["Sales Executive","Account Manager","Business Development Manager","Marketing Executive","Telesales Advisor","Sales Manager","Regional Sales Manager","National Account Manager","Key Account Manager","Field Sales Representative","Internal Sales Executive","Sales Director","Marketing Manager","Digital Marketing Executive","SEO Executive","Content Marketing Executive","Social Media Executive","Brand Manager","Product Marketing Manager","PR Executive","Marketing Assistant","Marketing Coordinator","Lead Generation Executive","Sales & Marketing Administrator","Business Development Executive","Export Sales Executive","Merchandising Executive","Campaign Manager","CRM Executive","Graduate Sales Trainee"],
+    "Human Resources": ["HR Advisor","HR Administrator","HR Manager","Talent Acquisition Specialist","Recruitment Consultant","HR Business Partner","HR Director","HR Officer","Reward & Benefits Manager","Learning & Development Advisor","Training Coordinator","Employee Relations Advisor","HR Coordinator","Recruitment Coordinator","Resourcing Advisor","In-House Recruiter","HR Assistant","Payroll & HR Administrator","Diversity & Inclusion Officer","Organisational Development Advisor","HR Generalist","HR Systems Analyst","Employee Engagement Officer","Wellbeing Coordinator","Graduate HR Trainee"],
+    "Insurance": ["Insurance Advisor","Claims Handler","Underwriter","Insurance Broker","Claims Adjuster","Loss Adjuster","Insurance Account Handler","Commercial Insurance Broker","Personal Lines Advisor","Motor Claims Handler","Household Claims Handler","Insurance Risk Analyst","Insurance Compliance Officer","Insurance Account Executive","Insurance Sales Advisor","Renewals Advisor","Insurance Technician","Actuarial Analyst","Insurance Operations Manager","Claims Team Leader","Insurance Customer Service Advisor","Insurance Administrator","Insurance Fraud Investigator","Insurance Trainee","Insurance Branch Manager"],
+    "Energy & Oil/Gas": ["Energy Engineer","Offshore Technician","Rig Worker","HSE Advisor","Energy Analyst","Process Technician","Pipeline Engineer","Energy Instrumentation Technician","Energy Electrical Technician","Energy Mechanical Technician","Offshore Medic","Offshore Crane Operator","Drilling Engineer","Well Engineer","Production Operator","Control Room Operator","Energy Trader","Gas Network Engineer","Utilities Engineer","Smart Meter Installer","Energy Auditor","Decommissioning Engineer","Subsea Engineer","ROV Pilot","Marine Engineer","Offshore Rigger","Offshore Scaffolder","NDT Technician","Corrosion Engineer","Offshore Project Manager","Energy Compliance Officer","Energy Field Service Technician","Standby Engineer","Energy Trainee"],
+    "Property & Real Estate": ["Estate Agent","Lettings Negotiator","Property Manager","Surveyor","Block Manager","Valuer","Sales Negotiator","Property Consultant","Land Agent","Building Surveyor","Property Quantity Surveyor","Property Administrator","Property Facilities Manager","Asset Manager","Portfolio Manager","Residential Sales Manager","Estate Agency Branch Manager","Property Inspector","Viewing Agent","Property Mortgage Advisor","Conveyancing Assistant","Letting Manager","Tenancy Coordinator","Property Accountant","Property Development Manager","Planning Consultant","Architect","Estates Officer","Housing Officer","Property Maintenance Coordinator"]
+  };
+  const CORE_SECTORS = ["Construction","Renewables","Engineering","Logistics","Healthcare","Education","Hospitality","Business Support & IT","Commercial & Office","Facilities Management"];
+  const LOCATIONS = ["Newcastle","London","Hull","Coventry","Durham","Birkenhead","Glasgow","Edinburgh","Aberdeen","Inverness","Falkirk","Cardiff","Belfast","Manchester","Liverpool","Leeds","Bristol"];
+
+  // ---- render sector grid ----
+  const sectorGrid = document.getElementById('sectorGrid');
+  Object.entries(SECTORS).forEach(([sector, roles])=>{
+    const card = document.createElement('div');
+    card.className = 'sector-card' + (CORE_SECTORS.includes(sector) ? ' core' : '');
+    const rolesHtml = roles.map(r=>`<b>${r}</b>`).join(', ');
+    card.innerHTML = `<h3>${sector}</h3><div class="roles">${rolesHtml}</div><button type="button" class="roles-toggle">Show all ${roles.length} roles</button>`;
+    sectorGrid.appendChild(card);
+  });
+  sectorGrid.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.roles-toggle');
+    if(!btn) return;
+    const rolesDiv = btn.previousElementSibling;
+    const nowExpanded = rolesDiv.classList.toggle('expanded');
+    const count = rolesDiv.querySelectorAll('b').length;
+    btn.textContent = nowExpanded ? 'Show less' : `Show all ${count} roles`;
+  });
+
+  const sectorSel = document.getElementById('sector');
+  const positionSel = document.getElementById('position');
+  const roleSearch = document.getElementById('roleSearch');
+  const roleList = document.getElementById('roleList');
+  const locationInput = document.getElementById('location');
+  const locationList = document.getElementById('locationList');
+  const step1Summary = document.getElementById('step1Summary');
+  const qtyRow = document.getElementById('qtyRow');
+  const confirmBox = document.getElementById('confirmBox');
+
+  let state = { sector:'', position:'', location:'', qty:'1' };
+
+  const coreGroup = document.createElement('optgroup');
+  coreGroup.label = 'Core sectors';
+  const moreGroup = document.createElement('optgroup');
+  moreGroup.label = 'Also available';
+  Object.keys(SECTORS).forEach(s=>{
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s;
+    (CORE_SECTORS.includes(s) ? coreGroup : moreGroup).appendChild(o);
+  });
+  sectorSel.appendChild(coreGroup);
+  sectorSel.appendChild(moreGroup);
+
+  Object.values(SECTORS).flat().sort().forEach(p=>{
+    const o = document.createElement('option'); o.value = p; roleList.appendChild(o);
+  });
+  LOCATIONS.forEach(l=>{
+    const o = document.createElement('option'); o.value = l; locationList.appendChild(o);
+  });
+
+  function fillPositions(sector, preselect){
+    positionSel.innerHTML = '';
+    if(!sector){
+      positionSel.disabled = true;
+      const o = document.createElement('option'); o.value=''; o.textContent='Choose a sector first…';
+      positionSel.appendChild(o); return;
+    }
+    positionSel.disabled = false;
+    const blank = document.createElement('option'); blank.value=''; blank.textContent='Choose a position…';
+    positionSel.appendChild(blank);
+    SECTORS[sector].forEach(p=>{
+      const o = document.createElement('option'); o.value = p; o.textContent = p;
+      if(preselect === p) o.selected = true;
+      positionSel.appendChild(o);
+    });
+  }
+
+  function updateSummary(){
+    let html = '';
+    if(state.sector) html += `<span class="chip">Sector <b>${state.sector}</b></span>`;
+    if(state.position) html += `<span class="chip">Role <b>${state.position}</b></span>`;
+    step1Summary.innerHTML = html;
+    refreshSendButtons();
+  }
+
+  sectorSel.addEventListener('change', ()=>{
+    state.sector = sectorSel.value; state.position = '';
+    fillPositions(state.sector); updateSummary();
+  });
+  positionSel.addEventListener('change', ()=>{ state.position = positionSel.value; updateSummary(); });
+  roleSearch.addEventListener('change', ()=>{
+    const val = roleSearch.value.trim();
+    if(!val) return;
+    for(const [sector, positions] of Object.entries(SECTORS)){
+      const match = positions.find(p => p.toLowerCase() === val.toLowerCase());
+      if(match){
+        state.sector = sector; state.position = match;
+        sectorSel.value = sector; fillPositions(sector, match); updateSummary();
+        return;
+      }
+    }
+    state.position = val;
+    state.sector = state.sector || 'Not listed';
+    updateSummary();
+  });
+  locationInput.addEventListener('input', ()=>{ state.location = locationInput.value.trim(); refreshSendButtons(); });
+  qtyRow.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.qty-btn'); if(!btn) return;
+    qtyRow.querySelectorAll('.qty-btn').forEach(b=>b.setAttribute('aria-pressed','false'));
+    btn.setAttribute('aria-pressed','true'); state.qty = btn.dataset.qty;
+  });
+
+  const nameEl = document.getElementById('name');
+  const companyEl = document.getElementById('company');
+  const websiteEl = document.getElementById('website');
+  const phoneEl = document.getElementById('phone');
+  const emailEl = document.getElementById('email');
+  [nameEl, companyEl, websiteEl, phoneEl, emailEl].forEach(el => el.addEventListener('input', refreshSendButtons));
+
+  function formReady(){
+    return state.sector && state.position && state.location &&
+      nameEl.value.trim() && companyEl.value.trim() &&
+      (phoneEl.value.trim() || emailEl.value.trim());
+  }
+  function refreshSendButtons(){
+    const ready = !!formReady();
+    document.getElementById('sendWhatsapp').disabled = !ready;
+    document.getElementById('sendEmail').disabled = !ready;
+    document.getElementById('sendAi').disabled = !ready;
+  }
+  function summaryText(){
+    const qtyLabel = {'1':'1 person','2-5':'2–5 people','6-10':'6–10 people','10+':'10+ people'}[state.qty] || state.qty;
+    return `${qtyLabel} · ${state.position} · ${state.sector} · ${state.location}`;
+  }
+
+  document.getElementById('sendWhatsapp').addEventListener('click', ()=>{
+    if(!formReady()) return;
+    const msg = `Hi RD1, I'd like to hire staff: ${summaryText()}. Company: ${companyEl.value}. Contact: ${nameEl.value}, ${phoneEl.value || emailEl.value}.`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(whatsappUrl, '_blank');
+  });
+
+  document.getElementById('sendEmail').addEventListener('click', ()=>{
+    if(!formReady()) return;
+    const emailBody = `Hi RD1,\n\nI'd like to hire staff:\n${summaryText()}\n\nCompany: ${companyEl.value}\nContact: ${nameEl.value}\nPhone: ${phoneEl.value}\nEmail: ${emailEl.value}`;
+    const mailtoUrl = `mailto:${BRANCH_EMAIL}?subject=Staff Inquiry - ${companyEl.value}&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = mailtoUrl;
+  });
+
+  document.getElementById('sendAi').addEventListener('click', ()=>{
+    if(!formReady()) return;
+    const aiHireNowParams = new URLSearchParams({
+      sector: state.sector,
+      position: state.position,
+      quantity: state.qty,
+      location: state.location,
+      name: nameEl.value.trim(),
+      company: companyEl.value.trim(),
+      website: websiteEl.value.trim(),
+      phone: phoneEl.value.trim(),
+      email: emailEl.value.trim(),
+      source: 'find-staff-tool'
+    });
+    const aiHireNowUrl = `/ai-hire-now-form?${aiHireNowParams.toString()}`;
+    window.location.href = aiHireNowUrl;
+  });
+
+  function scrollToTool(){ document.getElementById('tool-section').scrollIntoView({behavior:'smooth', block:'start'}); }
+  document.getElementById('scrollToTool').addEventListener('click', scrollToTool);
+  document.getElementById('heroFindStaff').addEventListener('click', scrollToTool);
+  document.getElementById('finalCtaBtn').addEventListener('click', scrollToTool);
+
+  fillPositions('');
+})();
+</script>
+</body>
+</html>

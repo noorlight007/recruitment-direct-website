@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, Mail, Sparkles, CheckCircle2, AlertCircle } from "lucide-react";
+import { Search, Mail, Sparkles, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
 import { cities } from "@/data/cities";
 import { api } from "@/services/api";
 
@@ -32,6 +32,26 @@ const CORE_SECTORS = ["Construction","Renewables","Engineering","Logistics","Hea
 
 const ALL_ROLES = Object.values(SECTORS).flat().sort();
 
+const fieldLabels: Record<string, string> = {
+  company_name: "Company Name",
+  company_website: "Company Website",
+  email: "Email Address",
+  full_name: "Full Name",
+  phone_number: "Phone Number",
+  job_title: "Job Title",
+  num_of_workers: "Number of Workers",
+  start_date: "Start Date",
+  location: "Location",
+  siteAndroles: "Site & role details",
+  workplace_type: "Work Place Type",
+  contract_type: "Contract Type",
+  working_days: "Working Days",
+  salary_min: "Minimum Salary",
+  salary_max: "Maximum Salary",
+  salary_per: "Salary Per",
+  qualifications: "Specific Qualification Required",
+};
+
 interface FindStaffFormProps {
   initialLocation?: string;
   initialSector?: string;
@@ -57,6 +77,22 @@ export default function FindStaffForm({
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
+  // Additional Job Requirements Form State
+  const [clientType, setClientType] = useState("existing");
+  const [startDate, setStartDate] = useState(() => {
+    if (typeof window !== "undefined") {
+      return new Date().toISOString().split("T")[0];
+    }
+    return "";
+  });
+  const [selectedWorkplace, setSelectedWorkplace] = useState("");
+  const [selectedContract, setSelectedContract] = useState("");
+  const [selectedDays, setSelectedDays] = useState<string[]>(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]);
+  const [salaryMin, setSalaryMin] = useState("0");
+  const [salaryMax, setSalaryMax] = useState("0");
+  const [selectedSalaryPer, setSelectedSalaryPer] = useState("Hour");
+  const [qualifications, setQualifications] = useState("None");
+
   // UI state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
@@ -68,6 +104,9 @@ export default function FindStaffForm({
 
   const locRef = useRef<HTMLDivElement>(null);
   const roleRef = useRef<HTMLDivElement>(null);
+  const daysRef = useRef<HTMLDivElement>(null);
+
+  const [isDaysDropdownOpen, setIsDaysDropdownOpen] = useState(false);
 
   // Fetch locations from feed or fallback to cities import
   useEffect(() => {
@@ -102,6 +141,15 @@ export default function FindStaffForm({
     setSelectedPosition("");
     setRoleQuery("");
     setQuantity("1");
+    setClientType("existing");
+    setStartDate(new Date().toISOString().split("T")[0]);
+    setSelectedWorkplace("");
+    setSelectedContract("");
+    setSelectedDays(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]);
+    setSalaryMin("0");
+    setSalaryMax("0");
+    setSelectedSalaryPer("Hour");
+    setQualifications("None");
     setSubmitSuccess(null);
     setSubmitError(null);
   }, [initialLocation, initialSector]);
@@ -114,6 +162,9 @@ export default function FindStaffForm({
       }
       if (roleRef.current && !roleRef.current.contains(e.target as Node)) {
         setShowRoleSuggestions(false);
+      }
+      if (daysRef.current && !daysRef.current.contains(e.target as Node)) {
+        setIsDaysDropdownOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -169,14 +220,43 @@ export default function FindStaffForm({
     setShowLocSuggestions(false);
   };
 
+  const isValidUrl = (urlStr: string) => {
+    if (!urlStr) return true;
+    const formattedUrl = /^https?:\/\//i.test(urlStr) ? urlStr : `https://${urlStr}`;
+    try {
+      const parsed = new URL(formattedUrl);
+      return Boolean(parsed.hostname && parsed.hostname.includes(".") && parsed.hostname.split(".").every((part) => part.length > 0));
+    } catch (e) {
+      return false;
+    }
+  };
+
+  const isValidEmail = (emailStr: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailStr);
+  };
+
   const isFormValid = () => {
+    const trimmedName = name.trim();
+    const nameParts = trimmedName.split(/\s+/).filter(Boolean);
     return (
-      selectedSector &&
-      selectedPosition &&
-      location.trim() &&
-      name.trim() &&
-      company.trim() &&
-      (phone.trim() || email.trim())
+      !!selectedSector &&
+      !!selectedPosition &&
+      !!location.trim() &&
+      !!trimmedName &&
+      nameParts.length >= 2 &&
+      !!company.trim() &&
+      !!phone.trim() &&
+      !!email.trim() &&
+      isValidEmail(email.trim()) &&
+      isValidUrl(website.trim()) &&
+      !!startDate &&
+      !!selectedWorkplace &&
+      !!selectedContract &&
+      selectedDays.length > 0 &&
+      !!salaryMin &&
+      !!salaryMax &&
+      !!selectedSalaryPer &&
+      !!qualifications.trim()
     );
   };
 
@@ -185,21 +265,22 @@ export default function FindStaffForm({
       { "1": "1 person", "2-5": "2–5 people", "6-10": "6–10 people", "10+": "10+ people" }[
         quantity
       ] || quantity;
-    return `${qtyLabel} · ${selectedPosition} · ${selectedSector} · ${location}`;
+    const contractLabel = selectedContract === "418" ? "Temporary" : selectedContract === "417" ? "Contract" : selectedContract === "416" ? "Permanent" : selectedContract;
+    return `${qtyLabel} · ${selectedPosition} · ${selectedSector} · ${location} · ${selectedWorkplace} · ${contractLabel} · Start: ${startDate}`;
   };
 
   // Channel Handlers
   const handleWhatsApp = () => {
     if (!isFormValid()) return;
-    const msg = `Hi RD1, I'd like to hire staff: ${getSummaryText()}. Company: ${company}. Contact: ${name}, ${phone || email}.`;
+    const msg = `Hi RD1, I'd like to hire staff: ${getSummaryText()}. Company: ${company.trim()}. Contact: ${name.trim()}, Phone: ${phone.trim()}, Email: ${email.trim()}. Days: ${selectedDays.join(", ")}. Salary: ${salaryMin}-${salaryMax} per ${selectedSalaryPer}. Qualifications: ${qualifications.trim()}.`;
     const url = `https://wa.me/447590882626?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
 
   const handleEmail = () => {
     if (!isFormValid()) return;
-    const msg = `Hi RD1, I'd like to hire staff: ${getSummaryText()}. Company: ${company}. Contact: ${name}, ${phone || email}.`;
-    const url = `mailto:sales@rd1.co.uk?subject=Staff Inquiry - ${company}&body=${encodeURIComponent(msg)}`;
+    const msg = `Hi RD1, I'd like to hire staff: ${getSummaryText()}. Company: ${company.trim()}. Contact: ${name.trim()}, Phone: ${phone.trim()}, Email: ${email.trim()}. Days: ${selectedDays.join(", ")}. Salary: ${salaryMin}-${salaryMax} per ${selectedSalaryPer}. Qualifications: ${qualifications.trim()}.`;
+    const url = `mailto:sales@rd1.co.uk?subject=Staff Inquiry - ${company.trim()}&body=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
 
@@ -210,38 +291,53 @@ export default function FindStaffForm({
     setSubmitError(null);
 
     const payload = {
-      company_name: company,
+      company_name: company.trim(),
       company_website: website.trim(),
-      email: email.trim() || "notprovided@rd1.co.uk",
-      full_name: name,
-      phone_number: phone.trim() || "Not provided",
+      email: email.trim(),
+      full_name: name.trim(),
+      phone_number: phone.trim(),
       job_title: selectedPosition,
       num_of_workers: quantity === "1" ? 1 : quantity === "2-5" ? 3 : quantity === "6-10" ? 8 : 12,
-      start_date: new Date().toISOString().split("T")[0],
-      location: location,
-      siteAndroles: `[Find Staff Tool Enquiry]\nSector: ${selectedSector}\nPosition: ${selectedPosition}\nQuantity: ${quantity}\nWebsite: ${website}`,
-      workplace_type: "On-site",
-      contract_type: "Temporary",
-      working_days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      salary_min: 0,
-      salary_max: 0,
-      salary_per: "Hour",
-      qualifications: "None",
-      client_type: "existing",
+      start_date: startDate,
+      location: location.trim(),
+      siteAndroles: `[Find Staff Tool Enquiry]\nSector: ${selectedSector}\nPosition: ${selectedPosition}\nQuantity: ${quantity}\nWebsite: ${website.trim()}`,
+      workplace_type: selectedWorkplace,
+      contract_type: selectedContract,
+      working_days: selectedDays,
+      salary_min: parseFloat(salaryMin) || 0,
+      salary_max: parseFloat(salaryMax) || 0,
+      salary_per: selectedSalaryPer,
+      qualifications: qualifications.trim(),
+      client_type: clientType,
     };
 
     try {
       const result = await api.post("/core/live/ai-hire-now", payload);
       if (result.success) {
         setSubmitSuccess(
-          `Thank you! A new JobAdder job has been successfully created in the system for ${company}. Job ID: ${result.job?.jobId || "N/A"}.`
+          `Thank you! A new JobAdder job has been successfully created in the system for ${company.trim()}. Job ID: ${result.job?.jobId || "N/A"}.`
         );
+      } else if (
+        result.status === 502 ||
+        result.statusCode === 502 ||
+        result.error === 502 ||
+        result.error === "502"
+      ) {
+        setSubmitError("A contact with this email address already exists under another company.");
+      } else if (result.error === "Missing required fields" && Array.isArray(result.fields)) {
+        setSubmitError(`Missing required fields: ${result.fields.map((f: string) => fieldLabels[f] || f).join(", ")}`);
       } else {
         setSubmitError(result.error || "An error occurred during submission.");
       }
     } catch (err: any) {
-      console.error(err);
-      setSubmitError(err.message || "Failed to connect to the recruitment system. Please try again.");
+      console.error("API submission error:", err);
+      const is502 = err.status === 502 || 
+                    (err.message && (err.message.includes("502") || err.message.toLowerCase().includes("bad gateway")));
+      setSubmitError(
+        is502 
+          ? "A contact with this email address already exists under another company." 
+          : (err.message || "Something went wrong. Please check your connection and try again.")
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -299,14 +395,14 @@ export default function FindStaffForm({
               {showRoleSuggestions && roleSuggestions.length > 0 && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
                   {roleSuggestions.map((r) => (
-                    <button
+                    <div
                       key={r}
-                      type="button"
                       onClick={() => selectRole(r)}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors"
+                      className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors cursor-pointer"
+                      role="button"
                     >
                       {r}
-                    </button>
+                    </div>
                   ))}
                 </div>
               )}
@@ -322,45 +418,51 @@ export default function FindStaffForm({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">Sector</label>
-                <select
-                  value={selectedSector}
-                  onChange={(e) => {
-                    setSelectedSector(e.target.value);
-                    setSelectedPosition("");
-                  }}
-                  className="w-full px-3 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none"
-                >
-                  <option value="">Choose a sector…</option>
-                  <optgroup label="Core Sectors">
-                    {CORE_SECTORS.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </optgroup>
-                  <optgroup label="Also Available">
-                    {Object.keys(SECTORS)
-                      .filter((s) => !CORE_SECTORS.includes(s))
-                      .map((s) => (
+                <div className="relative">
+                  <select
+                    value={selectedSector}
+                    onChange={(e) => {
+                      setSelectedSector(e.target.value);
+                      setSelectedPosition("");
+                    }}
+                    className="w-full px-3 py-2 pr-10 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="">Choose a sector…</option>
+                    <optgroup label="Core Sectors">
+                      {CORE_SECTORS.map((s) => (
                         <option key={s} value={s}>{s}</option>
                       ))}
-                  </optgroup>
-                </select>
+                    </optgroup>
+                    <optgroup label="Also Available">
+                      {Object.keys(SECTORS)
+                        .filter((s) => !CORE_SECTORS.includes(s))
+                        .map((s) => (
+                          <option key={s} value={s}>{s}</option>
+                        ))}
+                    </optgroup>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                </div>
               </div>
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-1">Position</label>
-                <select
-                  value={selectedPosition}
-                  onChange={(e) => setSelectedPosition(e.target.value)}
-                  disabled={!selectedSector}
-                  className="w-full px-3 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none disabled:bg-slate-50 disabled:text-slate-400"
-                >
-                  <option value="">
-                    {selectedSector ? "Choose a position…" : "Choose a sector first…"}
-                  </option>
-                  {selectedSector &&
-                    SECTORS[selectedSector]?.map((p) => (
-                      <option key={p} value={p}>{p}</option>
-                    ))}
-                </select>
+                <div className="relative">
+                  <select
+                    value={selectedPosition}
+                    onChange={(e) => setSelectedPosition(e.target.value)}
+                    disabled={!selectedSector}
+                    className="w-full px-3 py-2 pr-10 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none disabled:bg-slate-50 disabled:text-slate-400 appearance-none cursor-pointer"
+                  >
+                    <option value="">
+                      {selectedSector ? "Choose a position…" : "Choose a sector first…"}
+                    </option>
+                    {selectedSector &&
+                      SECTORS[selectedSector]?.map((p) => (
+                        <option key={p} value={p}>{p}</option>
+                      ))}
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                </div>
               </div>
             </div>
 
@@ -401,14 +503,14 @@ export default function FindStaffForm({
               {showLocSuggestions && locSuggestions.length > 0 && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
                   {locSuggestions.map((l) => (
-                    <button
+                    <div
                       key={l}
-                      type="button"
                       onClick={() => selectLocation(l)}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors"
+                      className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors cursor-pointer"
+                      role="button"
                     >
                       {l}
-                    </button>
+                    </div>
                   ))}
                 </div>
               )}
@@ -448,6 +550,210 @@ export default function FindStaffForm({
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">
               <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 border border-slate-200 text-slate-700">4</span>
+              Job Requirements
+            </div>
+
+            {/* Client Status */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Client Status</label>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="clientType"
+                    checked={clientType === "existing"}
+                    onChange={() => setClientType("existing")}
+                    className="accent-[#0c1730]"
+                  />
+                  Existing Client – Order Now
+                </label>
+                <label className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="clientType"
+                    checked={clientType === "new"}
+                    onChange={() => setClientType("new")}
+                    className="accent-[#0c1730]"
+                  />
+                  New Client – Quote Request
+                </label>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 md:gap-4">
+              {/* Start Date */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Start Date</label>
+                <input
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  className="w-full h-10 px-3 md:px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
+                />
+              </div>
+
+              {/* Work Place Type */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Work Place Type</label>
+                <div className="relative">
+                  <select
+                    value={selectedWorkplace}
+                    onChange={(e) => setSelectedWorkplace(e.target.value)}
+                    className="w-full h-10 px-3 md:px-4 py-2 pr-8 md:pr-10 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="">Workplace...</option>
+                    <option value="On-Site">On-Site</option>
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Fully Remote">Fully Remote</option>
+                  </select>
+                  <ChevronDown className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                </div>
+              </div>
+
+              {/* Contract Type */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Contract Type</label>
+                <div className="relative">
+                  <select
+                    value={selectedContract}
+                    onChange={(e) => setSelectedContract(e.target.value)}
+                    className="w-full h-10 px-3 md:px-4 py-2 pr-8 md:pr-10 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="">Contract...</option>
+                    <option value="418">Temporary</option>
+                    <option value="417">Contract</option>
+                    <option value="416">Permanent</option>
+                  </select>
+                  <ChevronDown className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            {/* Working Days */}
+            <div className="relative" ref={daysRef}>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Working Days</label>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setIsDaysDropdownOpen(!isDaysDropdownOpen)}
+                  className="w-full min-h-[38px] px-3 py-1.5 flex flex-wrap items-center justify-between text-left bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none cursor-pointer gap-1.5 transition-all shadow-sm hover:border-slate-400"
+                >
+                  {selectedDays.length === 0 ? (
+                    <span className="text-slate-400 text-sm">Select Working Days</span>
+                  ) : (
+                    <div className="flex flex-wrap gap-1">
+                      {selectedDays.map((day) => (
+                        <span
+                          key={day}
+                          className="inline-flex items-center gap-1 bg-[#0c1730]/5 border border-[#0c1730]/10 text-[#0c1730] text-xs px-2.5 py-1 rounded-full font-semibold transition-all hover:bg-[#0c1730]/10"
+                        >
+                          {day}
+                          <span
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedDays((prev) => prev.filter((d) => d !== day));
+                            }}
+                            className="hover:text-rose-600 hover:bg-rose-50 rounded-full w-4 h-4 flex items-center justify-center cursor-pointer font-bold text-[10px] ml-0.5 transition-all"
+                            role="button"
+                            aria-label={`Remove ${day}`}
+                          >
+                            &times;
+                          </span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                </button>
+
+                {isDaysDropdownOpen && (
+                  <div className="absolute z-20 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-y-auto py-1">
+                    {["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((day) => {
+                      const isSelected = selectedDays.includes(day);
+                      return (
+                        <div
+                          key={day}
+                          onClick={() => {
+                            setSelectedDays((prev) =>
+                              prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+                            );
+                          }}
+                          className={`w-full text-left px-4 py-2 text-sm flex items-center justify-between hover:bg-slate-50 transition-colors select-none cursor-pointer ${
+                            isSelected ? "bg-slate-50/60 font-semibold text-slate-900" : "text-slate-600"
+                          }`}
+                          role="button"
+                        >
+                          <span>{day}</span>
+                          {isSelected && <span className="text-[#0c1730] font-bold">✓</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Salary Range */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Min Salary</label>
+                <input
+                  type="number"
+                  value={salaryMin}
+                  onChange={(e) => setSalaryMin(e.target.value)}
+                  placeholder="0"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Max Salary</label>
+                <input
+                  type="number"
+                  value={salaryMax}
+                  onChange={(e) => setSalaryMax(e.target.value)}
+                  placeholder="0"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Salary Per</label>
+                <div className="relative">
+                  <select
+                    value={selectedSalaryPer}
+                    onChange={(e) => setSelectedSalaryPer(e.target.value)}
+                    className="w-full px-4 py-2 pr-10 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="">Select Period...</option>
+                    <option value="Hour">Hour</option>
+                    <option value="Day">Day</option>
+                    <option value="Week">Week</option>
+                    <option value="Month">Month</option>
+                    <option value="Year">Year</option>
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            {/* Specific Qualifications */}
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Specific Qualification Required</label>
+              <input
+                type="text"
+                value={qualifications}
+                onChange={(e) => setQualifications(e.target.value)}
+                placeholder="e.g. CSCS Card, NVQ Level 2"
+                className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
+              />
+            </div>
+          </div>
+
+          <hr className="border-slate-100" />
+
+          {/* STEP 5 */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">
+              <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 border border-slate-200 text-slate-700">5</span>
               Your details
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -457,7 +763,7 @@ export default function FindStaffForm({
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
                 />
               </div>
               <div>
@@ -466,7 +772,7 @@ export default function FindStaffForm({
                   type="text"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
                 />
               </div>
               <div>
@@ -475,7 +781,7 @@ export default function FindStaffForm({
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
                 />
               </div>
               <div>
@@ -484,7 +790,7 @@ export default function FindStaffForm({
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
                 />
               </div>
               <div>
@@ -494,7 +800,7 @@ export default function FindStaffForm({
                   value={selectedPosition}
                   onChange={(e) => setSelectedPosition(e.target.value)}
                   placeholder="e.g. Joiner"
-                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
                 />
               </div>
               <div>
@@ -506,7 +812,7 @@ export default function FindStaffForm({
                   value={website}
                   onChange={(e) => setWebsite(e.target.value)}
                   placeholder="yourcompany.co.uk"
-                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800"
+                  className="w-full px-4 py-2 text-sm border border-slate-300 rounded-lg outline-none focus:border-slate-800 bg-white"
                 />
               </div>
             </div>
@@ -514,10 +820,10 @@ export default function FindStaffForm({
 
           <hr className="border-slate-100" />
 
-          {/* STEP 5 */}
+          {/* STEP 6 */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">
-              <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 border border-slate-200 text-slate-700">5</span>
+              <span className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-100 border border-slate-200 text-slate-700">6</span>
               Send it
             </div>
 
@@ -560,7 +866,7 @@ export default function FindStaffForm({
               </button>
             </div>
             <p className="text-center text-[11px] text-slate-400">
-              Fill in sector, position, location and contact details to enable sending.
+              Fill in all fields with valid information (including first & last name, email, and phone) to enable sending.
             </p>
           </div>
         </div>

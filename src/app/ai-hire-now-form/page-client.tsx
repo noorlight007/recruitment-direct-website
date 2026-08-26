@@ -90,6 +90,73 @@ export default function AIHireNowFormPage() {
       } else if (type === "order") {
         setClientType("existing");
       }
+
+      // Pre-fill fields from find-staff-tool
+      const companyVal = params.get("company");
+      if (companyVal) {
+        const el = document.getElementById("company") as HTMLInputElement;
+        if (el) el.value = companyVal;
+      }
+      
+      const nameVal = params.get("name");
+      if (nameVal) {
+        const nameParts = nameVal.trim().split(/\s+/);
+        const first = nameParts[0] || "";
+        const last = nameParts.slice(1).join(" ") || "";
+        const elFirst = document.getElementById("firstName") as HTMLInputElement;
+        if (elFirst) elFirst.value = first;
+        const elLast = document.getElementById("lastName") as HTMLInputElement;
+        if (elLast) elLast.value = last;
+      }
+
+      const emailVal = params.get("email");
+      if (emailVal) {
+        const el = document.getElementById("email") as HTMLInputElement;
+        if (el) el.value = emailVal;
+      }
+
+      const phoneVal = params.get("phone");
+      if (phoneVal) {
+        const el = document.getElementById("phone") as HTMLInputElement;
+        if (el) el.value = phoneVal;
+      }
+
+      const positionVal = params.get("position");
+      if (positionVal) {
+        const el = document.getElementById("jobTitles") as HTMLInputElement;
+        if (el) el.value = positionVal;
+      }
+
+      const qtyVal = params.get("quantity");
+      if (qtyVal) {
+        const numVal = parseInt(qtyVal, 10);
+        const el = document.getElementById("workers") as HTMLInputElement;
+        if (el && !isNaN(numVal)) el.value = String(numVal);
+      }
+
+      const websiteVal = params.get("website");
+      if (websiteVal) {
+        const el = document.getElementById("companyWebsite") as HTMLInputElement;
+        if (el) el.value = websiteVal;
+      }
+
+      const locationVal = params.get("location");
+      if (locationVal) {
+        const el = document.getElementById("location") as HTMLTextAreaElement;
+        if (el) el.value = locationVal;
+      }
+
+      const sectorVal = params.get("sector");
+      if (sectorVal) {
+        const el = document.getElementById("notes") as HTMLTextAreaElement;
+        if (el) el.value = `Sector: ${sectorVal}`;
+      }
+
+      // Default start date to today's date if empty
+      const elDate = document.getElementById("startDate") as HTMLInputElement;
+      if (elDate && !elDate.value) {
+        elDate.value = new Date().toISOString().split("T")[0];
+      }
     }
   }, []);
 
