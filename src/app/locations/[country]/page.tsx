@@ -68,7 +68,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://rd1.co.uk/logo.png",
+          url: "https://rd1.co.uk/images/og-image.png",
           width: 1200,
           height: 630,
           alt: `Recruitment Direct UK - ${countryName}`,
@@ -79,7 +79,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `Recruitment Agency Locations in ${countryName} | RDUK`,
       description: `Find temporary, contract and permanent recruitment services across ${countryName}. Explore our local recruitment hubs.`,
-      images: ["https://rd1.co.uk/logo.png"],
+      images: ["https://rd1.co.uk/images/og-image.png"],
     },
   };
 }

@@ -17,6 +17,7 @@ import Image from "next/image";
 import stevenImg from "../../public/images/steven.jpeg";
 import nicolaImg from "../../public/images/nicola.jpg";
 import oliaImg from "../../public/images/olia.png";
+import { getSectorHref } from "@/lib/sectors";
 
 const UKCoverageMap = dynamic(() => import("@/components/UKCoverageMap"), {
   ssr: false,
@@ -293,66 +294,60 @@ const Index = () => {
               <h2 className="standard-h1">Sectors We Support</h2>
 
               <div className="rd-sector-grid">
-                <Link href="/construction-recruitment-agency" aria-label="Construction Recruitment" className="rd-sector-link">
+                <Link href={getSectorHref("construction")!} aria-label="Construction Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Construction Recruitment">
                     <Image src="/images/Cons.png" alt="Construction Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Construction</span>
                   </div>
                 </Link>
-                <Link href="/renewable-energy-recruitment-agency" aria-label="Renewables Recruitment" className="rd-sector-link">
+                <Link href={getSectorHref("renewable-energy")!} aria-label="Renewables Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Renewables Recruitment">
                     <Image src="/images/Renewabless.png" alt="Renewables Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Renewables</span>
                   </div>
                 </Link>
-                <Link href="/engineering-recruitment-agency" aria-label="Engineering Recruitment" className="rd-sector-link">
+                <Link href={getSectorHref("engineering")!} aria-label="Engineering Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Engineering Recruitment">
                     <Image src="/images/Engineerings.png" alt="Engineering Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Engineering</span>
                   </div>
                 </Link>
-                <Link href="/construction-recruitment-agency" aria-label="Facilities Management Recruitment" className="rd-sector-link">
+                <div className="rd-sector-link opacity-75 cursor-not-allowed">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Facilities Management Recruitment">
                     <Image src="/images/Facilitiess.png" alt="Facilities Management Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
-                    <span className="rd-sector-title">Facilities Management</span>
+                    <span className="rd-sector-title">Facilities Management <br/><span className="text-[10px] text-white/50">(Coming Soon)</span></span>
                   </div>
-                </Link>
-                <Link href="/logistics-recruitment-agency" aria-label="Logistics Recruitment" className="rd-sector-link">
+                </div>
+                <Link href={getSectorHref("logistics")!} aria-label="Logistics Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Logistics Recruitment">
                     <Image src="/images/Logisticss.png" alt="Logistics Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Logistics</span>
                   </div>
                 </Link>
-                <Link href="/healthcare-recruitment-agency" aria-label="Healthcare Recruitment" className="rd-sector-link">
+                <Link href={getSectorHref("healthcare")!} aria-label="Healthcare Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Healthcare Recruitment">
                     <Image src="/images/Healthcares.png" alt="Healthcare Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Healthcare</span>
                   </div>
                 </Link>
-                <Link href="/education-recruitment-agency" aria-label="Education Recruitment" className="rd-sector-link">
+                <Link href={getSectorHref("education")!} aria-label="Education Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Education Recruitment">
                     <Image src="/images/Educations.png" alt="Education Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Education</span>
                   </div>
                 </Link>
-                <Link href="/hospitality-recruitment-agency" aria-label="Hospitality Recruitment" className="rd-sector-link">
+                <Link href={getSectorHref("hospitality")!} aria-label="Hospitality Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Hospitality Recruitment">
                     <Image src="/images/Hospitalitys.png" alt="Hospitality Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Hospitality</span>
                   </div>
                 </Link>
-                <Link href="/it-technology-recruitment-agency" aria-label="Business Support & IT Recruitment" className="rd-sector-link">
+                <Link href={getSectorHref("it-technology")!} aria-label="Business Support & IT Recruitment" className="rd-sector-link">
                   <div className="rd-sector-card standard-card" role="img" aria-label="Business Support & IT Recruitment">
                     <Image src="/images/Businesssss.png" alt="Business Support & IT Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
                     <span className="rd-sector-title">Business Support &amp; IT</span>
                   </div>
                 </Link>
-                {/* <Link href="/commercial-office-recruitment-agency" aria-label="Commercial & Office Recruitment" className="rd-sector-link">
-                  <div className="rd-sector-card standard-card" role="img" aria-label="Commercial & Office Recruitment">
-                    <Image src="/images/Businesssss.png" alt="Commercial & Office Recruitment" fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="object-cover" />
-                    <span className="rd-sector-title">Commercial &amp; Office</span>
-                  </div>
-                </Link> */}
               </div>
             </div>
           </section>

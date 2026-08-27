@@ -132,11 +132,11 @@ const locationsSubmenu = [
 
 const menuItems = [
   { label: "Home", href: "/" },
-  { label: "Clients", href: "/#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
+  { label: "Clients", href: "/clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
   { label: "Job Search", href: "/job-search" },
-  { label: "Sectors", href: "/#sectors" },
+  { label: "Sectors", href: "/sectors" },
   { label: "Locations", href: "/locations", hasDropdown: true, dropdownItems: locationsSubmenu, columns: 1 },
-  { label: "AI Recruitment", href: "/#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
+  { label: "AI Recruitment", href: "/ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
   // { label: "Integrations", href: "/integrations" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -226,9 +226,14 @@ export default function Navbar() {
       setIsFindStaffOpen(true);
     };
 
+    const handleOpenAICallDemo = () => {
+      setIsVideoOpen(true);
+    };
+
     window.addEventListener("open-ai-recruitment", handleOpenAIRecruitment);
     window.addEventListener("open-clients", handleOpenClients);
     window.addEventListener("open-find-staff", handleOpenFindStaff);
+    window.addEventListener("open-ai-call-demo", handleOpenAICallDemo);
     
     const checkHash = () => {
       if (window.location.hash === "#ai-recruitment") {
@@ -249,6 +254,7 @@ export default function Navbar() {
       window.removeEventListener("open-ai-recruitment", handleOpenAIRecruitment);
       window.removeEventListener("open-clients", handleOpenClients);
       window.removeEventListener("open-find-staff", handleOpenFindStaff);
+      window.removeEventListener("open-ai-call-demo", handleOpenAICallDemo);
       window.removeEventListener("hashchange", checkHash);
     };
   }, []);

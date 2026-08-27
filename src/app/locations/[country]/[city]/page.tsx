@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import FindStaffButton from "@/components/FindStaffButton";
+import { getSectorHref } from "@/lib/sectors";
 
 type CityPageProps = {
   params: Promise<{
@@ -84,7 +85,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "https://rd1.co.uk/logo.png",
+          url: "https://rd1.co.uk/images/og-image.png",
           width: 1200,
           height: 630,
           alt: "Recruitment Direct UK",
@@ -95,41 +96,10 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: page.seoTitle,
       description: page.metaDescription,
-      images: ["https://rd1.co.uk/logo.png"],
+      images: ["https://rd1.co.uk/images/og-image.png"],
     },
   };
 }
-
-const getSectorHref = (slug: string) => {
-  switch (slug) {
-    case "construction":
-      return "/construction-recruitment-agency";
-    case "engineering":
-      return "/engineering-recruitment-agency";
-    case "civil-engineering":
-      return "/construction-recruitment-agency";
-    case "renewable-energy":
-      return "/renewable-energy-recruitment-agency";
-    case "healthcare":
-      return "/healthcare-recruitment-agency";
-    case "education":
-      return "/education-recruitment-agency";
-    case "hospitality":
-      return "/hospitality-recruitment-agency";
-    case "logistics":
-      return "/logistics-recruitment-agency";
-    case "it-technology":
-    case "it-tech":
-      return "/it-technology-recruitment-agency";
-    case "commercial-office":
-    case "commercial":
-      return "/commercial-office-recruitment-agency";
-    case "facilities-management":
-      return "/construction-recruitment-agency";
-    default:
-      return `/${slug}-recruitment-agency`;
-  }
-};
 
 export default async function CityRecruitmentPage({
   params,
@@ -237,16 +207,12 @@ export default async function CityRecruitmentPage({
       "https://www.facebook.com/recruitmentdirect/",
       "https://www.linkedin.com/company/recruitment-direct/?utm_source=chatgpt%2Ecom&originalSubdomain=uk"
     ],
-    "address": page.countrySlug === "republic-of-ireland" ? {
+    "address": {
       "@type": "PostalAddress",
-      "addressLocality": page.city,
-      "addressRegion": page.widerArea,
-      "addressCountry": "IE"
-    } : {
-      "@type": "PostalAddress",
-      "streetAddress": "Suite 3, Enterprise House, Springkerse Business Park",
-      "addressLocality": "Stirling",
-      "postalCode": "FK7 7UF",
+      "streetAddress": "Herkimer House, Mill Road Industrial Estate",
+      "addressLocality": "Linlithgow",
+      "addressRegion": "West Lothian",
+      "postalCode": "EH49 7SF",
       "addressCountry": "GB"
     },
     "areaServed": {
@@ -351,9 +317,9 @@ export default async function CityRecruitmentPage({
                 ))}
 
                 <div className="cta-row">
-                  <FindStaffButton className="button button-primary cursor-pointer" location={page.city}>
+                  <Link className="button button-primary" href={`/ai-hire-now-form?type=quote&location=${encodeURIComponent(page.city)}`}>
                     Find Staff
-                  </FindStaffButton>
+                  </Link>
 
                   <Link className="button button-secondary" href="/contact">
                     Contact Our Recruitment Team
@@ -413,9 +379,15 @@ export default async function CityRecruitmentPage({
                         ))}
                       </ul>
 
-                      <Link href={getSectorHref(sector.slug)}>
-                        Learn more about {sector.name} recruitment
-                      </Link>
+                      {getSectorHref(sector.slug) ? (
+                        <Link href={getSectorHref(sector.slug)!}>
+                          Learn more about {sector.name} recruitment
+                        </Link>
+                      ) : (
+                        <span className="text-[#D4AF37] text-xs font-semibold opacity-70 block mt-2">
+                          {sector.name} recruitment specialists
+                        </span>
+                      )}
                     </article>
                   ))}
                 </div>
@@ -522,9 +494,9 @@ export default async function CityRecruitmentPage({
                 </p>
 
                 <div className="cta-row">
-                  <FindStaffButton className="button button-primary cursor-pointer" location={page.city}>
+                  <Link className="button button-primary" href={`/ai-hire-now-form?type=quote&location=${encodeURIComponent(page.city)}`}>
                     Find Staff
-                  </FindStaffButton>
+                  </Link>
 
                   <Link className="button button-secondary" href="/contact">
                     Contact Recruitment Direct UK

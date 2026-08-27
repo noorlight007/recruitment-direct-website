@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://rd1.co.uk/logo.png",
+        url: "https://rd1.co.uk/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Recruitment Direct UK Ltd Logo",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
     description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK, including Construction, Engineering, Logistics, Healthcare and Education Staff.",
-    images: ["https://rd1.co.uk/logo.png"],
+    images: ["https://rd1.co.uk/images/og-image.png"],
   },
 };
 
