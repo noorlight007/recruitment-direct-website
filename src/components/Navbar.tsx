@@ -392,12 +392,12 @@ export default function Navbar() {
               </div>
               <span>01324 613198</span>
             </a>
-            <button
-              onClick={handleHeaderFindStaffClick}
-              className="btn btn-primary header-btn ai-hire-btn cursor-pointer"
+            <Link
+              href="/ai-hire-now-form?type=quote"
+              className="btn btn-primary header-btn ai-hire-btn cursor-pointer text-center flex items-center justify-center text-white font-bold"
             >
               Find Staff
-            </button>
+            </Link>
           </div>
 
           {/* Mobile/Tablet Menu Button */}
@@ -506,15 +506,13 @@ export default function Navbar() {
 
               {/* Mobile Actions */}
               <div className="flex justify-center px-4 pt-2">
-                <button
-                  onClick={() => {
-                    setMobileOpen(false);
-                    handleHeaderFindStaffClick();
-                  }}
-                  className="btn btn-primary py-2.5 px-8 text-center cursor-pointer w-auto max-w-[200px]"
+                <Link
+                  href="/ai-hire-now-form?type=quote"
+                  onClick={() => setMobileOpen(false)}
+                  className="btn btn-primary py-2.5 px-8 text-center w-auto max-w-[200px] flex items-center justify-center text-white font-bold"
                 >
                   Find Staff
-                </button>
+                </Link>
               </div>
               <div className="px-4 pb-2 text-center text-xs text-foreground/60 font-medium">
                 Prefer to speak? Call us on <a href="tel:01324613198" className="hover:text-primary transition-colors">01324 613198</a>

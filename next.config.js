@@ -52,6 +52,82 @@ const nextConfig = {
     },
     async redirects() {
         return [
+            // Old Legacy URLs -> New URLs (301 Redirects)
+            {
+                source: '/construction',
+                destination: '/construction-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/construction/',
+                destination: '/construction-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/healthcare',
+                destination: '/healthcare-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/healthcare/',
+                destination: '/healthcare-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/education',
+                destination: '/education-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/education/',
+                destination: '/education-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/hospitality',
+                destination: '/hospitality-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/hospitality/',
+                destination: '/hospitality-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/logistics',
+                destination: '/logistics-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/logistics/',
+                destination: '/logistics-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/about/',
+                destination: '/about',
+                permanent: true,
+            },
+            {
+                source: '/recruitment-services',
+                destination: '/services',
+                permanent: true,
+            },
+            {
+                source: '/recruitment-services/',
+                destination: '/services',
+                permanent: true,
+            },
+            {
+                source: '/people-locations',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/people-locations/',
+                destination: '/locations',
+                permanent: true,
+            },
             // WordPress/Legacy Crawled-but-not-indexed URL Redirects
             {
                 source: '/job search/:path*',

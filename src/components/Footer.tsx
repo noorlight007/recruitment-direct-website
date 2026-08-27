@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Dialog,
   DialogContent,
@@ -269,7 +270,7 @@ export default function Footer() {
         }
         .rd-footer {
           background: transparent !important;
-          padding: 34px 0 24px;
+          padding: 34px 0 40px;
           color: #ffffff;
           position: relative;
           overflow: hidden;
@@ -624,6 +625,9 @@ export default function Footer() {
             text-align: center;
             margin: 20px 0 0;
             padding: 20px 0;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
           }
 
           .rd-footer-bottom .rd-footer-info .rd-sep {
@@ -636,6 +640,7 @@ export default function Footer() {
             border-top: 1px solid rgba(255,255,255,0.14);
             padding-top: 18px;
             margin-top: 18px;
+            padding-bottom: 24px;
           }
         }
 
@@ -830,11 +835,7 @@ export default function Footer() {
                     <h4>AI Platform</h4>
                     <a href="/ai-hire-now">Request Staff</a>
                     <a href="/ai-recruitment">AI Recruitment</a>
-                    <button
-                      onClick={() => setIsVideoOpen(true)}
-                    >
-                      AI Voice Call
-                    </button>
+                    <a href="/ai-recruitment">AI Voice Call</a>
                     <a href="/integrations">Integrations</a>
                     <a href="/security">Security</a>
                   </div>
@@ -843,12 +844,7 @@ export default function Footer() {
                     <h4>Resources</h4>
                     <a href="/clients">Clients</a>
                     <a href="/job-search">Job Search</a>
-                    <button
-                      onClick={() => setIsPoliciesOpen(true)}
-                      className="cursor-pointer text-left"
-                    >
-                      Policies
-                    </button>
+                    <a href="/privacy-policy">Policies</a>
                     <a href="/accreditations">Accreditations</a>
                     <a href="/news">News & Insights</a>
                   </div>
@@ -883,42 +879,31 @@ export default function Footer() {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => window.dispatchEvent(new CustomEvent('open-ai-steve'))}
-                      className="btn btn-primary btn-saas w-full mt-4 !justify-between cursor-pointer"
-                    >
-                      <span className="rd-ai-btn-text">Ask AI Steve</span>
-                      <b className="rd-ai-btn-arrow">→</b>
-                    </button>
-
-                    <button
-                      onClick={() => setIsVideoOpen(true)}
-                      className="btn btn-secondary btn-saas w-full mt-3 !justify-between cursor-pointer"
+                    <a
+                      href="/assets/rd1-24-7-live-call.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary btn-saas w-full mt-4 !justify-between text-white flex items-center justify-between"
                     >
                       <span className="rd-ai-btn-text">AI Call Demo</span>
                       <b className="rd-ai-btn-arrow">→</b>
-                    </button>
+                    </a>
 
-                    <a
-                      href="/#ai-recruitment"
-                      onClick={() => {
-                        window.dispatchEvent(new CustomEvent('open-ai-recruitment'));
-                      }}
-                      className="btn btn-primary btn-saas w-full mt-3 !justify-between"
+                    <Link
+                      href="/ai-recruitment"
+                      className="btn btn-primary btn-saas w-full mt-3 !justify-between text-white flex items-center justify-between"
                     >
                       <span className="rd-ai-btn-text">AI Platform</span>
                       <b className="rd-ai-btn-arrow">→</b>
-                    </a>
+                    </Link>
 
-                    <button
-                      onClick={() => {
-                        window.dispatchEvent(new CustomEvent('open-find-staff'));
-                      }}
-                      className="btn btn-primary btn-saas w-full mt-3 !justify-between cursor-pointer !bg-[#d3a94a] hover:!bg-[#b88e3a] border-none font-bold"
+                    <Link
+                      href="/ai-hire-now-form?type=quote"
+                      className="btn btn-primary btn-saas w-full mt-3 !justify-between cursor-pointer !bg-[#d3a94a] hover:!bg-[#b88e3a] border-none font-bold text-center flex items-center justify-between text-white"
                     >
                       <span className="rd-ai-btn-text">Find Staff</span>
                       <b className="rd-ai-btn-arrow">→</b>
-                    </button>
+                    </Link>
                   </div>
 
                 </div>
@@ -954,24 +939,17 @@ export default function Footer() {
               </div>
 
               <div className="rd-footer-bottom">
-                <div className="rd-footer-info" style={{ flexDirection: "column", gap: "8px" }}>
-                  <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-                    <span>Recruitment Direct UK Ltd</span>
-                    <span className="rd-sep">|</span>
-                    <span>Registered in Scotland | SC301107</span>
-                    <span className="rd-sep">|</span>
-                    <span>VAT Number: GB880406428</span>
+                <div className="rd-footer-info" style={{ flexDirection: "column", gap: "8px", background: "transparent !important", border: "none !important", boxShadow: "none !important" }}>
+                  <div className="text-white text-sm font-semibold mb-1">
+                    Recruitment Direct UK Ltd
                   </div>
-                  <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-foreground/80">
-                    <span>Registered Office: Herkimer House</span>
-                    <span className="rd-sep">|</span>
-                    <span>Mill Road Industrial Estate</span>
-                    <span className="rd-sep">|</span>
-                    <span>Linlithgow</span>
-                    <span className="rd-sep">|</span>
-                    <span>EH49 7SF</span>
+                  <div className="text-xs sm:text-sm text-[#CFCFCB] leading-relaxed">
+                    Registered in Scotland <span className="hidden sm:inline">|</span><span className="inline sm:hidden">,</span> SC301107 <span className="hidden sm:inline">|</span><span className="inline sm:hidden">,</span> VAT Number: GB880406428
                   </div>
-                  <div className="mt-2 max-w-3xl text-xs text-foreground/60 font-normal italic leading-relaxed">
+                  <div className="text-xs sm:text-sm text-[#CFCFCB] leading-relaxed">
+                    Registered Office: Herkimer House, Mill Road Industrial Estate, Linlithgow, EH49 7SF
+                  </div>
+                  <div className="mt-2 max-w-3xl text-xs text-white/40 font-normal italic leading-relaxed">
                     Recruitment Direct UK Ltd acts as an employment agency for permanent vacancies and an employment business for temporary and contract roles.
                   </div>
                 </div>
