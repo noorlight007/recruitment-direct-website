@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, } from "lucide-react";
+import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, MapPin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import FindStaffModal from "@/components/FindStaffModal";
@@ -91,11 +91,51 @@ const clientSubmenu = [
   },
 ];
 
+const locationsSubmenu = [
+  {
+    title: "All Locations",
+    description: "Browse our nationwide office and hub directory",
+    link: "/locations",
+    icon: MapPin,
+  },
+  {
+    title: "Scotland Locations",
+    description: "Edinburgh, Glasgow, Aberdeen, Inverness & surrounding areas",
+    link: "/locations/scotland",
+    icon: MapPin,
+  },
+  {
+    title: "England Locations",
+    description: "London, Manchester, Birmingham, Leeds & surrounding areas",
+    link: "/locations/england",
+    icon: MapPin,
+  },
+  {
+    title: "Wales Locations",
+    description: "Cardiff, Newport, Swansea & surrounding areas",
+    link: "/locations/wales",
+    icon: MapPin,
+  },
+  {
+    title: "Northern Ireland Locations",
+    description: "Belfast, Lisburn, Newtownabbey & surrounding areas",
+    link: "/locations/northern-ireland",
+    icon: MapPin,
+  },
+  {
+    title: "Republic of Ireland Locations",
+    description: "Dublin, Swords, Malahide & surrounding areas",
+    link: "/locations/republic-of-ireland",
+    icon: MapPin,
+  },
+];
+
 const menuItems = [
   { label: "Home", href: "/" },
   { label: "Clients", href: "/#clients", hasDropdown: true, dropdownItems: clientSubmenu, columns: 1 },
   { label: "Job Search", href: "/job-search" },
   { label: "Sectors", href: "/#sectors" },
+  { label: "Locations", href: "/locations", hasDropdown: true, dropdownItems: locationsSubmenu, columns: 1 },
   { label: "AI Recruitment", href: "/#ai-recruitment", hasDropdown: true, dropdownItems: aiProducts, columns: 1 },
   // { label: "Integrations", href: "/integrations" },
   { label: "About", href: "/about" },

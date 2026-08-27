@@ -35,5 +35,68 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Index />;
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Recruitment Direct UK Ltd",
+    "alternateName": "RDUK",
+    "url": "https://rd1.co.uk",
+    "logo": "https://rd1.co.uk/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/recruitmentdirect/",
+      "https://www.linkedin.com/company/recruitment-direct/"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+44-1324-613198",
+      "contactType": "customer service",
+      "areaServed": "GB",
+      "availableLanguage": "English"
+    }
+  };
+
+  const agencySchema = {
+    "@context": "https://schema.org",
+    "@type": "EmploymentAgency",
+    "name": "Recruitment Direct UK Ltd",
+    "url": "https://rd1.co.uk",
+    "telephone": "01324 613198",
+    "logo": "https://rd1.co.uk/logo.png",
+    "image": "https://rd1.co.uk/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Herkimer House, Mill Road Industrial Estate",
+      "addressLocality": "Linlithgow",
+      "addressRegion": "West Lothian",
+      "postalCode": "EH49 7SF",
+      "addressCountry": "GB"
+    },
+    "priceRange": "$$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:30",
+      "closes": "17:30"
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(agencySchema) }}
+      />
+      <Index />
+    </>
+  );
 }

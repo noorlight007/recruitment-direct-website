@@ -126,72 +126,107 @@ export default async function CountryLocationsPage({
   const hubs = countryCities.filter((c) => c.isHub);
   const spokes = countryCities.filter((c) => !c.isHub);
 
+  const breadcrumbElements = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://rd1.co.uk",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Locations",
+      item: "https://rd1.co.uk/locations",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: countryName,
+      item: `https://rd1.co.uk/locations/${normalizedSlug}`,
+    }
+  ];
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbElements,
+  };
+
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
-      <Navbar />
-      <FloatingElements />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
+      <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
+        <Navbar />
+        <FloatingElements />
 
-      <div className="flex-grow pt-20 sm:pt-28 pb-12 sm:pb-20">
-        <main className="max-w-5xl mx-auto px-4">
-          <nav className="city-breadcrumbs" aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/60 mb-6 sm:mb-8">
-              <li>
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              </li>
-              <span className="separator text-white/40">/</span>
-              <li>
-                <Link href="/locations" className="hover:text-white transition-colors">Locations</Link>
-              </li>
-              <span className="separator text-white/40">/</span>
-              <li className="current text-[#D4AF37] font-semibold capitalize">{countryName}</li>
-            </ol>
-          </nav>
+        <div className="flex-grow pt-20 sm:pt-28 pb-12 sm:pb-20">
+          <main className="max-w-5xl mx-auto px-4">
+            <nav className="city-breadcrumbs" aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/60 mb-6 sm:mb-8">
+                <li>
+                  <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                </li>
+                <span className="separator text-white/40">/</span>
+                <li>
+                  <Link href="/locations" className="hover:text-white transition-colors">Locations</Link>
+                </li>
+                <span className="separator text-white/40">/</span>
+                <li className="current text-[#D4AF37] font-semibold capitalize">{countryName}</li>
+              </ol>
+            </nav>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
-            Recruitment Agency Locations in {countryName}
-          </h1>
-          <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8 sm:mb-12">
-            Explore our recruitment services and offices across {countryName}. We supply temporary, contract, and permanent staff for businesses and candidates in every major city and local hub.
-          </p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
+              Recruitment Agency Locations in {countryName}
+            </h1>
+            <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8 sm:mb-12">
+              Explore our recruitment services and offices across {countryName}. We supply temporary, contract, and permanent staff for businesses and candidates in every major city and local hub.
+            </p>
 
-          {hubs.length > 0 && (
-            <div className="mb-8 sm:mb-12">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#D4AF37] mb-4 sm:mb-6">Major Recruitment Hubs</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                {hubs.map((hub) => (
-                  <Link
-                    key={hub.slug}
-                    href={hub.path}
-                    className="p-4 sm:p-6 bg-white/5 border border-white/10 rounded-xl hover:border-[#D4AF37]/50 hover:bg-white/10 transition-all block"
-                  >
-                    <h3 className="text-sm sm:text-lg font-bold text-white mb-1 sm:mb-2">{hub.city} Hub</h3>
-                    <p className="text-[10px] sm:text-xs text-white/60">View local roles and services</p>
-                  </Link>
-                ))}
+            {hubs.length > 0 && (
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#D4AF37] mb-4 sm:mb-6">Major Recruitment Hubs</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                  {hubs.map((hub) => (
+                    <Link
+                      key={hub.slug}
+                      href={hub.path}
+                      className="p-4 sm:p-6 bg-white/5 border border-white/10 rounded-xl hover:border-[#D4AF37]/50 hover:bg-white/10 transition-all block"
+                    >
+                      <h3 className="text-sm sm:text-lg font-bold text-white mb-1 sm:mb-2">{hub.city} Hub</h3>
+                      <p className="text-[10px] sm:text-xs text-white/60">View local roles and services</p>
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {spokes.length > 0 && (
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Local Areas & Towns Covered</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3">
-                {spokes.map((spoke) => (
-                  <Link
-                    key={spoke.slug}
-                    href={spoke.path}
-                    className="p-2.5 sm:p-3 bg-white/5 border border-white/10 rounded-lg hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-all text-xs sm:text-sm block text-center sm:text-left"
-                  >
-                    {spoke.city}
-                  </Link>
-                ))}
+            {spokes.length > 0 && (
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Local Areas & Towns Covered</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3">
+                  {spokes.map((spoke) => (
+                    <Link
+                      key={spoke.slug}
+                      href={spoke.path}
+                      className="p-2.5 sm:p-3 bg-white/5 border border-white/10 rounded-lg hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-all text-xs sm:text-sm block text-center sm:text-left"
+                    >
+                      {spoke.city}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </main>
+            )}
+          </main>
+        </div>
+
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </>
   );
 }
