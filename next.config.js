@@ -128,6 +128,12 @@ const nextConfig = {
                 destination: '/locations',
                 permanent: true,
             },
+            // Legacy WordPress Job URLs
+            {
+                source: '/job/:slug*',
+                destination: '/job-search',
+                permanent: true,
+            },
             // WordPress/Legacy Crawled-but-not-indexed URL Redirects
             {
                 source: '/job search/:path*',
@@ -162,6 +168,90 @@ const nextConfig = {
             {
                 source: '/author/:path*',
                 destination: '/',
+                permanent: true,
+            },
+            // WordPress Category Redirects
+            {
+                source: '/category/:path*',
+                destination: '/news',
+                permanent: true,
+            },
+            // Legacy WordPress Uploads/PDFs Redirects
+            {
+                source: '/wp-content/uploads/2024/11/RDUK-Privacy-Statement-.pdf',
+                destination: '/privacy-policy',
+                permanent: true,
+            },
+            {
+                source: '/wp-content/uploads/2024/11/RDUK-Equality-Policy-1.pdf',
+                destination: '/equality-diversity-policy',
+                permanent: true,
+            },
+            {
+                source: '/wp-content/uploads/2024/11/Recruitment-Direct-UK-Ltd-Terms-Conditions.pdf',
+                destination: '/terms-of-use',
+                permanent: true,
+            },
+            // Legacy Blog Posts Redirects
+            {
+                source: '/10-proven-ways-to-speed-up-your-hiring-process',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/10-proven-ways-to-speed-up-your-hiring-process/',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/combining-ai-telephone-screening-with-experienced-recruiters-to-deliver-faster-and-more-cost-effective-hiring',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/combining-ai-telephone-screening-with-experienced-recruiters-to-deliver-faster-and-more-cost-effective-hiring/',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/how-to-attract-gen-z-candidates',
+                destination: '/news',
+                permanent: true,
+            },
+            {
+                source: '/how-to-attract-gen-z-candidates/',
+                destination: '/news',
+                permanent: true,
+            },
+            // Legacy Policies and Compliance Redirects
+            {
+                source: '/modern-slavery-and-human-trafficking-policy',
+                destination: '/modern-slavery-policy',
+                permanent: true,
+            },
+            {
+                source: '/modern-slavery-and-human-trafficking-policy/',
+                destination: '/modern-slavery-policy',
+                permanent: true,
+            },
+            {
+                source: '/sustainability-and-policies',
+                destination: '/environmental-carbon-policy',
+                permanent: true,
+            },
+            {
+                source: '/sustainability-and-policies/',
+                destination: '/environmental-carbon-policy',
+                permanent: true,
+            },
+            {
+                source: '/policies-and-compliance',
+                destination: '/privacy-policy',
+                permanent: true,
+            },
+            {
+                source: '/policies-and-compliance/',
+                destination: '/privacy-policy',
                 permanent: true,
             },
             {
@@ -279,6 +369,117 @@ const nextConfig = {
                 permanent: true,
             },
             {
+                source: '/locations/wales/wrexham',
+                destination: '/locations/wales',
+                permanent: true,
+            },
+            {
+                source: '/locations/wales/wrexham/',
+                destination: '/locations/wales',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/greenock',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/greenock/',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/bishopbriggs',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/bishopbriggs/',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/scarborough',
+                destination: '/locations/england',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/scarborough/',
+                destination: '/locations/england',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/dunfermline',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/dunfermline/',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/wales/rhyl',
+                destination: '/locations/wales',
+                permanent: true,
+            },
+            {
+                source: '/locations/wales/rhyl/',
+                destination: '/locations/wales',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/chester',
+                destination: '/locations/england',
+                permanent: true,
+            },
+            {
+                source: '/locations/england/chester/',
+                destination: '/locations/england',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/donegal',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/republic-of-ireland/donegal/',
+                destination: '/locations',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/dumfries',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/dumfries/',
+                destination: '/locations/scotland',
+                permanent: true,
+            },
+            {
+                source: '/locations/wales/aberystwyth',
+                destination: '/locations/wales',
+                permanent: true,
+            },
+            {
+                source: '/locations/wales/aberystwyth/',
+                destination: '/locations/wales',
+                permanent: true,
+            },
+            // Legacy WordPress system paths
+            {
+                source: '/wp-includes/:path*',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/wp-content/:path*',
+                destination: '/',
+                permanent: true,
+            },
+            {
                 source: '/locations/scotland/kirkintilloch',
                 destination: '/locations/scotland/glasgow',
                 permanent: true,
@@ -390,6 +591,11 @@ const nextConfig = {
                 permanent: true,
             },
             {
+                source: '/locations/wales/',
+                destination: '/locations/wales',
+                permanent: true,
+            },
+            {
                 source: '/locations/northern-ireland/',
                 destination: '/locations/northern-ireland',
                 permanent: true,
@@ -451,6 +657,27 @@ const nextConfig = {
             {
                 source: '/locations/scotland/blackburn/',
                 destination: '/locations/scotland/blackburn-west-lothian',
+                permanent: true,
+            },
+            // Blackburn trailing hyphen redirects from Search Console
+            {
+                source: '/locations/scotland/blackburn-west-lothian-',
+                destination: '/locations/scotland/blackburn-west-lothian',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/blackburn-west-lothian-/',
+                destination: '/locations/scotland/blackburn-west-lothian',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/blackburn-aberdeenshire-',
+                destination: '/locations/scotland/blackburn-aberdeenshire',
+                permanent: true,
+            },
+            {
+                source: '/locations/scotland/blackburn-aberdeenshire-/',
+                destination: '/locations/scotland/blackburn-aberdeenshire',
                 permanent: true,
             },
             // Spelling correction redirects
@@ -587,6 +814,26 @@ const nextConfig = {
             },
             {
                 source: '/sectors/renewables/',
+                destination: '/renewable-energy-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/renewable-energy',
+                destination: '/renewable-energy-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/renewable-energy/',
+                destination: '/renewable-energy-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/renewable-energy',
+                destination: '/renewable-energy-recruitment-agency',
+                permanent: true,
+            },
+            {
+                source: '/sectors/renewable-energy/',
                 destination: '/renewable-energy-recruitment-agency',
                 permanent: true,
             },
