@@ -93,8 +93,8 @@ export default function HireStaffPage() {
               <li>
                 <span className="text-white/60">Clients</span>
               </li>
-              <span className="separator text-white/40">/</span>
-              <li className="current text-[#D4AF37] font-semibold">Hire Staff</li>
+              {/* <span className="separator text-white/40">/</span>
+              <li className="current text-[#D4AF37] font-semibold">Hire Staff</li> */}
             </ol>
           </nav>
         </div>

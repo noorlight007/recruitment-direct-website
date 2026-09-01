@@ -1,649 +1,338 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound, permanentRedirect } from "next/navigation";
-import { cities, getCity } from "@/data/cities";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import FloatingElements from "@/components/FloatingElements";
-import FindStaffButton from "@/components/FindStaffButton";
-import { getSectorHref } from "@/lib/sectors";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
-type CityPageProps = {
-  params: Promise<{
-    country: string;
-    city: string;
-  }>;
-};
+import {
+  getLocation,
+  getAllLocations,
+  regionOf,
+  travelRadiusOf,
+} from '@/lib/locations';
+import { SECTORS, getSector } from '@/lib/sectors';
+import { buildLocationFaqs } from '@/lib/locationFaqs';
+import {
+  employmentAgencySchema,
+  faqSchema,
+  locationBreadcrumbSchema,
+} from '@/lib/schema';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import FloatingElements from '@/components/FloatingElements';
+
+const SITE = 'https://rd1.co.uk';
+const PHONE = '01324 613198';
+
+interface Params {
+  params: Promise<{ country: string; city: string }> | { country: string; city: string };
+}
+
+// ---------------------------------------------------------------------------
+// STATIC GENERATION — unchanged behaviour, all 354 pages pre-rendered
+// ---------------------------------------------------------------------------
 
 export function generateStaticParams() {
-  return cities.map((city) => ({
-    country: city.countrySlug,
-    city: city.slug,
+  return getAllLocations().map((l) => ({
+    country: l.country,
+    city: l.slug,
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: CityPageProps): Promise<Metadata> {
-  const { country, city } = await params;
-  const normalizedCountry = country.toLowerCase();
-  const normalizedCity = city.toLowerCase();
+// ---------------------------------------------------------------------------
+// METADATA
+//
+// Title uses "Agencies" (plural) — every town query in Search Console that
+// converts is plural. Brand name dropped: it wins no non-brand clicks and
+// costs characters.
+// ---------------------------------------------------------------------------
 
-  if (normalizedCountry === "ireland") {
-    const northernIrelandTowns = [
-      "belfast", "derry", "lisburn", "newtownabbey", "bangor", "holywood", 
-      "carrickfergus", "larne", "antrim", "ballymena", "ballyclare", 
-      "newtownards", "comber", "saintfield", "downpatrick", "banbridge", 
-      "craigavon", "lurgan", "portadown", "armagh", "newry", "dungannon", 
-      "cookstown", "magherafelt", "coleraine", "portrush", "omagh", "enniskillen"
-    ];
-    const republicOfIrelandTowns = [
-      "dublin", "cork", "galway", "swords", "malahide", "donabate", 
-      "balbriggan", "skerries", "rush", "howth", "portmarnock", "blanchardstown", 
-      "lucan", "clondalkin", "tallaght", "leixlip", "maynooth", "celbridge", 
-      "naas", "newbridge", "bray", "greystones", "wicklow", "arklow", 
-      "drogheda", "ashbourne", "navan"
-    ];
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const resolvedParams = await params;
+  const loc = getLocation(resolvedParams.country, resolvedParams.city);
+  if (!loc) return {};
 
-    if (northernIrelandTowns.includes(normalizedCity)) {
-      permanentRedirect(`/locations/northern-ireland/${normalizedCity}`);
-    } else if (republicOfIrelandTowns.includes(normalizedCity)) {
-      permanentRedirect(`/locations/republic-of-ireland/${normalizedCity}`);
-    }
-  }
+  const region = regionOf(loc);
+  const url = `${SITE}/locations/${loc.country}/${loc.slug}`;
 
-  const page = getCity(normalizedCountry, normalizedCity);
+  const longTitle = `Recruitment Agencies in ${loc.name} | Temp, Contract & Permanent Staff`;
+  const shortTitle = `Recruitment Agencies in ${loc.name} | Staff Supplied 24/7`;
+  const title = longTitle.length <= 62 ? longTitle : shortTitle;
 
-  if (!page) {
-    return {};
-  }
+  // Names the locally-relevant sector so the description varies per town.
+  const topSector =
+    getSector(loc.prioritySectors?.[0] ?? '')?.name.toLowerCase() ?? 'healthcare';
 
-  const canonicalUrl = `https://rd1.co.uk${page.path}`;
+  const description =
+    `Looking for staff in ${loc.name}? Recruitment Direct UK supplies temporary, ` +
+    `contract and permanent workers across ${region} — construction, logistics, ` +
+    `${topSector} and more. Trusted since 2006. Call ${PHONE}.`;
 
   return {
-    title: page.seoTitle,
-    description: page.metaDescription,
-    alternates: {
-      canonical: canonicalUrl,
-      languages: page.countrySlug === "republic-of-ireland" ? {
-        "en-IE": canonicalUrl,
-        "x-default": canonicalUrl,
-      } : {
-        "en-GB": canonicalUrl,
-        "x-default": canonicalUrl,
-      }
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
-      title: page.seoTitle,
-      description: page.metaDescription,
-      url: canonicalUrl,
-      siteName: "Recruitment Direct UK",
-      type: "website",
+      title,
+      description,
+      url,
+      siteName: 'Recruitment Direct UK',
+      type: 'website',
+      locale: 'en_GB',
       images: [
-        {
-          url: "https://rd1.co.uk/images/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: "Recruitment Direct UK",
-        }
-      ]
+        { url: '/images/og-image.png', width: 1200, height: 630, alt: 'Recruitment Direct UK Ltd' },
+      ],
     },
     twitter: {
-      card: "summary_large_image",
-      title: page.seoTitle,
-      description: page.metaDescription,
-      images: ["https://rd1.co.uk/images/og-image.png"],
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/og-image.png'],
     },
+    robots: { index: true, follow: true },
   };
 }
 
-export default async function CityRecruitmentPage({
-  params,
-}: CityPageProps) {
-  const { country, city } = await params;
-  const normalizedCountry = country.toLowerCase();
-  const normalizedCity = city.toLowerCase();
+// ---------------------------------------------------------------------------
+// PAGE
+// ---------------------------------------------------------------------------
 
-  // Redirect to lowercase URL if uppercase characters are detected
-  if (country !== normalizedCountry || city !== normalizedCity) {
-    permanentRedirect(`/locations/${normalizedCountry}/${normalizedCity}`);
-  }
+export default async function LocationPage({ params }: Params) {
+  const resolvedParams = await params;
+  const loc = getLocation(resolvedParams.country, resolvedParams.city);
+  if (!loc) notFound();
 
-  if (normalizedCountry === "ireland") {
-    const northernIrelandTowns = [
-      "belfast", "derry", "lisburn", "newtownabbey", "bangor", "holywood", 
-      "carrickfergus", "larne", "antrim", "ballymena", "ballyclare", 
-      "newtownards", "comber", "saintfield", "downpatrick", "banbridge", 
-      "craigavon", "lurgan", "portadown", "armagh", "newry", "dungannon", 
-      "cookstown", "magherafelt", "coleraine", "portrush", "omagh", "enniskillen"
-    ];
-    const republicOfIrelandTowns = [
-      "dublin", "cork", "galway", "swords", "malahide", "donabate", 
-      "balbriggan", "skerries", "rush", "howth", "portmarnock", "blanchardstown", 
-      "lucan", "clondalkin", "tallaght", "leixlip", "maynooth", "celbridge", 
-      "naas", "newbridge", "bray", "greystones", "wicklow", "arklow", 
-      "drogheda", "ashbourne", "navan"
-    ];
+  const region = regionOf(loc);
+  const radius = travelRadiusOf(loc);
+  const faqs = buildLocationFaqs(loc);
 
-    if (northernIrelandTowns.includes(normalizedCity)) {
-      permanentRedirect(`/locations/northern-ireland/${normalizedCity}`);
-    } else if (republicOfIrelandTowns.includes(normalizedCity)) {
-      permanentRedirect(`/locations/republic-of-ireland/${normalizedCity}`);
-    }
-  }
+  const countryLabel =
+    loc.country.charAt(0).toUpperCase() + loc.country.slice(1).replace(/-/g, ' ');
 
-  const page = getCity(normalizedCountry, normalizedCity);
+  const hireHref = `/find-staff?location=${encodeURIComponent(loc.name)}`;
 
-  if (!page) {
-    notFound();
-    return null;
-  }
-
-  const canonicalUrl = `https://rd1.co.uk${page.path}`;
-
-  const hubPage = !page.isHub && page.hubSlug ? getCity(page.countrySlug, page.hubSlug) : undefined;
-
-  const breadcrumbElements = [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://rd1.co.uk",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Locations",
-      item: "https://rd1.co.uk/locations",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: page.country,
-      item: `https://rd1.co.uk/locations/${page.countrySlug}`,
-    },
-    {
-      "@type": "ListItem",
-      position: 4,
-      name: page.city,
-      item: canonicalUrl,
-    }
-  ];
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: breadcrumbElements,
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: page.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
-  const contactPhone = page.countrySlug === "republic-of-ireland" ? "+353 (0)1 905 8022" : "0345 067 8022";
-
-  const agencySchema = {
-    "@context": "https://schema.org",
-    "@type": "EmploymentAgency",
-    "name": `Recruitment Direct UK Ltd - ${page.city}`,
-    "url": canonicalUrl,
-    "telephone": contactPhone,
-    "logo": "https://rd1.co.uk/logo.png",
-    "image": "https://rd1.co.uk/logo.png",
-    "sameAs": [
-      "https://www.facebook.com/recruitmentdirect/",
-      "https://www.linkedin.com/company/recruitment-direct/?utm_source=chatgpt%2Ecom&originalSubdomain=uk"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Herkimer House, Mill Road Industrial Estate",
-      "addressLocality": "Linlithgow",
-      "addressRegion": "West Lothian",
-      "postalCode": "EH49 7SF",
-      "addressCountry": "GB"
-    },
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": page.city
-    },
-    "serviceType": [
-      "Temporary recruitment",
-      "Contract recruitment",
-      "Permanent recruitment"
-    ],
-    "parentOrganization": {
-      "@type": "Organization",
-      "name": "Recruitment Direct UK Ltd",
-      "url": "https://rd1.co.uk"
-    }
-  };
-
-  const organisationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Recruitment Direct UK Ltd",
-    url: "https://rd1.co.uk",
-    telephone: contactPhone,
-    foundingDate: "2006",
-    areaServed: [page.city, page.country],
-    serviceType: [
-      "Temporary recruitment",
-      "Contract recruitment",
-      "Permanent recruitment",
-    ],
-  };
+  // Priority sectors first, then the rest.
+  const priority = loc.prioritySectors ?? [];
+  const orderedSectors = [
+    ...priority.map((s) => getSector(s)).filter(Boolean),
+    ...SECTORS.filter((s) => !priority.includes(s.slug)),
+  ] as typeof SECTORS;
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
+    <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
+      <Navbar />
+      <FloatingElements />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
+      <div className="flex-grow pt-20 sm:pt-28 pb-12 sm:pb-20">
+        <main className="location-page max-w-5xl mx-auto px-4">
+          {/* ---------------- Breadcrumbs ---------------- */}
+          <nav aria-label="Breadcrumb" className="breadcrumbs">
+            <ol>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/locations">Locations</Link></li>
+              <li><Link href={`/locations/${loc.country}`}>{countryLabel}</Link></li>
+              <li aria-current="page">{loc.name}</li>
+            </ol>
+          </nav>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(agencySchema),
-        }}
-      />
+          {/* ---------------- H1 + local intro ----------------
+              Unique content leads the page. Nothing templated above this. */}
+          <header className="location-hero">
+            <p className="eyebrow">Temporary | Contract | Permanent Recruitment</p>
+            <h1>Recruitment Agencies in {loc.name}</h1>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organisationSchema),
-        }}
-      />
+            {loc.localContext && <p className="local-context">{loc.localContext}</p>}
 
-      <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
-        <Navbar />
-        <FloatingElements />
+            <p>
+              Recruitment Direct UK supplies temporary, contract and permanent staff to
+              employers throughout {loc.name} and the wider {region} area
+              {loc.employmentSites?.length
+                ? `, including ${loc.employmentSites.slice(0, 2).join(' and ')}`
+                : ''}
+              . Most candidates we place in {loc.name} travel from within {radius} miles.
+            </p>
 
-        <div className="flex-grow pt-28 pb-20">
-          <main className="city-page-main">
-            <nav className="city-breadcrumbs" aria-label="Breadcrumb">
-              <div className="container">
-                <ol>
-                  <li>
-                    <Link href="/">Home</Link>
-                  </li>
-                  <span className="separator">/</span>
-                  <li>
-                    <Link href="/locations">Locations</Link>
-                  </li>
-                  <span className="separator">/</span>
-                  <li>
-                    <Link href={`/locations/${page.countrySlug}`} className="capitalize">
-                      {page.country}
+            <div className="cta-row">
+              <Link href={hireHref} className="btn-primary">
+                Find Staff in {loc.name}
+              </Link>
+              <a href={`tel:${PHONE.replace(/\s/g, '')}`} className="btn-secondary">
+                Call {PHONE}
+              </a>
+            </div>
+          </header>
+
+          {/* ---------------- Local employment market ---------------- */}
+          {(loc.employmentSites?.length ||
+            loc.transport?.length ||
+            loc.districts?.length) && (
+            <section aria-labelledby="market-heading">
+              <h2 id="market-heading">The {loc.name} Employment Market</h2>
+
+              {loc.employmentSites?.length ? (
+                <>
+                  <h3>Key employment sites</h3>
+                  <ul>
+                    {loc.employmentSites.map((s) => <li key={s}>{s}</li>)}
+                  </ul>
+                </>
+              ) : null}
+
+              {loc.transport?.length ? (
+                <>
+                  <h3>Transport and access</h3>
+                  <ul>
+                    {loc.transport.map((t) => <li key={t}>{t}</li>)}
+                  </ul>
+                </>
+              ) : null}
+
+              {loc.districts?.length ? (
+                <>
+                  <h3>Areas we cover around {loc.name}</h3>
+                  <p>{loc.districts.join(', ')}.</p>
+                </>
+              ) : null}
+            </section>
+          )}
+
+          {/* ---------------- Sector grid ----------------
+              Replaces ~1,400 words of identical boilerplate that appeared on all
+              354 pages. Four roles per sector; full lists live on the sector page. */}
+          <section aria-labelledby="sectors-heading">
+            <h2 id="sectors-heading">Recruitment Sectors in {loc.name}</h2>
+            <p>
+              We supply temporary, contract and permanent staff across every sector
+              below in {loc.name}
+              {priority.length ? '. The first three reflect local demand' : ''}.
+            </p>
+
+            <div className="sector-grid">
+              {orderedSectors.map((s) => (
+                <div key={s.slug} className="sector-card">
+                  <h3>{s.name}</h3>
+                  <p className="sector-roles">{s.topRoles.join(' · ')}</p>
+                  {s.live ? (
+                    <Link href={s.href}>{s.name} recruitment</Link>
+                  ) : (
+                    <span className="sector-pending">Coming soon</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ---------------- Contract types ---------------- */}
+          <section aria-labelledby="types-heading">
+            <h2 id="types-heading">
+              Temporary, Contract and Permanent Recruitment in {loc.name}
+            </h2>
+            <div className="type-grid">
+              <div>
+                <h3>Temporary</h3>
+                <p>
+                  Cover for absence, seasonal peaks and short-notice demand in{' '}
+                  {loc.name}, often starting within 24 hours.
+                </p>
+              </div>
+              <div>
+                <h3>Contract</h3>
+                <p>
+                  Fixed-term and project personnel for defined assignments across{' '}
+                  {region}.
+                </p>
+              </div>
+              <div>
+                <h3>Permanent</h3>
+                <p>
+                  Screened, referenced permanent hires for employers in {loc.name},
+                  from operatives to management.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ---------------- Why RDUK ---------------- */}
+          <section aria-labelledby="why-heading">
+            <h2 id="why-heading">Why Employers in {loc.name} Choose Us</h2>
+            <ul>
+              <li>Supplying staff since 2006</li>
+              <li>24/7 AI-supported applicant screening</li>
+              <li>Right to Work and compliance checks on every candidate</li>
+              <li>Constructionline Gold, Cyber Essentials, ISO 9001, REC member</li>
+              <li>High-volume capability for project and site starts</li>
+              <li>Consultant-reviewed CVs, not automated CV dumps</li>
+            </ul>
+          </section>
+
+          {/* ---------------- FAQs ---------------- */}
+          <section aria-labelledby="faq-heading">
+            <h2 id="faq-heading">{loc.name} Recruitment FAQs</h2>
+            {faqs.map((f) => (
+              <details key={f.question}>
+                <summary><h3>{f.question}</h3></summary>
+                <p>{f.answer}</p>
+              </details>
+            ))}
+          </section>
+
+          {/* ---------------- Nearby towns ----------------
+              Uses real neighbours from location data. The previous version served
+              every Scottish town the Glasgow hub's satellite list regardless of
+              actual geography (Coatbridge listed Renfrewshire towns). */}
+          {loc.neighbours?.length ? (
+            <section aria-labelledby="nearby-heading">
+              <h2 id="nearby-heading">Recruitment Near {loc.name}</h2>
+              <ul className="nearby-list">
+                {loc.neighbours.map((n) => (
+                  <li key={n.slug}>
+                    <Link href={`/locations/${n.country}/${n.slug}`}>
+                      Recruitment agencies in {n.name}
                     </Link>
+                    <span className="nearby-distance">{n.miles} miles</span>
                   </li>
-                  <span className="separator">/</span>
-                  <li className="current">{page.city}</li>
-                </ol>
-              </div>
-            </nav>
-
-            <section className="city-hero">
-              <div className="container">
-                <p className="eyebrow">
-                  Temporary | Contract | Permanent Recruitment
-                </p>
-
-                <h1>Recruitment Agency in {page.city}</h1>
-
-                {page.introduction.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
                 ))}
-
-                <div className="cta-row">
-                  <Link className="button button-primary" href={`/ai-hire-now-form?type=quote&location=${encodeURIComponent(page.city)}`}>
-                    Find Staff
-                  </Link>
-
-                  <Link className="button button-secondary" href="/contact">
-                    Contact Our Recruitment Team
-                  </Link>
-                </div>
-              </div>
+              </ul>
+              <p>
+                <Link href={`/locations/${loc.country}`}>
+                  All {countryLabel} locations
+                </Link>
+              </p>
             </section>
+          ) : null}
 
-            <section className="city-employer-support">
-              <div className="container">
-                <h2>Recruiting Staff in {page.city}?</h2>
-
-                <p>
-                  Recruitment Direct UK helps employers recruit reliable and
-                  appropriately experienced personnel across {page.city} and the
-                  surrounding region.
-                </p>
-
-                <ul>
-                  <li>Urgent temporary staff</li>
-                  <li>Skilled contract personnel</li>
-                  <li>Permanent employees</li>
-                  <li>Project and high-volume workforces</li>
-                  <li>Professional and technical specialists</li>
-                  <li>Senior and management appointments</li>
-                </ul>
-
-                <p>
-                  Our consultants manage candidate sourcing, applicant screening,
-                  shortlisting and relevant compliance checks, helping employers
-                  reduce recruitment administration and fill vacancies faster.
-                </p>
-              </div>
-            </section>
-
-            <section className="city-sectors">
-              <div className="container">
-                <h2>Recruitment Sectors in {page.city}</h2>
-
-                <p>
-                  We provide temporary, contract and permanent recruitment across
-                  every core Recruitment Direct UK sector.
-                </p>
-
-                <div className="sector-grid">
-                  {page.sectors.map((sector) => (
-                    <article className="sector-card" key={sector.slug}>
-                      <h3>{sector.heading}</h3>
-
-                      <p>{sector.description}</p>
-
-                      <h4>Roles we recruit include:</h4>
-
-                      <ul>
-                        {sector.roles.map((role) => (
-                          <li key={role}>{role}</li>
-                        ))}
-                      </ul>
-
-                      {getSectorHref(sector.slug) ? (
-                        <Link href={getSectorHref(sector.slug)!}>
-                          Learn more about {sector.name} recruitment
-                        </Link>
-                      ) : (
-                        <span className="text-[#D4AF37] text-xs font-semibold opacity-70 block mt-2">
-                          {sector.name} recruitment specialists
-                        </span>
-                      )}
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            <section className="recruitment-services">
-              <div className="container">
-                <h2>
-                  Temporary, Contract and Permanent Recruitment in {page.city}
-                </h2>
-
-                <div className="service-grid">
-                  <article>
-                    <h3>Temporary Recruitment</h3>
-                    <p>
-                      Access temporary personnel for urgent cover, seasonal
-                      requirements, projects, increased workloads and ongoing
-                      assignments.
-                    </p>
-                  </article>
-
-                  <article>
-                    <h3>Contract Recruitment</h3>
-                    <p>
-                      Recruit specialist contractors and fixed-term personnel for
-                      defined projects, technical assignments and periods of
-                      increased demand.
-                    </p>
-                  </article>
-
-                  <article>
-                    <h3>Permanent Recruitment</h3>
-                    <p>
-                      Find permanent employees with the experience, qualifications
-                      and long-term suitability required by your organisation.
-                    </p>
-                  </article>
-                </div>
-              </div>
-            </section>
-
-            <section className="local-recruitment">
-              <div className="container">
-                <h2>Local Recruitment Support Across {page.city}</h2>
-
-                {page.localMarket.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </section>
-
-            <section className="areas-covered">
-              <div className="container">
-                <h2>Local Districts We Support</h2>
-
-                <ul className="area-list">
-                  {page.areas.map((area) => (
-                    <li key={area}>{area}</li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-
-            <section className="why-rduk">
-              <div className="container">
-                <h2>Why Employers Choose Recruitment Direct UK</h2>
-
-                <ul>
-                  <li>Established recruitment company since 2006</li>
-                  <li>Temporary, contract and permanent recruitment</li>
-                  <li>Nationwide candidate sourcing</li>
-                  <li>Every core RDUK recruitment sector covered</li>
-                  <li>Experienced recruitment consultants</li>
-                  <li>AI-supported applicant screening</li>
-                  <li>Right to Work and relevant compliance checks</li>
-                  <li>Fast response to urgent vacancies</li>
-                  <li>High-volume recruitment capability</li>
-                </ul>
-              </div>
-            </section>
-
-            <section className="city-faqs">
-              <div className="container">
-                <h2>{page.city} Recruitment FAQs</h2>
-
-                {page.faqs.map((faq) => (
-                  <details key={faq.question} className="faq-details">
-                    <summary>{faq.question}</summary>
-                    <p>{faq.answer}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
-
-            <section className="final-client-cta">
-              <div className="container">
-                <h2>Need Staff in {page.city}?</h2>
-
-                <p>
-                  Tell us which positions you need to fill and our recruitment team
-                  will begin sourcing suitable temporary, contract or permanent
-                  personnel.
-                </p>
-
-                <div className="cta-row">
-                  <Link className="button button-primary" href={`/ai-hire-now-form?type=quote&location=${encodeURIComponent(page.city)}`}>
-                    Find Staff
-                  </Link>
-
-                  <Link className="button button-secondary" href="/contact">
-                    Contact Recruitment Direct UK
-                  </Link>
-                </div>
-              </div>
-            </section>
-
-            {/* Hub "Areas We Cover" Spoke Links */}
-            {page.isHub && (
-              <section className="city-areas-covered-hub">
-                <div className="container">
-                  <h2>Areas We Cover around {page.city}</h2>
-                  <p>
-                    Recruitment Direct UK provides professional staffing and recruitment services across the entire {page.city} region, including the following local areas and towns:
-                  </p>
-                  <div className="areas-grid">
-                    {cities
-                      .filter((c) => c.hubSlug === page.slug)
-                      .map((town) => (
-                        <div key={town.slug} className="area-link-wrapper">
-                          <Link href={town.path}>
-                            Recruitment Agency {town.city}
-                          </Link>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Spoke "Nearby Towns & Hub" Links */}
-            {!page.isHub && page.hubSlug && (
-              <section className="city-town-spokes">
-                <div className="container">
-                  <h2>Local Recruitment Hubs Near {page.city}</h2>
-                  <p>
-                    Explore our local recruitment services and active job vacancies in nearby towns across the region:
-                  </p>
-                  <div className="areas-grid">
-                    {/* Link back to the main Hub page */}
-                    {hubPage && (
-                      <div className="area-link-wrapper hub-highlight">
-                        <Link href={hubPage.path}>
-                          {hubPage.city} Hub
-                        </Link>
-                      </div>
-                    )}
-                    
-                    {/* Link to other towns under the same hub */}
-                    {cities
-                      .filter((c) => c.hubSlug === page.hubSlug && c.slug !== page.slug)
-                      .slice(0, 6)
-                      .map((town) => (
-                        <div key={town.slug} className="area-link-wrapper">
-                          <Link href={town.path}>
-                            Recruitment Agency {town.city}
-                          </Link>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </section>
-            )}
-
-            <section className="city-internal-links">
-              <div className="container">
-                <h2>Recruitment Direct UK Information & Resources</h2>
-                <div className="links-grid">
-                  <div className="links-col">
-                    <h3>Explore Locations</h3>
-                    <ul>
-                      {cities
-                        .filter((c) => c.countrySlug === page.countrySlug && c.slug !== page.slug && c.isHub === true)
-                        .slice(0, 4)
-                        .map((c) => (
-                          <li key={c.slug}>
-                            <Link href={c.path}>Recruitment Agency in {c.city}</Link>
-                          </li>
-                        ))}
-                      <li>
-                        <Link href="/locations">View All Our Locations</Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="links-col">
-                    <h3>Recruitment Sectors</h3>
-                    <ul>
-                      <li>
-                        <Link href="/construction-recruitment-agency">Construction Recruitment</Link>
-                      </li>
-                      <li>
-                        <Link href="/engineering-recruitment-agency">Engineering Recruitment</Link>
-                      </li>
-                      <li>
-                        <Link href="/logistics-recruitment-agency">Logistics &amp; Driving Recruitment</Link>
-                      </li>
-                      <li>
-                        <Link href="/healthcare-recruitment-agency">Healthcare & Care Recruitment</Link>
-                      </li>
-                      <li>
-                        <Link href="/education-recruitment-agency">Education Sector Recruitment</Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="links-col">
-                    <h3>Employer Services</h3>
-                    <ul>
-                      <li>
-                        <Link href="/why-choose-us">Why Choose RDUK</Link>
-                      </li>
-                      <li>
-                        <Link href="/temporary-staff">Temporary Staff Supply</Link>
-                      </li>
-                      <li>
-                        <Link href="/contract-staff">Contract Staff Supply</Link>
-                      </li>
-                      <li>
-                        <Link href="/permanent-staff">Permanent Staff Supply</Link>
-                      </li>
-                      <li>
-                        <Link href="/place-enquiry">Submit a Staffing Inquiry</Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="links-col">
-                    <h3>Agency Resources</h3>
-                    <ul>
-                      <li>
-                        <Link href="/about">About Our Agency</Link>
-                      </li>
-                      <li>
-                        <Link href="/job-search">Search Active Jobs</Link>
-                      </li>
-                      <li>
-                        <Link href="/contact">Get in Touch / Contact Us</Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </main>
-        </div>
-
-        <Footer />
+          {/* ---------------- Closing CTA ---------------- */}
+          <section className="closing-cta">
+            <h2>Need Staff in {loc.name}?</h2>
+            <p>
+              Tell us the roles you need filled and our team will begin sourcing
+              screened temporary, contract or permanent candidates.
+            </p>
+            <div className="cta-row">
+              <Link href={hireHref} className="btn-primary">Find Staff</Link>
+              <Link href="/contact" className="btn-secondary">Contact Our Team</Link>
+            </div>
+          </section>
+        </main>
       </div>
-    </>
+
+      <Footer />
+
+      {/* ---------------- Structured data ---------------- */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(employmentAgencySchema(loc)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqs)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(locationBreadcrumbSchema(loc)),
+        }}
+      />
+    </div>
   );
 }

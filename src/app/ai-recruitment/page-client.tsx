@@ -188,7 +188,7 @@ export default function AIRecruitmentPageClient() {
       </section>
 
       {/* Call Pilot Video Trigger CTA */}
-      <section className="py-16 md:py-20 bg-background border-t border-white/5">
+      {/* <section className="py-16 md:py-20 bg-background border-t border-white/5">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div
             {...fadeUp}
@@ -215,7 +215,7 @@ export default function AIRecruitmentPageClient() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </div>

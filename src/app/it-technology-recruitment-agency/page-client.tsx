@@ -444,7 +444,7 @@ export default function ITTechSectorPageClient() {
             "logo": "https://rd1.co.uk/logo.png",
             "sameAs": [
               "https://www.facebook.com/recruitmentdirect/",
-              "https://www.linkedin.com/company/recruitment-direct/?utm_source=chatgpt%2Ecom&originalSubdomain=uk"
+              "https://www.linkedin.com/company/recruitment-direct/"
             ]
           })
         }}
