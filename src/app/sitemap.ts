@@ -64,7 +64,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/open-credit-account",
     "/our-process",
     "/permanent-staff",
-    "/place-enquiry",
     "/privacy-policy",
     "/renewable-energy-recruitment-agency",
     "/right-to-work-policy",

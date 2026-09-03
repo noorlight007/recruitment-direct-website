@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import PageClient from "./page-client";
 
 export const metadata: Metadata = {
-  title: "AI Fairness and Bias Statement | RDUK",
-  description: "How we ensure fairness and mitigate bias in our AI-driven recruitment and screening tools.",
+  title: "AI Fairness and Bias Statement | Recruitment Direct UK",
+  description: "Recruitment Direct UK's commitment to eliminating algorithmic bias and ensuring fair, inclusive AI-assisted hiring.",
   alternates: {
     canonical: "https://rd1.co.uk/bias-fairness-statement",
+  },
+  openGraph: {
+    title: "AI Fairness and Bias Statement | Recruitment Direct UK",
+    description: "Recruitment Direct UK's commitment to eliminating algorithmic bias and ensuring fair, inclusive AI-assisted hiring.",
+    url: "https://rd1.co.uk/bias-fairness-statement",
+    type: "website",
+    siteName: "Recruitment Direct UK Ltd",
   },
 };
 

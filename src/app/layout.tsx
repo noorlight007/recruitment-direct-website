@@ -25,6 +25,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rd1.co.uk"),
   title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
   description: "Recruitment Direct UK supplies temporary, contract and permanent staff across Scotland and the UK, including Construction, Engineering, Logistics, Healthcare and Education Staff.",
   openGraph: {

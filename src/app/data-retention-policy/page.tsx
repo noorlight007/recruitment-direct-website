@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import PageClient from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Data Retention Policy | RDUK",
-  description: "How long we retain personal data and business records in accordance with compliance.",
+  title: "Data Retention Policy | Recruitment Direct UK",
+  description: "Retention schedules and deletion guidelines for candidate CVs, compliance documents, and commercial records.",
   alternates: {
     canonical: "https://rd1.co.uk/data-retention-policy",
+  },
+  openGraph: {
+    title: "Data Retention Policy | Recruitment Direct UK",
+    description: "Retention schedules and deletion guidelines for candidate CVs, compliance documents, and commercial records.",
+    url: "https://rd1.co.uk/data-retention-policy",
+    type: "website",
+    siteName: "Recruitment Direct UK Ltd",
   },
 };
 

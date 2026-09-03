@@ -8,13 +8,26 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { FileText, Shield, Scale, Lock, Users, Info } from "lucide-react";
+import { FileText, Shield, Scale, Lock, Users, Info, ChevronDown } from "lucide-react";
 import { cities } from "@/data/cities";
 
 export default function Footer() {
   const [isPoliciesOpen, setIsPoliciesOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [maxPolicyBtnHeight, setMaxPolicyBtnHeight] = useState<number | undefined>(undefined);
+  const [openMobileSections, setOpenMobileSections] = useState<Record<string, boolean>>({
+    company: false,
+    aiPlatform: false,
+    locations: false,
+    policies: false,
+  });
+
+  const toggleMobileSection = (key: string) => {
+    setOpenMobileSections((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
 
   useEffect(() => {
     if (!isPoliciesOpen) {
@@ -300,19 +313,38 @@ export default function Footer() {
         .rd-footer-columns {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 40px;
+          gap: 36px;
           flex: 1;
           margin-top: 5px;
         }
 
         .footer-col {
-          padding-right: 20px;
+          padding-right: 16px;
           border-right: 1px solid rgba(255, 255, 255, 0.12);
           min-height: 240px;
         }
 
         .footer-col:last-child {
           border-right: none;
+        }
+
+        .footer-col-toggle {
+          all: unset !important;
+          display: block !important;
+          width: 100% !important;
+          text-align: left !important;
+          cursor: default !important;
+          padding: 0 !important;
+          background: none !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+
+        .footer-col-header-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
         }
 
         .footer-col h4 {
@@ -334,12 +366,20 @@ export default function Footer() {
           background: rgba(255, 255, 255, 0.35);
         }
 
+        .footer-col-chevron {
+          display: none;
+        }
+
+        .footer-col-links {
+          display: block !important;
+        }
+
         .footer-col a {
           display: block;
           color: #CFCFCB !important;
           text-decoration: none;
           font-size: 14px;
-          margin-bottom: 16px;
+          margin-bottom: 14px;
           transition: 0.2s ease;
         }
 
@@ -348,14 +388,36 @@ export default function Footer() {
           text-shadow: 0 0 8px rgba(255,255,255,0.45) !important;
         }
 
+        .footer-all-policies-btn {
+          all: unset !important;
+          display: inline-block !important;
+          margin-top: 4px !important;
+          margin-bottom: 14px !important;
+          color: #60A5FA !important;
+          font-size: 13.5px !important;
+          font-weight: 500 !important;
+          cursor: pointer !important;
+          background: none !important;
+          border: none !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          transition: color 0.2s ease !important;
+          text-align: left !important;
+        }
+
+        .footer-all-policies-btn:hover {
+          color: #93C5FD !important;
+          text-shadow: 0 0 8px rgba(96, 165, 250, 0.45) !important;
+        }
+
         /* Standardize footer buttons to match text links on desktop */
-        .footer-col button {
+        .footer-col button.footer-link-btn {
           all: unset !important;
           display: block !important;
           width: auto !important;
           min-width: 0 !important;
           padding: 0 !important;
-          margin-bottom: 16px !important;
+          margin-bottom: 14px !important;
           color: #CFCFCB !important;
           font-size: 14px !important;
           font-weight: 400 !important;
@@ -369,16 +431,10 @@ export default function Footer() {
           text-align: left !important;
         }
 
-        .footer-col button:hover,
-        .footer-col a:hover {
+        .footer-col button.footer-link-btn:hover {
           color: #ffffff !important;
           text-shadow: 0 0 8px rgba(255,255,255,0.45) !important;
           transform: none !important;
-        }
-
-        .footer-col button:active,
-        .footer-col a:active {
-          color: #ffffff !important;
         }
 
         /* Right column */
@@ -592,31 +648,84 @@ export default function Footer() {
           color: rgba(255,255,255,0.35) !important;
         }
 
-        /* Mobile */
-        @media (max-width: 1000px) {
+        /* Mobile & Tablet */
+        @media (max-width: 1024px) {
           .rd-footer-main {
             grid-template-columns: 1fr;
+            gap: 48px;
           }
 
           .rd-footer-columns {
             grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
           }
 
           .rd-footer-right {
             max-width: 430px;
             margin: 0 auto;
+            width: 100%;
           }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           .rd-footer-columns {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
           }
 
           .footer-col {
-            border-right: none;
-            border-bottom: 1px solid rgba(0, 170, 255, 0.18);
-            padding-bottom: 20px;
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+            padding: 0 !important;
+            min-height: 0 !important;
+          }
+
+          .footer-col:first-child {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+          }
+
+          .footer-col-toggle {
+            cursor: pointer !important;
+            padding: 16px 0 !important;
+          }
+
+          .footer-col h4 {
+            margin: 0 !important;
+            font-size: 14px !important;
+            letter-spacing: 1.5px !important;
+          }
+
+          .footer-col h4::after {
+            display: none !important;
+          }
+
+          .footer-col-chevron {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            transition: transform 0.25s ease;
+          }
+
+          .footer-col-chevron.open {
+            transform: rotate(180deg);
+            color: #ffffff;
+          }
+
+          .footer-col-links {
+            display: none !important;
+            padding-bottom: 16px !important;
+          }
+
+          .footer-col-links.open {
+            display: block !important;
+          }
+
+          .footer-col a {
+            margin-bottom: 12px !important;
+            font-size: 13.5px !important;
           }
 
           .rd-footer-bottom .rd-footer-info {
@@ -633,8 +742,6 @@ export default function Footer() {
           .rd-footer-bottom .rd-footer-info .rd-sep {
             display: none;
           }
-
-          /* Unified footer layout simplifies CSS, no longer needs display toggling */
 
           .rd-footer-bottom p {
             border-top: 1px solid rgba(255,255,255,0.14);
@@ -814,48 +921,118 @@ export default function Footer() {
 
               <div className="rd-footer-main">
 
-                {/* LEFT COLUMNS */}
+                {/* 4 REDESIGNED SECTIONS */}
                 <div className="rd-footer-columns">
 
+                  {/* 1. COMPANY */}
                   <div className="footer-col">
-                    <h4>Company</h4>
-                    <a href="/about">About Us</a>
-                    <a href="/services">Services</a>
-                    <a href="/why-choose-us">Why RDUK</a>
-                    <a href="/our-process">Our Process</a>
-                    <a href="/contact">Contact Us</a>
-                    <a href="/locations/scotland">Recruitment Agency Scotland</a>
-                    <a href="/locations/england">Recruitment Agency England</a>
-                    <a href="/locations/wales">Recruitment Agency Wales</a>
-                    <a href="/locations/northern-ireland">Recruitment Agency Northern Ireland</a>
-                    <a href="/locations/republic-of-ireland">Recruitment Agency Republic of Ireland</a>
+                    <button
+                      type="button"
+                      className="footer-col-toggle"
+                      onClick={() => toggleMobileSection("company")}
+                      aria-expanded={openMobileSections.company}
+                    >
+                      <div className="footer-col-header-content">
+                        <h4>Company</h4>
+                        <span className={`footer-col-chevron ${openMobileSections.company ? "open" : ""}`}>
+                          <ChevronDown className="w-4 h-4" />
+                        </span>
+                      </div>
+                    </button>
+                    <div className={`footer-col-links ${openMobileSections.company ? "open" : ""}`}>
+                      <a href="/about">About Us</a>
+                      <a href="/services">Services</a>
+                      <a href="/why-choose-us">Why RDUK</a>
+                      <a href="/our-process">Our Process</a>
+                      <a href="/clients">Clients</a>
+                      <a href="/job-search">Job Search</a>
+                      <a href="/news">News & Insights</a>
+                      <a href="/contact">Contact Us</a>
+                    </div>
                   </div>
 
+                  {/* 2. AI PLATFORM */}
                   <div className="footer-col">
-                    <h4>AI Platform</h4>
-                    <a href="/ai-hire-now">AI Hire Now</a>
-                    <a href="/ai-recruitment">AI Recruitment</a>
-                    <a href="/ai-recruitment">AI Voice Call</a>
-                    <a href="/integrations">Integrations</a>
-                    <a href="/security">Security</a>
+                    <button
+                      type="button"
+                      className="footer-col-toggle"
+                      onClick={() => toggleMobileSection("aiPlatform")}
+                      aria-expanded={openMobileSections.aiPlatform}
+                    >
+                      <div className="footer-col-header-content">
+                        <h4>AI Platform</h4>
+                        <span className={`footer-col-chevron ${openMobileSections.aiPlatform ? "open" : ""}`}>
+                          <ChevronDown className="w-4 h-4" />
+                        </span>
+                      </div>
+                    </button>
+                    <div className={`footer-col-links ${openMobileSections.aiPlatform ? "open" : ""}`}>
+                      <a href="/ai-hire-now">AI Hire Now</a>
+                      <a href="/ai-recruitment">AI Recruitment</a>
+                      <a href="/ai-screening-call-statement">AI Screening Call</a>
+                      <a href="/integrations">Integrations</a>
+                      <a href="/security">Security</a>
+                      <a href="/accreditations">Accreditations</a>
+                    </div>
                   </div>
 
+                  {/* 3. LOCATIONS */}
                   <div className="footer-col">
-                    <h4>Resources</h4>
-                    <a href="/clients">Clients</a>
-                    <a href="/job-search">Job Search</a>
-                    <a href="/privacy-policy">Policies</a>
-                    <a href="/accreditations">Accreditations</a>
-                    <a href="/news">News & Insights</a>
+                    <button
+                      type="button"
+                      className="footer-col-toggle"
+                      onClick={() => toggleMobileSection("locations")}
+                      aria-expanded={openMobileSections.locations}
+                    >
+                      <div className="footer-col-header-content">
+                        <h4>Locations</h4>
+                        <span className={`footer-col-chevron ${openMobileSections.locations ? "open" : ""}`}>
+                          <ChevronDown className="w-4 h-4" />
+                        </span>
+                      </div>
+                    </button>
+                    <div className={`footer-col-links ${openMobileSections.locations ? "open" : ""}`}>
+                      <a href="/locations/scotland">Scotland</a>
+                      <a href="/locations/england">England</a>
+                      <a href="/locations/wales">Wales</a>
+                      <a href="/locations/northern-ireland">Northern Ireland</a>
+                      <a href="/locations/republic-of-ireland">Republic of Ireland</a>
+                      <a href="/locations">All Locations</a>
+                    </div>
                   </div>
 
+                  {/* 4. POLICIES */}
                   <div className="footer-col">
-                    <h4>Policies</h4>
-                    <a href="/privacy-policy">Privacy Policy</a>
-                    <a href="/cookie-policy">Cookie Policy</a>
-                    <a href="/terms-of-use">Terms of Use</a>
-                    <a href="/modern-slavery-policy">Modern Slavery</a>
-                    <a href="/equality-diversity-policy">Equality Policy</a>
+                    <button
+                      type="button"
+                      className="footer-col-toggle"
+                      onClick={() => toggleMobileSection("policies")}
+                      aria-expanded={openMobileSections.policies}
+                    >
+                      <div className="footer-col-header-content">
+                        <h4>Policies</h4>
+                        <span className={`footer-col-chevron ${openMobileSections.policies ? "open" : ""}`}>
+                          <ChevronDown className="w-4 h-4" />
+                        </span>
+                      </div>
+                    </button>
+                    <div className={`footer-col-links ${openMobileSections.policies ? "open" : ""}`}>
+                      <a href="/privacy-policy">Privacy Policy</a>
+                      <a href="/candidate-privacy-notice">Candidate Privacy Notice</a>
+                      <a href="/client-privacy-notice">Client Privacy Notice</a>
+                      <a href="/complaints-policy">Complaints Policy</a>
+                      <a href="/cookie-policy">Cookie Policy</a>
+                      <a href="/terms-of-use">Terms of Use</a>
+                      <a href="/modern-slavery-policy">Modern Slavery</a>
+                      <a href="/equality-diversity-policy">Equality Policy</a>
+                      <button
+                        type="button"
+                        onClick={() => setIsPoliciesOpen(true)}
+                        className="footer-all-policies-btn"
+                      >
+                        All Policies & Compliance →
+                      </button>
+                    </div>
                   </div>
 
                 </div>
@@ -1014,16 +1191,17 @@ export default function Footer() {
 
                     return (
                       <li key={i}>
-                        <button
+                        <a
+                          href={item.link}
                           {...buttonProps}
-                          onClick={() => {
-                            if (item.link) {
-                              window.open(item.link, "_self", "noopener,noreferrer");
-                            }
+                          onClick={() => setIsPoliciesOpen(false)}
+                          style={{
+                            ...(maxPolicyBtnHeight ? { height: `${maxPolicyBtnHeight}px` } : {}),
+                            textDecoration: "none"
                           }}
                         >
                           {content}
-                        </button>
+                        </a>
                       </li>
                     );
                   })}
