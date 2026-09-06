@@ -835,7 +835,8 @@ export default function Footer() {
                   className="btn btn-secondary btn-saas"
                   href="/certificates/constructionline-gold-1324569.pdf"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
+                  aria-label="View Constructionline Gold Certificate (PDF)"
                 >
                   <span>View Certificate</span>
                   <span className="rd-btn-arrow">→</span>
@@ -861,7 +862,8 @@ export default function Footer() {
                   className="btn btn-secondary btn-saas"
                   href="/certificates/cyber-essentials-4686a995.pdf"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
+                  aria-label="View Cyber Essentials Certificate (PDF)"
                 >
                   <span>View Certificate</span>
                   <span className="rd-btn-arrow">→</span>
@@ -882,7 +884,8 @@ export default function Footer() {
                   className="btn btn-secondary btn-saas"
                   href="/certificates/iso-9001-2015-gb2006088.pdf"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
+                  aria-label="View ISO 9001:2015 Certificate (PDF)"
                 >
                   <span>View Certificate</span>
                   <span className="rd-btn-arrow">→</span>
@@ -903,7 +906,8 @@ export default function Footer() {
                   className="btn btn-secondary btn-saas"
                   href="/certificates/rec-corporate-membership.pdf"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
+                  aria-label="View REC Corporate Membership Certificate (PDF)"
                 >
                   <span>View Certificate</span>
                   <span className="rd-btn-arrow">→</span>
@@ -1146,15 +1150,21 @@ export default function Footer() {
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
         <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
           <DialogHeader className="sr-only">
-            <DialogTitle>AI Call Demo Video</DialogTitle>
+            <DialogTitle>AI Screening Call Demo</DialogTitle>
           </DialogHeader>
           <div className="aspect-video w-full">
-            <video
-              src="/Video.mov"
-              controls
-              autoPlay
-              className="w-full h-full"
-            />
+            {isVideoOpen && (
+              <video
+                src="/Video.mov"
+                controls
+                autoPlay
+                preload="metadata"
+                playsInline
+                className="w-full h-full"
+              >
+                Your browser does not support the video tag.
+              </video>
+            )}
           </div>
         </DialogContent>
       </Dialog>

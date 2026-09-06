@@ -529,15 +529,21 @@ export default function Navbar() {
       <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
         <DialogContent className="max-w-4xl p-0 overflow-hidden bg-black border-gray-800">
           <DialogHeader className="sr-only">
-            <DialogTitle>AI Call Demo Video</DialogTitle>
+            <DialogTitle>AI Screening Call Demo</DialogTitle>
           </DialogHeader>
           <div className="aspect-video w-full">
-            <video
-              src="/Video.mov"
-              controls
-              autoPlay
-              className="w-full h-full"
-            />
+            {isVideoOpen && (
+              <video
+                src="/Video.mov"
+                controls
+                autoPlay
+                preload="metadata"
+                playsInline
+                className="w-full h-full"
+              >
+                Your browser does not support the video tag.
+              </video>
+            )}
           </div>
         </DialogContent>
       </Dialog>

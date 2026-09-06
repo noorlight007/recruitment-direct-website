@@ -39,7 +39,13 @@ export default function GeneralSection() {
 
               <div className="hero-image">
 
-                  <img src="/images/steven-peddie.jpg" alt="Steven Peddie" />
+                  <img
+                    src="/images/steven-peddie.webp"
+                    alt="Steven Peddie - Director"
+                    width={400}
+                    height={400}
+                    loading="eager"
+                  />
 
                   <div className="hero-overlay">
                       <h3>Steven Peddie</h3>
@@ -128,7 +134,14 @@ export default function GeneralSection() {
 
               <div className="consultant-card">
 
-                  <img src="/images/nicola.jpg" alt="Nicola" style={{ objectFit: "fixed" as any }} />
+                  <img
+                    src="/images/nicola.webp"
+                    alt="Nicola - Manager"
+                    width={320}
+                    height={320}
+                    loading="lazy"
+                    style={{ objectFit: "cover" }}
+                  />
 
                   <div className="consultant-info">
 
@@ -149,7 +162,14 @@ export default function GeneralSection() {
 
               <div className="consultant-card">
 
-                  <img src="/images/olia.jpg" alt="Olia" style={{ objectFit: "cover" }} />
+                  <img
+                    src="/images/olia.webp"
+                    alt="Olia - Consultant"
+                    width={320}
+                    height={320}
+                    loading="lazy"
+                    style={{ objectFit: "cover" }}
+                  />
 
                   <div className="consultant-info">
 
@@ -177,42 +197,42 @@ export default function GeneralSection() {
               <div className="sector-grid">
 
                   <div className="sector-card">
-                      <img src="/images/construction.jpg" alt="" />
+                      <img src="/images/construction.webp" alt="Construction Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>Construction</span>
                   </div>
 
                   <div className="sector-card">
-                      <img src="/images/engineering.jpg" alt="" />
+                      <img src="/images/engineering.webp" alt="Engineering Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>Engineering</span>
                   </div>
 
                   <div className="sector-card">
-                      <img src="/images/renewables.jpg" alt="" />
+                      <img src="/images/renewables.webp" alt="Renewables Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>Renewables</span>
                   </div>
 
                   <div className="sector-card">
-                      <img src="/images/logistics.jpg" alt="" />
+                      <img src="/images/logistics.webp" alt="Logistics Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>Logistics</span>
                   </div>
 
                   <div className="sector-card">
-                      <img src="/images/healthcare.jpg" alt="" />
+                      <img src="/images/healthcare.webp" alt="Healthcare Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>Healthcare</span>
                   </div>
 
                   <div className="sector-card">
-                      <img src="/images/education.jpg" alt="" />
+                      <img src="/images/education.webp" alt="Education Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>Education</span>
                   </div>
 
                   <div className="sector-card">
-                      <img src="/images/it-tech.jpg" alt="" />
+                      <img src="/images/it-tech.webp" alt="IT and Technology Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>IT & Tech</span>
                   </div>
 
                   <div className="sector-card">
-                      <img src="/images/commercial.jpg" alt="" />
+                      <img src="/images/commercial.webp" alt="Commercial Sector Recruitment" width={280} height={200} loading="lazy" />
                       <span>Commercial</span>
                   </div>
 

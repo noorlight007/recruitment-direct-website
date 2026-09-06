@@ -73,7 +73,16 @@ export const api = {
         throw err;
       }
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonErr) {
+        if (!response.ok) {
+          throw new Error(`Request failed with status: ${response.status}`);
+        }
+        return { success: true } as any;
+      }
+
       return data as T;
     } catch (error) {
       console.error(`[API Client Error] Failed posting to ${url}:`, error);

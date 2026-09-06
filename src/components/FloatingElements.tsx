@@ -60,14 +60,49 @@ const renderMessageContent = (content: string) => {
 };
 
 export default function FloatingElements() {
+  const [isReady, setIsReady] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Initialize messages state from localStorage on mount
+  // Defer initialization until after critical render path
   useEffect(() => {
+    const handleOpenChat = () => {
+      setIsReady(true);
+      setChatOpen(true);
+    };
+
+    window.addEventListener('open-ai-steve', handleOpenChat);
+
+    let idleCallbackId: any;
+    let timerId: any;
+
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        idleCallbackId = (window as any).requestIdleCallback(
+          () => setIsReady(true),
+          { timeout: 2500 }
+        );
+      } else {
+        timerId = setTimeout(() => setIsReady(true), 2000);
+      }
+    }
+
+    return () => {
+      window.removeEventListener('open-ai-steve', handleOpenChat);
+      if (idleCallbackId && "cancelIdleCallback" in window) {
+        (window as any).cancelIdleCallback(idleCallbackId);
+      }
+      if (timerId) clearTimeout(timerId);
+    };
+  }, []);
+
+  // Initialize messages state from localStorage only when ready
+  useEffect(() => {
+    if (!isReady) return;
+
     const sessionStartStr = localStorage.getItem("rduk_chat_session_start");
     const cachedMessagesStr = localStorage.getItem("rduk_chat_messages");
     const now = new Date().getTime();
@@ -95,11 +130,11 @@ export default function FloatingElements() {
     }
 
     setMessages(loadedMessages);
-  }, []);
+  }, [isReady]);
 
   // Check expiration when chat is opened
   useEffect(() => {
-    if (chatOpen) {
+    if (chatOpen && isReady) {
       const sessionStartStr = localStorage.getItem("rduk_chat_session_start");
       const cachedMessagesStr = localStorage.getItem("rduk_chat_messages");
       const now = new Date().getTime();
@@ -126,18 +161,12 @@ export default function FloatingElements() {
         }
       }
     }
-  }, [chatOpen]);
+  }, [chatOpen, isReady]);
 
   // Scroll to bottom on new messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
-
-  useEffect(() => {
-    const handleOpenChat = () => setChatOpen(true);
-    window.addEventListener('open-ai-steve', handleOpenChat);
-    return () => window.removeEventListener('open-ai-steve', handleOpenChat);
-  }, []);
 
   const handleSendMessage = async (customMessage?: string) => {
     const trimmedMessage = (typeof customMessage === "string" ? customMessage : message).trim();
@@ -194,6 +223,8 @@ export default function FloatingElements() {
       setIsTyping(false);
     }
   };
+
+  if (!isReady) return null;
 
   return (
     <>
