@@ -389,7 +389,7 @@ export default function Navbar() {
             </a>
 
             <Link
-              href="/find-staff"
+              href="/ai-hire-now-form?type=quote"
               className="btn btn-primary px-5 py-2.5 text-sm font-bold nav-btn"
             >
               Find Staff
@@ -512,7 +512,7 @@ export default function Navbar() {
               {/* Mobile Actions */}
               <div className="flex justify-center px-4 pt-2">
                 <Link
-                  href="/find-staff"
+                  href="/ai-hire-now-form?type=quote"
                   onClick={() => setMobileOpen(false)}
                   className="btn btn-primary py-2.5 px-8 text-center w-auto max-w-[200px] flex items-center justify-center text-white font-bold"
                 >

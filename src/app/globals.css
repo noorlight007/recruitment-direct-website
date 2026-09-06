@@ -3244,7 +3244,7 @@ MOBILE RESPONSIVE
   min-height: 720px;
   display: flex;
   align-items: center;
-  background: url('/assets/hero-multisector.jpg') center / cover no-repeat;
+  background: #030812 url('/assets/general.png') center / cover no-repeat;
   color: #fff;
   overflow: hidden;
 }

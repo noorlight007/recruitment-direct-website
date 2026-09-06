@@ -45,6 +45,11 @@ const LEGACY_URL_REDIRECTS = [
   ['/business-support-it',                              '/it-technology-recruitment-agency'],
 
   // General & typo redirects
+  ['/about-us',                                        '/about'],
+  ['/contact-us',                                      '/contact'],
+  ['/why-rduk',                                        '/why-choose-us'],
+  ['/try-ai-call-demo',                                '/assets/rd1-24-7-live-call.html'],
+  ['/equality-diversity-inclusion-policy',             '/equality-diversity-policy'],
   ['/parmanent-staff',                                 '/permanent-staff'],
   ['/blogs',                                           '/news'],
   ['/register-a-vacancy',                              '/ai-hire-now'],
