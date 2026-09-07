@@ -226,6 +226,45 @@ const Index = () => {
               height: 240px !important;
             }
           }
+
+          .hero-animation-wrap {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            min-height: 520px;
+            overflow: hidden;
+          }
+
+          .hero-animation {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+
+            transform: none !important;
+            margin: 0 !important;
+            top: 0 !important;
+            bottom: auto !important;
+          }
+
+          .hero-animation * {
+            animation-timing-function: ease-in-out;
+          }
+
+          /* remove any floating/bouncing on the main animation */
+          .hero-animation,
+          .hero-animation-container,
+          .hero-visual {
+            animation-name: none !important;
+            transform: translateY(0) !important;
+          }
+
+          @media (max-width: 768px) {
+            .hero-animation-wrap {
+              height: 360px;
+              min-height: 360px;
+            }
+          }
         ` }} />
 
           {/* HERO */}
@@ -263,10 +302,11 @@ const Index = () => {
                 </div>
 
                 {/* Right Column: 24/7 Applicant Call Board Animation */}
-                <div className="w-full flex justify-center items-center">
+                <div className="hero-animation-wrap w-full flex justify-center items-center">
                   <iframe
                     src="/assets/rd1-24-7-live-call.html"
-                    style={{ width: "100%", height: `${iframeHeight}px`, border: 0 }}
+                    className="hero-animation"
+                    style={{ width: "100%", height: "100%", border: 0 }}
                     title="RD1 24/7 Applicant Call"
                     scrolling="no"
                   />

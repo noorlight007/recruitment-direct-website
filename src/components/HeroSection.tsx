@@ -133,14 +133,15 @@ export default function HeroSection() {
 
           {/* Right Column: 24/7 Applicant Call Board Animation */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-full flex justify-center items-center"
+            className="hero-animation-wrap w-full flex justify-center items-center"
           >
             <iframe
               src="/assets/rd1-24-7-live-call.html"
-              style={{ width: "100%", height: `${iframeHeight}px`, border: 0 }}
+              className="hero-animation"
+              style={{ width: "100%", height: "100%", border: 0 }}
               title="RD1 24/7 Applicant Call"
               scrolling="no"
             />
