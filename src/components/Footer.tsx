@@ -1048,10 +1048,7 @@ export default function Footer() {
                     <div className={`footer-col-links ${openMobileSections.getInTouch ? "open" : ""}`}>
                       <a href="/contact">Contact Us</a>
                       <a href="/news">News &amp; Insights</a>
-                      <a href="/ai-hire-now-form?type=quote">Find Staff</a>
-                      <a href="/assets/rd1-24-7-live-call.html" target="_blank" rel="noopener noreferrer">
-                        Book an AI Call Demo
-                      </a>
+                      <a href="/find-staff">Find Staff</a>
                       <div className="mt-4 pt-2 flex items-center gap-3">
                         <a href="https://wa.me/447590882626" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:opacity-80 transition-opacity">
                           <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#25D366]">
@@ -1093,26 +1090,23 @@ export default function Footer() {
                       </div>
                     </div>
 
-                    <a
-                      href="/assets/rd1-24-7-live-call.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary btn-saas w-full mt-4 !justify-between text-white flex items-center justify-between"
+                    <button
+                      id="rd-ask-steve"
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (typeof window !== "undefined") {
+                          window.dispatchEvent(new CustomEvent("open-ai-steve"));
+                        }
+                      }}
+                      className="btn btn-primary btn-saas w-full mt-4 !justify-between text-white flex items-center justify-between cursor-pointer"
                     >
-                      <span className="rd-ai-btn-text">AI Call Demo</span>
+                      <span className="rd-ai-btn-text">Ask AI Steve</span>
                       <b className="rd-ai-btn-arrow">→</b>
-                    </a>
+                    </button>
 
                     <Link
-                      href="/ai-recruitment"
-                      className="btn btn-primary btn-saas w-full mt-3 !justify-between text-white flex items-center justify-between"
-                    >
-                      <span className="rd-ai-btn-text">AI Platform</span>
-                      <b className="rd-ai-btn-arrow">→</b>
-                    </Link>
-
-                    <Link
-                      href="/ai-hire-now-form?type=quote"
+                      href="/find-staff"
                       className="btn btn-primary btn-saas w-full mt-3 !justify-between cursor-pointer !bg-[#d3a94a] hover:!bg-[#b88e3a] border-none font-bold text-center flex items-center justify-between text-white"
                     >
                       <span className="rd-ai-btn-text">Find Staff</span>

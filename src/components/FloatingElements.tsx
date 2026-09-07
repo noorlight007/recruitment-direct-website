@@ -75,6 +75,7 @@ export default function FloatingElements() {
     };
 
     window.addEventListener('open-ai-steve', handleOpenChat);
+    (window as any).AskSteve = { open: handleOpenChat };
 
     let idleCallbackId: any;
     let timerId: any;
@@ -109,7 +110,7 @@ export default function FloatingElements() {
     const ONE_HOUR = 60 * 60 * 1000;
 
     let loadedMessages: ChatMessage[] = [
-      { role: "assistant", content: "Hi, I’m AI Steve. Are you looking to hire staff or search for a job?" }
+      { role: "assistant", content: "Hi, I’m Steve, AI assistant for Recruitment Direct. How can I help you get staff today, or are you searching for a job?" }
     ];
 
     if (sessionStartStr && cachedMessagesStr) {
@@ -147,7 +148,7 @@ export default function FloatingElements() {
           localStorage.removeItem("rduk_chat_messages");
           localStorage.removeItem("rduk_chat_session_start");
           setMessages([
-            { role: "assistant", content: "Hi, I’m AI Steve. Are you looking to hire staff or search for a job?" }
+            { role: "assistant", content: "Hi, I’m Steve, AI assistant for Recruitment Direct. How can I help you get staff today, or are you searching for a job?" }
           ]);
         } else {
           try {
@@ -268,22 +269,22 @@ export default function FloatingElements() {
                         <span className="text-[11px] font-bold text-[#536078]/80 mb-1 uppercase tracking-wider">Suggested Buttons:</span>
                         <div className="flex flex-col gap-1.5 w-full">
                           <button
-                            onClick={() => handleSendMessage("I Need Staff")}
+                            onClick={() => handleSendMessage("I need staff — how do I get a quote?")}
                             className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
                           >
-                            I Need Staff
+                            Find Staff (Get a Quote)
+                          </button>
+                          <button
+                            onClick={() => handleSendMessage("How does AI Hire Now work?")}
+                            className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
+                          >
+                            AI Hire Now (Order 24/7)
                           </button>
                           <button
                             onClick={() => handleSendMessage("Search Jobs")}
                             className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
                           >
                             Search Jobs
-                          </button>
-                          <button
-                            onClick={() => handleSendMessage("Learn About AI Recruitment")}
-                            className="text-left text-xs bg-white border border-primary/20 hover:border-primary hover:bg-primary/5 text-primary py-1.5 px-3 rounded-lg transition-all shadow-sm cursor-pointer w-[90%]"
-                          >
-                            Learn About AI Recruitment
                           </button>
                           <button
                             onClick={() => handleSendMessage("Speak to Team")}

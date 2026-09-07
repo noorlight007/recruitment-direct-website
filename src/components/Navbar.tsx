@@ -54,9 +54,9 @@ const aiProducts = [
 
 const clientSubmenu = [
   {
-    title: "Hire Staff",
+    title: "Find Staff",
     description: "Submit staffing requirements 24/7",
-    link: "/hire-staff",
+    link: "/find-staff",
     icon: Users,
   },
   {
@@ -250,12 +250,27 @@ export default function Navbar() {
     checkHash();
     window.addEventListener("hashchange", checkHash);
 
+    // Stop nav from covering the footer when scrolled to the bottom
+    const navEl = document.querySelector('nav.fixed');
+    const footerEl = document.querySelector('footer.rd-footer, footer, #compliance');
+    let io: IntersectionObserver | null = null;
+
+    if (navEl && footerEl && 'IntersectionObserver' in window) {
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          navEl.classList.toggle('nav--hide-for-footer', entry.isIntersecting);
+        });
+      }, { threshold: 0 });
+      io.observe(footerEl);
+    }
+
     return () => {
       window.removeEventListener("open-ai-recruitment", handleOpenAIRecruitment);
       window.removeEventListener("open-clients", handleOpenClients);
       window.removeEventListener("open-find-staff", handleOpenFindStaff);
       window.removeEventListener("open-ai-call-demo", handleOpenAICallDemo);
       window.removeEventListener("hashchange", checkHash);
+      if (io) io.disconnect();
     };
   }, []);
 
@@ -389,8 +404,8 @@ export default function Navbar() {
             </a>
 
             <Link
-              href="/ai-hire-now-form?type=quote"
-              className="btn btn-primary px-5 py-2.5 text-sm font-bold nav-btn"
+              href="/find-staff"
+              className="btn btn-primary nav-btn"
             >
               Find Staff
             </Link>
@@ -512,7 +527,7 @@ export default function Navbar() {
               {/* Mobile Actions */}
               <div className="flex justify-center px-4 pt-2">
                 <Link
-                  href="/ai-hire-now-form?type=quote"
+                  href="/find-staff"
                   onClick={() => setMobileOpen(false)}
                   className="btn btn-primary py-2.5 px-8 text-center w-auto max-w-[200px] flex items-center justify-center text-white font-bold"
                 >

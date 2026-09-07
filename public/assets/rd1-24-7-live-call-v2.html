@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RD1 — AI Applicant Screening | Live Board v2</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --panel:#ffffff;
+    --ink:#0b0f19;
+    --ink-soft:#4b5566;
+    --line:#e6e9ef;
+    --line-soft:#f0f2f6;
+    --blue:#2563eb;
+    --deep-black:#0a0a0d; /* premium black — deliberately not navy */
+    --amber:#f59e0b;
+    --green:#16a34a;
+    --grey:#6b7280;
+    --red:#dc2626;
+    --shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -12px rgba(16,24,40,.12);
+    --shadow-lg: 0 4px 10px rgba(16,24,40,.06), 0 20px 40px -16px rgba(16,24,40,.18);
+    --radius: 16px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .board{
+    max-width:1180px; margin:0 auto; padding:28px 20px 48px;
+  }
+  /* ---------- Masthead ---------- */
+  .masthead{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .masthead-left{display:flex; align-items:center; gap:12px;}
+  .mark{
+    width:38px; height:38px; border-radius:10px;
+    background:linear-gradient(135deg,#4f8dfd,var(--blue));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:800; font-size:14px; letter-spacing:.5px;
+    box-shadow:var(--shadow);
+  }
+  .masthead h1{font-size:17px; font-weight:800; margin:0; letter-spacing:-.01em;}
+  .masthead p{margin:2px 0 0; font-size:12.5px; color:var(--ink-soft);}
+  .live-pill{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--line-soft); border:1px solid var(--line);
+    padding:6px 12px; border-radius:999px; font-size:12px; font-weight:700; color:var(--ink-soft);
+    letter-spacing:.04em; text-transform:uppercase;
+  }
+  .live-dot{width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 rgba(22,163,74,.5); animation:pulse 1.8s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(22,163,74,.45);}
+    70%{box-shadow:0 0 0 8px rgba(22,163,74,0);}
+    100%{box-shadow:0 0 0 0 rgba(22,163,74,0);}
+  }
+
+  /* ---------- Top ticker ---------- */
+  .ticker-shell{
+    position:relative; height:44px; border-radius:12px; background:var(--line-soft);
+    border:1px solid var(--line); overflow:hidden; margin-bottom:22px;
+  }
+  .ticker-shell::before,.ticker-shell::after{
+    content:""; position:absolute; top:0; bottom:0; width:56px; z-index:2; pointer-events:none;
+  }
+  .ticker-shell::before{left:0; background:linear-gradient(90deg,var(--line-soft),transparent);}
+  .ticker-shell::after{right:0; background:linear-gradient(270deg,var(--line-soft),transparent);}
+  .ticker-track{position:relative; height:100%;}
+  .ticker-chip{
+    position:absolute; top:50%; transform:translateY(-50%);
+    display:flex; align-items:center; gap:7px; white-space:nowrap;
+    background:#fff; border:1px solid var(--line); border-radius:999px;
+    padding:5px 12px 5px 8px; font-size:12.5px; font-weight:600; color:var(--ink);
+    box-shadow:var(--shadow);
+    animation-name:ticker-run; animation-timing-function:linear; animation-iteration-count:1;
+    will-change:transform;
+  }
+  .ticker-chip .dot{width:7px; height:7px; border-radius:50%; flex:none;}
+  @keyframes ticker-run{
+    from{transform:translate(0,-50%);}
+    to{transform:translate(-1400px,-50%);}
+  }
+
+  /* ---------- Scoreboard ---------- */
+  .scoreboard{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;
+  }
+  .stat{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:14px 12px 12px; box-shadow:var(--shadow); border-top:3px solid var(--stat-color,var(--blue));
+    text-align:left;
+  }
+  .stat .num{
+    font-family:"SF Mono",ui-monospace,"Roboto Mono",Menlo,monospace;
+    font-size:23px; font-weight:800; letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+  }
+  .stat .lab{
+    margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--ink-soft); text-transform:uppercase;
+  }
+
+  /* ---------- Feed ---------- */
+  .feed-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px;}
+  .feed-head h2{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin:0;}
+  .feed{display:flex; flex-direction:column; gap:8px;}
+  .card{
+    display:flex; align-items:center; gap:14px;
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:12px 14px; box-shadow:var(--shadow);
+    animation:card-in .35s ease both;
+  }
+  @keyframes card-in{
+    from{opacity:0; transform:translateY(-6px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .card.card-out{animation:card-out .3s ease both;}
+  @keyframes card-out{ to{opacity:0; transform:translateY(6px); height:0; margin:0; padding-top:0; padding-bottom:0; border-width:0;} }
+  .card .who{flex:1; min-width:0;}
+  .card .role{font-weight:700; font-size:13.5px;}
+  .card .meta{font-size:12px; color:var(--ink-soft); margin-top:1px;}
+  .badge{
+    flex:none; display:inline-flex; align-items:center; gap:6px;
+    font-size:11.5px; font-weight:800; letter-spacing:.03em; text-transform:uppercase;
+    padding:6px 11px; border-radius:999px; color:#fff; transition:background-color .2s ease;
+  }
+  .badge .bdot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.85);}
+
+  /* status colours — Applied is black (matches the scoreboard's black numerals),
+     Submitted to Client is blue */
+  .c-applied{background:var(--deep-black);}
+  .c-requested{background:var(--amber);}
+  .c-received{background:var(--green);}
+  .c-verifying{background:var(--grey);}
+  .c-verified{background:var(--blue);}
+  .c-submitted{background:var(--blue);}
+  .c-unsuccessful{background:var(--red);}
+
+  .foot-note{margin-top:22px; font-size:11.5px; color:var(--ink-soft); text-align:center;}
+
+  @media (max-width:760px){
+    .scoreboard{grid-template-columns:repeat(2,1fr);}
+    .card{flex-wrap:wrap;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .live-dot{animation:none;}
+    .ticker-chip{animation:none !important; position:static; display:inline-flex; margin:0 8px 8px 0;}
+    .ticker-track{white-space:normal; display:flex; flex-wrap:wrap; align-items:center; padding:8px 12px;}
+    .card{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="board">
+
+  <div class="masthead">
+    <div class="masthead-left">
+      <div class="mark">RD</div>
+      <div>
+        <h1>AI Applicant Screening</h1>
+        <p>Illustrative example — simulated calls, real screening logic</p>
+      </div>
+    </div>
+    <span class="live-pill"><span class="live-dot"></span> Live</span>
+  </div>
+
+  <div class="ticker-shell">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
+  <div class="scoreboard">
+    <div class="stat" style="--stat-color:var(--ink)"><div class="num" id="statScreened">0</div><div class="lab">Screened Today</div></div>
+    <div class="stat" style="--stat-color:var(--amber)"><div class="num" id="statRequested">0</div><div class="lab">Docs. Requested</div></div>
+    <div class="stat" style="--stat-color:var(--green)"><div class="num" id="statReceived">0</div><div class="lab">Docs. Received</div></div>
+    <div class="stat" style="--stat-color:var(--blue)"><div class="num" id="statSubmitted">0</div><div class="lab">Submitted to Client</div></div>
+  </div>
+
+  <div class="feed-head"><h2>Recent calls</h2></div>
+  <div class="feed" id="feed"></div>
+
+  <p class="foot-note">Every applicant is screened by phone, then progresses Applied → Docs Requested → Docs Received → Recruiter Verifying → Submitted to Client.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------- reference data ----------
+  // Construction/trades weighted up per feedback (7 Sept): more construction, trades and
+  // plant-operator roles in the mix. Logistics no longer includes any driver roles.
+  var SECTORS = [
+    {name:"Construction", weight:3, scotland:0.25, roles:[
+      "Site Labourer","Groundworker","Plant Operator","Site Supervisor","Bricklayer",
+      "Electrician","Plumber","Carpenter","Steel Fixer","Scaffolder","Painter & Decorator","Welder"
+    ]},
+    {name:"Engineering", weight:1.5, scotland:0.2, roles:["Mechanical Fitter","CNC Machinist","Maintenance Engineer","Pipe Fitter"]},
+    {name:"Renewables", weight:1, scotland:0.35, roles:["Wind Technician","Cable Jointer","Solar Installer"]},
+    {name:"Logistics", weight:1, scotland:0.2, roles:["Warehouse Operative","Stock Controller","Logistics Coordinator","Pick Packer","Yard Operative"]},
+    {name:"Healthcare", weight:1, scotland:0.25, roles:["Healthcare Assistant","Support Worker","Care Coordinator"]},
+    {name:"Education", weight:0.6, scotland:0.2, roles:["Teaching Assistant","Learning Support Assistant"]},
+    {name:"Hospitality", weight:0.8, scotland:0.2, roles:["Chef de Partie","Front of House","Housekeeping Assistant"]},
+    {name:"Business Support & IT", weight:0.7, scotland:0.15, roles:["Helpdesk Analyst","Data Administrator","Service Desk Engineer"]},
+    {name:"Commercial & Office", weight:0.7, scotland:0.15, roles:["Sales Executive","Office Administrator","Account Manager"]},
+    {name:"Facilities Management", weight:1, scotland:0.2, roles:["Cleaning Operative","Maintenance Technician","Security Officer"]}
+  ];
+  var SCOT_TOWNS = ["Glasgow","Edinburgh","Aberdeen"];
+  var OTHER_TOWNS = ["Falkirk","Manchester","Leeds","Birmingham","Newcastle","Cardiff","Belfast","Livingston","Bristol","Nottingham"];
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function pickSector(){
+    var totalWeight = SECTORS.reduce(function(sum,s){ return sum + s.weight; }, 0);
+    var r = Math.random() * totalWeight;
+    for(var i=0;i<SECTORS.length;i++){
+      r -= SECTORS[i].weight;
+      if(r <= 0) return SECTORS[i];
+    }
+    return SECTORS[SECTORS.length-1];
+  }
+
+  function buildApplicant(){
+    var sector = pickSector();
+    var role = pick(sector.roles);
+    var isScotland = Math.random() < sector.scotland;
+    var town = isScotland ? pick(SCOT_TOWNS) : pick(OTHER_TOWNS);
+    var rtwQuestion = isScotland
+      ? "Do you have a clean criminal record so we can obtain a Disclosure?"
+      : "Are you willing to undergo a DBS check?";
+    return {role:role, sector:sector.name, town:town, rtwQuestion:rtwQuestion, licence:null};
+  }
+
+  // ---------- self-correcting allocator ----------
+  // Rebuilt as a strict funnel (7 Sept revision) — no "Unsuccessful" branch any more.
+  // Every screened call either advances through the funnel or simply stops at
+  // whatever stage it reached; nothing is labelled a failure.
+  //   Docs Requested  50–60% of screenings  -> target 55%
+  //   Docs Received   30–35% of screenings  -> target 32.5% (of screenings)
+  //                                            = ~59% of those who reached Requested
+  //   Submitted       25–28% of screenings  -> target 26.5% (of screenings)
+  //                                            = ~81.5% of those who reached Received
+  // Each level is its own self-correcting binary allocator (same deficit method as
+  // before) so the ratios hold from the first handful of calls, not just long-run.
+  var FUNNEL = {
+    requested: { target: 0.55,          yes:0, no:0 },   // share of ALL screenings
+    received:  { target: 0.325/0.55,    yes:0, no:0 },   // share of those Requested
+    submitted: { target: 0.265/0.325,   yes:0, no:0 }    // share of those Received
+  };
+
+  function decide(bucket){
+    var total = bucket.yes + bucket.no;
+    var deficitYes = bucket.target * (total + 1) - bucket.yes;
+    var deficitNo  = (1 - bucket.target) * (total + 1) - bucket.no;
+    var yes = deficitYes >= deficitNo;
+    if(yes) bucket.yes++; else bucket.no++;
+    return yes;
+  }
+
+  var counts = { screened:0, received:0, requested:0, submitted:0 };
+
+  // ---------- DOM helpers ----------
+  var elScreened = document.getElementById("statScreened");
+  var elReceived = document.getElementById("statReceived");
+  var elRequested = document.getElementById("statRequested");
+  var elSubmitted = document.getElementById("statSubmitted");
+  var feed = document.getElementById("feed");
+  var tickerTrack = document.getElementById("tickerTrack");
+
+  function renderStats(){
+    elScreened.textContent = counts.screened;
+    elReceived.textContent = counts.received;
+    elRequested.textContent = counts.requested;
+    elSubmitted.textContent = counts.submitted;
+  }
+
+  var STAGE_LABELS = {
+    applied:{cls:"c-applied", text:"Applied"},
+    requested:{cls:"c-requested", text:"Docs Requested"},
+    received:{cls:"c-received", text:"Docs Received"},
+    verifying:{cls:"c-verifying", text:"Recruiter Verifying"},
+    verified:{cls:"c-verified", text:"Verified"},
+    submitted:{cls:"c-submitted", text:"Submitted to Client"},
+    unsuccessful:{cls:"c-unsuccessful", text:"Unsuccessful"}
+  };
+
+  function addCard(applicant, atTop){
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="who">' +
+        '<div class="role">' + applicant.role + '</div>' +
+        '<div class="meta">' + applicant.sector + ' — ' + applicant.town + (applicant.licence ? ' — ' + applicant.licence : '') + '</div>' +
+      '</div>' +
+      '<span class="badge c-applied"><span class="bdot"></span><span class="badge-text">Applied</span></span>';
+    if(atTop === false){
+      feed.appendChild(card); // seeding only — builds top-to-bottom into an empty feed
+    } else {
+      feed.insertBefore(card, feed.firstChild);
+    }
+    // cap visible cards at 6, per instruction
+    while(feed.children.length > 6){
+      feed.removeChild(feed.lastChild);
+    }
+    return card;
+  }
+
+  // A call that doesn't advance at some stage drops out of view fast rather than
+  // lingering near the top — sink it to the bottom of the feed immediately and
+  // let the normal cap trim it away on the very next new call.
+  function sinkToBottom(card){
+    card.style.transition = "opacity .35s ease";
+    card.style.opacity = "0.4";
+    feed.appendChild(card);
+    while(feed.children.length > 6){
+      feed.removeChild(feed.lastChild);
+    }
+  }
+
+  function setBadge(card, stageKey){
+    var badge = card.querySelector(".badge");
+    var stage = STAGE_LABELS[stageKey];
+    badge.className = "badge " + stage.cls;
+    badge.querySelector(".badge-text").textContent = stage.text;
+  }
+
+  function addTickerChip(text, colorVar){
+    var chip = document.createElement("span");
+    chip.className = "ticker-chip";
+    chip.innerHTML = '<span class="dot" style="background:' + colorVar + '"></span>' + text;
+    var startX = tickerTrack.clientWidth + 40;
+    chip.style.left = startX + "px";
+    var duration = 5 + Math.random() * 1.5;
+    chip.style.animationDuration = duration + "s";
+    tickerTrack.appendChild(chip);
+    setTimeout(function(){ chip.remove(); }, duration * 1000 + 200);
+  }
+
+  // ---------- simulation loop ----------
+  // Each call runs on its own independent timeline (not a shared tick), so dwell
+  // time at a stage varies call to call — that's what lets more than one row
+  // show the same stage label at once instead of pinning a label to one row.
+  // New calls arrive every 900ms (ARRIVAL_MS) and each arrival pushes every
+  // older card down one row, so row number tracks how long a call has been
+  // alive. Every range below came from a timing simulation (10 minutes
+  // simulated, same funnel percentages, same 6-row cap) tuned against three
+  // targets together, not guessed one at a time: Docs Requested showing on
+  // ~3 of the 6 rows at once, Docs Received specifically showing at row 3
+  // roughly a third of the time, and Submitted to Client landing mainly
+  // around row 5. Unsuccessful always sinks straight to the bottom row
+  // (row 6) the instant it happens, at whichever gate it failed.
+  var ARRIVAL_MS = 900;
+  function quickDelay(){
+    return ARRIVAL_MS * 0.85 + Math.random() * ARRIVAL_MS * 0.4; // ~765-1125ms, avg ~945ms
+  }
+  // Docs Requested dwell: most calls move on at a moderate pace (feeds Docs
+  // Received into row 3), a substantial minority stall much longer (keeps
+  // Docs Requested itself visible across several rows at once).
+  function docsRequestedDwell(){
+    if(Math.random() < 0.6) return 1500 + Math.random() * 500; // ~1.5-2s, the common case
+    return 4500 + Math.random() * 4500; // ~4.5-9s, the long-tail stall
+  }
+  function docsReceivedDwell(){
+    return 1600 + Math.random() * 500; // ~1.6-2.1s — keeps Docs Received visible through row 3
+  }
+  function verifyingDwell(){
+    return 1700 + Math.random() * 500; // ~1.7-2.2s — the gap that lands Submitted around row 5
+  }
+
+  function runCall(){
+    var applicant = buildApplicant();
+    counts.screened++;
+    renderStats();
+    var card = addCard(applicant);
+    addTickerChip(applicant.role + ' — ' + applicant.town, 'var(--deep-black)');
+
+    setTimeout(function(){
+      if(!decide(FUNNEL.requested)){
+        setBadge(card, "unsuccessful");
+        addTickerChip(applicant.role + ' — Unsuccessful', 'var(--red)');
+        sinkToBottom(card);
+        return;
+      }
+      counts.requested++;
+      setBadge(card, "requested");
+      addTickerChip(applicant.role + ' — Docs Requested', 'var(--amber)');
+      renderStats();
+
+      // The one stage that sometimes runs long — documents coming back is a
+      // real back-office wait, so this can stall well past its usual row.
+      setTimeout(function(){
+        if(!decide(FUNNEL.received)){
+          setBadge(card, "unsuccessful");
+          addTickerChip(applicant.role + ' — Unsuccessful', 'var(--red)');
+          sinkToBottom(card);
+          return;
+        }
+        counts.received++;
+        setBadge(card, "received");
+        addTickerChip(applicant.role + ' — Docs Received', 'var(--green)');
+        renderStats();
+
+        setTimeout(function(){
+          setBadge(card, "verifying");
+          addTickerChip(applicant.role + ' — Recruiter Verifying', 'var(--grey)');
+
+          setTimeout(function(){
+            if(!decide(FUNNEL.submitted)){
+              setBadge(card, "unsuccessful");
+              addTickerChip(applicant.role + ' — Unsuccessful', 'var(--red)');
+              sinkToBottom(card);
+              return;
+            }
+            counts.submitted++;
+            setBadge(card, "submitted");
+            addTickerChip(applicant.role + ' — Submitted to Client', 'var(--blue)');
+            renderStats();
+          }, verifyingDwell());
+
+        }, docsReceivedDwell());
+
+      }, docsRequestedDwell());
+
+    }, quickDelay());
+  }
+
+  function seedInitial(){
+    // pre-fill a spread of stages so the feed already reads as a funnel on load
+    var seedStages = ["applied","requested","requested","received","verifying","submitted"];
+    for(var i=0; i<seedStages.length; i++){
+      var a = buildApplicant();
+      var s = seedStages[i];
+      counts.screened++;
+      if(s === "requested" || s === "received" || s === "verifying" || s === "submitted") counts.requested++;
+      if(s === "received" || s === "verifying" || s === "submitted") counts.received++;
+      if(s === "submitted") counts.submitted++;
+      var card = addCard(a, false);
+      setBadge(card, s);
+    }
+    renderStats();
+  }
+
+  seedInitial();
+  runCall();
+  setInterval(runCall, ARRIVAL_MS);
+
+})();
+</script>
+
+</body>
+</html>

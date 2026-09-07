@@ -34,7 +34,7 @@ export default function ContactSection({ onFindStaffClick }: ContactSectionProps
                 Temporary, Contract & Permanent.
               </p>
               <a
-                href="/ai-hire-now-form?type=quote"
+                href="/find-staff"
                 onClick={(e) => {
                   if (onFindStaffClick) {
                     e.preventDefault();

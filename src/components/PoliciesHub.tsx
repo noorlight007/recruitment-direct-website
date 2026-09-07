@@ -68,30 +68,43 @@ function PolicyCard({ policy, query }: { policy: PolicyItem; query: string }) {
   return (
     <div
       id={policy.slug}
-      className="scroll-mt-28 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+      data-name={policy.title.toLowerCase().replace(/[^a-z0-9 ]/g, "").replace(/\s+/g, " ").trim()}
+      className="scroll-mt-28 rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md policy-card flex flex-col justify-between"
     >
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-base font-semibold text-slate-900">
-          {highlight(policy.title, query)}
-        </h3>
-        <span
-          className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-medium ${status.classes}`}
-        >
-          {status.label}
-        </span>
-      </div>
+      <div>
+        <div className="flex items-start justify-between gap-3 mb-2">
+          <h3
+            className="policy-card-title text-base sm:text-lg font-bold text-slate-900"
+            style={{
+              fontSize: "1.125rem",
+              lineHeight: "1.45",
+              marginTop: 0,
+              marginBottom: "6px",
+              letterSpacing: "-0.01em",
+              display: "block",
+            }}
+          >
+            {highlight(policy.title, query)}
+          </h3>
+          <span
+            className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-medium ${status.classes}`}
+          >
+            {status.label}
+          </span>
+        </div>
 
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
         {policy.summary}
       </p>
 
-      {policy.effectiveDate && (
-        <p className="mt-2 text-xs text-slate-400">
-          Effective {policy.effectiveDate}
-        </p>
-      )}
+        {policy.effectiveDate && (
+          <p className="mt-2 text-xs text-slate-400">
+            Effective {policy.effectiveDate}
+          </p>
+        )}
+      </div>
 
-      <div className="mt-4 flex items-center justify-between">
+      <div className="mt-4 pt-2 flex items-center justify-between border-t border-slate-100">
         {policy.status === "live" && policy.href ? (
           <a
             href={policy.href}
@@ -342,6 +355,25 @@ export default function PoliciesHub() {
           {totalResults} result{totalResults === 1 ? "" : "s"} for “{query}”
         </p>
       )}
+
+      <style jsx global>{`
+        .policy-card h3.policy-card-title,
+        h3.policy-card-title,
+        [class] h3.policy-card-title,
+        [class] [class] h3.policy-card-title {
+          font-size: 1.125rem !important;
+          line-height: 1.45 !important;
+          margin-top: 0 !important;
+          margin-bottom: 6px !important;
+          letter-spacing: -0.01em !important;
+          color: #0f172a !important;
+          display: block !important;
+        }
+
+        .policy-card p {
+          line-height: 1.55 !important;
+        }
+      `}</style>
     </div>
   );
 }

@@ -4,10 +4,15 @@
 // All are permanently (301) redirected to their canonical live pages.
 const LEGACY_URL_REDIRECTS = [
   // Policy & compliance redirects
-  ['/fair-treatment-equality-policy',                  '/equality-diversity-policy'],
-  ['/equality-plan',                                   '/equality-diversity-policy'],
-  ['/equality-policy',                                 '/equality-diversity-policy'],
-  ['/equality-diversity-inclusion-policy',             '/equality-diversity-policy'],
+  ['/anti-bribery-policy',                             '/anti-bribery-corruption-policy'],
+  ['/awr-policy',                                      '/awr-compliance-statement'],
+  ['/environmental-carbon-policy',                     '/environmental-sustainability-policy'],
+  ['/ir35-compliance-statement',                       '/ir35-off-payroll-statement'],
+  ['/insurance-statement',                             '/insurance-statement-of-cover'],
+  ['/equality-diversity-policy',                       '/equality-diversity-inclusion-policy'],
+  ['/fair-treatment-equality-policy',                  '/equality-diversity-inclusion-policy'],
+  ['/equality-plan',                                   '/equality-diversity-inclusion-policy'],
+  ['/equality-policy',                                 '/equality-diversity-inclusion-policy'],
   ['/ai-transparency',                                 '/ai-transparency-statement'],
   ['/modern-slavery-and-human-trafficking-policy',     '/modern-slavery-policy'],
   ['/health-and-safety-policy',                        '/health-safety-policy'],
@@ -18,7 +23,7 @@ const LEGACY_URL_REDIRECTS = [
   ['/terms-conditions',                                '/terms-of-use'],
   ['/terms',                                           '/terms-of-use'],
   ['/wp-content/uploads/2024/11/RDUK-Privacy-Statement-.pdf', '/privacy-policy'],
-  ['/wp-content/uploads/2024/11/RDUK-Equality-Policy-1.pdf',   '/equality-diversity-policy'],
+  ['/wp-content/uploads/2024/11/RDUK-Equality-Policy-1.pdf',   '/equality-diversity-inclusion-policy'],
   ['/wp-content/uploads/2024/11/Recruitment-Direct-UK-Ltd-Terms-Conditions.pdf', '/terms-of-use'],
 
   // Sector redirects
@@ -100,7 +105,7 @@ const LEGACY_URL_REDIRECTS = [
   ['/about-us',                                        '/about'],
   ['/contact-us',                                      '/contact'],
   ['/why-rduk',                                        '/why-choose-us'],
-  ['/try-ai-call-demo',                                '/assets/rd1-24-7-live-call.html'],
+  ['/try-ai-call-demo',                                '/assets/rd1-24-7-live-call-v2.html'],
   ['/parmanent-staff',                                 '/permanent-staff'],
   ['/blogs',                                           '/news'],
   ['/blog',                                            '/news'],

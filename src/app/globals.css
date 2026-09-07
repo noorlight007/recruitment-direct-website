@@ -3244,15 +3244,13 @@ MOBILE RESPONSIVE
   min-height: 720px;
   display: flex;
   align-items: center;
-  background: #030812;
-  color: #fff;
+  background: #ffffff;
+  color: #0b0f19;
   overflow: hidden;
 }
 
 .rd-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(3, 8, 18, .95), rgba(3, 8, 18, .78), rgba(3, 8, 18, .25));
+  display: none;
 }
 
 .rd-hero-content {
@@ -3281,12 +3279,12 @@ MOBILE RESPONSIVE
   margin: 0 0 18px !important;
   letter-spacing: -2px !important;
   font-weight: 800 !important;
-  color: #ffffff !important;
+  color: #0b0f19 !important;
 }
 
 .rd-hero h2 {
   font-size: clamp(24px, 3vw, 34px) !important;
-  color: #f2d17a !important;
+  color: #0b0f19 !important;
   margin: 0 0 22px !important;
   font-weight: 700 !important;
   line-height: 1.2 !important;
@@ -3296,7 +3294,7 @@ MOBILE RESPONSIVE
   font-size: 20px !important;
   line-height: 1.55 !important;
   margin: 0 0 34px !important;
-  color: #cbd5e1 !important;
+  color: #374151 !important;
 }
 
 .rd-button-grid {
@@ -3343,19 +3341,19 @@ MOBILE RESPONSIVE
 }
 
 .rd-btn-outline {
-  color: #fff !important;
+  color: #0b0f19 !important;
   border: 2px solid #d8ad48 !important;
-  background: rgba(3, 8, 18, .48) !important;
+  background: transparent !important;
 }
 
 .rd-btn-outline:hover {
   background: rgba(216, 173, 72, 0.15) !important;
   border-color: #f6d77d !important;
-  color: #f2d17a !important;
+  color: #b8860b !important;
 }
 
 .rd-trust {
-  background: #fff;
+  background: #ffffff;
   padding: 34px 0;
   box-shadow: 0 10px 32px rgba(0, 0, 0, .08);
 }
@@ -3370,8 +3368,8 @@ MOBILE RESPONSIVE
 .rd-trust-grid div {
   font-size: 22px;
   font-weight: 800;
-  color: #071424;
-  border-right: 1px solid rgba(184, 134, 11, .35);
+  color: #0b0f19;
+  border-right: 1px solid rgba(184, 134, 11, .25);
 }
 
 .rd-trust-grid div:last-child {
@@ -3379,12 +3377,19 @@ MOBILE RESPONSIVE
 }
 
 .rd-sectors {
-  background: #030812;
-  color: #fff;
+  background: #ffffff;
+  color: #0b0f19;
   padding: 110px 0;
 }
 
-.rd-sectors h2,
+.rd-sectors h2 {
+  text-align: center;
+  font-size: clamp(32px, 4vw, 46px) !important;
+  margin: 0 0 42px !important;
+  font-weight: 800 !important;
+  color: #0b0f19 !important;
+}
+
 .rd-testimonials h2 {
   text-align: center;
   font-size: clamp(32px, 4vw, 46px) !important;
@@ -3848,22 +3853,40 @@ MOBILE RESPONSIVE
    STANDARDIZED FONT SIZES & BUTTON HEIGHTS (LAPTOP & DESKTOP)
    ================================================== */
 @media (min-width: 769px) {
-  h1, h1[class], [class] h1, [class] h1[class], [class] [class] h1, [class] [class] h1[class],
+  h1:not(.no-override):not(.policy-card-title),
+  h1[class]:not(.no-override):not(.policy-card-title),
+  [class] h1:not(.no-override):not(.policy-card-title),
+  [class] h1[class]:not(.no-override):not(.policy-card-title),
+  [class] [class] h1:not(.no-override):not(.policy-card-title),
+  [class] [class] h1[class]:not(.no-override):not(.policy-card-title),
   .standard-h1, [class] .standard-h1, [class] [class] .standard-h1,
   .hero-heading, [class] .hero-heading, [class] [class] .hero-heading {
     font-size: 60px !important;
+    line-height: 1.15 !important;
   }
   
-  h2, h2[class], [class] h2, [class] h2[class], [class] [class] h2, [class] [class] h2[class],
+  h2:not(.no-override):not(.policy-card-title):not(.policy-category-title),
+  h2[class]:not(.no-override):not(.policy-card-title):not(.policy-category-title),
+  [class] h2:not(.no-override):not(.policy-card-title):not(.policy-category-title),
+  [class] h2[class]:not(.no-override):not(.policy-card-title):not(.policy-category-title),
+  [class] [class] h2:not(.no-override):not(.policy-card-title):not(.policy-category-title),
+  [class] [class] h2[class]:not(.no-override):not(.policy-card-title):not(.policy-category-title),
   .section-title, [class] .section-title, [class] [class] .section-title,
   .trusted-tech-title, [class] .trusted-tech-title, [class] [class] .trusted-tech-title,
   .standard-h2, [class] .standard-h2, [class] [class] .standard-h2 {
     font-size: 44px !important;
+    line-height: 1.25 !important;
   }
   
-  h3, h3[class], [class] h3, [class] h3[class], [class] [class] h3, [class] [class] h3[class],
+  h3:not(.no-override):not(.policy-card-title):not(.policy-card h3):not(#policy-list h3):not(.policies-hub h3):not(.policies-dialog h3):not(.footer-col h3):not(.dropdown-menu h3),
+  h3[class]:not(.no-override):not(.policy-card-title):not(.policy-card h3):not(#policy-list h3):not(.policies-hub h3):not(.policies-dialog h3):not(.footer-col h3):not(.dropdown-menu h3),
+  [class] h3:not(.no-override):not(.policy-card-title):not(.policy-card h3):not(#policy-list h3):not(.policies-hub h3):not(.policies-dialog h3):not(.footer-col h3):not(.dropdown-menu h3),
+  [class] h3[class]:not(.no-override):not(.policy-card-title):not(.policy-card h3):not(#policy-list h3):not(.policies-hub h3):not(.policies-dialog h3):not(.footer-col h3):not(.dropdown-menu h3),
+  [class] [class] h3:not(.no-override):not(.policy-card-title):not(.policy-card h3):not(#policy-list h3):not(.policies-hub h3):not(.policies-dialog h3):not(.footer-col h3):not(.dropdown-menu h3),
+  [class] [class] h3[class]:not(.no-override):not(.policy-card-title):not(.policy-card h3):not(#policy-list h3):not(.policies-hub h3):not(.policies-dialog h3):not(.footer-col h3):not(.dropdown-menu h3),
   .standard-h3, [class] .standard-h3, [class] [class] .standard-h3 {
     font-size: 30px !important;
+    line-height: 1.35 !important;
   }
   
   p, p[class], [class] p, [class] p[class], [class] [class] p, [class] [class] p[class],
@@ -3872,6 +3895,7 @@ MOBILE RESPONSIVE
   .hero-subtext, [class] .hero-subtext, [class] [class] .hero-subtext,
   .trusted-tech-subtitle, [class] .trusted-tech-subtitle, [class] [class] .trusted-tech-subtitle {
     font-size: 18px !important;
+    line-height: 1.6 !important;
   }
 
   button:not(.menu-btn):not(.close-btn):not(.absolute):not(.fixed button):not(.footer-col button):not(.rd-floating-trigger):not(.nav-btn):not(.dropdown-item):not(.rd1-cookie-buttons button),
@@ -5385,5 +5409,42 @@ MOBILE RESPONSIVE
   }
 }
 
+/* ==========================================================================
+   Job 7: Stop fixed nav covering footer on scroll
+   ========================================================================== */
+nav.fixed {
+  transition: transform 0.2s ease !important;
+}
+nav.fixed.nav--hide-for-footer {
+  transform: translateY(-100%) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  nav.fixed {
+    transition: none !important;
+  }
+}
 
-
+/* ==========================================================================
+   Job 8: Consistent dark pill buttons & resized header Find Staff button
+   ========================================================================== */
+.btn.btn-primary {
+  background-image: none !important;
+  background-color: #0a0a0d !important;
+  background: linear-gradient(135deg, #17171c 0%, #0a0a0d 100%) !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 999px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn.btn-primary:hover {
+  background: linear-gradient(135deg, #232329 0%, #131316 100%) !important;
+  border-color: #ffffff !important;
+}
+
+.nav-btn.btn-primary {
+  padding: 8px 22px !important;
+  height: auto !important;
+  min-height: unset !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+}

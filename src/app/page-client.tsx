@@ -84,18 +84,42 @@ const Index = () => {
         <main className="rd-landing">
           <style dangerouslySetInnerHTML={{
             __html: `
-          .rd-sectors {
-            margin-bottom: 0 !important;
+          .rd-landing {
+            background-color: #ffffff;
           }
           .rd-hero {
+            background: #ffffff !important;
             align-items: center !important;
             padding-top: 100px !important;
             padding-bottom: 100px !important;
             min-height: 650px !important;
           }
+          .rd-overlay {
+            display: none !important;
+          }
           .rd-hero h1 {
+            color: #0b0f19 !important;
             font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
             white-space: normal !important;
+          }
+          .rd-hero h2 {
+            color: #0b0f19 !important;
+          }
+          .rd-hero p {
+            color: #374151 !important;
+          }
+          .rd-trust {
+            background: #ffffff !important;
+          }
+          .rd-trust-grid div {
+            color: #0b0f19 !important;
+          }
+          .rd-sectors {
+            background: #ffffff !important;
+            margin-bottom: 0 !important;
+          }
+          .rd-sectors h2 {
+            color: #0b0f19 !important;
           }
           @media (min-width: 1024px) {
             .rd-hero .rd-button-grid {
@@ -135,6 +159,16 @@ const Index = () => {
             display: flex !important;
             align-items: center !important;
           }
+          .rd-hero .rd-btn-outline {
+            color: #0b0f19 !important;
+            border: 2px solid #d8ad48 !important;
+            background: transparent !important;
+          }
+          .rd-hero .rd-btn-outline:hover {
+            background: rgba(216, 173, 72, 0.1) !important;
+            border-color: #f6d77d !important;
+            color: #b8860b !important;
+          }
           .rd-btn-caption {
             margin-top: 12px !important;
             display: flex !important;
@@ -145,14 +179,14 @@ const Index = () => {
           .rd-btn-q {
             font-size: 17px !important;
             font-weight: 600 !important;
-            color: #cbd5e1 !important;
+            color: #4b5566 !important;
             line-height: 1.2 !important;
             display: block !important;
           }
           .rd-btn-a {
             font-size: 19px !important;
             font-weight: 800 !important;
-            color: #f6d77d !important;
+            color: #b8860b !important;
             line-height: 1.2 !important;
             display: block !important;
           }
@@ -214,9 +248,6 @@ const Index = () => {
             .rd-btn-a {
               font-size: 16px !important;
             }
-            // .rd-sectors h2 {
-            //   margin-bottom: 16px !important;
-            // }
             .rd-sector-grid {
               grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
               gap: 16px !important;
@@ -275,8 +306,8 @@ const Index = () => {
                 {/* Left Column: Content and Actions */}
                 <div className="flex flex-col text-center items-center lg:text-left lg:items-start">
                   <h1 className="standard-h1 text-center lg:text-left w-full">Need Staff?</h1>
-                  <h2 className="standard-h2 text-center lg:text-left w-full">Trusted UK Recruitment Agency Since 2006</h2>
-                  <p className="standard-body-p text-center lg:text-left">Connecting employers fast with reliable temporary, contract and permanent staff supplied nationwide.</p>
+                  <h2 className="standard-h2 text-center lg:text-left w-full">UK Recruitment Agency Supplying Temporary, Contract & Permanent Staff Nationwide</h2>
+                  <p className="standard-body-p text-center lg:text-left">Fast, compliant recruitment across ten specialist sectors throughout Scotland and the UK.</p>
 
                   <div className="rd-button-grid">
                     <div className="rd-hero-btn-col">
@@ -304,7 +335,7 @@ const Index = () => {
                 {/* Right Column: 24/7 Applicant Call Board Animation */}
                 <div className="hero-animation-wrap w-full flex justify-center items-center">
                   <iframe
-                    src="/assets/rd1-24-7-live-call.html"
+                    src="/assets/rd1-24-7-live-call-v2.html"
                     className="hero-animation"
                     style={{ width: "100%", height: "100%", border: 0 }}
                     title="RD1 24/7 Applicant Call"
@@ -417,7 +448,7 @@ const Index = () => {
                   </div>
                   <div>
                     <a
-                      href="/ai-hire-now-form?type=quote"
+                      href="/find-staff"
                       onClick={(e) => {
                         e.preventDefault();
                         setIsFindStaffOpen(true);
@@ -465,8 +496,6 @@ const Index = () => {
                 <span>→</span>
                 <div>Submitted to<br />Client</div>
               </div>
-
-              <button onClick={() => setIsVideoOpen(true)} className="btn gold process-btn standard-cta-btn">WATCH AI SCREENING CALL</button>
             </section>
 
             <section className="benefits standard-section">
