@@ -22,25 +22,43 @@ const LEGACY_COUNTRY_SEGMENTS = new Set(['ireland', 'eire', 'roi', 'ni', 'uk']);
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // ---- 1. Legacy country segment: /locations/ireland/{town} ----
-  const legacy = pathname.match(/^\/locations\/([^/]+)\/([^/]+)\/?$/);
-  if (legacy) {
-    const [, country, town] = legacy;
+  // ---- 1. Two-segment location URL: /locations/{country}/{town} ----
+  const twoSegment = pathname.match(/^\/locations\/([^/]+)\/([^/]+)\/?$/);
+  if (twoSegment) {
+    const country = twoSegment[1].toLowerCase();
+    const town = twoSegment[2].toLowerCase();
 
-    if (LEGACY_COUNTRY_SEGMENTS.has(country.toLowerCase())) {
-      const realCountry = TOWN_TO_COUNTRY.get(town.toLowerCase());
+    // Legacy country segment (e.g., /locations/ireland/dublin)
+    if (LEGACY_COUNTRY_SEGMENTS.has(country)) {
+      const realCountry = TOWN_TO_COUNTRY.get(town);
       const url = request.nextUrl.clone();
-
-      // Town found — send it to the correct country path.
-      // Town not found — send to the Ireland hub rather than 404.
       url.pathname = realCountry
-        ? `/locations/${realCountry}/${town.toLowerCase()}`
-        : '/locations/republic-of-ireland';
-
+        ? `/locations/${realCountry}/${town}`
+        : (country === 'ni' ? '/locations/northern-ireland' : '/locations/republic-of-ireland');
       return NextResponse.redirect(url, 301);
     }
 
-    return NextResponse.next();
+    // Valid canonical country slug (e.g., scotland, england, wales, etc.)
+    if (COUNTRY_SLUGS.has(country)) {
+      const actualCountry = TOWN_TO_COUNTRY.get(town);
+      if (actualCountry === country) {
+        return NextResponse.next();
+      }
+      const url = request.nextUrl.clone();
+      // If town exists in a different country, redirect there; otherwise fallback to country hub
+      url.pathname = actualCountry
+        ? `/locations/${actualCountry}/${town}`
+        : `/locations/${country}`;
+      return NextResponse.redirect(url, 301);
+    }
+
+    // Unknown country segment (e.g., /locations/unknown/town)
+    const realCountry = TOWN_TO_COUNTRY.get(town);
+    const url = request.nextUrl.clone();
+    url.pathname = realCountry
+      ? `/locations/${realCountry}/${town}`
+      : '/locations';
+    return NextResponse.redirect(url, 301);
   }
 
   // ---- 2. Short-form town URL: /locations/falkirk or legacy country hub ----
@@ -50,15 +68,13 @@ export function middleware(request: NextRequest) {
     if (COUNTRY_SLUGS.has(slug)) return NextResponse.next();
     if (LEGACY_COUNTRY_SEGMENTS.has(slug)) {
       const url = request.nextUrl.clone();
-      url.pathname = '/locations/republic-of-ireland';
+      url.pathname = slug === 'ni' ? '/locations/northern-ireland' : '/locations/republic-of-ireland';
       return NextResponse.redirect(url, 301);
     }
 
     const country = TOWN_TO_COUNTRY.get(slug);
-    if (!country) return NextResponse.next();
-
     const url = request.nextUrl.clone();
-    url.pathname = `/locations/${country}/${slug}`;
+    url.pathname = country ? `/locations/${country}/${slug}` : '/locations';
     return NextResponse.redirect(url, 301);
   }
 

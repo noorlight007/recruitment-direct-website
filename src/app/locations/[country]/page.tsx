@@ -113,13 +113,13 @@ export default async function CountryLocationsPage({
     if (foundCity) {
       permanentRedirect(foundCity.path);
     } else {
-      notFound();
+      permanentRedirect("/locations");
     }
   }
 
   const countryName = getCountryName(normalizedSlug);
   if (!countryName) {
-    notFound();
+    permanentRedirect("/locations");
   }
 
   const countryCities = cities.filter((c) => c.countrySlug === normalizedSlug);

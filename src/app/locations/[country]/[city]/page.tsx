@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 
 import {
   getLocation,
   getAllLocations,
+  findLocationBySlug,
   regionOf,
   travelRadiusOf,
 } from '@/lib/locations';
@@ -98,7 +99,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 export default async function LocationPage({ params }: Params) {
   const resolvedParams = await params;
   const loc = getLocation(resolvedParams.country, resolvedParams.city);
-  if (!loc) notFound();
+  if (!loc) {
+    const otherLoc = findLocationBySlug(resolvedParams.city);
+    if (otherLoc) {
+      permanentRedirect(`/locations/${otherLoc.country}/${otherLoc.slug}`);
+    }
+    const country = resolvedParams.country ? resolvedParams.country.toLowerCase() : '';
+    permanentRedirect(country ? `/locations/${country}` : '/locations');
+  }
 
   const region = regionOf(loc);
   const radius = travelRadiusOf(loc);
