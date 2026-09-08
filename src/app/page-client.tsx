@@ -45,9 +45,12 @@ const Index = () => {
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.data && event.data.type === "RD_IFRAME_HEIGHT") {
-        const height = Math.ceil(event.data.height);
-        setIframeHeight(height);
+      if (!event.data) return;
+      if (event.data.rd1Board === "height" || event.data.type === "RD_IFRAME_HEIGHT") {
+        const height = parseInt(event.data.height, 10);
+        if (height > 200 && height < 4000) {
+          setIframeHeight(height);
+        }
       }
     };
     window.addEventListener("message", handleMessage);
@@ -258,42 +261,43 @@ const Index = () => {
             }
           }
 
-          .hero-animation-wrap {
-            position: relative;
+          .rd-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 48px;
+            max-width: 1280px;
+            margin: 0 auto;
             width: 100%;
-            height: 520px;
-            min-height: 520px;
-            overflow: hidden;
           }
 
-          .hero-animation {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-
-            transform: none !important;
-            margin: 0 !important;
-            top: 0 !important;
-            bottom: auto !important;
+          #rd1-board {
+            width: 100% !important;
+            display: block !important;
+            border: 0 !important;
+            height: 820px;
           }
 
-          .hero-animation * {
-            animation-timing-function: ease-in-out;
+          @media (max-width: 1024px) {
+            #rd1-board {
+              height: 900px;
+            }
           }
 
-          /* remove any floating/bouncing on the main animation */
-          .hero-animation,
-          .hero-animation-container,
-          .hero-visual {
-            animation-name: none !important;
-            transform: translateY(0) !important;
+          @media (max-width: 900px) {
+            .rd-hero-inner {
+              display: flex !important;
+              flex-direction: column !important;
+              gap: 28px !important;
+              padding: 28px 16px !important;
+            }
+            .rd-hero-text-col { order: 1 !important; }
+            .rd-hero-board-col { order: 2 !important; }
           }
 
-          @media (max-width: 768px) {
-            .hero-animation-wrap {
-              height: 360px;
-              min-height: 360px;
+          @media (max-width: 640px) {
+            #rd1-board {
+              height: 1120px;
             }
           }
         ` }} />
@@ -302,12 +306,15 @@ const Index = () => {
           <section className="rd-hero">
             <div className="rd-overlay"></div>
             <div className="rd-container relative z-10 w-full">
-              <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
+              <div className="rd-hero-inner">
                 {/* Left Column: Content and Actions */}
-                <div className="flex flex-col text-center items-center lg:text-left lg:items-start">
-                  <h1 className="standard-h1 text-center lg:text-left w-full">Need Staff?</h1>
-                  <h2 className="standard-h2 text-center lg:text-left w-full">UK Recruitment Agency Supplying Temporary, Contract & Permanent Staff Nationwide</h2>
-                  <p className="standard-body-p text-center lg:text-left">Fast, compliant recruitment across ten specialist sectors throughout Scotland and the UK.</p>
+                <div className="rd-hero-text-col flex flex-col text-center items-center lg:text-left lg:items-start">
+                  <h1 className="standard-h1 text-center lg:text-left w-full !text-[#0b0f19]">
+                    UK Recruitment Agency Supplying Temporary, Contract &amp; Permanent Staff Nationwide
+                  </h1>
+                  <p className="standard-body-p text-center lg:text-left !text-[#5b6474] mt-2">
+                    Fast, compliant recruitment across ten specialist sectors throughout Scotland and the UK.
+                  </p>
 
                   <div className="rd-button-grid">
                     <div className="rd-hero-btn-col">
@@ -323,23 +330,24 @@ const Index = () => {
                         {/* <span className="rd-btn-a">Search Jobs</span> */}
                       </div>
                     </div>
-                    {/* <div className="rd-hero-btn-col">
-                      <button onClick={() => setIsVideoOpen(true)} className="rd-btn rd-btn-outline standard-cta-btn">WATCH AI CALL</button>
-                      <div className="rd-btn-caption">
-                        <span className="rd-btn-a">Hire Faster</span>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
 
                 {/* Right Column: 24/7 Applicant Call Board Animation */}
-                <div className="hero-animation-wrap w-full flex justify-center items-center">
+                <div className="rd-hero-board-col w-full flex justify-center items-center">
                   <iframe
-                    src="/assets/rd1-24-7-live-call-v2.html"
-                    className="hero-animation"
-                    style={{ width: "100%", height: "100%", border: 0 }}
-                    title="RD1 24/7 Applicant Call"
+                    id="rd1-board"
+                    src="/assets/rd1-24-7-live-call-v3.html"
+                    className="w-full"
+                    style={{
+                      width: "100%",
+                      height: iframeHeight ? `${iframeHeight}px` : "820px",
+                      border: 0,
+                      display: "block",
+                    }}
+                    title="AI Applicant Screening — illustrative example"
                     scrolling="no"
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI Applicant Screening — Recruitment Direct UK</title>
+<style>
+:root{
+  --ink:#0b0f19;
+  --muted:#5b6474;
+  --line:#e4e7ee;
+  --panel:#f6f7fa;
+  --gold:#d3a94a;
+  --amber-bg:#fdf0d8; --amber-fg:#8a5a06; --amber-line:#e9a520;
+  --green-bg:#e6f5ec; --green-fg:#186a3b; --green-line:#22a35a;
+  --blue-bg:#e7effc;  --blue-fg:#12447f;  --blue-line:#2f6fdc;
+  --red-bg:#fbe9e9;   --red-fg:#8f2020;   --red-line:#d64545;
+  --grey-bg:#f0f2f6;  --grey-fg:#3d4452;  --grey-line:#0b0f19;
+}
+*{box-sizing:border-box}
+html,body{height:auto;min-height:0;margin:0;padding:0;overflow:hidden;background:#fff}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.board{padding:16px}
+
+.head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.mark{width:38px;height:38px;border-radius:10px;background:var(--grey-line);color:#fff;font-size:13px;font-weight:700;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;flex:none}
+.head-txt{display:flex;gap:10px;align-items:center;min-width:0}
+.title{font-size:16px;font-weight:700;line-height:1.2}
+.sub{font-size:12px;color:var(--muted);line-height:1.35;margin-top:2px}
+.live{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green-fg);background:var(--green-bg);border-radius:999px;padding:5px 10px;display:flex;align-items:center;gap:6px;flex:none}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--green-line);display:block}
+
+.tickwrap{margin:14px 0;height:30px;background:var(--panel);border-radius:8px;overflow:hidden;display:flex;align-items:center}
+.track{display:flex;gap:8px;align-items:center;will-change:transform;padding-left:10px}
+.chip{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap;flex:none}
+
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.tile{background:#fff;border:1px solid var(--line);border-top:3px solid var(--grey-line);border-radius:10px;padding:10px 12px;min-width:0}
+.tile .n{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.tile .l{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile.amber{border-top-color:var(--amber-line)}
+.tile.green{border-top-color:var(--green-line)}
+.tile.blue{border-top-color:var(--blue-line)}
+
+.feedlabel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.feed{display:flex;flex-direction:column;gap:8px}
+.row{position:relative;overflow:hidden;display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:52px}
+.role{font-size:14px;font-weight:600;line-height:1.25;transition:opacity .25s ease}
+.meta{font-size:12px;color:var(--muted);line-height:1.25;transition:opacity .25s ease}
+.cell{flex:1;min-width:0}
+.role,.meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap;flex:none;min-width:158px;text-align:center;transition:background-color .25s ease,color .25s ease,opacity .25s ease}
+.row.swap .role,.row.swap .meta,.row.swap .badge{opacity:0}
+.bar{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--line)}
+
+.b-applied{background:var(--grey-bg);color:var(--grey-fg)}
+.b-req{background:var(--amber-bg);color:var(--amber-fg)}
+.b-rec{background:var(--green-bg);color:var(--green-fg)}
+.b-ver{background:var(--grey-bg);color:var(--grey-fg)}
+.b-sub{background:var(--blue-bg);color:var(--blue-fg)}
+.b-un{background:var(--red-bg);color:var(--red-fg)}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+@media (min-width:620px){
+  .tiles{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:420px){
+  .board{padding:12px}
+  .badge{min-width:0;font-size:10px;padding:5px 8px}
+  .tile .n{font-size:21px}
+  .tile .l{font-size:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .track{transform:none!important}
+  .role,.meta,.badge{transition:none}
+  .bar{display:none}
+}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="head">
+    <div class="head-txt">
+      <div class="mark">RD</div>
+      <div>
+        <div class="title">AI Applicant Screening</div>
+        <div class="sub">Illustrative example — simulated calls, real screening logic</div>
+      </div>
+    </div>
+    <span class="live"><i></i>Live</span>
+  </div>
+
+  <div class="tickwrap" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <div class="tiles">
+    <div class="tile"><div class="n" id="c0">139</div><div class="l">Screened today</div></div>
+    <div class="tile amber"><div class="n" id="c1">78</div><div class="l">Docs. requested</div></div>
+    <div class="tile green"><div class="n" id="c2">44</div><div class="l">Docs. received</div></div>
+    <div class="tile blue"><div class="n" id="c3">34</div><div class="l">Submitted to client</div></div>
+  </div>
+
+  <div class="feedlabel">Recent calls</div>
+  <p class="sr">An illustrative animation of Recruitment Direct's AI screening funnel: applicants move from applied, to documents requested, to documents received, to recruiter verifying, to submitted to client.</p>
+  <div class="feed" id="feed" aria-hidden="true"></div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var LANES = 6;
+  var SEED  = [139, 78, 44, 34];
+
+  var ROLES = [
+    ["Scaffolder","Construction — Cardiff"],["Pick packer","Logistics — Livingston"],
+    ["Care assistant","Healthcare — Dundee"],["Steel fixer","Construction — Glasgow"],
+    ["Teaching assistant","Education — Falkirk"],["Kitchen porter","Hospitality — Stirling"],
+    ["Bricklayer","Construction — Aberdeen"],["Cleaner","Facilities — Coventry"],
+    ["Maintenance technician","Engineering — Livingston"],["Stock controller","Logistics — Durham"],
+    ["Pipe fitter","Engineering — Grangemouth"],["Chef","Hospitality — Edinburgh"],
+    ["Welder","Engineering — Motherwell"],["Groundworker","Construction — Perth"],
+    ["Warehouse operative","Logistics — Bathgate"],["Electrician","Construction — Inverness"],
+    ["Support worker","Healthcare — Kirkcaldy"],["Housekeeping assistant","Hospitality — Ayr"],
+    ["Painter and decorator","Construction — Paisley"],["Administrator","Commercial — Stirling"]
+  ];
+
+  var STAGE = {
+    applied:{ label:"Applied",             cls:"b-applied", line:"var(--grey-line)"  },
+    req:    { label:"Docs requested",      cls:"b-req",     line:"var(--amber-line)" },
+    rec:    { label:"Docs received",       cls:"b-rec",     line:"var(--green-line)" },
+    ver:    { label:"Recruiter verifying", cls:"b-ver",     line:"var(--grey-line)"  },
+    sub:    { label:"Submitted to client", cls:"b-sub",     line:"var(--blue-line)"  },
+    un:     { label:"Unsuccessful",        cls:"b-un",      line:"var(--red-line)"   }
+  };
+
+  var P_REQ = 0.55;
+  var P_REC = 0.59;
+  var P_SUB = 0.815;
+
+  var DWELL = {
+    applied:[ 600, 1100],
+    req:    [1600, 2600],
+    rec:    [1200, 1800],
+    ver:    [1300, 1900],
+    hold:   [1400, 1800]
+  };
+
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var feed  = document.getElementById("feed");
+  var track = document.getElementById("track");
+  var counts = SEED.slice();
+  var lanes = [];
+
+  function rnd(r){ return r[0] + Math.random() * (r[1] - r[0]); }
+  function pick(){ return ROLES[Math.floor(Math.random() * ROLES.length)]; }
+  function bump(i){ counts[i]++; document.getElementById("c" + i).textContent = counts[i]; }
+
+  for (var i = 0; i < LANES; i++) {
+    var el = document.createElement("div");
+    el.className = "row";
+    el.innerHTML =
+      '<div class="cell"><div class="role"></div><div class="meta"></div></div>' +
+      '<span class="badge"></span><span class="bar"></span>';
+    feed.appendChild(el);
+    lanes.push({
+      el: el,
+      role:  el.querySelector(".role"),
+      meta:  el.querySelector(".meta"),
+      badge: el.querySelector(".badge"),
+      bar:   el.querySelector(".bar"),
+      stage: "applied",
+      start: 0,
+      due:   0
+    });
+  }
+
+  function paint(l){
+    var s = STAGE[l.stage];
+    l.badge.textContent = s.label;
+    l.badge.className = "badge " + s.cls;
+    l.bar.style.background = s.line;
+    chip(l.role.textContent, s);
+  }
+
+  function chip(name, s){
+    if (reduced) return;
+    var c = document.createElement("span");
+    c.className = "chip " + s.cls;
+    c.textContent = name + " — " + s.label;
+    track.appendChild(c);
+  }
+
+  function refill(l, now){
+    var r = pick();
+    l.el.classList.add("swap");
+    window.setTimeout(function(){
+      l.role.textContent = r[0];
+      l.meta.textContent = r[1];
+      l.stage = "applied";
+      paint(l);
+      l.el.classList.remove("swap");
+    }, 260);
+    l.start = now + 260;
+    l.due   = now + 260 + rnd(DWELL.applied);
+    bump(0);
+  }
+
+  function step(l, now){
+    switch (l.stage) {
+      case "applied":
+        if (Math.random() < P_REQ) { l.stage = "req"; bump(1); l.due = now + rnd(DWELL.req); }
+        else                       { l.stage = "un";           l.due = now + rnd(DWELL.hold); }
+        break;
+      case "req":
+        if (Math.random() < P_REC) { l.stage = "rec"; bump(2); l.due = now + rnd(DWELL.rec); }
+        else                       { l.stage = "un";           l.due = now + rnd(DWELL.hold); }
+        break;
+      case "rec":
+        l.stage = "ver"; l.due = now + rnd(DWELL.ver);
+        break;
+      case "ver":
+        if (Math.random() < P_SUB) { l.stage = "sub"; bump(3); }
+        else                       { l.stage = "un"; }
+        l.due = now + rnd(DWELL.hold);
+        break;
+      default:
+        refill(l, now);
+        return;
+    }
+    l.start = now;
+    paint(l);
+  }
+
+  var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
+  function clock(){ return (window.performance && performance.now) ? performance.now() : Date.now(); }
+
+  lanes.forEach(function(l, i){
+    var r = pick();
+    l.role.textContent = r[0];
+    l.meta.textContent = r[1];
+    l.stage = "applied";
+    var s = STAGE.applied;
+    l.badge.textContent = s.label;
+    l.badge.className = "badge " + s.cls;
+    l.bar.style.background = s.line;
+    l.start = t0;
+    l.due   = t0 + 400 + i * 380;
+  });
+
+  window.setInterval(function(){
+    var now = clock();
+    for (var i = 0; i < lanes.length; i++) {
+      var l = lanes[i];
+      if (now >= l.due) step(l, now);
+      var span = Math.max(l.due - l.start, 1);
+      var p = (now - l.start) / span;
+      if (p < 0) p = 0; if (p > 1) p = 1;
+      l.bar.style.width = (p * 100) + "%";
+    }
+  }, 60);
+
+  var offset = 0;
+  function drift(){
+    offset -= 0.55;
+    var first = track.firstChild;
+    if (first) {
+      var w = first.offsetWidth + 8;
+      if (-offset >= w) { offset += w; track.removeChild(first); }
+    }
+    if (track.children.length > 24) track.removeChild(track.firstChild);
+    track.style.transform = "translateX(" + offset + "px)";
+    window.requestAnimationFrame(drift);
+  }
+  if (!reduced && window.requestAnimationFrame) window.requestAnimationFrame(drift);
+
+  var lastH = 0;
+  function report(){
+    var h = Math.ceil(document.documentElement.getBoundingClientRect().height);
+    if (h && Math.abs(h - lastH) > 2) {
+      lastH = h;
+      try { parent.postMessage({ rd1Board: "height", height: h }, "*"); } catch (e) {}
+    }
+  }
+  if (window.ResizeObserver) new ResizeObserver(report).observe(document.documentElement);
+  window.addEventListener("load", report);
+  window.addEventListener("resize", report);
+  window.setInterval(report, 1000);
+  report();
+
+})();
+</script>
+</body>
+</html>

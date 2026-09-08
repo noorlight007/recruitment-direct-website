@@ -75,9 +75,12 @@ export default function HeroSection() {
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.data && event.data.type === "RD_IFRAME_HEIGHT") {
-        const height = Math.ceil(event.data.height);
-        setIframeHeight(height);
+      if (!event.data) return;
+      if (event.data.rd1Board === "height" || event.data.type === "RD_IFRAME_HEIGHT") {
+        const height = parseInt(event.data.height, 10);
+        if (height > 200 && height < 4000) {
+          setIframeHeight(height);
+        }
       }
     };
     window.addEventListener("message", handleMessage);
@@ -136,14 +139,21 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="hero-animation-wrap w-full flex justify-center items-center"
+            className="w-full flex justify-center items-center"
           >
             <iframe
-              src="/assets/rd1-24-7-live-call.html"
-              className="hero-animation"
-              style={{ width: "100%", height: "100%", border: 0 }}
-              title="RD1 24/7 Applicant Call"
+              id="rd1-board"
+              src="/assets/rd1-24-7-live-call-v3.html"
+              className="w-full"
+              style={{
+                width: "100%",
+                height: iframeHeight ? `${iframeHeight}px` : "820px",
+                border: 0,
+                display: "block",
+              }}
+              title="AI Applicant Screening — illustrative example"
               scrolling="no"
+              loading="lazy"
             />
           </motion.div>
         </div>
