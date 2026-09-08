@@ -225,16 +225,39 @@ const Index = () => {
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
             letter-spacing: -0.2px !important;
           }
+          @media (max-width: 900px) {
+            .rd-hero {
+              padding-top: 40px !important;
+              padding-bottom: 40px !important;
+              min-height: auto !important;
+            }
+            .rd-hero-inner {
+              display: flex !important;
+              flex-direction: column !important;
+              gap: 24px !important;
+              padding: 10px 16px !important;
+            }
+            .rd-hero-text-col {
+              order: 1 !important;
+              padding-top: 0 !important;
+              margin-top: 0 !important;
+            }
+            .rd-hero-board-col {
+              order: 2 !important;
+            }
+          }
+
           @media (max-width: 768px) {
             .rd-hero {
-              padding-top: 110px !important;
-              padding-bottom: 50px !important;
+              padding-top: 40px !important;
+              padding-bottom: 32px !important;
               min-height: auto !important;
             }
             .rd-button-grid {
               flex-direction: column !important;
               align-items: center !important;
-              gap: 24px !important;
+              gap: 20px !important;
+              margin-top: 24px !important;
             }
             .rd-hero-btn-col {
               width: 100% !important;
@@ -284,18 +307,26 @@ const Index = () => {
             }
           }
 
-          @media (max-width: 900px) {
-            .rd-hero-inner {
-              display: flex !important;
-              flex-direction: column !important;
-              gap: 28px !important;
-              padding: 28px 16px !important;
-            }
-            .rd-hero-text-col { order: 1 !important; }
-            .rd-hero-board-col { order: 2 !important; }
-          }
-
           @media (max-width: 640px) {
+            .rd-hero {
+              padding-top: 40px !important;
+              padding-bottom: 24px !important;
+            }
+            .rd-hero-inner {
+              gap: 18px !important;
+              padding: 4px 12px !important;
+            }
+            .rd-hero h1 {
+              font-size: clamp(26px, 7vw, 36px) !important;
+              line-height: 1.15 !important;
+              margin-top: 0 !important;
+              margin-bottom: 8px !important;
+            }
+            .rd-hero p {
+              margin-top: 0 !important;
+              margin-bottom: 8px !important;
+              font-size: 14.5px !important;
+            }
             #rd1-board {
               height: 1120px;
             }
