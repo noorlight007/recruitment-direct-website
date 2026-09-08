@@ -1,0 +1,91 @@
+<!--
+  RD1 hero — board embed + auto-height + mobile stacking order.
+  Paste the markup into the hero component, the CSS into the global stylesheet,
+  and the script anywhere after the iframe. Substitute the real class names if
+  the hero already uses its own.
+-->
+
+<!-- ============ MARKUP ============ -->
+
+<section class="rd-hero">
+  <div class="rd-hero__inner">
+
+    <div class="rd-hero__text">
+      <!-- "Need Staff?" is deleted. This heading becomes the page H1. -->
+      <h1 class="rd-hero__h1">UK Recruitment Agency Supplying Temporary, Contract &amp; Permanent Staff Nationwide</h1>
+      <p class="rd-hero__sub">Fast, compliant recruitment across ten specialist sectors throughout Scotland and the UK.</p>
+
+      <div class="rd-hero__ctas">
+        <a class="btn btn-gold" href="/ai-hire-now">AI Hire Now</a>
+        <span class="rd-hero__cap">Order Staff 24/7 or Get a Quote</span>
+        <a class="btn btn-outline" href="/job-search">Job Search</a>
+      </div>
+    </div>
+
+    <div class="rd-hero__board">
+      <iframe
+        id="rd1-board"
+        src="/assets/rd1-24-7-live-call-v3.html"
+        title="AI Applicant Screening — illustrative example"
+        scrolling="no"
+        loading="lazy"></iframe>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============ CSS ============ -->
+<style>
+.rd-hero { background: #ffffff; }
+
+.rd-hero__inner{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.rd-hero__h1 { color: #0b0f19; }
+.rd-hero__sub { color: #5b6474; }
+
+#rd1-board{
+  width: 100%;
+  display: block;
+  border: 0;
+  height: 820px;
+}
+
+@media (max-width: 900px){
+  .rd-hero__inner{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 28px 16px;
+  }
+  .rd-hero__text  { order: 1; }
+  .rd-hero__board { order: 2; }
+}
+
+@media (max-width: 1024px){ #rd1-board { height: 900px; } }
+@media (max-width: 640px) { #rd1-board { height: 1120px; } }
+</style>
+
+
+<!-- ============ SCRIPT ============ -->
+<script>
+(function () {
+  var frame = document.getElementById('rd1-board');
+  if (!frame) return;
+
+  window.addEventListener('message', function (event) {
+    if (!event.data || event.data.rd1Board !== 'height') return;
+    if (event.source !== frame.contentWindow) return;
+    var h = parseInt(event.data.height, 10);
+    if (h > 200 && h < 4000) frame.style.height = h + 'px';
+  });
+})();
+</script>

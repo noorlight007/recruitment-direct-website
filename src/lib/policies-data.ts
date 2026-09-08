@@ -98,6 +98,39 @@ export const policies: PolicyItem[] = [
     keywords: ["retention schedule", "data deletion", "gdpr", "records management", "data retention"],
   },
   {
+    slug: "subject-access-request-procedure",
+    title: "Subject Access Request (SAR) Procedure",
+    category: "Data Protection & Privacy",
+    status: "live",
+    summary:
+      "How to make a Subject Access Request to Recruitment Direct UK Ltd and how we respond, in line with Article 15 of the UK GDPR and Data Protection Act 2018.",
+    effectiveDate: "7 September 2026",
+    href: "/subject-access-request-procedure",
+    keywords: ["sar", "subject access request", "gdpr article 15", "personal data request", "data access"],
+  },
+  {
+    slug: "data-breach-response-procedure",
+    title: "Data Breach Response Procedure",
+    category: "Data Protection & Privacy",
+    status: "live",
+    summary:
+      "How Recruitment Direct UK Ltd identifies, contains, assesses and reports personal data breaches in line with UK GDPR Articles 33 and 34.",
+    effectiveDate: "7 September 2026",
+    href: "/data-breach-response-procedure",
+    keywords: ["data breach", "incident response", "ico notification", "72 hours", "security incident"],
+  },
+  {
+    slug: "ai-automated-decision-making-policy",
+    title: "AI & Automated Decision-Making Policy",
+    category: "Data Protection & Privacy",
+    status: "live",
+    summary:
+      "How Recruitment Direct UK Ltd uses AI-assisted tools responsibly in candidate screening, in line with UK GDPR Article 22 and ICO guidance.",
+    effectiveDate: "7 September 2026",
+    href: "/ai-automated-decision-making-policy",
+    keywords: ["ai automated decision making", "article 22", "automated processing", "ico guidance", "ai ethics", "human review"],
+  },
+  {
     slug: "ai-screening-call-statement",
     title: "AI Screening Call Statement",
     category: "Data Protection & Privacy",
@@ -133,6 +166,17 @@ export const policies: PolicyItem[] = [
     effectiveDate: "11 June 2026",
     href: "/equality-diversity-inclusion-policy",
     keywords: ["equal opportunities", "equality act 2010", "edi", "diversity"],
+  },
+  {
+    slug: "anti-harassment-sexual-harassment-policy",
+    title: "Anti-Harassment & Sexual Harassment Policy",
+    category: "Equality, Ethics & Conduct",
+    status: "live",
+    summary:
+      "Recruitment Direct UK Ltd's zero-tolerance approach to harassment and sexual harassment, including the proactive preventative duty under the Worker Protection Act 2023.",
+    effectiveDate: "7 September 2026",
+    href: "/anti-harassment-sexual-harassment-policy",
+    keywords: ["worker protection act 2023", "sexual harassment", "harassment", "third party harassment", "equality act"],
   },
   {
     slug: "modern-slavery-policy",
@@ -194,6 +238,17 @@ export const policies: PolicyItem[] = [
     keywords: ["hswa 1974", "risk assessment", "workplace safety", "health and safety", "riddor"],
   },
   {
+    slug: "lone-working-policy",
+    title: "Lone Working Policy",
+    category: "Health, Safety & Safeguarding",
+    status: "live",
+    summary:
+      "How Recruitment Direct UK Ltd assesses and manages the risks to workers placed in lone-working roles, in line with HSE guidance.",
+    effectiveDate: "7 September 2026",
+    href: "/lone-working-policy",
+    keywords: ["lone working", "hse guidance", "risk assessment", "worker safety", "unsupervised work"],
+  },
+  {
     slug: "safeguarding-policy",
     title: "Safeguarding Policy (Children & Vulnerable Adults)",
     category: "Health, Safety & Safeguarding",
@@ -219,6 +274,28 @@ export const policies: PolicyItem[] = [
   // ---------------------------------------------------------------------
   // Employment & Workforce Compliance
   // ---------------------------------------------------------------------
+  {
+    slug: "national-minimum-wage-holiday-pay-policy",
+    title: "National Minimum Wage & Holiday Pay Compliance Policy",
+    category: "Employment & Workforce Compliance",
+    status: "live",
+    summary:
+      "Recruitment Direct UK Ltd's commitment to paying at least the National Minimum/Living Wage and calculating correct, transparent holiday pay.",
+    effectiveDate: "7 September 2026",
+    href: "/national-minimum-wage-holiday-pay-policy",
+    keywords: ["national minimum wage", "national living wage", "holiday pay", "working time regulations", "nmw"],
+  },
+  {
+    slug: "working-time-regulations-policy",
+    title: "Working Time Regulations Compliance Policy",
+    category: "Employment & Workforce Compliance",
+    status: "live",
+    summary:
+      "Recruitment Direct UK Ltd's compliance with the Working Time Regulations 1998, covering maximum 48-hour limits, rest breaks and annual leave.",
+    effectiveDate: "7 September 2026",
+    href: "/working-time-regulations-policy",
+    keywords: ["working time regulations", "48 hour limit", "rest breaks", "night work", "annual leave", "wtr 1998"],
+  },
   {
     slug: "complaints-policy",
     title: "Complaints Policy",
@@ -250,6 +327,28 @@ export const policies: PolicyItem[] = [
     effectiveDate: "7 September 2026",
     href: "/right-to-work-policy",
     keywords: ["right to work", "home office checks", "immigration compliance", "share code", "evisa"],
+  },
+  {
+    slug: "tupe-policy",
+    title: "TUPE (Transfer of Undertakings) Policy",
+    category: "Employment & Workforce Compliance",
+    status: "live",
+    summary:
+      "How Recruitment Direct UK Ltd manages the transfer of workers under TUPE when taking over or exiting a staffing contract.",
+    effectiveDate: "7 September 2026",
+    href: "/tupe-policy",
+    keywords: ["tupe", "transfer of undertakings", "service provision change", "employee liability information"],
+  },
+  {
+    slug: "umbrella-company-due-diligence-policy",
+    title: "Umbrella Company Due-Diligence Policy",
+    category: "Employment & Workforce Compliance",
+    status: "live",
+    summary:
+      "How Recruitment Direct UK Ltd carries out due diligence on umbrella companies and intermediaries used to pay contractors, in line with HMRC guidance.",
+    effectiveDate: "7 September 2026",
+    href: "/umbrella-company-due-diligence-policy",
+    keywords: ["umbrella company", "hmrc compliance", "due diligence", "paye", "disguised remuneration", "key information document"],
   },
   {
     slug: "safer-recruitment-vetting-policy",
@@ -338,6 +437,28 @@ export const policies: PolicyItem[] = [
     href: "/quality-policy",
     keywords: ["iso 9001", "quality management", "cqs", "iso 9001:2015", "gb2006088"],
   },
+  {
+    slug: "risk-management-policy",
+    title: "Risk Management Policy",
+    category: "Financial & Commercial Assurance",
+    status: "live",
+    summary:
+      "How Recruitment Direct UK Ltd identifies, assesses and manages risk across compliance, operations, finance and service delivery.",
+    effectiveDate: "7 September 2026",
+    href: "/risk-management-policy",
+    keywords: ["risk management", "risk register", "mitigation", "operational risk", "compliance risk"],
+  },
+  {
+    slug: "supplier-subcontractor-due-diligence-policy",
+    title: "Supplier & Subcontractor Due-Diligence Policy",
+    category: "Financial & Commercial Assurance",
+    status: "live",
+    summary:
+      "How Recruitment Direct UK Ltd carries out due diligence on suppliers and associate agencies used to fulfil client contracts.",
+    effectiveDate: "7 September 2026",
+    href: "/supplier-subcontractor-due-diligence-policy",
+    keywords: ["supplier due diligence", "subcontractor policy", "supply chain compliance", "associate agencies"],
+  },
 
   // ---------------------------------------------------------------------
   // Environmental & Social Value
@@ -385,6 +506,17 @@ export const policies: PolicyItem[] = [
   // ---------------------------------------------------------------------
   // Legal & General
   // ---------------------------------------------------------------------
+  {
+    slug: "framework-and-tender-compliance",
+    title: "Framework & Tender Compliance",
+    category: "Legal & General",
+    status: "live",
+    summary:
+      "Recruitment Direct UK Ltd's full compliance pack for procurement, framework and tender evaluation — linking every relevant policy, certification and statement.",
+    effectiveDate: "7 September 2026",
+    href: "/framework-and-tender-compliance",
+    keywords: ["framework compliance", "tender pack", "procurement", "due diligence", "bid compliance", "accreditations"],
+  },
   {
     slug: "accreditations",
     title: "Accreditations & Certifications",

@@ -77,9 +77,14 @@ export default function Footer() {
       title: "FRAMEWORK & COMPLIANCE",
       icon: <Scale className="w-5 h-5 text-blue-600" />,
       items: [
+        { name: "Framework & Tender Compliance", link: "/framework-and-tender-compliance" },
         { name: "Modern Slavery Policy", link: "/modern-slavery-policy" },
         { name: "Equality & Diversity Policy", link: "/equality-diversity-policy" },
+        { name: "Anti-Harassment & Sexual Harassment Policy", link: "/anti-harassment-sexual-harassment-policy" },
         { name: "Health & Safety Policy", link: "/health-safety-policy" },
+        { name: "Lone Working Policy", link: "/lone-working-policy" },
+        { name: "Risk Management Policy", link: "/risk-management-policy" },
+        { name: "Supplier & Subcontractor Policy", link: "/supplier-subcontractor-due-diligence-policy" },
         { name: "Carbon Reduction Plan", link: "/carbon-reduction-plan" },
         { name: "Environmental & Carbon Policy", link: "/environmental-carbon-policy" },
         { name: "Anti-Bribery Policy", link: "/anti-bribery-policy" },
@@ -93,9 +98,11 @@ export default function Footer() {
       items: [
         { name: "Privacy Policy", link: "/privacy-policy" },
         { name: "Cookie Policy", link: "/cookie-policy" },
+        { name: "Subject Access Request (SAR) Procedure", link: "/subject-access-request-procedure" },
         { name: "Candidate Privacy Notice", link: "/candidate-privacy-notice" },
         { name: "Client Privacy Notice", link: "/client-privacy-notice" },
-        { name: "Data Retention Policy", link: "/data-retention-policy" }
+        { name: "Data Retention Policy", link: "/data-retention-policy" },
+        { name: "Data Breach Response Procedure", link: "/data-breach-response-procedure" }
       ]
     },
     {
@@ -103,6 +110,7 @@ export default function Footer() {
       icon: <Shield className="w-5 h-5 text-blue-600" />,
       items: [
         { name: "AI Transparency Policy", link: "/ai-transparency-statement" },
+        { name: "AI & Automated Decision-Making Policy", link: "/ai-automated-decision-making-policy" },
         { name: "Human Review Policy", link: "/human-review-statement" },
         { name: "AI Fairness & Bias Statement", link: "/bias-fairness-statement" },
         { name: "AI Hire Now Statement", link: "/ai-hire-now-statement" },
@@ -122,8 +130,12 @@ export default function Footer() {
       title: "RECRUITMENT COMPLIANCE",
       icon: <Users className="w-5 h-5 text-blue-600" />,
       items: [
+        { name: "National Minimum Wage & Holiday Pay Policy", link: "/national-minimum-wage-holiday-pay-policy" },
+        { name: "Working Time Regulations Policy", link: "/working-time-regulations-policy" },
         { name: "AWR Policy", link: "/awr-policy" },
         { name: "Right to Work Policy", link: "/right-to-work-policy" },
+        { name: "TUPE Policy", link: "/tupe-policy" },
+        { name: "Umbrella Company Due-Diligence Policy", link: "/umbrella-company-due-diligence-policy" },
         { name: "Complaints Policy", link: "/complaints-policy" },
         { name: "Safeguarding Policy", link: "/safeguarding-policy" }
       ]

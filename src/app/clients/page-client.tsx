@@ -15,6 +15,7 @@ import {
   CreditCard,
   PhoneCall,
   Sparkles,
+  Handshake,
 } from "lucide-react";
 
 const fadeUp = {
@@ -42,6 +43,13 @@ const serviceCards = [
     description: "Identify and recruit qualified long-term professionals who match your company culture and business objectives.",
     link: "/permanent-staff",
     icon: Users2,
+  },
+  {
+    title: "Talent Acquisition Consultancy",
+    description: "Hourly, half day and full day consultancy engagements for hiring, sourcing and benchmarking, without signing up to full HR outsourcing. UK wide.",
+    link: "/talent-acquisition-consultancy",
+    icon: Handshake,
+    badge: "New",
   },
   {
     title: "Open Credit Account",

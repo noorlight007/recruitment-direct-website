@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, MapPin } from "lucide-react";
+import { ChevronDown, Linkedin, Facebook, Menu, X, Zap, Users, Briefcase, UserCheck, Search, ShieldCheck, Phone, FileText, MapPin, Handshake, CreditCard } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import FindStaffModal from "@/components/FindStaffModal";
@@ -78,6 +78,16 @@ const clientSubmenu = [
     icon: Briefcase,
   },
   {
+    title: "Talent Acquisition Consultancy",
+    description: "Hourly, half-day & full-day consultancy support",
+    link: "/talent-acquisition-consultancy",
+    icon: Handshake,
+    badge: "New",
+    isNew: true,
+    hasDividerBefore: true,
+    hasDividerAfter: true,
+  },
+  {
     title: "Why Choose Us",
     description: "See what makes our recruitment approach different",
     link: "/why-choose-us",
@@ -87,7 +97,7 @@ const clientSubmenu = [
     title: "Open Credit Account",
     description: "Apply for a credit account",
     link: "/open-credit-account",
-    icon: FileText,
+    icon: CreditCard,
   },
 ];
 
@@ -319,41 +329,55 @@ export default function Navbar() {
                         >
                           <div className={`grid ${item.columns === 2 ? "grid-cols-2 gap-x-6" : "grid-cols-1"} gap-y-1`}>
                             {item.dropdownItems?.map((subItem: any) => (
-                              <Link
-                                key={subItem.title}
-                                href={subItem.link}
-                                target={subItem.link?.startsWith("http") ? "_blank" : undefined}
-                                rel={subItem.link?.startsWith("http") ? "noopener noreferrer" : undefined}
-                                onClick={(e) => {
-                                  if (subItem.title === "Ask AI Steve") {
-                                    e.preventDefault();
-                                    window.dispatchEvent(new CustomEvent('open-ai-steve'));
-                                  } else if (subItem.title === "AI Applicant Screening Call") {
-                                    e.preventDefault();
-                                    setIsVideoOpen(true);
-                                  }
-                                  setActiveDropdown(null);
-                                }}
-                                className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 group nav-btn dropdown-item"
-                              >
-                                <div className="dropdown-icon">
-                                  {subItem.isImage ? (
-                                    <Image src={subItem.icon} alt={subItem.title} className="object-contain" unoptimized />
-                                  ) : (
-                                    <subItem.icon />
-                                  )}
-                                </div>
-                                <div className="flex flex-col">
-                                  <span className="text-[14px] font-semibold text-white leading-tight group-hover:text-primary transition-colors">
-                                    {subItem.title}
-                                  </span>
-                                  {subItem.description && (
-                                    <span className="text-[13px] text-gray-400 mt-0.5 leading-tight">
-                                      {subItem.description}
-                                    </span>
-                                  )}
-                                </div>
-                              </Link>
+                              <div key={subItem.title}>
+                                {subItem.hasDividerBefore && <div className="h-[1px] bg-[#262c42] my-1 mx-1" />}
+                                <Link
+                                  href={subItem.link}
+                                  target={subItem.link?.startsWith("http") ? "_blank" : undefined}
+                                  rel={subItem.link?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                  onClick={(e) => {
+                                    if (subItem.title === "Ask AI Steve") {
+                                      e.preventDefault();
+                                      window.dispatchEvent(new CustomEvent('open-ai-steve'));
+                                    } else if (subItem.title === "AI Applicant Screening Call") {
+                                      e.preventDefault();
+                                      setIsVideoOpen(true);
+                                    }
+                                    setActiveDropdown(null);
+                                  }}
+                                  className={`flex items-start gap-3 p-2.5 rounded-xl transition-all duration-200 group nav-btn dropdown-item ${
+                                    subItem.isNew
+                                      ? "bg-[rgba(211,169,74,0.10)] border border-[rgba(211,169,74,0.55)] hover:bg-[rgba(211,169,74,0.18)]"
+                                      : ""
+                                  }`}
+                                >
+                                  <div className={`dropdown-icon ${subItem.isNew ? "!bg-gradient-to-br !from-[#4a3a1a] !to-[#2b2110] !border-[#d3a94a] !text-[#d3a94a]" : ""}`}>
+                                    {subItem.isImage ? (
+                                      <Image src={subItem.icon} alt={subItem.title} className="object-contain" unoptimized />
+                                    ) : (
+                                      <subItem.icon />
+                                    )}
+                                  </div>
+                                  <div className="flex flex-col">
+                                    <div className="flex items-center gap-1.5 flex-wrap">
+                                      <span className="text-[13.5px] font-bold text-white leading-tight group-hover:text-primary transition-colors">
+                                        {subItem.title}
+                                      </span>
+                                      {subItem.badge && (
+                                        <span className="inline-block bg-[#d3a94a] text-[#1a1400] text-[9px] font-extrabold uppercase tracking-[0.04em] px-1.5 py-0.5 rounded-[10px] leading-tight align-middle">
+                                          {subItem.badge}
+                                        </span>
+                                      )}
+                                    </div>
+                                    {subItem.description && (
+                                      <span className="text-[12px] text-gray-400 mt-0.5 leading-tight">
+                                        {subItem.description}
+                                      </span>
+                                    )}
+                                  </div>
+                                </Link>
+                                {subItem.hasDividerAfter && <div className="h-[1px] bg-[#262c42] my-1 mx-1" />}
+                              </div>
                             ))}
                           </div>
                         </motion.div>
@@ -458,35 +482,47 @@ export default function Navbar() {
                               className="overflow-hidden pl-4 space-y-1"
                             >
                               {item.dropdownItems?.map((subItem: any) => (
-                                <Link
-                                  key={subItem.title}
-                                  href={subItem.link}
-                                  onClick={(e) => {
-                                    if (subItem.title === "Ask AI Steve") {
-                                      e.preventDefault();
-                                      window.dispatchEvent(new CustomEvent('open-ai-steve'));
-                                    } else if (subItem.title === "AI Applicant Screening Call") {
-                                      e.preventDefault();
-                                      setIsVideoOpen(true);
-                                    }
-                                    setMobileOpen(false);
-                                  }}
-                                  className="flex items-center gap-3 px-4 py-3 text-sm text-white/90 hover:text-[#d3a94a] hover:bg-white/10 rounded-lg transition-all"
-                                >
-                                  <div className="dropdown-icon">
-                                    {subItem.isImage ? (
-                                      <Image src={subItem.icon} alt={subItem.title} className="object-contain" unoptimized />
-                                    ) : (
-                                      <subItem.icon />
-                                    )}
-                                  </div>
-                                  <div className="flex flex-col">
-                                    <span className="font-semibold">{subItem.title}</span>
-                                    {subItem.description && (
-                                      <span className="text-xs text-white/60 line-clamp-1">{subItem.description}</span>
-                                    )}
-                                  </div>
-                                </Link>
+                                <div key={subItem.title}>
+                                  {subItem.hasDividerBefore && <div className="h-[1px] bg-white/10 my-1 mx-2" />}
+                                  <Link
+                                    href={subItem.link}
+                                    onClick={(e) => {
+                                      if (subItem.title === "Ask AI Steve") {
+                                        e.preventDefault();
+                                        window.dispatchEvent(new CustomEvent('open-ai-steve'));
+                                      } else if (subItem.title === "AI Applicant Screening Call") {
+                                        e.preventDefault();
+                                        setIsVideoOpen(true);
+                                      }
+                                      setMobileOpen(false);
+                                    }}
+                                    className={`flex items-start gap-3 px-4 py-3 text-sm text-white/90 hover:text-[#d3a94a] hover:bg-white/10 rounded-lg transition-all ${
+                                      subItem.isNew ? "bg-[rgba(211,169,74,0.10)] border border-[rgba(211,169,74,0.55)]" : ""
+                                    }`}
+                                  >
+                                    <div className={`dropdown-icon ${subItem.isNew ? "!bg-gradient-to-br !from-[#4a3a1a] !to-[#2b2110] !border-[#d3a94a] !text-[#d3a94a]" : ""}`}>
+                                      {subItem.isImage ? (
+                                        <Image src={subItem.icon} alt={subItem.title} className="object-contain" unoptimized />
+                                      ) : (
+                                        <subItem.icon />
+                                      )}
+                                    </div>
+                                    <div className="flex flex-col">
+                                      <div className="flex items-center gap-1.5 flex-wrap">
+                                        <span className="font-semibold">{subItem.title}</span>
+                                        {subItem.badge && (
+                                          <span className="inline-block bg-[#d3a94a] text-[#1a1400] text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-[10px] leading-tight">
+                                            {subItem.badge}
+                                          </span>
+                                        )}
+                                      </div>
+                                      {subItem.description && (
+                                        <span className="text-xs text-white/60 line-clamp-1">{subItem.description}</span>
+                                      )}
+                                    </div>
+                                  </Link>
+                                  {subItem.hasDividerAfter && <div className="h-[1px] bg-white/10 my-1 mx-2" />}
+                                </div>
                               ))}
                             </motion.div>
                           )}
