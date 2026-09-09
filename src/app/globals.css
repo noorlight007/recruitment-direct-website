@@ -5441,10 +5441,13 @@ nav.fixed.nav--hide-for-footer {
   border-color: #ffffff !important;
 }
 
-.nav-btn.btn-primary {
+.nav-btn.btn-primary,
+.btn.nav-btn.btn-primary,
+a.btn.btn-primary.nav-btn {
   padding: 8px 22px !important;
   height: auto !important;
   min-height: unset !important;
+  max-height: unset !important;
   font-size: 14px !important;
   line-height: 1.2 !important;
 }

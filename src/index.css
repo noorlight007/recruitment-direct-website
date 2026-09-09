@@ -752,29 +752,29 @@
   button:not(.menu-btn):not(.close-btn):not(.absolute):not(.fixed button):not(.footer-col button):not(.rd-floating-trigger):not(.nav-btn):not(.dropdown-item):not(.rd1-cookie-buttons button),
   [class] button:not(.menu-btn):not(.close-btn):not(.absolute):not(.fixed button):not(.footer-col button):not(.rd-floating-trigger):not(.nav-btn):not(.dropdown-item):not(.rd1-cookie-buttons button),
   [class] [class] button:not(.menu-btn):not(.close-btn):not(.absolute):not(.fixed button):not(.footer-col button):not(.rd-floating-trigger):not(.nav-btn):not(.dropdown-item):not(.rd1-cookie-buttons button),
-  .btn, [class] .btn, [class] [class] .btn,
-  .cta-button, [class] .cta-button, [class] [class] .cta-button,
-  a.button, [class] a.button, [class] [class] a.button,
-  a.btn, [class] a.btn, [class] [class] a.btn,
-  .wp-block-button__link, [class] .wp-block-button__link, [class] [class] .wp-block-button__link,
-  .btn-ai-cta, [class] .btn-ai-cta, [class] [class] .btn-ai-cta,
-  .ai-button, [class] .ai-button, [class] [class] .ai-button,
-  .policy-btn, [class] .policy-btn, [class] [class] .policy-btn,
-  .elite-new-primary-btn, [class] .elite-new-primary-btn, [class] [class] .elite-new-primary-btn,
-  .elite-new-secondary-btn, [class] .elite-new-secondary-btn, [class] [class] .elite-new-secondary-btn,
-  .btn-secondary, [class] .btn-secondary, [class] [class] .btn-secondary,
-  .btn-saas, [class] .btn-saas, [class] [class] .btn-saas,
-  .btn-primary, [class] .btn-primary, [class] [class] .btn-primary,
-  .standard-cta-btn, [class] .standard-cta-btn, [class] [class] .standard-cta-btn,
-  .btn-gold, [class] .btn-gold, [class] [class] .btn-gold,
-  .btn-outline, [class] .btn-outline, [class] [class] .btn-outline,
-  .btn-outline-dark, [class] .btn-outline-dark, [class] [class] .btn-outline-dark,
-  .rd-btn-gold, [class] .rd-btn-gold, [class] [class] .rd-btn-gold,
-  .rd-btn-outline, [class] .rd-btn-outline, [class] [class] .rd-btn-outline,
-  .rd-contact-card-btn, [class] .rd-contact-card-btn, [class] [class] .rd-contact-card-btn,
-  .watch-btn, [class] .watch-btn, [class] [class] .watch-btn,
-  .btn-metallic, [class] .btn-metallic, [class] [class] .btn-metallic,
-  .rd-btn, [class] .rd-btn, [class] [class] .rd-btn {
+  .btn:not(.nav-btn), [class] .btn:not(.nav-btn), [class] [class] .btn:not(.nav-btn),
+  .cta-button:not(.nav-btn), [class] .cta-button:not(.nav-btn), [class] [class] .cta-button:not(.nav-btn),
+  a.button:not(.nav-btn), [class] a.button:not(.nav-btn), [class] [class] a.button:not(.nav-btn),
+  a.btn:not(.nav-btn), [class] a.btn:not(.nav-btn), [class] [class] a.btn:not(.nav-btn),
+  .wp-block-button__link:not(.nav-btn), [class] .wp-block-button__link:not(.nav-btn), [class] [class] .wp-block-button__link:not(.nav-btn),
+  .btn-ai-cta:not(.nav-btn), [class] .btn-ai-cta:not(.nav-btn), [class] [class] .btn-ai-cta:not(.nav-btn),
+  .ai-button:not(.nav-btn), [class] .ai-button:not(.nav-btn), [class] [class] .ai-button:not(.nav-btn),
+  .policy-btn:not(.nav-btn), [class] .policy-btn:not(.nav-btn), [class] [class] .policy-btn:not(.nav-btn),
+  .elite-new-primary-btn:not(.nav-btn), [class] .elite-new-primary-btn:not(.nav-btn), [class] [class] .elite-new-primary-btn:not(.nav-btn),
+  .elite-new-secondary-btn:not(.nav-btn), [class] .elite-new-secondary-btn:not(.nav-btn), [class] [class] .elite-new-secondary-btn:not(.nav-btn),
+  .btn-secondary:not(.nav-btn), [class] .btn-secondary:not(.nav-btn), [class] [class] .btn-secondary:not(.nav-btn),
+  .btn-saas:not(.nav-btn), [class] .btn-saas:not(.nav-btn), [class] [class] .btn-saas:not(.nav-btn),
+  .btn-primary:not(.nav-btn), [class] .btn-primary:not(.nav-btn), [class] [class] .btn-primary:not(.nav-btn),
+  .standard-cta-btn:not(.nav-btn), [class] .standard-cta-btn:not(.nav-btn), [class] [class] .standard-cta-btn:not(.nav-btn),
+  .btn-gold:not(.nav-btn), [class] .btn-gold:not(.nav-btn), [class] [class] .btn-gold:not(.nav-btn),
+  .btn-outline:not(.nav-btn), [class] .btn-outline:not(.nav-btn), [class] [class] .btn-outline:not(.nav-btn),
+  .btn-outline-dark:not(.nav-btn), [class] .btn-outline-dark:not(.nav-btn), [class] [class] .btn-outline-dark:not(.nav-btn),
+  .rd-btn-gold:not(.nav-btn), [class] .rd-btn-gold:not(.nav-btn), [class] [class] .rd-btn-gold:not(.nav-btn),
+  .rd-btn-outline:not(.nav-btn), [class] .rd-btn-outline:not(.nav-btn), [class] [class] .rd-btn-outline:not(.nav-btn),
+  .rd-contact-card-btn:not(.nav-btn), [class] .rd-contact-card-btn:not(.nav-btn), [class] [class] .rd-contact-card-btn:not(.nav-btn),
+  .watch-btn:not(.nav-btn), [class] .watch-btn:not(.nav-btn), [class] [class] .watch-btn:not(.nav-btn),
+  .btn-metallic:not(.nav-btn), [class] .btn-metallic:not(.nav-btn), [class] [class] .btn-metallic:not(.nav-btn),
+  .rd-btn:not(.nav-btn), [class] .rd-btn:not(.nav-btn), [class] [class] .rd-btn:not(.nav-btn) {
     height: 52px !important;
     min-height: 52px !important;
     max-height: 52px !important;
@@ -785,5 +785,27 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+
+  /* Job 8: Consistent dark pill buttons & resized header Find Staff button */
+  .btn.btn-primary {
+    background-image: none !important;
+    background-color: #0a0a0d !important;
+    background: linear-gradient(135deg, #17171c 0%, #0a0a0d 100%) !important;
+    border: 2px solid #ffffff !important;
+    border-radius: 999px !important;
+  }
+  .btn.btn-primary:hover {
+    background: linear-gradient(135deg, #232329 0%, #131316 100%) !important;
+  }
+  .nav-btn.btn-primary,
+  .btn.nav-btn.btn-primary,
+  a.btn.btn-primary.nav-btn {
+    padding: 8px 22px !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
   }
 }
