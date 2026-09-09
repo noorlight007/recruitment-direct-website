@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 interface FindStaffButtonProps {
   location?: string;
@@ -15,8 +16,8 @@ export default function FindStaffButton({
   className = "",
   children,
 }: FindStaffButtonProps): React.JSX.Element {
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // If user clicks in browser, open the modal overlay if available
     window.dispatchEvent(
       new CustomEvent("open-find-staff", {
         detail: { location, sector },
@@ -25,8 +26,8 @@ export default function FindStaffButton({
   };
 
   return (
-    <button onClick={handleClick} className={className} type="button">
+    <Link href="/find-staff" onClick={handleClick} className={className}>
       {children}
-    </button>
+    </Link>
   );
 }

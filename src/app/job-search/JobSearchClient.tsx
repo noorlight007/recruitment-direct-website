@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import { api } from "@/services/api";
 import { Loader2, MapPin, ChevronRight, Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { createJobSlug } from "@/lib/job-utils";
 
 interface Job {
   adId: number;
@@ -267,9 +269,9 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
                           <span className="rate-frequency">{parsePayRate(getJobAdPayRate(job)).frequency}</span>
                         )}
                       </div>
-                      <a href={`/job_details/${job.slug || job.adId}`} className="view-job">
+                      <Link href={`/jobs/${createJobSlug(job.title, getJobAdLocation(job), job.adId)}`} className="view-job">
                         View Job <ChevronRight className="button-arrow" />
-                      </a>
+                      </Link>
                     </div>
                   </article>
                 ))}

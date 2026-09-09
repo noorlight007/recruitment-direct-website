@@ -87,10 +87,10 @@ export default function NewsPage() {
               </p>
               <div className="text-base text-muted-dark leading-relaxed max-w-3xl space-y-4">
                 <p>
-                  Welcome to our industry insights hub. We publish weekly articles and reports covering employment law, HMRC tax compliance (such as CIS, VAT, and IR35), candidate sourcing methods, and hiring advice.
+                  Welcome to our industry insights hub. Explore our articles, guides, and reports covering employment law, HMRC compliance (such as CIS, VAT, and IR35), recruitment strategies, and workforce planning.
                 </p>
                 <p>
-                  Our articles draw on our experience supplying temporary, contract, and permanent staff across Scotland and the UK since 2006. Whether you are a business looking for staffing trends in Construction, Logistics, and Engineering, or a candidate seeking compliance updates, our articles keep you informed.
+                  Our insights draw on our experience supplying temporary, contract, and permanent staff across Scotland and the UK since 2006. Whether you are an employer reviewing staffing trends in Construction, Logistics, and Engineering, or a candidate looking for market updates, we keep you informed.
                 </p>
               </div>
             </motion.div>

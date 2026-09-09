@@ -118,15 +118,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let jobUrls: MetadataRoute.Sitemap = [];
 
   try {
-    const data = await api.get<ApiResponse>("/core/live/jobads");
+    const data = await api.get<any>("/core/live/jobads");
     if (data && Array.isArray(data.items)) {
+      const { createJobSlug, getJobAdLocation } = await import("@/lib/job-utils");
       jobUrls = data.items.map((job) => {
-        const identifier = job.slug || job.adId.toString();
-        // URL-encode special characters in the slug/ID path segment
-        const encodedIdentifier = encodeURIComponent(identifier);
+        const location = getJobAdLocation(job);
+        const cleanSlug = createJobSlug(job.title, location, job.adId);
         
         return {
-          url: `${baseUrl}/job_details/${encodedIdentifier}`,
+          url: `${baseUrl}/jobs/${cleanSlug}`,
           lastModified: job.postAt ? new Date(job.postAt) : new Date(),
           changeFrequency: "daily" as const,
           priority: 0.7,
