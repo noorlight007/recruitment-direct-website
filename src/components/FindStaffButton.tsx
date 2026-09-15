@@ -16,18 +16,15 @@ export default function FindStaffButton({
   className = "",
   children,
 }: FindStaffButtonProps): React.JSX.Element {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // If user clicks in browser, open the modal overlay if available
-    window.dispatchEvent(
-      new CustomEvent("open-find-staff", {
-        detail: { location, sector },
-      })
-    );
-  };
+  const params = new URLSearchParams();
+  if (location) params.set("location", location);
+  if (sector) params.set("sector", sector);
+  const href = params.toString() ? `/find-staff?${params.toString()}` : "/find-staff";
 
   return (
-    <Link href="/find-staff" onClick={handleClick} className={className}>
+    <Link href={href} className={className}>
       {children}
     </Link>
   );
 }
+

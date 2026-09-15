@@ -1,6 +1,5 @@
-"use client";
-
 import React from "react";
+import Link from "next/link";
 
 interface ContactSectionProps {
   onFindStaffClick?: () => void;
@@ -33,7 +32,7 @@ export default function ContactSection({ onFindStaffClick }: ContactSectionProps
               <p className="standard-body-p">
                 Temporary, Contract & Permanent.
               </p>
-              <a
+              <Link
                 href="/find-staff"
                 onClick={(e) => {
                   if (onFindStaffClick) {
@@ -44,7 +43,7 @@ export default function ContactSection({ onFindStaffClick }: ContactSectionProps
                 className="rd-contact-card-btn standard-cta-btn"
               >
                 Find Staff →
-              </a>
+              </Link>
             </div>
           </div>
 
