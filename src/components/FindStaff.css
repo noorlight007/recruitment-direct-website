@@ -46,6 +46,14 @@
   padding-right: 2.2rem;
 }
 
+.fs input.has-clear {
+  padding-right: 2.2rem;
+}
+
+.fs select.has-clear {
+  padding-right: 3.6rem;
+}
+
 .fs input::placeholder { color: var(--fs-muted); }
 .fs input:disabled { background: #f4f5f7; color: var(--fs-muted); }
 
@@ -54,6 +62,36 @@
 .fs button:focus-visible {
   outline: 2px solid var(--fs-gold);
   outline-offset: 2px;
+}
+
+/* Clear / Remove icon inside div */
+.fs__clear-btn {
+  position: absolute;
+  right: .75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+  transition: color .15s ease, transform .15s ease;
+  z-index: 5;
+  user-select: none;
+}
+
+.fs__clear-btn:hover {
+  color: #0f172a;
+  transform: translateY(-50%) scale(1.15);
+}
+
+.fs__clear-btn--select {
+  right: 2.1rem;
 }
 
 /* Search bar — the primary entry point, so it carries a heavier border */
@@ -118,11 +156,58 @@
 }
 
 /* Chips */
+.fs__chips-group {
+  margin-top: .75rem;
+}
+
+.fs__chips-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .35rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--fs-navy);
+}
+
+.fs__chips-title {
+  color: var(--fs-navy);
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+.fs__chips-selected {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .15rem .5rem;
+  background: #f1f5f9;
+  border: 1px solid var(--fs-line);
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--fs-navy);
+}
+
+.fs__chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: color .15s ease, transform .15s ease;
+  user-select: none;
+}
+
+.fs__chip-remove:hover {
+  color: #0f172a;
+  transform: scale(1.15);
+}
+
 .fs__chips {
   display: flex;
   flex-wrap: wrap;
   gap: .4rem;
-  margin-top: .55rem;
 }
 
 .fs__chip {
@@ -134,6 +219,7 @@
   background: #fff;
   color: var(--fs-navy);
   cursor: pointer;
+  transition: all .15s ease;
 }
 
 .fs__chip[aria-pressed='true'] {

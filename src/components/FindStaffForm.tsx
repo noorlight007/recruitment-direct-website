@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, Mail, Sparkles, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
+import { Search, Mail, Sparkles, CheckCircle2, AlertCircle, ChevronDown, X } from "lucide-react";
 import { cities } from "@/data/cities";
 import { api } from "@/services/api";
 
@@ -389,8 +389,29 @@ export default function FindStaffForm({
                   onChange={(e) => handleRoleQueryChange(e.target.value)}
                   onFocus={() => roleQuery && setShowRoleSuggestions(true)}
                   placeholder="Start typing a job title, e.g. Joiner"
-                  className="w-full pl-9 pr-4 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 focus:ring-1 focus:ring-slate-800 outline-none"
+                  className={`w-full pl-9 ${roleQuery ? 'pr-9' : 'pr-4'} py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 focus:ring-1 focus:ring-slate-800 outline-none`}
                 />
+                {roleQuery && (
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => {
+                      setRoleQuery("");
+                      setShowRoleSuggestions(false);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setRoleQuery("");
+                        setShowRoleSuggestions(false);
+                      }
+                    }}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer transition-colors"
+                    aria-label="Clear role search"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </div>
+                )}
               </div>
               {showRoleSuggestions && roleSuggestions.length > 0 && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-60 overflow-y-auto">
@@ -425,7 +446,7 @@ export default function FindStaffForm({
                       setSelectedSector(e.target.value);
                       setSelectedPosition("");
                     }}
-                    className="w-full px-3 py-2 pr-10 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none appearance-none cursor-pointer"
+                    className={`w-full px-3 py-2 ${selectedSector ? 'pr-14' : 'pr-10'} text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none appearance-none cursor-pointer`}
                   >
                     <option value="">Choose a sector…</option>
                     <optgroup label="Core Sectors">
@@ -441,6 +462,27 @@ export default function FindStaffForm({
                         ))}
                     </optgroup>
                   </select>
+                  {selectedSector && (
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => {
+                        setSelectedSector("");
+                        setSelectedPosition("");
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setSelectedSector("");
+                          setSelectedPosition("");
+                        }
+                      }}
+                      className="absolute right-8 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer transition-colors"
+                      aria-label="Clear sector"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </div>
+                  )}
                   <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                 </div>
               </div>
@@ -451,7 +493,7 @@ export default function FindStaffForm({
                     value={selectedPosition}
                     onChange={(e) => setSelectedPosition(e.target.value)}
                     disabled={!selectedSector}
-                    className="w-full px-3 py-2 pr-10 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none disabled:bg-slate-50 disabled:text-slate-400 appearance-none cursor-pointer"
+                    className={`w-full px-3 py-2 ${selectedPosition ? 'pr-14' : 'pr-10'} text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none disabled:bg-slate-50 disabled:text-slate-400 appearance-none cursor-pointer`}
                   >
                     <option value="">
                       {selectedSector ? "Choose a position…" : "Choose a sector first…"}
@@ -461,6 +503,23 @@ export default function FindStaffForm({
                         <option key={p} value={p}>{p}</option>
                       ))}
                   </select>
+                  {selectedPosition && (
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => setSelectedPosition("")}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setSelectedPosition("");
+                        }
+                      }}
+                      className="absolute right-8 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer transition-colors"
+                      aria-label="Clear position"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </div>
+                  )}
                   <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                 </div>
               </div>
@@ -498,8 +557,29 @@ export default function FindStaffForm({
                 onChange={(e) => handleLocationChange(e.target.value)}
                 onFocus={() => location && setShowLocSuggestions(true)}
                 placeholder="e.g. Newcastle, Hull, Birkenhead"
-                className="w-full px-4 py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none"
+                className={`w-full px-4 ${location ? 'pr-9' : 'pr-4'} py-2 text-sm bg-white border border-slate-300 rounded-lg focus:border-slate-800 outline-none`}
               />
+              {location && (
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => {
+                    setLocation("");
+                    setShowLocSuggestions(false);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setLocation("");
+                      setShowLocSuggestions(false);
+                    }
+                  }}
+                  className="absolute right-2.5 top-[28px] w-5 h-5 flex items-center justify-center text-slate-400 hover:text-slate-700 cursor-pointer transition-colors"
+                  aria-label="Clear location"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </div>
+              )}
               {showLocSuggestions && locSuggestions.length > 0 && (
                 <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
                   {locSuggestions.map((l) => (
