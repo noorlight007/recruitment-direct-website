@@ -47,7 +47,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=$APP_DIR
-ExecStart=$(command -v npm) run start
+ExecStart=/usr/bin/npm run start
 Restart=always
 Environment=NODE_ENV=production
 Environment=PORT=3000
