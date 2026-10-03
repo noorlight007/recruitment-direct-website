@@ -35,7 +35,7 @@ set -euo pipefail
 cd "$APP_DIR"
 git fetch origin main
 git reset --hard origin/main
-npm ci --no-audit --no-fund
+npm ci --legacy-peer-deps --no-audit --no-fund
 npm run build
 
 if [ ! -f /etc/systemd/system/$SERVICE.service ]; then
