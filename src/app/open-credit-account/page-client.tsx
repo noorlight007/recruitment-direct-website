@@ -8,11 +8,58 @@ import FloatingElements from "@/components/FloatingElements";
 export default function OpenCreditAccountPage() {
   const [formMessage, setFormMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormMessage(
-      "Thank you. Your credit account application has been received. Our team will review your details and contact you shortly."
-    );
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const get = (name: string) => String(data.get(name) ?? "").trim();
+
+    // Unselected / empty fields are sent as empty strings.
+    const payload = {
+      company_name: get("company_registered_name"),
+      registered_address: get("registered_address"),
+      company_registration_number: get("company_registration_number"),
+      vat_number: get("vat_number"),
+      contact_name: get("contact_name"),
+      job_title: get("job_title"),
+      phone: get("phone"),
+      email: get("email"),
+      accounts_contact_name: get("accounts_contact_name"),
+      accounts_email: get("accounts_email"),
+      accounts_phone: get("accounts_phone"),
+      purchase_order_required: get("purchase_order_required"),
+      preferred_invoice_email: get("preferred_invoice_email"),
+      service_type: get("staff_type"),
+      sectors_required: get("sectors_required"),
+      expected_weekly_spend: get("expected_weekly_spend"),
+      preferred_payment_terms: get("preferred_payment_terms"),
+    };
+
+    setSubmitting(true);
+    setFormMessage("");
+    try {
+      const res = await fetch(
+        "https://api.callpilot.pro/api/v1/core/live/credit-application",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      form.reset();
+      setFormMessage(
+        "Thank you. Your credit account application has been received. Our team will review your details and contact you shortly."
+      );
+    } catch {
+      setFormMessage(
+        "Sorry, something went wrong submitting your application. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -128,8 +175,12 @@ export default function OpenCreditAccountPage() {
               </div>
 
               {/* BUTTON */}
-              <button type="submit" className="submit-button">
-                Submit Credit Application
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={submitting}
+              >
+                {submitting ? "Submitting..." : "Submit Credit Application"}
                 <span>FAST CLIENT SETUP</span>
               </button>
 
