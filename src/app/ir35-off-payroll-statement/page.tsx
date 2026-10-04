@@ -93,7 +93,7 @@ export default function Ir35OffPayrollStatementPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Questions about a specific assignment&apos;s IR35 status should be directed to RD1 via{" "}
-            <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">
+            <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">
               accounts@rd1.co.uk
             </a>
             .

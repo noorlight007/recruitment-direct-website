@@ -82,7 +82,7 @@ export default function AIAutomatedDecisionMakingPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Candidates are told when an AI-assisted tool forms part of RD1&apos;s screening process for a role, what it is used for, and how to request a human review of any outcome, in line with our{" "}
-            <Link href="/candidate-privacy-notice" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/candidate-privacy-notice" className="text-zinc-900 underline hover:text-zinc-800">
               Candidate Privacy Notice
             </Link>
             .
@@ -98,15 +98,15 @@ export default function AIAutomatedDecisionMakingPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Personal data processed by AI-assisted screening tools is handled in line with RD1&apos;s{" "}
-            <Link href="/privacy-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/privacy-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Privacy Policy
             </Link>
             ,{" "}
-            <Link href="/candidate-privacy-notice" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/candidate-privacy-notice" className="text-zinc-900 underline hover:text-zinc-800">
               Candidate Privacy Notice
             </Link>
             , and{" "}
-            <Link href="/data-retention-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/data-retention-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Data Retention &amp; Deletion Policy
             </Link>{" "}
             — the same standards that apply to all other candidate data RD1 holds.

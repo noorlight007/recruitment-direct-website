@@ -99,28 +99,28 @@ const Index = () => {
             display: none !important;
           }
           .rd-hero h1 {
-            color: #0b0f19 !important;
+            color: #121212 !important;
             font-size: clamp(34.68px, 5.06vw, 63.58px) !important;
             white-space: normal !important;
           }
           .rd-hero h2 {
-            color: #0b0f19 !important;
+            color: #121212 !important;
           }
           .rd-hero p {
-            color: #374151 !important;
+            color: #444444 !important;
           }
           .rd-trust {
             background: #ffffff !important;
           }
           .rd-trust-grid div {
-            color: #0b0f19 !important;
+            color: #121212 !important;
           }
           .rd-sectors {
             background: #ffffff !important;
             margin-bottom: 0 !important;
           }
           .rd-sectors h2 {
-            color: #0b0f19 !important;
+            color: #121212 !important;
           }
           @media (min-width: 1024px) {
             .rd-hero .rd-button-grid {
@@ -161,7 +161,7 @@ const Index = () => {
             align-items: center !important;
           }
           .rd-hero .rd-btn-outline {
-            color: #0b0f19 !important;
+            color: #121212 !important;
             border: 2px solid #d8ad48 !important;
             background: transparent !important;
           }
@@ -180,7 +180,7 @@ const Index = () => {
           .rd-btn-q {
             font-size: 17px !important;
             font-weight: 600 !important;
-            color: #4b5566 !important;
+            color: #585858 !important;
             line-height: 1.2 !important;
             display: block !important;
           }
@@ -338,10 +338,10 @@ const Index = () => {
               <div className="rd-hero-inner">
                 {/* Left Column: Content and Actions */}
                 <div className="rd-hero-text-col flex flex-col text-center items-center lg:text-left lg:items-start">
-                  <h1 className="standard-h1 text-center lg:text-left w-full !text-[#0b0f19]">
+                  <h1 className="standard-h1 text-center lg:text-left w-full !text-[#121212]">
                     UK Recruitment Agency Supplying Temporary, Contract &amp; Permanent Staff Nationwide
                   </h1>
-                  <p className="standard-body-p text-center lg:text-left !text-[#5b6474] mt-2">
+                  <p className="standard-body-p text-center lg:text-left !text-[#686868] mt-2">
                     Fast, compliant recruitment across ten specialist sectors throughout Scotland and the UK.
                   </p>
 
@@ -728,7 +728,7 @@ const Index = () => {
         }
 
         .rd-team-page .btn.gold {
-          color: #071424 !important;
+          color: #161616 !important;
           background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
           border: 2px solid #f7d98a !important;
           box-shadow:
@@ -797,7 +797,7 @@ const Index = () => {
           display: block !important;
           font-size: 13.5px !important;
           font-style: italic !important;
-          color: #cbd5e1 !important;
+          color: #d6d6d6 !important;
           margin-top: 6px !important;
           max-width: 320px !important;
           line-height: 1.4 !important;
@@ -987,7 +987,7 @@ const Index = () => {
         .rd-team-page .contact-strip {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          background: linear-gradient(135deg, #050b12 0%, #101820 100%) !important;
+          background: linear-gradient(135deg, #0c0c0c 0%, #181818 100%) !important;
           color: #ffffff !important;
           text-align: center;
           padding: 38px 40px;
@@ -1267,7 +1267,7 @@ const Index = () => {
             __html: `
         :root {
           --rd-black: #111111;
-          --rd-grey: #5f6368;
+          --rd-grey: #646464;
           --rd-brass: #c8a24a;
           --rd-border: #e8e8e8;
           --rd-white: #ffffff;
@@ -1447,7 +1447,7 @@ const Index = () => {
           background:#ffffff;
           padding:90px 50px;
           font-family:Arial,sans-serif;
-          color:#07142f;
+          color:#1b1b1b;
       }
 
       .hero-grid{
@@ -1465,7 +1465,7 @@ const Index = () => {
       }
 
       .navy{
-          color:#07142f;
+          color:#1b1b1b;
       }
 
       .gold{
@@ -1515,7 +1515,7 @@ const Index = () => {
 
       .btn-outline{
           border:2px solid #d8a126;
-          color:#07142f;
+          color:#1b1b1b;
           padding:20px 42px;
           border-radius:10px;
           text-decoration:none;
@@ -1544,7 +1544,7 @@ const Index = () => {
       //     background:linear-gradient(
       //         90deg,
       //         rgba(255,255,255,0.75) 0%,
-      //         rgba(7,20,47,0.05) 35%,
+      //         rgba(27, 27, 27,0.05) 35%,
       //         rgba(0,0,0,0.55) 100%
       //     );
       // }
@@ -1597,7 +1597,7 @@ const Index = () => {
           text-align:center;
           font-size:54px;
           margin-bottom:55px;
-          color:#07142f;
+          color:#1b1b1b;
       }
 
       .flow-grid{
@@ -1634,7 +1634,7 @@ const Index = () => {
 
       .consultant-section{
           margin-top:110px;
-          background:#f8f9fc;
+          background:#fafafa;
           border-radius:28px;
           padding:50px;
           display:grid;
@@ -1730,7 +1730,7 @@ const Index = () => {
           inset:0;
           background:linear-gradient(
               180deg,
-              rgba(7,20,47,0.05) 0%,
+              rgba(27, 27, 27,0.05) 0%,
               rgba(0,0,0,0.78) 100%
           );
       }

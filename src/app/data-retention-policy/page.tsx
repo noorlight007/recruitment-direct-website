@@ -69,7 +69,7 @@ export default function DataRetentionPolicyPage() {
               "Marketing consents and website enquiry data: retained until consent is withdrawn or 24 months of inactivity, whichever is sooner.",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-gray-800">
-                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                 <span>{item}</span>
               </li>
             ))}
@@ -97,11 +97,11 @@ export default function DataRetentionPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Candidates, clients, and workers can request earlier deletion, a copy of their data, or a correction at any time &mdash; see our{" "}
-            <Link href="/candidate-privacy-notice" className="text-blue-600 hover:underline">
+            <Link href="/candidate-privacy-notice" className="text-zinc-900 hover:underline">
               Candidate Privacy Notice
             </Link>{" "}
             and{" "}
-            <Link href="/client-privacy-notice" className="text-blue-600 hover:underline">
+            <Link href="/client-privacy-notice" className="text-zinc-900 hover:underline">
               Client Privacy Notice
             </Link>{" "}
             for how to exercise these rights.

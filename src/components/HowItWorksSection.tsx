@@ -108,13 +108,13 @@ export default function HowItWorksSection() {
           {...fadeUp}
           className="max-w-[900px] mx-auto mb-[50px] text-center"
         >
-          <span className="inline-block mb-4 px-[18px] py-2 border border-[#dbe7ff] rounded-full bg-[#eef4ff] text-[#1e40af] text-sm font-semibold tracking-wide leading-none">
+          <span className="inline-block mb-4 px-[18px] py-2 border border-[#c0c0c0] rounded-full bg-[#c0c0c0] text-[#222222] text-sm font-semibold tracking-wide leading-none">
             Our Recruitment Process
           </span>
-          <h2 className="m-0 mb-4 font-bold tracking-[-1px] text-[#0f172a]">
+          <h2 className="m-0 mb-4 font-bold tracking-[-1px] text-[#1c1c1c]">
             Our Recruitment Process
           </h2>
-          <p className="subtitle max-w-[820px] mx-auto text-[#475569]">
+          <p className="subtitle max-w-[820px] mx-auto text-[#585858]">
             A structured recruitment process combining AI-driven screening with consultant control
             to deliver qualified temporary, contract and permanent staff fast.
           </p>
@@ -130,7 +130,7 @@ export default function HowItWorksSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.05, duration: 0.5 }}
               whileHover={{ y: -2 }}
-              className="relative h-full flex flex-col p-[30px_24px_26px] border border-[#e5e7eb] rounded-[24px] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition-all hover:shadow-[0_16px_38px_rgba(15,23,42,0.08)]"
+              className="relative h-full flex flex-col p-[30px_24px_26px] border border-[#e8e8e8] rounded-[24px] bg-white shadow-[0_10px_30px_rgba(28, 28, 28,0.05)] transition-all hover:shadow-[0_16px_38px_rgba(28, 28, 28,0.08)]"
             >
               {/* <div className="inline-flex items-center justify-center w-[48px] h-[48px] mb-5 rounded-full bg-[var(--ai-blue)] text-white text-[17px] font-bold leading-none">
                 {step.number}
@@ -140,11 +140,11 @@ export default function HowItWorksSection() {
                 {step.icon}
               </div>
 
-              <h3 className="m-0 mb-3 font-bold text-[#0f172a] line-clamp-2">
+              <h3 className="m-0 mb-3 font-bold text-[#1c1c1c] line-clamp-2">
                 {step.title}
               </h3>
 
-              <p className="m-0 text-sm md:text-[15px] leading-[1.6] text-[#475569]">
+              <p className="m-0 text-sm md:text-[15px] leading-[1.6] text-[#585858]">
                 {step.desc}
               </p>
             </motion.div>

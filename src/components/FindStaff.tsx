@@ -341,7 +341,7 @@ export default function FindStaff({
                       setPosition(p);
                       setShowPositions(false);
                     }}
-                    style={p === position ? { fontWeight: 700, background: '#f1f5f9' } : undefined}
+                    style={p === position ? { fontWeight: 700, background: '#f5f5f5' } : undefined}
                   >
                     {p}
                   </button>

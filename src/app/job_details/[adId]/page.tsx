@@ -418,25 +418,25 @@ export default function JobDetailsPage() {
       <Navbar />
 
       {loading ? (
-        <main className="flex-grow flex items-center justify-center bg-[#f7f8fb] py-24">
+        <main className="flex-grow flex items-center justify-center bg-[#f9f9f9] py-24">
           <div className="flex items-center gap-3">
-            <Loader2 className="w-12 h-12 text-[#06142f] animate-spin" />
+            <Loader2 className="w-12 h-12 text-[#1a1a1a] animate-spin" />
             <span className="text-xl font-bold text-gray-600">Retrieving job details...</span>
           </div>
         </main>
       ) : error ? (
-        <main className="flex-grow flex items-center justify-center bg-[#f7f8fb] py-24">
+        <main className="flex-grow flex items-center justify-center bg-[#f9f9f9] py-24">
           <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-xl font-bold text-red-700 shadow-md max-w-2xl text-center">
             {error}
             <div className="mt-4">
-              <Link href="/job-search" className="text-[#006fff] hover:underline font-bold">
+              <Link href="/job-search" className="text-[#222222] hover:underline font-bold">
                 ← Return to Live Search
               </Link>
             </div>
           </div>
         </main>
       ) : job ? (
-        <main className="flex-grow bg-[#f7f8fb] text-[#06142f] pt-2 md:pt-0">
+        <main className="flex-grow bg-[#f9f9f9] text-[#1a1a1a] pt-2 md:pt-0">
           <section className="rduk-job-detail-page">
             <div className="job-detail-container">
 
@@ -625,7 +625,7 @@ export default function JobDetailsPage() {
       <style dangerouslySetInnerHTML={{
         __html: `
         .rduk-job-detail-page {
-          background: #f7f8fb !important;
+          background: #f9f9f9 !important;
           padding: 40px 20px !important;
           font-family: var(--font-inter), Arial, sans-serif !important;
           color: #111111 !important;
@@ -644,7 +644,7 @@ export default function JobDetailsPage() {
         .rduk-job-detail-page .back-link {
           display: inline-flex !important;
           align-items: center !important;
-          color: #001B5E !important;
+          color: #2f2f2f !important;
           text-decoration: none !important;
           font-weight: 700 !important;
           font-size: 15px !important;
@@ -658,11 +658,11 @@ export default function JobDetailsPage() {
         /* Unified Card styles matching job-card on search page */
         .rduk-job-detail-page .job-card {
           background: #ffffff !important;
-          border: 1px solid #e0e3ea !important;
-          border-top: 3px solid #001B5E !important;
+          border: 1px solid #e5e5e5 !important;
+          border-top: 3px solid #2f2f2f !important;
           border-radius: 10px !important;
           padding: 20px 26px !important;
-          box-shadow: 0 8px 22px rgba(6, 20, 47, 0.045) !important;
+          box-shadow: 0 8px 22px rgba(26, 26, 26, 0.045) !important;
           box-sizing: border-box !important;
         }
 
@@ -714,7 +714,7 @@ export default function JobDetailsPage() {
 
         .rduk-job-detail-page .posted-time {
           font-size: 14px !important;
-          color: #536078 !important;
+          color: #666666 !important;
           display: inline-block !important;
         }
 
@@ -734,9 +734,9 @@ export default function JobDetailsPage() {
           display: inline-flex !important;
           align-items: center !important;
           white-space: nowrap !important;
-          background-color: #EEF2F7 !important;
-          color: #374151 !important;
-          border: 1px solid #e2e8f0 !important;
+          background-color: #f2f2f2 !important;
+          color: #444444 !important;
+          border: 1px solid #e9e9e9 !important;
         }
 
         .rduk-job-detail-page .job-side {
@@ -757,7 +757,7 @@ export default function JobDetailsPage() {
 
         .rduk-job-detail-page .rate-label {
           font-size: 12px !important;
-          color: #536078 !important;
+          color: #666666 !important;
           font-weight: 600 !important;
           margin-bottom: 2px !important;
         }
@@ -785,7 +785,7 @@ export default function JobDetailsPage() {
           gap: 20px !important;
           margin-top: 5px !important;
           padding-top: 5px !important;
-          // border-top: 1px solid #e0e3ea !important;
+          // border-top: 1px solid #e5e5e5 !important;
         }
 
         .rduk-job-detail-page .apply-now-btn {
@@ -873,16 +873,16 @@ export default function JobDetailsPage() {
           margin: 0 0 16px !important;
           font-size: 20px !important;
           font-weight: 800 !important;
-          color: #001B5E !important;
+          color: #2f2f2f !important;
           text-transform: none !important;
-          border-bottom: 2px solid #EEF2F7 !important;
+          border-bottom: 2px solid #f2f2f2 !important;
           padding-bottom: 8px !important;
         }
 
         .rduk-job-detail-page .section-content {
           font-size: 15px !important;
           line-height: 1.65 !important;
-          color: #374151 !important;
+          color: #444444 !important;
         }
 
         .rduk-job-detail-page .section-content p {
@@ -906,12 +906,12 @@ export default function JobDetailsPage() {
           padding-left: 6px !important;
           font-size: 15px !important;
           line-height: 1.6 !important;
-          color: #374151 !important;
+          color: #444444 !important;
         }
 
         .rduk-job-detail-page .bullet-list li::before {
           content: "•" !important;
-          color: #001B5E !important;
+          color: #2f2f2f !important;
           font-weight: bold !important;
           display: inline-block !important;
           width: 1em !important;
@@ -937,7 +937,7 @@ export default function JobDetailsPage() {
         .rduk-job-detail-page .detail-item {
           display: flex !important;
           flex-direction: column !important;
-          border-bottom: 1px solid #f0f2f5 !important;
+          border-bottom: 1px solid #f2f2f2 !important;
           padding-bottom: 10px !important;
         }
 
@@ -948,7 +948,7 @@ export default function JobDetailsPage() {
 
         .rduk-job-detail-page .detail-label {
           font-size: 12px !important;
-          color: #536078 !important;
+          color: #666666 !important;
           font-weight: 600 !important;
           text-transform: uppercase !important;
           letter-spacing: 0.5px !important;
@@ -977,7 +977,7 @@ export default function JobDetailsPage() {
         .rduk-job-detail-page .contact-title {
           font-size: 13px !important;
           font-weight: 600 !important;
-          color: #536078 !important;
+          color: #666666 !important;
           margin-top: 2px !important;
           margin-bottom: 14px !important;
         }
@@ -992,7 +992,7 @@ export default function JobDetailsPage() {
           display: inline-flex !important;
           align-items: center !important;
           gap: 8px !important;
-          color: #001B5E !important;
+          color: #2f2f2f !important;
           text-decoration: none !important;
           font-weight: 700 !important;
           font-size: 14px !important;
@@ -1008,7 +1008,7 @@ export default function JobDetailsPage() {
         .rduk-job-detail-page .contact-icon {
           width: 15px !important;
           height: 15px !important;
-          color: #001B5E !important;
+          color: #2f2f2f !important;
           flex-shrink: 0 !important;
           transition: color 0.2s ease !important;
         }

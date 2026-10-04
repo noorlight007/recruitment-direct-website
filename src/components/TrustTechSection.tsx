@@ -15,7 +15,7 @@ export default function TrustTechSection() {
     <section className="trusted-tech-section">
       <style jsx>{`
         .trusted-tech-section {
-          background: linear-gradient(180deg, #020202 0%, #05070A 60%, #0B1622 100%);
+          background: linear-gradient(180deg, #020202 0%, #080808 60%, #161616 100%);
           padding: 120px 20px;
           overflow: hidden;
           text-align: center;
@@ -36,13 +36,13 @@ export default function TrustTechSection() {
         }
 
         .trusted-tech-title span {
-          color: #008CFF !important;
+          color: #222222 !important;
         }
 
         .trusted-tech-subtitle {
           max-width: 650px;
           margin: 20px auto 45px;
-          color: #D2DAE3 !important;
+          color: #dadada !important;
           font-size: 20px;
           line-height: 1.5;
           opacity: 0.85;
@@ -53,8 +53,8 @@ export default function TrustTechSection() {
           overflow: hidden;
           position: relative;
           padding: 26px 0;
-          border-top: 1px solid rgba(0, 140, 255, 0.16);
-          border-bottom: 1px solid rgba(0, 140, 255, 0.16);
+          border-top: 1px solid rgba(34, 34, 34, 0.16);
+          border-bottom: 1px solid rgba(34, 34, 34, 0.16);
         }
 
         .logo-track {

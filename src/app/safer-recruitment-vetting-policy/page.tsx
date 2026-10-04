@@ -56,7 +56,7 @@ export default function SaferRecruitmentVettingPolicyPage() {
               "Qualification verification where relevant to the role."
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-gray-800">
-                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                 <span>{item}</span>
               </li>
             ))}
@@ -84,7 +84,7 @@ export default function SaferRecruitmentVettingPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Vetting records are retained in line with our{" "}
-            <Link href="/data-retention-policy" className="text-blue-600 hover:underline">
+            <Link href="/data-retention-policy" className="text-zinc-900 hover:underline">
               Data Retention &amp; Deletion Policy
             </Link>{" "}
             and are available to clients, on request, as evidence of compliance for their own safeguarding and audit purposes.

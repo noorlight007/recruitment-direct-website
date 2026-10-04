@@ -69,7 +69,7 @@ export default function ContactSection({ onFindStaffClick }: ContactSectionProps
       <style dangerouslySetInnerHTML={{ __html: `
         :root {
             --rd-black: #111111;
-            --rd-grey: #5f6368;
+            --rd-grey: #646464;
             --rd-brass: #c8a24a;
             --rd-border: #e8e8e8;
             --rd-white: #ffffff;
@@ -180,7 +180,7 @@ export default function ContactSection({ onFindStaffClick }: ContactSectionProps
         }
 
         .rd-contact-card-btn.rd-btn-gold {
-            color: #071424 !important;
+            color: #161616 !important;
             background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
             border: 2px solid #f7d98a !important;
             box-shadow:
@@ -193,7 +193,7 @@ export default function ContactSection({ onFindStaffClick }: ContactSectionProps
             background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
             border-color: #f7d98a !important;
             filter: brightness(1.1) !important;
-            color: #071424 !important;
+            color: #161616 !important;
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, .8),
                 inset 0 -2px 0 rgba(70, 45, 5, .4),

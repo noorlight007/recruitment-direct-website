@@ -53,12 +53,12 @@ export default function SocialValueStatementPage() {
               "Operating as a Scottish-registered, long-established SME (trading since 2006), contributing to the local business economy around Linlithgow and beyond.",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-gray-800">
-                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                 <span>
                   {idx === 2 ? (
                     <>
                       Investing in technology (CallPilot) that improves consistency and reduces unconscious bias risk in early-stage candidate screening, alongside our{" "}
-                      <Link href="/equality-diversity-inclusion-policy" className="text-blue-600 hover:underline">
+                      <Link href="/equality-diversity-inclusion-policy" className="text-zinc-900 hover:underline">
                         Equality, Diversity and Inclusion Policy
                       </Link>
                       .

@@ -242,11 +242,13 @@ export default function OpenCreditAccountPage() {
                   name="expected_weekly_spend"
                   placeholder="Expected Weekly Spend"
                 />
-                <input
-                  type="text"
-                  name="preferred_payment_terms"
-                  placeholder="Preferred Payment Terms"
-                />
+                <select name="preferred_payment_terms" defaultValue="">
+                  <option value="">Preferred Payment Terms</option>
+                  <option value="Days From Invoice Date">Days From Invoice Date</option>
+                  <option value="Days From End Of Invoice Month">Days From End Of Invoice Month</option>
+                  <option value="Day Of The Current Month">Day Of The Current Month</option>
+                  <option value="Day Of The Following Month">Day Of The Following Month</option>
+                </select>
               </div>
 
               {/* BUTTON */}
@@ -256,7 +258,6 @@ export default function OpenCreditAccountPage() {
                 disabled={submitting}
               >
                 {submitting ? "Submitting..." : "Submit Credit Application"}
-                <span>FAST CLIENT SETUP</span>
               </button>
 
             </form>
@@ -283,7 +284,7 @@ export default function OpenCreditAccountPage() {
         /* HEADINGS */
         .credit-form-container h1 {
           font-size: 42px;
-          color: #071426;
+          color: #111111;
           margin-bottom: 15px;
           text-align: center;
         }
@@ -291,7 +292,7 @@ export default function OpenCreditAccountPage() {
         .intro-text {
           text-align: center;
           color: #555555;
-          margin-bottom: 40px;
+          margin-bottom: 32px;
           font-size: 18px;
         }
 
@@ -305,7 +306,7 @@ export default function OpenCreditAccountPage() {
         /* CARDS */
         .form-card {
           background: #ffffff;
-          border: 1px solid #d9e2f2;
+          border: 1px solid #d4d4d4;
           border-radius: 18px;
           padding: 30px;
           box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
@@ -313,7 +314,7 @@ export default function OpenCreditAccountPage() {
 
         .form-card h2 {
           margin-bottom: 20px;
-          color: #071426;
+          color: #111111;
           font-size: 22px;
         }
 
@@ -324,7 +325,7 @@ export default function OpenCreditAccountPage() {
           padding: 16px;
           margin-bottom: 15px;
           border-radius: 12px;
-          border: 1px solid #d9e2f2;
+          border: 1px solid #d4d4d4;
           font-size: 16px;
           color: #111111;
           background: #ffffff;
@@ -334,7 +335,7 @@ export default function OpenCreditAccountPage() {
         .form-card input:focus,
         .form-card select:focus {
           outline: none;
-          border-color: #1f6fff;
+          border-color: #1c1c1c;
         }
 
         .form-card input.field-error,
@@ -365,8 +366,8 @@ export default function OpenCreditAccountPage() {
 
         /* BUTTON */
         .submit-button {
-          background: #071426;
-          border: 2px solid #1f6fff;
+          background: #1c1c1c;
+          border: 1px solid #1c1c1c;
           color: #ffffff;
           padding: 18px;
           border-radius: 16px;
@@ -376,24 +377,8 @@ export default function OpenCreditAccountPage() {
           transition: 0.3s ease;
         }
 
-        .submit-button span {
-          display: block;
-          font-size: 12px;
-          margin-top: 6px;
-          color: #8fb7ff;
-          letter-spacing: 1px;
-        }
-
         .submit-button:hover {
-          background: #0b1f3d;
-        }
-
-        /* MESSAGE */
-        #formMessage {
-          text-align: center;
-          margin-top: 15px;
-          color: #1f6fff;
-          font-weight: 600;
+          background: #3a3a3a;
         }
 
         /* MOBILE */

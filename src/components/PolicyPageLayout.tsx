@@ -32,7 +32,7 @@ export default function PolicyPageLayout({
         <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 bg-white rounded-2xl border border-slate-200 shadow-sm print:shadow-none print:border-none print:p-0">
           <a
             href="/policies-and-compliance"
-            className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:text-blue-900 print:hidden"
+            className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-zinc-800 hover:text-zinc-800 print:hidden"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path
@@ -51,7 +51,7 @@ export default function PolicyPageLayout({
             <p className="mt-2 text-sm text-slate-400">Effective {effectiveDate}</p>
           )}
 
-          <div className="prose prose-slate mt-8 max-w-none prose-headings:font-semibold prose-a:text-blue-700">
+          <div className="prose prose-slate mt-8 max-w-none prose-headings:font-semibold prose-a:text-zinc-800">
             {children}
           </div>
 

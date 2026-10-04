@@ -50,7 +50,7 @@ export default function NationalMinimumWageHolidayPayPolicyPage() {
           <div className="overflow-x-auto my-4">
             <table className="w-full border-collapse border border-gray-200 text-left text-sm md:text-base">
               <thead>
-                <tr className="bg-slate-100 text-[#0b2545]">
+                <tr className="bg-slate-100 text-[#282828]">
                   <th className="border border-gray-200 p-3 font-semibold">Age band</th>
                   <th className="border border-gray-200 p-3 font-semibold">Hourly rate</th>
                 </tr>
@@ -125,7 +125,7 @@ export default function NationalMinimumWageHolidayPayPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             RD1 keeps records sufficient to demonstrate NMW and holiday pay compliance for each worker, retained in line with our{" "}
-            <Link href="/data-retention-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/data-retention-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Data Retention &amp; Deletion Policy
             </Link>
             .

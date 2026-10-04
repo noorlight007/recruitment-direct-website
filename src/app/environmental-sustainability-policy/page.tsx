@@ -53,7 +53,7 @@ export default function EnvironmentalSustainabilityPolicyPage() {
               "Complying with all applicable environmental legislation relevant to our office operations, including waste and WEEE (electronic equipment) disposal requirements.",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-gray-800">
-                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                 <span>{item}</span>
               </li>
             ))}
@@ -69,7 +69,7 @@ export default function EnvironmentalSustainabilityPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             The Directors are responsible for this policy and for identifying practical opportunities to reduce RD1&apos;s environmental footprint as the business grows, including considering a formal{" "}
-            <Link href="/carbon-reduction-plan" className="text-blue-600 hover:underline">
+            <Link href="/carbon-reduction-plan" className="text-zinc-900 hover:underline">
               Carbon Reduction Plan
             </Link>{" "}
             as client and framework requirements develop.

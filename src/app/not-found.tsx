@@ -21,7 +21,7 @@ export default function NotFound() {
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white mt-4 mb-4">
             We couldn&apos;t find that page
           </h1>
-          <p className="text-base sm:text-lg text-[#cbd5e1] mb-8">
+          <p className="text-base sm:text-lg text-[#d6d6d6] mb-8">
             The page may have moved. Here&apos;s where most people are heading:
           </p>
 

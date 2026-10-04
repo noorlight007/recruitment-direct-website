@@ -72,8 +72,8 @@ export default function CookieBanner() {
           max-width: 920px;
           margin: 0 auto;
           background: #ffffff;
-          color: #1f2933;
-          border: 1px solid #d6dce5;
+          color: #292929;
+          border: 1px solid #dedede;
           box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
           border-radius: 10px;
           z-index: 99999;
@@ -84,7 +84,7 @@ export default function CookieBanner() {
         .rd1-cookie-content h3 {
           margin: 0 0 8px;
           font-size: 20px;
-          color: #0b2f5b;
+          color: #333333;
           font-weight: bold;
         }
 
@@ -92,7 +92,7 @@ export default function CookieBanner() {
           margin: 0 0 16px;
           font-size: 14px;
           line-height: 1.5;
-          color: #1f2933;
+          color: #292929;
         }
 
         .rd1-cookie-buttons {
@@ -103,7 +103,7 @@ export default function CookieBanner() {
         }
 
         .rd1-cookie-buttons button {
-          background: #0b2f5b;
+          background: #333333;
           color: #ffffff;
           border: none;
           padding: 10px 18px;
@@ -115,20 +115,20 @@ export default function CookieBanner() {
         }
 
         .rd1-cookie-buttons button:hover {
-          background: #082243;
+          background: #262626;
         }
 
         .rd1-cookie-buttons button.secondary {
-          background: #eef2f6;
-          color: #0b2f5b;
+          background: #f2f2f2;
+          color: #333333;
         }
 
         .rd1-cookie-buttons button.secondary:hover {
-          background: #e1e7ee;
+          background: #e8e8e8;
         }
 
         .rd1-cookie-buttons :global(.link) {
-          color: #0b2f5b;
+          color: #333333;
           text-decoration: underline;
           font-size: 14px;
           font-weight: 600;

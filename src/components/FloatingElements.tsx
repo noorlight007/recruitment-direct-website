@@ -49,7 +49,7 @@ const renderMessageContent = (content: string) => {
           href={part}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 hover:text-blue-800 underline break-all font-semibold"
+          className="text-zinc-900 hover:text-zinc-800 underline break-all font-semibold"
         >
           {part}
         </a>
@@ -266,7 +266,7 @@ export default function FloatingElements() {
                     {/* Show suggested buttons right under the first message if it's the initial assistant message */}
                     {index === 0 && msg.role === "assistant" && (
                       <div className="mt-2 pl-2 flex flex-col gap-1.5 items-start">
-                        <span className="text-[11px] font-bold text-[#536078]/80 mb-1 uppercase tracking-wider">Suggested Buttons:</span>
+                        <span className="text-[11px] font-bold text-[#666666]/80 mb-1 uppercase tracking-wider">Suggested Buttons:</span>
                         <div className="flex flex-col gap-1.5 w-full">
                           <button
                             onClick={() => handleSendMessage("I need staff — how do I get a quote?")}

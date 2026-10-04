@@ -193,7 +193,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
       <FloatingElements />
       <Navbar />
 
-      <main className="min-h-screen bg-[#f7f8fb] text-[#06142f] pt-2 md:pt-2 flex-grow">
+      <main className="min-h-screen bg-[#f9f9f9] text-[#1a1a1a] pt-2 md:pt-2 flex-grow">
         <section className="rduk-latest-jobs">
           <div className="jobs-container">
             <div className="jobs-header">
@@ -223,7 +223,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
 
             {isLoading ? (
               <div className="flex items-center justify-center py-12">
-                <Loader2 className="w-12 h-12 text-[#06142f] animate-spin mr-3" />
+                <Loader2 className="w-12 h-12 text-[#1a1a1a] animate-spin mr-3" />
                 <span className="text-xl font-bold text-gray-600">Syncing with live jobs feed...</span>
               </div>
             ) : error ? (
@@ -276,7 +276,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
                 ))}
 
                 {filteredJobs.length === 0 && (
-                  <div className="rounded-xl border border-gray-200 bg-white p-8 text-xl font-bold shadow-md text-[#06142f]">
+                  <div className="rounded-xl border border-gray-200 bg-white p-8 text-xl font-bold shadow-md text-[#1a1a1a]">
                     No jobs found.
                   </div>
                 )}
@@ -288,7 +288,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
         <style dangerouslySetInnerHTML={{
           __html: `
         .rduk-latest-jobs {
-          background: #f7f8fb !important;
+          background: #f9f9f9 !important;
           padding: 60px 20px !important;
           font-family: var(--font-inter), Arial, sans-serif !important;
           color: #111111 !important;
@@ -312,7 +312,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
           font-size: 48px !important;
           font-weight: 800 !important;
           letter-spacing: -1px !important;
-          color: #001B5E !important;
+          color: #2f2f2f !important;
           text-transform: none !important;
         }
 
@@ -320,7 +320,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
           display: flex !important;
           width: 500px !important;
           background: #ffffff !important;
-          border: 1px solid #d8dce5 !important;
+          border: 1px solid #dedede !important;
           border-radius: 8px !important;
           overflow: hidden !important;
         }
@@ -336,7 +336,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
         .rduk-latest-jobs .search-icon {
           position: absolute !important;
           left: 20px !important;
-          color: #536078 !important;
+          color: #666666 !important;
           width: 20px !important;
           height: 20px !important;
           pointer-events: none !important;
@@ -356,7 +356,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
 
         .rduk-latest-jobs .jobs-search button {
           border: 0 !important;
-          background: #001B5E !important;
+          background: #2f2f2f !important;
           color: #ffffff !important;
           padding: 0 30px !important;
           font-size: 16px !important;
@@ -377,15 +377,15 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
 
         .rduk-latest-jobs .job-card {
           background: #ffffff !important;
-          border: 1px solid #e0e3ea !important;
-          border-top: 3px solid #001B5E !important;
+          border: 1px solid #e5e5e5 !important;
+          border-top: 3px solid #2f2f2f !important;
           border-radius: 10px !important;
           padding: 20px 26px !important;
           display: flex !important;
           justify-content: space-between !important;
           align-items: stretch !important;
           gap: 28px !important;
-          box-shadow: 0 8px 22px rgba(6, 20, 47, 0.045) !important;
+          box-shadow: 0 8px 22px rgba(26, 26, 26, 0.045) !important;
           transform: none !important;
         }
 
@@ -422,7 +422,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
 
         .rduk-latest-jobs .job-main span {
           font-size: 14px !important;
-          color: #536078 !important;
+          color: #666666 !important;
           display: inline-block !important;
         }
 
@@ -442,9 +442,9 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
           display: inline-flex !important;
           align-items: center !important;
           white-space: nowrap !important;
-          background-color: #EEF2F7 !important;
-          color: #374151 !important;
-          border: 1px solid #e2e8f0 !important;
+          background-color: #f2f2f2 !important;
+          color: #444444 !important;
+          border: 1px solid #e9e9e9 !important;
         }
 
         .rduk-latest-jobs .job-side {
@@ -467,7 +467,7 @@ export default function JobSearchClient({ initialSearchTerm = "" }: JobSearchCli
 
         .rduk-latest-jobs .rate-label {
           font-size: 12px !important;
-          color: #536078 !important;
+          color: #666666 !important;
           font-weight: 600 !important;
           margin-bottom: 2px !important;
         }

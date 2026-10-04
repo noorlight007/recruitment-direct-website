@@ -405,27 +405,27 @@ export default function AIHireNowFormPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] relative">
+    <div className="min-h-screen bg-[#fafafa] relative">
       <Navbar />
 
       <main className="pt-2 pb-2 px-4 sm:px-6">
         <div className="ai-hire-now-header text-center max-w-2xl mx-auto mb-0">
-          <h1 className="ai-hire-now-title text-4xl sm:text-5xl font-bold tracking-tight text-[#091e42] mb-1">
+          <h1 className="ai-hire-now-title text-4xl sm:text-5xl font-bold tracking-tight text-[#262626] mb-1">
             AI Hire Now
           </h1>
-          <p className="ai-hire-now-lead text-lg text-[#42526E] font-medium leading-relaxed">
+          <p className="ai-hire-now-lead text-lg text-[#585858] font-medium leading-relaxed">
             Fast staff ordering for existing clients and quote requests for new clients.
           </p>
         </div>
 
-        <div className="ai-hire-now-card bg-transparent border border-[#e2e8f0] rounded-2xl shadow-sm max-w-[960px] mx-auto p-6 md:p-6">
+        <div className="ai-hire-now-card bg-transparent border border-[#e9e9e9] rounded-2xl shadow-sm max-w-[960px] mx-auto p-6 md:p-6">
           <form id="aiHireNowForm" className="ai-hire-now-form" onSubmit={handleSubmit} noValidate>
 
             {/* Client Status Section */}
             <div className="form-section mb-6">
-              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
-                <Sparkles className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
-                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+              <div className="form-section-header flex items-center border-b border-[#f5f5f5] pb-3 mb-6">
+                <Sparkles className="w-5 h-5 text-[#1c1c1c] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#1c1c1c] tracking-wide uppercase">
                   Client Status & Request Type
                 </h2>
               </div>
@@ -437,10 +437,10 @@ export default function AIHireNowFormPage() {
                     value="existing"
                     checked={clientType === "existing"}
                     onChange={() => setClientType("existing")}
-                    className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    className="w-4 h-4 text-zinc-900 border-gray-300 focus:ring-zinc-900"
                   />
                   <div>
-                    <span className="block font-bold text-[#001737]">Existing Client – Order Now</span>
+                    <span className="block font-bold text-[#1c1c1c]">Existing Client – Order Now</span>
                     <span className="block text-xs text-gray-500">Order staff directly under existing agreements</span>
                   </div>
                 </label>
@@ -451,10 +451,10 @@ export default function AIHireNowFormPage() {
                     value="new"
                     checked={clientType === "new"}
                     onChange={() => setClientType("new")}
-                    className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    className="w-4 h-4 text-zinc-900 border-gray-300 focus:ring-zinc-900"
                   />
                   <div>
-                    <span className="block font-bold text-[#001737]">New Client – Quote Request</span>
+                    <span className="block font-bold text-[#1c1c1c]">New Client – Quote Request</span>
                     <span className="block text-xs text-gray-500">Submit staffing requirements to request pricing and setup</span>
                   </div>
                 </label>
@@ -463,9 +463,9 @@ export default function AIHireNowFormPage() {
 
             {/* Section 1: Contact Details */}
             <div className="form-section mb-6">
-              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
-                <User className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
-                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+              <div className="form-section-header flex items-center border-b border-[#f5f5f5] pb-3 mb-6">
+                <User className="w-5 h-5 text-[#1c1c1c] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#1c1c1c] tracking-wide uppercase">
                   Contact Details
                 </h2>
               </div>
@@ -662,9 +662,9 @@ export default function AIHireNowFormPage() {
 
             {/* Section 2: Role Details */}
             <div className="form-section mb-6">
-              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
-                <Briefcase className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
-                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+              <div className="form-section-header flex items-center border-b border-[#f5f5f5] pb-3 mb-6">
+                <Briefcase className="w-5 h-5 text-[#1c1c1c] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#1c1c1c] tracking-wide uppercase">
                   Role Details
                 </h2>
               </div>
@@ -1033,9 +1033,9 @@ export default function AIHireNowFormPage() {
 
             {/* Section 3: Location & Details */}
             <div className="form-section mb-6">
-              <div className="form-section-header flex items-center border-b border-[#f1f5f9] pb-3 mb-6">
-                <MapPin className="w-5 h-5 text-[#001737] mr-2 flex-shrink-0" />
-                <h2 className="text-[17px] font-bold text-[#001737] tracking-wide uppercase">
+              <div className="form-section-header flex items-center border-b border-[#f5f5f5] pb-3 mb-6">
+                <MapPin className="w-5 h-5 text-[#1c1c1c] mr-2 flex-shrink-0" />
+                <h2 className="text-[17px] font-bold text-[#1c1c1c] tracking-wide uppercase">
                   Location & Details
                 </h2>
               </div>
@@ -1192,7 +1192,7 @@ export default function AIHireNowFormPage() {
         }
 
         .ai-hire-now-title {
-          color: #091e42;
+          color: #262626;
           font-family: inherit;
           font-weight: 700;
           line-height: 1.2;
@@ -1200,13 +1200,13 @@ export default function AIHireNowFormPage() {
         }
 
         .ai-hire-now-lead {
-          color: #42526e;
+          color: #585858;
           font-weight: 500;
         }
 
         .ai-hire-now-card {
           background: #ffffff;
-          border: 1px solid #e2e8f0;
+          border: 1px solid #e9e9e9;
           border-radius: 16px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
           margin-bottom: 1rem;
@@ -1215,7 +1215,7 @@ export default function AIHireNowFormPage() {
         .form-section-header {
           display: flex;
           align-items: center;
-          border-bottom: 1px solid #f1f5f9;
+          border-bottom: 1px solid #f5f5f5;
           padding-bottom: 0.75rem;
           margin-bottom: 1.5rem;
         }
@@ -1223,7 +1223,7 @@ export default function AIHireNowFormPage() {
         .form-section-header h2 {
           font-size: 0.9rem;
           font-weight: 700;
-          color: #0f172a;
+          color: #1c1c1c;
           letter-spacing: 0.05em;
           margin: 0;
         }
@@ -1248,7 +1248,7 @@ export default function AIHireNowFormPage() {
 
         .ai-hire-now-field label {
           margin-bottom: 0.5rem;
-          color: #334155;
+          color: #444444;
           font-size: 0.85rem;
           font-weight: 600;
           line-height: 1.4;
@@ -1258,10 +1258,10 @@ export default function AIHireNowFormPage() {
         .ai-hire-now-field textarea,
         .multiselect-trigger {
           width: 100%;
-          border: 1px solid #cbd5e1;
+          border: 1px solid #d6d6d6;
           border-radius: 8px;
           background: #ffffff;
-          color: #0f172a;
+          color: #1c1c1c;
           font-family: inherit;
           font-size: 0.95rem;
           line-height: 1.5;
@@ -1287,7 +1287,7 @@ export default function AIHireNowFormPage() {
           box-shadow: none !important;
           background: #ffffff !important;
           padding: 6px 12px !important;
-          border: 1px solid #cbd5e1 !important;
+          border: 1px solid #d6d6d6 !important;
           border-radius: 8px !important;
           box-sizing: border-box !important;
           overflow: visible !important;
@@ -1298,7 +1298,7 @@ export default function AIHireNowFormPage() {
         .clear-select-value {
           margin-left: 6px;
           // margin-right: auto;
-          color: #94a3b8;
+          color: #a6a6a6;
           font-weight: bold;
           font-size: 1.2rem;
           cursor: pointer;
@@ -1327,26 +1327,26 @@ export default function AIHireNowFormPage() {
         .selected-tag {
           display: inline-flex;
           align-items: center;
-          background: #f1f5f9;
-          color: #0f172a;
+          background: #f5f5f5;
+          color: #1c1c1c;
           font-size: 0.825rem;
           font-weight: 600;
           line-height: 1.2;
           padding: 4px 8px;
           border-radius: 6px;
-          border: 1px solid #cbd5e1;
+          border: 1px solid #d6d6d6;
           transition: all 0.15s ease;
           white-space: nowrap;
         }
 
         .selected-tag:hover {
-          background: #e2e8f0;
-          border-color: #94a3b8;
+          background: #e9e9e9;
+          border-color: #a6a6a6;
         }
 
         .remove-tag {
           margin-left: 6px;
-          color: #64748b;
+          color: #787878;
           font-weight: bold;
           font-size: 1rem;
           cursor: pointer;
@@ -1366,28 +1366,28 @@ export default function AIHireNowFormPage() {
         }
 
         .multiselect-trigger:hover {
-          border-color: #94a3b8 !important;
+          border-color: #a6a6a6 !important;
         }
 
         .multiselect-trigger:focus,
         .ai-hire-now-field input:focus,
         .ai-hire-now-field textarea:focus {
-          border-color: #0f172a;
-          box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.05);
+          border-color: #1c1c1c;
+          box-shadow: 0 0 0 2px rgba(28, 28, 28, 0.05);
         }
 
         .ai-hire-now-field input::placeholder,
         .ai-hire-now-field textarea::placeholder {
-          color: #94a3b8;
+          color: #a6a6a6;
           opacity: 1;
         }
 
         .placeholder-text {
-          color: #94a3b8;
+          color: #a6a6a6;
         }
 
         .selected-value {
-          color: #0f172a;
+          color: #1c1c1c;
           font-weight: 500;
           white-space: nowrap;
           overflow: hidden;
@@ -1397,7 +1397,7 @@ export default function AIHireNowFormPage() {
         .dropdown-chevron-icon {
           width: 10px;
           height: 10px;
-          color: #0f172a;
+          color: #1c1c1c;
           flex-shrink: 0;
           opacity: 0.8;
           align-self: center;
@@ -1411,7 +1411,7 @@ export default function AIHireNowFormPage() {
           right: 0;
           margin-top: 4px;
           background: #ffffff;
-          border: 1px solid #e2e8f0;
+          border: 1px solid #e9e9e9;
           border-radius: 8px;
           box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
           z-index: 50;
@@ -1428,24 +1428,24 @@ export default function AIHireNowFormPage() {
           border-radius: 6px;
           cursor: pointer;
           transition: background 0.1s ease;
-          color: #334155;
+          color: #444444;
           font-size: 0.9rem;
           font-weight: 500;
         }
 
         .multiselect-option:hover {
-          background: #f1f5f9;
-          color: #0f172a;
+          background: #f5f5f5;
+          color: #1c1c1c;
         }
 
         .multiselect-option.selected {
-          background: #eff6ff;
-          color: #1d4ed8;
+          background: #c0c0c0;
+          color: #222222;
           font-weight: 600;
         }
 
         .selected-check {
-          color: #2563eb;
+          color: #222222;
           font-weight: 700;
         }
 
@@ -1488,7 +1488,7 @@ export default function AIHireNowFormPage() {
         .btn-ai-cta {
           width: 100%;
           padding: 12px 24px;
-          background: #001737;
+          background: #1c1c1c;
           color: #ffffff;
           border: none;
           border-radius: 8px;
@@ -1496,12 +1496,12 @@ export default function AIHireNowFormPage() {
           font-weight: 600;
           cursor: pointer;
           transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-          box-shadow: 0 2px 4px rgba(0, 23, 55, 0.1);
+          box-shadow: 0 2px 4px rgba(28, 28, 28, 0.1);
         }
 
         .btn-ai-cta:hover:not(:disabled) {
-          background: #091e42;
-          box-shadow: 0 4px 8px rgba(0, 23, 55, 0.15);
+          background: #262626;
+          box-shadow: 0 4px 8px rgba(28, 28, 28, 0.15);
         }
 
         .btn-ai-cta:active:not(:disabled) {
@@ -1515,7 +1515,7 @@ export default function AIHireNowFormPage() {
 
         .ai-hire-now-message {
           font-size: 0.9rem;
-          color: #42526e;
+          color: #585858;
           text-align: center;
         }
 

@@ -94,7 +94,7 @@ export default function AntiBriberyCorruptionPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Any employee or worker who suspects bribery or corruption connected to RD1&apos;s business must raise it immediately with a Director, or via the confidential route set out in our{" "}
-            <Link href="/whistleblowing-policy" className="text-blue-600 hover:underline">
+            <Link href="/whistleblowing-policy" className="text-zinc-900 hover:underline">
               Whistleblowing Policy
             </Link>
             . No one who raises a genuine concern in good faith will suffer any detriment as a result.

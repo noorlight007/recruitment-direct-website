@@ -18,7 +18,7 @@ export default function BiasFairnessStatementPage() {
         </h1>
 
         {/* Company Address Block */}
-        <div className="text-sm text-gray-600 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <div className="text-sm text-gray-600 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           <p className="font-semibold text-gray-900">Recruitment Direct UK Limited</p>
           <p>Herkimer House</p>
           <p>Mill Road Industrial Estate</p>
@@ -96,7 +96,7 @@ export default function BiasFairnessStatementPage() {
                   "Promote objective decision-making processes."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -128,7 +128,7 @@ export default function BiasFairnessStatementPage() {
                   "Database management."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -157,7 +157,7 @@ export default function BiasFairnessStatementPage() {
                   "Continually improve AI-assisted processes."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -189,7 +189,7 @@ export default function BiasFairnessStatementPage() {
                   "Support GDPR compliance activities."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -214,22 +214,22 @@ export default function BiasFairnessStatementPage() {
               </p>
               <ul className="space-y-3 mt-2 pl-2">
                 <li>
-                  <a href="/privacy-policy" className="text-blue-600 hover:underline">Privacy Policy</a>.
+                  <a href="/privacy-policy" className="text-zinc-900 hover:underline">Privacy Policy</a>.
                 </li>
                 <li>
-                  <a href="/candidate-privacy-notice" className="text-blue-600 hover:underline">Candidate Privacy Notice</a>.
+                  <a href="/candidate-privacy-notice" className="text-zinc-900 hover:underline">Candidate Privacy Notice</a>.
                 </li>
                 <li>
-                  <a href="/client-privacy-notice" className="text-blue-600 hover:underline">Client Privacy Notice</a>.
+                  <a href="/client-privacy-notice" className="text-zinc-900 hover:underline">Client Privacy Notice</a>.
                 </li>
                 <li>
-                  <a href="/data-protection-gdpr-policy" className="text-blue-600 hover:underline">Data Protection and GDPR Policy</a>.
+                  <a href="/data-protection-gdpr-policy" className="text-zinc-900 hover:underline">Data Protection and GDPR Policy</a>.
                 </li>
                 <li>
-                  <a href="/ai-transparency-statement" className="text-blue-600 hover:underline">AI Transparency Statement</a>.
+                  <a href="/ai-transparency-statement" className="text-zinc-900 hover:underline">AI Transparency Statement</a>.
                 </li>
                 <li>
-                  <a href="/human-review-statement" className="text-blue-600 hover:underline">Human Review Statement</a>.
+                  <a href="/human-review-statement" className="text-zinc-900 hover:underline">Human Review Statement</a>.
                 </li>
               </ul>
             </div>
@@ -260,7 +260,7 @@ export default function BiasFairnessStatementPage() {
                 Questions regarding the use of AI technologies within Recruitment Direct UK Limited may be directed to:
               </p>
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 pl-8 text-sm text-gray-800">
-                Email: <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">accounts@rd1.co.uk</a>
+                Email: <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">accounts@rd1.co.uk</a>
               </div>
             </div>
           </section>
@@ -330,7 +330,7 @@ export default function BiasFairnessStatementPage() {
         }
 
         .bfs-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

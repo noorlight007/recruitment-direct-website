@@ -18,7 +18,7 @@ export default function AntiBriberyPolicyPage() {
         </h1>
 
         {/* Company Address Block */}
-        <div className="text-sm text-gray-600 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <div className="text-sm text-gray-600 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           <p className="font-semibold text-gray-900">Recruitment Direct UK Limited</p>
           <p>Herkimer House</p>
           <p>Mill Road Industrial Estate</p>
@@ -83,7 +83,7 @@ export default function AntiBriberyPolicyPage() {
                   "Provide guidance to employees, workers and business partners."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -112,7 +112,7 @@ export default function AntiBriberyPolicyPage() {
                   "Any person acting on behalf of Recruitment Direct UK Limited"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -141,7 +141,7 @@ export default function AntiBriberyPolicyPage() {
                   "Offer improper financial or non-financial advantages to secure business or influence decisions."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -163,7 +163,7 @@ export default function AntiBriberyPolicyPage() {
                 <ul className="space-y-2 pl-2 mb-4">
                   {["Lawful.", "Appropriate.", "Transparent.", "Not intended to improperly influence a business decision."].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-gray-800">
-                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                      <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -181,7 +181,7 @@ export default function AntiBriberyPolicyPage() {
                     "Create actual or perceived conflicts of interest."
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-gray-800">
-                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                      <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -207,7 +207,7 @@ export default function AntiBriberyPolicyPage() {
                   "No improper payments or incentives are offered to secure business."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -340,7 +340,7 @@ export default function AntiBriberyPolicyPage() {
         }
 
         .abp-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

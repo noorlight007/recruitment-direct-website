@@ -49,7 +49,7 @@ export default async function FindStaffPage({ searchParams }: Props) {
             <h1 className="text-3xl sm:text-5xl font-extrabold text-white mt-2 mb-3">
               Find Staff Fast
             </h1>
-            <p className="text-base sm:text-lg text-[#cbd5e1]">
+            <p className="text-base sm:text-lg text-[#d6d6d6]">
               Tell us what you need. Sourcing screened temporary, contract and permanent workers across the UK 24/7.
             </p>
           </div>

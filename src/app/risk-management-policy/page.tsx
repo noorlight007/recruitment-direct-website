@@ -46,7 +46,7 @@ export default function RiskManagementPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             RD1&apos;s risk management covers: compliance risk (employment law, data protection, right to work, and sector-specific regulation); operational risk (loss of key systems, premises, or personnel — see our{" "}
-            <Link href="/business-continuity-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/business-continuity-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Business Continuity &amp; Disaster Recovery Policy
             </Link>
             ); financial risk (client payment default, cash flow, insurance adequacy); reputational risk (service failure, data breach, misconduct by staff or placed workers); and commercial risk (over-reliance on a single client or sector).
@@ -74,15 +74,15 @@ export default function RiskManagementPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             For each significant risk, RD1 identifies practical mitigations — for example, the due diligence and vetting processes in our{" "}
-            <Link href="/safer-recruitment-vetting-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/safer-recruitment-vetting-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Safer Recruitment &amp; Vetting Policy
             </Link>{" "}
             and{" "}
-            <Link href="/right-to-work-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/right-to-work-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Right to Work Policy
             </Link>
             , the insurance cover set out in our{" "}
-            <Link href="/insurance-statement-of-cover" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/insurance-statement-of-cover" className="text-zinc-900 underline hover:text-zinc-800">
               Insurance Statement of Cover
             </Link>
             , and the continuity arrangements in our Business Continuity Policy — and monitors whether those mitigations remain effective.

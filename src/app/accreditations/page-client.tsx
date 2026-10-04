@@ -33,15 +33,15 @@ export default function AccreditationsPage() {
         .accreditations-page-content p,
         .accreditations-page-content li,
         .accreditations-page-content span {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .accreditations-page-content .text-muted-dark {
-          color: #475569 !important;
+          color: #585858 !important;
         }
 
         .accreditations-page-content .btn-gold {
-          color: #071424 !important;
+          color: #161616 !important;
           background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
           border: 2px solid #f7d98a !important;
           box-shadow:
@@ -66,7 +66,7 @@ export default function AccreditationsPage() {
         }
 
         .accreditations-page-content .btn-gold span {
-          color: #071424 !important;
+          color: #161616 !important;
         }
 
         .accreditations-page-content .btn-gold:hover {
@@ -83,9 +83,9 @@ export default function AccreditationsPage() {
         }
 
         .accreditations-page-content .btn-outline-dark {
-          color: #0c0f19 !important;
+          color: #121212 !important;
           background: transparent !important;
-          border: 2px solid #0c0f19 !important;
+          border: 2px solid #121212 !important;
           transition: all 0.25s ease !important;
           font-weight: 800 !important;
           font-size: 15px !important;
@@ -104,11 +104,11 @@ export default function AccreditationsPage() {
         }
 
         .accreditations-page-content .btn-outline-dark span {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .accreditations-page-content .btn-outline-dark:hover {
-          background-color: #0c0f19 !important;
+          background-color: #121212 !important;
           transform: translateY(-2px) !important;
         }
 
@@ -122,8 +122,8 @@ export default function AccreditationsPage() {
         }
 
         .accreditations-page-content .bg-gray-soft {
-          background-color: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background-color: #fafafa;
+          border: 1px solid #e9e9e9;
         }
       `}</style>
 
@@ -138,8 +138,8 @@ export default function AccreditationsPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6 mx-auto">
-                <Award className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6 mx-auto">
+                <Award className="w-6 h-6 text-zinc-900" />
               </div>
               <h1 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight mb-6 leading-none">
                 Accreditations
@@ -164,7 +164,7 @@ export default function AccreditationsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl font-bold font-heading mb-4 text-[#0c0f19]">
+                <h2 className="text-3xl font-bold font-heading mb-4 text-[#121212]">
                   Recognised Standards
                 </h2>
                 <p className="text-base text-muted-dark mb-6 leading-relaxed">
@@ -194,7 +194,7 @@ export default function AccreditationsPage() {
                     "Continuous improvement",
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-sm">
-                      <CheckCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-zinc-900 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -208,7 +208,7 @@ export default function AccreditationsPage() {
         <section className="py-20 bg-gray-50 border-t border-b border-gray-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold font-heading mb-4 text-[#0c0f19]">
+              <h2 className="text-3xl font-bold font-heading mb-4 text-[#121212]">
                 Our Accreditations and Certifications
               </h2>
               <p className="text-base text-muted-dark max-w-2xl mx-auto">
@@ -389,10 +389,10 @@ export default function AccreditationsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
-                  <ShieldCheck className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6">
+                  <ShieldCheck className="w-6 h-6 text-zinc-900" />
                 </div>
-                <h2 className="text-3xl font-bold font-heading mb-4 text-[#0c0f19]">
+                <h2 className="text-3xl font-bold font-heading mb-4 text-[#121212]">
                   Why Accreditations Matter to Clients
                 </h2>
                 <p className="text-base text-muted-dark leading-relaxed">
@@ -440,7 +440,7 @@ export default function AccreditationsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold font-heading mb-6 text-[#0c0f19]">
+              <h2 className="text-3xl font-bold font-heading mb-6 text-[#121212]">
                 Supporting Framework and Public Sector Requirements
               </h2>
               <p className="text-base text-muted-dark leading-relaxed mb-4 max-w-3xl mx-auto">
@@ -462,7 +462,7 @@ export default function AccreditationsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold font-heading mb-6 text-[#0c0f19]">
+              <h2 className="text-3xl font-bold font-heading mb-6 text-[#121212]">
                 Professional, Compliance-Focused Recruitment
               </h2>
               <p className="text-base text-muted-dark leading-relaxed max-w-3xl mx-auto mb-12">
@@ -472,7 +472,7 @@ export default function AccreditationsPage() {
               </p>
 
               <div className="bg-gray-soft rounded-2xl p-8 max-w-2xl mx-auto border border-gray-100 shadow-sm">
-                <h3 className="text-xl font-bold mb-4 font-heading text-[#0c0f19]">
+                <h3 className="text-xl font-bold mb-4 font-heading text-[#121212]">
                   View Our Certificates
                 </h3>
                 <p className="text-sm text-muted-dark mb-6">

@@ -37,15 +37,15 @@ export default function SecurityPage() {
         .security-page-content p,
         .security-page-content li,
         .security-page-content span {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .security-page-content .text-muted-dark {
-          color: #475569 !important;
+          color: #585858 !important;
         }
 
         .security-page-content .btn-gold {
-          color: #071424 !important;
+          color: #161616 !important;
           background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
           border: 2px solid #f7d98a !important;
           box-shadow:
@@ -70,7 +70,7 @@ export default function SecurityPage() {
         }
 
         .security-page-content .btn-gold span {
-          color: #071424 !important;
+          color: #161616 !important;
         }
 
         .security-page-content .btn-gold:hover {
@@ -87,9 +87,9 @@ export default function SecurityPage() {
         }
 
         .security-page-content .btn-outline-dark {
-          color: #0c0f19 !important;
+          color: #121212 !important;
           background: transparent !important;
-          border: 2px solid #0c0f19 !important;
+          border: 2px solid #121212 !important;
           transition: all 0.25s ease !important;
           font-weight: 800 !important;
           font-size: 16px !important;
@@ -108,11 +108,11 @@ export default function SecurityPage() {
         }
 
         .security-page-content .btn-outline-dark span {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .security-page-content .btn-outline-dark:hover {
-          background-color: #0c0f19 !important;
+          background-color: #121212 !important;
           transform: translateY(-2px) !important;
         }
 
@@ -126,8 +126,8 @@ export default function SecurityPage() {
         }
 
         .security-page-content .bg-gray-soft {
-          background-color: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background-color: #fafafa;
+          border: 1px solid #e9e9e9;
         }
       `}</style>
 
@@ -142,8 +142,8 @@ export default function SecurityPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6 mx-auto">
-                <Lock className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6 mx-auto">
+                <Lock className="w-6 h-6 text-zinc-900" />
               </div>
               <h1 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight mb-6 leading-none">
                 Security
@@ -168,7 +168,7 @@ export default function SecurityPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl font-bold font-heading mb-4 text-[#0c0f19]">
+                <h2 className="text-3xl font-bold font-heading mb-4 text-[#121212]">
                   Secure Recruitment Workflows
                 </h2>
                 <p className="text-base text-muted-dark mb-6 leading-relaxed">
@@ -197,7 +197,7 @@ export default function SecurityPage() {
                     "Reduced reliance on manual email chasing and disconnected records",
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-sm">
-                      <CheckCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-zinc-900 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -247,10 +247,10 @@ export default function SecurityPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
-                  <FileText className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6">
+                  <FileText className="w-6 h-6 text-zinc-900" />
                 </div>
-                <h2 className="text-3xl font-bold font-heading mb-4 text-[#0c0f19]">
+                <h2 className="text-3xl font-bold font-heading mb-4 text-[#121212]">
                   Secure Document Collection
                 </h2>
                 <p className="text-base text-muted-dark leading-relaxed">
@@ -364,10 +364,10 @@ export default function SecurityPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
-                  <Eye className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6">
+                  <Eye className="w-6 h-6 text-zinc-900" />
                 </div>
-                <h3 className="text-2xl font-bold font-heading mb-4 text-[#0c0f19]">
+                <h3 className="text-2xl font-bold font-heading mb-4 text-[#121212]">
                   AI Document Checking Support
                 </h3>
                 <p className="text-base text-muted-dark mb-6 leading-relaxed">
@@ -396,7 +396,7 @@ export default function SecurityPage() {
                 <div className="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-6">
                   <Database className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="text-2xl font-bold font-heading mb-4 text-[#0c0f19]">
+                <h3 className="text-2xl font-bold font-heading mb-4 text-[#121212]">
                   CRM and Access Control
                 </h3>
                 <p className="text-base text-muted-dark mb-6 leading-relaxed">
@@ -435,7 +435,7 @@ export default function SecurityPage() {
                 <div className="w-12 h-12 rounded-xl bg-[#c89528]/10 flex items-center justify-center mb-6">
                   <UserCheck className="w-6 h-6 text-[#8a6417]" />
                 </div>
-                <h2 className="text-3xl font-bold font-heading mb-4 text-[#0c0f19]">
+                <h2 className="text-3xl font-bold font-heading mb-4 text-[#121212]">
                   Consultant-Led, AI-Supported
                 </h2>
                 <p className="text-base text-muted-dark leading-relaxed">
@@ -542,7 +542,7 @@ export default function SecurityPage() {
               </p>
 
               <div className="mt-12 p-8 rounded-2xl bg-gray-soft text-center border border-gray-200 max-w-2xl mx-auto">
-                <h3 className="text-lg font-bold font-heading mb-4 text-[#0c0f19]">
+                <h3 className="text-lg font-bold font-heading mb-4 text-[#121212]">
                   For further information about our compliance processes, please contact Recruitment Direct UK Ltd.
                 </h3>
                 <div className="mt-6">

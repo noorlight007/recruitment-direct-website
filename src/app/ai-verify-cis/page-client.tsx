@@ -115,9 +115,9 @@ Additional Notes: ${formData.additionalNotes}
                   <div>
                     <label htmlFor="businessType" className="block text-xs font-semibold text-white/70 mb-2">Business Structure *</label>
                     <select id="businessType" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#D4AF37] transition-all" required>
-                      <option value="Sole Trader" className="bg-[#0b132b]">Sole Trader</option>
-                      <option value="Limited Company" className="bg-[#0b132b]">Limited Company</option>
-                      <option value="Partnership" className="bg-[#0b132b]">Partnership</option>
+                      <option value="Sole Trader" className="bg-[#1b1b1b]">Sole Trader</option>
+                      <option value="Limited Company" className="bg-[#1b1b1b]">Limited Company</option>
+                      <option value="Partnership" className="bg-[#1b1b1b]">Partnership</option>
                     </select>
                   </div>
                 </div>

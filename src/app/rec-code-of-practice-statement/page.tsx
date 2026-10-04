@@ -56,7 +56,7 @@ export default function RecCodeOfPracticeStatementPage() {
               "Maintaining professional indemnity and public liability insurance appropriate to our business."
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-gray-800">
-                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                 <span>{item}</span>
               </li>
             ))}
@@ -72,7 +72,7 @@ export default function RecCodeOfPracticeStatementPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Any complaint about RD1&apos;s conduct that cannot be resolved through our own{" "}
-            <Link href="/complaints-policy" className="text-blue-600 hover:underline">
+            <Link href="/complaints-policy" className="text-zinc-900 hover:underline">
               Complaints Policy
             </Link>{" "}
             can be escalated to the REC, who operate an independent disciplinary process for members&apos; compliance with the Code of Practice.

@@ -93,7 +93,7 @@ export default function AwrComplianceStatementPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Any worker with a question about their AWR entitlement, or who believes they have not received equal treatment they are entitled to, should contact RD1 directly via{" "}
-            <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">
+            <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">
               accounts@rd1.co.uk
             </a>
             .

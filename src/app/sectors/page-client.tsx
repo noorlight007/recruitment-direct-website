@@ -176,7 +176,7 @@ export default function SectorsPageClient() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div
             {...fadeUp}
-            className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-gradient-to-r from-blue-950 to-indigo-950 border border-white/10"
+            className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center bg-gradient-to-r from-zinc-800 to-zinc-800 border border-white/10"
           >
             <div className="relative">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">

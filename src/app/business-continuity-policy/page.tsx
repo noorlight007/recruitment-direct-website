@@ -63,7 +63,7 @@ export default function BusinessContinuityPolicyPage() {
               "Communication: in a disruption affecting service, RD1 will notify affected clients and workers as soon as practicable with an expected timeline for resumption.",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-gray-800">
-                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                 <span>{item}</span>
               </li>
             ))}

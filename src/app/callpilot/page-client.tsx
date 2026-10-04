@@ -14,7 +14,7 @@ const fadeUp = {
 
 export default function CallPilotPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f8fafc] to-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#fafafa] to-white">
       <Navbar />
 
       <main className="pt-[140px] pb-20">
@@ -25,10 +25,10 @@ export default function CallPilotPage() {
             {...fadeUp}
             className="text-center mb-[60px]"
           >
-            <h1 className="text-[32px] md:text-[56px] font-extrabold text-[#0f172a] leading-[1.1] mb-[15px]">
+            <h1 className="text-[32px] md:text-[56px] font-extrabold text-[#1c1c1c] leading-[1.1] mb-[15px]">
               AI calls your applicants 24/7. Fully automated.
             </h1>
-            <p className="text-xl text-[#64748b]">
+            <p className="text-xl text-[#787878]">
               No delays. No missed calls. No manual screening.
             </p>
           </motion.div>
@@ -40,7 +40,7 @@ export default function CallPilotPage() {
             className="my-[50px] mx-auto max-w-[1000px]"
           >
             <div className="h-[320px] md:h-[500px] bg-black rounded-[20px] flex items-center justify-center text-white text-xl shadow-2xl relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/30 to-transparent pointer-events-none" />
               <div className="relative z-10 flex flex-col items-center gap-6">
                 <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 transition-transform group-hover:scale-110">
                   <svg className="w-10 h-10 text-white fill-current" viewBox="0 0 24 24">
@@ -58,10 +58,10 @@ export default function CallPilotPage() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-center mb-[60px]"
           >
-            <h2 className="text-[28px] md:text-[32px] font-bold text-[#0f172a] mb-2.5">
+            <h2 className="text-[28px] md:text-[32px] font-bold text-[#1c1c1c] mb-2.5">
               Every applicant contacted. Automatically.
             </h2>
-            <p className="max-w-[700px] mx-auto text-[#64748b] leading-relaxed text-lg">
+            <p className="max-w-[700px] mx-auto text-[#787878] leading-relaxed text-lg">
               CallPilot contacts applicants instantly, asks role-specific questions,
               captures responses, and prepares them for submission — without delay.
             </p>
@@ -77,7 +77,7 @@ export default function CallPilotPage() {
               "AI calls applicants 24/7", "Reads your job advert", "Role-specific questions",
               "Captures responses instantly", "SMS & WhatsApp automation", "CRM sync"
             ].map((feature) => (
-              <div key={feature} className="p-[15px] rounded-[12px] border border-[#e2e8f0] bg-white text-center font-bold text-[#0f172a] shadow-sm hover:shadow-md transition-shadow">
+              <div key={feature} className="p-[15px] rounded-[12px] border border-[#e9e9e9] bg-white text-center font-bold text-[#1c1c1c] shadow-sm hover:shadow-md transition-shadow">
                 {feature}
               </div>
             ))}
@@ -87,9 +87,9 @@ export default function CallPilotPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="my-[60px] text-center font-bold text-[#0f172a] text-sm md:text-base tracking-wide uppercase px-4 py-3 bg-[#eef4ff] rounded-[12px] border border-[#dbe7ff]"
+            className="my-[60px] text-center font-bold text-[#1c1c1c] text-sm md:text-base tracking-wide uppercase px-4 py-3 bg-[#c0c0c0] rounded-[12px] border border-[#c0c0c0]"
           >
-            Apply <span className="text-[#2563eb] mx-2">→</span> AI Call Demo <span className="text-[#2563eb] mx-2">→</span> Questions <span className="text-[#2563eb] mx-2">→</span> Responses <span className="text-[#2563eb] mx-2">→</span> Documents <span className="text-[#2563eb] mx-2">→</span> CRM <span className="text-[#2563eb] mx-2">→</span> Review <span className="text-[#2563eb] mx-2">→</span> Submit
+            Apply <span className="text-[#222222] mx-2">→</span> AI Call Demo <span className="text-[#222222] mx-2">→</span> Questions <span className="text-[#222222] mx-2">→</span> Responses <span className="text-[#222222] mx-2">→</span> Documents <span className="text-[#222222] mx-2">→</span> CRM <span className="text-[#222222] mx-2">→</span> Review <span className="text-[#222222] mx-2">→</span> Submit
           </motion.div>
 
           {/* OPTIONS */}
@@ -97,11 +97,11 @@ export default function CallPilotPage() {
             <motion.div
               {...fadeUp}
               transition={{ delay: 0.5, duration: 0.5 }}
-              className="bg-white p-[30px] rounded-[20px] border border-[#e2e8f0] text-center transition-all hover:-translate-y-2 hover:shadow-xl shadow-sm flex flex-col"
+              className="bg-white p-[30px] rounded-[20px] border border-[#e9e9e9] text-center transition-all hover:-translate-y-2 hover:shadow-xl shadow-sm flex flex-col"
             >
-              <h3 className="text-[22px] font-bold text-[#0f172a] mb-2.5">AI Call Demo + Automation</h3>
-              <p className="text-[#64748b] mb-4 flex-grow">Automate applicant calls, screening, and follow-up</p>
-              <div className="font-bold text-[#2563eb] text-xl mb-6">From £1 per minute</div>
+              <h3 className="text-[22px] font-bold text-[#1c1c1c] mb-2.5">AI Call Demo + Automation</h3>
+              <p className="text-[#787878] mb-4 flex-grow">Automate applicant calls, screening, and follow-up</p>
+              <div className="font-bold text-[#222222] text-xl mb-6">From £1 per minute</div>
               <Link href="/contact" className="btn btn-primary w-full">
                 Start AI Call Demo
               </Link>
@@ -110,14 +110,14 @@ export default function CallPilotPage() {
             <motion.div
               {...fadeUp}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="bg-white p-[30px] rounded-[20px] border-2 border-[#2563eb] text-center transition-all hover:-translate-y-2 hover:shadow-xl shadow-lg flex flex-col relative"
+              className="bg-white p-[30px] rounded-[20px] border-2 border-[#222222] text-center transition-all hover:-translate-y-2 hover:shadow-xl shadow-lg flex flex-col relative"
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2563eb] text-white px-3 py-1 text-[12px] font-bold rounded-full uppercase tracking-wider">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#222222] text-white px-3 py-1 text-[12px] font-bold rounded-full uppercase tracking-wider">
                 Recommended
               </div>
-              <h3 className="text-[22px] font-bold text-[#0f172a] mt-2 mb-2.5">AI Call Demo + Automation + Recruitment</h3>
-              <p className="text-[#64748b] mb-4 flex-grow">AI automation with full recruitment delivery</p>
-              <div className="font-bold text-[#2563eb] text-xl mb-6 tracking-tight">From £1 per minute + recruitment fees</div>
+              <h3 className="text-[22px] font-bold text-[#1c1c1c] mt-2 mb-2.5">AI Call Demo + Automation + Recruitment</h3>
+              <p className="text-[#787878] mb-4 flex-grow">AI automation with full recruitment delivery</p>
+              <div className="font-bold text-[#222222] text-xl mb-6 tracking-tight">From £1 per minute + recruitment fees</div>
               <Link href="/contact" className="btn btn-primary w-full">
                 Hire Staff Faster
               </Link>
@@ -128,12 +128,12 @@ export default function CallPilotPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.7, duration: 0.6 }}
-            className="text-center mt-[60px] p-10 border border-[#e2e8f0] rounded-[24px] bg-white shadow-sm"
+            className="text-center mt-[60px] p-10 border border-[#e9e9e9] rounded-[24px] bg-white shadow-sm"
           >
-            <h2 className="text-[32px] md:text-[36px] font-bold text-[#0f172a] mb-4">
+            <h2 className="text-[32px] md:text-[36px] font-bold text-[#1c1c1c] mb-4">
               Discover AI Call Demo Automation
             </h2>
-            <p className="max-w-[750px] mx-auto text-lg text-[#64748b] mb-8 leading-relaxed">
+            <p className="max-w-[750px] mx-auto text-lg text-[#787878] mb-8 leading-relaxed">
               See how CallPilot handles real conversations with applicants, captures responses,
               and prepares data instantly for your team.
             </p>
@@ -145,7 +145,7 @@ export default function CallPilotPage() {
               >
                 AI Call Demo
               </Link>
-              <p className="text-[14px] text-[#64748b] mt-4 font-medium">
+              <p className="text-[14px] text-[#787878] mt-4 font-medium">
                 No signup required • Takes 30 seconds • Real AI voice
               </p>
             </div>
@@ -160,7 +160,7 @@ export default function CallPilotPage() {
             {[
               "Faster submissions", "Higher quality applicants", "Reduced admin", "No missed opportunities"
             ].map((res) => (
-              <div key={res} className="p-[12px_18px] rounded-[10px] bg-white border border-[#e2e8f0] font-semibold text-[#0f172a] shadow-sm">
+              <div key={res} className="p-[12px_18px] rounded-[10px] bg-white border border-[#e9e9e9] font-semibold text-[#1c1c1c] shadow-sm">
                 {res}
               </div>
             ))}
@@ -172,7 +172,7 @@ export default function CallPilotPage() {
             transition={{ delay: 0.9, duration: 0.6 }}
             className="text-center mt-[60px]"
           >
-            <h2 className="text-[32px] font-bold text-[#0f172a] mb-6">Start using AI call automation today</h2>
+            <h2 className="text-[32px] font-bold text-[#1c1c1c] mb-6">Start using AI call automation today</h2>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link href="/contact" className="btn btn-primary">
                 AI Hire Now

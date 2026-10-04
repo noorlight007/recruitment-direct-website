@@ -434,7 +434,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         }
       }
 
-      // Force the land tone to #070707 and water to #031226
+      // Force the land tone to #070707 and water to #141414
       if (allLayers) {
         allLayers.forEach((layer) => {
           try {
@@ -453,7 +453,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         });
       }
 
-      // Sea fill: #031226 at 0.90 opacity to blend with the container background navy gradient
+      // Sea fill: #141414 at 0.90 opacity to blend with the container background navy gradient
       map.addLayer(
         {
           id: "water-fill",
@@ -461,14 +461,14 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "fill-color": "#031226",
+            "fill-color": "#141414",
             "fill-opacity": 0.90,
           },
         },
         firstLabelLayerId
       );
 
-      // Coastline Outer Shadow: #1E6DFF, blur 40px, opacity 0.18
+      // Coastline Outer Shadow: #c0c0c0, blur 40px, opacity 0.18
       map.addLayer(
         {
           id: "coastline-outer-shadow",
@@ -476,7 +476,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#1E6DFF",
+            "line-color": "#c0c0c0",
             "line-width": 40,
             "line-blur": 40,
             "line-opacity": 0.18,
@@ -485,7 +485,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
         firstLabelLayerId
       );
 
-      // Coastline Outer Glow: #39B8FF, blur 10px, opacity 0.35
+      // Coastline Outer Glow: #c0c0c0, blur 10px, opacity 0.35
       map.addLayer(
         {
           id: "coastline-outer-glow",
@@ -493,7 +493,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           source: "composite",
           "source-layer": "water",
           paint: {
-            "line-color": "#39B8FF",
+            "line-color": "#c0c0c0",
             "line-width": 10,
             "line-blur": 10,
             "line-opacity": 0.35,
@@ -579,7 +579,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
       const nowSec = now / 1000;
 
       // Draw background particles
-      ctx.fillStyle = "#6EC1FF";
+      ctx.fillStyle = "#c0c0c0";
       particles.forEach((p) => {
         // Slow float upwards
         p.y -= p.speed * 0.003;
@@ -647,7 +647,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           ctx.lineTo(ptEnd.x, ptEnd.y);
           ctx.strokeStyle = "rgba(255, 255, 255, 0.28)"; // Opacity 0.28
           ctx.lineWidth = 1.0; // Width 1px
-          ctx.shadowColor = "rgba(56, 189, 248, 0.35)"; // Blue shadow
+          ctx.shadowColor = "rgba(192, 192, 192, 0.35)"; // Blue shadow
           ctx.shadowBlur = 4; // Blur 4px
           ctx.stroke();
           ctx.shadowBlur = 0; // reset shadow
@@ -769,7 +769,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             width: 100%;
             height: calc(100vh - 56px); /* minus top bar on mobile */
             overflow: hidden;
-            background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
+            background: linear-gradient(180deg, #020202 0%, #080808 50%, #1d1d1d 100%);
           }
 
           @media (min-width: 992px) {
@@ -777,7 +777,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
               height: auto;
               min-height: 850px;
               padding: 60px 24px 100px;
-              background: linear-gradient(180deg, #020202 0%, #04070D 50%, #071A33 100%);
+              background: linear-gradient(180deg, #020202 0%, #080808 50%, #1d1d1d 100%);
             }
           }
 
@@ -795,7 +795,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             .locations-page-section #map-container {
               height: 800px;
               border-radius: 24px;
-              box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(0, 175, 255, 0.18);
+              box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(34, 34, 34, 0.18);
               animation: floatMap 12s ease-in-out infinite;
               background: linear-gradient(180deg, #000000 0%, #000000 80%, #1c1c1c 100%);
             }
@@ -829,7 +829,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           .background-gradient {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(20, 120, 255, 0.10) 0%, transparent 60%);
+            background: radial-gradient(circle at center, rgba(34, 34, 34, 0.10) 0%, transparent 60%);
             pointer-events: none;
             z-index: 1;
           }
@@ -849,7 +849,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
             overflow: hidden;
             border: none; /* Removed gold border to blend naturally */
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), /* Deeper shadow for borderless blend */
-                        0 0 45px rgba(0, 175, 255, 0.18); /* Rich electric blue outer glow */
+                        0 0 45px rgba(34, 34, 34, 0.18); /* Rich electric blue outer glow */
             animation: floatMap 12s ease-in-out infinite;
             background: linear-gradient(180deg, #000000 0%, #000000 80%, #1c1c1c 100%);
           }
@@ -1208,7 +1208,7 @@ export default function UKCoverageMap({ isEmbed = true }: UKCoverageMapProps) {
           </div>
 
           {/* Mobile Top Bar */}
-          <div className="lg:hidden h-14 w-full bg-[#020B1A]/85 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-4 z-20 relative select-none">
+          <div className="lg:hidden h-14 w-full bg-[#0e0e0e]/85 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-4 z-20 relative select-none">
             <div className="flex-1 flex justify-start">
               <button 
                 onClick={handleBack}

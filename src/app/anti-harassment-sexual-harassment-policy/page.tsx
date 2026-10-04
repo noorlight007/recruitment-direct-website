@@ -82,11 +82,11 @@ export default function AntiHarassmentSexualHarassmentPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Concerns can be raised with a Director, via our{" "}
-            <Link href="/complaints-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/complaints-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Complaints Policy
             </Link>
             , or confidentially via our{" "}
-            <Link href="/whistleblowing-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/whistleblowing-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Whistleblowing Policy
             </Link>{" "}
             where appropriate. All concerns are treated seriously, investigated promptly and proportionately, and handled with as much confidentiality as the circumstances allow.

@@ -18,7 +18,7 @@ export default function DataProtectionGdprPolicyPage() {
         </h1>
 
         {/* Company Address Block */}
-        <div className="text-sm text-gray-600 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <div className="text-sm text-gray-600 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           <p className="font-semibold text-gray-900">Recruitment Direct UK Limited</p>
           <p>Herkimer House</p>
           <p>Mill Road Industrial Estate</p>
@@ -84,7 +84,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Support the lawful use of AI-assisted technologies within recruitment and compliance operations."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -112,7 +112,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Business partners"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -143,7 +143,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Processed in accordance with individuals' rights."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -175,7 +175,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Information collected through AI-assisted recruitment and communication systems."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -210,7 +210,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Improving operational efficiency and service delivery."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -245,7 +245,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Misuse or unlawful processing."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -264,7 +264,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Regular review of security controls."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -292,7 +292,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Government bodies and regulators where legally required."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -341,7 +341,7 @@ export default function DataProtectionGdprPolicyPage() {
                   "Withdraw consent where applicable."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -350,7 +350,7 @@ export default function DataProtectionGdprPolicyPage() {
                 Requests should be submitted to:
               </p>
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 pl-8 text-sm text-gray-800">
-                Email: <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">accounts@rd1.co.uk</a>
+                Email: <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">accounts@rd1.co.uk</a>
               </div>
             </div>
           </section>
@@ -477,7 +477,7 @@ export default function DataProtectionGdprPolicyPage() {
         }
 
         .gdpr-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

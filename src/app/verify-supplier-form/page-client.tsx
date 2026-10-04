@@ -400,7 +400,7 @@ export default function SupplierVerificationFormPage() {
         /* HEADINGS */
         .supplier-form-container h1 {
           font-size: 42px;
-          color: #071426;
+          color: #161616;
           margin-bottom: 15px;
           text-align: center;
         }
@@ -422,7 +422,7 @@ export default function SupplierVerificationFormPage() {
         /* CARDS */
         .form-card {
           background: #ffffff;
-          border: 1px solid #d9e2f2;
+          border: 1px solid #e5e5e5;
           border-radius: 18px;
           padding: 30px;
           box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
@@ -430,7 +430,7 @@ export default function SupplierVerificationFormPage() {
 
         .form-card h2 {
           margin-bottom: 20px;
-          color: #071426;
+          color: #161616;
           font-size: 22px;
         }
 
@@ -441,7 +441,7 @@ export default function SupplierVerificationFormPage() {
           padding: 16px;
           margin-bottom: 15px;
           border-radius: 12px;
-          border: 1px solid #d9e2f2;
+          border: 1px solid #e5e5e5;
           font-size: 16px;
           color: #111111;
           background: #ffffff;
@@ -451,7 +451,7 @@ export default function SupplierVerificationFormPage() {
         .form-card input:focus,
         .form-card select:focus {
           outline: none;
-          border-color: #1f6fff;
+          border-color: #c0c0c0;
         }
 
         /* COUNTRY DROPDOWN (Reused custom-select classes) */
@@ -460,20 +460,20 @@ export default function SupplierVerificationFormPage() {
           position: relative;
           display: flex;
           align-items: center;
-          background: #f8fafc;
-          border-bottom: 1px solid #e2e8f0;
+          background: #fafafa;
+          border-bottom: 1px solid #e9e9e9;
           padding: 4px 16px;
           transition: background-color 0.2s ease, border-color 0.2s ease;
         }
 
         .country-search-container:focus-within {
           background: #ffffff;
-          border-color: #1f6fff;
+          border-color: #c0c0c0;
         }
 
         .country-search-container .search-icon {
           font-size: 14px;
-          color: #94a3b8;
+          color: #a6a6a6;
           margin-right: 8px;
           pointer-events: none;
         }
@@ -487,24 +487,24 @@ export default function SupplierVerificationFormPage() {
           box-sizing: border-box;
           font-size: 15px;
           outline: none;
-          color: #1e293b;
+          color: #2c2c2c;
           border-radius: 0 !important;
           margin-bottom: 0 !important;
         }
 
         .country-search-input::placeholder {
-          color: #94a3b8;
+          color: #a6a6a6;
           transition: color 0.2s ease;
         }
 
         .country-search-input:focus::placeholder {
-          color: #cbd5e1;
+          color: #d6d6d6;
         }
 
         .search-clear-button {
           background: none;
           border: none;
-          color: #94a3b8;
+          color: #a6a6a6;
           font-size: 12px;
           cursor: pointer;
           padding: 4px;
@@ -519,7 +519,7 @@ export default function SupplierVerificationFormPage() {
         }
 
         .search-clear-button:hover {
-          background-color: #f1f5f9;
+          background-color: #f5f5f5;
           color: #ef4444;
         }
 
@@ -543,7 +543,7 @@ export default function SupplierVerificationFormPage() {
           padding: 16px;
           margin-bottom: 15px;
           border-radius: 12px;
-          border: 1px solid #d9e2f2;
+          border: 1px solid #e5e5e5;
           font-size: 16px;
           background: #ffffff;
           box-sizing: border-box;
@@ -558,7 +558,7 @@ export default function SupplierVerificationFormPage() {
 
         .custom-select-trigger:focus {
           outline: none;
-          border-color: #1f6fff;
+          border-color: #c0c0c0;
         }
 
         .custom-select-trigger .placeholder-text {
@@ -581,7 +581,7 @@ export default function SupplierVerificationFormPage() {
         }
 
         .select-remove-icon {
-          color: #94a3b8;
+          color: #a6a6a6;
           font-size: 14px;
           cursor: pointer;
           display: inline-flex;
@@ -594,7 +594,7 @@ export default function SupplierVerificationFormPage() {
         }
 
         .select-remove-icon:hover {
-          background-color: #f1f5f9;
+          background-color: #f5f5f5;
           color: #ef4444;
         }
 
@@ -604,7 +604,7 @@ export default function SupplierVerificationFormPage() {
           left: 0;
           right: 0;
           background: #ffffff;
-          border: 1px solid #d9e2f2;
+          border: 1px solid #e5e5e5;
           border-radius: 12px;
           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
           z-index: 50;
@@ -627,13 +627,13 @@ export default function SupplierVerificationFormPage() {
         }
 
         .custom-option-item:hover {
-          background: #f0f5ff;
-          color: #1f6fff;
+          background: #c0c0c0;
+          color: #c0c0c0;
         }
 
         .custom-option-item.selected {
-          background: #e1ecff;
-          color: #1f6fff;
+          background: #c0c0c0;
+          color: #c0c0c0;
           font-weight: 600;
         }
 
@@ -642,7 +642,7 @@ export default function SupplierVerificationFormPage() {
           display: flex;
           gap: 12px;
           align-items: center;
-          color: #071426;
+          color: #161616;
           margin-bottom: 15px;
           cursor: pointer;
         }
@@ -659,8 +659,8 @@ export default function SupplierVerificationFormPage() {
 
         /* BUTTON */
         .submit-button {
-          background: #071426;
-          border: 2px solid #1f6fff;
+          background: #161616;
+          border: 2px solid #c0c0c0;
           color: #ffffff;
           padding: 18px;
           border-radius: 16px;
@@ -674,12 +674,12 @@ export default function SupplierVerificationFormPage() {
           display: block;
           font-size: 12px;
           margin-top: 6px;
-          color: #8fb7ff;
+          color: #c0c0c0;
           letter-spacing: 1px;
         }
 
         .submit-button:hover:not(:disabled) {
-          background: #0b1f3d;
+          background: #242424;
         }
 
         .submit-button:disabled {
@@ -691,7 +691,7 @@ export default function SupplierVerificationFormPage() {
         #supplierFormMessage {
           text-align: center;
           margin-top: 15px;
-          color: #1f6fff;
+          color: #c0c0c0;
           font-weight: 600;
         }
 

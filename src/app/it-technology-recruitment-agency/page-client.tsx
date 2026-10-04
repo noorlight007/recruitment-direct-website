@@ -56,7 +56,7 @@ export default function ITTechSectorPageClient() {
   ];
 
   const goldButtonClass = "rd-btn rd-btn-gold standard-cta-btn w-[200px] h-[52px] text-center justify-center";
-  const blueButtonClass = "rd-btn bg-gradient-to-r from-black/80 to-[#151C62] text-white border border-[#001B5E] font-extrabold shadow-md standard-cta-btn w-[200px] h-[52px]";
+  const blueButtonClass = "rd-btn bg-gradient-to-r from-black/80 to-[#3c3c3c] text-white border border-[#2f2f2f] font-extrabold shadow-md standard-cta-btn w-[200px] h-[52px]";
   const goldButtonDefaultClass = "rd-btn rd-btn-gold standard-cta-btn";
 
   return (
@@ -319,7 +319,7 @@ export default function ITTechSectorPageClient() {
                     >
                       <button
                         onClick={() => toggleFaq(index)}
-                        className="w-full flex justify-between items-center text-left py-2 group focus:outline-none !bg-gradient-to-r from-black/80 to-[#151C62]"
+                        className="w-full flex justify-between items-center text-left py-2 group focus:outline-none !bg-gradient-to-r from-black/80 to-[#3c3c3c]"
                       >
                         <span className="font-bold text-white text-[17px] group-hover:text-[#ffffff]/80 transition-colors">
                           {faq.question}
@@ -353,7 +353,7 @@ export default function ITTechSectorPageClient() {
 
           {/* Sidebar */}
           <div className="lg:col-span-4 space-y-8">
-            <div className="bg-gradient-to-r from-black/80 to-[#151C62] text-white p-6 rounded-2xl shadow-md border border-slate-200 mt-0 lg:mt-6">
+            <div className="bg-gradient-to-r from-black/80 to-[#3c3c3c] text-white p-6 rounded-2xl shadow-md border border-slate-200 mt-0 lg:mt-6">
               <Cpu className="text-[#F7D774] w-10 h-10 mb-4" />
               <h3 className="text-white text-xl font-bold mb-2">Need Tech Staff?</h3>
               <p className="text-slate-200 text-sm leading-relaxed mb-6">
@@ -388,13 +388,13 @@ export default function ITTechSectorPageClient() {
             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
               <h3 className="text-slate-800 text-lg font-bold mb-4">Related Sector Agencies</h3>
               <div className="space-y-3 text-sm">
-                <Link href="/commercial-office-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/commercial-office-recruitment-agency" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Commercial & Office Recruitment
                 </Link>
-                <Link href="/engineering-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/engineering-recruitment-agency" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Engineering Recruitment
                 </Link>
-                <Link href="/construction-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/construction-recruitment-agency" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Construction Recruitment
                 </Link>
               </div>

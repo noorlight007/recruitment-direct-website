@@ -70,7 +70,7 @@ export default function SupplierSubcontractorDueDiligencePolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Consistent with our{" "}
-            <Link href="/modern-slavery-policy" className="text-blue-600 underline hover:text-blue-800">
+            <Link href="/modern-slavery-policy" className="text-zinc-900 underline hover:text-zinc-800">
               Modern Slavery and Human Trafficking Policy
             </Link>
             , RD1 will not knowingly engage a supplier or associate found to be non-compliant with modern slavery, working time, or minimum wage legislation, and will end an arrangement where such non-compliance comes to light.

@@ -12,10 +12,10 @@ const fadeUp = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[#020617] text-white">
+    <div className="min-h-screen bg-[#0c0c0c] text-white">
       <style jsx global>{`
         body {
-          background: #020617;
+          background: #0c0c0c;
         }
         .contact-card {
           background: rgba(255, 255, 255, 0.03);
@@ -34,7 +34,7 @@ export default function ContactPage() {
           transition: all 0.2s;
         }
         .form-input:focus {
-          border-color: #2f80ed;
+          border-color: #c0c0c0;
           background: rgba(255, 255, 255, 0.08);
         }
         .form-input::placeholder {
@@ -75,13 +75,13 @@ export default function ContactPage() {
                     </strong>
                     <a
                       href="tel:01324613198"
-                      className="text-white font-semibold text-[14px] hover:text-[#2F80ED] transition-colors leading-tight"
+                      className="text-white font-semibold text-[14px] hover:text-[#c0c0c0] transition-colors leading-tight"
                     >
                       01324 613198
                     </a>
                     <a
                       href="tel:07590882626"
-                      className="text-white font-semibold text-[14px] hover:text-[#2F80ED] transition-colors leading-tight mt-2"
+                      className="text-white font-semibold text-[14px] hover:text-[#c0c0c0] transition-colors leading-tight mt-2"
                     >
                       07590 882626
                     </a>
@@ -93,7 +93,7 @@ export default function ContactPage() {
                     </strong>
                     <a
                       href="mailto:sales@rd1.co.uk"
-                      className="text-white font-semibold text-[14px] hover:text-[#2F80ED] transition-colors leading-tight"
+                      className="text-white font-semibold text-[14px] hover:text-[#c0c0c0] transition-colors leading-tight"
                     >
                       sales@rd1.co.uk
                     </a>

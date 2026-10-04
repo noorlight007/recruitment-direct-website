@@ -41,7 +41,7 @@ export default function PolicyDocument({
         <div className="mb-6 print:hidden">
           <Link
             href="/policies-and-compliance"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 hover:text-zinc-800 transition-colors"
           >
             <svg
               width="16"
@@ -66,7 +66,7 @@ export default function PolicyDocument({
         </h1>
 
         {/* Company Address Block */}
-        <div className="text-sm text-gray-600 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <div className="text-sm text-gray-600 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           <p className="font-semibold text-gray-900">Recruitment Direct UK Limited</p>
           <p>Herkimer House</p>
           <p>Mill Road Industrial Estate</p>
@@ -139,7 +139,7 @@ export default function PolicyDocument({
           <button
             type="button"
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-zinc-900 transition-colors"
           >
             <svg
               width="16"
@@ -193,7 +193,7 @@ export default function PolicyDocument({
         }
 
         .policy-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

@@ -248,7 +248,7 @@ export default function GeneralSection() {
           background:#ffffff;
           padding:90px 50px;
           font-family:Arial,sans-serif;
-          color:#07142f;
+          color:#1b1b1b;
       }
 
       .hero-grid{
@@ -266,7 +266,7 @@ export default function GeneralSection() {
       }
 
       .navy{
-          color:#07142f;
+          color:#1b1b1b;
       }
 
       .gold{
@@ -316,7 +316,7 @@ export default function GeneralSection() {
 
       .btn-outline{
           border:2px solid #d8a126;
-          color:#07142f;
+          color:#1b1b1b;
           padding:20px 42px;
           border-radius:10px;
           text-decoration:none;
@@ -345,7 +345,7 @@ export default function GeneralSection() {
           background:linear-gradient(
               90deg,
               rgba(255,255,255,0.75) 0%,
-              rgba(7,20,47,0.05) 35%,
+              rgba(27, 27, 27,0.05) 35%,
               rgba(0,0,0,0.55) 100%
           );
       }
@@ -398,7 +398,7 @@ export default function GeneralSection() {
           text-align:center;
           font-size:54px;
           margin-bottom:55px;
-          color:#07142f;
+          color:#1b1b1b;
       }
 
       .flow-grid{
@@ -435,7 +435,7 @@ export default function GeneralSection() {
 
       .consultant-section{
           margin-top:110px;
-          background:#f8f9fc;
+          background:#fafafa;
           border-radius:28px;
           padding:50px;
           display:grid;
@@ -531,7 +531,7 @@ export default function GeneralSection() {
           inset:0;
           background:linear-gradient(
               180deg,
-              rgba(7,20,47,0.05) 0%,
+              rgba(27, 27, 27,0.05) 0%,
               rgba(0,0,0,0.78) 100%
           );
       }

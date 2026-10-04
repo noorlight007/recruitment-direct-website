@@ -353,7 +353,7 @@ export default function FindStaffForm({
           {onClose && (
             <button
               onClick={onClose}
-              className="mt-4 px-6 py-2 bg-[#0c1730] text-white rounded-lg font-bold hover:bg-[#15244b] transition-colors"
+              className="mt-4 px-6 py-2 bg-[#1e1e1e] text-white rounded-lg font-bold hover:bg-[#303030] transition-colors"
             >
               Close Window
             </button>
@@ -614,7 +614,7 @@ export default function FindStaffForm({
                   aria-pressed={quantity === q}
                   className={`flex-grow font-mono font-bold text-sm py-2 px-4 rounded-lg border transition-all ${
                     quantity === q
-                      ? "bg-[#0c1730] border-[#0c1730] text-white"
+                      ? "bg-[#1e1e1e] border-[#1e1e1e] text-white"
                       : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
                   }`}
                 >
@@ -643,7 +643,7 @@ export default function FindStaffForm({
                     name="clientType"
                     checked={clientType === "existing"}
                     onChange={() => setClientType("existing")}
-                    className="accent-[#0c1730]"
+                    className="accent-[#1e1e1e]"
                   />
                   Existing Client – Order Now
                 </label>
@@ -653,7 +653,7 @@ export default function FindStaffForm({
                     name="clientType"
                     checked={clientType === "new"}
                     onChange={() => setClientType("new")}
-                    className="accent-[#0c1730]"
+                    className="accent-[#1e1e1e]"
                   />
                   New Client – Quote Request
                 </label>
@@ -725,7 +725,7 @@ export default function FindStaffForm({
                       {selectedDays.map((day) => (
                         <span
                           key={day}
-                          className="inline-flex items-center gap-1 bg-[#0c1730]/5 border border-[#0c1730]/10 text-[#0c1730] text-xs px-2.5 py-1 rounded-full font-semibold transition-all hover:bg-[#0c1730]/10"
+                          className="inline-flex items-center gap-1 bg-[#1e1e1e]/5 border border-[#1e1e1e]/10 text-[#1e1e1e] text-xs px-2.5 py-1 rounded-full font-semibold transition-all hover:bg-[#1e1e1e]/10"
                         >
                           {day}
                           <span
@@ -764,7 +764,7 @@ export default function FindStaffForm({
                           role="button"
                         >
                           <span>{day}</span>
-                          {isSelected && <span className="text-[#0c1730] font-bold">✓</span>}
+                          {isSelected && <span className="text-[#1e1e1e] font-bold">✓</span>}
                         </div>
                       );
                     })}
@@ -937,7 +937,7 @@ export default function FindStaffForm({
                 type="button"
                 onClick={handleAIHireNow}
                 disabled={!isFormValid() || isSubmitting}
-                className="flex flex-col items-center justify-center gap-0.5 py-2 px-4 rounded-xl border border-[#0c1730] bg-[#0c1730] hover:bg-[#15244b] text-white font-bold text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex flex-col items-center justify-center gap-0.5 py-2 px-4 rounded-xl border border-[#1e1e1e] bg-[#1e1e1e] hover:bg-[#303030] text-white font-bold text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <span className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#d3a94a] flex-shrink-0" />

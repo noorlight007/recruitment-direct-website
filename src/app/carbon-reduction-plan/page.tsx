@@ -51,7 +51,7 @@ export default function CarbonReductionPlanPage() {
               "Office premises let on terms that include electricity and gas within the rental charge, incentivising the landlord to manage building-level energy efficiency.",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-gray-800">
-                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                 <span>{item}</span>
               </li>
             ))}

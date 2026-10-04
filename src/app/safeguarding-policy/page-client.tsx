@@ -18,7 +18,7 @@ export default function SafeguardingPolicyPage() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           Recruitment Direct UK Ltd is committed to safeguarding and promoting the welfare of children, young people and adults at risk.
         </p>
 
@@ -57,7 +57,7 @@ export default function SafeguardingPolicyPage() {
                   "Maintain clear records and audit visibility"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -90,7 +90,7 @@ export default function SafeguardingPolicyPage() {
                   "Any person involved in the recruitment or placement process"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -122,7 +122,7 @@ export default function SafeguardingPolicyPage() {
                   "Escalating concerns where appropriate"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -158,7 +158,7 @@ export default function SafeguardingPolicyPage() {
                   "Client-specific safeguarding requirements"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -189,7 +189,7 @@ export default function SafeguardingPolicyPage() {
                   "Other role-specific checks required by law, regulation or client policy"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -226,7 +226,7 @@ export default function SafeguardingPolicyPage() {
                   "Any client-specific safeguarding checks or training requirements"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -261,7 +261,7 @@ export default function SafeguardingPolicyPage() {
                   "They have any safeguarding concern during an assignment"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -295,7 +295,7 @@ export default function SafeguardingPolicyPage() {
                   "Any information that raises concern about a person’s suitability for a role"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -304,8 +304,8 @@ export default function SafeguardingPolicyPage() {
                 Safeguarding concerns should be reported to Recruitment Direct UK Ltd using the contact details below.
               </p>
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-2 text-sm md:text-base">
-                <p><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">accounts@rd1.co.uk</a></p>
-                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-blue-600 hover:underline">01324 613198</a></p>
+                <p><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">accounts@rd1.co.uk</a></p>
+                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-zinc-900 hover:underline">01324 613198</a></p>
               </div>
               <p className="mt-4">
                 Where there is an immediate risk of harm, emergency services or the appropriate safeguarding authority should be contacted without delay.
@@ -337,7 +337,7 @@ export default function SafeguardingPolicyPage() {
                   "Cooperating with client safeguarding procedures or investigations"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -372,7 +372,7 @@ export default function SafeguardingPolicyPage() {
                   "Outcome or follow-up actions"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -424,7 +424,7 @@ export default function SafeguardingPolicyPage() {
                   "Client-specific safeguarding requirements where relevant"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -476,8 +476,8 @@ export default function SafeguardingPolicyPage() {
                 <p>EH49 7SF</p>
                 <p>Scotland</p>
                 <p>United Kingdom</p>
-                <p className="mt-4"><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">accounts@rd1.co.uk</a></p>
-                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-blue-600 hover:underline">01324 613198</a></p>
+                <p className="mt-4"><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">accounts@rd1.co.uk</a></p>
+                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-zinc-900 hover:underline">01324 613198</a></p>
               </div>
             </div>
           </section>
@@ -504,7 +504,7 @@ export default function SafeguardingPolicyPage() {
         }
 
         .safeguarding-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

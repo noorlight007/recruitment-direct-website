@@ -36,15 +36,15 @@ export default function ServicesPage() {
         .services-page-content p,
         .services-page-content li,
         .services-page-content span {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .services-page-content .text-muted-dark {
-          color: #475569 !important;
+          color: #585858 !important;
         }
 
         .services-page-content .btn-gold {
-          color: #071424 !important;
+          color: #161616 !important;
           background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
           border: 2px solid #f7d98a !important;
           box-shadow:
@@ -69,7 +69,7 @@ export default function ServicesPage() {
         }
 
         .services-page-content .btn-gold span {
-          color: #071424 !important;
+          color: #161616 !important;
         }
 
         .services-page-content .btn-gold:hover {
@@ -91,8 +91,8 @@ export default function ServicesPage() {
         }
 
         .services-page-content .bg-gray-soft {
-          background-color: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background-color: #fafafa;
+          border: 1px solid #e9e9e9;
         }
       `}</style>
 
@@ -136,8 +136,8 @@ export default function ServicesPage() {
               className="bg-gray-soft rounded-2xl p-8 shadow-sm flex flex-col justify-between"
             >
               <div>
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
-                  <Clock className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6">
+                  <Clock className="w-6 h-6 text-zinc-900" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 font-heading">
                   Temporary Recruitment
@@ -314,8 +314,8 @@ export default function ServicesPage() {
               viewport={{ once: true }}
               className="bg-gray-soft p-8 rounded-2xl"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
-                <Cpu className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6">
+                <Cpu className="w-6 h-6 text-zinc-900" />
               </div>
               <h3 className="text-2xl font-bold mb-4 font-heading">
                 AI-Supported Recruitment Process
@@ -407,8 +407,8 @@ export default function ServicesPage() {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
             >
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6">
-                <ShieldCheck className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-xl bg-zinc-100 flex items-center justify-center mb-6">
+                <ShieldCheck className="w-6 h-6 text-zinc-900" />
               </div>
               <h3 className="text-2xl font-bold mb-4 font-heading">
                 Compliance and Documentation
@@ -429,7 +429,7 @@ export default function ServicesPage() {
                   "Audit trail records",
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm">
-                    <CheckCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-zinc-900 mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}

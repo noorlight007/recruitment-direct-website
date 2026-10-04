@@ -56,7 +56,7 @@ export default function ConstructionAgencyPage() {
 
   const goldButtonDefaultClass = "rd-btn rd-btn-gold standard-cta-btn";
   const goldButtonClass = "rd-btn rd-btn-gold standard-cta-btn w-[200px] h-[52px] text-center justify-center";
-  const blueButtonClass = "rd-btn bg-gradient-to-r from-black/80 to-[#151C62] text-white border border-[#001B5E] font-extrabold shadow-md standard-cta-btn w-[200px] h-[52px]";
+  const blueButtonClass = "rd-btn bg-gradient-to-r from-black/80 to-[#3c3c3c] text-white border border-[#2f2f2f] font-extrabold shadow-md standard-cta-btn w-[200px] h-[52px]";
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-slate-900 font-sans">
@@ -582,7 +582,7 @@ export default function ConstructionAgencyPage() {
                   { num: "6", desc: "Ongoing support throughout the recruitment process." }
                 ].map((step, idx) => (
                   <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col text-center">
-                    <span className="text-[#001B5E] text-2xl font-black mb-1">{step.num}</span>
+                    <span className="text-[#2f2f2f] text-2xl font-black mb-1">{step.num}</span>
                     <p className="text-slate-600 text-[11px] leading-[1.5]">{step.desc}</p>
                   </div>
                 ))}
@@ -643,7 +643,7 @@ export default function ConstructionAgencyPage() {
                     >
                       <button
                         onClick={() => toggleFaq(index)}
-                        className="w-full flex justify-between items-center text-left py-2 group focus:outline-none !bg-gradient-to-r from-black/80 to-[#151C62]"
+                        className="w-full flex justify-between items-center text-left py-2 group focus:outline-none !bg-gradient-to-r from-black/80 to-[#3c3c3c]"
                       >
                         <span className="font-bold text-white text-[17px] group-hover:text-[#ffffff]/80 transition-colors">
                           {faq.question}
@@ -677,7 +677,7 @@ export default function ConstructionAgencyPage() {
 
           {/* Sidebar */}
           <div className="lg:col-span-4 space-y-8">
-            <div className="bg-gradient-to-r from-black/80 to-[#151C62] text-white p-6 rounded-2xl shadow-md border border-slate-200 mt-0 lg:mt-6">
+            <div className="bg-gradient-to-r from-black/80 to-[#3c3c3c] text-white p-6 rounded-2xl shadow-md border border-slate-200 mt-0 lg:mt-6">
               <HardHat className="text-[#F7D774] w-10 h-10 mb-4" />
               <h3 className="text-white text-xl font-bold mb-2">Need Staff Now?</h3>
               <p className="text-slate-200 text-sm leading-relaxed mb-6">
@@ -712,19 +712,19 @@ export default function ConstructionAgencyPage() {
             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
               <h3 className="text-slate-800 text-lg font-bold mb-4">Related Sector Agencies & Locations</h3>
               <div className="space-y-3 text-sm">
-                <Link href="/renewable-energy-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/renewable-energy-recruitment-agency" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Renewable Energy Recruitment
                 </Link>
-                <Link href="/engineering-recruitment-agency" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/engineering-recruitment-agency" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Engineering Recruitment
                 </Link>
-                <Link href="/locations/scotland/falkirk" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/locations/scotland/falkirk" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Recruitment Agency Falkirk
                 </Link>
-                <Link href="/" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → Home
                 </Link>
-                <Link href="/#sectors" className="block text-[#001B5E] hover:text-[#C99A1F] font-semibold transition-colors">
+                <Link href="/#sectors" className="block text-[#2f2f2f] hover:text-[#C99A1F] font-semibold transition-colors">
                   → All Sectors We Support
                 </Link>
               </div>

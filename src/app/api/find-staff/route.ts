@@ -106,7 +106,7 @@ export async function POST(request: Request) {
     .join('\n');
 
   const html = `
-    <h2 style="font-family:system-ui,sans-serif;color:#0c1730;margin:0 0 16px">
+    <h2 style="font-family:system-ui,sans-serif;color:#1e1e1e;margin:0 0 16px">
       New staffing enquiry
     </h2>
     <table style="font-family:system-ui,sans-serif;font-size:15px;border-collapse:collapse">
@@ -115,7 +115,7 @@ export async function POST(request: Request) {
       ${row('Location', enquiry.location)}
       ${row('How many', enquiry.quantity)}
       ${row('When', enquiry.urgency)}
-      <tr><td colspan="2" style="padding:10px 0"><hr style="border:0;border-top:1px solid #d9dde4"></td></tr>
+      <tr><td colspan="2" style="padding:10px 0"><hr style="border:0;border-top:1px solid #dedede"></td></tr>
       ${row('Name', enquiry.name)}
       ${row('Company', enquiry.company)}
       ${enquiry.website ? row('Website', enquiry.website) : ''}
@@ -154,7 +154,7 @@ export async function POST(request: Request) {
 
 function row(label: string, value: string) {
   return `<tr>
-    <td style="padding:4px 16px 4px 0;color:#5b6472;white-space:nowrap">${label}</td>
-    <td style="padding:4px 0;color:#101418"><strong>${value}</strong></td>
+    <td style="padding:4px 16px 4px 0;color:#666666;white-space:nowrap">${label}</td>
+    <td style="padding:4px 0;color:#141414"><strong>${value}</strong></td>
   </tr>`;
 }

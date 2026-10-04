@@ -18,7 +18,7 @@ export default function AWRPolicyPage() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           Recruitment Direct UK Ltd supports clients with Agency Workers Regulations compliance as part of our temporary recruitment service.
         </p>
 
@@ -87,7 +87,7 @@ export default function AWRPolicyPage() {
                   "Consultant-led review"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -124,7 +124,7 @@ export default function AWRPolicyPage() {
                   "Site or department details"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -175,7 +175,7 @@ export default function AWRPolicyPage() {
                   "Better communication between client, agency and worker"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -223,7 +223,7 @@ export default function AWRPolicyPage() {
         }
 
         .awr-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

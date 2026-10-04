@@ -40,7 +40,7 @@ function highlight(text: string, query: string) {
   return (
     <>
       {text.slice(0, idx)}
-      <mark className="bg-blue-100 text-blue-900 rounded-sm px-0.5">
+      <mark className="bg-zinc-100 text-zinc-800 rounded-sm px-0.5">
         {text.slice(idx, idx + query.trim().length)}
       </mark>
       {text.slice(idx + query.trim().length)}
@@ -108,7 +108,7 @@ function PolicyCard({ policy, query }: { policy: PolicyItem; query: string }) {
         {policy.status === "live" && policy.href ? (
           <a
             href={policy.href}
-            className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:text-blue-900"
+            className="inline-flex items-center gap-1 text-sm font-medium text-zinc-800 hover:text-zinc-800"
           >
             View policy
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -206,7 +206,7 @@ export default function PoliciesHub() {
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="mb-10 text-center">
-        <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">
+        <p className="text-sm font-semibold uppercase tracking-wide text-zinc-800">
           Policies &amp; Compliance
         </p>
         <h1 className="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -247,7 +247,7 @@ export default function PoliciesHub() {
             aria-expanded={showSuggestions && suggestions.length > 0}
             aria-controls="policy-suggestions"
             aria-autocomplete="list"
-            className="w-full rounded-full border border-slate-200 bg-white py-3.5 pl-12 pr-10 text-sm text-slate-900 shadow-sm outline-none ring-blue-600 placeholder:text-slate-400 focus:ring-2"
+            className="w-full rounded-full border border-slate-200 bg-white py-3.5 pl-12 pr-10 text-sm text-slate-900 shadow-sm outline-none ring-zinc-900 placeholder:text-slate-400 focus:ring-2"
           />
           {query && (
             <button
@@ -281,7 +281,7 @@ export default function PoliciesHub() {
                   onClick={() => selectSuggestion(s)}
                   onMouseEnter={() => setActiveSuggestion(i)}
                   className={`flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm ${
-                    i === activeSuggestion ? "bg-blue-50" : "hover:bg-slate-50"
+                    i === activeSuggestion ? "bg-zinc-100" : "hover:bg-slate-50"
                   }`}
                 >
                   <span>
@@ -308,7 +308,7 @@ export default function PoliciesHub() {
           <a
             key={c}
             href={`#category-${c.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`}
-            className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 hover:border-blue-300 hover:text-blue-700"
+            className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 hover:border-zinc-400 hover:text-zinc-800"
           >
             {c}
           </a>
@@ -323,7 +323,7 @@ export default function PoliciesHub() {
           </p>
           <p className="mt-2 text-sm text-slate-500">
             Can&apos;t find what you need?{" "}
-            <a href="/contact" className="font-medium text-blue-700 hover:text-blue-900">
+            <a href="/contact" className="font-medium text-zinc-800 hover:text-zinc-800">
               Get in touch
             </a>{" "}
             and we&apos;ll send it over directly.
@@ -366,7 +366,7 @@ export default function PoliciesHub() {
           margin-top: 0 !important;
           margin-bottom: 6px !important;
           letter-spacing: -0.01em !important;
-          color: #0f172a !important;
+          color: #1c1c1c !important;
           display: block !important;
         }
 

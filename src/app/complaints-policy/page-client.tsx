@@ -18,7 +18,7 @@ export default function ComplaintsPolicyPage() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           Recruitment Direct UK Ltd is committed to providing a professional, reliable and responsive recruitment service to clients, applicants and workers.
         </p>
 
@@ -54,7 +54,7 @@ export default function ComplaintsPolicyPage() {
                   "Other parties who have dealt with Recruitment Direct UK Ltd"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -88,7 +88,7 @@ export default function ComplaintsPolicyPage() {
                   "Any other matter relating to our recruitment service"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -109,8 +109,8 @@ export default function ComplaintsPolicyPage() {
                 Complaints can be submitted by email, phone or in writing.
               </p>
               <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-2 text-sm md:text-base">
-                <p><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">accounts@rd1.co.uk</a></p>
-                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-blue-600 hover:underline">01324 613198</a></p>
+                <p><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">accounts@rd1.co.uk</a></p>
+                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-zinc-900 hover:underline">01324 613198</a></p>
                 <p><strong>Address:</strong> Recruitment Direct UK Limited, Herkimer House, Mill Road Industrial Estate, Linlithgow, EH49 7SF, Scotland, United Kingdom</p>
               </div>
               <p className="mt-4">
@@ -127,7 +127,7 @@ export default function ComplaintsPolicyPage() {
                   "The outcome you are seeking"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -157,7 +157,7 @@ export default function ComplaintsPolicyPage() {
                   "Providing a response once the review is complete"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -210,7 +210,7 @@ export default function ComplaintsPolicyPage() {
                   "Any other relevant information"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -242,7 +242,7 @@ export default function ComplaintsPolicyPage() {
                   "Confirmation that no further action is required"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -348,8 +348,8 @@ export default function ComplaintsPolicyPage() {
                 <p>EH49 7SF</p>
                 <p>Scotland</p>
                 <p>United Kingdom</p>
-                <p className="mt-4"><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">accounts@rd1.co.uk</a></p>
-                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-blue-600 hover:underline">01324 613198</a></p>
+                <p className="mt-4"><strong>Email:</strong> <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">accounts@rd1.co.uk</a></p>
+                <p><strong>Phone:</strong> <a href="tel:01324613198" className="text-zinc-900 hover:underline">01324 613198</a></p>
               </div>
             </div>
           </section>
@@ -376,7 +376,7 @@ export default function ComplaintsPolicyPage() {
         }
 
         .complaints-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

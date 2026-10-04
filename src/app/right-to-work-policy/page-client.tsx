@@ -18,7 +18,7 @@ export default function RightToWorkPolicyPage() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <p className="text-lg md:text-xl font-medium text-gray-900 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           Recruitment Direct UK Ltd is committed to responsible recruitment and compliance with UK right to work requirements.
         </p>
 
@@ -56,7 +56,7 @@ export default function RightToWorkPolicyPage() {
                   "Protect clients and applicants through proper checks before placement"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -105,7 +105,7 @@ export default function RightToWorkPolicyPage() {
                   "The Home Office Employer Checking Service, where required"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -138,7 +138,7 @@ export default function RightToWorkPolicyPage() {
                   "Any other information required to confirm permission to work"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -173,7 +173,7 @@ export default function RightToWorkPolicyPage() {
                   "Any restrictions relevant to the assignment"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -206,7 +206,7 @@ export default function RightToWorkPolicyPage() {
                   "Compliance notes and audit trail records"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -323,7 +323,7 @@ export default function RightToWorkPolicyPage() {
         }
 
         .rtw-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

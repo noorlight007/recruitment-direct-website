@@ -51,11 +51,11 @@ export default function NewsPage() {
         .news-page-content p,
         .news-page-content li,
         .news-page-content span {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .news-page-content .text-muted-dark {
-          color: #475569 !important;
+          color: #585858 !important;
         }
       `}</style>
 
@@ -71,7 +71,7 @@ export default function NewsPage() {
             >
               {/* Category & Meta */}
               <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-muted-dark">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-semibold uppercase tracking-wider text-xs">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-100 text-zinc-900 font-semibold uppercase tracking-wider text-xs">
                   <Newspaper className="w-3.5 h-3.5" /> News & Insights
                 </span>
               </div>
@@ -98,7 +98,7 @@ export default function NewsPage() {
         </header>
 
         {/* Blog Feed Container */}
-        <main className="py-16 bg-[#f8fafc]">
+        <main className="py-16 bg-[#fafafa]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0 }}

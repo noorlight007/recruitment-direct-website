@@ -154,10 +154,10 @@ export default function CommercialSectorPageClient() {
           display: inline-block;
           margin-bottom: 18px;
           padding: 8px 18px;
-          border: 1px solid #dbe7ff;
+          border: 1px solid #c0c0c0;
           border-radius: 999px;
-          background: #eef4ff;
-          color: #1e40af;
+          background: #c0c0c0;
+          color: #222222;
           font-size: 14px;
           font-weight: 600;
           letter-spacing: 0.2px;
@@ -170,7 +170,7 @@ export default function CommercialSectorPageClient() {
           line-height: 1.05;
           font-weight: 700;
           letter-spacing: -1px;
-          color: #0f172a;
+          color: #1c1c1c;
         }
 
         .rd-subtitle {
@@ -179,7 +179,7 @@ export default function CommercialSectorPageClient() {
           font-size: 20px;
           line-height: 1.75;
           font-weight: 400;
-          color: #475569;
+          color: #585858;
         }
 
         .rd-grid {
@@ -192,10 +192,10 @@ export default function CommercialSectorPageClient() {
         .rd-card,
         .rd-bottom-card {
           padding: 38px;
-          border: 1px solid #e5e7eb;
+          border: 1px solid #e8e8e8;
           border-radius: 24px;
           background: #ffffff;
-          box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+          box-shadow: 0 10px 30px rgba(28, 28, 28, 0.05);
         }
 
         .rd-card h2,
@@ -204,7 +204,7 @@ export default function CommercialSectorPageClient() {
           font-size: 28px;
           line-height: 1.2;
           font-weight: 700;
-          color: #0f172a;
+          color: #1c1c1c;
         }
 
         .rd-card p,
@@ -212,7 +212,7 @@ export default function CommercialSectorPageClient() {
           margin: 0 0 16px;
           font-size: 17px;
           line-height: 1.8;
-          color: #475569;
+          color: #585858;
         }
 
         .rd-card p:last-child,
@@ -232,7 +232,7 @@ export default function CommercialSectorPageClient() {
           break-inside: avoid;
           font-size: 17px;
           line-height: 1.6;
-          color: #0f172a;
+          color: #1c1c1c;
         }
 
         .rd-feature-list {
@@ -244,7 +244,7 @@ export default function CommercialSectorPageClient() {
           margin-bottom: 12px;
           font-size: 17px;
           line-height: 1.6;
-          color: #0f172a;
+          color: #1c1c1c;
         }
 
         .rd-button-wrap {

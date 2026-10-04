@@ -75,7 +75,7 @@ export default function Footer() {
   const policyCategories = [
     {
       title: "FRAMEWORK & COMPLIANCE",
-      icon: <Scale className="w-5 h-5 text-blue-600" />,
+      icon: <Scale className="w-5 h-5 text-zinc-900" />,
       items: [
         { name: "Framework & Tender Compliance", link: "/framework-and-tender-compliance" },
         { name: "Modern Slavery Policy", link: "/modern-slavery-policy" },
@@ -94,7 +94,7 @@ export default function Footer() {
     },
     {
       title: "DATA & PRIVACY",
-      icon: <Lock className="w-5 h-5 text-blue-600" />,
+      icon: <Lock className="w-5 h-5 text-zinc-900" />,
       items: [
         { name: "Privacy Policy", link: "/privacy-policy" },
         { name: "Cookie Policy", link: "/cookie-policy" },
@@ -107,7 +107,7 @@ export default function Footer() {
     },
     {
       title: "AI & TECHNOLOGY",
-      icon: <Shield className="w-5 h-5 text-blue-600" />,
+      icon: <Shield className="w-5 h-5 text-zinc-900" />,
       items: [
         { name: "AI Transparency Policy", link: "/ai-transparency-statement" },
         { name: "AI & Automated Decision-Making Policy", link: "/ai-automated-decision-making-policy" },
@@ -119,7 +119,7 @@ export default function Footer() {
     },
     {
       title: "SECURITY",
-      icon: <Shield className="w-5 h-5 text-blue-600" />,
+      icon: <Shield className="w-5 h-5 text-zinc-900" />,
       items: [
         { name: "Information Security Policy", link: "/information-security-policy" },
         { name: "Data Breach Policy", link: "/data-breach-policy" },
@@ -128,7 +128,7 @@ export default function Footer() {
     },
     {
       title: "RECRUITMENT COMPLIANCE",
-      icon: <Users className="w-5 h-5 text-blue-600" />,
+      icon: <Users className="w-5 h-5 text-zinc-900" />,
       items: [
         { name: "National Minimum Wage & Holiday Pay Policy", link: "/national-minimum-wage-holiday-pay-policy" },
         { name: "Working Time Regulations Policy", link: "/working-time-regulations-policy" },
@@ -142,7 +142,7 @@ export default function Footer() {
     },
     {
       title: "WEBSITE LEGAL",
-      icon: <Info className="w-5 h-5 text-blue-600" />,
+      icon: <Info className="w-5 h-5 text-zinc-900" />,
       items: [
         { name: "Terms of Use", link: "/terms-of-use" }
       ]
@@ -157,7 +157,7 @@ export default function Footer() {
             180deg,
             rgba(8,8,8,0.96) 0%,
             rgba(12,12,12,0.98) 55%,
-            rgba(16,20,28,0.98) 100%
+            rgba(22, 22, 22,0.98) 100%
           ) !important;
           padding: 64px 24px 0;
           border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -183,7 +183,7 @@ export default function Footer() {
         .rd-premium-head p {
           max-width: 860px;
           margin: 0 auto;
-          color: #CBD5E1 !important;
+          color: #d6d6d6 !important;
           font-size: 17px;
           line-height: 1.7;
           font-weight: 400;
@@ -201,13 +201,13 @@ export default function Footer() {
         }
         .rd-card {
           background: rgba(255, 255, 255, 0.04) !important;
-          border: 1px solid rgba(0, 140, 255, 0.18) !important;
+          border: 1px solid rgba(34, 34, 34, 0.18) !important;
           border-radius: 28px;
           padding: 22px 16px 18px !important;
           box-shadow:
             0 0 0 1px rgba(255,255,255,0.02) inset,
             0 10px 30px rgba(0,0,0,0.55),
-            0 0 18px rgba(0,102,255,0.08) !important;
+            0 0 18px rgba(34, 34, 34,0.08) !important;
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           text-align: center;
@@ -217,9 +217,9 @@ export default function Footer() {
         .rd-card:hover {
           transform: translateY(-6px);
           box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34),
-            0 0 30px rgba(54, 124, 255, 0.1),
+            0 0 30px rgba(192, 192, 192, 0.1),
             inset 0 1px 0 rgba(255, 255, 255, 0.06);
-          border-color: rgba(94, 168, 255, 0.28);
+          border-color: rgba(192, 192, 192, 0.28);
         }
         .rd-card-logo {
           height: 130px;
@@ -250,13 +250,13 @@ export default function Footer() {
         }
         .rd-card .rd-sub {
           margin: 0 0 4px !important;
-          color: #CBD5E1 !important;
+          color: #d6d6d6 !important;
           font-size: 14px !important;
           line-height: 1.5 !important;
         }
         .rd-card .rd-num {
           margin: 0 0 16px !important;
-          color: #60A5FA !important;
+          color: #c0c0c0 !important;
           font-size: 16px !important;
           font-weight: 500 !important;
           line-height: 1.3 !important;
@@ -278,8 +278,8 @@ export default function Footer() {
           }
         }
         .trust-strip {
-          background: linear-gradient(135deg, #07111f, #0d1b2e) !important;
-          border: 1px solid rgba(0, 153, 255, 0.35) !important;
+          background: linear-gradient(135deg, #131313, #1e1e1e) !important;
+          border: 1px solid rgba(34, 34, 34, 0.35) !important;
           border-radius: 11px !important; /* 40% size reduction (originally 18px) */
           padding: 20.4px 14.4px !important; /* 40% size reduction (originally 34px 24px) */
           margin: 24px 13.2px !important; /* 40% size reduction (originally 40px 22px) */
@@ -406,7 +406,7 @@ export default function Footer() {
           display: inline-block !important;
           margin-top: 4px !important;
           margin-bottom: 14px !important;
-          color: #60A5FA !important;
+          color: #c0c0c0 !important;
           font-size: 13.5px !important;
           font-weight: 500 !important;
           cursor: pointer !important;
@@ -419,8 +419,8 @@ export default function Footer() {
         }
 
         .footer-all-policies-btn:hover {
-          color: #93C5FD !important;
-          text-shadow: 0 0 8px rgba(96, 165, 250, 0.45) !important;
+          color: #c0c0c0 !important;
+          text-shadow: 0 0 8px rgba(192, 192, 192, 0.45) !important;
         }
 
         /* Standardize footer buttons to match text links on desktop */
@@ -461,13 +461,13 @@ export default function Footer() {
         .rd-ai-steve-card {
           padding: 18px;
           border-radius: 18px;
-          border: 1px solid rgba(0, 140, 255, 0.18) !important;
+          border: 1px solid rgba(34, 34, 34, 0.18) !important;
           background: rgba(255, 255, 255, 0.04) !important;
           backdrop-filter: blur(8px) !important;
           box-shadow:
             0 0 0 1px rgba(255,255,255,0.02) inset,
             0 10px 30px rgba(0,0,0,0.55),
-            0 0 18px rgba(0,102,255,0.08) !important;
+            0 0 18px rgba(34, 34, 34,0.08) !important;
           margin-top: 0;
           max-width: 430px;
           margin-left: auto;
@@ -528,12 +528,12 @@ export default function Footer() {
           display: grid;
           place-items: center;
           background:
-            radial-gradient(circle at 35% 30%, #63e7ff, transparent 18%),
+            radial-gradient(circle at 35% 30%, #c0c0c0, transparent 18%),
             radial-gradient(circle at 65% 70%, #b52dff, transparent 26%),
-            radial-gradient(circle, #0d7dff 0%, #061a52 48%, #050817 72%);
+            radial-gradient(circle, #222222 0%, #2c2c2c 48%, #0e0e0e 72%);
           box-shadow:
-            0 0 16px rgba(0, 213, 255, 0.75),
-            0 0 28px rgba(132, 52, 255, 0.65);
+            0 0 16px rgba(34, 34, 34, 0.75),
+            0 0 28px rgba(192, 192, 192, 0.65);
           animation: rdOrbPulse 3s ease-in-out infinite;
         }
 
@@ -543,8 +543,8 @@ export default function Footer() {
           inset: -5px;
           border-radius: 50%;
           border: 2px solid transparent;
-          border-top-color: #00e5ff;
-          border-right-color: #9b4dff;
+          border-top-color: #222222;
+          border-right-color: #c0c0c0;
           animation: rdOrbSpin 4.5s linear infinite;
         }
 
@@ -560,8 +560,8 @@ export default function Footer() {
           font-size: 22px;
           font-weight: 900;
           letter-spacing: 1px;
-          color: #bff6ff;
-          text-shadow: 0 0 10px rgba(0, 213, 255, 0.95);
+          color: #c0c0c0;
+          text-shadow: 0 0 10px rgba(34, 34, 34, 0.95);
         }
 
         @keyframes rdOrbSpin {
@@ -787,7 +787,7 @@ export default function Footer() {
 
         .policy-btn:hover {
           transform: translateY(-2px) !important;
-          background: #f3f4f6 !important;
+          background: #f4f4f4 !important;
           border-color: #000000 !important;
           color: #000000 !important;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
@@ -813,7 +813,7 @@ export default function Footer() {
         }
 
         .policies-dialog button.absolute:hover {
-          background: #f3f4f6 !important;
+          background: #f4f4f4 !important;
           color: #000000 !important;
         }
       `}</style>
@@ -1036,7 +1036,7 @@ export default function Footer() {
                       <a href="/terms-of-use">Terms of Use</a>
                       <a href="/cookie-policy">Cookie Policy</a>
                       <a href="/complaints-policy">Complaints Policy</a>
-                      <a href="/policies-and-compliance" className="font-semibold text-blue-400 hover:text-blue-300">
+                      <a href="/policies-and-compliance" className="font-semibold text-zinc-400 hover:text-zinc-400">
                         All Policies &amp; Compliance →
                       </a>
                     </div>
@@ -1068,12 +1068,12 @@ export default function Footer() {
                           </svg>
                         </a>
                         <a href="https://www.linkedin.com/company/recruitment-direct/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-80 transition-opacity">
-                          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#0A66C2]">
+                          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#222222]">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                           </svg>
                         </a>
                         <a href="https://www.facebook.com/recruitmentdirect/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-80 transition-opacity">
-                          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#1877F2]">
+                          <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#222222]">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                           </svg>
                         </a>
@@ -1179,7 +1179,7 @@ export default function Footer() {
         <DialogContent className="max-w-6xl max-h-[85vh] overflow-y-auto bg-white border-gray-200 text-gray-900 shadow-2xl policies-dialog">
           <DialogHeader className="mb-6">
             <DialogTitle className="text-3xl font-bold flex items-center gap-3 text-gray-900">
-              <FileText className="text-blue-600" />
+              <FileText className="text-zinc-900" />
               Compliance & Policies
             </DialogTitle>
             <p className="text-gray-600 mt-2">

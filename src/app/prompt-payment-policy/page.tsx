@@ -81,7 +81,7 @@ export default function PromptPaymentPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Any supplier, contractor, or worker with a payment query should contact RD1 via{" "}
-            <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">
+            <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">
               accounts@rd1.co.uk
             </a>{" "}
             in the first instance.

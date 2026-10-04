@@ -82,7 +82,7 @@ export default function InsuranceStatementOfCoverPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             RD1&apos;s Certificate of Employers&apos; Liability Insurance is displayed at our registered office as required by the Employers&apos; Liability (Compulsory Insurance) Act 1969, confirming cover of no less than £5 million (our actual limit is £10 million, above the statutory minimum). A copy is available on request via{" "}
-            <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">
+            <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">
               accounts@rd1.co.uk
             </a>{" "}
             &mdash; this is a standard requirement clients and framework assessors will ask to see.
@@ -98,7 +98,7 @@ export default function InsuranceStatementOfCoverPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Full certificates of insurance for any of the above can be requested via{" "}
-            <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">
+            <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">
               accounts@rd1.co.uk
             </a>{" "}
             and are typically issued within 2 working days.

@@ -18,7 +18,7 @@ export default function DataBreachPolicyPage() {
         </h1>
 
         {/* Company Address Block */}
-        <div className="text-sm text-gray-600 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <div className="text-sm text-gray-600 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           <p className="font-semibold text-gray-900">Recruitment Direct UK Limited</p>
           <p>Herkimer House</p>
           <p>Mill Road Industrial Estate</p>
@@ -84,7 +84,7 @@ export default function DataBreachPolicyPage() {
                   "Support business continuity and recovery."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -111,7 +111,7 @@ export default function DataBreachPolicyPage() {
                   "Suppliers with authorised access to company systems"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -141,7 +141,7 @@ export default function DataBreachPolicyPage() {
                   "Unauthorised use of information."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -160,7 +160,7 @@ export default function DataBreachPolicyPage() {
                   "Disclosure of confidential information."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -190,7 +190,7 @@ export default function DataBreachPolicyPage() {
                   "Supporting audit and reporting processes."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -222,7 +222,7 @@ export default function DataBreachPolicyPage() {
                   "Actions already taken."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -252,7 +252,7 @@ export default function DataBreachPolicyPage() {
                   "Maintain records of breach investigations and outcomes."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -295,7 +295,7 @@ export default function DataBreachPolicyPage() {
                   "AI-assisted compliance and database management technologies."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -341,7 +341,7 @@ export default function DataBreachPolicyPage() {
                   "Co-operating with investigations where required."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -426,7 +426,7 @@ export default function DataBreachPolicyPage() {
         }
 
         .dbp-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

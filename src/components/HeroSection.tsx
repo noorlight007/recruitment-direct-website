@@ -3,7 +3,7 @@ Button Colours (System)
 
 → Primary buttons (main actions)
 Use gradient:
-linear-gradient(135deg, #2F80ED, #8E2DE2)
+linear-gradient(135deg, #c0c0c0, #222222)
 
 ⸻
 
@@ -97,7 +97,7 @@ export default function HeroSection() {
               Recruitment Across the UK
             </h1>
 
-            <h2 className="text-xl md:text-2xl font-bold text-[#60A5FA] mt-3 mb-2 tracking-tight glow-text text-left mr-auto lg:mx-0 w-full">
+            <h2 className="text-xl md:text-2xl font-bold text-[#c0c0c0] mt-3 mb-2 tracking-tight glow-text text-left mr-auto lg:mx-0 w-full">
               Fast, reliable staffing solutions since 2006.
             </h2>
 

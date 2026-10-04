@@ -16,7 +16,7 @@ export default function EliteAISection() {
       <style dangerouslySetInnerHTML={{ __html: `
         .new-ai-section-wrapper {
           font-family: var(--font-inter), sans-serif;
-          background: radial-gradient(circle at top right,#0f2d68 0%,#050816 30%,#02040d 70%);
+          background: radial-gradient(circle at top right,#3c3c3c 0%,#0e0e0e 30%,#080808 70%);
           color: white;
           overflow-x: hidden;
           padding-bottom: 80px;
@@ -32,13 +32,13 @@ export default function EliteAISection() {
 
         .elite-new-badge {
           display: inline-block;
-          border: 1px solid rgba(59,130,246,0.4);
+          border: 1px solid rgba(192, 192, 192,0.4);
           padding: 12px 24px;
           border-radius: 999px;
           font-size: 13px;
           letter-spacing: 0.12em;
           margin-bottom: 40px;
-          color: #60a5fa;
+          color: #c0c0c0;
         }
 
         .elite-new-hero-grid {
@@ -57,13 +57,13 @@ export default function EliteAISection() {
         }
 
         .elite-new-hero h1 span {
-          color: #3b82f6;
+          color: #c0c0c0;
         }
 
         .elite-new-hero p {
           font-size: 24px;
           line-height: 1.6;
-          color: #cbd5e1;
+          color: #d6d6d6;
           max-width: 720px;
           margin-bottom: 50px;
         }
@@ -74,7 +74,7 @@ export default function EliteAISection() {
         }
 
         .elite-new-primary-btn {
-          background: #2563eb;
+          background: #222222;
           padding: 18px 34px;
           border-radius: 18px;
           color: white;
@@ -137,7 +137,7 @@ export default function EliteAISection() {
 
         .elite-new-stat p {
           font-size: 14px;
-          color: #94a3b8;
+          color: #a6a6a6;
         }
 
         /* WORKFLOW */
@@ -166,7 +166,7 @@ export default function EliteAISection() {
         }
 
         .elite-new-step-number {
-          color: #3b82f6;
+          color: #c0c0c0;
           font-size: 22px;
           margin-bottom: 20px;
           font-weight: 700;
@@ -192,7 +192,7 @@ export default function EliteAISection() {
 
         .elite-new-step p {
           font-size: 14px;
-          color: #94a3b8;
+          color: #a6a6a6;
           line-height: 1.5;
         }
 
@@ -217,14 +217,14 @@ export default function EliteAISection() {
         }
 
         .elite-new-card p {
-          color: #cbd5e1;
+          color: #d6d6d6;
           line-height: 1.7;
           font-size: 17px;
           margin-bottom: 40px;
         }
 
         .elite-new-card a {
-          color: #3b82f6;
+          color: #c0c0c0;
           text-decoration: none;
           font-size: 18px;
           font-weight: 600;
@@ -251,7 +251,7 @@ export default function EliteAISection() {
         }
 
         .elite-new-benefit p {
-          color: #94a3b8;
+          color: #a6a6a6;
           line-height: 1.6;
         }
 
@@ -266,7 +266,7 @@ export default function EliteAISection() {
         .elite-new-trust-item {
           text-align: center;
           padding: 20px;
-          color: #94a3b8;
+          color: #a6a6a6;
           font-size: 15px;
         }
 

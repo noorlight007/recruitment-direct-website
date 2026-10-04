@@ -34,15 +34,15 @@ export default function OurProcessPage() {
         .our-process-page-content li,
         .our-process-page-content span,
         .our-process-page-content div.step-num {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .our-process-page-content .text-muted-dark {
-          color: #475569 !important;
+          color: #585858 !important;
         }
 
         .our-process-page-content .btn-gold {
-          color: #071424 !important;
+          color: #161616 !important;
           background: linear-gradient(135deg, #8a6417 0%, #c89528 24%, #f6d77d 50%, #c28b20 74%, #6f4b10 100%) !important;
           border: 2px solid #f7d98a !important;
           box-shadow:
@@ -67,7 +67,7 @@ export default function OurProcessPage() {
         }
 
         .our-process-page-content .btn-gold span {
-          color: #071424 !important;
+          color: #161616 !important;
         }
 
         .our-process-page-content .btn-gold:hover {
@@ -84,9 +84,9 @@ export default function OurProcessPage() {
         }
 
         .our-process-page-content .btn-outline-dark {
-          color: #0c0f19 !important;
+          color: #121212 !important;
           background: transparent !important;
-          border: 2px solid #0c0f19 !important;
+          border: 2px solid #121212 !important;
           transition: all 0.25s ease !important;
           font-weight: 800 !important;
           font-size: 16px !important;
@@ -105,11 +105,11 @@ export default function OurProcessPage() {
         }
 
         .our-process-page-content .btn-outline-dark span {
-          color: #0c0f19 !important;
+          color: #121212 !important;
         }
 
         .our-process-page-content .btn-outline-dark:hover {
-          background-color: #0c0f19 !important;
+          background-color: #121212 !important;
           transform: translateY(-2px) !important;
         }
 
@@ -123,8 +123,8 @@ export default function OurProcessPage() {
         }
 
         .our-process-page-content .bg-gray-soft {
-          background-color: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background-color: #fafafa;
+          border: 1px solid #e9e9e9;
         }
         
         .our-process-page-content .step-num {
@@ -164,8 +164,8 @@ export default function OurProcessPage() {
         <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-3 mb-10 pb-4 border-b border-gray-100">
-              <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                <ClipboardList className="w-5 h-5 text-blue-600" />
+              <div className="w-10 h-10 rounded-lg bg-zinc-100 flex items-center justify-center flex-shrink-0">
+                <ClipboardList className="w-5 h-5 text-zinc-900" />
               </div>
               <h2 className="text-3xl font-extrabold font-heading">
                 New Client Order and Onboarding Workflow
@@ -416,7 +416,7 @@ export default function OurProcessPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link href="/ai-hire-now" className="btn-gold">
                   <span>AI Hire Now</span>
-                  <ArrowRight className="w-4 h-4 text-[#071424]" />
+                  <ArrowRight className="w-4 h-4 text-[#161616]" />
                 </Link>
                 <Link href="/job-search" className="btn-outline-dark">
                   <span>Search Jobs</span>

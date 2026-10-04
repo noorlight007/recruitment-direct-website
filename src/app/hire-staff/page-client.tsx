@@ -136,7 +136,7 @@ export default function HireStaffPage() {
 
                 {/* Recent Placements */}
                 <div className="border-t border-white/10 pt-6 mt-8 space-y-3">
-                  <div className="text-[10px] font-mono font-bold tracking-widest text-[#6fa8ff] uppercase">
+                  <div className="text-[10px] font-mono font-bold tracking-widest text-[#c0c0c0] uppercase">
                     ● Recent placements — recruiter verified
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-300">
@@ -165,10 +165,10 @@ export default function HireStaffPage() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
-                className="bg-[#05070d]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl space-y-6"
+                className="bg-[#090909]/90 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl space-y-6"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-mono font-bold tracking-widest text-[#6fa8ff] uppercase">
+                  <h3 className="text-xs font-mono font-bold tracking-widest text-[#c0c0c0] uppercase">
                     24/7 Applicant Call — Live
                   </h3>
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -219,7 +219,7 @@ export default function HireStaffPage() {
                 { step: "03", title: "Choose how to send it", desc: "WhatsApp, email, or AI Hire Now for the fastest possible start." },
                 { step: "04", title: "We get to work", desc: "AI-screened candidates, recruiter verified and compliance-checked, matched to your brief." }
               ].map((item) => (
-                <div key={item.step} className="bg-[#05070d]/60 border border-white/10 rounded-xl p-6 space-y-3">
+                <div key={item.step} className="bg-[#090909]/60 border border-white/10 rounded-xl p-6 space-y-3">
                   <div className="font-mono text-sm text-[#d3a94a] font-bold">{item.step}</div>
                   <h3 className="text-white font-bold text-base">{item.title}</h3>
                   <p className="text-slate-400 text-xs leading-relaxed">{item.desc}</p>
@@ -230,7 +230,7 @@ export default function HireStaffPage() {
         </section>
 
         {/* Sectors Section */}
-        <section id="sectors-section" className="py-16 border-t border-white/5 bg-[#05070d]/30">
+        <section id="sectors-section" className="py-16 border-t border-white/5 bg-[#090909]/30">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <span className="text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">Every sector, one agency</span>
@@ -244,7 +244,7 @@ export default function HireStaffPage() {
               {Object.entries(SECTORS_DATA).map(([sector, roles]) => (
                 <div
                   key={sector}
-                  className={`bg-[#0d1526]/80 border rounded-xl p-5 space-y-3 hover:border-[#d3a94a]/30 transition-all ${
+                  className={`bg-[#1a1a1a]/80 border rounded-xl p-5 space-y-3 hover:border-[#d3a94a]/30 transition-all ${
                     CORE_SECTORS.includes(sector) ? "border-[#d3a94a]/30" : "border-white/10"
                   }`}
                 >
@@ -274,7 +274,7 @@ export default function HireStaffPage() {
             <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-10 shadow-2xl">
               <div className="mb-6 border-b border-slate-100 pb-6 text-center">
                 <span className="text-[#d3a94a] text-xs font-mono font-bold tracking-wider uppercase">Find Staff</span>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-[#0c1730] mt-1">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-[#1e1e1e] mt-1">
                   Tell us who you need — takes around 15 seconds
                 </h2>
                 <p className="text-sm text-slate-500 mt-2">
@@ -314,7 +314,7 @@ export default function HireStaffPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 border-t border-white/5 bg-[#05070d]/30">
+        <section className="py-16 border-t border-white/5 bg-[#090909]/30">
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
               <span className="text-xs font-mono font-bold text-[#d3a94a] tracking-wider uppercase">Common Questions</span>
@@ -325,7 +325,7 @@ export default function HireStaffPage() {
               {FAQS.map((faq) => (
                 <details
                   key={faq.question}
-                  className="group border border-white/10 bg-[#05070d]/60 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
+                  className="group border border-white/10 bg-[#090909]/60 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden"
                 >
                   <summary className="flex items-center justify-between cursor-pointer p-5 text-white font-bold text-sm sm:text-base select-none">
                     <span>{faq.question}</span>

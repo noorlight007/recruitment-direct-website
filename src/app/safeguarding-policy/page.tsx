@@ -46,7 +46,7 @@ export default function SafeguardingPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             RD1 will not knowingly place a worker into a role requiring contact with children or vulnerable adults without appropriate vetting having been completed and verified &mdash; see our{" "}
-            <Link href="/safer-recruitment-vetting-policy" className="text-blue-600 hover:underline">
+            <Link href="/safer-recruitment-vetting-policy" className="text-zinc-900 hover:underline">
               Safer Recruitment &amp; Vetting Policy
             </Link>{" "}
             for the checks we carry out.

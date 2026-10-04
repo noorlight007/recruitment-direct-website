@@ -18,7 +18,7 @@ export default function ModernSlaveryPolicyPage() {
         </h1>
 
         {/* Company Address Block */}
-        <div className="text-sm text-gray-600 mb-8 border-l-4 border-blue-600 pl-4 py-1 leading-relaxed">
+        <div className="text-sm text-gray-600 mb-8 border-l-4 border-zinc-900 pl-4 py-1 leading-relaxed">
           <p className="font-semibold text-gray-900">Recruitment Direct UK Limited</p>
           <p>Herkimer House</p>
           <p>Mill Road Industrial Estate</p>
@@ -82,7 +82,7 @@ export default function ModernSlaveryPolicyPage() {
                   "Ensure compliance with applicable legislation and regulatory requirements."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -110,7 +110,7 @@ export default function ModernSlaveryPolicyPage() {
                   "Business partners"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -140,7 +140,7 @@ export default function ModernSlaveryPolicyPage() {
                   "Encouraging the reporting of concerns relating to modern slavery."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -167,7 +167,7 @@ export default function ModernSlaveryPolicyPage() {
                   "Investigation of any concerns raised by applicants, workers, clients or third parties."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0 mt-2.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -213,7 +213,7 @@ export default function ModernSlaveryPolicyPage() {
                   "Recruitment communications."
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-800">
-                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 bg-zinc-900 rounded-full flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -331,7 +331,7 @@ export default function ModernSlaveryPolicyPage() {
         }
 
         .ms-section {
-          border-bottom: 1px solid #e5e7eb;
+          border-bottom: 1px solid #e8e8e8;
           padding-bottom: 2rem;
         }
 

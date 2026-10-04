@@ -57,7 +57,7 @@ export default function WhistleblowingPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Concerns can be raised, in the first instance, with a Director, or in writing to{" "}
-            <a href="mailto:accounts@rd1.co.uk" className="text-blue-600 hover:underline">
+            <a href="mailto:accounts@rd1.co.uk" className="text-zinc-900 hover:underline">
               accounts@rd1.co.uk
             </a>{" "}
             marked for the attention of the Directors. Concerns can be raised verbally or in writing and, where possible, will be treated confidentially &mdash; RD1 will not disclose the identity of the person raising a concern without their consent, unless required by law.
