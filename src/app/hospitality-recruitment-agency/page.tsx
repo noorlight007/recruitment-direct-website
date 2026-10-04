@@ -4,6 +4,7 @@ import HospitalityAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Hospitality Recruitment Agency UK | Recruitment Direct UK",
   description: "Hospitality Recruitment Agency supplying chefs, waiting staff, kitchen assistants and bar staff across the UK. Trusted since 2006.",
+  alternates: { canonical: "https://rd1.co.uk/hospitality-recruitment-agency" },
   robots: {
     index: true,
     follow: true,

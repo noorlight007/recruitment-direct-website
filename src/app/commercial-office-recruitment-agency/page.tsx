@@ -4,6 +4,7 @@ import CommercialSectorPageClient from "./page-client";
 export const metadata: Metadata = {
   title: "Commercial & Office Recruitment Agency | Office Staffing | RDUK",
   description: "Recruitment Direct UK supplies office administrators, receptionists, customer service advisors, accounts, and payroll staff across the UK.",
+  alternates: { canonical: "https://rd1.co.uk/commercial-office-recruitment-agency" },
   robots: {
     index: true,
     follow: true,

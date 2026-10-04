@@ -23,7 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/accreditations",
     "/ai-automated-decision-making-policy",
     "/ai-hire-now",
-    "/ai-hire-now-form",
     "/ai-hire-now-statement",
     "/ai-recruitment",
     "/ai-screening-call-statement",
@@ -35,7 +34,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/awr-compliance-statement",
     "/bias-fairness-statement",
     "/business-continuity-policy",
-    "/callpilot",
     "/candidate-privacy-notice",
     "/carbon-reduction-plan",
     "/civil-engineering-recruitment-agency",
@@ -102,7 +100,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/tupe-policy",
     "/umbrella-company-due-diligence-policy",
     "/verify-supplier",
-    "/verify-supplier-form",
     "/whistleblowing-policy",
     "/why-choose-us",
     "/working-time-regulations-policy"

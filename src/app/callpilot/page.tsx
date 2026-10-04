@@ -4,6 +4,7 @@ import PageClient from "./page-client";
 export const metadata: Metadata = {
   title: "CallPilot AI Voice Call | RDUK",
   description: "Learn about CallPilot, our automated candidate screening voice call system.",
+  robots: { index: false, follow: true },
   alternates: {
     canonical: "https://rd1.co.uk/callpilot",
   },

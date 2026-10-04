@@ -4,6 +4,7 @@ import RenewableEnergyAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Renewable Energy Recruitment Agency UK | Recruitment Direct UK",
   description: "Renewable Energy Recruitment Agency supplying wind, solar, BESS, EV charging, hydrogen and utilities professionals across the UK. Trusted since 2006.",
+  alternates: { canonical: "https://rd1.co.uk/renewable-energy-recruitment-agency" },
   robots: {
     index: true,
     follow: true,

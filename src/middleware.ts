@@ -19,7 +19,7 @@ const TOWN_TO_COUNTRY = new Map(
 // /locations/ireland/belfast -> /locations/northern-ireland/belfast
 const LEGACY_COUNTRY_SEGMENTS = new Set(['ireland', 'eire', 'roi', 'ni', 'uk']);
 
-export function middleware(request: NextRequest) {
+function locationsMiddleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // ---- 1. Two-segment location URL: /locations/{country}/{town} ----
@@ -81,6 +81,35 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
+const CANONICAL_HOST = 'rd1.co.uk';
+const TRACKING = /^(utm_|fbclid$|gclid$|originalSubdomain$)/;
+
+export function middleware(request: NextRequest) {
+  // www -> apex, and strip tracking params, in a single 301.
+  const url = request.nextUrl.clone();
+  let changed = false;
+
+  if ((request.headers.get('host') ?? '').startsWith('www.')) {
+    url.host = CANONICAL_HOST;
+    url.protocol = 'https';
+    url.port = '';
+    changed = true;
+  }
+  for (const key of [...url.searchParams.keys()]) {
+    if (TRACKING.test(key)) {
+      url.searchParams.delete(key);
+      changed = true;
+    }
+  }
+  if (changed) return NextResponse.redirect(url, 301);
+
+  if (request.nextUrl.pathname.startsWith('/locations')) {
+    return locationsMiddleware(request);
+  }
+  return NextResponse.next();
+}
+
 export const config = {
-  matcher: '/locations/:path*',
+  // Skip Next internals, API routes and static files
+  matcher: ['/((?!_next/|api/|favicon.ico|.*\\.(?:png|jpg|jpeg|webp|svg|pdf|ico|css|js|txt|xml|html)$).*)'],
 };

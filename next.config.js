@@ -121,7 +121,9 @@ const LEGACY_URL_REDIRECTS = [
   ['/our-locations',                                   '/locations'],
   ['/recruitment-services',                            '/services'],
   ['/place-enquiry',                                   '/find-staff'],
+  ['/request-quote',                                   '/ai-hire-now-form?type=quote'],
   ['/hire-staff',                                      '/find-staff'],
+  ['/assets/rd1-24-7-live-call.html',                  '/assets/rd1-24-7-live-call-v3.html'],
 ];
 
 const nextConfig = {

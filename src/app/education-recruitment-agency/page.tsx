@@ -4,6 +4,7 @@ import EducationAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Education Recruitment Agency UK | Recruitment Direct UK",
   description: "Education Recruitment Agency supplying supply teachers, teaching assistants and learning support workers across the UK. Trusted since 2006.",
+  alternates: { canonical: "https://rd1.co.uk/education-recruitment-agency" },
   robots: {
     index: true,
     follow: true,

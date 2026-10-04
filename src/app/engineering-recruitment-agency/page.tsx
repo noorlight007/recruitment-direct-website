@@ -4,6 +4,7 @@ import EngineeringAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Engineering Recruitment Agency UK | Recruitment Direct UK",
   description: "Engineering Recruitment Agency supplying temporary, contract and permanent engineering professionals across the UK and Ireland. Trusted since 2006.",
+  alternates: { canonical: "https://rd1.co.uk/engineering-recruitment-agency" },
   robots: {
     index: true,
     follow: true,

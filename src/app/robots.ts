@@ -11,6 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         "/locations/admin/",
         "*/feed/",
         "/feed/",
+        "/*?type=",
       ],
     },
     sitemap: "https://rd1.co.uk/sitemap.xml",

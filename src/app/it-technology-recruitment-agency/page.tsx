@@ -4,6 +4,7 @@ import ITTechSectorPageClient from "./page-client";
 export const metadata: Metadata = {
   title: "IT & Technology Recruitment Agency | Tech Staffing UK | RDUK",
   description: "Recruitment Direct UK supplies IT support, developers, network engineers, cloud, and digital tech professionals for contract and permanent jobs.",
+  alternates: { canonical: "https://rd1.co.uk/it-technology-recruitment-agency" },
   robots: {
     index: true,
     follow: true,

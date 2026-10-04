@@ -4,6 +4,7 @@ import HealthcareAgencyPage from "./page-client";
 export const metadata: Metadata = {
   title: "Healthcare Recruitment Agency UK | Recruitment Direct UK",
   description: "Healthcare Recruitment Agency supplying care assistants, support workers and care professionals across the UK. Trusted since 2006.",
+  alternates: { canonical: "https://rd1.co.uk/healthcare-recruitment-agency" },
   robots: {
     index: true,
     follow: true,
