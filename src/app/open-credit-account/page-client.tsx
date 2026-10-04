@@ -40,6 +40,7 @@ export default function OpenCreditAccountPage() {
     form
       .querySelectorAll(".field-error")
       .forEach((el) => el.classList.remove("field-error"));
+    form.querySelectorAll(".field-error-msg").forEach((el) => el.remove());
 
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const required: [string, string][] = [
@@ -64,12 +65,20 @@ export default function OpenCreditAccountPage() {
       const fields = errors.map(
         (er) => form.elements.namedItem(er.name) as HTMLElement | null
       );
-      fields.forEach((el) => {
+      fields.forEach((el, i) => {
         if (!el) return;
         el.classList.add("field-error");
+        const msg = document.createElement("span");
+        msg.className = "field-error-msg";
+        msg.setAttribute("role", "alert");
+        msg.textContent = errors[i].message;
+        el.insertAdjacentElement("afterend", msg);
         el.addEventListener(
           "input",
-          () => el.classList.remove("field-error"),
+          () => {
+            el.classList.remove("field-error");
+            msg.remove();
+          },
           { once: true }
         );
       });
@@ -334,6 +343,14 @@ export default function OpenCreditAccountPage() {
           background: #fff5f5;
           box-shadow: 0 0 0 3px rgba(229, 72, 77, 0.2);
           animation: field-shake 0.35s;
+        }
+
+        :global(.field-error-msg) {
+          display: block;
+          margin: -6px 0 10px;
+          color: #e5484d;
+          font-size: 13px;
+          font-weight: 600;
         }
 
         @keyframes field-shake {
