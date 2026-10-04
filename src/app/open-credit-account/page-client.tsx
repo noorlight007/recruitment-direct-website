@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 
 export default function OpenCreditAccountPage() {
-  const [formMessage, setFormMessage] = useState("");
-
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,8 +36,32 @@ export default function OpenCreditAccountPage() {
       preferred_payment_terms: get("preferred_payment_terms"),
     };
 
+    const missing = [
+      ["Company name", payload.company_name],
+      ["Contact name", payload.contact_name],
+      ["Email", payload.email],
+      ["Phone", payload.phone],
+    ]
+      .filter(([, v]) => !v)
+      .map(([label]) => label);
+    if (missing.length) {
+      toast.warning("Please complete the required fields", {
+        description: `Missing: ${missing.join(", ")}.`,
+      });
+      return;
+    }
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (
+      !emailRe.test(payload.email) ||
+      (payload.accounts_email && !emailRe.test(payload.accounts_email))
+    ) {
+      toast.warning("Invalid email address", {
+        description: "Please check the email addresses you entered.",
+      });
+      return;
+    }
+
     setSubmitting(true);
-    setFormMessage("");
     try {
       const res = await fetch(
         "https://api.callpilot.pro/api/v1/core/live/credit-application",
@@ -48,15 +71,34 @@ export default function OpenCreditAccountPage() {
           body: JSON.stringify(payload),
         }
       );
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      if (!res.ok) {
+        let detail = "";
+        try {
+          const body = await res.json();
+          detail = body?.message || body?.error || "";
+        } catch {}
+        if (res.status >= 400 && res.status < 500) {
+          toast.warning("Please check your details", {
+            description:
+              detail || "Some information couldn't be accepted. Please review the form and try again.",
+          });
+        } else {
+          toast.error("Server error", {
+            description: "We couldn't process your application right now. Please try again shortly.",
+          });
+        }
+        return;
+      }
       form.reset();
-      setFormMessage(
-        "Thank you. Your credit account application has been received. Our team will review your details and contact you shortly."
-      );
+      toast.success("Application received", {
+        description:
+          "Thank you. Our team will review your details and contact you shortly.",
+        duration: 8000,
+      });
     } catch {
-      setFormMessage(
-        "Sorry, something went wrong submitting your application. Please try again."
-      );
+      toast.error("Submission failed", {
+        description: "Network problem. Please check your connection and try again.",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -184,7 +226,6 @@ export default function OpenCreditAccountPage() {
                 <span>FAST CLIENT SETUP</span>
               </button>
 
-              <p id="formMessage">{formMessage}</p>
             </form>
           </div>
         </section>

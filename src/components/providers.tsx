@@ -13,7 +13,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <Sonner />
+        <Sonner richColors closeButton position="top-right" />
         {children}
       </TooltipProvider>
     </QueryClientProvider>
