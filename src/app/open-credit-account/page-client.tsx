@@ -36,27 +36,51 @@ export default function OpenCreditAccountPage() {
       preferred_payment_terms: get("preferred_payment_terms"),
     };
 
-    const missing = [
-      ["Company name", payload.company_name],
-      ["Contact name", payload.contact_name],
-      ["Email", payload.email],
-      ["Phone", payload.phone],
-    ]
-      .filter(([, v]) => !v)
-      .map(([label]) => label);
-    if (missing.length) {
-      toast.warning("Please complete the required fields", {
-        description: `Missing: ${missing.join(", ")}.`,
-      });
-      return;
-    }
+    // Clear previous highlights, then validate field by field.
+    form
+      .querySelectorAll(".field-error")
+      .forEach((el) => el.classList.remove("field-error"));
+
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (
-      !emailRe.test(payload.email) ||
-      (payload.accounts_email && !emailRe.test(payload.accounts_email))
-    ) {
-      toast.warning("Invalid email address", {
-        description: "Please check the email addresses you entered.",
+    const required: [string, string][] = [
+      ["company_registered_name", "Company name"],
+      ["registered_address", "Registered address"],
+      ["contact_name", "Contact name"],
+      ["phone", "Phone"],
+      ["email", "Email"],
+    ];
+    const errors: { name: string; message: string }[] = [];
+    for (const [name, label] of required) {
+      if (!get(name)) errors.push({ name, message: `${label} is required` });
+    }
+    for (const name of ["email", "accounts_email"]) {
+      const v = get(name);
+      if (v && !emailRe.test(v) && !errors.some((x) => x.name === name)) {
+        errors.push({ name, message: "Please enter a valid email address" });
+      }
+    }
+
+    if (errors.length) {
+      const fields = errors.map(
+        (er) => form.elements.namedItem(er.name) as HTMLElement | null
+      );
+      fields.forEach((el) => {
+        if (!el) return;
+        el.classList.add("field-error");
+        el.addEventListener(
+          "input",
+          () => el.classList.remove("field-error"),
+          { once: true }
+        );
+      });
+      const first = fields.find(Boolean);
+      first?.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => (first as HTMLInputElement | null)?.focus({ preventScroll: true }), 400);
+      toast.warning(errors[0].message, {
+        description:
+          errors.length > 1
+            ? `${errors.length - 1} more field(s) need attention.`
+            : undefined,
       });
       return;
     }
@@ -117,7 +141,7 @@ export default function OpenCreditAccountPage() {
               Complete the form below and our team will review your application.
             </p>
 
-            <form id="creditAccountForm" onSubmit={handleSubmit}>
+            <form id="creditAccountForm" onSubmit={handleSubmit} noValidate>
               {/* STEP 1 */}
               <div className="form-card">
                 <h2>Step 1 — Registered Office Address</h2>
@@ -302,6 +326,19 @@ export default function OpenCreditAccountPage() {
         .form-card select:focus {
           outline: none;
           border-color: #1f6fff;
+        }
+
+        .form-card input.field-error,
+        .form-card select.field-error {
+          border-color: #e5484d;
+          background: #fff5f5;
+          box-shadow: 0 0 0 3px rgba(229, 72, 77, 0.2);
+          animation: field-shake 0.35s;
+        }
+
+        @keyframes field-shake {
+          25% { transform: translateX(-4px); }
+          75% { transform: translateX(4px); }
         }
 
         /* PLACEHOLDER */
