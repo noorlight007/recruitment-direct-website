@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 import {
   Bot,
-  Phone,
   CheckCircle,
   Cpu,
   ShieldCheck,
@@ -23,12 +22,6 @@ const fadeUp = {
 };
 
 const aiFeatures = [
-  {
-    title: "CallPilot Automated Voice Call",
-    description: "Our AI-voice assistant contacts applicants within minutes of applying, capturing key answers and suitability data 24/7.",
-    link: "/callpilot",
-    icon: Phone,
-  },
   {
     title: "AI Hire Now Orders",
     description: "Submit volume staffing needs instantly. Our automated sourcing engine maps candidate requirements and kickstarts outreach in seconds.",

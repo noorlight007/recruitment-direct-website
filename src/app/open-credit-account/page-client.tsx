@@ -6,6 +6,29 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 
+const SECTORS = [
+  "Construction",
+  "Renewables",
+  "Engineering",
+  "Logistics",
+  "Healthcare",
+  "Education",
+  "Hospitality",
+  "Business Support & IT",
+  "Commercial & Office",
+  "Facilities Management",
+  "IT & Technology",
+  "Accountancy, Finance & Banking",
+  "Legal",
+  "Manufacturing & Production",
+  "Retail",
+  "Sales & Marketing",
+  "Human Resources",
+  "Insurance",
+  "Energy & Oil/Gas",
+  "Property & Real Estate",
+];
+
 export default function OpenCreditAccountPage() {
   const [submitting, setSubmitting] = useState(false);
 
@@ -16,11 +39,25 @@ export default function OpenCreditAccountPage() {
     const get = (name: string) => String(data.get(name) ?? "").trim();
 
     // Unselected / empty fields are sent as empty strings.
+    const street = get("street");
+    const city = get("city");
+    const state = get("state");
+    const postalCode = get("postalCode");
+    const countryCode = get("countryCode").toUpperCase();
+    const registeredAddress =
+      get("registered_address") ||
+      [street, city, state, postalCode].filter(Boolean).join(", ");
+
     const payload = {
       company_name: get("company_registered_name"),
-      registered_address: get("registered_address"),
+      registered_address: registeredAddress,
+      street: street ? [street] : [],
+      city,
+      state,
+      postalCode,
+      countryCode,
       company_registration_number: get("company_registration_number"),
-      vat_number: get("vat_number"),
+      company_website: get("company_website"),
       contact_name: get("contact_name"),
       job_title: get("job_title"),
       phone: get("phone"),
@@ -32,7 +69,7 @@ export default function OpenCreditAccountPage() {
       preferred_invoice_email: get("preferred_invoice_email"),
       service_type: get("staff_type"),
       sectors_required: get("sectors_required"),
-      expected_weekly_spend: get("expected_weekly_spend"),
+      expected_monthly_spend: get("expected_monthly_spend"),
       preferred_payment_terms: get("preferred_payment_terms"),
     };
 
@@ -45,7 +82,6 @@ export default function OpenCreditAccountPage() {
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const required: [string, string][] = [
       ["company_registered_name", "Company name"],
-      ["registered_address", "Registered address"],
       ["contact_name", "Contact name"],
       ["phone", "Phone"],
       ["email", "Email"],
@@ -54,7 +90,10 @@ export default function OpenCreditAccountPage() {
     for (const [name, label] of required) {
       if (!get(name)) errors.push({ name, message: `${label} is required` });
     }
-    for (const name of ["email", "accounts_email"]) {
+    if (!registeredAddress) {
+      errors.push({ name: "street", message: "Registered address is required" });
+    }
+    for (const name of ["email", "accounts_email", "preferred_invoice_email"]) {
       const v = get(name);
       if (v && !emailRe.test(v) && !errors.some((x) => x.name === name)) {
         errors.push({ name, message: "Please enter a valid email address" });
@@ -162,16 +201,29 @@ export default function OpenCreditAccountPage() {
                 />
                 <input
                   type="text"
-                  name="registered_address"
-                  placeholder="Registered Address *"
-                  required
+                  name="street"
+                  placeholder="Street Address *"
+                />
+                <input type="text" name="city" placeholder="City" />
+                <input type="text" name="state" placeholder="County / State" />
+                <input type="text" name="postalCode" placeholder="Postcode" />
+                <input
+                  type="text"
+                  name="countryCode"
+                  placeholder="Country Code (e.g. GB)"
+                  defaultValue="GB"
+                  maxLength={2}
                 />
                 <input
                   type="text"
                   name="company_registration_number"
                   placeholder="Company Registration Number"
                 />
-                <input type="text" name="vat_number" placeholder="VAT Number" />
+                <input
+                  type="url"
+                  name="company_website"
+                  placeholder="Company Website (https://...)"
+                />
               </div>
 
               {/* STEP 2 */}
@@ -232,15 +284,18 @@ export default function OpenCreditAccountPage() {
                   <option value="Contract Staff">Contract Staff</option>
                   <option value="Permanent Staff">Permanent Staff</option>
                 </select>
+                <select name="sectors_required" defaultValue="">
+                  <option value="">Sectors Required</option>
+                  {SECTORS.map((sector) => (
+                    <option key={sector} value={sector}>
+                      {sector}
+                    </option>
+                  ))}
+                </select>
                 <input
                   type="text"
-                  name="sectors_required"
-                  placeholder="Sectors Required"
-                />
-                <input
-                  type="text"
-                  name="expected_weekly_spend"
-                  placeholder="Expected Weekly Spend"
+                  name="expected_monthly_spend"
+                  placeholder="Expected Monthly Spend"
                 />
                 <select name="preferred_payment_terms" defaultValue="">
                   <option value="">Preferred Payment Terms</option>
