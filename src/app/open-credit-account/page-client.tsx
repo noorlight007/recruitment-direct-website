@@ -263,8 +263,11 @@ export default function OpenCreditAccountPage() {
                   name="accounts_phone"
                   placeholder="Accounts Phone"
                 />
-                <select name="purchase_order_required">
-                  <option value="">Purchase Order Required?</option>
+                <label htmlFor="purchase_order_required" className="field-label">
+                  Purchase Order Required?
+                </label>
+                <select id="purchase_order_required" name="purchase_order_required">
+                  <option value="">Select…</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
@@ -278,14 +281,20 @@ export default function OpenCreditAccountPage() {
               {/* STEP 4 */}
               <div className="form-card">
                 <h2>Step 4 — Additional Information</h2>
-                <select name="staff_type">
-                  <option value="">Temporary and Permanent Staff</option>
+                <label htmlFor="staff_type" className="field-label">
+                  Service Type
+                </label>
+                <select id="staff_type" name="staff_type">
+                  <option value="">Select…</option>
                   <option value="Temporary Staff">Temporary Staff</option>
                   <option value="Contract Staff">Contract Staff</option>
                   <option value="Permanent Staff">Permanent Staff</option>
                 </select>
-                <select name="sectors_required" defaultValue="">
-                  <option value="">Sectors Required</option>
+                <label htmlFor="sectors_required" className="field-label">
+                  Sectors Required
+                </label>
+                <select id="sectors_required" name="sectors_required" defaultValue="">
+                  <option value="">Select…</option>
                   {SECTORS.map((sector) => (
                     <option key={sector} value={sector}>
                       {sector}
@@ -297,8 +306,11 @@ export default function OpenCreditAccountPage() {
                   name="expected_monthly_spend"
                   placeholder="Expected Monthly Spend"
                 />
-                <select name="preferred_payment_terms" defaultValue="">
-                  <option value="">Preferred Payment Terms</option>
+                <label htmlFor="preferred_payment_terms" className="field-label">
+                  Preferred Payment Terms
+                </label>
+                <select id="preferred_payment_terms" name="preferred_payment_terms" defaultValue="">
+                  <option value="">Select…</option>
                   <option value="Days From Invoice Date">Days From Invoice Date</option>
                   <option value="Days From End Of Invoice Month">Days From End Of Invoice Month</option>
                   <option value="Day Of The Current Month">Day Of The Current Month</option>
@@ -412,6 +424,14 @@ export default function OpenCreditAccountPage() {
         @keyframes field-shake {
           25% { transform: translateX(-4px); }
           75% { transform: translateX(4px); }
+        }
+
+        .field-label {
+          display: block;
+          margin-bottom: 6px;
+          color: #111111;
+          font-size: 14px;
+          font-weight: 600;
         }
 
         /* PLACEHOLDER */
