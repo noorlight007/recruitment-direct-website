@@ -109,7 +109,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticUrls = staticPages.map((path) => ({
     url: `${baseUrl}${path}`,
-    lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: path === "" ? 1.0 : path.includes("policy") || path.includes("statement") || path.includes("plan") ? 0.8 : 0.8,
   }));
@@ -128,7 +127,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         
         return {
           url: `${baseUrl}/job_details/${encodedIdentifier}`,
-          lastModified: job.postAt ? new Date(job.postAt) : new Date(),
+          lastModified: job.postAt ? new Date(job.postAt) : undefined,
           changeFrequency: "daily" as const,
           priority: 0.7,
         };
@@ -150,7 +149,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const countries = Array.from(new Set(cities.map((city) => city.countrySlug)));
   const countryUrls: MetadataRoute.Sitemap = countries.map((countrySlug) => ({
     url: `${baseUrl}/locations/${countrySlug}`,
-    lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -158,7 +156,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Include all cities (hubs and spoke towns)
   const locationUrls: MetadataRoute.Sitemap = cities.map((city) => ({
     url: `${baseUrl}${city.path}`,
-    lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

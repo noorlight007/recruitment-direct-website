@@ -91,7 +91,7 @@ export default function EngineeringAgencyPage() {
                 <Link href="/ai-hire-now" className={goldButtonClass}>
                   AI Hire Now <ArrowRight className="w-5 h-5" />
                 </Link>
-                <Link href="/request-quote" className={blueButtonClass}>
+                <Link href="/ai-hire-now-form?type=quote" className={blueButtonClass}>
                   Request Quote
                 </Link>
               </div>
@@ -445,7 +445,7 @@ export default function EngineeringAgencyPage() {
                 <Link href="/ai-hire-now" className={goldButtonClass}>
                   AI Hire Now <ArrowRight className="w-5 h-5" />
                 </Link>
-                <Link href="/request-quote" className={blueButtonClass}>
+                <Link href="/ai-hire-now-form?type=quote" className={blueButtonClass}>
                   Request Quote
                 </Link>
               </div>

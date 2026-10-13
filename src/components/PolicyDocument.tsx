@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
@@ -30,9 +31,23 @@ export default function PolicyDocument({
   children,
 }: PolicyDocumentProps) {
   const displayApprovalDate = approvalDate || effectiveDate;
+  const pathname = usePathname();
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://rd1.co.uk" },
+      { "@type": "ListItem", position: 2, name: "Policies & Compliance", item: "https://rd1.co.uk/policies-and-compliance" },
+      { "@type": "ListItem", position: 3, name: title, item: `https://rd1.co.uk${pathname}` },
+    ],
+  };
 
   return (
     <div className="min-h-screen bg-white text-black flex flex-col font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <FloatingElements />
       <Navbar />
 
