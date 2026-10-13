@@ -123,6 +123,7 @@ const LEGACY_URL_REDIRECTS = [
   ['/place-enquiry',                                   '/find-staff'],
   ['/request-quote',                                   '/ai-hire-now-form?type=quote'],
   ['/hire-staff',                                      '/find-staff'],
+  ['/umbrella-company-due-diligence-policy',           '/umbrella-company-policy'],
   ['/assets/rd1-24-7-live-call.html',                  '/assets/rd1-24-7-live-call-v3.html'],
 ];
 

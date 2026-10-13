@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "REC Code of Practice Statement | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd is a Corporate Member of the REC (No. 00207320), committed to the REC Code of Professional Practice.",
+  },
 };
 
 export default function RecCodeOfPracticeStatementPage() {

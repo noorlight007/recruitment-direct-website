@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Equality, Diversity and Inclusion Policy | Recruitment Direct UK",
+    description: "Equality, Diversity and Inclusion Policy promoting fair treatment, non-discrimination, and equal opportunity in recruitment.",
+  },
 };
 
 export default function EqualityDiversityInclusionPolicyPage() {

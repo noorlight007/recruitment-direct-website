@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Whistleblowing Policy | Recruitment Direct UK",
+    description: "How to raise a concern about malpractice or wrongdoing at Recruitment Direct UK Ltd, protected under the Public Interest Disclosure Act 1998.",
+  },
 };
 
 export default function WhistleblowingPolicyPage() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Hire Now Transparency Statement | Recruitment Direct UK",
+    description: "Transparency statement on Recruitment Direct UK's AI Hire Now on-demand staffing platform and operational procedures.",
+  },
 };
 
 export default function Page() {

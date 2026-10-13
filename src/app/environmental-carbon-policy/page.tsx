@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Environmental & Carbon Policy | Recruitment Direct UK",
+    description: "Our environmental management policy, ISO 14001 alignment, and carbon reduction measures across UK recruitment operations.",
+  },
 };
 
 export default function Page() {

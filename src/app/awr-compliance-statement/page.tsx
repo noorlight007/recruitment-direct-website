@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AWR Compliance Statement | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's compliance with the Agency Workers Regulations 2010, covering day-one rights and equal treatment after 12 weeks.",
+  },
 };
 
 export default function AwrComplianceStatementPage() {

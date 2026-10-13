@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Website Terms of Use | Recruitment Direct UK",
+    description: "Terms and conditions governing the use of the Recruitment Direct UK Ltd website and online services.",
+  },
 };
 
 export default function Page() {

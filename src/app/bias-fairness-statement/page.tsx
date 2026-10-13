@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Fairness and Bias Statement | Recruitment Direct UK",
+    description: "Recruitment Direct UK's commitment to eliminating algorithmic bias and ensuring fair, inclusive AI-assisted hiring.",
+  },
 };
 
 export default function Page() {

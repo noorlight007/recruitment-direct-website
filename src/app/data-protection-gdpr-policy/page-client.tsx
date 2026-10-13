@@ -285,7 +285,6 @@ export default function DataProtectionGdprPolicyPage() {
                 {[
                   "Clients and prospective employers.",
                   "Payroll providers.",
-                  "Umbrella companies.",
                   "Professional advisers.",
                   "Technology and software providers.",
                   "Compliance providers.",

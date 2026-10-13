@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Working Time Regulations Compliance Policy | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's compliance with the Working Time Regulations 1998, covering maximum hours, rest breaks and annual leave for placed workers.",
+  },
 };
 
 export default function WorkingTimeRegulationsPolicyPage() {

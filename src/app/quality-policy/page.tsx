@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Quality Policy (ISO 9001) | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's ISO 9001:2015-certified approach to quality in recruitment service delivery (Certificate No. GB2006088).",
+  },
 };
 
 export default function QualityPolicyPage() {

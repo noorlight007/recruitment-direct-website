@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lone Working Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd assesses and manages the risks to workers placed in lone-working roles, in line with HSE guidance.",
+  },
 };
 
 export default function LoneWorkingPolicyPage() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cookie Policy | Recruitment Direct UK",
+    description: "Information on how Recruitment Direct UK uses cookies and tracking technologies to improve your website experience.",
+  },
 };
 
 export default function Page() {

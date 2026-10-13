@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Candidate Privacy Notice | Recruitment Direct UK",
+    description: "Detailed privacy notice for job seekers and candidates explaining how Recruitment Direct UK collects and processes personal data under UK GDPR.",
+  },
 };
 
 export default function Page() {

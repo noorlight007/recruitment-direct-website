@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "TUPE Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd manages the transfer of workers under TUPE when taking over or exiting a staffing contract.",
+  },
 };
 
 export default function TUPEPolicyPage() {

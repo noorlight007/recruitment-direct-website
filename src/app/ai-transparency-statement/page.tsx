@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Transparency Statement | Recruitment Direct UK",
+    description: "Our policy and commitment to ethical AI use, human oversight, and algorithmic transparency in recruitment operations.",
+  },
 };
 
 export default function Page() {

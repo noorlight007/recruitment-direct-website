@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Safer Recruitment & Vetting Policy | Recruitment Direct UK",
+    description: "The DBS, PVG and background vetting checks Recruitment Direct UK Ltd carries out for roles involving children or vulnerable adults.",
+  },
 };
 
 export default function SaferRecruitmentVettingPolicyPage() {

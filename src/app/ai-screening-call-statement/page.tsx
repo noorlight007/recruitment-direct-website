@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Applicant Screening Call Statement | Recruitment Direct UK",
+    description: "Information statement explaining how AI-assisted applicant screening calls operate at Recruitment Direct UK.",
+  },
 };
 
 export default function Page() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Data Protection & GDPR Policy | Recruitment Direct UK",
+    description: "Comprehensive data protection policy establishing UK GDPR compliance, data subject rights, and security measures.",
+  },
 };
 
 export default function Page() {

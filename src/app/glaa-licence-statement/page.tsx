@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "GLAA Licence Statement | Recruitment Direct UK",
+    description: "A statement on the applicability of GLAA licensing to Recruitment Direct UK Ltd's recruitment activities.",
+  },
 };
 
 export default function GlaaLicenceStatementPage() {

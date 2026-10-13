@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Health & Safety Policy | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's commitment to employee, worker and client health and safety under the Health and Safety at Work etc. Act 1974.",
+  },
 };
 
 export default function HealthSafetyPolicyPage() {

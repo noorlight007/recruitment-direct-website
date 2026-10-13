@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business Continuity Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd maintains and recovers critical recruitment services, including payroll continuity, during a major disruption.",
+  },
 };
 
 export default function BusinessContinuityPolicyPage() {

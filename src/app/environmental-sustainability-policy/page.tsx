@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Environmental & Sustainability Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd reduces its environmental impact through hybrid working, paperless processes and supplier engagement.",
+  },
 };
 
 export default function EnvironmentalSustainabilityPolicyPage() {

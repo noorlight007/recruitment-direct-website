@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI & Automated Decision-Making Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd uses AI-assisted tools responsibly in candidate screening, in line with UK GDPR and ICO guidance on AI in recruitment.",
+  },
 };
 
 export default function AIAutomatedDecisionMakingPolicyPage() {

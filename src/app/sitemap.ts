@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { api } from "@/services/api";
 import { cities } from "@/data/cities";
+import { getArticles } from "@/lib/news";
 
 export const revalidate = 3600; // Cache sitemap for 1 hour
 
@@ -74,6 +75,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/lone-working-policy",
     "/modern-slavery-policy",
     "/national-minimum-wage-holiday-pay-policy",
+    "/news",
     "/open-credit-account",
     "/our-process",
     "/permanent-staff",
@@ -98,7 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/temporary-staff",
     "/terms-of-use",
     "/tupe-policy",
-    "/umbrella-company-due-diligence-policy",
+    "/umbrella-company-policy",
     "/verify-supplier",
     "/whistleblowing-policy",
     "/why-choose-us",
@@ -136,6 +138,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch jobs for sitemap generation:", error);
   }
 
+  const articles = await getArticles();
+  const newsUrls: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: `${baseUrl}/news/${a.slug}`,
+    lastModified: new Date(a.publishedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   // Include all country landing pages
   const countries = Array.from(new Set(cities.map((city) => city.countrySlug)));
   const countryUrls: MetadataRoute.Sitemap = countries.map((countrySlug) => ({
@@ -153,5 +163,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticUrls, ...countryUrls, ...locationUrls, ...jobUrls];
+  return [...staticUrls, ...countryUrls, ...locationUrls, ...jobUrls, ...newsUrls];
 }

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Data Breach Notification Policy | Recruitment Direct UK",
+    description: "Procedures for detecting, investigating, and reporting personal data breaches in accordance with ICO and UK GDPR guidelines.",
+  },
 };
 
 export default function Page() {

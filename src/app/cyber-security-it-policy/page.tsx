@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cyber Security & IT Policy | Recruitment Direct UK",
+    description: "Cyber Security and IT Management Policy covering infrastructure security, data encryption, and Cyber Essentials standards.",
+  },
 };
 
 export default function Page() {

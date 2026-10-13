@@ -235,7 +235,6 @@ export default function CandidatePrivacyNoticePage() {
                 {[
                   "Clients and prospective employers.",
                   "Payroll providers.",
-                  "Umbrella companies.",
                   "Compliance and screening providers.",
                   "Professional advisers.",
                   "Technology and software providers.",

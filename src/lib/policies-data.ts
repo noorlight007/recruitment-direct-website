@@ -340,15 +340,15 @@ export const policies: PolicyItem[] = [
     keywords: ["tupe", "transfer of undertakings", "service provision change", "employee liability information"],
   },
   {
-    slug: "umbrella-company-due-diligence-policy",
-    title: "Umbrella Company Due-Diligence Policy",
+    slug: "umbrella-company-policy",
+    title: "Umbrella Company Policy",
     category: "Employment & Workforce Compliance",
     status: "live",
     summary:
-      "How Recruitment Direct UK Ltd carries out due diligence on umbrella companies and intermediaries used to pay contractors, in line with HMRC guidance.",
-    effectiveDate: "7 September 2026",
-    href: "/umbrella-company-due-diligence-policy",
-    keywords: ["umbrella company", "hmrc compliance", "due diligence", "paye", "disguised remuneration", "key information document"],
+      "Recruitment Direct UK Ltd does not use umbrella companies or any payment intermediary. All workers are paid via PAYE or engaged directly under CIS.",
+    effectiveDate: "13 October 2026",
+    href: "/umbrella-company-policy",
+    keywords: ["umbrella company", "paye", "cis", "payment intermediary", "key information document"],
   },
   {
     slug: "safer-recruitment-vetting-policy",
@@ -367,10 +367,10 @@ export const policies: PolicyItem[] = [
     category: "Employment & Workforce Compliance",
     status: "live",
     summary:
-      "Recruitment Direct UK Ltd's approach to IR35 and off-payroll working rules for contractors placed through personal service companies.",
-    effectiveDate: "7 September 2026",
+      "Recruitment Direct UK Ltd does not supply contractors through personal service companies. All workers are paid via PAYE or engaged directly under CIS.",
+    effectiveDate: "13 October 2026",
     href: "/ir35-off-payroll-statement",
-    keywords: ["ir35", "off-payroll working", "status determination statement", "sds", "psc"],
+    keywords: ["ir35", "off-payroll working", "paye", "cis", "personal service company"],
   },
   {
     slug: "rec-code-of-practice-statement",

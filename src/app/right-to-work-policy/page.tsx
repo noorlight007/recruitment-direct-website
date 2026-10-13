@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Right to Work & Immigration Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd checks and verifies every candidate's right to work in the UK, in line with Home Office guidance.",
+  },
 };
 
 export default function RightToWorkPolicyPage() {

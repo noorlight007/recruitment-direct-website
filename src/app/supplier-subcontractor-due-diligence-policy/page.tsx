@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Supplier & Subcontractor Due-Diligence Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd carries out due diligence on suppliers and any associate agencies used to fulfil a client contract.",
+  },
 };
 
 export default function SupplierSubcontractorDueDiligencePolicyPage() {

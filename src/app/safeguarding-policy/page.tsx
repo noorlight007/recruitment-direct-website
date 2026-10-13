@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Safeguarding Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd safeguards children and vulnerable adults when placing workers into regulated roles.",
+  },
 };
 
 export default function SafeguardingPolicyPage() {

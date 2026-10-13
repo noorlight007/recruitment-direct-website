@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Framework & Tender Compliance | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's full compliance pack for procurement, framework and tender evaluation — one page linking every relevant policy, certification and statement.",
+  },
 };
 
 export default function FrameworkAndTenderCompliancePage() {
@@ -157,8 +162,8 @@ export default function FrameworkAndTenderCompliancePage() {
                   <span className="bg-[#e4f3ea] text-[#1a7a43] text-xs px-2 py-0.5 rounded-full font-semibold">new</span>
                 </li>
                 <li className="py-2.5 flex items-center justify-between">
-                  <Link href="/umbrella-company-due-diligence-policy" className="text-[#222222] hover:underline font-medium">
-                    Umbrella Company Due-Diligence Policy
+                  <Link href="/umbrella-company-policy" className="text-[#222222] hover:underline font-medium">
+                    Umbrella Company Policy
                   </Link>
                   <span className="bg-[#e4f3ea] text-[#1a7a43] text-xs px-2 py-0.5 rounded-full font-semibold">new</span>
                 </li>

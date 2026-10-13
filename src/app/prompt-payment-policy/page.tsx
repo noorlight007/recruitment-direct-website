@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Prompt Payment Policy | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's commitment to paying suppliers, contractors and placed workers promptly and transparently.",
+  },
 };
 
 export default function PromptPaymentPolicyPage() {
@@ -44,7 +49,7 @@ export default function PromptPaymentPolicyPage() {
         </h2>
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
-            RD1&apos;s standard payment terms are <strong className="text-black">30 days</strong> from receipt of a valid invoice, unless a shorter period is agreed in a specific contract. Placed workers paid via RD1&apos;s PAYE or umbrella arrangements are paid weekly/monthly in line with their engagement terms, regardless of when RD1 receives payment from the end client.
+            RD1&apos;s standard payment terms are <strong className="text-black">30 days</strong> from receipt of a valid invoice, unless a shorter period is agreed in a specific contract. Placed workers paid via RD1&apos;s PAYE payroll (or engaged directly under CIS) are paid weekly/monthly in line with their engagement terms, regardless of when RD1 receives payment from the end client.
           </p>
         </div>
       </section>

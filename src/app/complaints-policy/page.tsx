@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Complaints Policy & Procedure | Recruitment Direct UK",
+    description: "Recruitment Direct UK's formal complaints procedure for candidates and clients, ensuring prompt, transparent resolution.",
+  },
 };
 
 export default function Page() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Modern Slavery & Human Trafficking Policy | Recruitment Direct UK",
+    description: "Modern Slavery and Human Trafficking Statement under Section 54 of the Modern Slavery Act 2015.",
+  },
 };
 
 export default function Page() {

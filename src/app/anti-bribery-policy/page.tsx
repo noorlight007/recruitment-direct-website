@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Anti-Bribery and Corruption Policy | Recruitment Direct UK",
+    description: "Our anti-bribery and corruption policy detailing ethical compliance and anti-fraud standards across all operations.",
+  },
 };
 
 export default function Page() {

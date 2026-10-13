@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     url: "https://www.rd1.co.uk/talent-acquisition-consultancy",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Talent Acquisition Consultancy | Recruitment Direct UK",
+    description: "Hourly, half day and full day talent acquisition consultancy. Hiring support and benchmarking without a full HR outsourcing contract.",
+  },
 };
 
 const serviceSchema = {

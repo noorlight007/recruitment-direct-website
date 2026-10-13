@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Subject Access Request Procedure | Recruitment Direct UK",
+    description: "How to make a Subject Access Request to Recruitment Direct UK Ltd and how we respond, in line with UK GDPR.",
+  },
 };
 
 export default function SubjectAccessRequestProcedurePage() {

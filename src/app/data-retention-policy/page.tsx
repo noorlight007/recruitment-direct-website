@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Data Retention & Deletion Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd retains, protects and deletes candidate, client and worker data in line with UK GDPR and the Data Protection Act 2018.",
+  },
 };
 
 export default function DataRetentionPolicyPage() {

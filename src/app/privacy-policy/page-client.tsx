@@ -185,7 +185,6 @@ export default function PrivacyPolicyPage() {
                 {[
                   "Clients and prospective employers",
                   "Payroll providers",
-                  "Umbrella companies",
                   "Regulatory authorities",
                   "Professional advisers",
                   "Technology and software providers",

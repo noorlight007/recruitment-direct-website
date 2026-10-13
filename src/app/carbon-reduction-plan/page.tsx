@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Carbon Reduction Plan | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's commitment to reducing its carbon footprint, including a hybrid working policy that cuts commuting emissions.",
+  },
 };
 
 export default function CarbonReductionPlanPage() {

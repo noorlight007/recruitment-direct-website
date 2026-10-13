@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "National Minimum Wage & Holiday Pay Policy | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's commitment to paying at least the National Minimum/Living Wage and correct, transparent holiday pay.",
+  },
 };
 
 export default function NationalMinimumWageHolidayPayPolicyPage() {
@@ -101,18 +106,6 @@ export default function NationalMinimumWageHolidayPayPolicyPage() {
         <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
           <p>
             Workers receive an itemised payslip for each pay period showing gross pay, any deductions, and the basis of calculation, so that pay and holiday accrual can be checked against the rate and hours worked.
-          </p>
-        </div>
-      </section>
-
-      {/* Umbrella and third-party payroll */}
-      <section className="policy-section">
-        <h2 className="text-xl md:text-2xl font-bold font-heading text-black mb-4">
-          Umbrella and Third-Party Payroll
-        </h2>
-        <div className="space-y-4 text-base md:text-lg text-gray-800 leading-relaxed">
-          <p>
-            Where a worker is paid via an umbrella company rather than directly by RD1, RD1 carries out reasonable due diligence on the umbrella company&apos;s compliance with NMW and holiday pay obligations before engaging them, consistent with HMRC guidance on avoiding non-compliant umbrella arrangements.
           </p>
         </div>
       </section>

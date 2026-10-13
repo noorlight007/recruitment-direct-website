@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Agency Workers Regulations (AWR) Policy | Recruitment Direct UK",
+    description: "Recruitment Direct UK's policy on the Agency Workers Regulations 2010 ensuring fair pay, rights, and equal treatment.",
+  },
 };
 
 export default function Page() {

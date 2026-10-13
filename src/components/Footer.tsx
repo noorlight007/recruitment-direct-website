@@ -135,7 +135,7 @@ export default function Footer() {
         { name: "AWR Policy", link: "/awr-policy" },
         { name: "Right to Work Policy", link: "/right-to-work-policy" },
         { name: "TUPE Policy", link: "/tupe-policy" },
-        { name: "Umbrella Company Due-Diligence Policy", link: "/umbrella-company-due-diligence-policy" },
+        { name: "Umbrella Company Policy", link: "/umbrella-company-policy" },
         { name: "Complaints Policy", link: "/complaints-policy" },
         { name: "Safeguarding Policy", link: "/safeguarding-policy" }
       ]
@@ -1036,6 +1036,7 @@ export default function Footer() {
                       <a href="/terms-of-use">Terms of Use</a>
                       <a href="/cookie-policy">Cookie Policy</a>
                       <a href="/complaints-policy">Complaints Policy</a>
+                      <a href="/modern-slavery-policy">Modern Slavery Policy</a>
                       <a href="/policies-and-compliance" className="font-semibold text-zinc-400 hover:text-zinc-400">
                         All Policies &amp; Compliance →
                       </a>
@@ -1059,8 +1060,11 @@ export default function Footer() {
                     </button>
                     <div className={`footer-col-links ${openMobileSections.getInTouch ? "open" : ""}`}>
                       <a href="/contact">Contact Us</a>
-                      <a href="/news">News &amp; Insights</a>
                       <a href="/find-staff">Find Staff</a>
+                      <a href="/news">News &amp; Insights</a>
+                      <a href="tel:01324613198">Call 01324 613198</a>
+                      <a href="https://wa.me/447590882626" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+                      <a href="mailto:sales@rd1.co.uk">Email sales@rd1.co.uk</a>
                       <div className="mt-4 pt-2 flex items-center gap-3">
                         <a href="https://wa.me/447590882626" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:opacity-80 transition-opacity">
                           <svg viewBox="0 0 24 24" className="w-5 h-5 fill-[#25D366]">

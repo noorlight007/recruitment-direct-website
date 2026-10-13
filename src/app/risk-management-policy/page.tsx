@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Risk Management Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd identifies, assesses and manages the risks to its recruitment business and the clients and workers it serves.",
+  },
 };
 
 export default function RiskManagementPolicyPage() {

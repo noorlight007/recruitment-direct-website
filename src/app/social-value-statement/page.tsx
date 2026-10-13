@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Social Value Statement | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd delivers social value through local employment, inclusive recruitment and community-focused client work.",
+  },
 };
 
 export default function SocialValueStatementPage() {

@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Information Security Policy | Recruitment Direct UK",
+    description: "Information security governance, access control, and ISO 27001/Cyber Essentials protocols at Recruitment Direct UK.",
+  },
 };
 
 export default function Page() {

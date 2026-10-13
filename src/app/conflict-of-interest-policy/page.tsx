@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Conflict of Interest Policy | Recruitment Direct UK",
+    description: "How Recruitment Direct UK Ltd identifies, declares and manages conflicts of interest in recruitment and commercial decisions.",
+  },
 };
 
 export default function ConflictOfInterestPolicyPage() {

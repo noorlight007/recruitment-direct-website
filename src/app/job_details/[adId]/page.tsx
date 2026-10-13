@@ -86,7 +86,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const location = getJobAdLocation(job);
   const pay = getJobAdPayRate(job);
   const type = getJobAdWorkType(job);
-  const payPart = pay && pay !== "Competitive Rate" ? `, ${pay}` : "";
+  const rateMatch = job.title?.match(/£\s*\d+(?:\.\d+)?\s*(?:ph|p\/h|per hour|\/\s*h)/i);
+  const payPart = pay && pay !== "Competitive Rate" ? `, ${pay}` : rateMatch ? `, ${rateMatch[0]}` : "";
 
   const pageTitle = `${title} Job in ${location} | Recruitment Direct UK`;
   const description = clip(
@@ -110,19 +111,21 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-const EMPLOYMENT_TYPES: Record<string, string> = {
-  temporary: "TEMPORARY",
-  "ongoing temporary": "TEMPORARY",
-  contract: "CONTRACTOR",
-  permanent: "FULL_TIME",
+const toEmploymentType = (type: string): string | undefined => {
+  const t = type.toLowerCase();
+  if (t.includes("perm") || t.includes("full")) return "FULL_TIME";
+  if (t.includes("contract")) return "CONTRACTOR";
+  if (t.includes("temp")) return "TEMPORARY";
+  return undefined;
 };
 
 function buildJsonLd(job: JobDetails, slug: string) {
   const title = getJobAdCleanTitle(job);
   const location = getJobAdLocation(job);
   const pay = getJobAdPayRate(job);
-  const employmentType = EMPLOYMENT_TYPES[getJobAdWorkType(job).toLowerCase()];
-  const rate = pay.match(/£\s*(\d+(?:\.\d+)?)/);
+  const employmentType = toEmploymentType(getJobAdWorkType(job));
+  // Titles are free text ("Electrician x2 £27 per hour Greenock"), so fall back to the whole title.
+  const rate = pay.match(/£\s*(\d+(?:\.\d+)?)/) ?? job.title?.match(/£\s*(\d+(?:\.\d+)?)\s*(?:ph|p\/h|per hour|\/\s*h)/i);
 
   return {
     "@context": "https://schema.org",

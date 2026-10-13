@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Anti-Harassment & Sexual Harassment Policy | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's zero-tolerance approach to harassment and sexual harassment, including the proactive duty under the Worker Protection Act 2023.",
+  },
 };
 
 export default function AntiHarassmentSexualHarassmentPolicyPage() {

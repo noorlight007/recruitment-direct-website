@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Human Review & Oversight Statement | Recruitment Direct UK",
+    description: "Statement on mandatory human review and consultant oversight in all AI-supported recruitment screening and placement decisions.",
+  },
 };
 
 export default function Page() {

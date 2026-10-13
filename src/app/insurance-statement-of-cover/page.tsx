@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Insurance & Statement of Cover | Recruitment Direct UK",
+    description: "Recruitment Direct UK Ltd's Professional Indemnity, Employers' Liability and Public Liability insurance cover, underwritten by Aviva.",
+  },
 };
 
 export default function InsuranceStatementOfCoverPage() {
