@@ -7,6 +7,7 @@ export const revalidate = 3600; // Cache sitemap for 1 hour
 interface ApiJobItem {
   adId: number;
   postAt: string;
+  expireAt?: string;
   slug?: string;
 }
 
@@ -73,7 +74,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/lone-working-policy",
     "/modern-slavery-policy",
     "/national-minimum-wage-holiday-pay-policy",
-    "/news",
     "/open-credit-account",
     "/our-process",
     "/permanent-staff",
@@ -117,7 +117,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const data = await api.get<ApiResponse>("/core/live/jobads");
     if (data && Array.isArray(data.items)) {
-      jobUrls = data.items.map((job) => {
+      jobUrls = data.items
+        .filter((job) => !job.expireAt || new Date(job.expireAt).getTime() > Date.now())
+        .map((job) => {
         const identifier = job.slug || job.adId.toString();
         // URL-encode special characters in the slug/ID path segment
         const encodedIdentifier = encodeURIComponent(identifier);

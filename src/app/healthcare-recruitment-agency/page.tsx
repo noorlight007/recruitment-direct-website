@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
 import HealthcareAgencyPage from "./page-client";
 
+const DESCRIPTION =
+  "Healthcare recruitment agency supplying temporary, contract and permanent care assistants, support workers and care professionals across the UK since 2006.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Healthcare recruitment",
+  provider: {
+    "@type": "EmploymentAgency",
+    name: "Recruitment Direct UK Ltd",
+    url: "https://rd1.co.uk",
+  },
+  areaServed: "GB",
+  url: "https://rd1.co.uk/healthcare-recruitment-agency",
+};
+
 export const metadata: Metadata = {
   title: "Healthcare Recruitment Agency UK | Recruitment Direct UK",
-  description: "Healthcare Recruitment Agency supplying care assistants, support workers and care professionals across the UK. Trusted since 2006.",
+  description: DESCRIPTION,
   alternates: { canonical: "https://rd1.co.uk/healthcare-recruitment-agency" },
   robots: {
     index: true,
@@ -12,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Healthcare Recruitment Agency UK | Recruitment Direct UK",
-    description: "Healthcare Recruitment Agency supplying temporary, contract and permanent care assistants, support workers and care professionals across the UK.",
+    description: DESCRIPTION,
     url: "https://rd1.co.uk/healthcare-recruitment-agency",
     images: [
       {
@@ -26,11 +42,19 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Healthcare Recruitment Agency UK | Recruitment Direct UK",
-    description: "Healthcare Recruitment Agency supplying temporary, contract and permanent care assistants, support workers and care professionals across the UK.",
+    description: DESCRIPTION,
     images: ["https://rd1.co.uk/images/Healthcares.png"],
   },
 };
 
 export default function Page() {
-  return <HealthcareAgencyPage />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HealthcareAgencyPage />
+    </>
+  );
 }

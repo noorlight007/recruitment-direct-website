@@ -58,14 +58,16 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const shortTitle = `Recruitment Agencies in ${loc.name} | Staff Supplied 24/7`;
   const title = longTitle.length <= 62 ? longTitle : shortTitle;
 
-  // Names the locally-relevant sector so the description varies per town.
-  const topSector =
-    getSector(loc.prioritySectors?.[0] ?? '')?.name.toLowerCase() ?? 'healthcare';
-
+  // Kept to ~160 chars so Google doesn't truncate it. Drops the trust line
+  // if a long region name pushes it over.
+  const full =
+    `Need staff in ${loc.name}? Recruitment Direct UK supplies temporary, ` +
+    `contract and permanent workers across ${region}. Trusted since 2006. Call ${PHONE}.`;
   const description =
-    `Looking for staff in ${loc.name}? Recruitment Direct UK supplies temporary, ` +
-    `contract and permanent workers across ${region} — construction, logistics, ` +
-    `${topSector} and more. Trusted since 2006. Call ${PHONE}.`;
+    full.length <= 160
+      ? full
+      : `Need staff in ${loc.name}? Recruitment Direct UK supplies temporary, ` +
+        `contract and permanent workers across ${region}. Call ${PHONE}.`;
 
   return {
     title,

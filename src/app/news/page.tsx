@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import PageClient from "./page-client";
 
 export const metadata: Metadata = {
-  title: "News & Insights | Recruitment Direct UK",
-  description: "Stay updated with the latest recruitment industry trends, employment law compliance, and workforce advice from Recruitment Direct UK.",
+  title: "Recruitment News & Hiring Advice | Recruitment Direct UK",
+  description: "Recruitment news, hiring advice and company updates from Recruitment Direct UK, the Scottish agency supplying temporary and permanent staff since 2006.",
+  // Remove once real posts appear in the server-rendered HTML.
+  robots: { index: false, follow: true },
   alternates: {
     canonical: "https://rd1.co.uk/news",
   },
   openGraph: {
-    title: "News & Insights | Recruitment Direct UK",
-    description: "Stay updated with the latest recruitment industry trends, employment law compliance, and workforce advice from Recruitment Direct UK.",
+    title: "Recruitment News & Hiring Advice | Recruitment Direct UK",
+    description: "Recruitment news, hiring advice and company updates from Recruitment Direct UK, the Scottish agency supplying temporary and permanent staff since 2006.",
     url: "https://rd1.co.uk/news",
     type: "website",
     images: [
@@ -23,8 +25,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "News & Insights | Recruitment Direct UK",
-    description: "Stay updated with the latest recruitment industry trends, employment law compliance, and workforce advice from Recruitment Direct UK.",
+    title: "Recruitment News & Hiring Advice | Recruitment Direct UK",
+    description: "Recruitment news, hiring advice and company updates from Recruitment Direct UK, the Scottish agency supplying temporary and permanent staff since 2006.",
   },
 };
 
