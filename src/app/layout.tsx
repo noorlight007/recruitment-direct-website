@@ -61,8 +61,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="dns-prefetch" href="https://api.callpilot.pro" />
-        <link rel="preconnect" href="https://api.callpilot.pro" crossOrigin="" />
       </head>
       <body
         className={`${inter.variable} ${poppins.variable} ${openSans.variable} antialiased`}
