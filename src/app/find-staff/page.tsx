@@ -7,11 +7,10 @@ import FindStaff from '@/components/FindStaff';
 import '@/components/FindStaff.css';
 
 export const metadata: Metadata = {
-  title: 'Find Staff | Temporary, Contract & Permanent Recruitment | RDUK',
+  title: 'Find Staff | Temporary, Contract & Permanent | Recruitment Direct UK',
   description:
-    'Need staff? Tell us the role, the location and how many. Recruitment Direct UK ' +
-    'supplies temporary, contract and permanent workers across the UK, 24/7. ' +
-    'Trusted since 2006. Call 01324 613198.',
+    'Need staff? Tell us the role, location and numbers. Recruitment Direct UK ' +
+    'supplies temporary, contract and permanent workers across the UK. Call 01324 613198.',
   alternates: { canonical: 'https://rd1.co.uk/find-staff' },
   openGraph: {
     title: 'Find Staff | Recruitment Direct UK',

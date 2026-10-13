@@ -5,18 +5,18 @@ import Footer from "@/components/Footer";
 import FloatingElements from "@/components/FloatingElements";
 
 export const metadata: Metadata = {
-  title: "Talent Acquisition Consultancy | Hourly, Half Day & Full Day Engagements | Recruitment Direct UK",
+  title: "Talent Acquisition Consultancy UK | Recruitment Direct UK",
   description:
-    "Flexible, UK wide talent acquisition consultancy from Recruitment Direct UK. Hourly, half day and full day engagements covering sourcing, screening and benchmarking. Not full HR outsourcing.",
+    "Flexible talent acquisition consultancy from Recruitment Direct UK. Hourly, half day and full day engagements for sourcing, screening and benchmarking.",
   alternates: {
-    canonical: "https://www.rd1.co.uk/talent-acquisition-consultancy",
+    canonical: "https://rd1.co.uk/talent-acquisition-consultancy",
   },
   openGraph: {
     type: "website",
     title: "Talent Acquisition Consultancy | Recruitment Direct UK",
     description:
       "Hourly, half day and full day talent acquisition consultancy. Hiring support and benchmarking without a full HR outsourcing contract.",
-    url: "https://www.rd1.co.uk/talent-acquisition-consultancy",
+    url: "https://rd1.co.uk/talent-acquisition-consultancy",
     siteName: "Recruitment Direct UK Ltd",
   },
   twitter: {
@@ -36,8 +36,8 @@ const serviceSchema = {
   provider: {
     "@type": "Organization",
     name: "Recruitment Direct UK Ltd",
-    url: "https://www.rd1.co.uk",
-    sameAs: ["https://www.rd1.co.uk/accreditations"],
+    url: "https://rd1.co.uk",
+    sameAs: ["https://rd1.co.uk/accreditations"],
   },
   areaServed: {
     "@type": "Country",
@@ -112,19 +112,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.rd1.co.uk/",
+      item: "https://rd1.co.uk/",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Clients",
-      item: "https://www.rd1.co.uk/clients",
+      item: "https://rd1.co.uk/clients",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Talent Acquisition Consultancy",
-      item: "https://www.rd1.co.uk/talent-acquisition-consultancy",
+      item: "https://rd1.co.uk/talent-acquisition-consultancy",
     },
   ],
 };

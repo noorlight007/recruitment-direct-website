@@ -28,13 +28,28 @@ type LoadResult =
   | { status: "error" };
 
 // Cached per request so generateMetadata and the page share one fetch.
+const fetchWithRetry = async <T,>(endpoint: string, attempts = 3): Promise<T> => {
+  let lastErr: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await api.get<T>(endpoint);
+    } catch (err: any) {
+      // A 404/410 is a real answer, not worth retrying.
+      if (/status: (404|410)/.test(String(err?.message))) throw err;
+      lastErr = err;
+      await new Promise((r) => setTimeout(r, 400 * (i + 1)));
+    }
+  }
+  throw lastErr;
+};
+
 const loadJob = cache(async (adId: string): Promise<LoadResult> => {
   try {
-    const data = await api.get<JobDetails>(`/core/live/jobads/${adId}`);
+    const data = await fetchWithRetry<JobDetails>(`/core/live/jobads/${adId}`);
     if (!data || !data.adId) return { status: "missing" };
 
     try {
-      const list = await api.get<{ items?: any[] }>("/core/live/jobads");
+      const list = await fetchWithRetry<{ items?: any[] }>("/core/live/jobads", 2);
       const match = list?.items?.find((item) => item.adId === Number(adId));
       if (match) {
         data.industry = match.industry;
@@ -160,11 +175,13 @@ export default async function JobDetailsPage({ params }: Params) {
   const { adId: slug } = await params;
   const result = await loadJob(extractNumericId(slug));
 
-  // Unknown or removed ads return a 404 so Google drops them. On a transient
-  // API error, fall back to client-side loading (metadata is noindex).
+  // Unknown or removed ads return a 404 so Google drops them.
   if (result.status === "missing") notFound();
+  // After retries, fail loudly: Next keeps serving the last good page (or a 500)
+  // instead of caching a thin, noindexed shell that Google would index as-is.
+  if (result.status === "error") throw new Error(`Job ${slug} could not be loaded`);
 
-  const job = result.status === "ok" ? result.job : null;
+  const job = result.job;
   const jsonLd = job && !isExpired(job) ? buildJsonLd(job, slug) : null;
 
   return (

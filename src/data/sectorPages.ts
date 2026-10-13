@@ -51,8 +51,8 @@ export const facilitiesManagement: SectorPageData = {
   title: 'Facilities Management Recruitment Agency | Hard & Soft FM Staff UK',
   metaDescription:
     'Facilities management recruitment agency supplying cleaners, caretakers, ' +
-    'maintenance technicians, FM managers and security staff across the UK. ' +
-    'Temporary, contract and permanent. Trusted since 2006. Call 01324 613198.',
+    'maintenance technicians and FM staff across the UK. Temporary, contract ' +
+    'and permanent.',
   h1: 'Facilities Management Recruitment Agency',
 
   intro: [
@@ -213,8 +213,8 @@ export const civilEngineering: SectorPageData = {
   title: 'Civil Engineering Recruitment Agency | Site & Groundworks Staff UK',
   metaDescription:
     'Civil engineering recruitment agency supplying groundworkers, site ' +
-    'engineers, setting-out engineers, plant operators and project staff across ' +
-    'the UK. Temporary, contract and permanent. Since 2006. Call 01324 613198.',
+    'engineers, plant operators and project staff across the UK. Temporary, ' +
+    'contract and permanent.',
   h1: 'Civil Engineering Recruitment Agency',
 
   intro: [

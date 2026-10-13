@@ -3,7 +3,7 @@ import PolicyDocument from "@/components/PolicyDocument";
 
 const TITLE = "Umbrella Company Policy | Recruitment Direct UK";
 const DESCRIPTION =
-  "Recruitment Direct UK Ltd does not use umbrella companies or any payment intermediary. All temporary and contract workers are paid via PAYE or engaged directly under CIS.";
+  "Recruitment Direct UK Ltd does not use umbrella companies or intermediaries. All temporary and contract workers are paid via PAYE or engaged directly under CIS.";
 const URL = "https://rd1.co.uk/umbrella-company-policy";
 
 export const metadata: Metadata = {

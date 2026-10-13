@@ -9,6 +9,13 @@ import FloatingElements from "@/components/FloatingElements";
 export const metadata: Metadata = {
   title: "Our Locations | Recruitment Direct UK",
   description: "Find our office locations and recruitment services across England, Scotland, Wales, Ireland and Northern Ireland.",
+  alternates: { canonical: "https://rd1.co.uk/locations" },
+  openGraph: {
+    title: "Our Locations | Recruitment Direct UK",
+    description: "Find our office locations and recruitment services across England, Scotland, Wales, Ireland and Northern Ireland.",
+    url: "https://rd1.co.uk/locations",
+    type: "website",
+  },
 };
 
 const VALID_COUNTRIES = [

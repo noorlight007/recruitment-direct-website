@@ -7,14 +7,14 @@ import FloatingElements from "@/components/FloatingElements";
 export const metadata: Metadata = {
   title: "Framework & Tender Compliance | Recruitment Direct UK",
   description:
-    "Recruitment Direct UK Ltd's full compliance pack for procurement, framework and tender evaluation — one page linking every relevant policy, certification and statement.",
+    "Recruitment Direct UK Ltd's compliance pack for procurement, framework and tender evaluation: every relevant policy, certificate and statement in one place.",
   alternates: {
     canonical: "https://rd1.co.uk/framework-and-tender-compliance",
   },
   openGraph: {
     title: "Framework & Tender Compliance | Recruitment Direct UK",
     description:
-      "Recruitment Direct UK Ltd's full compliance pack for procurement, framework and tender evaluation — one page linking every relevant policy, certification and statement.",
+      "Recruitment Direct UK Ltd's compliance pack for procurement, framework and tender evaluation: every relevant policy, certificate and statement in one place.",
     url: "https://rd1.co.uk/framework-and-tender-compliance",
     type: "website",
     siteName: "Recruitment Direct UK Ltd",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Framework & Tender Compliance | Recruitment Direct UK",
-    description: "Recruitment Direct UK Ltd's full compliance pack for procurement, framework and tender evaluation — one page linking every relevant policy, certification and statement.",
+    description: "Recruitment Direct UK Ltd's compliance pack for procurement, framework and tender evaluation: every relevant policy, certificate and statement in one place.",
   },
 };
 

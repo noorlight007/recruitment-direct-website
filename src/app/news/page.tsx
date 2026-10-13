@@ -86,7 +86,7 @@ export default async function NewsPage() {
                     <Link href={`/news/${a.slug}`} className="block h-full">
                       {a.image && (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={a.image} alt="" loading="lazy" className="w-full aspect-[16/9] object-cover" />
+                        <img src={a.image} alt={a.title} loading="lazy" className="w-full aspect-[16/9] object-cover" />
                       )}
                       <div className="p-5">
                         <time dateTime={a.publishedAt} className="text-sm text-gray-500">
