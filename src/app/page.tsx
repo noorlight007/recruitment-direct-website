@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Index from "./page-client";
+import HomeSeoSection, { HOME_FAQS } from "@/components/HomeSeoSection";
 
 export const metadata: Metadata = {
   title: "Recruitment Agency Scotland & UK | Recruitment Direct UK Ltd",
@@ -71,7 +72,13 @@ export default function Page() {
       "postalCode": "EH49 7SF",
       "addressCountry": "GB"
     },
-    "priceRange": "$$",
+    "priceRange": "££",
+    "foundingDate": "2006",
+    "areaServed": ["Scotland", "United Kingdom"],
+    "sameAs": [
+      "https://www.facebook.com/recruitmentdirect/",
+      "https://www.linkedin.com/company/recruitment-direct/"
+    ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
@@ -86,6 +93,16 @@ export default function Page() {
     }
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": HOME_FAQS.map((f) => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+    })),
+  };
+
   return (
     <>
       <script
@@ -96,7 +113,11 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(agencySchema) }}
       />
-      <Index />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Index seoSection={<HomeSeoSection />} />
     </>
   );
 }

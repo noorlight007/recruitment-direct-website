@@ -37,7 +37,7 @@ import TrustedBySection from "@/components/TrustedBySection";
 import SearchJobsSection from "@/components/SearchJobsSection";
 import ContactSection from "@/components/ContactSection";
 
-const Index = () => {
+const Index = ({ seoSection }: { seoSection?: React.ReactNode }) => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [iframeHeight, setIframeHeight] = useState(520);
 
@@ -57,27 +57,6 @@ const Index = () => {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "EmploymentAgency",
-            "name": "Recruitment Direct UK Ltd",
-            "url": "https://rd1.co.uk",
-            "logo": "https://rd1.co.uk/logo.png",
-            "telephone": "01324613198",
-            "address": {
-              "@type": "PostalAddress",
-              "addressCountry": "GB"
-            },
-            "sameAs": [
-              "https://www.linkedin.com/company/recruitment-direct/",
-              "https://www.facebook.com/recruitmentdirect/"
-            ]
-          })
-        }}
-      />
       <div className="min-h-screen bg-background">
         <Navbar />
 
@@ -1415,6 +1394,7 @@ const Index = () => {
         {/* <TrustedBySection /> */}
         <ContactSection />
 
+        {seoSection}
         <Footer />
         <FloatingElements />
 
