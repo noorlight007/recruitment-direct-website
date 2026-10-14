@@ -78,6 +78,12 @@ const toIsoDate = (value?: string): string | undefined => {
   return isNaN(d.getTime()) ? undefined : d.toISOString().slice(0, 10);
 };
 
+// The feed gives locations as "Scotland-Inverclyde"; read as "Inverclyde, Scotland".
+const prettyLocation = (raw: string): string => {
+  const m = raw.match(/^(Scotland|England|Wales|Northern Ireland)\s*-\s*(.+)$/i);
+  return m ? `${m[2].trim()}, ${m[1]}` : raw;
+};
+
 const clip = (text: string, max: number): string =>
   text.length <= max ? text : text.slice(0, max - 1).trimEnd() + "…";
 
@@ -98,7 +104,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const { job } = result;
   const title = getJobAdCleanTitle(job);
-  const location = getJobAdLocation(job);
+  const location = prettyLocation(getJobAdLocation(job));
   const pay = getJobAdPayRate(job);
   const type = getJobAdWorkType(job);
   const rateMatch = job.title?.match(/£\s*\d+(?:\.\d+)?\s*(?:ph|p\/h|per hour|\/\s*h)/i);
@@ -136,7 +142,7 @@ const toEmploymentType = (type: string): string | undefined => {
 
 function buildJsonLd(job: JobDetails, slug: string) {
   const title = getJobAdCleanTitle(job);
-  const location = getJobAdLocation(job);
+  const location = prettyLocation(getJobAdLocation(job));
   const pay = getJobAdPayRate(job);
   const employmentType = toEmploymentType(getJobAdWorkType(job));
   // Titles are free text ("Electrician x2 £27 per hour Greenock"), so fall back to the whole title.
