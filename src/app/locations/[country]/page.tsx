@@ -42,10 +42,15 @@ export async function generateMetadata({
   }
 
   const canonicalUrl = `https://rd1.co.uk/locations/${normalizedCountry}`;
+  const pageTitle = `Recruitment Agency in ${countryName} | Temporary & Permanent Staff`;
+  const pageDescription =
+    normalizedCountry === "scotland"
+      ? "Recruitment Direct UK is a Scottish recruitment agency supplying temporary, contract and permanent staff across Scotland since 2006. Call 01324 613198."
+      : `Recruitment Direct UK supplies temporary, contract and permanent staff across ${countryName}. Explore our local recruitment hubs or call 01324 613198.`;
 
   return {
-    title: `Recruitment Agency Locations in ${countryName} | RDUK`,
-    description: `Find temporary, contract and permanent recruitment services across ${countryName}. Explore our local recruitment hubs.`,
+    title: pageTitle,
+    description: pageDescription,
     alternates: {
       canonical: canonicalUrl,
       languages: normalizedCountry === "republic-of-ireland" ? {
@@ -61,8 +66,8 @@ export async function generateMetadata({
       follow: true,
     },
     openGraph: {
-      title: `Recruitment Agency Locations in ${countryName} | RDUK`,
-      description: `Find temporary, contract and permanent recruitment services across ${countryName}. Explore our local recruitment hubs.`,
+      title: pageTitle,
+      description: pageDescription,
       url: canonicalUrl,
       siteName: "Recruitment Direct UK",
       type: "website",
@@ -77,8 +82,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `Recruitment Agency Locations in ${countryName} | RDUK`,
-      description: `Find temporary, contract and permanent recruitment services across ${countryName}. Explore our local recruitment hubs.`,
+      title: pageTitle,
+      description: pageDescription,
       images: ["https://rd1.co.uk/images/og-image.png"],
     },
   };
@@ -153,6 +158,55 @@ export default async function CountryLocationsPage({
     "itemListElement": breadcrumbElements,
   };
 
+  const hubNames = hubs.slice(0, 6).map((h) => h.city);
+  const hubList = hubNames.length > 1
+    ? `${hubNames.slice(0, -1).join(", ")} and ${hubNames[hubNames.length - 1]}`
+    : hubNames[0] ?? countryName;
+
+  const faqs = [
+    {
+      question: `Which areas of ${countryName} do you cover?`,
+      answer: `We supply staff across ${countryName}, including ${hubList}, plus ${spokes.length} further towns and local areas listed on this page.`,
+    },
+    {
+      question: "What types of staff can you supply?",
+      answer: "Temporary, contract and permanent workers across construction, engineering, facilities management, logistics, healthcare, education, hospitality, renewable energy, IT and commercial roles.",
+    },
+    {
+      question: "How are your workers paid?",
+      answer: "Every worker is paid through our own PAYE payroll or, where genuinely self-employed in construction, engaged directly under the Construction Industry Scheme (CIS). We do not use umbrella companies.",
+    },
+    {
+      question: "How do I request staff?",
+      answer: "Use the Find Staff form or call 01324 613198 with the role, the location and how many people you need.",
+    },
+  ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Recruitment agency",
+    name: `Recruitment agency in ${countryName}`,
+    provider: {
+      "@type": "EmploymentAgency",
+      name: "Recruitment Direct UK Ltd",
+      url: "https://rd1.co.uk",
+      telephone: "01324 613198",
+    },
+    areaServed: { "@type": "Country", name: countryName },
+    url: `https://rd1.co.uk/locations/${normalizedSlug}`,
+  };
+
   return (
     <>
       <script
@@ -160,6 +214,14 @@ export default async function CountryLocationsPage({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
         <Navbar />
@@ -182,11 +244,19 @@ export default async function CountryLocationsPage({
             </nav>
 
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
-              Recruitment Agency Locations in {countryName}
+              Recruitment Agency in {countryName}
             </h1>
-            <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8 sm:mb-12">
-              Explore our recruitment services and offices across {countryName}. We supply temporary, contract, and permanent staff for businesses and candidates in every major city and local hub.
-            </p>
+            <div className="space-y-4 text-base sm:text-lg text-white/80 leading-relaxed mb-8 sm:mb-12">
+              <p>
+                Recruitment Direct UK Ltd is a {countryName === "Scotland" ? "Scottish " : ""}recruitment agency supplying temporary, contract and permanent staff across {countryName} since 2006. We cover every major city and local hub, from {hubList} to smaller towns across the region.
+              </p>
+              <p>
+                We recruit for construction, engineering, civil engineering, facilities management, logistics, healthcare, education, hospitality, renewable energy, IT and commercial roles. All workers are paid through PAYE or engaged directly under CIS, and we hold REC Corporate Membership, ISO 9001 and Constructionline Gold accreditation.
+              </p>
+              <p>
+                Need staff? <Link href="/find-staff" className="text-[#D4AF37] underline">Tell us the role, location and numbers</Link> or call <a href="tel:01324613198" className="text-[#D4AF37] underline">01324 613198</a>. Looking for work? <Link href="/job-search" className="text-[#D4AF37] underline">Search our live jobs</Link>.
+              </p>
+            </div>
 
             {hubs.length > 0 && (
               <div className="mb-8 sm:mb-12">
@@ -198,7 +268,7 @@ export default async function CountryLocationsPage({
                       href={hub.path}
                       className="p-4 sm:p-6 bg-white/5 border border-white/10 rounded-xl hover:border-[#D4AF37]/50 hover:bg-white/10 transition-all block"
                     >
-                      <h3 className="text-sm sm:text-lg font-bold text-white mb-1 sm:mb-2">{hub.city} Hub</h3>
+                      <h3 className="text-sm sm:text-lg font-bold text-white mb-1 sm:mb-2">Recruitment Agency in {hub.city}</h3>
                       <p className="text-[10px] sm:text-xs text-white/60">View local roles and services</p>
                     </Link>
                   ))}
@@ -222,6 +292,18 @@ export default async function CountryLocationsPage({
                 </div>
               </div>
             )}
+
+            <div className="mt-12 sm:mt-16">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Frequently Asked Questions</h2>
+              <div className="space-y-5">
+                {faqs.map((f) => (
+                  <div key={f.question}>
+                    <h3 className="text-base sm:text-lg font-semibold text-white">{f.question}</h3>
+                    <p className="text-white/70 leading-relaxed mt-1">{f.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </main>
         </div>
 
