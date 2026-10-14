@@ -3,14 +3,14 @@ import PolicyDocument from "@/components/PolicyDocument";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI & Automated Decision-Making Policy | Recruitment Direct UK",
+  title: "AI & Automated Decision-Making Policy | RDUK",
   description:
     "How Recruitment Direct UK Ltd uses AI-assisted tools responsibly in candidate screening, in line with UK GDPR and ICO guidance on AI in recruitment.",
   alternates: {
     canonical: "https://rd1.co.uk/ai-automated-decision-making-policy",
   },
   openGraph: {
-    title: "AI & Automated Decision-Making Policy | Recruitment Direct UK",
+    title: "AI & Automated Decision-Making Policy | RDUK",
     description:
       "How Recruitment Direct UK Ltd uses AI-assisted tools responsibly in candidate screening, in line with UK GDPR and ICO guidance on AI in recruitment.",
     url: "https://rd1.co.uk/ai-automated-decision-making-policy",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI & Automated Decision-Making Policy | Recruitment Direct UK",
+    title: "AI & Automated Decision-Making Policy | RDUK",
     description: "How Recruitment Direct UK Ltd uses AI-assisted tools responsibly in candidate screening, in line with UK GDPR and ICO guidance on AI in recruitment.",
   },
 };

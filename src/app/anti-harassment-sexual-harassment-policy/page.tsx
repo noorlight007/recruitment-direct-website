@@ -3,14 +3,14 @@ import PolicyDocument from "@/components/PolicyDocument";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Anti-Harassment & Sexual Harassment Policy | Recruitment Direct UK",
+  title: "Anti-Harassment & Sexual Harassment Policy | RDUK",
   description:
     "Recruitment Direct UK Ltd's zero-tolerance approach to harassment and sexual harassment, including the proactive duty under the Worker Protection Act 2023.",
   alternates: {
     canonical: "https://rd1.co.uk/anti-harassment-sexual-harassment-policy",
   },
   openGraph: {
-    title: "Anti-Harassment & Sexual Harassment Policy | Recruitment Direct UK",
+    title: "Anti-Harassment & Sexual Harassment Policy | RDUK",
     description:
       "Recruitment Direct UK Ltd's zero-tolerance approach to harassment and sexual harassment, including the proactive duty under the Worker Protection Act 2023.",
     url: "https://rd1.co.uk/anti-harassment-sexual-harassment-policy",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anti-Harassment & Sexual Harassment Policy | Recruitment Direct UK",
+    title: "Anti-Harassment & Sexual Harassment Policy | RDUK",
     description: "Recruitment Direct UK Ltd's zero-tolerance approach to harassment and sexual harassment, including the proactive duty under the Worker Protection Act 2023.",
   },
 };

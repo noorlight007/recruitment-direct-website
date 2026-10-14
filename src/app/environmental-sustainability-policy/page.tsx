@@ -3,14 +3,14 @@ import Link from "next/link";
 import PolicyDocument from "@/components/PolicyDocument";
 
 export const metadata: Metadata = {
-  title: "Environmental & Sustainability Policy | Recruitment Direct UK",
+  title: "Environmental & Sustainability Policy | RDUK",
   description:
     "How Recruitment Direct UK Ltd reduces its environmental impact through hybrid working, paperless processes and supplier engagement.",
   alternates: {
     canonical: "https://rd1.co.uk/environmental-sustainability-policy",
   },
   openGraph: {
-    title: "Environmental & Sustainability Policy | Recruitment Direct UK",
+    title: "Environmental & Sustainability Policy | RDUK",
     description:
       "How Recruitment Direct UK Ltd reduces its environmental impact through hybrid working, paperless processes and supplier engagement.",
     url: "https://rd1.co.uk/environmental-sustainability-policy",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Environmental & Sustainability Policy | Recruitment Direct UK",
+    title: "Environmental & Sustainability Policy | RDUK",
     description: "How Recruitment Direct UK Ltd reduces its environmental impact through hybrid working, paperless processes and supplier engagement.",
   },
 };

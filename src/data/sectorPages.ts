@@ -48,7 +48,7 @@ export const facilitiesManagement: SectorPageData = {
   name: 'Facilities Management',
   path: '/facilities-management-recruitment-agency',
 
-  title: 'Facilities Management Recruitment Agency | Hard & Soft FM Staff UK',
+  title: 'Facilities Management Recruitment Agency | FM Staff UK',
   metaDescription:
     'Facilities management recruitment agency supplying cleaners, caretakers, ' +
     'maintenance technicians and FM staff across the UK. Temporary, contract ' +
@@ -210,7 +210,7 @@ export const civilEngineering: SectorPageData = {
   name: 'Civil Engineering',
   path: '/civil-engineering-recruitment-agency',
 
-  title: 'Civil Engineering Recruitment Agency | Site & Groundworks Staff UK',
+  title: 'Civil Engineering Recruitment Agency | Groundworks Staff',
   metaDescription:
     'Civil engineering recruitment agency supplying groundworkers, site ' +
     'engineers, plant operators and project staff across the UK. Temporary, ' +

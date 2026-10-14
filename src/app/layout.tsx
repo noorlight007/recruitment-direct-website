@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import ButtonEffects from "@/components/ButtonEffects";
 import CookieBanner from "@/components/CookieBanner";
+import SiteBreadcrumbSchema from "@/components/SiteBreadcrumbSchema";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,6 +66,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} ${openSans.variable} antialiased`}
       >
+        <SiteBreadcrumbSchema />
         {/* Google Tag Manager (deferred) */}
         <Script
           id="gtm-script"

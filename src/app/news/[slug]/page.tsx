@@ -19,7 +19,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const a = await getArticle(slug);
   if (!a) return {};
   const url = `https://rd1.co.uk/news/${a.slug}`;
-  const title = `${a.title} | Recruitment Direct UK`;
+  // Brand suffix only when it fits; long article titles stand alone.
+  const withBrand = `${a.title} | RDUK`;
+  const title = withBrand.length <= 62 ? withBrand : a.title;
   return {
     title,
     description: a.excerpt,
@@ -64,9 +66,23 @@ export default async function ArticlePage({ params }: Params) {
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://rd1.co.uk" },
+      { "@type": "ListItem", position: 2, name: "News & Insights", item: "https://rd1.co.uk/news" },
+      { "@type": "ListItem", position: 3, name: a.title, item: url },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white text-[#121212]">
       <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd).replace(/</g, "\\u003c") }}
+      />
       <style>{`
         .news-article-body { font-size: 1.05rem; line-height: 1.75; color: #222; }
         .news-article-body h2 { font-size: 1.6rem; font-weight: 700; margin: 2rem 0 .75rem; line-height: 1.25; }

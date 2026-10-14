@@ -3,14 +3,14 @@ import PolicyDocument from "@/components/PolicyDocument";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "National Minimum Wage & Holiday Pay Policy | Recruitment Direct UK",
+  title: "National Minimum Wage & Holiday Pay Policy | RDUK",
   description:
     "Recruitment Direct UK Ltd's commitment to paying at least the National Minimum/Living Wage and correct, transparent holiday pay.",
   alternates: {
     canonical: "https://rd1.co.uk/national-minimum-wage-holiday-pay-policy",
   },
   openGraph: {
-    title: "National Minimum Wage & Holiday Pay Policy | Recruitment Direct UK",
+    title: "National Minimum Wage & Holiday Pay Policy | RDUK",
     description:
       "Recruitment Direct UK Ltd's commitment to paying at least the National Minimum/Living Wage and correct, transparent holiday pay.",
     url: "https://rd1.co.uk/national-minimum-wage-holiday-pay-policy",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "National Minimum Wage & Holiday Pay Policy | Recruitment Direct UK",
+    title: "National Minimum Wage & Holiday Pay Policy | RDUK",
     description: "Recruitment Direct UK Ltd's commitment to paying at least the National Minimum/Living Wage and correct, transparent holiday pay.",
   },
 };

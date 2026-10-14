@@ -3,14 +3,14 @@ import PolicyDocument from "@/components/PolicyDocument";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Supplier & Subcontractor Due-Diligence Policy | Recruitment Direct UK",
+  title: "Supplier & Subcontractor Due-Diligence Policy | RDUK",
   description:
     "How Recruitment Direct UK Ltd carries out due diligence on suppliers and any associate agencies used to fulfil a client contract.",
   alternates: {
     canonical: "https://rd1.co.uk/supplier-subcontractor-due-diligence-policy",
   },
   openGraph: {
-    title: "Supplier & Subcontractor Due-Diligence Policy | Recruitment Direct UK",
+    title: "Supplier & Subcontractor Due-Diligence Policy | RDUK",
     description:
       "How Recruitment Direct UK Ltd carries out due diligence on suppliers and any associate agencies used to fulfil a client contract.",
     url: "https://rd1.co.uk/supplier-subcontractor-due-diligence-policy",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Supplier & Subcontractor Due-Diligence Policy | Recruitment Direct UK",
+    title: "Supplier & Subcontractor Due-Diligence Policy | RDUK",
     description: "How Recruitment Direct UK Ltd carries out due diligence on suppliers and any associate agencies used to fulfil a client contract.",
   },
 };

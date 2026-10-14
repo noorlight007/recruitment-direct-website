@@ -18,7 +18,7 @@ const jsonLd = {
 };
 
 export const metadata: Metadata = {
-  title: "Commercial & Office Recruitment Agency | Recruitment Direct UK",
+  title: "Commercial & Office Recruitment Agency | RDUK",
   description: DESCRIPTION,
   alternates: { canonical: "https://rd1.co.uk/commercial-office-recruitment-agency" },
   robots: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "Commercial & Office Recruitment Agency | Recruitment Direct UK",
+    title: "Commercial & Office Recruitment Agency | RDUK",
     description: DESCRIPTION,
     url: "https://rd1.co.uk/commercial-office-recruitment-agency",
     siteName: "Recruitment Direct UK",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Commercial & Office Recruitment Agency | Recruitment Direct UK",
+    title: "Commercial & Office Recruitment Agency | RDUK",
     description: DESCRIPTION,
     images: ["https://rd1.co.uk/images/og-image.png"],
   }

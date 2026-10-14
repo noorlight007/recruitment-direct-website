@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import PolicyDocument from "@/components/PolicyDocument";
 
 export const metadata: Metadata = {
-  title: "Working Time Regulations Compliance Policy | Recruitment Direct UK",
+  title: "Working Time Regulations Compliance Policy | RDUK",
   description:
     "Recruitment Direct UK Ltd's compliance with the Working Time Regulations 1998, covering maximum hours, rest breaks and annual leave for placed workers.",
   alternates: {
     canonical: "https://rd1.co.uk/working-time-regulations-policy",
   },
   openGraph: {
-    title: "Working Time Regulations Compliance Policy | Recruitment Direct UK",
+    title: "Working Time Regulations Compliance Policy | RDUK",
     description:
       "Recruitment Direct UK Ltd's compliance with the Working Time Regulations 1998, covering maximum hours, rest breaks and annual leave for placed workers.",
     url: "https://rd1.co.uk/working-time-regulations-policy",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Working Time Regulations Compliance Policy | Recruitment Direct UK",
+    title: "Working Time Regulations Compliance Policy | RDUK",
     description: "Recruitment Direct UK Ltd's compliance with the Working Time Regulations 1998, covering maximum hours, rest breaks and annual leave for placed workers.",
   },
 };

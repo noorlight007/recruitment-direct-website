@@ -42,7 +42,9 @@ export async function generateMetadata({
   }
 
   const canonicalUrl = `https://rd1.co.uk/locations/${normalizedCountry}`;
-  const pageTitle = `Recruitment Agency in ${countryName} | Temporary & Permanent Staff`;
+  const fullTitle = `Recruitment Agency in ${countryName} | Temporary & Permanent Staff`;
+  // Keep under ~60 characters so Google doesn't cut the title.
+  const pageTitle = fullTitle.length <= 62 ? fullTitle : `Recruitment Agency in ${countryName} | RDUK`;
   const pageDescription =
     normalizedCountry === "scotland"
       ? "Recruitment Direct UK is a Scottish recruitment agency supplying temporary, contract and permanent staff across Scotland since 2006. Call 01324 613198."
