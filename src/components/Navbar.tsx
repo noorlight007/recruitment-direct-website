@@ -294,7 +294,7 @@ export default function Navbar() {
             className={`flex-shrink-0 logo-premium transition-opacity duration-750 ${mobileOpen ? "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto" : "opacity-100"}`}
           >
             {/* <Image src={logo} alt="Recruitment Direct" className="navbar-logo" unoptimized /> */}
-            <img src="/logo.png" alt="Recruitment Direct" className="navbar-logo" width="350" height="140" />
+            <img src="/logo-nav.webp" alt="Recruitment Direct" className="navbar-logo" width="80" height="80" fetchPriority="high" decoding="async" />
           </Link>
 
           {/* Center Menu - Desktop */}
